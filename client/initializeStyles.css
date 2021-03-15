@@ -1,0 +1,29 @@
+body{
+  background-color:#535353;
+  margin:0;
+  padding:0;
+}
+
+svg{
+  display:block;
+}
+
+/*———————————————————————————————————————— hide mouseover buttons */
+
+#btnSaveActive,
+#btnSaveAllActive,
+#btnCloseActive,
+#btnLayersActive,
+#btnObjectsActive,
+#btnImagesActive,
+
+#btnSaveHover,
+#btnSaveAllHover,
+#btnCloseHover,
+#btnLayersHover,
+#btnObjectsHover,
+#btnImagesHover,
+
+#x { display:none; }
+
+/*———————————————————————————————————————— fin */

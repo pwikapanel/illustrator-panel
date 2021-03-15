@@ -1,0 +1,60 @@
+https://community.adobe.com/t5/exchange/possible-to-launch-a-cep-panel-from-extendscript-code/m-p/10380094
+open panel from actionscript
+
+
+https://www.xoogu.com/2019/cep-extendscript-and-xmp-api-notes-so-far/
+
+
+https://medium.com/adobetech/how-to-create-your-first-adobe-panel-in-6-easy-steps-f8bd4ed5778
+How to Create Your First Adobe Panel in 6 Easy Steps
+
+
+https://medium.com/adobetech/scripting-for-cc-apps-via-cep-panels-579b2934b9c6
+Scripting CC Apps Using CEP Panels
+
+
+https://github.com/Adobe-CEP/CEP-Resources/issues/265
+Animate's panelBackgroundColor is inaccurate and only works for 2 of 4 total themes
+
+
+https://community.adobe.com/t5/photoshop/photoshop-cep-panel-and-user-jsx-path/td-p/10633539?page=1
+Photoshop CEP panel and user jsx path
+
+
+https://community.adobe.com/t5/illustrator/reload-cep-panel-extension-and-its-extendscript-without-restarting-illustrator/td-p/10844579?page=1
+Reload CEP panel extension and its ExtendScript without restarting Illustrator?
+
+
+https://community.adobe.com/t5/premiere-pro/cep-panels-change-fonts/td-p/11230315?page=1
+CEP Panels - Change fonts
+
+
+https://github.com/Adobe-CEP/CEP-Resources/issues/238
+Are keyboard shortcuts possible for a CEP panel?
+
+
+https://github.com/Inventsable/bombino
+Generate a new panel from local or cloud-based templates in just a few seconds
+
+
+https://github.com/battleaxedotco/brutalism
+Battleaxe's component library for every app, every theme, and every one
+
+
+https://blog.csdn.net/weixin_42247427/article/details/112347018
+CEP 10 HTML Extension Cookbook
+
+
+https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_8.x/CSInterface.js
+CEP-Resources/CEP_8.x/CSInterface.js  / Jump to › Go to file
+
+
+https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_8.x/Documentation/CEP%208.0%20HTML%20Extension%20Cookbook.md
+CEP 8 HTML Extension Cookbook
+
+
+https://github.com/Adobe-CEP.html
+Adobe CEP
+
+
+
