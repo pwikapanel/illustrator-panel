@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="com.svija.tools" ExtensionBundleVersion="1.0.0" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="com.svija.tools" ExtensionBundleVersion="1.0.0" Version="10.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
   <ExtensionList>
     <Extension Id="com.svija.tools.panel" Version="1.0.0" />
   </ExtensionList>
@@ -11,7 +13,7 @@
       <Locale Code="All" />
     </LocaleList>
     <RequiredRuntimeList>
-      <RequiredRuntime Name="CSXS" Version="8.0" />
+      <RequiredRuntime Name="CSXS" Version="10.0" />
     </RequiredRuntimeList>
   </ExecutionEnvironment>
   <DispatchInfoList>
@@ -21,10 +23,14 @@
           <MainPath>./client/index.html</MainPath>
           <!-- <ScriptPath>./host/index.jsx</ScriptPath> -->
           <CEFCommandLine />
+
         </Resources>
-        <Lifecycle>
-          <AutoVisible>true</AutoVisible>
-        </Lifecycle>
+				<Lifecycle>
+                    <AutoVisible>false</AutoVisible>  
+                    <StartOn>  
+                        <Event>documentAfterActivate</Event>
+                    </StartOn>  
+				</Lifecycle>
         <UI>
           <Type>Panel</Type>
           <Menu>Svija Tools</Menu>

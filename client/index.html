@@ -6,16 +6,38 @@
     <link rel="stylesheet" href="initializeStyles.css">
     <script type="text/javascript" src="CSInterface.js"></script>
     <script>
+    </script>
+    <script>
 
+//        new CSInterface().evalScript('alert("Svija Tools loaded")')
         var csif = new CSInterface();
+        csif.evalScript('alert("Svija Tools loaded")')
 
-// https://www.xoogu.com/2019/cep-extendscript-and-xmp-api-notes-so-far/
-// var csIface = new CSInterface();
-// csIface.evalScript('$.evalFile(\''+csIface.getSystemPath( SystemPath.EXTENSION )+'/host/index.jsx\')');
-// csIface.evalScript('$.evalFile(\''+csIface.getSystemPath( SystemPath.EXTENSION )+'/host/resetImages.jsx\')');
-// csIface.evalScript('$.evalFile(\''+csIface.getSystemPath( SystemPath.EXTENSION )+'/host/resetObjects.jsx\')');
-// csIface.evalScript('$.evalFile(\''+csIface.getSystemPath( SystemPath.EXTENSION )+'/host/propagateLayers.jsx\')');
-// csIface.evalScript('$.evalFile(\''+csIface.getSystemPath( SystemPath.EXTENSION )+'/host/saveAsSvg.jsx\')');
+//———————————————————————————————————————— worked
+
+// had to load panel once, then the listening worked even if panel was closed
+
+        csif.addEventListener( // worked 
+            "documentAfterActivate",
+            function(event) {
+                alert("Event type:" + event.type +
+                     "\nData: " + event.data );
+            }
+        )
+
+// JavaScript Alert - file:///Library/Application%20Support/Adobe/CEP/extensions/Svija%20Tools.extension/client/index.html
+// Event type:documentAfterActivate
+// Data: <documentAfterActivate><url>Untitled-3</url><name>Untitled-3</name></documentAfterActivate>
+
+//————————————————————————————————————————
+// https://github.com/Adobe-CEP/CEP-Resources/issues/238
+
+// worked: I created new document, loaded CEP panel, then loaded script
+// after hiding panel, it still worked
+
+    csif.addEventListener('some-event-name-hotkey-thing', () => {
+        alert('sumpn sumpn');
+    })
 
 </script></head><body>
 

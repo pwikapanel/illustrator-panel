@@ -1,8 +1,14 @@
+very good resource, a bit dated:
+https://fenomas.com/2014/08/cep-mega-guide-en/
+
+————————————————————————————————————————
+
 when I left off, I had successfully loaded scripts when needed and passed arguments to them
 
 this means that I can develop the scripts in the scripts folder, then move them to extensions when they're ready.
 
 tasks to do:
+¬ keyboard shortcut
 ¬ match interface color
 ¬ develop individual scripts
 ¬ test drag to extension in .dmg file

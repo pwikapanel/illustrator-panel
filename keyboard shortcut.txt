@@ -20,3 +20,11 @@ keyEventsInterest =
 csif.prototype.registerKeyEventsInterest = function(keyEventsInterest)
 
 // key codes using "Key Codes" app by "Developer Tools" in Mac App Store
+
+———————————————————————————————————————— register all possible keys
+
+http://justintaylor.tv/hotkeys-in-cep/
+
+———————————————————————————————————————— 
+
+notes, could use live help pages to show updates etc.

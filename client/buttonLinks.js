@@ -75,6 +75,7 @@ function funcMod(btnId){
 
 //———————————————————————————————————————— execution
 
+// var csif = new CSInterface(); // now in index.html
 var path = csif.getSystemPath(SystemPath.EXTENSION) + '/host/';
 
 function funcMou(btnId, scriptName, arg){
