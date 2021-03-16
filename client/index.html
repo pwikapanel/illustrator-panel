@@ -35,9 +35,45 @@
 // worked: I created new document, loaded CEP panel, then loaded script
 // after hiding panel, it still worked
 
+// this is activated by jsx script in presets/scripts
+
     csif.addEventListener('some-event-name-hotkey-thing', () => {
         alert('sumpn sumpn');
     })
+
+//———————————————————————————————————————— capturing keystrokes
+
+// https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_9.x/Documentation/CEP%209.0%20HTML%20Extension%20Cookbook.md#register-an-interest-in-specific-key-events
+
+//keyEventsInterest = [{ "keyCode": 3, "ctrlKey": true }];
+
+// from Key Codes.app
+// charactes: f
+// unicod: 102 / 0x66
+// keys: cmd-F (cmd-sign)
+// key code: 3
+// modifiers: 1048840 / 0x100108
+
+//csif.prototype.registerKeyEventsInterest = function(keyEventsInterest)
+//csif.registerKeyEventsInterest = function(JSON.stringify(keyEventsInterest))
+
+			 // alt-f
+       var keyInterests = [
+            { "keyCode": 3, "altKey": true }
+       ];
+       csif.registerKeyEventsInterest( JSON.stringify( keyInterests ) );
+       csif.addEventListener('keyup',function(e){ 
+             alert("keyup detected"); 
+       });
+
+// https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_9.x/Documentation/CEP%209.0%20HTML%20Extension%20Cookbook.md#register-an-interest-in-specific-key-events
+// This JSON string should be an array, each object has following keys:
+// 
+// keyCode: [Required] represents an OS system dependent virtual key code identifying the unmodified value of the pressed key.
+// ctrlKey: [optional]  control key was pressed (true) or not (false) when the event occurred.
+// altKey: [optional]  alt key was pressed (true) or not (false) when the event occurred.
+// shiftKey: [optional]  shift key was pressed (true) or not (false) when the event occurred.
+// metaKey: [optional] (macOS Only)  Meta key was pressed (true) or not (false) when the event occurred. On Macintosh keyboards, this is the command key. To detect Windows key on Windows, please use keyCode instead.
 
 </script></head><body>
 

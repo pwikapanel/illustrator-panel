@@ -1,3 +1,12 @@
+tuesday afternoon
+
+spent a lotof time on the aftereffects extension, only to find that the key events didn't really have anything to do with the editable or not.
+back to the drawing board...how to capture keysstrokes.
+
+I can load the panel with any new document
+if I can capture the keystrokes, then I can use them in the panel.
+
+————————————————————————————————————————
 very good resource, a bit dated:
 https://fenomas.com/2014/08/cep-mega-guide-en/
 
