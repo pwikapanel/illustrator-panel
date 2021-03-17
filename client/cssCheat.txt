@@ -1,25 +1,22 @@
-:vertical resize 60
+:vertical resize 30
 id=gray1 index.html
 
-/*—————————————————————
-
-                                     background color
-                                                  (i)
-                                  visit / tips & info
-                                            docs link
-                                             all text
-                                      top button text
-                                          top buttons
-                                          button text
-                                       bottom buttons
-                                   bottom button text
-                                     button mouseover
-                                     button mousedown
-                                        M Y S T E R Y
-
-                                            logo fill
-                                        M Y S T E R Y
-                                        grouped links
-                                    logo & docs links
-                                         button links
-                                         button links
+       background color
+                    (i)
+    visit / tips & info
+              docs link
+               all text
+              docs link
+            top buttons
+        top button text
+        all button font
+         bottom buttons
+     bottom button text
+       button mouseover
+  button mouseover text
+       button mousedown
+              logo fill
+        horizontal line
+      logo & docs links
+           button links
+           button links
