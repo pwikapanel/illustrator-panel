@@ -1,50 +1,6 @@
-<!DOCTYPE html>
-<html><head>
-
-  <meta charset="utf-8">
-  <title>NOT VISIBLE</title>
-  <link rel="stylesheet" href="initializeStyles.css">
-  <link rel="stylesheet" href="themeColor.css">
-  <script type="text/javascript" src="CSInterface.js"></script>
-  <script>
-
-//———————————————————————————————————————— opened by manifest
-
-  var csif = new CSInterface();
-  //csif.evalScript('alert("Svija Tools loaded");');
-
-//———————————————————————————————————————— open a panel with preset script
-
-// csif.requestOpenExtension(extensions[0].id);
-// see example panel
-
-
-//———————————————————————————————————————— copied from buttonLinks.js
-
-// var csif = new CSInterface(); // now in index.html
-var path = csif.getSystemPath(SystemPath.EXTENSION) + '/host/';
-
-function funcMoux(btnId, scriptName, arg){
-//  var btnHover = document.getElementById(btnId+'Hover' );
-//  var btnActive = document.getElementById(btnId+'Active');
-//
-//  btnHover.style.display = 'block';
-//  btnActive.style.display = 'none';
-
-  // need to pass argument as well
-
-  file = path + scriptName;
-  csif.evalScript("arg = '" + arg + "'");
-  csif.evalScript("$.evalFile('" + file + "')");
-}
-
-</script></head><body>
-
-
-
-<!-- svg pasted directly from Ai export with no modifications -->
-
-<svg id="gray1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 240 130" style="enable-background:new 0 0 240 130;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#535353;}
@@ -59,14 +15,12 @@ function funcMoux(btnId, scriptName, arg){
 	.st9{fill:#FFFFFF;}
 	.st10{fill:none;stroke:#45A0F5;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st11{fill:#303030;stroke:#45A0F5;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st12{fill:#303030;}
-	.st13{clip-path:url(#SVGID_2_);}
-	.st14{clip-path:url(#SVGID_4_);fill:#FFFFFF;}
-	.st15{fill:#4B4B4B;stroke:#666666;stroke-miterlimit:10;}
+	.st12{clip-path:url(#SVGID_2_);}
+	.st13{clip-path:url(#SVGID_4_);fill:#FFFFFF;}
+	.st14{fill:#4B4B4B;stroke:#666666;stroke-miterlimit:10;}
+	.st15{opacity:0;fill:#FF0080;}
 	.st16{opacity:0;}
-	.st17{opacity:0.2;fill:#FF0080;}
-	.st18{opacity:0.2;}
-	.st19{fill:#FF0080;}
+	.st17{fill:#FF0080;}
 </style>
 <g id="background">
 	<rect class="st0" width="240" height="130"/>
@@ -230,14 +184,14 @@ function funcMoux(btnId, scriptName, arg){
 			<clipPath id="SVGID_2_">
 				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
 			</clipPath>
-			<g class="st13">
+			<g class="st12">
 				<defs>
 					<rect id="SVGID_3_" x="142.777" y="35.164" width="74.957" height="22.672"/>
 				</defs>
 				<clipPath id="SVGID_4_">
 					<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
 				</clipPath>
-				<path class="st14" d="M191.175,40.346h-2.915v12.632h2.915V40.346z M196.357,35.164h-8.097v2.915h8.097V35.164z M196.357,40.346
+				<path class="st13" d="M191.175,40.346h-2.915v12.632h2.915V40.346z M196.357,35.164h-8.097v2.915h8.097V35.164z M196.357,40.346
 					h-2.915v17.49h2.915V40.346z M161.886,52.978h-19.109v-2.915h16.194v-1.126l-16.194-1.967v-6.623h19.109v2.915h-16.194v1.126
 					l16.194,1.967V52.978z M217.734,40.346h-19.109v2.915h16.194v1.126l-16.194,1.967v6.624h19.109V40.346z M201.539,48.936
 					l13.279-1.613v2.739h-13.279V48.936z M183.785,40.346l-5.996,9.27c-0.181,0.28-0.487,0.446-0.82,0.446h-3.832
@@ -246,73 +200,32 @@ function funcMoux(btnId, scriptName, arg){
 			</g>
 		</g>
 	</g>
-	<line class="st15" x1="10" y1="67" x2="230" y2="67"/>
+	<line class="st14" x1="10" y1="67" x2="230" y2="67"/>
 </g>
 <g id="help">
 </g>
 <g id="links">
-	<g class="st16">
-		<rect id="linkInfo" x="16" y="105" class="st17" width="208" height="20"/>
-		<g id="linkSaveAll" class="st18">
-			<rect x="175.5" y="77.5" class="st19" width="54" height="20"/>
+	<g>
+		<rect id="linkInfo" x="16" y="105" class="st15" width="208" height="20"/>
+		<g id="linkSaveAll" class="st16">
+			<rect x="175.5" y="77.5" class="st17" width="54" height="20"/>
 		</g>
-		<g id="linkSave" class="st18">
-			<rect x="120.5" y="77.5" class="st19" width="44" height="20"/>
+		<g id="linkSave" class="st16">
+			<rect x="120.5" y="77.5" class="st17" width="44" height="20"/>
 		</g>
-		<g id="linkClose" class="st18">
-			<rect x="11.025" y="77.77" class="st19" width="98.475" height="19.73"/>
+		<g id="linkClose" class="st16">
+			<rect x="11.025" y="77.77" class="st17" width="98.475" height="19.73"/>
 		</g>
-		<rect id="linkLogo" x="139.713" y="33.477" class="st17" width="80.473" height="26.249"/>
-		<g id="linkLayers" class="st18">
-			<rect x="10.5" y="36.5" class="st19" width="109" height="20"/>
+		<rect id="linkLogo" x="139.713" y="33.477" class="st15" width="80.473" height="26.249"/>
+		<g id="linkLayers" class="st16">
+			<rect x="10.5" y="36.5" class="st17" width="109" height="20"/>
 		</g>
-		<g id="linkObjects" class="st18">
-			<rect x="130.5" y="10.5" class="st19" width="99" height="20"/>
+		<g id="linkObjects" class="st16">
+			<rect x="130.5" y="10.5" class="st17" width="99" height="20"/>
 		</g>
-		<g id="linkImages" class="st18">
-			<rect x="10.5" y="10.5" class="st19" width="109.75" height="20"/>
+		<g id="linkImages" class="st16">
+			<rect x="10.5" y="10.5" class="st17" width="109.75" height="20"/>
 		</g>
 	</g>
 </g>
 </svg>
-
-
-
-
-
-<script type="text/javascript" src="themeColor.js"></script>
-<script type="text/javascript" src="buttonLinks.js"></script>
-<script>
-
-//———————————————————————————————————————— can use to execute actions from preset script
-// https://github.com/Adobe-CEP/CEP-Resources/issues/238
-
-  csif.addEventListener('cmf1', () => { myfunc(); })
-
-// id = com.svija.tools.panel
-// javascript tools guide, p 108 has list of panel properties
-
-function myfunc(){
-
-//var panelName = 'com.svija.tools.panel';
-	var panelName = 'com.adobe.CEPHTMLTEST.Panel1';
-
-	// is window visible
-  var isVisible = csif.isWindowVisible();
-
-	if (isVisible == 'true'){
-    csif.closeExtension();
-  }
-  else{
-    csif.evalScript('alert("Use Extensions menu.");');
-    // csif.requestOpenExtension(panelName);
-	}
-}
-
-  csif.addEventListener('cmf2', () => { funcMoux('', 'saveAsSvg.jsx', 3); })
-  csif.addEventListener('cmf3', () => { funcMoux('', 'saveAsSvg.jsx', 2); })
-  csif.addEventListener('cmf4', () => { funcMoux('', 'saveAsSvg.jsx', 1); })
-
-</script>
-</body></html>
-

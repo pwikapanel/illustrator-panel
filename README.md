@@ -7,12 +7,10 @@
 
 Current task:
 
-move environment creation to main doc
-register keyboard shortcuts on load
+interface color
 
-are they registered, even if panel is not made visible?
-or is it that it has to be made visible at least once?
+Remaining tasks
 
-Can I use a jsx file to make panel visible then auto hide it or something?
+* font source
+* panel functionality
 
-next step: create JSON etc. according to keyboard shortcut file.
