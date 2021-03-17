@@ -1,79 +1,43 @@
 <!DOCTYPE html>
 <html><head>
 
-    <meta charset="utf-8">
-    <title>NOT VISIBLE</title>
-    <link rel="stylesheet" href="initializeStyles.css">
-    <script type="text/javascript" src="CSInterface.js"></script>
-    <script>
-    </script>
-    <script>
+  <meta charset="utf-8">
+  <title>NOT VISIBLE</title>
+  <link rel="stylesheet" href="initializeStyles.css">
+  <script type="text/javascript" src="CSInterface.js"></script>
+  <script>
+  </script>
+  <script>
 
-//        new CSInterface().evalScript('alert("Svija Tools loaded")')
-        var csif = new CSInterface();
-        csif.evalScript('alert("Svija Tools loaded")')
+//———————————————————————————————————————— opened by manifest
 
-//———————————————————————————————————————— worked
+  var csif = new CSInterface();
+  //csif.evalScript('alert("Svija Tools loaded");');
 
-// had to load panel once, then the listening worked even if panel was closed
+//———————————————————————————————————————— open a panel with preset script
 
-        csif.addEventListener( // worked 
-            "documentAfterActivate",
-            function(event) {
-                alert("Event type:" + event.type +
-                     "\nData: " + event.data );
-            }
-        )
+// csif.requestOpenExtension(extensions[0].id);
+// see example panel
 
-// JavaScript Alert - file:///Library/Application%20Support/Adobe/CEP/extensions/Svija%20Tools.extension/client/index.html
-// Event type:documentAfterActivate
-// Data: <documentAfterActivate><url>Untitled-3</url><name>Untitled-3</name></documentAfterActivate>
 
-//————————————————————————————————————————
-// https://github.com/Adobe-CEP/CEP-Resources/issues/238
+//———————————————————————————————————————— copied from buttonLinks.js
 
-// worked: I created new document, loaded CEP panel, then loaded script
-// after hiding panel, it still worked
+// var csif = new CSInterface(); // now in index.html
+var path = csif.getSystemPath(SystemPath.EXTENSION) + '/host/';
 
-// this is activated by jsx script in presets/scripts
+function funcMoux(btnId, scriptName, arg){
+//  var btnHover = document.getElementById(btnId+'Hover' );
+//  var btnActive = document.getElementById(btnId+'Active');
+//
+//  btnHover.style.display = 'block';
+//  btnActive.style.display = 'none';
 
-    csif.addEventListener('some-event-name-hotkey-thing', () => {
-        alert('sumpn sumpn');
-    })
+  // need to pass argument as well
 
-//———————————————————————————————————————— capturing keystrokes
-
-// https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_9.x/Documentation/CEP%209.0%20HTML%20Extension%20Cookbook.md#register-an-interest-in-specific-key-events
-
-//keyEventsInterest = [{ "keyCode": 3, "ctrlKey": true }];
-
-// from Key Codes.app
-// charactes: f
-// unicod: 102 / 0x66
-// keys: cmd-F (cmd-sign)
-// key code: 3
-// modifiers: 1048840 / 0x100108
-
-//csif.prototype.registerKeyEventsInterest = function(keyEventsInterest)
-//csif.registerKeyEventsInterest = function(JSON.stringify(keyEventsInterest))
-
-			 // alt-f
-       var keyInterests = [
-            { "keyCode": 3, "altKey": true }
-       ];
-       csif.registerKeyEventsInterest( JSON.stringify( keyInterests ) );
-       csif.addEventListener('keyup',function(e){ 
-             alert("keyup detected"); 
-       });
-
-// https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_9.x/Documentation/CEP%209.0%20HTML%20Extension%20Cookbook.md#register-an-interest-in-specific-key-events
-// This JSON string should be an array, each object has following keys:
-// 
-// keyCode: [Required] represents an OS system dependent virtual key code identifying the unmodified value of the pressed key.
-// ctrlKey: [optional]  control key was pressed (true) or not (false) when the event occurred.
-// altKey: [optional]  alt key was pressed (true) or not (false) when the event occurred.
-// shiftKey: [optional]  shift key was pressed (true) or not (false) when the event occurred.
-// metaKey: [optional] (macOS Only)  Meta key was pressed (true) or not (false) when the event occurred. On Macintosh keyboards, this is the command key. To detect Windows key on Windows, please use keyCode instead.
+  file = path + scriptName;
+  csif.evalScript("arg = '" + arg + "'");
+  csif.evalScript("$.evalFile('" + file + "')");
+}
 
 </script></head><body>
 
@@ -322,5 +286,37 @@
 <link rel="stylesheet" href="themeColor.css">
 <script type="text/javascript" src="themeColor.js"></script>
 <script type="text/javascript" src="buttonLinks.js"></script>
+<script>
+
+//———————————————————————————————————————— can use to execute actions from preset script
+// https://github.com/Adobe-CEP/CEP-Resources/issues/238
+
+  csif.addEventListener('cmf1', () => { myfunc(); })
+
+// id = com.svija.tools.panel
+// javascript tools guide, p 108 has list of panel properties
+
+function myfunc(){
+
+//var panelName = 'com.svija.tools.panel';
+	var panelName = 'com.adobe.CEPHTMLTEST.Panel1';
+
+	// is window visible
+  var isVisible = csif.isWindowVisible();
+
+	if (isVisible == 'true'){
+    csif.closeExtension();
+  }
+  else{
+    csif.evalScript('alert("Use Extensions menu.");');
+    // csif.requestOpenExtension(panelName);
+	}
+}
+
+  csif.addEventListener('cmf2', () => { funcMoux('', 'saveAsSvg.jsx', 3); })
+  csif.addEventListener('cmf3', () => { funcMoux('', 'saveAsSvg.jsx', 2); })
+  csif.addEventListener('cmf4', () => { funcMoux('', 'saveAsSvg.jsx', 1); })
+
+</script>
 </body></html>
 
