@@ -24,4 +24,9 @@ svg{ display:none; }
 
 #x { display:none; }
 
+/*———————————————————————————————————————— fonts */
+
+@font-face { font-family:'SourceSansPro-Regular'; src:url('fonts/SourceSansPro-Regular.ttf') format('woff'); }
+@font-face { font-family:'SourceSansPro-Semibold'; src:url('fonts/SourceSansPro-Semibold.ttf') format('woff'); }
+
 /*———————————————————————————————————————— fin */

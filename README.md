@@ -11,6 +11,4 @@ info pane function keys need to work
 
 Remaining tasks
 
-* font source
-* panel functionality
 * change title for help pane
