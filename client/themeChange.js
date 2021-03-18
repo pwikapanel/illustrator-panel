@@ -24,8 +24,6 @@ function setAppTheme(event) {
   var list = document.getElementsByTagName("svg");
   var svg = list[0];
   svg.setAttribute('id', newId);
-
-	alert('woked: '+newId);
 }
 
 //———————————————————————————————————————— fin

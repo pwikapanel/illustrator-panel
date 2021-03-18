@@ -1,17 +1,15 @@
-//———————————————————————————————————————— client/index.js
-
-
-/* Make a reference to your HTML button and add a click handler. */
-//var openButton = document.querySelector("#open-button");
-//openButton.addEventListener("click", openDoc);
+//———————————————————————————————————————— client/indexLinks.js
 
 //———————————————————————————————————————— reset link
 
 linkLogo.addEventListener('mouseup', refreshPanel);
-function refreshPanel() { location.reload; alert('Panel reloaded.'); }
+function refreshPanel() {
+  csif.evalScript('alert("Reloading Svija Tools");');
+  location.reload;
+}
 
-linkInfo.addEventListener('mouseup', showInfo);
-function showInfo(){ location.href='info.html'; }
+linkInfo.addEventListener('mouseup', callURL);
+function callURL(){ location.href='info.html'; }
 
 //———————————————————————————————————————— listeners
 

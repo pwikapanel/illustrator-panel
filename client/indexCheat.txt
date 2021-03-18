@@ -1,12 +1,14 @@
 :vertical resize 30
 id=gray1 index.html
 
+
+
        background color
                     (i)
     visit / tips & info
-              docs link
+              docs text
                all text
-              docs link
+               docs URL
             top buttons
         top button text
         all button font
@@ -15,18 +17,19 @@ id=gray1 index.html
        button mouseover
   button mouseover text
        button mousedown
-              logo fill
+  button mousedown text
         horizontal line
-      logo & docs links
+              logo fill
+      logo & docs texts
            button links
            button links
 
        background color
                     (i)
     visit / tips & info
-              docs link
+              docs text
                all text
-              docs link
+               docs URL
             top buttons
         top button text
         all button font
@@ -35,18 +38,19 @@ id=gray1 index.html
        button mouseover
   button mouseover text
        button mousedown
-              logo fill
+  button mousedown text
         horizontal line
-      logo & docs links
+              logo fill
+      logo & docs texts
            button links
            button links
 
        background color
                     (i)
     visit / tips & info
-              docs link
+              docs text
                all text
-              docs link
+               docs URL
             top buttons
         top button text
         all button font
@@ -55,18 +59,19 @@ id=gray1 index.html
        button mouseover
   button mouseover text
        button mousedown
-              logo fill
+  button mousedown text
         horizontal line
-      logo & docs links
+              logo fill
+      logo & docs texts
            button links
            button links
 
        background color
                     (i)
     visit / tips & info
-              docs link
+              docs text
                all text
-              docs link
+               docs URL
             top buttons
         top button text
         all button font
@@ -75,9 +80,10 @@ id=gray1 index.html
        button mouseover
   button mouseover text
        button mousedown
-              logo fill
+  button mousedown text
         horizontal line
-      logo & docs links
+              logo fill
+      logo & docs texts
            button links
            button links
 

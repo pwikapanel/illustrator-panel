@@ -7,7 +7,7 @@
 
 Current task:
 
-interface color
+info pane function keys need to work
 
 Remaining tasks
 
