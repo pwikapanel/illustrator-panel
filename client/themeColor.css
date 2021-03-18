@@ -1,7 +1,7 @@
 /*———————————————————————————————————————— svg styles */
 /*         :4,21s/\t/#gray2 /g                        */
 
-#gray0 .st0{fill:#262626;}
+#gray1 .st0{fill:#262626;}
 #gray1 .st1{fill:#aaaaaa;}
 #gray1 .st2{fill:#666666;}
 #gray1 .st3{font-family:'SourceSansPro-Regular';}
@@ -40,5 +40,25 @@
 #gray2 .st16{opacity:0;fill:#FF0080;}
 #gray2 .st17{opacity:0;}
 #gray2 .st18{fill:#FF2B95;}
+
+#gray3 .st0{fill:#535353;}
+#gray3 .st1{fill:#C2C2C2;}
+#gray3 .st2{fill:#808080;}
+#gray3 .st3{font-family:'SourceSansPro-Regular';}
+#gray3 .st4{font-size:12px;}
+#gray3 .st5{fill:#AAAAAA;}
+#gray3 .st6{fill:#4B4B4B;stroke:#666666;stroke-linejoin:round;stroke-miterlimit:10;}
+#gray3 .st7{fill:#999999;}
+#gray3 .st8{font-family:'SourceSansPro-Semibold';}
+#gray3 .st9{fill:#454545;stroke:#666666;stroke-linejoin:round;stroke-miterlimit:10;}
+#gray3 .st10{fill:#DDDDDD;}
+#gray3 .st11{fill:#333333;stroke:#45A0F5;stroke-linejoin:round;stroke-miterlimit:10;}
+#gray3 .st12{fill:#EEEEEE;}
+#gray3 .st13{fill:#303030;stroke:#F0F0F0;stroke-linejoin:round;stroke-miterlimit:10;}
+#gray3 .st14{fill:#FFFFFF;}
+#gray3 .st15{fill:none;stroke:#777777;stroke-miterlimit:10;}
+#gray3 .st16{opacity:0;fill:#FF0080;}
+#gray3 .st17{opacity:0;}
+#gray3 .st18{fill:#FF2B95;}
 
 /*———————————————————————————————————————— fin */
