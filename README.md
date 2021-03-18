@@ -7,8 +7,10 @@
 
 Current task:
 
-info pane function keys need to work
+got undo to work correctly
+now need to get overwrite permission automatically so no alert to replace
 
 Remaining tasks
 
 * change title for help pane
+* add to docs that disabling save as PDF & compression makes saving much much faster
