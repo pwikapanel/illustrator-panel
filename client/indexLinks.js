@@ -1,5 +1,9 @@
 //———————————————————————————————————————— client/indexLinks.js
 
+// link to info pane
+linkInfo.addEventListener('mouseup', callURL);
+function callURL(){ location.href='info.html'; }
+
 //———————————————————————————————————————— reset link
 
 linkLogo.addEventListener('mouseup', refreshPanel);
@@ -7,9 +11,6 @@ function refreshPanel() {
   csif.evalScript('alert("Reloading Svija Tools");');
   location.reload;
 }
-
-linkInfo.addEventListener('mouseup', callURL);
-function callURL(){ location.href='info.html'; }
 
 //———————————————————————————————————————— listeners
 

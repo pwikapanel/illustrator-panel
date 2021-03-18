@@ -13,31 +13,6 @@
   var csif = new CSInterface();
   //csif.evalScript('alert("Svija Tools loaded");');
 
-//———————————————————————————————————————— open a panel with preset script
-
-// csif.requestOpenExtension(extensions[0].id);
-// see example panel
-
-
-//———————————————————————————————————————— copied from buttonLinks.js
-
-// var csif = new CSInterface(); // now in index.html
-var path = csif.getSystemPath(SystemPath.EXTENSION) + '/host/';
-
-function funcMoux(btnId, scriptName, arg){
-//  var btnHover = document.getElementById(btnId+'Hover' );
-//  var btnActive = document.getElementById(btnId+'Active');
-//
-//  btnHover.style.display = 'block';
-//  btnActive.style.display = 'none';
-
-  // need to pass argument as well
-
-  file = path + scriptName;
-  csif.evalScript("arg = '" + arg + "'");
-  csif.evalScript("$.evalFile('" + file + "')");
-}
-
 </script><style> svg:first-of-type{ display:none; } </style></head><body>
 
 
@@ -267,35 +242,42 @@ function funcMoux(btnId, scriptName, arg){
 <script type="text/javascript" src="indexLinks.js"></script>
 <script>
 
-//———————————————————————————————————————— can use to execute actions from preset script
+//———————————————————————————————————————— capture cmd-F1 to show/hide panel
+
+// same in index.html & info.html
 // https://github.com/Adobe-CEP/CEP-Resources/issues/238
 
-  csif.addEventListener('cmf1', () => { myfunc(); })
+  csif.addEventListener('svija-tools', () => { showHidePanel(); })
 
-// id = com.svija.tools.panel
-// javascript tools guide, p 108 has list of panel properties
+  function showHidePanel(){
+  
+    var panelName = 'com.svija.tools.panel';
+  
+  	// is window visible
+    var isVisible = csif.isWindowVisible();
+  
+  	if (isVisible == 'true') csif.closeExtension();
+    else csif.evalScript('alert("Use Window › Extensions menu.");');
 
-function myfunc(){
-
-//var panelName = 'com.svija.tools.panel';
-	var panelName = 'com.adobe.CEPHTMLTEST.Panel1';
-
-	// is window visible
-  var isVisible = csif.isWindowVisible();
-
-	if (isVisible == 'true'){
-    csif.closeExtension();
+//  will work when signed:
+//  else csif.requestOpenExtension(panelName);
   }
-  else{
-    csif.evalScript('alert("Use Extensions menu.");');
-    // csif.requestOpenExtension(panelName);
-	}
-}
 
-  csif.addEventListener('cmf2', () => { funcMoux('', 'saveAsSvg.jsx', 3); })
-  csif.addEventListener('cmf3', () => { funcMoux('', 'saveAsSvg.jsx', 2); })
-  csif.addEventListener('cmf4', () => { funcMoux('', 'saveAsSvg.jsx', 1); })
+//———————————————————————————————————————— capture cmd-F2 › F4
+
+  csif.addEventListener('save', () => { funcMoux('', 'saveAsSvg.jsx', 1); })
+  csif.addEventListener('save-all', () => { funcMoux('', 'saveAsSvg.jsx', 2); })
+  csif.addEventListener('close-save-all', () => { funcMoux('', 'saveAsSvg.jsx', 3); })
+
+  // copied from funcMou in indexLinks.js
+
+  var path = csif.getSystemPath(SystemPath.EXTENSION) + '/host/';
+  
+  function funcMoux(btnId, scriptName, arg){
+    file = path + scriptName;
+    csif.evalScript("arg = '" + arg + "'");
+    csif.evalScript("$.evalFile('" + file + "')");
+  }
 
 </script>
 </body></html>
-
