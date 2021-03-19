@@ -15,7 +15,6 @@ without overwrite permissions
 Remaining tasks
 
 * change title for help pane
-* add to docs that disabling save as PDF & compression makes saving much much faster
 
 * * * * *
 

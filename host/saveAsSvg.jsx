@@ -36,32 +36,49 @@ alert(fb);
 
 //———————————————————————————————————————— save the actual SVG's
 
+
+//   the problem is that the artboard name is automatically added at the moment of exportFile
+//   so even thoght I've created the file, it isn't used
+//   it's weird taht i have to creat it, I didn't in the prvious script.
+//   I could delete other artboards and save just the one
+
+//   because I'm saving multiple artboards, use folder not doc
+
+//   if (multipleArtboards)
+//     sourceDoc.exportFile(destFolder, ExportType.SVG, svgOptions);
+//   else {
+//     var destDoc   = this.getTargetFile(sourceDoc.name, '.svg', destFolder);
+//     sourceDoc.exportFile(destDoc, ExportType.SVG, svgOptions);
+
 function st_saveSvg(source){
 
-  if (source.artboards.length < 2){
-    var options  = st_getSvgOptions(false, 1);
-    var destName = source.name.replace(".ai", ".svg");
-    var destFile = st_getTargetSvg(destName);
+  var folder = Folder(app.activeDocument.path);
+  var destName = source.name.replace('.ai', '');
+  var boards = source.artboards.length
+
+  if (boards < 2){
+    var finalName = destname + '.svg';
+    var options  = st_getSvgOptions(null);
+    var destFile = st_newFile(finalName);
     source.exportFile(destFile, ExportType.SVG, options);
     return true;
   }
 
-  alert(source.name + '\n multiple artboards coming soon');
+  for (j=0; j<boards; j++){
+    var finalName = destName + '_' + source.artboards[j].name + '.svg';
+    var whichBoard = '' + (j+1);
+    var options = st_getSvgOptions(j+1);
+
+    //var destFile = st_newFile(finalName);
+    source.exportFile(folder, ExportType.SVG, options);
+  }
+
   return true;
-  var abRange    = 1;
-  var options = st_getSvgOptions(multipleArtboards,abRange);
-  //source.exportFile(destFolder, ExportType.SVG, options);
 }
 
 //———————————————————————————————————————— returns file to save into
 
-//    Returns the file to save or export the document into.
-//    param docName the name of the document
-//    param ext the extension the file extension to be applied
-//    param destFolder the output folder
-//    return File object
-
-function st_getTargetSvg(name) {
+function st_newFile(name) {
 
   var folder = Folder(app.activeDocument.path);
   var newFile = new File(folder + '/' + name);
@@ -76,7 +93,9 @@ function st_getTargetSvg(name) {
 //———————————————————————————————————————— options for SVG file
 // accepts boolean multiple artboards · ISG 335
 
-function st_getSvgOptions(m,ar){
+function st_getSvgOptions(ar){
+  if (ar == null) m=false;
+  else m = true;
   
   var options = new ExportOptionsSVG();
 
