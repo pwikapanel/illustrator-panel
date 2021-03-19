@@ -265,9 +265,9 @@
 
 //———————————————————————————————————————— capture cmd-F2 › F4
 
-  csif.addEventListener('save', () => { funcMoux('', 'saveAsSvg.jsx', 1); })
-  csif.addEventListener('save-all', () => { funcMoux('', 'saveAsSvg.jsx', 2); })
-  csif.addEventListener('close-save-all', () => { funcMoux('', 'saveAsSvg.jsx', 3); })
+  csif.addEventListener('save', () => { funcMoux('', 'saveAsSvg.jsx', 'save'); })
+  csif.addEventListener('save-all', () => { funcMoux('', 'saveAsSvg.jsx', 'all'); })
+  csif.addEventListener('close-save-all', () => { funcMoux('', 'saveAsSvg.jsx', 'close'); })
 
   // copied from funcMou in indexLinks.js
 

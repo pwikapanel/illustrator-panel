@@ -7,10 +7,29 @@
 
 Current task:
 
-got undo to work correctly
-now need to get overwrite permission automatically so no alert to replace
+single artboards now work, need to make multiple artboards work
+without overwrite permissions
+
+* * * * *
 
 Remaining tasks
 
 * change title for help pane
 * add to docs that disabling save as PDF & compression makes saving much much faster
+
+* * * * *
+
+Don't forget to remove the ai version from shipping version, that should just be for us to set up templates
+
+* * * * *
+
+Next version:
+
+* preference pane with Ai version, prompts etc.
+investigate svg options  // options.sVGAutoKerning = true/false;     ISG339
+and exportOptionsSVG.typename
+Description
+The class name of the referenced object.
+
+
+**old svija sync fixed a problem where home 2.svg was renamed to home.svg**

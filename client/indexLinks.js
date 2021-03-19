@@ -34,17 +34,17 @@ linkLayers.addEventListener('mouseup',   funcMou.bind(null, 'btnLayers', 'propag
 linkClose.addEventListener('mouseover', funcMov.bind(null, 'btnClose'), false);
 linkClose.addEventListener('mouseout',  funcMot.bind(null, 'btnClose'), false);
 linkClose.addEventListener('mousedown', funcMod.bind(null, 'btnClose'), false);
-linkClose.addEventListener('mouseup',   funcMou.bind(null, 'btnClose', 'saveAsSvg.jsx', 1), false);
+linkClose.addEventListener('mouseup',   funcMou.bind(null, 'btnClose', 'saveAsSvg.jsx', 'close'), false);
 
 linkSave.addEventListener('mouseover', funcMov.bind(null, 'btnSave'), false);
 linkSave.addEventListener('mouseout',  funcMot.bind(null, 'btnSave'), false);
 linkSave.addEventListener('mousedown', funcMod.bind(null, 'btnSave'), false);
-linkSave.addEventListener('mouseup',   funcMou.bind(null, 'btnSave', 'saveAsSvg.jsx', 2), false);
+linkSave.addEventListener('mouseup',   funcMou.bind(null, 'btnSave', 'saveAsSvg.jsx', 'save'), false);
 
 linkSaveAll.addEventListener('mouseover', funcMov.bind(null, 'btnSaveAll'), false);
 linkSaveAll.addEventListener('mouseout',  funcMot.bind(null, 'btnSaveAll'), false);
 linkSaveAll.addEventListener('mousedown', funcMod.bind(null, 'btnSaveAll'), false);
-linkSaveAll.addEventListener('mouseup',   funcMou.bind(null, 'btnSaveAll', 'saveAsSvg.jsx', 3), false);
+linkSaveAll.addEventListener('mouseup',   funcMou.bind(null, 'btnSaveAll', 'saveAsSvg.jsx', 'all'), false);
 
 //———————————————————————————————————————— functions
 
@@ -90,10 +90,5 @@ function funcMou(btnId, scriptName, arg){
   csif.evalScript("arg = '" + arg + "'");
   csif.evalScript("$.evalFile('" + file + "')");
 }
-
-// resetImages.jsx\')');
-// resetObjects.jsx\')');
-// propagateLayers.jsx\')');
-// saveAsSvg.jsx\')');
 
 //———————————————————————————————————————— fin
