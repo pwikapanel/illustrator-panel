@@ -41,6 +41,8 @@ alert(fb);
 //   so even thoght I've created the file, it isn't used
 //   it's weird taht i have to creat it, I didn't in the prvious script.
 //   I could delete other artboards and save just the one
+//
+//   I could create new svg, copy artboard to it, save and close it
 
 //   because I'm saving multiple artboards, use folder not doc
 
@@ -50,6 +52,12 @@ alert(fb);
 //     var destDoc   = this.getTargetFile(sourceDoc.name, '.svg', destFolder);
 //     sourceDoc.exportFile(destDoc, ExportType.SVG, svgOptions);
 
+function backupArtboard(oldBoard){
+  var newBoard = {};
+  for(var key in oldBoard){ newBoard[key] = oldBoard[key]; }
+  return newBoard;
+}
+
 function st_saveSvg(source){
 
   var folder = Folder(app.activeDocument.path);
@@ -58,24 +66,73 @@ function st_saveSvg(source){
 
   if (boards < 2){
     var finalName = destname + '.svg';
-    var options  = st_getSvgOptions(null);
+    var options  = st_getSvgOptions();
     var destFile = st_newFile(finalName);
     source.exportFile(destFile, ExportType.SVG, options);
     return true;
   }
 
   for (j=0; j<boards; j++){
-    var finalName = destName + '_' + source.artboards[j].name + '.svg';
-    var whichBoard = '' + (j+1);
-    var options = st_getSvgOptions(j+1);
+    beforeArtboards = j;
+    afterArtboards  = boards - j - 1;
+    var undox = 0;
 
-    //var destFile = st_newFile(finalName);
-    source.exportFile(folder, ExportType.SVG, options);
+    backupArtboards = [];
+
+    // delete preceeding artboards
+    for (k=0; k<beforeArtboards; k++){
+      backupArtboards.push(backupArtboard(source.artboards[0]));
+      source.artboards.remove(0);
+      undox += 1;
+    }
+
+    // delete following artboards
+    for (k=0; k<afterArtboards; k++){
+      backupArtboards.push(backupArtboard(source.artboards[1]));
+      source.artboards.remove(1);
+      undox += 1;
+    }
+
+
+    // put them all back
+    for (jy=0; jy<undox; jy++){
+
+      rect = backupArtboards[jy];
+      source.artboards.add(rect['artboardRect']);
+
+      for(var key in rect){
+        source.artboards[source.artboards.length-1][key] = rect[key];
+      }
+
+    }
+
+    if (source.artboards.length != boards){
+      alert('Error, undo didn\'t work!');
+      return true;
+    }
   }
 
   return true;
-}
+  }
+//
+//    // should have only one artboard left
+//    // save file here
+//
+////    alert(source.artboards.length + ':' + source.artboards[0].name);
+//
+//  }
 
+
+
+//   for (j=0; j<boards; j++){
+//     //var finalName = destName + '_' + source.artboards[j].name + '.svg';
+// 
+//     var whichBoard = '' + (j+1);
+//     var options = st_getSvgOptions();
+// 
+//     //var destFile = st_newFile(finalName);
+//     source.exportFile(folder, ExportType.SVG, options);
+//   }
 //———————————————————————————————————————— returns file to save into
 
 function st_newFile(name) {
@@ -93,13 +150,11 @@ function st_newFile(name) {
 //———————————————————————————————————————— options for SVG file
 // accepts boolean multiple artboards · ISG 335
 
-function st_getSvgOptions(ar){
-  if (ar == null) m=false;
-  else m = true;
-  
+function st_getSvgOptions(){
+
   var options = new ExportOptionsSVG();
 
-  options.artboardRange = ar;                                    // artboard range
+  // options.artboardRange
   // options.compressed
   options.coordinatePrecision = 3;                               // Decimal Places
   options.cssProperties = SVGCSSPropertyLocation.STYLEELEMENTS;  // CSS Properties: Style Elements
@@ -114,7 +169,7 @@ function st_getSvgOptions(ar){
   // options.includeVariablesAndDatasets
   // options.optimizeForSVGViewer
   options.preserveEditability = false;                           // Preserve Illustrator Editing Capabilities
-  options.saveMultipleArtboards = m;
+  options.saveMultipleArtboards = false;
   options.slices = false;                                        // Include Slicing Data
   // options.sVGAutoKerning = true/false;
   options.sVGTextOnPath = false;                                 // Use <textpath> for Text on Path

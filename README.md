@@ -7,8 +7,10 @@
 
 Current task:
 
-single artboards now work, need to make multiple artboards work
-without overwrite permissions
+backing up artboards works
+need to see if it will mess up the global undo for re-saving as .ai if there are hidden layers
+
+need to add the index to each rect, then make sure they're correctly attributed afterwards
 
 * * * * *
 
@@ -25,8 +27,10 @@ Don't forget to remove the ai version from shipping version, that should just be
 Next version:
 
 * preference pane with Ai version, prompts etc.
-investigate svg options  // options.sVGAutoKerning = true/false;     ISG339
+* popup progress bar panel : "processing"
+* investigate svg options  // options.sVGAutoKerning = true/false;     ISG339
 and exportOptionsSVG.typename
+
 Description
 The class name of the referenced object.
 
