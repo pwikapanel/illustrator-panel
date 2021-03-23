@@ -54,7 +54,15 @@ function st_saveAsSvgs(source){
     var destFile = st_newFile(finalName);
     var layers = st_deleteNonPrintingLayers(sourceDoc);
     source.exportFile(destFile, ExportType.SVG, options);
-    while (source.layers.length<layers) app.undo();
+    while (source.layers.length<layers.length) app.undo();
+
+    alert(layers.length);
+    // restore visibile & locked values
+//  for (var r=0; r<layers.length; r++{
+//    if layers[r] == 1 || layers[r] == 3){source.layers[r].locked  = true; }
+//    if layers[r] == 2 || layers[r] == 3){source.layers[r].visible = false;}
+//  }
+
     return true;
   }
 
@@ -89,7 +97,7 @@ function st_saveAsSvgs(source){
 
     var layers = st_deleteNonPrintingLayers(sourceDoc);
     source.exportFile(destFile, ExportType.SVG, options);
-    while (source.layers.length<layers) app.undo();
+    while (source.layers.length<layers.length) app.undo();
 
     // add artboards before
     for (k=0; k<boardsBefore; k++){
@@ -176,15 +184,21 @@ function st_getSvgOptions(){
 }
 
 //———————————————————————————————————————— delete any layers that are not printable
+// returns array with information about locked & visible for deleted layers
 
 function st_deleteNonPrintingLayers(sDoc){
-  var layers = sDoc.layers.length;
+  var layers = new Array(sDoc.layers.length);
   for (z=layers-1; z>=0; z--){
+    layers[z] = 0;
     if (!sDoc.layers[z].printable){
+
       if (sDoc.layers[z].locked){
+        layers[z] += 1;
         sDoc.layers[z].locked  = false;
       }
+
       if (!sDoc.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
+        layers[z] += 2;
         sDoc.layers[z].visible = true;
       }
 
