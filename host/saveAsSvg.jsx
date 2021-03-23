@@ -65,11 +65,16 @@ function st_saveSvg(source){
   var boards = source.artboards.length
 
   if (boards < 2){
-    var finalName = destname + '.svg';
+    var finalName = destName + '.svg';
     var options  = st_getSvgOptions();
     var destFile = st_newFile(finalName);
     source.exportFile(destFile, ExportType.SVG, options);
     return true;
+  }
+
+  boardOrder = [];
+  for (j=0; j<boards; j++){
+    boardOrder.push(source.artboards[j].name);
   }
 
   for (j=0; j<boards; j++){
@@ -97,11 +102,11 @@ function st_saveSvg(source){
     // put them all back
     for (jy=0; jy<undox; jy++){
 
-      rect = backupArtboards[jy];
-      source.artboards.add(rect['artboardRect']);
+      thisBoard = backupArtboards[jy];
+      source.artboards.add(thisBoard['artboardRect']);
 
-      for(var key in rect){
-        source.artboards[source.artboards.length-1][key] = rect[key];
+      for(var key in thisBoard){
+        source.artboards[source.artboards.length-1][key] = thisBoard[key];
       }
 
     }
@@ -111,6 +116,13 @@ function st_saveSvg(source){
       return true;
     }
   }
+
+  // put artboards back in original order
+  // would be better to put them in order in loop, just above
+//  for (j=0; j<boards; j++){
+//    thisName = boardOrder[j];
+//    app.activeDocument.artboardByName[thisName].index = j;
+//  }
 
   return true;
   }
