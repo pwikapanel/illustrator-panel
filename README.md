@@ -9,13 +9,13 @@ Current task:
 
 * need to add the index to each rect, then make sure they're correctly attributed afterwards
 * multiple artboards still doesn't actually save the SVG file
-* backing up artboards works
 * need to see if it will mess up the global undo for re-saving as .ai if there are hidden layers
 
 * * * * *
 
 Remaining tasks
 
+* change title while processing
 * change title for help pane
 * jsx scripts for all buttons
 * actions for all buttons

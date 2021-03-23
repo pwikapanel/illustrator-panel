@@ -17,7 +17,7 @@ for (x=0; x<app.documents.length; x++){
   var sourceDoc = docList[x]; // ISG251
   app.activeDocument = sourceDoc; // otherwise properties are not updated correctly
 
-  var undos = st_deleteNonPrintingLayers(sourceDoc); 
+  var undos = st_deleteNonPrintingLayers(sourceDoc);
   st_saveSvg(sourceDoc);
 
   for (y=0; y<undos; y++){ app.undo(); }
@@ -32,7 +32,7 @@ if (arg != 'close') app.activeDocument = activeDoc;
 var fb = 'done';
 alert(fb);
 
-// — — — — — — — — — — — — — — — — — — — — functions — — — — — — — — — 
+// — — — — — — — — — — — — — — — — — — — — functions — — — — — — — — —
 
 //———————————————————————————————————————— save the actual SVG's
 
@@ -52,12 +52,6 @@ alert(fb);
 //     var destDoc   = this.getTargetFile(sourceDoc.name, '.svg', destFolder);
 //     sourceDoc.exportFile(destDoc, ExportType.SVG, svgOptions);
 
-function backupArtboard(oldBoard){
-  var newBoard = {};
-  for(var key in oldBoard){ newBoard[key] = oldBoard[key]; }
-  return newBoard;
-}
-
 function st_saveSvg(source){
 
   var folder = Folder(app.activeDocument.path);
@@ -72,79 +66,67 @@ function st_saveSvg(source){
     return true;
   }
 
-  boardOrder = [];
-  for (j=0; j<boards; j++){
-    boardOrder.push(source.artboards[j].name);
+  //———————————————————————————————————————— multiple artboards
+
+  // need to copy each value, otherwise it acts like an alias
+
+  var backupBoards = [];
+  for (t=0; t<boards; t++){
+    backupBoards[t] = st_copyValues(source.artboards[t]);
   }
 
-  for (j=0; j<boards; j++){
-    beforeArtboards = j;
-    afterArtboards  = boards - j - 1;
-    var undox = 0;
+  // x, y, x, y lower left corner, upper right corner
+  tempRect = [0,0,100,-100];
 
-    backupArtboards = [];
+  for (j=0; j<boards; j++){
+
+    beforeBoards = j;
+    afterBoards  = boards-j-1;
 
     // delete preceeding artboards
-    for (k=0; k<beforeArtboards; k++){
-      backupArtboards.push(backupArtboard(source.artboards[0]));
-      source.artboards.remove(0);
-      undox += 1;
-    }
+    for (k=0; k<beforeBoards; k++){
+      source.artboards.remove(0); };
 
     // delete following artboards
-    for (k=0; k<afterArtboards; k++){
-      backupArtboards.push(backupArtboard(source.artboards[1]));
-      source.artboards.remove(1);
-      undox += 1;
-    }
+    for (k=0; k<afterBoards; k++){
+      source.artboards.remove(1); };
 
+    // save SVG here
 
-    // put them all back
-    for (jy=0; jy<undox; jy++){
+    // add preceeding artboards
+    for (k=0; k<beforeBoards; k++){
+      source.artboards.insert(tempRect,k);
 
-      thisBoard = backupArtboards[jy];
-      source.artboards.add(thisBoard['artboardRect']);
-
-      for(var key in thisBoard){
-        source.artboards[source.artboards.length-1][key] = thisBoard[key];
-      }
+      var sb = source.artboards[k];
+      var bb = backupBoards[k];
+      for (var key in bb) sb[key] = bb[key];
 
     }
 
-    if (source.artboards.length != boards){
-      alert('Error, undo didn\'t work!');
-      return true;
+    //add following artboards
+    for (k=1; k<=afterBoards; k++){
+      source.artboards.insert(tempRect,k+j);
+
+      var sb = source.artboards[k+j];
+      var bb = backupBoards[k+j];
+      for (var key in bb) sb[key] = bb[key];
     }
+
   }
-
-  // put artboards back in original order
-  // would be better to put them in order in loop, just above
-//  for (j=0; j<boards; j++){
-//    thisName = boardOrder[j];
-//    app.activeDocument.artboardByName[thisName].index = j;
-//  }
 
   return true;
   }
-//
-//    // should have only one artboard left
-//    // save file here
-//
-////    alert(source.artboards.length + ':' + source.artboards[0].name);
-//
-//  }
 
+//———————————————————————————————————————— copy an array key by key, skipping objects (parent)
 
+function st_copyValues(src){
+  var result = {};
+  for (var key in src)
+    if (typeof(src[key]) != 'object' || src[key].constructor == Array)
+      result[key] = src[key];
+  return result;
+}
 
-//   for (j=0; j<boards; j++){
-//     //var finalName = destName + '_' + source.artboards[j].name + '.svg';
-// 
-//     var whichBoard = '' + (j+1);
-//     var options = st_getSvgOptions();
-// 
-//     //var destFile = st_newFile(finalName);
-//     source.exportFile(folder, ExportType.SVG, options);
-//   }
 //———————————————————————————————————————— returns file to save into
 
 function st_newFile(name) {
@@ -200,7 +182,7 @@ function st_deleteNonPrintingLayers(sDoc){
   var undos = 0;
   for (z=0; z<layers; z++){
     if (!sDoc.layers[z].printable){
-      if (sDoc.layers[z].locked  == true ){ sDoc.layers[z].locked  = false; undos += 1; } 
+      if (sDoc.layers[z].locked  == true ){ sDoc.layers[z].locked  = false; undos += 1; }
       if (sDoc.layers[z].visible == false){ sDoc.layers[z].visible = true;  undos += 1; } // Error 9021: Trying to delete hidden layer [layer name]
       sDoc.layers[z].remove(); undos += 1;
 
