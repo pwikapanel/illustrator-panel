@@ -11,48 +11,43 @@
 var activeDoc = app.activeDocument;
 var aiOptions = st_optionsForVersion(17);
 var docList = app.documents;
+var filesTreated = 0;
 
 for (x=0; x<app.documents.length; x++){
+  filesTreated += 1;
 
   var sourceDoc = docList[x]; // ISG251
   app.activeDocument = sourceDoc; // otherwise properties are not updated correctly
+  var realPath = sourceDoc.path + '/' + sourceDoc.name;
 
   var undos = st_deleteNonPrintingLayers(sourceDoc);
-  st_saveSvg(sourceDoc);
+//undos += 
+  st_saveAsSvgs(sourceDoc);
 
+  // undo delete non-printing layers
   for (y=0; y<undos; y++){ app.undo(); }
-  sourceDoc.saveAs(sourceDoc.path, aiOptions);
 
-  if (arg == 'save') x = 1000;
+  var destFile = new File(realPath);
+  sourceDoc.saveAs(destFile, aiOptions);
+
+  //————— housekeeping after SVG export
+
+  if (arg == 'save') break;
   if (arg == 'close') sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
 }
 
 if (arg != 'close') app.activeDocument = activeDoc;
 
-var fb = 'done';
-alert(fb);
+if (filesTreated < 2) var msg = 'File saved.';
+else var msg = 'Files saved.';
+alert(msg);
+
 
 // — — — — — — — — — — — — — — — — — — — — functions — — — — — — — — —
 
 //———————————————————————————————————————— save the actual SVG's
 
-
-//   the problem is that the artboard name is automatically added at the moment of exportFile
-//   so even thoght I've created the file, it isn't used
-//   it's weird taht i have to creat it, I didn't in the prvious script.
-//   I could delete other artboards and save just the one
-//
-//   I could create new svg, copy artboard to it, save and close it
-
-//   because I'm saving multiple artboards, use folder not doc
-
-//   if (multipleArtboards)
-//     sourceDoc.exportFile(destFolder, ExportType.SVG, svgOptions);
-//   else {
-//     var destDoc   = this.getTargetFile(sourceDoc.name, '.svg', destFolder);
-//     sourceDoc.exportFile(destDoc, ExportType.SVG, svgOptions);
-
-function st_saveSvg(source){
+function st_saveAsSvgs(source){
 
   var folder = Folder(app.activeDocument.path);
   var destName = source.name.replace('.ai', '');
@@ -70,9 +65,10 @@ function st_saveSvg(source){
 
   // need to copy each value, otherwise it acts like an alias
 
+
   var backupBoards = [];
   for (t=0; t<boards; t++){
-    backupBoards[t] = st_copyValues(source.artboards[t]);
+    backupBoards[t] = st_copyArtboard(source.artboards[t]);
   }
 
   // x, y, x, y lower left corner, upper right corner
@@ -91,7 +87,10 @@ function st_saveSvg(source){
     for (k=0; k<afterBoards; k++){
       source.artboards.remove(1); };
 
-    // save SVG here
+    var finalName = destName +'-'+j+'.svg';
+    var options  = st_getSvgOptions();
+    var destFile = st_newFile(finalName);
+    source.exportFile(destFile, ExportType.SVG, options);
 
     // add preceeding artboards
     for (k=0; k<beforeBoards; k++){
@@ -119,11 +118,13 @@ function st_saveSvg(source){
 
 //———————————————————————————————————————— copy an array key by key, skipping objects (parent)
 
-function st_copyValues(src){
+function st_copyArtboard(src){
   var result = {};
-  for (var key in src)
-    if (typeof(src[key]) != 'object' || src[key].constructor == Array)
+  for (var key in src){
+    if (key != 'parent'){
       result[key] = src[key];
+    }
+  }
   return result;
 }
 
@@ -194,6 +195,7 @@ function st_deleteNonPrintingLayers(sDoc){
 }
 
 //———————————————————————————————————————— options for Illustrator File
+// ISG409
 
 function st_optionsForVersion(v){
 
