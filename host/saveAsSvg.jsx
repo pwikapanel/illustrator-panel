@@ -21,8 +21,7 @@ for (x=0; x<app.documents.length; x++){
   var realPath = sourceDoc.path + '/' + sourceDoc.name;
 
   var undos = st_deleteNonPrintingLayers(sourceDoc);
-//undos += 
-  st_saveAsSvgs(sourceDoc);
+  undos += st_saveAsSvgs(sourceDoc);
 
   // undo delete non-printing layers
   for (y=0; y<undos; y++){ app.undo(); }
@@ -58,7 +57,7 @@ function st_saveAsSvgs(source){
     var options  = st_getSvgOptions();
     var destFile = st_newFile(finalName);
     source.exportFile(destFile, ExportType.SVG, options);
-    return true;
+    return 0;
   }
 
   //———————————————————————————————————————— multiple artboards
@@ -76,6 +75,7 @@ function st_saveAsSvgs(source){
 
   for (j=0; j<boards; j++){
 
+    var ndos = 0;
     var abName = source.artboards[j].name;
 
     // delete artboards before
@@ -111,7 +111,8 @@ function st_saveAsSvgs(source){
 
   }
 
-  return true;
+  // this needs to be corrected
+  return 2;
   }
 
 //———————————————————————————————————————— copy an array key by key, skipping objects (parent)
