@@ -76,34 +76,32 @@ function st_saveAsSvgs(source){
 
   for (j=0; j<boards; j++){
 
-    beforeBoards = j;
-    afterBoards  = boards-j-1;
+    var abName = source.artboards[j].name;
 
-    // delete preceeding artboards
-    for (k=0; k<beforeBoards; k++){
-      source.artboards.remove(0); };
+    // delete artboards before
+    var boardsBefore = j;
+    for (k=0; k<boardsBefore; k++) source.artboards.remove(0);
 
-    // delete following artboards
-    for (k=0; k<afterBoards; k++){
-      source.artboards.remove(1); };
+    // delete artboards after
+    var boardsAfter = boards-j-1;
+    for (k=0; k<boardsAfter; k++) source.artboards.remove(1);
 
-    var finalName = destName +'-'+j+'.svg';
+    var finalName = destName + '-' + abName + '.svg';
     var options  = st_getSvgOptions();
     var destFile = st_newFile(finalName);
     source.exportFile(destFile, ExportType.SVG, options);
 
-    // add preceeding artboards
-    for (k=0; k<beforeBoards; k++){
+    // add artboards before
+    for (k=0; k<boardsBefore; k++){
       source.artboards.insert(tempRect,k);
 
       var sb = source.artboards[k];
       var bb = backupBoards[k];
       for (var key in bb) sb[key] = bb[key];
-
     }
 
-    //add following artboards
-    for (k=1; k<=afterBoards; k++){
+    //add artboards after
+    for (k=1; k<=boardsAfter; k++){
       source.artboards.insert(tempRect,k+j);
 
       var sb = source.artboards[k+j];
