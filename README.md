@@ -7,10 +7,9 @@
 
 Current task:
 
-backing up artboards works
-need to see if it will mess up the global undo for re-saving as .ai if there are hidden layers
-
-need to add the index to each rect, then make sure they're correctly attributed afterwards
+* need to add the index to each rect, then make sure they're correctly attributed afterwards
+* backing up artboards works
+* need to see if it will mess up the global undo for re-saving as .ai if there are hidden layers
 
 * * * * *
 
