@@ -20,11 +20,7 @@ for (x=0; x<app.documents.length; x++){
   app.activeDocument = sourceDoc; // otherwise properties are not updated correctly
   var realPath = sourceDoc.path + '/' + sourceDoc.name;
 
-  var undos = st_deleteNonPrintingLayers(sourceDoc);
-  undos += st_saveAsSvgs(sourceDoc);
-
-  // undo delete non-printing layers
-  for (y=0; y<undos; y++){ app.undo(); }
+  st_saveAsSvgs(sourceDoc);
 
   var destFile = new File(realPath);
   sourceDoc.saveAs(destFile, aiOptions);
@@ -56,14 +52,15 @@ function st_saveAsSvgs(source){
     var finalName = destName + '.svg';
     var options  = st_getSvgOptions();
     var destFile = st_newFile(finalName);
+    var layers = st_deleteNonPrintingLayers(sourceDoc);
     source.exportFile(destFile, ExportType.SVG, options);
-    return 0;
+    while (source.layers.length<layers) app.undo();
+    return true;
   }
 
   //———————————————————————————————————————— multiple artboards
 
   // need to copy each value, otherwise it acts like an alias
-
 
   var backupBoards = [];
   for (t=0; t<boards; t++){
@@ -89,7 +86,10 @@ function st_saveAsSvgs(source){
     var finalName = destName + '-' + abName + '.svg';
     var options  = st_getSvgOptions();
     var destFile = st_newFile(finalName);
+
+    var layers = st_deleteNonPrintingLayers(sourceDoc);
     source.exportFile(destFile, ExportType.SVG, options);
+    while (source.layers.length<layers) app.undo();
 
     // add artboards before
     for (k=0; k<boardsBefore; k++){
@@ -112,7 +112,7 @@ function st_saveAsSvgs(source){
   }
 
   // this needs to be corrected
-  return 2;
+  return true;
   }
 
 //———————————————————————————————————————— copy an array key by key, skipping objects (parent)
@@ -179,18 +179,19 @@ function st_getSvgOptions(){
 
 function st_deleteNonPrintingLayers(sDoc){
   var layers = sDoc.layers.length;
-  var undos = 0;
-  for (z=0; z<layers; z++){
+  for (z=layers-1; z>=0; z--){
     if (!sDoc.layers[z].printable){
-      if (sDoc.layers[z].locked  == true ){ sDoc.layers[z].locked  = false; undos += 1; }
-      if (sDoc.layers[z].visible == false){ sDoc.layers[z].visible = true;  undos += 1; } // Error 9021: Trying to delete hidden layer [layer name]
-      sDoc.layers[z].remove(); undos += 1;
+      if (sDoc.layers[z].locked){
+        sDoc.layers[z].locked  = false;
+      }
+      if (!sDoc.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
+        sDoc.layers[z].visible = true;
+      }
 
-      z -= 1;
-      layers -= 1;
+      sDoc.layers[z].remove();
     }
   }
-  return undos;
+  return layers;
 }
 
 //———————————————————————————————————————— options for Illustrator File
