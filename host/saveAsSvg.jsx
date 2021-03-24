@@ -62,12 +62,17 @@ function st_saveAsSvgs(doc){
 
     //———————————————————————————————— save svg file
 
-    if (boardsLen == 1) var finalName = destName + '.svg';
-    else var finalName = destName + '-' + doc.artboards[j].name + '.svg';
+//    var finalName = destName + '.svg';
 
-    var options  = st_getSvgOptions();
-    var destFile = st_newFile(finalName);
-    doc.exportFile(destFile, ExportType.SVG, options);
+    var options  = st_getSvgOptions(''+(j+1));
+
+    var prevName = destName + '_' + doc.artboards[j].name + '.svg';
+    var fakeFile = st_newFile(prevName);
+    fakeFile.remove();
+
+    //var destFile = st_newFile(finalName);
+
+    doc.exportFile(Folder(app.activeDocument.path), ExportType.SVG, options);
 
     //———————————————————————————————— restore to original state
 
@@ -85,6 +90,7 @@ function st_saveAsSvgs(doc){
 }
 
 //———————————————————————————————————————— returns file to save into
+// https://extendscript.docsforadobe.dev
 
 function st_newFile(name) {
 
@@ -100,11 +106,11 @@ function st_newFile(name) {
 
 //———————————————————————————————————————— options for SVG file
 
-function st_getSvgOptions(){
+function st_getSvgOptions(which){
 
   var options = new ExportOptionsSVG();
 
-  // options.artboardRange
+  options.artboardRange = which;
   // options.compressed
   options.coordinatePrecision = 3;                               // Decimal Places
   options.cssProperties = SVGCSSPropertyLocation.STYLEELEMENTS;  // CSS Properties: Style Elements
@@ -119,7 +125,7 @@ function st_getSvgOptions(){
   // options.includeVariablesAndDatasets
   // options.optimizeForSVGViewer
   options.preserveEditability = false;                           // Preserve Illustrator Editing Capabilities
-  // options.saveMultipleArtboards
+  options.saveMultipleArtboards = true;                          // Deletes all artwork outside active artboard
   options.slices = false;                                        // Include Slicing Data
   // options.sVGAutoKerning = true/false;
   options.sVGTextOnPath = false;                                 // Use <textpath> for Text on Path

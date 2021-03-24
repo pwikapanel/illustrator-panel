@@ -5,6 +5,12 @@
 **Svija Tools 1.0**
 -------------------
 
+it all works, but I am iterating through the artboards for no reason.
+
+I should just delete the files quickly, then save in a single go
+
+* * * * *
+
 **NEW BRANCH:** dedicated to saving using artboards.
 
 **Save as SVG** saves artwork from all artboards, even if it is outside the artboards.
