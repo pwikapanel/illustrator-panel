@@ -5,6 +5,10 @@
 **Svija Tools 1.0**
 -------------------
 
+use Document.fullName, which includes path
+
+**Don't forget to test on versions prior to CC25, and Engine 10.0**
+
 it all works, but I am iterating through the artboards for no reason.
 
 I should just delete the files quickly, then save in a single go
