@@ -10,9 +10,11 @@ var d = new Date(); var ms = d.getTime();
 var activeDoc = app.activeDocument;
 var aiOptions = st_optionsForVersion(17);
 var appDocs   = app.documents;
+var iters = app.documents.length;
 
-for (index=0; index<app.documents.length; index++){
+for (index=0; index<iters; index++){
 
+  // moves the doc to place 0
   app.activeDocument = appDocs[index]; // ISG251
   var sourceDoc = app.activeDocument;   
 
@@ -30,9 +32,13 @@ for (index=0; index<app.documents.length; index++){
   //————— housekeeping after SVG export
 
   sourceDoc.artboards.setActiveArtboardIndex(activeBoard);
-  if (arg == 'save') break;
-  if (arg == 'close') sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
 
+  if (arg == 'save') break;
+  if (arg == 'close'){
+    sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
+    iters -= 1;
+    index -= 1;
+  }
 }
 
 if (arg != 'close') app.activeDocument = activeDoc;
