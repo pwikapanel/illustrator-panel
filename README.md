@@ -3,14 +3,22 @@
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.com/github/readme-logo.png "Svija: SVG-based websites built in Adobe Illustrator")
 
 **Svija Tools 1.0**
---------------------------
+-------------------
 
-new branch to investigate:
-note to self: can't add artboards when SVG, need to iterate through artboard data, then add artboards back after re-saving as illustrator.
+blanket rule: save as svg keeps all artwork for all artboards even artwork that is outside artboards
 
-complicated because have to save once to get back to Illustrator, then add artboards, then save AGAIN as illustrator to have correct file open at the end.
+use artboards only saves artwork that is within the artwork boudns
 
-Current task:
+if I want to have multiple versions in a single file, I need to always use artboards, otherwase pages will be double sizd
+
+so always use artboards, then I have to keep track of artboard names
+
+will I have the "save as" problem if I only save one artboard?
+how can I even get a file?
+
+this is a problem for the next version
+
+* * * * *
 
 Need to restore locked & invisibel non-printin layers
 

@@ -61,9 +61,10 @@ function st_saveAsSvgs(doc){
     doc.artboards.setActiveArtboardIndex(j);
 
     //———————————————————————————————— save svg file
-    // need to take into account a single artboard
 
-    var finalName = destName + '-' + doc.artboards[j].name + '.svg';
+    if (boardsLen == 1) var finalName = destName + '.svg';
+    else var finalName = destName + '-' + doc.artboards[j].name + '.svg';
+
     var options  = st_getSvgOptions();
     var destFile = st_newFile(finalName);
     doc.exportFile(destFile, ExportType.SVG, options);
@@ -133,43 +134,43 @@ function st_getSvgOptions(){
 //———————————————————————————————————————— delete any layers that are not printable
 // returns array with information about locked & visible for deleted layers
 
-function st_deleteNonPrintingLayers(sDoc){
-  numLayers = sDoc.layers.length;
-  var lyers = new Array(numLayers);
+function st_deleteNonPrintingLayers(src){
+  var layersLen = src.layers.length;
+  var results = new Array(layersLen);
 
-  for (z=numLayers-1; z>=0; z--){
-    lyers[z] = 0;
-    if (!sDoc.layers[z].printable){
+  for (z=layersLen-1; z>=0; z--){
+    results[z] = 0;
+    if (!src.layers[z].printable){
 
-      if (sDoc.layers[z].locked){
-        lyers[z] += 1;
-        sDoc.layers[z].locked  = false;
+      if (src.layers[z].locked){
+        results[z] += 1;
+        src.layers[z].locked  = false;
       }
 
-      if (!sDoc.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
-        lyers[z] += 2;
-        sDoc.layers[z].visible = true;
+      if (!src.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
+        results[z] += 2;
+        src.layers[z].visible = true;
       }
 
-      sDoc.layers[z].remove();
+      src.layers[z].remove();
     }
   }
 
-  return lyers;
+  return results;
 }
 
 //———————————————————————————————————————— options for Illustrator File
-// ISG409
+// ISG409 & JSRp84
 
-function st_optionsForVersion(v){
+function st_optionsForVersion(version){
 
-  var options = new IllustratorSaveOptions();          // JSRp84
+  var options = new IllustratorSaveOptions();
 
-  var comp = Compatibility['ILLUSTRATOR' + v]; // JSRp244
-  if (v > 0) options.compatibility = comp;
+  if (version > 0) // JSRp244
+    options.compatibility = Compatibility['ILLUSTRATOR' + version];
 
   options.pdfCompatible = false; // much faster
-  options.compressed = false;    // a bit faster
+  options.compressed    = false; // a bit faster
 
   return options;
 }
