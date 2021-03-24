@@ -1,6 +1,6 @@
 #target illustrator  
 
-evt = 'close-save-all';
+evt = 'propagate-layers';
 
 function sendEvent(type) {
     new ExternalObject('lib:\PlugPlugExternalObject');
