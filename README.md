@@ -5,11 +5,13 @@
 **Svija Tools 1.0**
 -------------------
 
-blanket rule: save as svg keeps all artwork for all artboards even artwork that is outside artboards
+**NEW BRANCH:** dedicated to saving using artboards.
 
-use artboards only saves artwork that is within the artwork boudns
+**Save as SVG** saves artwork from all artboards, even if it is outside the artboards.
 
-if I want to have multiple versions in a single file, I need to always use artboards, otherwase pages will be double sizd
+**Use Artboards** deletes artwork outside of artboard boundaries, and is therefore more efficient.
+
+If we want to contain multiple pages (desktop, mobile) in a single file, we should use artboards. Otherwise the resulting pages will contain double the necessary artwork. 
 
 so always use artboards, then I have to keep track of artboard names
 
