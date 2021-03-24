@@ -52,38 +52,34 @@ function st_saveAsSvgs(doc){
   var boardsLen  = doc.artboards.length;
   var layersLen  = doc.layers.length;
 
-  //———————————————————————————————— delete unneeded layers
+  //———————————————————————————————— avoid overwrite confirmations
+
+  for (j=0; j<boardsLen; j++){
+    var name = destName + '_' + doc.artboards[j].name + '.svg';
+    var file = st_newFile(name);
+    file.remove();
+  }
+
+  //———————————————————————————————— delete non-printing layers
 
   // array w/ information about locked & visible
   var backupLayers = st_deleteNonPrintingLayers(doc);
 
-  for (j=0; j<boardsLen; j++){
-    doc.artboards.setActiveArtboardIndex(j);
+  //———————————————————————————————— save svg files
 
-    //———————————————————————————————— save svg file
+  var options  = st_getSvgOptions();
+  var folder = Folder(app.activeDocument.path);
+  doc.exportFile(folder, ExportType.SVG, options);
 
-//    var finalName = destName + '.svg';
+  //———————————————————————————————— restore to original state
 
-    var options  = st_getSvgOptions(''+(j+1));
+  // restore layers
+  while (doc.layers.length<layersLen) app.undo();
 
-    var prevName = destName + '_' + doc.artboards[j].name + '.svg';
-    var fakeFile = st_newFile(prevName);
-    fakeFile.remove();
-
-    //var destFile = st_newFile(finalName);
-
-    doc.exportFile(Folder(app.activeDocument.path), ExportType.SVG, options);
-
-    //———————————————————————————————— restore to original state
-
-    // restore layers
-    while (doc.layers.length<layersLen) app.undo();
-
-    // restore visibile & locked values
-    for (var r=0; r<layersLen; r++){
-      if (backupLayers[r] == 1 || backupLayers[r] == 3){doc.layers[r].locked  = true; }
-      if (backupLayers[r] == 2 || backupLayers[r] == 3){doc.layers[r].visible = false;}
-    }
+  // restore visibile & locked layer states
+  for (var r=0; r<layersLen; r++){
+    if (backupLayers[r] == 1 || backupLayers[r] == 3){doc.layers[r].locked  = true; }
+    if (backupLayers[r] == 2 || backupLayers[r] == 3){doc.layers[r].visible = false;}
   }
 
   return true;
@@ -106,11 +102,11 @@ function st_newFile(name) {
 
 //———————————————————————————————————————— options for SVG file
 
-function st_getSvgOptions(which){
+function st_getSvgOptions(){
 
   var options = new ExportOptionsSVG();
 
-  options.artboardRange = which;
+  // options.artboardRange
   // options.compressed
   options.coordinatePrecision = 3;                               // Decimal Places
   options.cssProperties = SVGCSSPropertyLocation.STYLEELEMENTS;  // CSS Properties: Style Elements
