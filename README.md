@@ -5,6 +5,7 @@
 **Svija Tools 1.0**
 --------------------------
 
+new branch to investigate:
 note to self: can't add artboards when SVG, need to iterate through artboard data, then add artboards back after re-saving as illustrator.
 
 complicated because have to save once to get back to Illustrator, then add artboards, then save AGAIN as illustrator to have correct file open at the end.
