@@ -5,6 +5,10 @@
 **Svija Tools 1.0**
 --------------------------
 
+note to self: can't add artboards when SVG, need to iterate through artboard data, then add artboards back after re-saving as illustrator.
+
+complicated because have to save once to get back to Illustrator, then add artboards, then save AGAIN as illustrator to have correct file open at the end.
+
 Current task:
 
 Need to restore locked & invisibel non-printin layers
@@ -21,6 +25,7 @@ Remaining tasks
 * change title for help pane
 * jsx scripts for all buttons
 * actions for all buttons
+* line 52-ish in saveassvg just deletes all ".ai" in the file name, should only be at end
 
 * * * * *
 
@@ -40,3 +45,29 @@ The class name of the referenced object.
 
 
 **old svija sync fixed a problem where home 2.svg was renamed to home.svg**
+
+* * * * *
+
+##A note about the logic
+
+The main functionality of saving as svg involves:
+
+a loop through all artboards ———
+
+save a copy of all artboard info
+make an array of all layers to say if locked/hidden
+
+deleting any non-printing layers
+- unlock layer if locked
+- make visible if hidden
+- delete non-printing layer
+
+delete all but current artboards
+
+save as svg
+
+undo until the number of artboards is correct
+undo until the number of layers is correct
+
+restore all artboard parameters
+restore all non-printing layer locked & visible flags
