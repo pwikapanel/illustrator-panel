@@ -5,6 +5,10 @@
 **Documentation**
 -----------------
 
+The Adobe Exchange [website](https://partners.adobe.com/exchangeprogram/creativecloud) does not work in Safari.
+
+* * * * *
+
 Testing a CEP panel requires setting the CEP engine to debug mode:
 
     $ defaults write com.adobe.CSXS.10 PlayerDebugMode 1 # 0 to reset
