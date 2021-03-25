@@ -3,13 +3,34 @@
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.com/github/readme-logo.png "Svija: SVG-based websites built in Adobe Illustrator")
 
 **Svija Tools 1.0**
---------------------------
+-------------------
 
-note to self: can't add artboards when SVG, need to iterate through artboard data, then add artboards back after re-saving as illustrator.
+use Document.fullName, which includes path
 
-complicated because have to save once to get back to Illustrator, then add artboards, then save AGAIN as illustrator to have correct file open at the end.
+**Don't forget to test on versions prior to CC25, and Engine 10.0**
 
-Current task:
+it all works, but I am iterating through the artboards for no reason.
+
+I should just delete the files quickly, then save in a single go
+
+* * * * *
+
+**NEW BRANCH:** dedicated to saving using artboards.
+
+**Save as SVG** saves artwork from all artboards, even if it is outside the artboards.
+
+**Use Artboards** deletes artwork outside of artboard boundaries, and is therefore more efficient.
+
+If we want to contain multiple pages (desktop, mobile) in a single file, we should use artboards. Otherwise the resulting pages will contain double the necessary artwork. 
+
+so always use artboards, then I have to keep track of artboard names
+
+will I have the "save as" problem if I only save one artboard?
+how can I even get a file?
+
+this is a problem for the next version
+
+* * * * *
 
 Need to restore locked & invisibel non-printin layers
 

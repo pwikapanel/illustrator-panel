@@ -1,6 +1,6 @@
 #target illustrator  
 
-evt = 'close-save-all';
+evt = 'reset-objects';
 
 function sendEvent(type) {
     new ExternalObject('lib:\PlugPlugExternalObject');

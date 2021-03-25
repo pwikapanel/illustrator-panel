@@ -6,119 +6,93 @@
 
 //———————————————————————————————————————— program
 
-//  if (app.documents.length > 0 ) {
-
+var d = new Date(); var ms = d.getTime();
 var activeDoc = app.activeDocument;
 var aiOptions = st_optionsForVersion(17);
-var docList = app.documents;
-var filesTreated = 0;
+var appDocs   = app.documents;
+var iters = app.documents.length;
 
-for (x=0; x<app.documents.length; x++){
-  filesTreated += 1;
+for (index=0; index<iters; index++){
 
-  var sourceDoc = docList[x]; // ISG251
-  app.activeDocument = sourceDoc; // otherwise properties are not updated correctly
-  var realPath = sourceDoc.path + '/' + sourceDoc.name;
+  // moves the doc to place 0
+  app.activeDocument = appDocs[index]; // ISG251
+  var sourceDoc = app.activeDocument;   
 
-  var boardsToRestore = st_saveAsSvgs(sourceDoc);
+  //———————————————————————————————— save state
 
-alert('artboards on 25: '+sourceDoc.artboards.length);
+  var realPath    = sourceDoc.path + '/' + sourceDoc.name;
+  var activeBoard = sourceDoc.artboards.getActiveArtboardIndex();
 
-  var destFile = new File(realPath);
+  //———————————————————————————————— save SVG's then Illustrator
 
-alert('artboards on 27: '+sourceDoc.artboards.length);
-  sourceDoc.saveAs(destFile, aiOptions); // adds artboards back
+  st_saveAsSvgs(sourceDoc);
+  var aiFile = new File(realPath);
+  sourceDoc.saveAs(aiFile, aiOptions);
 
-  alert('artboards on 30: '+sourceDoc.artboards.length);
   //————— housekeeping after SVG export
 
+  sourceDoc.artboards.setActiveArtboardIndex(activeBoard);
+
   if (arg == 'save') break;
-  if (arg == 'close') sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
+  if (arg == 'close'){
+    sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
+    iters -= 1;
+    index -= 1;
+  }
 }
 
-app.activeDocument.artboards.add([0,0,100,-100]);
-alert('artboards on 37: '+app.activeDocument.artboards.length);
 if (arg != 'close') app.activeDocument = activeDoc;
 
-if (filesTreated < 2) var msg = 'File saved.';
+var d = new Date(); ms = d.getTime() - ms;
+if (index < 2) var msg = 'File saved.';
 else var msg = 'Files saved.';
-alert(msg);
-
+alert(msg + ' ('+ms+' ms)');
 
 // — — — — — — — — — — — — — — — — — — — — functions — — — — — — — — —
 
 //———————————————————————————————————————— save the actual SVG's
 
-see isg.169, activeartboardindex
+function st_saveAsSvgs(doc){
 
-I have a suspicion, that as a document has to be active to be maniuputaed,
-and artboard must be activated to be manipulated
-could potentially even active each artboard in turn, then save as svg
-and everything will take care of itself.
+  var destName   = doc.name.slice(0, -3);
+  var boardsLen  = doc.artboards.length;
+  var layersLen  = doc.layers.length;
 
-function st_saveAsSvgs(source){
-
-  var folder = Folder(app.activeDocument.path);
-  var destName = source.name.slice(0, -3);
-  var boardsLen = source.artboards.length;
-  var layersLen  = source.layers.length;
-  var backupBoards = [];
-
-  for (t=0; t<boardsLen; t++) backupBoards[t] = st_copyArtboard(source.artboards[t]);
-
-  for (t=boardsLen-1; t>0; t--) source.artboards[t].remove();
+  //———————————————————————————————— avoid overwrite confirmations
 
   for (j=0; j<boardsLen; j++){
-
-    //———————————————————————————————— configure artboard
-
-    var bb = backupBoards[j];
-    alert('69: restoring artboard '+bb['name']);
-    for (var key in bb) source.artboards[0][key] = bb[key];
-
-    //———————————————————————————————— delete unneeded layers
-
-    // array w/ information about locked & visible
-    var backupLayers = st_deleteNonPrintingLayers(sourceDoc);
-
-    //———————————————————————————————— save svg file
-
-    var abName = source.artboards[0].name;
-    var finalName = destName + '-' + abName + '.svg';
-    var options  = st_getSvgOptions();
-    var destFile = st_newFile(finalName);
-
-    //———————————————————————————————— restore to original state
-
-    // restore layers & artboards
-
-    source.exportFile(destFile, ExportType.SVG, options);
-
-    while (source.layers.length<layersLen) app.undo();
-
-    // restore visibile & locked values
-    for (var r=0; r<layersLen; r++){
-      if (backupLayers[r] == 1 || backupLayers[r] == 3){source.layers[r].locked  = true; }
-      if (backupLayers[r] == 2 || backupLayers[r] == 3){source.layers[r].visible = false;}
-    }
+    var name = destName + '_' + doc.artboards[j].name + '.svg';
+    var file = st_newFile(name);
+    file.remove();
   }
 
-  return backupBoards;
-}
+  //———————————————————————————————— delete non-printing layers
 
-//———————————————————————————————————————— copy an array key by key, skipping objects (parent)
+  // array w/ information about locked & visible
+  var backupLayers = st_deleteNonPrintingLayers(doc);
 
-function st_copyArtboard(src){
-  var result = {};
-  for (var key in src){
-    if (key != 'parent'){
-      result[key] = src[key];
-    }
+  //———————————————————————————————— save svg files
+
+  var options  = st_getSvgOptions();
+  var folder = Folder(app.activeDocument.path);
+  doc.exportFile(folder, ExportType.SVG, options);
+
+  //———————————————————————————————— restore to original state
+
+  // restore layers
+  while (doc.layers.length<layersLen) app.undo();
+
+  // restore visibile & locked layer states
+  for (var r=0; r<layersLen; r++){
+    if (backupLayers[r] == 1 || backupLayers[r] == 3){doc.layers[r].locked  = true; }
+    if (backupLayers[r] == 2 || backupLayers[r] == 3){doc.layers[r].visible = false;}
   }
-  return result;
+
+  return true;
 }
 
 //———————————————————————————————————————— returns file to save into
+// https://extendscript.docsforadobe.dev
 
 function st_newFile(name) {
 
@@ -133,7 +107,6 @@ function st_newFile(name) {
 }
 
 //———————————————————————————————————————— options for SVG file
-// accepts boolean multiple artboards · ISG 335
 
 function st_getSvgOptions(){
 
@@ -154,7 +127,7 @@ function st_getSvgOptions(){
   // options.includeVariablesAndDatasets
   // options.optimizeForSVGViewer
   options.preserveEditability = false;                           // Preserve Illustrator Editing Capabilities
-  options.saveMultipleArtboards = false;
+  options.saveMultipleArtboards = true;                          // Deletes all artwork outside active artboard
   options.slices = false;                                        // Include Slicing Data
   // options.sVGAutoKerning = true/false;
   options.sVGTextOnPath = false;                                 // Use <textpath> for Text on Path
@@ -169,43 +142,43 @@ function st_getSvgOptions(){
 //———————————————————————————————————————— delete any layers that are not printable
 // returns array with information about locked & visible for deleted layers
 
-function st_deleteNonPrintingLayers(sDoc){
-  numLayers = sDoc.layers.length;
-  var lyers = new Array(numLayers);
+function st_deleteNonPrintingLayers(src){
+  var layersLen = src.layers.length;
+  var results = new Array(layersLen);
 
-  for (z=numLayers-1; z>=0; z--){
-    lyers[z] = 0;
-    if (!sDoc.layers[z].printable){
+  for (z=layersLen-1; z>=0; z--){
+    results[z] = 0;
+    if (!src.layers[z].printable){
 
-      if (sDoc.layers[z].locked){
-        lyers[z] += 1;
-        sDoc.layers[z].locked  = false;
+      if (src.layers[z].locked){
+        results[z] += 1;
+        src.layers[z].locked  = false;
       }
 
-      if (!sDoc.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
-        lyers[z] += 2;
-        sDoc.layers[z].visible = true;
+      if (!src.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
+        results[z] += 2;
+        src.layers[z].visible = true;
       }
 
-      sDoc.layers[z].remove();
+      src.layers[z].remove();
     }
   }
 
-  return lyers;
+  return results;
 }
 
 //———————————————————————————————————————— options for Illustrator File
-// ISG409
+// ISG409 & JSRp84
 
-function st_optionsForVersion(v){
+function st_optionsForVersion(version){
 
-  var options = new IllustratorSaveOptions();          // JSRp84
+  var options = new IllustratorSaveOptions();
 
-  var comp = Compatibility['ILLUSTRATOR' + v]; // JSRp244
-  if (v > 0) options.compatibility = comp;
+  if (version > 0) // JSRp244
+    options.compatibility = Compatibility['ILLUSTRATOR' + version];
 
   options.pdfCompatible = false; // much faster
-  options.compressed = false;    // a bit faster
+  options.compressed    = false; // a bit faster
 
   return options;
 }
