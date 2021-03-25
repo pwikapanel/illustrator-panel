@@ -1,6 +1,6 @@
 *Updated 25 March, 2021*
 
-![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?4 "Svija: SVG-based websites built in Adobe Illustrator")
+![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?3 "Svija: SVG-based websites built in Adobe Illustrator")
 
 **Documentation**
 -----------------
