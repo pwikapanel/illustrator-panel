@@ -3,47 +3,47 @@
 var doc = app.activeDocument;
 var placed = doc.placedItems.length;
 var raster = doc.rasterItems.length;
-var treated = 0;
 
 //———————————————————————————————————————— raster images
 // before placed, because will be changed to placed then fixed with others
 
-for (var x=raster; x>0; x--)
-  treated += rasterItem(doc.rasterItems[x-1]);
+var rasterFixes = [];
+
+for (var x=raster; x>0; x--){
+  var val = rasterItem(doc.rasterItems[x-1]);
+  if (val !='') rasterFixes.push(val);
+}
 
 //———————————————————————————————————————— placed images
 
-for (var x=placed; x>0; x--)
-  treated += placedItem(doc.placedItems[x-1]);
+var placedFixes = [];
+
+for (var x=placed; x>0; x--){
+  var val = placedItem(doc.placedItems[x-1]);
+  if (val !='') placedFixes.push(val);
+}
 
 //———————————————————————————————————————— get out
 
+var treated = rasterFixes.length + placedFixes.length;
+
 doc.selection = null;
-alert(treated + ' issue(s) were corrected');
+if (treated==0) alert('No issues found');
+else{
+  if (treated == 1) msg = 'One image fixed';
+  else msg = treated + ' images fixed';
+
+  showResults = confirm(msg + '\nView report (or cmd-period)?');
+
+  if (showResults){
+    var report = rasterFixes.join('\n') + '\n' + placedFixes.join('\n');
+    report += "\n\nSee Links panel for more information."
+    report = decodeURI(report);
+    alert('Issues Found:\n' + report);
+  }
+}
 
 // — — — — — — — — — — — — — — — — — — — —  functions
-
-/*———————————————————————————————————————— placed images
-
-  notes
-
-*/
-
-function placedItem(obj){
-
-  var origFolder = obj.file.path;
-  var goodFolder = Folder(app.activeDocument.path)+'/links';
-  if (origFolder == goodFolder) return 0;
-
-  var imgName = obj.file.name;
-  var destFullName = goodFolder+'/'+imgName;
-
-  var newFile = new File(destFullName);
-  if(!newFile.exists) obj.file.copy(newFile);
-  obj.file = newFile;
-
-  return 1;
-}
 
 /*———————————————————————————————————————— make alert rectangle
 
@@ -80,16 +80,14 @@ function alertRec(obj){
 */
 
 function rasterItem(obj){
-  //  alert(obj.embedded); // always true so far
  
   // we don't care about non-printing information layers
-  if (!obj.layer.printable) return 0;
+  if (!obj.layer.printable) return false;
 
   app.activeDocument.activeLayer = obj.layer;
   app.activeDocument.activeLayer.visible = true;
 
 	try{
-    var str = obj.file;
     var newName = obj.file;
     var newFile = new File(newName);
     var fileMissing = false;
@@ -99,7 +97,11 @@ function rasterItem(obj){
   // this is a precaution, not encountered so far
   if (obj.status != 'RasterLinkState.DATAFROMFILE') fileMissing = true;
 
-  if(fileMissing){ var rec = alertRec(obj); return 1; }
+  if(fileMissing){
+    var rec = alertRec(obj);
+    var report = 'The original for embedded image "' + obj.name + '" on layer "' + obj.layer.name + '" was not found';
+    return report;
+    }
 
   // ————— we have the original file, need to re-link it
 
@@ -118,8 +120,35 @@ function rasterItem(obj){
   // remove the rasterItem
   obj.remove();
 
-  return 1;
+  var report = newObj.file.name + ' file relinked';
+  return report;
 
+}
+
+/*———————————————————————————————————————— placed images
+
+  image can't be missing unless it
+  was moved after document was opened
+
+*/
+
+function placedItem(obj){
+
+  try{ var origFolder = obj.file.path; }
+	catch(e){ return false; }
+
+  var goodFolder = Folder(app.activeDocument.path)+'/links';
+  if (origFolder == goodFolder) return false;
+
+  var imgName = obj.file.name;
+  var destFullName = goodFolder+'/'+imgName;
+
+  var newFile = new File(destFullName);
+  if(!newFile.exists) obj.file.copy(newFile);
+  obj.file = newFile;
+
+  var report = imgName + ' put in links folder';
+  return report;
 }
 
 //———————————————————————————————————————— fin
