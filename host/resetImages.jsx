@@ -1,46 +1,74 @@
 //———————————————————————————————————————— resetImages.jsx
 
 var doc = app.activeDocument;
-var placed = doc.placedItems.length;
-var raster = doc.rasterItems.length;
 
 //———————————————————————————————————————— raster images
 // before placed, because will be changed to placed then fixed with others
 
+var raster = doc.rasterItems.length;
 var rasterFixes = [];
 
 for (var x=raster; x>0; x--){
   var val = rasterItem(doc.rasterItems[x-1]);
-  if (val !='') rasterFixes.push(val);
+  if (val != false) rasterFixes.push(val);
 }
 
 //———————————————————————————————————————— placed images
 
+var placed = doc.placedItems.length;
 var placedFixes = [];
 
 for (var x=placed; x>0; x--){
   var val = placedItem(doc.placedItems[x-1]);
-  if (val !='') placedFixes.push(val);
+  if (val != false) placedFixes.push(val);
 }
+
+//———————————————————————————————————————— prepare report
+
+// do placedFixes first, make list of names
+// when doing rasterFixes, skip any that have names in names list
+// [name, fixed boolean, message]
+
+var names = [];
+var fixed = [];
+var failed = [];
+
+for (var x=0; x<placedFixes.length; x++){
+  names.push(placedFixes[x][0]);
+  if (placedFixes[x][1]) fixed.push(placedFixes[x][0] + ': ' + placedFixes[x][2]);
+  else failed.push(placedFixes[x][0] + ': ' + placedFixes[x][2]);
+}
+
+for (var x=0; x<rasterFixes.length; x++){
+
+  var skip = false;
+  for (var y=0; y<names.length; y++)
+    if (rasterFixes[x][0] == names[y]) skip = true;
+  if(skip) continue; 
+
+  if (rasterFixes[x][1]) fixed.push(rasterFixes[x][0] + ': ' + rasterFixes[x][2]);
+  else failed.push(rasterFixes[x][0] + ': ' + rasterFixes[x][2]);
+}
+
+var repoxt = [];
+if (fixed.length>0) repoxt.push('——— FIXED IMAGES ———\n' + fixed.join('\n'));
+if (failed.length>0) repoxt.push('——— BROKEN IMAGES ———\n' + failed.join('\n'));
+
+repoxt.push("See Links panel for more information.");
+report = decodeURI(repoxt.join('\n\n'));
 
 //———————————————————————————————————————— get out
 
-var treated = rasterFixes.length + placedFixes.length;
+var treated = fixed.length + failed.length;
 
 doc.selection = null;
 if (treated==0) alert('No issues found');
 else{
-  if (treated == 1) msg = 'One image fixed';
-  else msg = treated + ' images fixed';
+  if (treated == 1) msg = 'One issue found';
+  else msg = treated + ' issues found';
 
-  showResults = confirm(msg + '\nView report (or cmd-period)?');
-
-  if (showResults){
-    var report = rasterFixes.join('\n') + '\n' + placedFixes.join('\n');
-    report += "\n\nSee Links panel for more information."
-    report = decodeURI(report);
-    alert('Issues Found:\n' + report);
-  }
+  showResults = confirm('View Report?\n' + msg + '\n\nType cmd-period to skip');
+  if (showResults) alert('Issues Found:\n' + report);
 }
 
 // — — — — — — — — — — — — — — — — — — — —  functions
@@ -99,9 +127,11 @@ function rasterItem(obj){
 
   if(fileMissing){
     var rec = alertRec(obj);
-    var report = 'The original for embedded image "' + obj.name + '" on layer "' + obj.layer.name + '" was not found';
-    return report;
-    }
+    var report = 'missing, highlighted';
+    if (obj.name == '') var nm = '<image>';
+    else var nm = obj.name;
+    return [nm, false, report];
+  }
 
   // ————— we have the original file, need to re-link it
 
@@ -120,8 +150,8 @@ function rasterItem(obj){
   // remove the rasterItem
   obj.remove();
 
-  var report = newObj.file.name + ' file relinked';
-  return report;
+  var report = ' file relinked';
+  return [newObj.file.name, true, report];
 
 }
 
@@ -137,18 +167,30 @@ function placedItem(obj){
   try{ var origFolder = obj.file.path; }
 	catch(e){ return false; }
 
-  var goodFolder = Folder(app.activeDocument.path)+'/links';
+  var currentFolder = Folder(app.activeDocument.path);
+  var goodFolder    = currentFolder + '/links';
+
   if (origFolder == goodFolder) return false;
 
   var imgName = obj.file.name;
   var destFullName = goodFolder+'/'+imgName;
 
+  // copy if outside of current folder, otherwise move
+
+
   var newFile = new File(destFullName);
   if(!newFile.exists) obj.file.copy(newFile);
+
+  // if the file is almost in the right place, just move it
+  if (origFolder == currentFolder){
+    obj.file.remove();
+    var report = 'moved to links';
+  }
+  else var report = 'copied to links';
+
   obj.file = newFile;
 
-  var report = imgName + ' put in links folder';
-  return report;
+  return [imgName, true, report];
 }
 
 //———————————————————————————————————————— fin
