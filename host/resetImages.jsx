@@ -8,143 +8,114 @@ var treated = 0;
 //———————————————————————————————————————— raster images
 // before placed, because will be changed to placed then fixed with others
 
-for (var x=0; x<raster; x++){
-  //treated += rasterItem(doc.rasterItems[0]); put back when images are deleted
-  treated += rasterItem(doc.rasterItems[x]);
-}
+for (var x=raster; x>0; x--)
+  treated += rasterItem(doc.rasterItems[x-1]);
 
 //———————————————————————————————————————— placed images
 
-// for (var x=0; x<placed; x++){
-//   treated += placedItem(doc.placedItems[0]);
-// }
+for (var x=placed; x>0; x--)
+  treated += placedItem(doc.placedItems[x-1]);
 
 //———————————————————————————————————————— get out
 
+doc.selection = null;
 alert(treated + ' issue(s) were corrected');
 
 // — — — — — — — — — — — — — — — — — — — —  functions
 
 /*———————————————————————————————————————— placed images
 
-https://extendscript.docsforadobe.dev/file-system-access/file-object.html#file-class-properties
-placedItems isg675
-app.activeDocument.placedItems.length
-isg537 app.activeDocument.placedItems[index].blendingMode
-
-isg537 for placedItem properties & methods
-
-PlacedItem.contentVariable
-PlacedItem.file · readonly
-app.activeDocument.placedItems[index].selected
-PlacedItem.uRL
-
-methods:
-
-relink: app.activeDocument.placedItems[index].relink(linkFile) returns nothing
-
-if file notin links folder, can copy it easily
+  notes
 
 */
 
 function placedItem(obj){
-  // check for tiff format (or other than jpg/png)
+
   var origFolder = obj.file.path;
   var goodFolder = Folder(app.activeDocument.path)+'/links';
   if (origFolder == goodFolder) return 0;
-
 
   var imgName = obj.file.name;
   var destFullName = goodFolder+'/'+imgName;
 
   var newFile = new File(destFullName);
-  if(!newFile.exists){
-    obj.file.copy(newFile);
-  }
-
+  if(!newFile.exists) obj.file.copy(newFile);
   obj.file = newFile;
 
   return 1;
 }
 
+/*———————————————————————————————————————— make alert rectangle
+
+  create translucent rectangle to signal embedded images
+  that can't be found and need to be replaced
+
+*/
+
+function alertRec(obj){
+  var alertColor = new RGBColor();
+  alertColor.red = 192; alertColor.green = 255; alertColor.blue = 0;
+  
+  var r = obj.geometricBounds; // coords [left -top right -bottom]
+
+  var rLeft   = r[0];
+  var rNegTop = r[1];
+  var rWidth  = r[2]-r[0];
+  var rHeight = r[1]-r[3];
+
+  // isg81 -top, left, width, height
+  var rec = app.activeDocument.activeLayer.pathItems.rectangle( rNegTop, rLeft, rWidth, rHeight );
+
+  rec.filled = true;
+  rec.stroked = false;
+  rec.fillColor = alertColor;
+  rec.opacity = 50;
+  return rec;
+}
+
 /*———————————————————————————————————————— embedded images
 
-isG749 & isg 561
-methods 572
-app.activeDocument.rasterItems.length
-typename = RasterItem
-length = undefined
-name = ''
-
-embedded = true
-file.name = rasterisedimage.png
-
-obj.file caused crash when file had been deleted
-
-can relink & copy to links if file exists
-
-if original file exists, relink it
-otherwise draw a lime square in same place
-
-name is what is attributed in layers panel, that's why it's empty
-
-————— logic
-
-start with an embedded object
-
-create the associated file object
-
-if the file object exists, we have a source
-if the file object doesn't exist, need to mark the image somehow
+  notes
 
 */
 
 function rasterItem(obj){
-//  check  app.activeDocument.rasterItems[index].embedded
-//alert(obj.status); // isg 569 & isg131 should return DATAFROMFILE or I can't treat
+  //  alert(obj.embedded); // always true so far
+ 
+  // we don't care about non-printing information layers
+  if (!obj.layer.printable) return 0;
 
   app.activeDocument.activeLayer = obj.layer;
+  app.activeDocument.activeLayer.visible = true;
 
 	try{
-    var newName = obj.file.fullName;
+    var str = obj.file;
+    var newName = obj.file;
     var newFile = new File(newName);
-    var fileMissing = true;
+    var fileMissing = false;
 	}
-	catch(e){ alert(e);var fileMissing = false; }
+	catch(e){ var fileMissing = true; }
 
-  if(fileMissing){
-    // when it's working, make smaller with fat stroke
-    var r = obj.geometricBounds;
-//    alert(r); //69, 108, 223, 27; upper left corner & lower right corner
-    //height is 
-    var myLine = app.activeDocument.activeLayer.pathItems.rectangle( r[1]-(r[1]-r[3]), r[0], r[2]-r[0], r[3]-r[1] );
-    myLine.stroked = true;
-    myLine.filled = false;
-    var newRGBColor = new RGBColor(); newRGBColor.red = 192; newRGBColor.green = 255; newRGBColor.blue = 0;
-    
-    myLine.strokeColor = newRGBColor;
-    myLine.strokeWidth = 4;
-    // isg81 top left width height
+  // this is a precaution, not encountered so far
+  if (obj.status != 'RasterLinkState.DATAFROMFILE') fileMissing = true;
 
+  if(fileMissing){ var rec = alertRec(obj); return 1; }
 
-    // app.activeDocument.rasterItems[index].controlBounds
-    // RasterItem.geometricBounds The bounds of the object excluding stroke width.
-    // app.activeDocument.rasterItems[index].zOrderPosition
-    //alert('Unfixable item on layer '+app.activeDocument.activeLayer.name);
-    return 1;
-  }
+  // ————— we have the original file, need to re-link it
 
-  return 1
-  newObj = app.activeDocument.placedItems.add()
+  newObj = app.activeDocument.activeLayer.placedItems.add()
   newObj.file = newFile;
 
-  for (var key in obj) {
-    if (key != 'parent' && key != 'embedded' && key != 'wrapOffset' && key != 'wrapInside') newObj[key] = obj[key];
-  }
+  for (var key in obj)
+    if (key != 'parent' && key != 'embedded' && key != 'wrapOffset' && key != 'wrapInside')
+      newObj[key] = obj[key];
+ 
+  // objects were appearing upside down
   var moveMatrix = app.getScaleMatrix(100,-100);
   var totalMatrix = concatenateRotationMatrix(moveMatrix, 10);
   newObj.transform(moveMatrix);
 
+  // remove the rasterItem
   obj.remove();
 
   return 1;
