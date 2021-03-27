@@ -1,3 +1,4 @@
+alert('index.jsx, nothing inside');
 function test(arg){
   alert(arg);
 //  var fileRef = new File("~/Downloads/kobe.jpg");
