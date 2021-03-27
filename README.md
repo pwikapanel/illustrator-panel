@@ -5,6 +5,12 @@
 **Svija Tools 1.0**
 -------------------
 
+next big thing is to add recursive sublayers to **Propagate Layers**.
+
+then add warnings for everything from **trouble** page to **Save as Svija**.
+
+* * * * *
+
 use Document.fullName, which includes path
 
 **Don't forget to test on versions prior to CC25, and Engine 10.0**
