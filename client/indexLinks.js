@@ -17,34 +17,34 @@ function refreshPanel() {
 linkImages.addEventListener('mouseover', funcMov.bind(null, 'btnImages'), false);
 linkImages.addEventListener('mouseout',  funcMot.bind(null, 'btnImages'), false);
 linkImages.addEventListener('mousedown', funcMod.bind(null, 'btnImages'), false);
-linkImages.addEventListener('mouseup',   funcMou.bind(null, 'btnImages', 'resetImages.jsx', 'null'), false);
+linkImages.addEventListener('mouseup',   funcMou.bind(null, 'btnImages', 'Reset Image Links.jsx', 'null'), false);
 
 linkObjects.addEventListener('mouseover', funcMov.bind(null, 'btnObjects'), false);
 linkObjects.addEventListener('mouseout',  funcMot.bind(null, 'btnObjects'), false);
 linkObjects.addEventListener('mousedown', funcMod.bind(null, 'btnObjects'), false);
-linkObjects.addEventListener('mouseup',   funcMou.bind(null, 'btnObjects', 'resetObjects.jsx', 'null'), false);
+linkObjects.addEventListener('mouseup',   funcMou.bind(null, 'btnObjects', 'Reset Object IDs.jsx', 'null'), false);
 
 linkLayers.addEventListener('mouseover', funcMov.bind(null, 'btnLayers'), false);
 linkLayers.addEventListener('mouseout',  funcMot.bind(null, 'btnLayers'), false);
 linkLayers.addEventListener('mousedown', funcMod.bind(null, 'btnLayers'), false);
-linkLayers.addEventListener('mouseup',   funcMou.bind(null, 'btnLayers', 'propagateLayers.jsx', 'null'), false);
+linkLayers.addEventListener('mouseup',   funcMou.bind(null, 'btnLayers', 'Propagate Layers.jsx', 'null'), false);
 
 //—————
 
 linkClose.addEventListener('mouseover', funcMov.bind(null, 'btnClose'), false);
 linkClose.addEventListener('mouseout',  funcMot.bind(null, 'btnClose'), false);
 linkClose.addEventListener('mousedown', funcMod.bind(null, 'btnClose'), false);
-linkClose.addEventListener('mouseup',   funcMou.bind(null, 'btnClose', 'saveAsSvg.jsx', 'close'), false);
+linkClose.addEventListener('mouseup',   funcMou.bind(null, 'btnClose', 'Save As Svija.jsx', 'close'), false);
 
 linkSave.addEventListener('mouseover', funcMov.bind(null, 'btnSave'), false);
 linkSave.addEventListener('mouseout',  funcMot.bind(null, 'btnSave'), false);
 linkSave.addEventListener('mousedown', funcMod.bind(null, 'btnSave'), false);
-linkSave.addEventListener('mouseup',   funcMou.bind(null, 'btnSave', 'saveAsSvg.jsx', 'save'), false);
+linkSave.addEventListener('mouseup',   funcMou.bind(null, 'btnSave', 'Save As Svija.jsx', 'save'), false);
 
 linkSaveAll.addEventListener('mouseover', funcMov.bind(null, 'btnSaveAll'), false);
 linkSaveAll.addEventListener('mouseout',  funcMot.bind(null, 'btnSaveAll'), false);
 linkSaveAll.addEventListener('mousedown', funcMod.bind(null, 'btnSaveAll'), false);
-linkSaveAll.addEventListener('mouseup',   funcMou.bind(null, 'btnSaveAll', 'saveAsSvg.jsx', 'all'), false);
+linkSaveAll.addEventListener('mouseup',   funcMou.bind(null, 'btnSaveAll', 'Save As Svija.jsx', 'all'), false);
 
 //———————————————————————————————————————— functions
 

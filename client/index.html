@@ -257,27 +257,10 @@
     var isVisible = csif.isWindowVisible();
   
   	if (isVisible == 'true') csif.closeExtension();
-    else csif.evalScript('alert("Use Window › Extensions menu.");');
-
-//  will work when signed:
-//  else csif.requestOpenExtension(panelName);
+    else csif.requestOpenExtension(panelName);
   }
 
-//———————————————————————————————————————— capture cmd-F2 › F4
-
-  csif.addEventListener('save', () => { funcMoux('', 'saveAsSvg.jsx', 'save'); })
-  csif.addEventListener('save-all', () => { funcMoux('', 'saveAsSvg.jsx', 'all'); })
-  csif.addEventListener('close-save-all', () => { funcMoux('', 'saveAsSvg.jsx', 'close'); })
-
-  // copied from funcMou in indexLinks.js
-
-  var path = csif.getSystemPath(SystemPath.EXTENSION) + '/host/';
-  
-  function funcMoux(btnId, scriptName, arg){
-    file = path + scriptName;
-    csif.evalScript("arg = '" + arg + "'");
-    csif.evalScript("$.evalFile('" + file + "')");
-  }
+//———————————————————————————————————————— fin
 
 </script>
 </body></html>
