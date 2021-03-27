@@ -1,8 +1,25 @@
-//———————————————————————————————————————— saveAsSvg.jsx
+#target illustrator  
 
-//    JSR = JavaScript Scripting Reference.pdf
-//    ISG = Illustrator Scripting Guide
-//    using ampersands in // comments causes crashes
+/*———————————————————————————————————————— Save as Svija.jsx
+
+    JSR = JavaScript Scripting Reference.pdf
+    ISG = Illustrator Scripting Guide
+    using ampersands in // comments causes crashes
+
+
+    github.com/svijasvg/svija-tools
+  
+    version 2.1.23
+  
+  	(c) 2021 Svija
+  	svija.love
+  	contact@svija.love
+
+//———————————————————————————————————————— what it does
+
+//———————————————————————————————————————— if run as standalone */
+
+if (typeof arg !== 'undefined') arg = 'save all';
 
 //———————————————————————————————————————— program
 

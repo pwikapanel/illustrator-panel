@@ -1,4 +1,18 @@
-//———————————————————————————————————————— resetObjects.jsx
+#target illustrator  
+
+/*———————————————————————————————————————— Reset Object IDs.jsx
+
+    github.com/svijasvg/svija-tools
+  
+    version 2.1.23
+  
+  	(c) 2021 Svija
+  	svija.love
+  	contact@svija.love
+
+//———————————————————————————————————————— what it does
+
+*/
 
 var doc = app.activeDocument;
 var items = doc.pageItems.length;
