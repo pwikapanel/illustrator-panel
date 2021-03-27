@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="com.svija.tools" ExtensionBundleVersion="1.0.0" Version="10.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="love.svija.SvijaTools" ExtensionBundleVersion="1.0.0" Version="10.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 
   <ExtensionList>
-    <Extension Id="com.svija.tools.panel" Version="1.0.0" />
+    <Extension Id="love.svija.SvijaTools.panel" Version="1.0.0" />
   </ExtensionList>
   <ExecutionEnvironment>
     <HostList>
@@ -17,11 +17,10 @@
     </RequiredRuntimeList>
   </ExecutionEnvironment>
   <DispatchInfoList>
-    <Extension Id="com.svija.tools.panel">
+    <Extension Id="love.svija.SvijaTools.panel">
       <DispatchInfo>
         <Resources>
           <MainPath>./client/index.html</MainPath>
-          <!-- <ScriptPath>./host/index.jsx</ScriptPath> -->
           <CEFCommandLine />
 
         </Resources>

@@ -1,7 +1,5 @@
-#target illustrator  
 
 /*———————————————————————————————————————— Reset Image Links.jsx
-
 
     github.com/svijasvg/svija-tools
   
@@ -13,7 +11,7 @@
 
 //———————————————————————————————————————— what it does
 
-*/
+//———————————————————————————————————————— what it does */
 
 var doc = app.activeDocument;
 

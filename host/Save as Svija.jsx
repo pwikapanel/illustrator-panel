@@ -11,15 +11,15 @@
   
     version 2.1.23
   
-  	(c) 2021 Svija
-  	svija.love
-  	contact@svija.love
+    (c) 2021 Svija
+    svija.love
+    contact@svija.love
 
 //———————————————————————————————————————— what it does
 
 //———————————————————————————————————————— if run as standalone */
 
-if (typeof arg !== 'undefined') arg = 'save all';
+if (typeof arg == 'undefined') var arg = 'save all';
 
 //———————————————————————————————————————— program
 
