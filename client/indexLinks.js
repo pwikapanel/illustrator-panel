@@ -36,34 +36,34 @@ function doReload(){
 linkImages.addEventListener('mouseover', funcMov.bind(null, 'btnImages'), false);
 linkImages.addEventListener('mouseout',  funcMot.bind(null, 'btnImages'), false);
 linkImages.addEventListener('mousedown', funcMod.bind(null, 'btnImages'), false);
-linkImages.addEventListener('mouseup',   funcMou.bind(null, 'btnImages', 'Reset Image Links.jsx', 'null'), false);
+linkImages.addEventListener('mouseup',   funcMou.bind(null, 'btnImages', 'Reset Image Links.jsx', 'null', 'Resetting Links…'), false);
 
 linkObjects.addEventListener('mouseover', funcMov.bind(null, 'btnObjects'), false);
 linkObjects.addEventListener('mouseout',  funcMot.bind(null, 'btnObjects'), false);
 linkObjects.addEventListener('mousedown', funcMod.bind(null, 'btnObjects'), false);
-linkObjects.addEventListener('mouseup',   funcMou.bind(null, 'btnObjects', 'Reset Object IDs.jsx', 'null'), false);
+linkObjects.addEventListener('mouseup',   funcMou.bind(null, 'btnObjects', 'Reset Object IDs.jsx', 'null', 'Resetting Object Ids…'), false);
 
 linkLayers.addEventListener('mouseover', funcMov.bind(null, 'btnLayers'), false);
 linkLayers.addEventListener('mouseout',  funcMot.bind(null, 'btnLayers'), false);
 linkLayers.addEventListener('mousedown', funcMod.bind(null, 'btnLayers'), false);
-linkLayers.addEventListener('mouseup',   funcMou.bind(null, 'btnLayers', 'Propagate Layers.jsx', 'null'), false);
+linkLayers.addEventListener('mouseup',   funcMou.bind(null, 'btnLayers', 'Propagate Layers.jsx', 'null', 'Propagating Layers…'), false);
 
 //—————
 
 linkClose.addEventListener('mouseover', funcMov.bind(null, 'btnClose'), false);
 linkClose.addEventListener('mouseout',  funcMot.bind(null, 'btnClose'), false);
 linkClose.addEventListener('mousedown', funcMod.bind(null, 'btnClose'), false);
-linkClose.addEventListener('mouseup',   funcMou.bind(null, 'btnClose', 'Save as Svija.jsx', 'close'), false);
+linkClose.addEventListener('mouseup',   funcMou.bind(null, 'btnClose', 'Save as Svija.jsx', 'close', 'Closing All…'), false);
 
 linkSave.addEventListener('mouseover', funcMov.bind(null, 'btnSave'), false);
 linkSave.addEventListener('mouseout',  funcMot.bind(null, 'btnSave'), false);
 linkSave.addEventListener('mousedown', funcMod.bind(null, 'btnSave'), false);
-linkSave.addEventListener('mouseup',   funcMou.bind(null, 'btnSave', 'Save as Svija.jsx', 'save'), false);
+linkSave.addEventListener('mouseup',   funcMou.bind(null, 'btnSave', 'Save as Svija.jsx', 'save', 'Saving as Svija…'), false);
 
 linkSaveAll.addEventListener('mouseover', funcMov.bind(null, 'btnSaveAll'), false);
 linkSaveAll.addEventListener('mouseout',  funcMot.bind(null, 'btnSaveAll'), false);
 linkSaveAll.addEventListener('mousedown', funcMod.bind(null, 'btnSaveAll'), false);
-linkSaveAll.addEventListener('mouseup',   funcMou.bind(null, 'btnSaveAll', 'Save as Svija.jsx', 'all'), false);
+linkSaveAll.addEventListener('mouseup',   funcMou.bind(null, 'btnSaveAll', 'Save as Svija.jsx', 'all', 'Saving All…'), false);
 
 //———————————————————————————————————————— functions
 
@@ -96,7 +96,7 @@ function funcMod(btnId){
 // var csif = new CSInterface(); // now in index.html
 var path = csif.getSystemPath(SystemPath.EXTENSION) + '/host/';
 
-function funcMou(btnId, scriptName, arg){
+function funcMou(btnId, scriptName, arg, titl){
   var btnHover = document.getElementById(btnId+'Hover' );
   var btnActive = document.getElementById(btnId+'Active');
 
@@ -105,9 +105,19 @@ function funcMou(btnId, scriptName, arg){
 
   // need to pass argument as well
 
+  changeTitle(titl);
   file = path + scriptName;
   csif.evalScript("arg = '" + arg + "'");
   csif.evalScript("$.evalFile('" + file + "')");
+}
+
+//———————————————————————————————————————— momentary title change
+
+function changeTitle(newTitle){
+  prevTitle = csif.getWindowTitle();
+  csif.setWindowTitle(newTitle);
+  delay = 500;
+  setTimeout(function(){ csif.setWindowTitle(prevTitle); }, delay);
 }
 
 //———————————————————————————————————————— fin
