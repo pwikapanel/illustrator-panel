@@ -8,9 +8,9 @@
 To be installed normally, an Adobe extension has to be signed.
 
 
-#### The software signing tool: ZXPSignCMD
+#### The software signing tool: ZXPSignCmd-64bit
 
-[ZXPSignCMD](https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD) is available from the [Adobe CEP repository](https://github.com/Adobe-CEP).
+[ZXPSignCMD-64bit](https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD) is available from the [Adobe CEP repository](https://github.com/Adobe-CEP).
 
 Download the **.dmg file** for the most recent version, and open it. It contains four files:
 
@@ -21,8 +21,8 @@ Download the **.dmg file** for the most recent version, and open it. It contains
 
 #### To create a self-signed certificate:
 
-    ZXPSignCmd -selfSignedCert <countryCode> <stateOrProvince> <organization>
-                               <commonName> <password> <outputPath.p12> [options]
+    ZXPSignCmd-64bit -selfSignedCert <countryCode> <stateOrProvince> <organization>
+                                     <commonName> <password> <outputPath.p12> [options]
 
 The various options:
 
@@ -41,12 +41,12 @@ The various options:
 
 To create a self-signed certificate:
 
-    ./ZXPSignCmd -selfSignedCert US NY MyCompany MyCommonName abc123 MyCert.p12
+    ./ZXPSignCmd-64bit -selfSignedCert US NY MyCompany MyCommonName abc123 MyCert.p12
 
 This generates a file named MyCert.p12 in the current folder. You can use this certificate to sign your
 extension:
 
-    ./ZXPSignCmd -sign myExtProject myExtension.zxp MyCert.p12 abc123
+    ./ZXPSignCmd-64bit -sign myExtProject myExtension.zxp MyCert.p12 abc123
 
 This generates the file **myExtension.zxp** in the current folder, adding these two files to the packaged and
 signed extension in the final ZXP archive:
