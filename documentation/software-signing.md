@@ -23,7 +23,7 @@ Download the **.dmg file** for the most recent version, and open it. It contains
 #### To create a self-signed certificate:
 
     ZXPSignCmd -selfSignedCert <countryCode> <stateOrProvince> <organization>
-      <commonName> <password> <outputPath.p12> [options]
+                               <commonName> <password> <outputPath.p12> [options]
 
 The various options:
 
