@@ -7,6 +7,12 @@
 
 To be installed normally, an Adobe extension has to be signed.
 
+#### The software signing tool: ZXPSignCMD
+
+[ZXPSignCMD](https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD) is available from the [Adobe CEP repository](https://github.com/Adobe-CEP).
+
+download ZXPSignCmd-64bit.dmg
+
 * * * * *
 
 ## OLDER
@@ -37,14 +43,6 @@ Resources you will need include: the ZXP packager, a command-line utility
 
 https://zxpinstaller.com
 http://install.anastasiy.com
-
-———————————————————————————————————————— on with our program
-
-Packaging and Signing Tool (ZXPSignCMD):
-
-https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD
-
-download ZXPSignCmd-64bit.dmg
 
 ———————————————————————————————————————— creating .zxp
 
