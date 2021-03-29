@@ -1,4 +1,4 @@
-*Updated 29 March, 2021*
+*Updated 29 March, 2021 · the following information comes from [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
@@ -7,7 +7,6 @@
 
 To be installed normally, an Adobe extension has to be signed.
 
-Most of the information on this page comes from [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf):
 
 #### The software signing tool: ZXPSignCMD
 
@@ -40,7 +39,7 @@ The various options:
 
 *Example:*
 
-If you already have a certificate, you can use that. Otherwise, begin by creating a self-signed certificate:
+To create a self-signed certificate:
 
     ./ZXPSignCmd -selfSignedCert US NY MyCompany MyCommonName abc123 MyCert.p12
 
