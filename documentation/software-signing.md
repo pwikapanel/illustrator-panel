@@ -27,38 +27,35 @@ Download the **.dmg file** for the most recent version, and open it. It contains
 
 The various options:
 
-    countryCode               The certificate identifying information.
+    countryCode                  certificate identifying information
     stateOrProvince
     organization
     commonName
-    password                  The password for the new certificate.
-    outputPath.p12            The path and file name for the new certificate.
-    options -locality <code>
-            -orgUnit <name>
-            -email <addr>
-            -validityDays <num>
+    password                     password for the new certificate
+    outputPath.p12               path and file name for the new certificate
+    options -locality <code>     locale code to associate with this certificate
+            -orgUnit <name>      organizational unit to associate with this certificate
+            -email <addr>        email address to associate with this certificate
+            -validityDays <num>  number of days from today certificate remains valid
 
-If supplied, the locale code to associate with this certificate.
-If supplied, an organizational unit to associate with this certificate.
-If supplied, an email address to associate with this certificate.
-If supplied, a number of days from the current date-time that this certificate remains valid.
+*Example:*
 
-Example
 If you already have a certificate, you can use that. Otherwise, begin by creating a self-signed certificate:
-./ZXPSignCmd -selfSignedCert US NY MyCompany MyCommonName abc123 MyCert.p12
+
+    ./ZXPSignCmd -selfSignedCert US NY MyCompany MyCommonName abc123 MyCert.p12
+
 This generates a file named MyCert.p12 in the current folder. You can use this certificate to sign your
 extension:
-./ZXPSignCmd -sign myExtProject myExtension.zxp MyCert.p12 abc123
-Packaging and Signing Extensions How signing works 5 This generates the file myExtension.zxp in the current folder, adding these two files to the packaged and
+
+    ./ZXPSignCmd -sign myExtProject myExtension.zxp MyCert.p12 abc123
+
+This generates the file **myExtension.zxp** in the current folder, adding these two files to the packaged and
 signed extension in the final ZXP archive:
- mimetype : A file with the ASCII name of mimetype that holds the MIME type for the ZIP container
+
+* mimetype : A file with the ASCII name of mimetype that holds the MIME type for the ZIP container
 (application/vnd.adobe.air-ucf-package+zip).
- signatures.xml: A file in the META-INF directory at the root level of the container file system that
+* signatures.xml: A file in the META-INF directory at the root level of the container file system that
 holds digital signatures of the container and its contents.
-
-
-
-
 
 #### more stuff
 
