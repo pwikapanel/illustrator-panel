@@ -1,9 +1,15 @@
-*Updated 25 March, 2021*
+*Updated 29 March, 2021*
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
-**Svija Tools 1.0**
--------------------
+**Software Signing**
+--------------------
+
+To be installed normally, an Adobe extension has to be signed.
+
+* * * * *
+
+#OLDER
 
 Adobe SigningTechNote_CC.pdf
 
