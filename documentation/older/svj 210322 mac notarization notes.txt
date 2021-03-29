@@ -1,0 +1,51 @@
+bundle identifier is TLD, domain name, app name: love.svija.svijasync
+
+———————————————————————————————————————— dependency
+
+highest level in left column in Xcode
+project SvijaSync in 2nd column
+Swift Packages tab
+
+———————————————————————————————————————— version n°
+
+is set using tags in the Github repo
+
+https://stackoverflow.com/questions/18216991/create-a-tag-in-a-github-repository
+
+———————————————————————————————————————— delete raj's rsync dependency
+
+at first couldn't delete it, but clicked on it in left column and + - were activated
+
+———————————————————————————————————————— error
+
+Add Package (File › Swift Packages › Add Package Dependency
+
+changed protocol in accounts › github to https instead of ssh, made sure id_rsa key was being used, and it worked
+
+successfully changed dependency from Raj to Svija
+
+———————————————————————————————————————— change sigining stuff
+
+click target › Svija Sync › Signing & Capabilities
+
+Team: Svija
+
+Bundle Identifier love.svija.SvijaSync
+
+Provisioning Profile: none required
+
+Signing Certificate: sign to run locally
+
+———————————————————————————————————————— final signing
+
+went to prefs › account › manage certificates, have 3 possibities
+
+———————————————————————————————————————— CLI tool
+
+https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution
+
+$ codesign -vvv --deep --strict [path to app built in Xcode › show in Finder]
+
+see: Notarize Your App Automatically as Part of the Distribution Process
+
+- create Product › Archive of app
