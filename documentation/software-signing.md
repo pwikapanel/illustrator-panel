@@ -7,6 +7,8 @@
 
 To be installed normally, an Adobe extension has to be signed.
 
+Most of the information on this page comes from [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf):
+
 #### The software signing tool: ZXPSignCMD
 
 [ZXPSignCMD](https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD) is available from the [Adobe CEP repository](https://github.com/Adobe-CEP).
@@ -18,42 +20,47 @@ Download the **.dmg file** for the most recent version, and open it. It contains
     ZXPSignCmd-64bit-minimal.dSYM
     ZXPSignCmd-64bit.dSYM
 
+#### To create a self-signed certificate:
+
+    ZXPSignCmd -selfSignedCert <countryCode> <stateOrProvince> <organization>
+      <commonName> <password> <outputPath.p12> [options]
+
+The various options:
+
+    countryCode               The certificate identifying information.
+    stateOrProvince
+    organization
+    commonName
+    password                  The password for the new certificate.
+    outputPath.p12            The path and file name for the new certificate.
+    options -locality <code>
+            -orgUnit <name>
+            -email <addr>
+            -validityDays <num>
+
+If supplied, the locale code to associate with this certificate.
+If supplied, an organizational unit to associate with this certificate.
+If supplied, an email address to associate with this certificate.
+If supplied, a number of days from the current date-time that this certificate remains valid.
+
+Example
+If you already have a certificate, you can use that. Otherwise, begin by creating a self-signed certificate:
+./ZXPSignCmd -selfSignedCert US NY MyCompany MyCommonName abc123 MyCert.p12
+This generates a file named MyCert.p12 in the current folder. You can use this certificate to sign your
+extension:
+./ZXPSignCmd -sign myExtProject myExtension.zxp MyCert.p12 abc123
+Packaging and Signing Extensions How signing works 5 This generates the file myExtension.zxp in the current folder, adding these two files to the packaged and
+signed extension in the final ZXP archive:
+ mimetype : A file with the ASCII name of mimetype that holds the MIME type for the ZIP container
+(application/vnd.adobe.air-ucf-package+zip).
+ signatures.xml: A file in the META-INF directory at the root level of the container file system that
+holds digital signatures of the container and its contents.
 
 
-* * * * *
 
-## OLDER
 
-Adobe SigningTechNote_CC.pdf
 
-very out of date
-
-———————————————————————————————————————— https://console.adobe.io/servicesandapis
-
-download Illustrator SDK for Mac · 31.2MB
-
-no mention of CEP, seems to be all C++
-
-———————————————————————————————————————— https://github.com/Adobe-CEP/CEP-Resources
-
-CEP 10 is for the latest versions of Creative Cloud Applications
-Creative Cloud 2019 products include CEP 9
-Creative Cloud 2018 products include CEP 8
-
-You can offer extensions as free or paid products through our marketing portals (Adobe Exchange, the Add-ins website, the Creative Cloud desktop app).
-
-you upload the extension to Adobe as a single ZXP file
-
-Resources you will need include: the ZXP packager, a command-line utility
-
-———————————————————————————————————————— see also
-
-https://zxpinstaller.com
-http://install.anastasiy.com
-
-———————————————————————————————————————— creating .zxp
-
-https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf
+#### more stuff
 
 https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install
 
