@@ -22,7 +22,7 @@ We will keep these files in the local Mac folder associated with **Svija Tools**
 
 * * * * *
 
-### To create a self-signed certificate:
+### Creating a self-signed certificate:
 
     ZXPSignCmd-64bit -selfSignedCert <countryCode> <stateOrProvince> <organization>
                                      <commonName> <password> <outputPath.p12> [options]
@@ -59,7 +59,27 @@ signed extension in the final ZXP archive:
 * signatures.xml: A file in the META-INF directory at the root level of the container file system that
 holds digital signatures of the container and its contents.
 
-#### more stuff
+* * * * *
+
+### Using ZXPSignCmd-64bit
+
+You can use this tool to create a self-signed certificate, create a signed ZXP package, or verify an existing ZXP package.
+
+*To create a signed package:*
+
+    ZXPSignCmd-64bit -sign <inputDir> <outputZxp> <p12> <p12Password> [options]
+
+The various options
+
+    inputDir         path to the folder containing the files to package
+    outputZxp        path and file name for the resulting ZXP package
+    p12              path to the signing certificate
+    p12Password      certificate password
+    options          -tsa <timestampURL> timestamp server
+
+* * * * *
+
+### more stuff
 
 https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install
 
