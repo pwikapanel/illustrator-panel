@@ -11,7 +11,14 @@ To be installed normally, an Adobe extension has to be signed.
 
 [ZXPSignCMD](https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD) is available from the [Adobe CEP repository](https://github.com/Adobe-CEP).
 
-download ZXPSignCmd-64bit.dmg
+Download the **.dmg file** for the most recent version, and open it. It contains four files:
+
+    ZXPSignCmd-64bit
+    ZXPSignCmd-64bit-minimal
+    ZXPSignCmd-64bit-minimal.dSYM
+    ZXPSignCmd-64bit.dSYM
+
+
 
 * * * * *
 
