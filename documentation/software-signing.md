@@ -85,14 +85,14 @@ https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distri
 
 make certificate:
 
-$ ./ZXPSignCmd-64bit -selfSignedCert <countryCode> <stateOrProvince> <organization> <commonName> <password> <outputPath.p12> [options]
+    $ ./ZXPSignCmd-64bit -selfSignedCert <countryCode> <stateOrProvince> <organization> <commonName> <password> <outputPath.p12> [options]
 
-$ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift q8BZeCLqx3a TestCert.p12
+    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift q8BZeCLqx3a TestCert.p12
 Self-signed certificate generated successfully
 
 create zxp:
 
-$ ./ZXPSignCmd-64bit -sign <inputDirectory> <outputZxp> <p12> <p12Password> [options]
+    $ ./ZXPSignCmd-64bit -sign <inputDirectory> <outputZxp> <p12> <p12Password> [options]
 
 option -tsa [time stamp server]
 see list here: https://gist.github.com/Manouchehri/fd754e402d98430243455713efada710
@@ -119,9 +119,9 @@ drag dmg contents to HD
 
 in Terminal:
 
-$ cd [drag MacOS folder from .dmg]
+    $ cd [drag MacOS folder from .dmg]
 
-$ ./ExManCmd --install [drag zxp extension]
+    $ ./ExManCmd --install [drag zxp extension]
 
 Failed to install, status = -268!
 
@@ -145,7 +145,7 @@ I'll try to create a clean folder, and do everything from the beginning
 
 in terminal, in signing tool folder
 
-$ ./ZXPSignCmd-64bit -sign /Users/Base/Work\ Folder/SvijaTools signed.zxp TestCert.p12 q8BZeCLqx3a
+    $ ./ZXPSignCmd-64bit -sign /Users/Base/Work\ Folder/SvijaTools signed.zxp TestCert.p12 q8BZeCLqx3a
 
 ZXPInstaller.app failed same
 ExtensionManager.app failed same
@@ -160,12 +160,12 @@ rename downloaded ExMan folder to ExMan_root
 
 copy .zxp to ExMan_root
 
-$ cd ExMan_root
-$ ./Contents/MacOS/ExManCmd ––install signed.zxp
+    $ cd ExMan_root
+    $ ./Contents/MacOS/ExManCmd ––install signed.zxp
 
 didn't give an error, but 
 
-$ ./Contents/MacOS/ExManCmd ––list all
+    $ ./Contents/MacOS/ExManCmd ––list all
 
 didn't say anything
 
@@ -181,7 +181,7 @@ no feedback is what happens when it doesn't find a file.
 
 when I typed
 
-$ ./Contents/MacOS/ExManCmd --install signed.zxp
+    $ ./Contents/MacOS/ExManCmd --install signed.zxp
 Installing extension with file path = signed.zxp
 Failed to install, status = -268!
 
@@ -208,14 +208,14 @@ proposes to rename the following:
 /Library/Application Support/Adobe/Extension Manager CC/Configuration/DB/
 /Library/Application Support/Adobe/Extension Manager CC/Configuration/XManConfigV2.xml
 
-$ mv "/Library/Application Support/Adobe/Extension Manager CC/Configuration/DB" "/Library/Application Support/Adobe/Extension Manager CC/Configuration/DB-old"
-$  mv "/Library/Application Support/Adobe/Extension Manager CC/Configuration/XManConfigV2.xml" "/Library/Application Support/Adobe/Extension Manager CC/Configuration/XManConfigV2-old.xml"
+    $ mv "/Library/Application Support/Adobe/Extension Manager CC/Configuration/DB" "/Library/Application Support/Adobe/Extension Manager CC/Configuration/DB-old"
+    $  mv "/Library/Application Support/Adobe/Extension Manager CC/Configuration/XManConfigV2.xml" "/Library/Application Support/Adobe/Extension Manager CC/Configuration/XManConfigV2-old.xml"
 
 same error
 
 ———————————————————————————————————————— verbose
 
-$ ./Contents/MacOS/ExManCmd --verbose --install signed.zxp
+    $ ./Contents/MacOS/ExManCmd --verbose --install signed.zxp
 
 Installing extension with file path = signed.zxp
 Failed to install, status = -268!
