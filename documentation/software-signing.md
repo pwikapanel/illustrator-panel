@@ -7,7 +7,7 @@
 
 To be installed normally, an Adobe extension has to be signed.
 
-#### The software signing tool: ZXPSignCmd-64bit
+### The software signing tool: ZXPSignCmd-64bit
 
 [ZXPSignCMD-64bit](https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD) is available from the [Adobe CEP repository](https://github.com/Adobe-CEP).
 
@@ -22,7 +22,7 @@ We will keep these files in the local Mac folder associated with **Svija Tools**
 
 * * * * *
 
-#### To create a self-signed certificate:
+### To create a self-signed certificate:
 
     ZXPSignCmd-64bit -selfSignedCert <countryCode> <stateOrProvince> <organization>
                                      <commonName> <password> <outputPath.p12> [options]
