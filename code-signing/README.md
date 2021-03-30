@@ -9,13 +9,18 @@
 
 Generate a 16-character password at [this page](https://passwordsgenerator.net) (check all but the first box).
 
-### Generate the certificate:
+### Generate the certificate
 
     $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [destination folder]svija-tools-210330.p12
     Self-signed certificate generated successfully
 
 * * * * *
 
+### Sign the bundle
+
+    $ ./ZXPSignCmd-64bit -sign [bundle folder] [dest folder]/Svija\ Sync\ 210330-13h55.zxp [drag cert] [pwd] -tsa http://timestamp.digicert.com
+
+Signed successfully
 * * * * *
 
 To be installed normally, an Adobe extension has to be signed.
