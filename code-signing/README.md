@@ -21,8 +21,6 @@ Copy the terminal command to the top of signing-records.txt for our records.
 
 ### Sign the bundle
 
-The following should be typed on a single line:
-
     $ ./ZXPSignCmd-64bit -sign [bundle folder] [dest path].zxp [certficate] [pwd] -tsa http://timestamp.digicert.com
 
     Signed successfully
