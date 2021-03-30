@@ -25,7 +25,7 @@ To turn off debug mode:
 
     $ defaults write com.adobe.CSXS.8 PlayerDebugMode 0
 
-Place the extension folder (containing CSXS, client & host subfolders) in:
+Place the extension folder (containing subfolders **CSXS**, **client** and **host**) in:
 
     /Library/Application Support/Adobe/CEP/extensions
 
