@@ -5,13 +5,13 @@
 **Software Signing**
 --------------------
 
-*Explanation below*
+*See below for more complete instructions*
 
 Generate a 16-character password at [this page](https://passwordsgenerator.net) (check all but the first box).
 
 ### Generate the certificate:
 
-    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [drag destination folder]svija-tools-210330.p12
+    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [destination folder]svija-tools-210330.p12
     Self-signed certificate generated successfully
 
 * * * * *
