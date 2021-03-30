@@ -29,6 +29,8 @@ Copy the terminal command to the top of signing-records.txt for our records.
 
 * * * * *
 
+# More Information
+
 To be installed normally, an Adobe extension has to be signed.
 
 ### The software signing tool: ZXPSignCmd-64bit
