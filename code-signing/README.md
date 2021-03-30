@@ -1,6 +1,6 @@
-*Updated 30 March, 2021 · the following information comes from [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
+*Updated 30 March, 2021 · the following information comes from [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
 
-And [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install).
+
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
