@@ -1,4 +1,4 @@
-*Updated 29 March, 2021 · the following information comes from [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
+*Updated 30 March, 2021 · the following information comes from [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
 
 And [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install).
 
@@ -6,6 +6,12 @@ And [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/
 
 **Software Signing**
 --------------------
+
+*Explanation below*
+
+Generate a 16-character password at [this page](https://passwordsgenerator.net) (check all but the first box).
+
+* * * * *
 
 To be installed normally, an Adobe extension has to be signed.
 
