@@ -84,36 +84,25 @@
 <script type="text/javascript" src="infoLinks.js"></script>
 <script>
 
-//———————————————————————————————————————— capture cmd-F1 to show/hide panel
+/*———————————————————————————————————————— same in index.html & info.html
 
-// same in index.html & info.html
-// https://github.com/Adobe-CEP/CEP-Resources/issues/238
+  capture cmd-F1 to show/hide panel
+  https://github.com/Adobe-CEP/CEP-Resources/issues/238
+
+*/
 
   csif.addEventListener('show-svija-tools', () => { showHidePanel(); })
 
   function showHidePanel(){
     var isVisible = csif.isWindowVisible();
-  
-    var bundleID  = 'love.svija.SvijaTools';
-  	if (isVisible == 'true') csif.closeExtension();
-    else csif.requestOpenExtension(bundleID);
+    var bundleID  = 'love.svija.SvijaTools.panel';
+
+		alert('isVisible: '+isVisible+', bundleId: '+bundleId); 
+
+    if (isVisible == 'true') csif.closeExtension();
+    else csif.requestOpenExtension(bundleId);
   }
 
-//———————————————————————————————————————— capture cmd-F2 › F4
+//———————————————————————————————————————— fin
 
-  csif.addEventListener('save', () => { funcMoux('', 'saveAsSvg.jsx', 'save'); })
-  csif.addEventListener('save-all', () => { funcMoux('', 'saveAsSvg.jsx', 'all'); })
-  csif.addEventListener('close-save-all', () => { funcMoux('', 'saveAsSvg.jsx', 'close'); })
-
-  // copied from funcMou in indexLinks.js
-
-  var path = csif.getSystemPath(SystemPath.EXTENSION) + '/host/';
-  
-  function funcMoux(btnId, scriptName, arg){
-    file = path + scriptName;
-    csif.evalScript("arg = '" + arg + "'");
-    csif.evalScript("$.evalFile('" + file + "')");
-  }
-
-</script>
-</body></html>
+</script></body></html>
