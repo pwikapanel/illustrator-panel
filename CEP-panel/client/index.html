@@ -250,10 +250,9 @@
   csif.addEventListener('show-svija-tools', () => { showHidePanel(); })
 
   function showHidePanel(){
-    alert('line 253');
     var isVisible = csif.isWindowVisible();
   
-    var bundleID  = 'love.svija.SvijaTools.panel';
+    var bundleID  = 'love.svija.SvijaTools';
   	if (isVisible == 'true') csif.closeExtension();
     else csif.requestOpenExtension(bundleID);
   }
@@ -261,4 +260,3 @@
 //———————————————————————————————————————— fin
 
 </script>
-</body></html>
