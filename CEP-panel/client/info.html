@@ -89,20 +89,14 @@
 // same in index.html & info.html
 // https://github.com/Adobe-CEP/CEP-Resources/issues/238
 
-  csif.addEventListener('svija-tools', () => { showHidePanel(); })
+  csif.addEventListener('show-svija-tools', () => { showHidePanel(); })
 
   function showHidePanel(){
-  
-    var panelName = 'com.svija.tools.panel';
-  
-  	// is window visible
     var isVisible = csif.isWindowVisible();
   
+    var bundleID  = 'love.svija.SvijaTools.panel';
   	if (isVisible == 'true') csif.closeExtension();
-    else csif.evalScript('alert("Use Window › Extensions menu.");');
-
-//  will work when signed:
-//  else csif.requestOpenExtension(panelName);
+    else csif.requestOpenExtension(bundleID);
   }
 
 //———————————————————————————————————————— capture cmd-F2 › F4

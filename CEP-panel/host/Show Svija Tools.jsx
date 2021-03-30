@@ -15,7 +15,7 @@
 
 //———————————————————————————————————————— program */
 
-sendEvent('svija-tools');
+sendEvent('show-svija-tools');
 
 function sendEvent(type) {
     new ExternalObject('lib:\PlugPlugExternalObject');
