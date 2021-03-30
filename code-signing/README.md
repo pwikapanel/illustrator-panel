@@ -1,8 +1,6 @@
-*Updated 30 March, 2021 · the following information comes from [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
+*Updated 30 March, 2021 · based on [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
 
-
-
-![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
+![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png "Svija: SVG-based websites built in Adobe Illustrator")
 
 **Software Signing**
 --------------------
@@ -10,6 +8,13 @@
 *Explanation below*
 
 Generate a 16-character password at [this page](https://passwordsgenerator.net) (check all but the first box).
+
+### Generate the certificate:
+
+    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [drag destination folder]svija-tools-210330.p12
+    Self-signed certificate generated successfully
+
+* * * * *
 
 * * * * *
 
