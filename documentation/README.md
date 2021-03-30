@@ -11,9 +11,9 @@ The Adobe Exchange [website](https://partners.adobe.com/exchangeprogram/creative
 
 Testing a CEP panel requires setting the CEP engine to debug mode:
 
-    $ defaults write com.adobe.CSXS.10 PlayerDebugMode 1
+    $ defaults write com.adobe.CSXS.8 PlayerDebugMode 1
 
-    $ defaults read /Users/Base/Library/Preferences/com.adobe.CSXS.10.plist
+    $ defaults read /Users/Base/Library/Preferences/com.adobe.CSXS.8.plist
     {
         LogLevel = 1;
         PlayerDebugMode = 1;
@@ -21,7 +21,7 @@ Testing a CEP panel requires setting the CEP engine to debug mode:
 
 To set debug mode back to the default:
 
-    $ defaults write com.adobe.CSXS.10 PlayerDebugMode 0
+    $ defaults write com.adobe.CSXS.8 PlayerDebugMode 0
 
 Place the extension folder (containing CSXS, client & host subfolders) in:
 
