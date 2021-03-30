@@ -1,0 +1,1 @@
+./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift cs358bJLb2Rew5vQ /Users/Base/Library/Mobile\ Documents/com\~apple\~CloudDocs/Repositories/svija-tools-macos/code-signing/svija-tools-210330.p12

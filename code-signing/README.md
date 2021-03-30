@@ -11,9 +11,11 @@ Generate a 16-character password at [this page](https://passwordsgenerator.net) 
 
 ### Generate the certificate
 
-    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [destination folder]svija-tools-210330.p12
+    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [destination].p12
 
     Self-signed certificate generated successfully
+
+Copy the terminal command to the top of signing-records.txt for our records.
 
 * * * * *
 
