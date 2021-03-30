@@ -9,9 +9,7 @@ The Adobe Exchange [website](https://partners.adobe.com/exchangeprogram/creative
 
 * * * * *
 
-Testing a CEP panel requires setting the CEP engine to debug mode:
-
-    $ defaults write com.adobe.CSXS.8 PlayerDebugMode 1
+Testing a CEP panel requires setting the CEP engine to debug mode. To check if this is the case:
 
     $ defaults read /Users/Base/Library/Preferences/com.adobe.CSXS.8.plist
     {
@@ -19,7 +17,11 @@ Testing a CEP panel requires setting the CEP engine to debug mode:
         PlayerDebugMode = 1;
     }
 
-To set debug mode back to the default:
+To enter debug mode:
+
+    $ defaults write com.adobe.CSXS.8 PlayerDebugMode 1
+
+To turn off debug mode:
 
     $ defaults write com.adobe.CSXS.8 PlayerDebugMode 0
 
