@@ -21,10 +21,11 @@ Generate a 16-character password at [this page](https://passwordsgenerator.net) 
 
 The following should be typed on a single line:
 
-    $ ./ZXPSignCmd-64bit -sign
-      [bundle folder] [dest path].zxp [certficate] [pwd] -tsa http://timestamp.digicert.com
+    $ ./ZXPSignCmd-64bit -sign [bundle folder] [dest path].zxp [certficate] [pwd] -tsa http://timestamp.digicert.com
 
     Signed successfully
+
+*Reminder: you can drag a file or folder onto the terminal window to insert its path.*
 
 * * * * *
 
