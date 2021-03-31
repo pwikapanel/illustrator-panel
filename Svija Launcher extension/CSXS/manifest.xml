@@ -26,7 +26,7 @@
       <DispatchInfo>
 
         <Resources>
-          <MainPath>./html/index.html</MainPath>
+          <MainPath>./client/index.html</MainPath>
           <CEFCommandLine />
         </Resources>
 
