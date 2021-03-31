@@ -21,6 +21,8 @@ Copy the terminal command to the top of signing-records.txt for our records.
 
 ### Sign the bundle
 
+*Aide-mémoire:* program destination certificate password timestamp
+
     $ ./ZXPSignCmd-64bit -sign [bundle folder] [dest path].zxp [certficate] [pwd] -tsa http://timestamp.digicert.com
 
     Signed successfully
