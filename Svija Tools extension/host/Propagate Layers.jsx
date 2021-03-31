@@ -13,71 +13,64 @@
 //———————————————————————————————————————— what it does
 
     recursive delete in case multiple layers share same name
-    if I copy to empty document, results should stay in correct order
 
-     copies all unlocked layers from the active document to all other documents
+    Copies all unlocked layers from the active document to all other documents
 
     the top left corner of the document is set to illustrator's default
     top left corner. Rulers have no effect, and destination
     documents should have the top left corner in the default place
-    7711 in from top left corner of workspace
-    7914 down from top left corner of workspace
-
-    does NOT copy sublayers
-    to keep a layer bottom-aligned, add a guide rectangle somewhere called "bottom-align"
-
-    uses 'Print' in the layer options as a proxy for template,
-    since scripting does not support a template boolean
-
-//———————————————————————————————————————— future additions
-
-    need to recursively copy sublayers
-    need to not copy unnamed layers
 
 //———————————————————————————————————————— iterate for all open documents */
 
-var msgSingle  = 'Multiple Documents Needed\n' +
-                 'This script copies any unlocked layers to all other open documents.\n\n' +
-                 'To bottom-align a layer add any object\nnamed "bottom-align" to it.';
+var msgSingle   = 'Only One Document is Open\n' +
+                  'This tool copies unlocked layers to all other open documents.\n\n' +
+                  'To bottom-align a layer add any object named "bottom-align" to it.';
 
-var msgConfirm = 'Is the correct document active?\n' +
-                 'Press cmd-shift-period to cancel.\n\n' +
-                 'To bottom-align a layer add any object\nnamed "bottom-align" to it.\n';
+var msgNoUnlocked = 'No Unlocked Layers\n' +
+                  'This tool copies unlocked layers to all other open documents.\n\n' +
+                  'To be copied, a layer must be named.';
+
+var msgConfirm  = 'Is the correct document active?\n' +
+                  'You can undo changes by typing cmd-Z in each destination document.\n\n' +
+                  'To bottom-align a layer add any object\nnamed "bottom-align" to it.\n';
 
 var msgComplete = ' completed';
 var msgNoChange = 'No changes made.';
-var msgCopied   = 'Layers copied\nUnlocked layer source:';
+var msgCopied   = 'Layers copied\nLayer source:';
 
 //———————————————————————————————————————— chain of checks
 
-var sourceDoc    = app.activeDocument;
-var openDocs     = app.documents.length;
-var didSomething = false;
-var messages     = [];
+var sourceDoc   = app.activeDocument;
+var openDocs    = app.documents.length;
+var workDone    = false;
 
 //———————————————————————————————————————— chain of checks
 
-var docRef = app.activeDocument;
- 
-if (openDocs.length < 2) alert(msgSingle);
+if (openDocs < 2) alert(msgSingle);
+else if (unlockedLayers(sourceDoc) == 0) alert(msgNoUnlocked);
 else if (confirm(msgConfirm)){
+
+//———————————————————————————————————————— main program
+
+  // set by function findZ
+  var messages     = [];
 
   // iterate through all open documents
   for (i = openDocs-1 ; i > 0; i--){
-    var destDoc = app.documents[i];
 
-    lockLayers(destDoc, false);
-    didSomething = copyUnlockedLayers(sourceDoc, destDoc);
-    lockLayers(destDoc, true);
-    //alert(destDoc.name+msgComplete);
+    var destDoc = app.documents[i];
+    layersLock(destDoc, false);
+
+    workDone = copyUnlockedLayers(sourceDoc, destDoc);
+    layersLock(destDoc, true);
   }
 
 //———————————————————————————————————————— alert user and end
 
-  if (didSomething == true){
-    text = messages.join ("\n");
+  text = messages.join ("\n");
+
+  if (workDone == true)
     var finalMessage = msgCopied + ' "'+sourceDoc.name+'"\n\n' + text;
-  }
   else
     var finalMessage = msgNoChange;
 }
@@ -88,7 +81,7 @@ alert(finalMessage);
 
 //———————————————————————————————————————— lock or unlock all layers
 
-function lockLayers(docName, val){
+function layersLock(docName, val){
   allLayers = docName.layers;
   for (z = 0; z < allLayers.length; z++){
     myLayer = allLayers[z];
@@ -96,157 +89,109 @@ function lockLayers(docName, val){
   }
 }
 
-//———————————————————————————————————————— copy unlocked layers from first doc to second
-//  need to copy sublayers
+//———————————————————————————————————————— get Z index by layer name from specified parent object
 
-function copyUnlockedLayers(sourceDoc, destDoc){
-  
-  var howMany = sourceDoc.layers.length;
-
-  for(q = 0; q < howMany; q++){
-    var sourceLayer = sourceDoc.layers[q];
-    if (sourceLayer.locked == false){
-
-      // create destination layer & copy all contents to new layer
-      var destLayer = createDuplicateLayer(sourceLayer, destDoc);
-  
-      //  is layer bottom aligned?
-      vShift = getShift(sourceLayer, destDoc);
-  
-      // copy layer contents to new layer, shifting if necessary
-      var didSome = copyAllItems(sourceLayer, destLayer, vShift);
-  
-      // match old layer quantities
-      destLayer.color     = sourceLayer.color;
-      destLayer.printable = sourceLayer.printable;
-      destLayer.visible   = sourceLayer.visible;
-    }
-  }
-  return didSome;
+function getZbyName(name, parentObj){
+  try{ var layer = parentObj.layers.getByName(name); }
+  catch(e){ return -1; }
+  return layer.zOrderPosition;
 }
 
-//———————————————————————————————————————— get Z index by layer name from specified document
+/*———————————————————————————————————————— delete a named layer
 
-function getZbyName(name, doc){
-  try{
-    var layer = doc.layers.getByName(name);
-    return layer.zOrderPosition;
-  }
-  catch(e){
-    return -1;
-  }
+    if a layer exists, it's deleted
+    and its z index is returned
+
+*/
+
+function deleteExistingLayer(name, parentObj){
+  try { var oldLayer = parentObj.layers.getByName(name);}
+  catch (e) { return -1 };
+
+  z = oldLayer.zOrderPosition
+  oldLayer.locked = false;
+  oldLayer.visible = true;
+  oldLayer.remove();
+  return z;
 }
 
-//———————————————————————————————————————— creates specified layer in new doc, sans contents
+/*———————————————————————————————————————— determines correct z index for layer
 
-function createDuplicateLayer(sourceLayer, destDoc){
+    top layers stay on top
+    bottom layers stay on bottom
+    otherwise try to match adjacent layers
+    otherwise just use existing index
 
-  // delete layer if it exists, then create new layer
-  var prevZ = getZandDelete(sourceLayer.name, destDoc);
-  var destLayer = destDoc.layers.add();  
-  destLayer.name      = sourceLayer.name;
+    IMPT: z order starts at 1, not 0
+*/
 
-  // match old layer position
-  matchZindex(sourceLayer, destLayer, prevZ);
+function findZ(sourceLayer, destLayer){
 
-  return destLayer;
-}
+  var srcZ          = sourceLayer.zOrderPosition;
 
-//———————————————————————————————————————— delete a named layer
+  var srcParent     = sourceLayer.parent;
+  var srcLayersLen  = srcParent.layers.length;
 
-function getZandDelete(name, doc){
-  try {  
-    var destLayer = doc.layers.getByName(name);
-    z = destLayer.zOrderPosition
-    destLayer.locked = false;
-    destLayer.visible = true; // not visible is considered locked
-    destLayer.remove();
-    return z;
-  }
-  catch (e) {
-    return -1
-  };  
-}
-
-//———————————————————————————————————————— creates specified layer in new doc, sans contents
-
-function matchZindex(sourceLayer, destLayer, prevZ){
-
-  // if layer already existed, keep Z index
-  if (prevZ > 0){
-//    messages.push('- Layer "' + sourceLayer.name + '" already existed');
-    setZ(destLayer,prevZ);
-    return true;
-  }
-
-  var oldZ              = sourceLayer.zOrderPosition;
-
-  var sourceDoc         = sourceLayer.parent;
-  var sourceTotalLayers = sourceDoc.layers.length;
-
-  var destDoc           = destLayer.parent;
-  var destTotalLayers   = destDoc.layers.length;
+  var destParent    = destLayer.parent;
+  var destLayersLen = destParent.layers.length;
 
   // if it's same as number of layers, it's on top
-  if (oldZ == sourceTotalLayers){
-    messages.push('"' + sourceLayer.name + '" added as top layer of ' + destDoc.name);
-    return true;
+  if (srcZ == srcLayersLen+1){
+    messages.push('"' + sourceLayer.name + '" added as top layer of ' + destParent.name);
+    return destLayersLen + 1;
   }
 
   // if it's 1, it's on bottom
-  if (oldZ == 1){
-    messages.push('"' + sourceLayer.name + '" added as bottom layer of ' + destDoc.name);
-    setZ(destLayer,1);
-    return true;
+  if (srcZ == 1){
+    messages.push('"' + sourceLayer.name + '" added as bottom layer of ' + destParent.name);
+    return srcZ;
   }
 
   // otherwise it's in the middle, go by name
-  var index = sourceTotalLayers - oldZ;
-  var aboveName = sourceDoc.layers[index-1].name;
-  var belowName = sourceDoc.layers[index+1].name;
+  var index     = srcLayersLen - srcZ;
+  var aboveName = srcParent.layers[index-1].name;
+  var belowName = srcParent.layers[index+1].name;
 
   // does the aboveName exist in new document?
-  var aboveZ = getZbyName(aboveName, destDoc);
-  var belowZ = getZbyName(belowName, destDoc);
+  var aboveZ = getZbyName(aboveName, destParent);
+  var belowZ = getZbyName(belowName, destParent);
 
   // layers above and below found, no ambiguity
-  if (aboveZ > 0 && belowZ > 0){
-      setZ(destLayer, aboveZ);
-      return true;
-  }
+  if (aboveZ > 0 && belowZ > 0) return aboveZ;
 
   // no exact placement possible
-  messages.push('verify layer "' + sourceLayer.name + '" in ' + destDoc.name);
+  messages.push('verify layer "' + sourceLayer.name + '" in ' + destParent.name);
   
   // only layer above found
-  if (aboveZ > 0){
-    setZ(destLayer, aboveZ);
-    return true;
-  }
+  if (aboveZ > 0) return aboveZ;
       
   // only layer below found
-  if (belowZ > 0){
-    setZ(destLayer, belowZ + 1);
-    return true;
-  }
+  if (belowZ > 0) return belowZ + 1;
       
   // no matching layers found, use index
-  setZ(destLayer, oldZ);
-  return true;
+  return srcZ;
 }
 
-//———————————————————————————————————————— copy all layer elements
+/*———————————————————————————————————————— returns vertical shift
 
-function copyAllItems(sourceLayer, destLayer, vShift){
+    of copied content if object 'bottom-align'
 
-  var iterations = sourceLayer.pageItems.length;
+*/
 
-  for (var y = 0; y < iterations; y++) {  
-    sourceLayer.pageItems[y].duplicate(destLayer, ElementPlacement.PLACEATEND);
-    destLayer.pageItems[y].top += vShift;
-  }
+function getVoffset(sourceLayer, destDocHeight){
+  try{ isShifted = sourceLayer.pageItems.getByName('bottom-align'); }
+  catch(e){ return 0; }
 
-  return true;
+  return sourceLayer.parent.height-destDocHeight;
+}
+
+//———————————————————————————————————————— returns number of unlocked layers in active document
+
+function unlockedLayers(doc){
+  var unlocked = 0;
+  for (var x=0; x<doc.layers.length; x++)
+    if (!doc.layers[x].locked && !(doc.layers[x].name.slice(0,1)=='<')) unlocked += 1;
+  return unlocked;
 }
 
 /*———————————————————————————————————————— set Z index of a layer
@@ -272,32 +217,93 @@ function setZ(layer, newZ){
   }
 }
 
-//———————————————————————————————————————— returns vertical shift of copied content (sublayer called '<Bottom Align>')
+/*———————————————————————————————————————— creates empty layer
 
-// UNUSED KEEP FOR INFO ONLY
-function XgetShift(sourceLayer, destDoc){
+    with correct name, at correct Z-index
+    if layer exists, it's deleted & re-created
 
-  var hasText = sourceLayer.textFrames.length;
-  if (hasText == 0) return 0; // not bottom aligned
+*/
 
-  for (x=0; x < hasText; x++){
-    if (sourceLayer.textFrames[x].contents == 'bottom-align'){
-      messages.push('Layer "' + sourceLayer.name + '" is bottom-aligned.');
-      return sourceLayer.parent.height-destDoc.height;
-    }
-  }
-  
-  return 0;
+function newEmptyLayer(sourceLayer, parentObj){
+
+  // returns -1 if layer doesn't exist
+  var zIndex = deleteExistingLayer(sourceLayer.name, parentObj);
+
+  var destLayer = parentObj.layers.add();  
+  destLayer.name = sourceLayer.name;
+
+  // if we're not replacing a layer of the same name
+  if (zIndex < 0)
+    var zIndex = findZ(sourceLayer, destLayer);
+
+  setZ(destLayer,zIndex);
+  return destLayer;
 }
 
-//———————————————————————————————————————— returns vertical shift of copied content (sublayer called '<Bottom Align>')
+//———————————————————————————————————————— copy unlocked layers from first doc to second
+//  need to copy sublayers
 
-function getShift(sourceLayer, destDoc){
+function copyUnlockedLayers(sourceDoc, destDoc){
+  
+  var workDone = false; 
+  var howMany = sourceDoc.layers.length;
 
-  try{
-    isShifted = sourceLayer.pageItems.getByName('bottom-align');
-    return sourceLayer.parent.height-destDoc.height;
-  } catch(e) { return 0; }
+  for(q = 0; q < howMany; q++){
+    var sourceLayer = sourceDoc.layers[q];
+    if (sourceLayer.locked || sourceLayer.name.slice(0,1)=='<') continue;
+
+    // create destination layer & copy all contents to new layer
+    var destLayer = newEmptyLayer(sourceLayer, destDoc);
+
+    //  is layer bottom aligned?
+    var voffset = getVoffset(sourceLayer, destDoc.height);
+
+    // copy layer contents to new layer, vertical shifting if necessary
+    var workDone = copyAllItems(sourceLayer, destLayer, voffset);
+
+    // match old layer quantities
+    destLayer.color     = sourceLayer.color;
+    destLayer.printable = sourceLayer.printable;
+    destLayer.visible   = sourceLayer.visible;
+
+  }
+  return workDone;
+}
+
+/*———————————————————————————————————————— copy all layer elements
+
+    copies all layer items to an existing empty layer
+
+*/
+
+function copyAllItems(sourceLayer, destLayer, voffset){
+
+  //————————— regular page items
+
+  var itemsLen = sourceLayer.pageItems.length;
+
+  for (var y = 0; y < itemsLen; y++) {  
+    sourceLayer.pageItems[y].duplicate(destLayer, ElementPlacement.PLACEATEND);
+    destLayer.pageItems[y].top += voffset;
+  }
+
+  //————————— sublayers
+
+  // Layer.layers
+  // app.activeDocument.layers[index].zOrderPosition
+
+  var subLayersLen = sourceLayer.layers.length;
+  for (var y=0; y<subLayersLen; y++){
+    var srcSubLayer  = sourceLayer.layers[y];
+    alert('treating sublayer '+srcSubLayer.name);
+
+    var destSubLayer = newEmptyLayer(srcSubLayer, destLayer);
+    var resultats = copyAllItems(srcSubLayer, destSubLayer, voffset);
+  }
+
+  //————————— return results
+
+  return true;
 }
 
 //———————————————————————————————————————— fin
