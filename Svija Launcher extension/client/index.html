@@ -10,12 +10,13 @@
     var csif = new CSInterface();
 
     function showHidePanel(){
+        var isVisible = csif.isWindowVisible();
         var bundleID = 'love.svija.SvijaTools.panel';
-        var isVisible = csif.isWindowVisible(bundleID);
 
 //        if (isVisible == 'true') csif.closeExtension();
 //        else csif.requestOpenExtension(bundleId);
 
+        //if (isVisible == 'true') csif.requestOpenExtension(bundleID);
         csif.requestOpenExtension(bundleID);
     }
 
@@ -23,9 +24,8 @@
 
 </script></head><body style='background-color:lime;'><pre>
 
-  <a href="javascript:location.href='index.html';">reload</a>
+  <a href="javascript:location.href='CSAPI.html';">reload</a>
 
   <input type="button" value="Open Svija Tools" onclick="showHidePanel()" />
 
 </body></html>
-
