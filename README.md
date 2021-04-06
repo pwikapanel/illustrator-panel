@@ -5,6 +5,18 @@
 **Svija Tools 1.0**
 -------------------
 
+**IMPORTANT NOTE:** the actual scripts are developed in a separate repo called [Presets-Scripts](https://github.com/svijasvg/Presets-Scripts).
+
+This is because scripts stored in:
+
+    Adobe Illustrator 2021/Presets/en_US/Scripts
+
+can be worked on in real-time, whereas scripts that are integrated into the CEP panel need to be signed and installed each time they are updated.
+
+The scripts are written in such a way that they can be run from the **File › Scripts** menu with shortcut keys or called from the panel. Although the scripts could be developed separately, making the scripts identical in both places accelerates development and also provides a more unified user experience.
+
+* * * * *
+
 next big thing is to add recursive sublayers to **Propagate Layers**.
 
 then add warnings for everything from **trouble** page to **Save as Svija**.
