@@ -82,27 +82,4 @@
 
 <script type="text/javascript" src="themeChange.js"></script>
 <script type="text/javascript" src="infoLinks.js"></script>
-<script>
-
-/*———————————————————————————————————————— same in index.html & info.html
-
-  capture cmd-F1 to show/hide panel
-  https://github.com/Adobe-CEP/CEP-Resources/issues/238
-
-*/
-
-  csif.addEventListener('show-svija-tools', () => { showHidePanel(); })
-
-  function showHidePanel(){
-    var isVisible = csif.isWindowVisible();
-    var bundleID  = 'love.svija.SvijaTools.panel';
-
-		alert('isVisible: '+isVisible+', bundleId: '+bundleId); 
-
-    if (isVisible == 'true') csif.closeExtension();
-    else csif.requestOpenExtension(bundleId);
-  }
-
-//———————————————————————————————————————— fin
-
-</script></body></html>
+</body></html>
