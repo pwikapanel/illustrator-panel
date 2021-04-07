@@ -23,12 +23,14 @@ Private: **unchecked**
 Developer: edit profile to change (down in Edge on 240407)  
 Primary Tags: **Sharing, Publishing**  
 Secondary Tags: **Collaboration, Asset Management, Graphics**  
-tags 3      svg, website
-summary
+Custom Tags: **SVG, Website**  
+Languages Supported: (default)  
+
+**Summary (170 Chars):**
 
 An Illustrator panel that synchronizes your local files with your Svija website and facilitates working on groups of pages.
 
-description
+**Detailed Description**
 
 Techniques that have been trivially easy for more than 25 years in graphics software are still impossible in HTML.
 
@@ -36,11 +38,11 @@ It's time to evolve.
 
 Svija is a simple tool that enables the creation of a professional website written entirely in SVG, based on files created in Adobe Illustrator:
 
-• website updated in real time
-• no conversion or development necessary
-• ranked normally by search-engines
-• web site loads rapidly
-• no HTML or CSS necessary
+* website updated in real time
+* no conversion or development necessary
+* ranked normally by search-engines
+* web site loads rapidly
+* no HTML or CSS necessary
 
 Svija Sync
 
