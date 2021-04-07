@@ -2,8 +2,16 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
-**Svija Tools 1.0**
--------------------
+**Adobe Exchange Submission**
+-----------------------------
+
+### Logging In
+
+Log in at [adobe.com/partners.html](https://www.adobe.com/partners.html) with **login-en@svija.love**.
+
+Follow the link called **Adobe Exchange Partner Program for Creative Cloud** to the lower left side of the page.
+
+* * * * *
 
 need EULA in zxp upload
 
