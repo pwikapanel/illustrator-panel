@@ -17,8 +17,8 @@ Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](htt
 
 ### Details
 
-Title: **Svija Sync**
-Purchase Method: **Free**
+Title: **Svija Sync**  
+Purchase Method: **Free**  
 tags 1      sharing, publishing
 tags 2      collaboration, asset management, graphics
 tags 3      svg, website
