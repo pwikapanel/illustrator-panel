@@ -84,9 +84,27 @@ The following images are included in this repository:
 
 Youtube link: [Using Svija to build a web page with Adobe Illustrator](https://www.youtube.com/watch?v=UTjExzeUn-s) (19 minutes).
 
-———————————————————————————————————————— upload & docs
+* * * * *
 
-release notes
+### 3. Upload & Docs
+
+**Attention:** the app was rejected with the following note:
+
+You have put the installation instruction in the Release Notes Section instead of the "Installation Instructions for the CCT/Enterprise Users" Section.
+
+**Release Notes:**
+
+This release adds new capacities including correcting links to placed images, and converting embedded images to placed images (Reset Image Links button).
+
+**ADD MORE DOCUMENTS**
+
+We are not currently supplying other documentation.
+
+**Upload your file**
+
+# BIG PROBLEM, COME BACK HERE
+I encountered a problem where the file name was shown in red text, implying an error, and the **Save & Next** button did not work.
+
 
 This is the first release as a full-fledged Illustrator panel. Visit docs.svija.love for information and support.
 
