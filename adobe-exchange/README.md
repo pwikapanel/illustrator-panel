@@ -15,7 +15,7 @@ Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](htt
 
 * * * * *
 
-### Details
+### 1. Details
 
 Title: **Svija Sync**  
 Purchase Method: **Free**  
@@ -30,7 +30,7 @@ Languages Supported: (default)
 
 An Illustrator panel that synchronizes your local files with your Svija website and facilitates working on groups of pages.
 
-**Detailed Description**
+**Detailed Description:**
 
 Techniques that have been trivially easy for more than 25 years in graphics software are still impossible in HTML.
 
@@ -72,9 +72,17 @@ For the first time, it's possible to make a website where the details are perfec
 
 Create a free account today at https://svija.love
 
-———————————————————————————————————————— images
+* * * * *
 
-https://www.youtube.com/watch?v=UTjExzeUn-s
+### 2. Upload Images & Videos
+
+The following images are included in this repository:
+
+* Listing Icon.png
+* Featured Image.png
+* Preview Image
+
+Youtube link: [Using Svija to build a web page with Adobe Illustrator](https://www.youtube.com/watch?v=UTjExzeUn-s) (19 minutes).
 
 ———————————————————————————————————————— upload & docs
 
