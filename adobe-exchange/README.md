@@ -5,13 +5,13 @@
 **Adobe Exchange Submission**
 -----------------------------
 
+**The Exchange website does not work in Safari.**
+
 ### Logging In
 
 Log in at [adobe.com/partners.html](https://www.adobe.com/partners.html) with **login-en@svija.love**.
 
-Follow the link called **Adobe Exchange Partner Program for Creative Cloud** to the lower left side of the page.
-
-If already connected, the link is [partners.adobe.com/exchangeprogram/creativecloud](https://partners.adobe.com/exchangeprogram/creativecloud).
+Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html).
 
 * * * * *
 
