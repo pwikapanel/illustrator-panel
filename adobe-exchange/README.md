@@ -94,45 +94,23 @@ You have put the installation instruction in the Release Notes Section instead o
 
 **Release Notes:**
 
-Finally the power of the Svija Tools Extendscripts has been integrated into an easy-to-use Illustrator extension.
+Finally the power of the Svija Tools Scripts has been integrated into one easy-to-use Illustrator Panel.
 
 **ADD MORE DOCUMENTS**
 
-* Upload License.pdf
+Nothing at this time.
 
 **Upload your file**
 
-# BIG PROBLEM, COME BACK HERE
-I encountered a problem where the file name was shown in red text, implying an error, and the **Save & Next** button did not work.
-
-
-This is the first release as a full-fledged Illustrator panel. Visit docs.svija.love for information and support.
+Need to delete previous upload (click on x) before uploading a more recent version.
 
 upload single ZXP
 
-ERROR: Another product already exists with bundle ID: com.svija.tools
+* * * * *
 
-————————————————————————————————————————
+### 4. Notes & EULA
 
-
-
-
-————————————————————————————————————————
-———————————————————————————————————————— long description
-
-
-
-———————————————————————————————————————— release notes
-
-Installation instructions and documentation available at https://docs.svija.love
-
-———————————————————————————————————————— EULA
-
-https://choosealicense.com/licenses/mit/
-
-### MIT License
-
-Pasted into TextEdit and saved as a PDF
+The EULA was written with the help of [this page](https://choosealicense.com/licenses/mit/):
 
 * * * * *
 
@@ -146,8 +124,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 * * * * *
 
-———————————————————————————————————————— where to find it
+Where To Find It: **In Adobe Illustrator, got to the menu Window › Extensions › Svija Tools.**
 
-————————————————————————————————————————
-need EULA in zxp upload
+CCT/Enterprise user: **Svija Tools can easily be installed with Extension Manager, available for free at http://install.anastasiy.com.**
 
+Note to approver:
+
+Q: I would have liked to include the license in the ZXP file, but I could not find documentation about where to put it. Can I just include it as a text file in the root directory?
+
+Q: I am not clear about what kind of information would be helpful for a CCT/Enterprise user. I inserted the Extension Manager link because I know it works, but I'm not sure it's appropriate. Please advise.
+
+We intend to use this build to test the installation process and make sure everything works smoothly. There will be a further update before we start promoting this project.
+
+Thanks for your time,
+Andrew Swift
