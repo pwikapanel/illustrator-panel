@@ -5,7 +5,7 @@
 **Adobe Exchange Submission**
 -----------------------------
 
-**The Exchange website does not work in Safari.**
+**Note:**  the Exchange website **does not work in Safari.**
 
 ### Logging In
 
@@ -15,15 +15,13 @@ Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](htt
 
 * * * * *
 
-need EULA in zxp upload
+### Details
 
-———————————————————————————————————————— details
-
-title			Svija Sync
-purchase		free
-tags 1			sharing, publishing
-tags 2			collaboration, asset management, graphics
-tags 3			svg, website
+Title: **Svija Sync**
+Purchase Method: **Free**
+tags 1      sharing, publishing
+tags 2      collaboration, asset management, graphics
+tags 3      svg, website
 summary
 
 An Illustrator panel that synchronizes your local files with your Svija website and facilitates working on groups of pages.
@@ -128,3 +126,5 @@ SOFTWARE.
 ———————————————————————————————————————— where to find it
 
 ————————————————————————————————————————
+need EULA in zxp upload
+
