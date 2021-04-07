@@ -11,6 +11,8 @@ Log in at [adobe.com/partners.html](https://www.adobe.com/partners.html) with **
 
 Follow the link called **Adobe Exchange Partner Program for Creative Cloud** to the lower left side of the page.
 
+If already connected, the link is [partners.adobe.com/exchangeprogram/creativecloud](https://partners.adobe.com/exchangeprogram/creativecloud).
+
 * * * * *
 
 need EULA in zxp upload
