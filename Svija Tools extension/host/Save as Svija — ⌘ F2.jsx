@@ -17,17 +17,30 @@
 
 //———————————————————————————————————————— what it does
 
+//———————————————————————————————————————— setup */
+
+var appDocs   = app.documents;
+var iters = app.documents.length;
+
 //———————————————————————————————————————— if run as standalone */
 
-if (typeof arg == 'undefined') var arg = 'save all';
+var msgWhat = 'Save All Documents?\n' +
+              'Press return to save all documents.\n\n' +
+              'Type command-period to save this document only.';
+
+if (typeof arg == 'undefined'){
+  if (iters == 1) var arg = 'save';
+  else {
+    if (confirm(msgWhat)) arg = 'save all'
+    else arg = 'save';
+  }
+}
 
 //———————————————————————————————————————— program
 
 var d = new Date(); var ms = d.getTime();
 var activeDoc = app.activeDocument;
 var aiOptions = st_optionsForVersion(17);
-var appDocs   = app.documents;
-var iters = app.documents.length;
 
 for (index=0; index<iters; index++){
 

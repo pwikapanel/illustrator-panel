@@ -17,53 +17,47 @@ function doReload(){
   location.href='index.html?'+Math.random();
 }
 
-// from example panel
-//function onclickSetWindowTitleBtn() {
-//	CSLibrary.setWindowTitle(document.getElementById("SetWindowTitle").value);
-//}
+//———————————————————————————————————————— script names
 
-//function onclickGetWindowTitleBtn() {
-//	document.getElementById("GetWindowTitle").value = CSLibrary.getWindowTitle();
-//}
-
-//function onClickRestoreDefaultWindowTitle() {
-//	CSLibrary.setWindowTitle(CSLibrary.getExtensionID());
-//}
-
+var scriptShow = 'Show Svija Tools — ⌘ F1.jsx';
+var scriptSave = 'Save as Svija — ⌘ F2.jsx';
+var scriptDupe = 'Duplicate Layers — ⌘ F3.jsx';
+var scriptImgs = 'Reset Image Links — ⌘ F4.jsx';
+var scriptObjs = 'Reset Object IDs.jsx';
 
 //———————————————————————————————————————— listeners
 
 linkImages.addEventListener('mouseover', funcMov.bind(null, 'btnImages'), false);
 linkImages.addEventListener('mouseout',  funcMot.bind(null, 'btnImages'), false);
 linkImages.addEventListener('mousedown', funcMod.bind(null, 'btnImages'), false);
-linkImages.addEventListener('mouseup',   funcMou.bind(null, 'btnImages', 'Reset Image Links.jsx', 'null', 'Resetting Links…'), false);
+linkImages.addEventListener('mouseup',   funcMou.bind(null, 'btnImages', scriptImgs, 'null', 'Resetting Links…'), false);
 
 linkObjects.addEventListener('mouseover', funcMov.bind(null, 'btnObjects'), false);
 linkObjects.addEventListener('mouseout',  funcMot.bind(null, 'btnObjects'), false);
 linkObjects.addEventListener('mousedown', funcMod.bind(null, 'btnObjects'), false);
-linkObjects.addEventListener('mouseup',   funcMou.bind(null, 'btnObjects', 'Reset Object IDs.jsx', 'null', 'Resetting Object Ids…'), false);
+linkObjects.addEventListener('mouseup',   funcMou.bind(null, 'btnObjects', scriptObjs, 'null', 'Resetting Object Ids…'), false);
 
 linkLayers.addEventListener('mouseover', funcMov.bind(null, 'btnLayers'), false);
 linkLayers.addEventListener('mouseout',  funcMot.bind(null, 'btnLayers'), false);
 linkLayers.addEventListener('mousedown', funcMod.bind(null, 'btnLayers'), false);
-linkLayers.addEventListener('mouseup',   funcMou.bind(null, 'btnLayers', 'Propagate Layers.jsx', 'null', 'Propagating Layers…'), false);
+linkLayers.addEventListener('mouseup',   funcMou.bind(null, 'btnLayers', scriptDupe, 'null', 'Propagating Layers…'), false);
 
 //—————
 
 linkClose.addEventListener('mouseover', funcMov.bind(null, 'btnClose'), false);
 linkClose.addEventListener('mouseout',  funcMot.bind(null, 'btnClose'), false);
 linkClose.addEventListener('mousedown', funcMod.bind(null, 'btnClose'), false);
-linkClose.addEventListener('mouseup',   funcMou.bind(null, 'btnClose', 'Save as Svija.jsx', 'close', 'Closing All…'), false);
+linkClose.addEventListener('mouseup',   funcMou.bind(null, 'btnClose', scriptSave, 'close', 'Closing All…'), false);
 
 linkSave.addEventListener('mouseover', funcMov.bind(null, 'btnSave'), false);
 linkSave.addEventListener('mouseout',  funcMot.bind(null, 'btnSave'), false);
 linkSave.addEventListener('mousedown', funcMod.bind(null, 'btnSave'), false);
-linkSave.addEventListener('mouseup',   funcMou.bind(null, 'btnSave', 'Save as Svija.jsx', 'save', 'Saving as Svija…'), false);
+linkSave.addEventListener('mouseup',   funcMou.bind(null, 'btnSave', scriptSave, 'save', 'Saving as Svija…'), false);
 
 linkSaveAll.addEventListener('mouseover', funcMov.bind(null, 'btnSaveAll'), false);
 linkSaveAll.addEventListener('mouseout',  funcMot.bind(null, 'btnSaveAll'), false);
 linkSaveAll.addEventListener('mousedown', funcMod.bind(null, 'btnSaveAll'), false);
-linkSaveAll.addEventListener('mouseup',   funcMou.bind(null, 'btnSaveAll', 'Save as Svija.jsx', 'all', 'Saving All…'), false);
+linkSaveAll.addEventListener('mouseup',   funcMou.bind(null, 'btnSaveAll', scriptSave, 'all', 'Saving All…'), false);
 
 //———————————————————————————————————————— functions
 
@@ -106,7 +100,7 @@ function funcMou(btnId, scriptName, arg, titl){
   // need to pass argument as well
 
   changeTitle(titl);
-  file = path + scriptName;
+  file = path + encodeURI(scriptName);
   csif.evalScript("arg = '" + arg + "'");
   csif.evalScript("$.evalFile('" + file + "')");
 }

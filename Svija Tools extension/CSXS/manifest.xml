@@ -8,7 +8,7 @@
 
   <ExecutionEnvironment>
     <HostList>
-      <Host Name="ILST" Version="25" />
+      <Host Name="ILST" Version="17" />
     </HostList>
     <LocaleList>
       <Locale Code="All" />
