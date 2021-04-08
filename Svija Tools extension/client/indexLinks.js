@@ -19,11 +19,11 @@ function doReload(){
 
 //———————————————————————————————————————— script names
 
-var scriptShow = 'Show Svija Tools — ⌘ F1.jsx';
-var scriptSave = 'Save as Svija — ⌘ F2.jsx';
-var scriptDupe = 'Duplicate Layers — ⌘ F3.jsx';
-var scriptImgs = 'Reset Image Links — ⌘ F4.jsx';
-var scriptObjs = 'Reset Object IDs.jsx';
+var scriptShow = '0 Show Svija Tools — ⇧ F1.jsx';
+var scriptSave = '1 Save as Svija — ⌘ F1.jsx';
+var scriptDupe = '2 Duplicate Layers — ⌘ F2.jsx';
+var scriptObjs = '3 Reset Image Links — ⌘ F3.jsx';
+var scriptImgs = '4 Reset Object IDs — ⌘ F4.jsx';
 
 //———————————————————————————————————————— listeners
 
