@@ -128,7 +128,7 @@ Where To Find It: **In Adobe Illustrator, got to the menu Window › Extensions 
 
 CCT/Enterprise user: **Svija Tools can easily be installed with Extension Manager, available for free at http://install.anastasiy.com.**
 
-Note to approver:
+**Note to approver:**
 
 Q: I would have liked to include the license in the ZXP file, but I could not find documentation about where to put it. Can I just include it as a text file in the root directory?
 
