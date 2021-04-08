@@ -1,5 +1,4 @@
-commit before changing back to dev
-*Updated 6 April, 2021*
+*Updated 8 April, 2021*
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
