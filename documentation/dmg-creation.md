@@ -35,12 +35,9 @@ adjust view settings as needed.
 * Grid Spacing: [maximum]
 * Text Size: **13**
 
+From **Background:** section choose **Picture**.
 
-From `Background:` section choose `Picture` then
-Drag and drop the image you want to use as the
-background where it says `Drag image here`.
-
-Unmount/Eject the dmg when finished with View Options
+**Unmount/Eject** the DMG file.
 
 
 
