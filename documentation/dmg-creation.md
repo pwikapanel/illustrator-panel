@@ -29,6 +29,13 @@ In Finder press __CMD+1__ to switch to icon view and arrange icons as needed.
 Press __CMD+J__ to show the View Options window and
 adjust view settings as needed.
 
+* Group By: **None**
+* Sort By: **Snap to Grid**
+* Icon Size: **128x128**
+* Grid Spacing: [maximum]
+* Text Size: **13**
+
+
 From `Background:` section choose `Picture` then
 Drag and drop the image you want to use as the
 background where it says `Drag image here`.
