@@ -1,6 +1,6 @@
 #target illustrator  
 
-/*———————————————————————————————————————— description
+/*———————————————————————————————————————— 2 Duplicate Layers — ⌘ F2.jsx
 
     recursive delete in case multiple layers share same name
 
@@ -9,6 +9,20 @@
     the top left corner of the document is set to illustrator's default
     top left corner. Rulers have no effect, and destination
     documents should have the top left corner in the default place */
+
+/*———————————————————————————————————————— copyright
+
+    (c) 2021 Svija SAS
+    All Rights Reserved
+   
+    NOTICE:  Svija permits you to use, modify, and distribute this file in
+    accordance with the terms of the Svija license agreement accompanying it.
+    If you have received this file from a source other than Svija, then your
+    use, modification, or distribution of it requires the prior written
+    permission of Svija.
+
+    github.com/svijasvg/Presets-Scripts
+  	svija.love · contact@svija.love */
 
 /*———————————————————————————————————————— user messages */
 
@@ -150,7 +164,7 @@ function getZandDelete(srcLayer, destParent){
   return z;
 }
 
-/*———————————————————————————————————————— 1.2 determineCorrectZ(srcLayer, destLayer){ ################
+/*———————————————————————————————————————— 1.2 determineCorrectZ(srcLayer, destLayer){
 
     determines correct z index for layer
 

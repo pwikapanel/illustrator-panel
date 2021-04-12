@@ -1,21 +1,47 @@
 #target illustrator  
 
-/*———————————————————————————————————————— Save as Svija.jsx
+/*———————————————————————————————————————— 1 Save as Svija — ⌘ F1.jsx
+
+    Saves one or all open documents as SVG, with the correct options
+    for use with Svija.
+
+    The main challenge was how to use artboards without provoking an overwrite
+    confirmation each time the files are saved.
+
+    Using artboards excludes anything that is outside of the saved artboard,
+    whereas not using artboards includes all artwork, even a large image that is
+    outside the bounds of the saved file, for example).
+
+    This required some trickiness, because just saving using artboards caused the
+    overwrite dialogs. Each artboard is saved separately (all others are deleted
+    then restored after the save).
+
+    Since the app.undo() method is unpredictable, the artboards are stored in an
+    array then recreated after each save.
+
+    The other big challenge was to engineer the whole process so that the file 
+    never has to be closed. This means making some changes (deleting template layers),
+    saving the file, then undoing the changes.
+
+    notes:
 
     JSR = JavaScript Scripting Reference.pdf
     ISG = Illustrator Scripting Guide
     using ampersands in // comments causes crashes
 
+/*———————————————————————————————————————— copyright
 
-    github.com/svijasvg/svija-tools
-  
-    version 2.1.23
-  
-    (c) 2021 Svija
-    svija.love
-    contact@svija.love
+    (c) 2021 Svija SAS
+    All Rights Reserved
+   
+    NOTICE:  Svija permits you to use, modify, and distribute this file in
+    accordance with the terms of the Svija license agreement accompanying it.
+    If you have received this file from a source other than Svija, then your
+    use, modification, or distribution of it requires the prior written
+    permission of Svija.
 
-//———————————————————————————————————————— what it does
+    github.com/svijasvg/Presets-Scripts
+  	svija.love · contact@svija.love */
 
 //———————————————————————————————————————— setup */
 
@@ -78,9 +104,10 @@ if (index < 2) var msg = 'File saved.';
 else var msg = 'Files saved.';
 alert(msg + ' ('+ms+' ms)');
 
-// — — — — — — — — — — — — — — — — — — — — functions — — — — — — — — —
+//———————————————————————————————————————— main functions
 
-//———————————————————————————————————————— save the actual SVG's
+/*———————————————————————————————————————— st_saveAsSvgs(doc){
+*/
 
 function st_saveAsSvgs(doc){
 
@@ -121,8 +148,11 @@ function st_saveAsSvgs(doc){
   return true;
 }
 
-//———————————————————————————————————————— returns file to save into
-// https://extendscript.docsforadobe.dev
+//———————————————————————————————————————— utility functions
+
+/*———————————————————————————————————————— st_newFile(name) {
+returns file to save into
+// https://extendscript.docsforadobe.dev */
 
 function st_newFile(name) {
 
@@ -131,12 +161,15 @@ function st_newFile(name) {
 
   // check access rights
   if (newFile.open("w")){ newFile.close(); }
-  else { throw new Error(access_is_denied); }
+  //else { throw new Error(access_is_denied); }
+  else { alert('File missing — did you move it?'); }
 
   return newFile;
 }
 
-//———————————————————————————————————————— options for SVG file
+/*———————————————————————————————————————— st_getSvgOptions(){
+
+    options for SVG file */
 
 function st_getSvgOptions(){
 
@@ -169,8 +202,9 @@ function st_getSvgOptions(){
   return options;
 }
 
-//———————————————————————————————————————— delete any layers that are not printable
-// returns array with information about locked & visible for deleted layers
+/*———————————————————————————————————————— st_deleteNonPrintingLayers(src){
+delete any layers that are not printable
+// returns array with information about locked & visible for deleted layers */
 
 function st_deleteNonPrintingLayers(src){
   var layersLen = src.layers.length;
@@ -197,8 +231,9 @@ function st_deleteNonPrintingLayers(src){
   return results;
 }
 
-//———————————————————————————————————————— options for Illustrator File
-// ISG409 & JSRp84
+/*———————————————————————————————————————— st_optionsForVersion(version){
+options for Illustrator File
+// ISG409 & JSRp84 */
 
 function st_optionsForVersion(version){
 

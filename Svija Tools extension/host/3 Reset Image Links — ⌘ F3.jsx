@@ -1,17 +1,24 @@
+#target illustrator  
 
-/*———————————————————————————————————————— Reset Image Links.jsx
+/*———————————————————————————————————————— 3 Reset Image Links — ⌘ F3.jsx
 
-    github.com/svijasvg/svija-tools
-  
-    version 2.1.23
-  
-  	(c) 2021 Svija
-  	svija.love
-  	contact@svija.love
+    Does a lot */
 
-//———————————————————————————————————————— what it does
+/*———————————————————————————————————————— copyright
 
-//———————————————————————————————————————— what it does */
+    (c) 2021 Svija SAS
+    All Rights Reserved
+   
+    NOTICE:  Svija permits you to use, modify, and distribute this file in
+    accordance with the terms of the Svija license agreement accompanying it.
+    If you have received this file from a source other than Svija, then your
+    use, modification, or distribution of it requires the prior written
+    permission of Svija.
+
+    github.com/svijasvg/Presets-Scripts
+  	svija.love · contact@svija.love */
+
+//———————————————————————————————————————— get active doc
 
 var doc = app.activeDocument;
 
@@ -84,41 +91,11 @@ else{
   if (showResults) alert('Issues Found:\n' + report);
 }
 
-// — — — — — — — — — — — — — — — — — — — —  functions
+//———————————————————————————————————————— main functions
 
-/*———————————————————————————————————————— make alert rectangle
+/*———————————————————————————————————————— rasterItem(obj){
 
-  create translucent rectangle to signal embedded images
-  that can't be found and need to be replaced
-
-*/
-
-function alertRec(obj){
-  var alertColor = new RGBColor();
-  alertColor.red = 192; alertColor.green = 255; alertColor.blue = 0;
-  
-  var r = obj.geometricBounds; // coords [left -top right -bottom]
-
-  var rLeft   = r[0];
-  var rNegTop = r[1];
-  var rWidth  = r[2]-r[0];
-  var rHeight = r[1]-r[3];
-
-  // isg81 -top, left, width, height
-  var rec = app.activeDocument.activeLayer.pathItems.rectangle( rNegTop, rLeft, rWidth, rHeight );
-
-  rec.filled = true;
-  rec.stroked = false;
-  rec.fillColor = alertColor;
-  rec.opacity = 50;
-  return rec;
-}
-
-/*———————————————————————————————————————— embedded images
-
-  notes
-
-*/
+  notes */
 
 function rasterItem(obj){
  
@@ -168,12 +145,10 @@ function rasterItem(obj){
 
 }
 
-/*———————————————————————————————————————— placed images
+/*———————————————————————————————————————— placedItem(obj){
 
   image can't be missing unless it
-  was moved after document was opened
-
-*/
+  was moved after document was opened */
 
 function placedItem(obj){
 
@@ -190,20 +165,58 @@ function placedItem(obj){
 
   // copy if outside of current folder, otherwise move
 
+  // three cases:
+  // image is far away
+  // image is in same folder as Ai doc
+  // image is in links folder already
 
   var newFile = new File(destFullName);
-  if(!newFile.exists) obj.file.copy(newFile);
 
-  // if the file is almost in the right place, just move it
+  if(newFile.exists)var report = 'link updated';
+  else{
+    obj.file.copy(newFile);
+    var report = 'copied to links';
+  }
+
+  // if the file was in Ai folder we delete orig
   if (origFolder == currentFolder){
     obj.file.remove();
     var report = 'moved to links';
   }
-  else var report = 'copied to links';
 
   obj.file = newFile;
-
   return [imgName, true, report];
+}
+
+
+//———————————————————————————————————————— utility functions
+
+/*———————————————————————————————————————— alertRec(obj){
+
+  create translucent rectangle to signal embedded images
+  that can't be found and need to be replaced
+
+*/
+
+function alertRec(obj){
+  var alertColor = new RGBColor();
+  alertColor.red = 192; alertColor.green = 255; alertColor.blue = 0;
+  
+  var r = obj.geometricBounds; // coords [left -top right -bottom]
+
+  var rLeft   = r[0];
+  var rNegTop = r[1];
+  var rWidth  = r[2]-r[0];
+  var rHeight = r[1]-r[3];
+
+  // isg81 -top, left, width, height
+  var rec = app.activeDocument.activeLayer.pathItems.rectangle( rNegTop, rLeft, rWidth, rHeight );
+
+  rec.filled = true;
+  rec.stroked = false;
+  rec.fillColor = alertColor;
+  rec.opacity = 50;
+  return rec;
 }
 
 //———————————————————————————————————————— fin

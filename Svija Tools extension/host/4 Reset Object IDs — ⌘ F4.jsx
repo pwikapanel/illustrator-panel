@@ -1,16 +1,22 @@
-#target illustrator  
+#target illustrator 
 
-/*———————————————————————————————————————— Reset Object IDs.jsx
+/*———————————————————————————————————————— 4 Reset Object IDs — ⌘ F4.jsx
 
-    github.com/svijasvg/svija-tools
-  
-    version 2.1.23
-  
-  	(c) 2021 Svija
-  	svija.love
-  	contact@svija.love
+    description */
 
-//———————————————————————————————————————— what it does
+/*———————————————————————————————————————— copyright
+
+    (c) 2021 Svija SAS
+    All Rights Reserved
+   
+    NOTICE:  Svija permits you to use, modify, and distribute this file in
+    accordance with the terms of the Svija license agreement accompanying it.
+    If you have received this file from a source other than Svija, then your
+    use, modification, or distribution of it requires the prior written
+    permission of Svija.
+
+    github.com/svijasvg/Presets-Scripts
+  	svija.love · contact@svija.love */
 
 //———————————————————————————————————————— variables */
 
@@ -35,4 +41,5 @@ for (var x=0; x<items; x++)
 
 alert(treated + ' Objects Reset');
 
-//————————————————————————————————————————  fin
+
+//———————————————————————————————————————— fin
