@@ -8,3 +8,12 @@ managed from Andrew Swift's computer
 ------------------------------
 
 *Based on [this page](https://gist.github.com/jadeatucker/5382343).*
+
+in Disk Utility:
+
+    New Disk Image from Folder (sh-cmd N)
+    select the folder
+    choose **Read/Write**
+    click Save
+
+
