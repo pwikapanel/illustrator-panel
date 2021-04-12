@@ -26,8 +26,8 @@ directory but they can be customized with icons, backgrounds, and layout propert
 A DMG file (.dmg) is a Mac OS X Disk Image file and it is used to package files or folders
 providing compression, encryption, and read-only to the package.
 
-##Creating the DMG file
-#Disk Utility
+## Creating the DMG file
+# Disk Utility
 Type `Disk Utility` into Spotlite __CMD+SPACEBAR__ from Finder
 or from Terminal:
 ```
@@ -43,7 +43,7 @@ In the `Save As` field enter a name for the file like `myapp.dmg`.
 
 From the `Image Format` drop-down select `read/write` then click `Save`.
 
-#Edit Folder Preferences
+# Edit Folder Preferences
 Mount the dmg and open it by double-clicking the file in Finder
 or from Terminal:
 ```
@@ -74,7 +74,7 @@ or from Terminal:
 umount /Volumes/myapp/
 ```
 
-#Compress and convert to Read-only
+# Compress and convert to Read-only
 From Disk Utility right-click on myapp.dmg disk image and
 select `Convert "myapp.dmg"`.
 
@@ -86,5 +86,5 @@ or from Terminal:
 hdiutil convert -format UDZO -o myappfinal.dmg myapp.dmg
 ```
 
-#FIN
+# FIN
 Congratulations you are finished!  Mount the new dmg to verify it is working properly.
