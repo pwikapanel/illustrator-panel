@@ -9,7 +9,7 @@ managed from Andrew Swift's computer
 
 *Based on [this page](https://gist.github.com/jadeatucker/5382343).*
 
-in Disk Utility:
+Create an empty folder with the name of the DMG, then in Disk Utility:
 
 * New Disk Image from Folder (sh-cmd N)
 * select the folder
@@ -39,47 +39,16 @@ From **Background:** section choose **Picture**.
 
 **Unmount/Eject** the DMG file.
 
+* * * * *
 
+In **Disk Utility**:
 
+* Images › Convert
+* Image Format: **read-only**
+* Use a new name
 
+*Disk must be ejected.*
 
+* * * * *
 
-
-
-
-
-
-
-———————————————————————————————————————————————————————————————————————————
-
-# PREVIOUS ARTICLE
-
-
-
-Create a link/shortcut to /Applications folder by right-clicking
-on the `Applications` folder and selecting `Make Alias` then drag it into
-the dmg folder or from Terminal:
-```
-cd /Volumes/myapp/
-ln -s /Applications Applications
-```
-
-or from Terminal:
-```
-umount /Volumes/myapp/
-```
-
-# Compress and convert to Read-only
-From Disk Utility right-click on myapp.dmg disk image and
-select `Convert "myapp.dmg"`.
-
-In the `Save As` field enter a new name for the file like `myappfinal.dmg`.
-
-From the `Image Formate` drop-down select `read-only` then click `Save`
-or from Terminal:
-```
-hdiutil convert -format UDZO -o myappfinal.dmg myapp.dmg
-```
-
-# FIN
-Congratulations you are finished!  Mount the new dmg to verify it is working properly.
+Open the new DMG to make sure it looks correct.
