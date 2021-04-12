@@ -1,6 +1,7 @@
 /*———————————————————————————————————————— svg styles */
 /*         :4,21s/\t/#gray2 /g                        */
 
+/* necessary because set to none in html */
 #gray1, #gray2, #gray3, #gray4 {display:block;}
 
 #gray1 .st0{fill:#323232;}
