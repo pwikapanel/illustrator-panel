@@ -19,7 +19,7 @@ This page has several parts:
 
 ### Creating the ICNS Icon File
 
-The following is based on [xxx's answer](https://stackoverflow.com/questions/96882/how-do-i-create-a-nice-looking-dmg-for-mac-os-x-using-command-line-tools) on Stack Overflow.
+The following is based on [Parag Bafna's answer](https://stackoverflow.com/a/18443866/72958) on Stack Overflow.
 
 The DMG icon is held in a .icns file in the root directory called .VolumeIcon.icns.
 
