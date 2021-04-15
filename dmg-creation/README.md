@@ -79,6 +79,8 @@ Check the size of the folder — it should be just under 10MB.
 
 ### Updating the Icons
 
+**NOTE: Svija Sync doesn't support Mojave, and Ai 17 is not supported by Catalina, so I don't have to support Ai 17**
+
 The next step is to paste the six icons for the following aliases and folders:
 
     Svija-Install-210415
