@@ -57,7 +57,7 @@ Create a new folder in the current folder, containing all the elements of the DM
     Svija-Install-210415
     ├─ Adobe Extensions (alias of /Library/Application Support/Adobe/CEP/extensions)
     ├─ Applications (alias of /Applications)
-    ├─ For installation instructions, View as Icons
+    ├─ For installation instructions, View as Icons (empty file)
     ├─ Svija Shortcuts
     │  ├─ Scripts
     │  │  ├─ 0. Show Svija Tools — ⇧ F1.jsx
@@ -73,7 +73,21 @@ Create a new folder in the current folder, containing all the elements of the DM
     ├─ window_scripts.png
     └─ window_shortcuts.png
 
-Check the size of the folder.
+Check the size of the folder — it should be just under 10MB.
+
+* * * * *
+
+### Updating the Icons
+
+The next step is to paste the six icons for the following aliases and folders:
+
+    Svija-Install-210415
+    ├─ Adobe Extensions · alias
+    ├─ Applications · alias
+    ├─ Svija Shortcuts · folder
+    │  ├─ Scripts · folder
+    │  └─ Svija Shortcuts.aia
+    └─ Svija Tools · folder
 
 * * * * *
 
