@@ -136,8 +136,6 @@ Open three folders in Icon View:
 
 In a separate window, open the DMG in list view.
 
-In all cases, **the Sidebar should be hidden**.
-
 For each Icon View window, type cmd-J and set Background to Picture, then drag the appropriate background image from the List View window to the View Preferences panel.
 
 Turn off hidden files and close the List View window.
@@ -149,6 +147,34 @@ Make sure that the text size is **13pt**.
 The empty file called "For installation instructions, View as Icons" should be in the white space to the right of the colored background.
 
 * * * * *
+
+### Resizing the Windows
+
+**Hide the Sidebar for the three windows**.
+
+**Horizontal resizing:** drag the right edge of the window to the edge of the **background image**.
+
+**Vertical resizing:** drag the bottom edge up so the icons are cut off, then drag it down until the vertical scrollbar disappears.
+
+The **Scripts Folder** should just be made the same height as the other two.
+
+**Note:** the backgrounds have enough extra width that for most users (side bar visible, not extremely wide), the content should look nice.
+
+Make sure that all *other* windows are closed, then eject the DMG file.
+
+* * * * *
+
+### Making the Read-Only DMG
+
+In **Disk Utility**, go to **Images › Convert…** and choose **Svija Install RW.dmg**.
+
+Change the Image Format to compressed and save it without the " RW".
+
+Note: "compressed" and "read-only" both work, but compressed images **loaded faster££ and were roughly **half the size** in testing.
+
+* * * * *
+
+
 
 
 
