@@ -8,7 +8,16 @@
 This page has several parts:
 
 - creating the disk icon
-- creating the empty disk 
+- creating the folder hierarchy
+- creating the empty disk image
+- adding everything to the disk image
+- adding background images
+- adding the disk icon
+- arranging the windows & icons
+
+* * * * *
+
+### Creating the ICNS Icon File
 
 ***
 https://stackoverflow.com/questions/96882/how-do-i-create-a-nice-looking-dmg-for-mac-os-x-using-command-line-tools
