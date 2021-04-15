@@ -19,16 +19,30 @@ This page has several parts:
 
 ### Creating the ICNS Icon File
 
-The following is based on [Parag Bafna's answer](https://stackoverflow.com/a/18443866/72958) on Stack Overflow.
+how to create an icns file?
 
-The DMG icon is held in a .icns file in the root directory called .VolumeIcon.icns.
+Based on [Justin Mitchel's article](https://www.codingforentrepreneurs.com/blog/create-icns-icons-for-macos-apps) on codingforentrepreneurs.com.
 
-TO create
-***
-dragged and renamed to .VolumeIcon.icns
-$ SetFile -c icnC [drag ICNS on writeable DMG]
-$ SetFile -a C [drag writeable DMG]
+cd to folder containing icon
 
+input_filepath="cfe_icon_1024_x_1024.png"
+output_iconset_name="CFE.iconset"
+mkdir $output_iconset_name
+sips -z 16 16     "$input_filepath" --out "${output_iconset_name}/icon_16x16.png"
+sips -z 32 32     "$input_filepath" --out "${output_iconset_name}/icon_16x16@2x.png"
+sips -z 32 32     "$input_filepath" --out "${output_iconset_name}/icon_32x32.png"
+sips -z 64 64     "$input_filepath" --out "${output_iconset_name}/icon_32x32@2x.png"
+sips -z 128 128   "$input_filepath" --out "${output_iconset_name}/icon_128x128.png"
+sips -z 256 256   "$input_filepath" --out "${output_iconset_name}/icon_128x128@2x.png"
+sips -z 256 256   "$input_filepath" --out "${output_iconset_name}/icon_256x256.png"
+sips -z 512 512   "$input_filepath" --out "${output_iconset_name}/icon_256x256@2x.png"
+sips -z 512 512   "$input_filepath" --out "${output_iconset_name}/icon_512x512.png"
+iconutil -c icns $output_iconset_name
+rm -R $output_iconset_name
+
+
+
+* * * * *
 outstanding issues:
 
 icon for DMG file
@@ -131,26 +145,6 @@ didn't show up immediately
 
 ———————————————————————————————————————— 
 
-how to create an icns file?
-https://www.codingforentrepreneurs.com/blog/create-icns-icons-for-macos-apps
-
-cd to folder containing icon
-
-input_filepath="cfe_icon_1024_x_1024.png"
-output_iconset_name="CFE.iconset"
-mkdir $output_iconset_name
-sips -z 16 16     "$input_filepath" --out "${output_iconset_name}/icon_16x16.png"
-sips -z 32 32     "$input_filepath" --out "${output_iconset_name}/icon_16x16@2x.png"
-sips -z 32 32     "$input_filepath" --out "${output_iconset_name}/icon_32x32.png"
-sips -z 64 64     "$input_filepath" --out "${output_iconset_name}/icon_32x32@2x.png"
-sips -z 128 128   "$input_filepath" --out "${output_iconset_name}/icon_128x128.png"
-sips -z 256 256   "$input_filepath" --out "${output_iconset_name}/icon_128x128@2x.png"
-sips -z 256 256   "$input_filepath" --out "${output_iconset_name}/icon_256x256.png"
-sips -z 512 512   "$input_filepath" --out "${output_iconset_name}/icon_256x256@2x.png"
-sips -z 512 512   "$input_filepath" --out "${output_iconset_name}/icon_512x512.png"
-iconutil -c icns $output_iconset_name
-rm -R $output_iconset_name
-
 ———————————————————————————————————————— sidebar pushes content off to right, hidden
 
 
@@ -221,3 +215,15 @@ In **Disk Utility**:
 * * * * *
 
 Open the new DMG to make sure it looks correct.
+### Installing the ICNS Icon File
+
+The following is based on [Parag Bafna's answer](https://stackoverflow.com/a/18443866/72958) on Stack Overflow.
+
+The DMG icon is held in a .icns file in the root directory called **.VolumeIcon.icns**.
+
+Start with a 1024x1024 transparent png image
+
+***
+dragged and renamed to .VolumeIcon.icns
+$ SetFile -c icnC [drag ICNS on writeable DMG]
+$ SetFile -a C [drag writeable DMG]
