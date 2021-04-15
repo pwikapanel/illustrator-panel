@@ -19,10 +19,10 @@ This page has several parts:
 
 ### Creating the ICNS Icon File
 
-how to create an icns file?
+*Based on [Justin Mitchel's article](https://www.codingforentrepreneurs.com/blog/create-icns-icons-for-macos-apps) on codingforentrepreneurs.com.*
 
-Based on [Justin Mitchel's article](https://www.codingforentrepreneurs.com/blog/create-icns-icons-for-macos-apps) on codingforentrepreneurs.com.
-
+Create an 1024x1024 transparent PNG image, then in terminal:
+```
 cd to folder containing icon
 
 input_filepath="cfe_icon_1024_x_1024.png"
@@ -39,7 +39,7 @@ sips -z 512 512   "$input_filepath" --out "${output_iconset_name}/icon_256x256@2
 sips -z 512 512   "$input_filepath" --out "${output_iconset_name}/icon_512x512.png"
 iconutil -c icns $output_iconset_name
 rm -R $output_iconset_name
-
+```
 
 
 * * * * *
