@@ -46,6 +46,8 @@ The image will be renamed to add a leading dot when it is installed later.
 
 ### Creating the Background Images
 
+* * * * *
+
 ### Creating the Folder Hierarchy
 
 Create a new folder in the current folder, containing all the elements of the DMG, named with a date:
