@@ -144,9 +144,15 @@ Turn off hidden files and close the List View window.
 
 Look in the accompanying **view-options** folder to see the correct view options for each window.
 
+Make sure that the text size is **13pt**.
+
+The empty file called "For installation instructions, View as Icons" should be in the white space to the right of the colored background.
+
+* * * * *
 
 
-outstanding issues:
+
+# outstanding issues:
 
 icon for DMG file
 icon for mounted DMG file
