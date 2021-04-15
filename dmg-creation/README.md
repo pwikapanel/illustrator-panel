@@ -1,3 +1,13 @@
+*Updated 15 April, 2021 · managed from Andrew Swift's computer*
+
+![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
+
+**Svija Tools**
+-------------------
+
+**IMPORTANT NOTE:** the actual scripts are developed in a separate repository called [Presets-Scripts](https://github.com/svijasvg/Presets-Scripts).
+
+This is because scripts stored in:
 5MB should be plenty for whole thing, plus 4mB for BG images if I don't reduce the resolution
 
 https://stackoverflow.com/questions/96882/how-do-i-create-a-nice-looking-dmg-for-mac-os-x-using-command-line-tools
