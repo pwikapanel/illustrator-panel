@@ -108,7 +108,40 @@ Rename the following files to begin with a dot:
     bg_scripts.png
     bg_shortcuts.png
 
+### Create the Empty DMG File
+
+*Hidden files are still enabled for this step.*
+
+In Disk Utility:
+
+1. File › New Image › Blank Image...
+2. stored in same folder as the previous folder
+3. Save As: Svija Install RW.dmg
+4. Name: Svija Install
+5. Size: measured size +2MB
+6. Format: Mac OS Extended (Journaled)
+7. Image Format: read/write disk image
+
+Open the DMG to mount it, then copy all the files, including hidden files, from the previous folder to the mounted DMG.
+
 * * * * *
+
+### Arrange the DMG Appearance
+
+Open three folders in Icon View:
+
+- the main DMG
+- Svija Shortcuts
+- Svija Shortcuts/Scripts
+
+In a separate window, open the DMG in list view.
+
+In all cases, **the Sidebar should be hidden**.
+
+For each Icon View window, type cmd-J and set the view options as desiredkk
+
+
+
 outstanding issues:
 
 icon for DMG file
