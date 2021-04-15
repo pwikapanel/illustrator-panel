@@ -99,10 +99,11 @@ The next step is to paste the six icons for the following aliases and folders:
 
 ### Rename Hidden Files
 
-* Type fn-shift-cmd-. to enable hidden files
-* Rename the following files to begin with a dot:
+**Note:** to enable hidden files type fn-shift-cmd-.
 
-    VolumeIcon.icns  
+Rename the following files to begin with a dot:
+
+    VolumeIcon.icns
     bg_main.png
     bg_scripts.png
     bg_shortcuts.png
