@@ -44,6 +44,8 @@ rm -R $output_iconset_name
 ```
 The image will be renamed to add a leading dot when it is installed later.
 
+* * * * *
+
 ### Creating the Background Images
 
 * * * * *
