@@ -22,10 +22,13 @@ This page has several parts:
 *Based on [Justin Mitchel's article](https://www.codingforentrepreneurs.com/blog/create-icns-icons-for-macos-apps) on codingforentrepreneurs.com.*
 
 Create an 1024x1024 transparent PNG image, then in terminal:
+
+    cd [folder containing PNG] 
+    input_filepath="[name of PNG]"
+
+The following can just be pasted into terminal
 ```
-cd [folder containing PNG] 
-input_filepath="[name of PNG]"
-output_iconset_name="CFE.iconset"
+output_iconset_name="VolumeIcon.iconset"
 mkdir $output_iconset_name
 sips -z 16 16     "$input_filepath" --out "${output_iconset_name}/icon_16x16.png"
 sips -z 32 32     "$input_filepath" --out "${output_iconset_name}/icon_16x16@2x.png"
@@ -39,6 +42,7 @@ sips -z 512 512   "$input_filepath" --out "${output_iconset_name}/icon_512x512.p
 iconutil -c icns $output_iconset_name
 rm -R $output_iconset_name
 ```
+
 
 
 * * * * *
