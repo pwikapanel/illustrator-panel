@@ -9,13 +9,18 @@
 
 This page has several parts:
 
-- creating the disk icon
-- creating the folder hierarchy
-- creating the empty disk image
-- adding everything to the disk image
-- adding background images
-- adding the disk icon
-- arranging the windows & icons
+- [Creating the ICNS Icon File](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#creating-the-icns-icon-file)
+- [Creating the Background Images](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#creating-the-background-images)
+- [Creating the Folder Hierarchy](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#creating-the-folder-hierarchy)
+- [Pasting New Icons](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#pasting-new-icons)
+- [Rename Hidden Files](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#rename-hidden-files)
+- [Installing the ICNS Icon File](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#installing-the-icns-icon-file)
+- [Create the Empty DMG File](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#create-the-empty-dmg-file)
+- [Arrange the DMG Appearance](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#arrange-the-dmg-appearance)
+- [Resizing the Windows](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#resizing-the-windows)
+- [Making the Read-Only DMG](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#making-the-read-only-dmg)
+- [Outstanding Issues](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#outstanding-issues)
+- [Miscellaneous Notes](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#miscellaneous-notes)
 
 * * * * *
 
