@@ -5,11 +5,12 @@
 **Creating a DMG Installer**
 ----------------------------
 
-**IMPORTANT NOTE:** the actual scripts are developed in a separate repository called [Presets-Scripts](https://github.com/svijasvg/Presets-Scripts).
+This page has several parts:
 
-This is because scripts stored in:
-5MB should be plenty for whole thing, plus 4mB for BG images if I don't reduce the resolution
+- creating the disk icon
+- creating the empty disk 
 
+***
 https://stackoverflow.com/questions/96882/how-do-i-create-a-nice-looking-dmg-for-mac-os-x-using-command-line-tools
 dragged and renamed to .VolumeIcon.icns
 $ SetFile -c icnC [drag ICNS on writeable DMG]
