@@ -138,7 +138,11 @@ In a separate window, open the DMG in list view.
 
 In all cases, **the Sidebar should be hidden**.
 
-For each Icon View window, type cmd-J and set the view options as desiredkk
+For each Icon View window, type cmd-J and set Background to Picture, then drag the appropriate background image from the List View window to the View Preferences panel.
+
+Turn off hidden files and close the List View window.
+
+Look in the accompanying **view-options** folder to see the correct view options for each window.
 
 
 
