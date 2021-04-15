@@ -55,9 +55,6 @@ The image will be renamed to add a leading dot when it is installed later.
 Create a new folder in the current folder, containing all the elements of the DMG, named with a date:
 
     Svija-Install-210415
-    ├─ .window_main.png
-    ├─ .window_scripts.png
-    ├─ .window_shortcuts.png
     ├─ Adobe Extensions (alias of /Library/Application Support/Adobe/CEP/extensions)
     ├─ Applications (alias of /Applications)
     ├─ For installation instructions, View as Icons
@@ -70,7 +67,15 @@ Create a new folder in the current folder, containing all the elements of the DM
     │  │ └ 4. Reset Object IDs — ⌘ F4.jsx
     │  └ Svija Shortcuts.aia
     ├─ Svija Sync.app
-    └─ Svija Tools (signed folder from ST repo)
+    ├─ Svija Tools (signed folder from ST repo)
+    ├─ VolumeIcon.icns
+    ├─ window_main.png
+    ├─ window_scripts.png
+    └─ window_shortcuts.png
+
+Check the size of the folder.
+
+* * * * *
 
 *To work with filenames beginning with a "." type fn-shift-cmd-.*
 
