@@ -79,7 +79,7 @@ Check the size of the folder — it should be just under 10MB.
 
 * * * * *
 
-### Updating the Icons
+### Pasting New Icons
 
 **NOTE: Svija Sync doesn't support Mojave, and Ai 17 is not supported by Catalina, so I don't have to support Ai 17**
 
@@ -102,7 +102,7 @@ The next step is to paste the six icons for the following aliases and folders:
 * Type fn-shift-cmd-. to enable hidden files
 * Rename the following files to begin with a dot:
 
-    VolumeIcon.icns
+    VolumeIcon.icns  
     bg_main.png
     bg_scripts.png
     bg_shortcuts.png
@@ -164,7 +164,7 @@ get terminal command to convet to cmpresses, annnoying to use dkis utiliity
 
 ————————————————————————————————————————
 
-	FINAL WORKIG SOLUTION: ADD THE EXTRA WIDTH
+FINAL WORKIG SOLUTION: ADD THE EXTRA WIDTH
 WHEN CREATING THE DMG, HIDE THE SIDEBAR, AND USE THE WHOLE WIDTH OF THE 
 BACKGROUND IMAGE (WHIHC WILL BE EATEN UP BY THE SIDEBARS IF PEOPLE HAE HTEM)
 
