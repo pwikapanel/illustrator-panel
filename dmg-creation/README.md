@@ -59,13 +59,13 @@ Create a new folder in the current folder, containing all the elements of the DM
     ├─ Applications (alias of /Applications)
     ├─ For installation instructions, View as Icons
     ├─ Svija Shortcuts
-    │  ├ Scripts
-    │  │ ├ 0. Show Svija Tools — ⇧ F1.jsx
-    │  │ ├ 1. Save as Svija — ⌘ F1.jsx
-    │  │ ├ 2. Duplicate Layers — ⌘ F2.jsx
-    │  │ ├ 3. Reset Image Links — ⌘ F3.jsx
-    │  │ └ 4. Reset Object IDs — ⌘ F4.jsx
-    │  └ Svija Shortcuts.aia
+    │  ├─ Scripts
+    │  │  ├─ 0. Show Svija Tools — ⇧ F1.jsx
+    │  │  ├─ 1. Save as Svija — ⌘ F1.jsx
+    │  │  ├─ 2. Duplicate Layers — ⌘ F2.jsx
+    │  │  ├─ 3. Reset Image Links — ⌘ F3.jsx
+    │  │  └─ 4. Reset Object IDs — ⌘ F4.jsx
+    │  └─ Svija Shortcuts.aia
     ├─ Svija Sync.app
     ├─ Svija Tools (signed folder from ST repo)
     ├─ VolumeIcon.icns
