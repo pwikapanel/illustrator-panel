@@ -5,6 +5,8 @@
 **Creating a DMG Installer**
 ----------------------------
 
+**Before starting:** update any icons, programs, etc. so that everything is ready for the installer.
+
 This page has several parts:
 
 - creating the disk icon
