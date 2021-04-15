@@ -19,8 +19,12 @@ This page has several parts:
 
 ### Creating the ICNS Icon File
 
+The following is based on [xxx's answer](https://stackoverflow.com/questions/96882/how-do-i-create-a-nice-looking-dmg-for-mac-os-x-using-command-line-tools) on Stack Overflow.
+
+The DMG icon is held in a .icns file in the root directory called .VolumeIcon.icns.
+
+TO create
 ***
-https://stackoverflow.com/questions/96882/how-do-i-create-a-nice-looking-dmg-for-mac-os-x-using-command-line-tools
 dragged and renamed to .VolumeIcon.icns
 $ SetFile -c icnC [drag ICNS on writeable DMG]
 $ SetFile -a C [drag writeable DMG]
