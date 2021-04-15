@@ -108,6 +108,15 @@ Rename the following files to begin with a dot:
     bg_scripts.png
     bg_shortcuts.png
 
+### Installing the ICNS Icon File
+
+The following is based on [Parag Bafna's answer](https://stackoverflow.com/a/18443866/72958) on Stack Overflow.
+
+The ICNS file should already be on the writeable DMG. Then:
+
+$ SetFile -c icnC [drag ICNS on writeable DMG]
+$ SetFile -a C [drag writeable DMG]
+
 ### Create the Empty DMG File
 
 *Hidden files are still enabled for this step.*
@@ -163,15 +172,6 @@ The **Scripts Folder** should just be made the same height as the other two.
 Make sure that all *other* windows are closed, then eject the DMG file.
 
 * * * * *
-
-### Installing the ICNS Icon File
-
-The following is based on [Parag Bafna's answer](https://stackoverflow.com/a/18443866/72958) on Stack Overflow.
-
-The ICNS file should already be on the writeable DMG. Then:
-
-$ SetFile -c icnC [drag ICNS on writeable DMG]
-$ SetFile -a C [drag writeable DMG]
 
 ### Making the Read-Only DMG
 
