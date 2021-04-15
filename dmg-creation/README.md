@@ -23,9 +23,8 @@ This page has several parts:
 
 Create an 1024x1024 transparent PNG image, then in terminal:
 ```
-cd to folder containing icon
-
-input_filepath="cfe_icon_1024_x_1024.png"
+cd [folder containing PNG] 
+input_filepath="[name of PNG]"
 output_iconset_name="CFE.iconset"
 mkdir $output_iconset_name
 sips -z 16 16     "$input_filepath" --out "${output_iconset_name}/icon_16x16.png"
