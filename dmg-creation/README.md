@@ -71,9 +71,9 @@ Create a new folder in the current folder, containing all the elements of the DM
     ├─ Svija Sync.app
     ├─ Svija Tools (signed folder from ST repo)
     ├─ VolumeIcon.icns
-    ├─ window_main.png
-    ├─ window_scripts.png
-    └─ window_shortcuts.png
+    ├─ bg_main.png
+    ├─ bg_scripts.png
+    └─ bg_shortcuts.png
 
 Check the size of the folder — it should be just under 10MB.
 
@@ -97,7 +97,15 @@ The next step is to paste the six icons for the following aliases and folders:
 
 * * * * *
 
-*To work with filenames beginning with a "." type fn-shift-cmd-.*
+### Rename Hidden Files
+
+* Type fn-shift-cmd-. to enable hidden files
+* Rename the following files to begin with a dot:
+
+    VolumeIcon.icns
+    bg_main.png
+    bg_scripts.png
+    bg_shortcuts.png
 
 * * * * *
 outstanding issues:
