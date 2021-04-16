@@ -111,19 +111,6 @@ The next step is to paste the six icons for the following aliases and folders:
 
 * * * * *
 
-### Rename Hidden Files
-
-**Note:** to enable hidden files type fn-shift-cmd-.
-
-Rename the following files to begin with a dot:
-
-    VolumeIcon.icns
-    bg_main.png
-    bg_scripts.png
-    bg_shortcuts.png
-
-* * * * *
-
 ### Create the Empty DMG File
 
 *Hidden files are still enabled for this step.*
@@ -139,6 +126,19 @@ In Disk Utility:
 7. Image Format: read/write disk image
 
 Open the DMG to mount it, then copy all the files, including hidden files, from the previous folder to the mounted DMG.
+
+* * * * *
+
+### Rename Hidden Files
+
+**Note:** to enable hidden files type fn-shift-cmd-.
+
+Rename the following files to begin with a dot:
+
+    VolumeIcon.icns
+    bg_main.png
+    bg_scripts.png
+    bg_shortcuts.png
 
 * * * * *
 
