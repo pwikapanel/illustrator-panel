@@ -122,6 +122,8 @@ Rename the following files to begin with a dot:
     bg_scripts.png
     bg_shortcuts.png
 
+* * * * *
+
 ### Create the Empty DMG File
 
 *Hidden files are still enabled for this step.*
