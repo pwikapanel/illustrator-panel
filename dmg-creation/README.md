@@ -203,6 +203,7 @@ Note: "compressed" and "read-only" both work, but compressed images **loaded fas
 
 ### Outstanding Issues
 
+* It is not possible to drag Svija Tools into the Adobe Extensions folder, for unknown reasons
 * The alias icons are missing on Catalina & Mojave
 
 * * * * *
