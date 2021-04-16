@@ -28,12 +28,12 @@ This page has several parts:
 
 *Based on [Justin Mitchel's article](https://www.codingforentrepreneurs.com/blog/create-icns-icons-for-macos-apps) on codingforentrepreneurs.com.*
 
-Create an 1024x1024 transparent PNG image, then in terminal:
+Create an 1024x1024 transparent PNG image, then:
 
     $ cd [folder containing PNG] 
     $ src_img="[name of PNG]"
 
-The following can just be pasted into terminal
+The rest can just be pasted into terminal:
 ```
 output_iconset_name="VolumeIcon.iconset"
 mkdir $output_iconset_name
@@ -54,6 +54,12 @@ The image will be renamed to add a leading dot when it is installed later.
 * * * * *
 
 ### Creating the Background Images
+
+Some notes:
+
+- the background images are scaled by PPI, meaning high-res images are possible if saved from Photoshop
+- animated GIF's work but it is not possible to make them high-res
+- larger images result in a white flash while they are loaded
 
 * * * * *
 
