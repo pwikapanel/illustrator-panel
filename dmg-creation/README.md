@@ -125,7 +125,7 @@ In Disk Utility:
 6. Format: Mac OS Extended (Journaled)
 7. Image Format: read/write disk image
 
-Open the DMG to mount it, then copy all the files, including hidden files, from the previous folder to the mounted DMG.
+Open the DMG to mount it, then copy all the files from the previous folder to the mounted DMG.
 
 * * * * *
 
