@@ -148,8 +148,8 @@ The following is based on [Parag Bafna's answer](https://stackoverflow.com/a/184
 
 The ICNS file should already be on the writeable DMG. Then:
 
-$ SetFile -c icnC [drag ICNS on writeable DMG]
-$ SetFile -a C [drag writeable DMG]
+    $ SetFile -c icnC [drag ICNS on writeable DMG]
+    $ SetFile -a C [drag writeable DMG]
 
 * * * * *
 
