@@ -133,7 +133,7 @@ Open the DMG to mount it, then copy all the files from the previous folder to th
 
 **Note:** to enable hidden files type fn-shift-cmd-.
 
-Rename the following files to begin with a dot:
+Rename these four files to begin with a dot:
 
     VolumeIcon.icns
     bg_main.png
