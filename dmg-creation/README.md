@@ -171,7 +171,7 @@ Look in the accompanying **view-options** folder to see the correct view options
 
 Make sure that the text size is **13pt**.
 
-The empty file called "For installation instructions, View as Icons" should be in the white space to the right of the colored background.
+The empty file called **For installation instructions, View as Icons** should be in the white space to the right of the colored background.
 
 * * * * *
 
