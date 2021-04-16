@@ -151,6 +151,8 @@ The ICNS file should already be on the writeable DMG. Then:
 $ SetFile -c icnC [drag ICNS on writeable DMG]
 $ SetFile -a C [drag writeable DMG]
 
+* * * * *
+
 ### Arrange the DMG Appearance
 
 Open three folders in Icon View:
