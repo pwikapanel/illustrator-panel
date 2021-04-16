@@ -7,7 +7,9 @@
 
 **Before starting:** update any icons, programs, etc. so that everything is ready for the installer.
 
-This page has several parts:
+The first time I did this I used **Snap to Grid** everywhere, and was very limited in the layout. I realize retrospectively that it would have been faster and easier to just move the icons as desired. I could make a temporary background image for placement if necessary.
+
+Page sections:
 
 - [Creating the ICNS Icon File](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#creating-the-icns-icon-file)
 - [Creating the Background Images](https://github.com/svijasvg/Svija-Tools/tree/dev/dmg-creation#creating-the-background-images)
@@ -53,13 +55,14 @@ The image will be renamed to add a leading dot when it is installed later.
 
 * * * * *
 
-### Creating the Background Images
+### Background Image Creation
 
 Some notes:
 
 - the background images are scaled by PPI, meaning high-res images are possible if saved from Photoshop
 - animated GIF's work but it is not possible to make them high-res
 - larger images result in a white flash while they are loaded
+- testing showed that 144dpi images are as clear as 300dpi images
 
 * * * * *
 
