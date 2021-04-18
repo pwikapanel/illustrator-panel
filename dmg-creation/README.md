@@ -72,7 +72,7 @@ The Svija Tools folder that will be on the DMG is special; it is a signed softwa
 
 To create the Svija Tools folder:
 
-- copy the signed ZXP file into **this folder**
+- copy the signed ZXP file **in the code-signing folder**
 - change the extension to **.zip**
 - unzip it
 - **copy the icon** from the original program folder to the new folder
