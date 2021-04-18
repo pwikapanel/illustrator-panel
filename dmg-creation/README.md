@@ -66,6 +66,21 @@ Some notes:
 
 * * * * *
 
+### Creating the Svija Tools Folder
+
+The Svija Tools folder that will be on the DMG is special; it is a signed software bundle that must not have been modified in any way since the code was signed.
+
+To create the Svija Tools folder:
+
+- copy the signed ZXP file into **this folder**
+- change the extension to **.zip**
+- unzip it
+- **copy the icon** from the original program folder to the new folder
+
+It is this new folder that will be included on the DMG. The *only* difference between the new folder and the signed version is the .DS_Store file telling macOS to display the custom icon.
+
+* * * * *
+
 ### Creating the Folder Hierarchy
 
 Create a new folder in the current folder, containing all the elements of the DMG, named with a date:
