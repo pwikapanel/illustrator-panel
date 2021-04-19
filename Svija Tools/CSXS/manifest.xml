@@ -71,8 +71,7 @@
         </Lifecycle>
 
         <UI>
-          <Type>Panel</Type>
-          <Menu>Svija Launcher Utility</Menu>
+          <Type>Custom</Type>
           <Geometry>
             <Size>
               <Height>130</Height>
