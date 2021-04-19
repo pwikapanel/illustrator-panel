@@ -18,9 +18,39 @@
     github.com/svijasvg/Presets-Scripts
   	svija.love · contact@svija.love */
 
+/*———————————————————————————————————————— begin main function
+
+    this way we can use "return" to quit at any time */
+
+var w = new function(){
+
 //———————————————————————————————————————— get active doc
 
 var doc = app.activeDocument;
+
+/*———————————————————————————————————————— check if there are images
+
+    if there are no images, no point in continuing */
+
+if (doc.rasterItems.length + doc.placedItems.length == '00') {
+  alert('No images found');
+  return;
+}
+
+/*———————————————————————————————————————— check if there is a links folder
+
+    if there is no links folder, do we create it? */
+
+var linksFolder = Folder(app.activeDocument.path) + '/links';
+
+if (!Folder(linksFolder).exists){
+  var msg = 'No "links" folder found.\nDo you want to create it?';
+  if (confirm(msg)) Folder(linksFolder).create();
+  else{
+    alert('Operation canceled');
+    return;
+  }
+}
 
 //———————————————————————————————————————— raster images
 // before placed, because will be changed to placed then fixed with others
@@ -70,12 +100,12 @@ for (var x=0; x<rasterFixes.length; x++){
   else failed.push(rasterFixes[x][0] + ': ' + rasterFixes[x][2]);
 }
 
-var repoxt = [];
-if (fixed.length>0) repoxt.push('——— FIXED IMAGES ———\n' + fixed.join('\n'));
-if (failed.length>0) repoxt.push('——— BROKEN IMAGES ———\n' + failed.join('\n'));
+var report_parts = [];
+if (fixed.length>0) report_parts.push('——— FIXED IMAGES ———\n' + fixed.join('\n'));
+if (failed.length>0) report_parts.push('——— BROKEN IMAGES ———\n' + failed.join('\n'));
 
-repoxt.push("See Links panel for more information.");
-report = decodeURI(repoxt.join('\n\n'));
+report_parts.push("See Links panel for more information.");
+report = decodeURI(report_parts.join('\n\n'));
 
 //———————————————————————————————————————— get out
 
@@ -84,12 +114,16 @@ var treated = fixed.length + failed.length;
 doc.selection = null;
 if (treated==0) alert('No issues found');
 else{
-  if (treated == 1) msg = 'One issue found';
-  else msg = treated + ' issues found';
+  if (treated == 1) msg = 'One issue found.';
+  else msg = treated + ' issues found.';
 
-  showResults = confirm('View Report?\n' + msg + '\n\nType cmd-period to skip');
+  showResults = confirm('View Report?\n' + msg);
   if (showResults) alert('Issues Found:\n' + report);
 }
+
+//———————————————————————————————————————— close main function
+
+} // end function w()
 
 //———————————————————————————————————————— main functions
 
@@ -152,16 +186,16 @@ function rasterItem(obj){
 
 function placedItem(obj){
 
-  try{ var origFolder = obj.file.path; }
+  try{ var thisFolder = obj.file.path; }
 	catch(e){ return false; }
 
-  var currentFolder = Folder(app.activeDocument.path);
-  var goodFolder    = currentFolder + '/links';
+  var docFolder = Folder(app.activeDocument.path);
+  var linksFolder    = docFolder + '/links';
 
-  if (origFolder == goodFolder) return false;
+  if (thisFolder == linksFolder) return false;
 
   var imgName = obj.file.name;
-  var destFullName = goodFolder+'/'+imgName;
+  var destFullName = linksFolder+'/'+imgName;
 
   // copy if outside of current folder, otherwise move
 
@@ -172,14 +206,14 @@ function placedItem(obj){
 
   var newFile = new File(destFullName);
 
-  if(newFile.exists)var report = 'link updated';
+  if(newFile.exists) var report = 'link updated';
   else{
     obj.file.copy(newFile);
     var report = 'copied to links';
   }
 
   // if the file was in Ai folder we delete orig
-  if (origFolder == currentFolder){
+  if (thisFolder == docFolder){
     obj.file.remove();
     var report = 'moved to links';
   }
