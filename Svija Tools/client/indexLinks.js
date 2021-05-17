@@ -24,6 +24,7 @@ var scriptSave = '1. Save as Svija — ⌘ F1.jsx';
 var scriptDupe = '2. Duplicate Layers — ⌘ F2.jsx';
 var scriptImgs = '3. Reset Image Links — ⌘ F3.jsx';
 var scriptObjs = '4. Reset Object IDs — ⌘ F4.jsx';
+var scriptStyl = 'Update Styles from File.jsx';
 
 //———————————————————————————————————————— listeners
 
@@ -36,6 +37,13 @@ linkObjects.addEventListener('mouseover', funcMov.bind(null, 'btnObjects'), fals
 linkObjects.addEventListener('mouseout',  funcMot.bind(null, 'btnObjects'), false);
 linkObjects.addEventListener('mousedown', funcMod.bind(null, 'btnObjects'), false);
 linkObjects.addEventListener('mouseup',   funcMou.bind(null, 'btnObjects', scriptObjs, 'null', 'Resetting Object Ids…'), false);
+
+//—————
+
+linkStyles.addEventListener('mouseover', funcMov.bind(null, 'btnStyles'), false);
+linkStyles.addEventListener('mouseout',  funcMot.bind(null, 'btnStyles'), false);
+linkStyles.addEventListener('mousedown', funcMod.bind(null, 'btnStyles'), false);
+linkStyles.addEventListener('mouseup',   funcMou.bind(null, 'btnStyles', scriptStyl, 'null', 'Loading Text Styles…'), false);
 
 linkLayers.addEventListener('mouseover', funcMov.bind(null, 'btnLayers'), false);
 linkLayers.addEventListener('mouseout',  funcMot.bind(null, 'btnLayers'), false);
@@ -54,10 +62,10 @@ linkSave.addEventListener('mouseout',  funcMot.bind(null, 'btnSave'), false);
 linkSave.addEventListener('mousedown', funcMod.bind(null, 'btnSave'), false);
 linkSave.addEventListener('mouseup',   funcMou.bind(null, 'btnSave', scriptSave, 'save', 'Saving as Svija…'), false);
 
-linkSaveAll.addEventListener('mouseover', funcMov.bind(null, 'btnSaveAll'), false);
-linkSaveAll.addEventListener('mouseout',  funcMot.bind(null, 'btnSaveAll'), false);
-linkSaveAll.addEventListener('mousedown', funcMod.bind(null, 'btnSaveAll'), false);
-linkSaveAll.addEventListener('mouseup',   funcMou.bind(null, 'btnSaveAll', scriptSave, 'all', 'Saving All…'), false);
+// linkSaveAll.addEventListener('mouseover', funcMov.bind(null, 'btnSaveAll'), false);
+// linkSaveAll.addEventListener('mouseout',  funcMot.bind(null, 'btnSaveAll'), false);
+// linkSaveAll.addEventListener('mousedown', funcMod.bind(null, 'btnSaveAll'), false);
+// linkSaveAll.addEventListener('mouseup',   funcMou.bind(null, 'btnSaveAll', scriptSave, 'all', 'Saving All…'), false);
 
 //———————————————————————————————————————— functions
 

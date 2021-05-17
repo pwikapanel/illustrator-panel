@@ -9,26 +9,20 @@
 	.st3{font-family:'SourceSansPro-Regular';}
 	.st4{font-size:12px;}
 	.st5{fill:#AAAAAA;}
-	.st6{fill:#4B4B4B;stroke:#696969;stroke-width:1.0249;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st6{fill:#4B4B4B;stroke:#696969;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st7{fill:#989898;}
-	.st8{font-family:'SourceSansPro-Semibold';}
-	.st9{fill:#4B4B4B;stroke:#696969;stroke-width:0.9768;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st10{fill:#474747;stroke:#636363;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st11{fill:#DEDEDE;}
-	.st12{fill:#313131;stroke:#45A0F5;stroke-width:1.0249;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st13{fill:#E9E9E9;}
-	.st14{fill:#313131;stroke:#45A0F5;stroke-width:0.9768;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st15{fill:#313131;stroke:#45A0F5;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st16{fill:#313131;stroke:#F1F1F1;stroke-width:1.0249;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st17{fill:#FDFDFD;}
-	.st18{fill:#313131;stroke:#F1F1F1;stroke-width:0.9768;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st19{fill:#313131;stroke:#F1F1F1;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st20{fill:none;stroke:#777777;stroke-miterlimit:10;}
-	.st21{fill:#FFFFFF;}
-	.st22{opacity:0;}
-	.st23{opacity:0.2;fill:#FF0080;}
-	.st24{opacity:0.2;}
-	.st25{fill:#FF2B95;}
+	.st8{font-family:'SourceSansPro-SemiBold';}
+	.st9{fill:#474747;stroke:#636363;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st10{fill:#DEDEDE;}
+	.st11{fill:#313131;stroke:#45A0F5;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st12{fill:#E9E9E9;}
+	.st13{fill:#313131;stroke:#F1F1F1;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st14{fill:#FDFDFD;}
+	.st15{fill:none;stroke:#777777;stroke-miterlimit:10;}
+	.st16{fill:#FFFFFF;}
+	.st17{opacity:0;}
+	.st18{opacity:0.2;}
+	.st19{fill:#FF2B95;}
 </style>
 <g id="background">
 	<rect class="st0" width="240" height="130"/>
@@ -56,136 +50,136 @@
 		<path class="st6" d="M226.841,30.5h-98.683c-1.468,0-2.659-1.19-2.659-2.659V13.159c0-1.468,1.19-2.659,2.659-2.659h98.683
 			c1.468,0,2.659,1.19,2.659,2.659v14.683C229.5,29.31,228.31,30.5,226.841,30.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 138.4899 24.4932)" class="st7 st8 st4">Reset Object ID&apos;s</text>
+			<text transform="matrix(1 0 0 1 136.8097 24.4932)" class="st7 st8 st4">Reset Object ID&apos;s</text>
 		</g>
 	</g>
 	<g id="btnStyles">
 		<path class="st6" d="M226.841,56.5h-98.683c-1.468,0-2.659-1.19-2.659-2.659V39.159c0-1.468,1.19-2.659,2.659-2.659h98.683
 			c1.468,0,2.659,1.19,2.659,2.659v14.683C229.5,55.31,228.31,56.5,226.841,56.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 139.9899 50.4932)" class="st7 st8 st4">Load Text Styles</text>
+			<text transform="matrix(1 0 0 1 138.0397 50.4932)" class="st7 st8 st4">Load Text Styles</text>
 		</g>
 	</g>
 	<g id="btnImages">
-		<path class="st9" d="M111.961,30.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V13.039c0-1.402,1.137-2.539,2.539-2.539h98.923
+		<path class="st6" d="M111.961,30.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V13.039c0-1.402,1.137-2.539,2.539-2.539h98.923
 			c1.402,0,2.539,1.137,2.539,2.539v14.923C114.5,29.363,113.363,30.5,111.961,30.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 21.4339 24.4932)" class="st7 st8 st4">Reset Image Links</text>
+			<text transform="matrix(1 0 0 1 19.5677 24.4932)" class="st7 st8 st4">Reset Image Links</text>
 		</g>
 	</g>
 	<g id="btnLayers">
-		<path class="st9" d="M111.961,56.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V39.039c0-1.402,1.137-2.539,2.539-2.539h98.923
+		<path class="st6" d="M111.961,56.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V39.039c0-1.402,1.137-2.539,2.539-2.539h98.923
 			c1.402,0,2.539,1.137,2.539,2.539v14.923C114.5,55.363,113.363,56.5,111.961,56.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 24.7518 50.6721)" class="st7 st8 st4">Duplicate Layers</text>
+			<text transform="matrix(1 0 0 1 23.138 50.6721)" class="st7 st8 st4">Duplicate Layers</text>
 		</g>
 	</g>
 	<g id="btnClose">
-		<path class="st10" d="M103.023,97.5H12.977c-1.368,0-2.477-1.109-2.477-2.477V79.977c0-1.368,1.109-2.477,2.477-2.477h90.046
+		<path class="st9" d="M103.023,97.5H12.977c-1.368,0-2.477-1.109-2.477-2.477V79.977c0-1.368,1.109-2.477,2.477-2.477h90.046
 			c1.368,0,2.477,1.109,2.477,2.477v15.046C105.5,96.391,104.391,97.5,103.023,97.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 18.5606 91.6429)" class="st11 st8 st4">Save All &amp; Close</text>
+			<text transform="matrix(1 0 0 1 17.4082 91.6429)" class="st10 st8 st4">Save All &amp; Close</text>
 		</g>
 	</g>
 	<g id="btnSave">
-		<path class="st10" d="M226.736,97.5h-34.472c-1.526,0-2.764-1.237-2.764-2.764V80.264c0-1.526,1.237-2.764,2.764-2.764h34.472
+		<path class="st9" d="M226.736,97.5h-34.472c-1.526,0-2.764-1.237-2.764-2.764V80.264c0-1.526,1.237-2.764,2.764-2.764h34.472
 			c1.526,0,2.764,1.237,2.764,2.764v14.472C229.5,96.263,228.263,97.5,226.736,97.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 197.9337 91.6429)" class="st11 st8 st4">Save</text>
+			<text transform="matrix(1 0 0 1 197.2974 91.6429)" class="st10 st8 st4">Save</text>
 		</g>
 	</g>
 </g>
 <g id="mouseover">
 	<g id="btnObjectsHover">
-		<path class="st12" d="M226.841,30.5h-98.683c-1.468,0-2.659-1.19-2.659-2.659V13.159c0-1.468,1.19-2.659,2.659-2.659h98.683
+		<path class="st11" d="M226.841,30.5h-98.683c-1.468,0-2.659-1.19-2.659-2.659V13.159c0-1.468,1.19-2.659,2.659-2.659h98.683
 			c1.468,0,2.659,1.19,2.659,2.659v14.683C229.5,29.31,228.31,30.5,226.841,30.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 138.4899 24.4932)" class="st13 st8 st4">Reset Object ID&apos;s</text>
+			<text transform="matrix(1 0 0 1 136.8097 24.4932)" class="st12 st8 st4">Reset Object ID&apos;s</text>
 		</g>
 	</g>
 	<g id="btnStylesHover">
-		<path class="st12" d="M226.841,56.5h-98.683c-1.468,0-2.659-1.19-2.659-2.659V39.159c0-1.468,1.19-2.659,2.659-2.659h98.683
+		<path class="st11" d="M226.841,56.5h-98.683c-1.468,0-2.659-1.19-2.659-2.659V39.159c0-1.468,1.19-2.659,2.659-2.659h98.683
 			c1.468,0,2.659,1.19,2.659,2.659v14.683C229.5,55.31,228.31,56.5,226.841,56.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 139.9899 50.4932)" class="st13 st8 st4">Load Text Styles</text>
+			<text transform="matrix(1 0 0 1 138.0397 50.4932)" class="st12 st8 st4">Load Text Styles</text>
 		</g>
 	</g>
 	<g id="btnImagesHover">
-		<path class="st14" d="M111.961,30.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V13.039c0-1.402,1.137-2.539,2.539-2.539h98.923
+		<path class="st11" d="M111.961,30.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V13.039c0-1.402,1.137-2.539,2.539-2.539h98.923
 			c1.402,0,2.539,1.137,2.539,2.539v14.923C114.5,29.363,113.363,30.5,111.961,30.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 21.4339 24.4932)" class="st13 st8 st4">Reset Image Links</text>
+			<text transform="matrix(1 0 0 1 19.5677 24.4932)" class="st12 st8 st4">Reset Image Links</text>
 		</g>
 	</g>
 	<g id="btnLayersHover">
-		<path class="st14" d="M111.961,56.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V39.039c0-1.402,1.137-2.539,2.539-2.539h98.923
+		<path class="st11" d="M111.961,56.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V39.039c0-1.402,1.137-2.539,2.539-2.539h98.923
 			c1.402,0,2.539,1.137,2.539,2.539v14.923C114.5,55.363,113.363,56.5,111.961,56.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 24.7518 50.6721)" class="st13 st8 st4">Duplicate Layers</text>
+			<text transform="matrix(1 0 0 1 23.138 50.6721)" class="st12 st8 st4">Duplicate Layers</text>
 		</g>
 	</g>
 	<g id="btnCloseHover">
-		<path class="st15" d="M103.023,97.5H12.977c-1.368,0-2.477-1.109-2.477-2.477V79.977c0-1.368,1.109-2.477,2.477-2.477h90.046
+		<path class="st11" d="M103.023,97.5H12.977c-1.368,0-2.477-1.109-2.477-2.477V79.977c0-1.368,1.109-2.477,2.477-2.477h90.046
 			c1.368,0,2.477,1.109,2.477,2.477v15.046C105.5,96.391,104.391,97.5,103.023,97.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 18.5606 91.6429)" class="st13 st8 st4">Save All &amp; Close</text>
+			<text transform="matrix(1 0 0 1 17.4082 91.6429)" class="st12 st8 st4">Save All &amp; Close</text>
 		</g>
 	</g>
 	<g id="btnSaveHover">
-		<path class="st15" d="M226.736,97.5h-34.472c-1.526,0-2.764-1.237-2.764-2.764V80.264c0-1.526,1.237-2.764,2.764-2.764h34.472
+		<path class="st11" d="M226.736,97.5h-34.472c-1.526,0-2.764-1.237-2.764-2.764V80.264c0-1.526,1.237-2.764,2.764-2.764h34.472
 			c1.526,0,2.764,1.237,2.764,2.764v14.472C229.5,96.263,228.263,97.5,226.736,97.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 197.9337 91.6429)" class="st13 st8 st4">Save</text>
+			<text transform="matrix(1 0 0 1 197.2974 91.6429)" class="st12 st8 st4">Save</text>
 		</g>
 	</g>
 </g>
 <g id="mousedown">
 	<g id="btnObjectsActive">
-		<path class="st16" d="M226.841,30.5h-98.683c-1.468,0-2.659-1.19-2.659-2.659V13.159c0-1.468,1.19-2.659,2.659-2.659h98.683
+		<path class="st13" d="M226.841,30.5h-98.683c-1.468,0-2.659-1.19-2.659-2.659V13.159c0-1.468,1.19-2.659,2.659-2.659h98.683
 			c1.468,0,2.659,1.19,2.659,2.659v14.683C229.5,29.31,228.31,30.5,226.841,30.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 135.8899 24.4932)" class="st17 st8 st4">Reset Object ID&apos;s</text>
+			<text transform="matrix(1 0 0 1 134.2097 24.4932)" class="st14 st8 st4">Reset Object ID&apos;s</text>
 		</g>
 	</g>
 	<g id="btnStylesActive">
-		<path class="st16" d="M226.841,56.5h-98.683c-1.468,0-2.659-1.19-2.659-2.659V39.159c0-1.468,1.19-2.659,2.659-2.659h98.683
+		<path class="st13" d="M226.841,56.5h-98.683c-1.468,0-2.659-1.19-2.659-2.659V39.159c0-1.468,1.19-2.659,2.659-2.659h98.683
 			c1.468,0,2.659,1.19,2.659,2.659v14.683C229.5,55.31,228.31,56.5,226.841,56.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 137.3899 50.4932)" class="st17 st8 st4">Load Text Styles</text>
+			<text transform="matrix(1 0 0 1 135.4397 50.4932)" class="st14 st8 st4">Load Text Styles</text>
 		</g>
 	</g>
 	<g id="btnImagesActive">
-		<path class="st18" d="M111.961,30.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V13.039c0-1.402,1.137-2.539,2.539-2.539h98.923
+		<path class="st13" d="M111.961,30.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V13.039c0-1.402,1.137-2.539,2.539-2.539h98.923
 			c1.402,0,2.539,1.137,2.539,2.539v14.923C114.5,29.363,113.363,30.5,111.961,30.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 18.0339 24.4932)" class="st17 st8 st4">Reset Image Links</text>
+			<text transform="matrix(1 0 0 1 16.1677 24.4932)" class="st14 st8 st4">Reset Image Links</text>
 		</g>
 	</g>
 	<g id="btnLayersActive">
-		<path class="st18" d="M111.961,56.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V39.039c0-1.402,1.137-2.539,2.539-2.539h98.923
+		<path class="st13" d="M111.961,56.5H13.039c-1.402,0-2.539-1.137-2.539-2.539V39.039c0-1.402,1.137-2.539,2.539-2.539h98.923
 			c1.402,0,2.539,1.137,2.539,2.539v14.923C114.5,55.363,113.363,56.5,111.961,56.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 21.3518 50.6721)" class="st17 st8 st4">Duplicate Layers</text>
+			<text transform="matrix(1 0 0 1 19.738 50.6721)" class="st14 st8 st4">Duplicate Layers</text>
 		</g>
 	</g>
 	<g id="btnCloseActive">
-		<path class="st19" d="M103.023,97.5H12.977c-1.368,0-2.477-1.109-2.477-2.477V79.977c0-1.368,1.109-2.477,2.477-2.477h90.046
+		<path class="st13" d="M103.023,97.5H12.977c-1.368,0-2.477-1.109-2.477-2.477V79.977c0-1.368,1.109-2.477,2.477-2.477h90.046
 			c1.368,0,2.477,1.109,2.477,2.477v15.046C105.5,96.391,104.391,97.5,103.023,97.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 18.5606 91.6429)" class="st17 st8 st4">Save All &amp; Close</text>
+			<text transform="matrix(1 0 0 1 17.4082 91.6429)" class="st14 st8 st4">Save All &amp; Close</text>
 		</g>
 	</g>
 	<g id="btnSaveActive">
-		<path class="st19" d="M226.911,97.5h-34.472c-1.526,0-2.764-1.237-2.764-2.764V80.264c0-1.526,1.237-2.764,2.764-2.764h34.472
+		<path class="st13" d="M226.911,97.5h-34.472c-1.526,0-2.764-1.237-2.764-2.764V80.264c0-1.526,1.237-2.764,2.764-2.764h34.472
 			c1.526,0,2.764,1.237,2.764,2.764v14.472C229.675,96.263,228.438,97.5,226.911,97.5z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 198.109 91.6429)" class="st17 st8 st4">Save</text>
+			<text transform="matrix(1 0 0 1 197.4728 91.6429)" class="st14 st8 st4">Save</text>
 		</g>
 	</g>
 </g>
 <g id="other">
-	<line class="st20" x1="10" y1="67" x2="230" y2="67"/>
-	<path class="st21" d="M156.524,81.358h-2.435v10.554h2.435V81.358z M160.854,77.029h-6.765v2.435h6.765V77.029z M160.854,81.358
+	<line class="st15" x1="10" y1="67" x2="230" y2="67"/>
+	<path class="st16" d="M156.524,81.358h-2.435v10.554h2.435V81.358z M160.854,77.029h-6.765v2.435h6.765V77.029z M160.854,81.358
 		h-2.435v14.613h2.435V81.358z M132.052,91.912h-15.966v-2.435h13.53v-0.941l-13.53-1.643v-5.534h15.966v2.435h-13.53v0.941
 		l13.53,1.643V91.912z M178.714,81.358h-15.966v2.435h13.53v0.941l-13.53,1.643v5.534h15.966V81.358z M165.183,88.536l11.095-1.347
 		v2.288h-11.095V88.536z M150.35,81.358l-5.009,7.745c-0.151,0.233-0.407,0.373-0.685,0.373h-3.201
@@ -195,30 +189,30 @@
 <g id="info">
 </g>
 <g id="links">
-	<g class="st22">
-		<g id="linkInfo" class="st24">
-			<rect x="16" y="105" class="st25" width="208" height="20"/>
+	<g class="st17">
+		<g id="linkInfo" class="st18">
+			<rect x="16" y="105" class="st19" width="208" height="20"/>
 		</g>
-		<g id="linkSave" class="st24">
-			<rect x="187.851" y="77.5" class="st25" width="44" height="20"/>
+		<g id="linkSave" class="st18">
+			<rect x="187.851" y="77.5" class="st19" width="44" height="20"/>
 		</g>
-		<g id="linkClose" class="st24">
-			<rect x="11.025" y="77.77" class="st25" width="94.475" height="19.73"/>
+		<g id="linkClose" class="st18">
+			<rect x="11.025" y="77.77" class="st19" width="94.475" height="19.73"/>
 		</g>
-		<g id="linkLogo" class="st24">
-			<rect x="110.599" y="74.101" class="st25" width="74.402" height="25.174"/>
+		<g id="linkLogo" class="st18">
+			<rect x="110.599" y="74.101" class="st19" width="74.402" height="25.174"/>
 		</g>
-		<g id="linkLayers" class="st24">
-			<rect x="10.5" y="36.5" class="st25" width="104.25" height="20"/>
+		<g id="linkLayers" class="st18">
+			<rect x="10.5" y="36.5" class="st19" width="104.25" height="20"/>
 		</g>
-		<g id="linkStyles" class="st24">
-			<rect x="125.425" y="36.5" class="st25" width="104.25" height="20"/>
+		<g id="linkStyles" class="st18">
+			<rect x="125.425" y="36.5" class="st19" width="104.25" height="20"/>
 		</g>
-		<g id="linkObjects" class="st24">
-			<rect x="125.75" y="10.5" class="st25" width="103.75" height="20"/>
+		<g id="linkObjects" class="st18">
+			<rect x="125.75" y="10.5" class="st19" width="103.75" height="20"/>
 		</g>
-		<g id="linkImages" class="st24">
-			<rect x="10.5" y="10.5" class="st25" width="105" height="20"/>
+		<g id="linkImages" class="st18">
+			<rect x="10.5" y="10.5" class="st19" width="105" height="20"/>
 		</g>
 	</g>
 </g>

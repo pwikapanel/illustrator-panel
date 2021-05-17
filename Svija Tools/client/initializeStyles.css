@@ -8,19 +8,25 @@ svg{ display:none; }
 
 /*———————————————————————————————————————— hide mouseover buttons */
 
-#btnSaveActive,
-#btnSaveAllActive,
-#btnCloseActive,
-#btnLayersActive,
-#btnObjectsActive,
 #btnImagesActive,
+#btnObjectsActive,
 
-#btnSaveHover,
-#btnSaveAllHover,
-#btnCloseHover,
-#btnLayersHover,
-#btnObjectsHover,
+#btnLayersActive,
+#btnStylesActive,
+
+#btnCloseActive,
+#btnSaveActive,
+/* #btnSaveAllActive, */
+
 #btnImagesHover,
+#btnObjectsHover,
+
+#btnLayersHover,
+#btnStylesHover,
+
+#btnCloseHover,
+#btnSaveHover,
+/* #btnSaveAllHover, */
 
 #x { display:none; }
 
