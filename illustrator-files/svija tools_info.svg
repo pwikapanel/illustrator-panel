@@ -1,38 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 240 130" style="enable-background:new 0 0 240 130;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#535353;}
-	.st1{fill:#808080;}
-	.st2{font-family:'SourceSansPro-Regular';}
-	.st3{font-size:12px;}
-	.st4{fill:#AAAAAA;}
-	.st5{fill:#C2C2C2;}
-	.st6{fill:#FFFFFF;}
-	.st7{font-family:'SourceSansPro-Semibold';}
-	.st8{opacity:0;fill:#FF0080;}
+	.st1{fill:#C2C2C2;}
+	.st2{fill:#AAAAAA;}
+	.st3{font-family:'SourceSansPro-Regular';}
+	.st4{font-size:12px;}
+	.st5{fill:#4B4B4B;stroke:#696969;stroke-width:1.0249;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st6{fill:#4B4B4B;stroke:#696969;stroke-width:0.9768;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st7{fill:#474747;stroke:#636363;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st8{fill:#313131;stroke:#45A0F5;stroke-width:1.0249;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st9{fill:#313131;stroke:#45A0F5;stroke-width:0.9768;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st10{fill:#313131;stroke:#45A0F5;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st11{fill:#313131;stroke:#F1F1F1;stroke-width:1.0249;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st12{fill:#313131;stroke:#F1F1F1;stroke-width:0.9768;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st13{fill:#313131;stroke:#F1F1F1;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st14{fill:none;stroke:#777777;stroke-miterlimit:10;}
+	.st15{fill:#FFFFFF;}
+	.st16{font-family:'SourceSansPro-Semibold';}
+	.st17{opacity:0;}
+	.st18{opacity:0.2;fill:#FF0080;}
+	.st19{opacity:0.2;}
+	.st20{fill:#FF2B95;}
 </style>
 <g id="background">
 	<rect x="0" class="st0" width="240" height="130"/>
 </g>
 <g id="i_link">
 	<g>
-		<text transform="matrix(1 0 0 1 42.4373 119.0263)"><tspan x="0" y="0" class="st1 st2 st3">Visit </tspan><tspan x="23.615" y="0" class="st4 st2 st3">docs.svija.love</tspan><tspan x="97.03" y="0" class="st1 st2 st3"> for tips and info.</tspan></text>
+		<text transform="matrix(1 0 0 1 39.3373 119.0263)" class="st2 st3 st4">Close</text>
 	</g>
 	<g>
 		<g>
 			<g>
-				<path class="st5" d="M28.593,109.541c3.033,0,5.5,2.467,5.5,5.5s-2.467,5.5-5.5,5.5s-5.5-2.467-5.5-5.5
+				<path class="st1" d="M28.593,109.541c3.033,0,5.5,2.467,5.5,5.5s-2.467,5.5-5.5,5.5s-5.5-2.467-5.5-5.5
 					S25.56,109.541,28.593,109.541 M28.593,108.541c-3.59,0-6.5,2.91-6.5,6.5s2.91,6.5,6.5,6.5c3.59,0,6.5-2.91,6.5-6.5
 					S32.183,108.541,28.593,108.541L28.593,108.541z"/>
 			</g>
 		</g>
 	</g>
 	
-		<rect x="24.898" y="114.38" transform="matrix(0.7071 0.7071 -0.7071 0.7071 89.7208 13.4765)" class="st5" width="7.391" height="1.322"/>
+		<rect x="24.898" y="114.38" transform="matrix(0.7071 0.7071 -0.7071 0.7071 89.7208 13.4765)" class="st1" width="7.391" height="1.322"/>
 	
-		<rect x="24.898" y="114.38" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -72.9715 53.9129)" class="st5" width="7.391" height="1.322"/>
+		<rect x="24.898" y="114.38" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -72.9715 53.9129)" class="st1" width="7.391" height="1.322"/>
 </g>
 <g id="buttons">
 </g>
@@ -44,15 +56,17 @@
 </g>
 <g id="info">
 	<g>
-		<text transform="matrix(1 0 0 1 15.612 18.8001)"><tspan x="0" y="0" class="st6 st7 st3">Duplicate Layers: </tspan><tspan x="-7.164" y="33.8" class="st6 st7 st3">Reset Image Links: </tspan><tspan x="-1.152" y="67.6" class="st6 st7 st3">Reset Object ID&apos;s:</tspan></text>
+		<text transform="matrix(1 0 0 1 10.2604 18.8001)"><tspan x="0" y="0" class="st15 st16 st4">Reset Image Links:</tspan><tspan x="5.651" y="19.4" class="st15 st16 st4">Reset Object ID&apos;s:</tspan><tspan x="6.636" y="38.8" class="st15 st16 st4">Duplicate Layers: </tspan><tspan x="8.651" y="72.6" class="st15 st16 st4">Load Text Styles: </tspan></text>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 108.4266 18.8001)"><tspan x="0" y="0" class="st4 st2 st3">copies </tspan><tspan x="34.979" y="0" class="st6 st2 st3">unlocked layers</tspan><tspan x="113.938" y="0" class="st4 st2 st3"> to  </tspan><tspan x="0" y="14.4" class="st4 st2 st3">all open documents</tspan><tspan x="0" y="33.8" class="st4 st2 st3">link all images to files in </tspan><tspan x="0" y="48.2" class="st4 st2 st3">the closest </tspan><tspan x="56.459" y="48.2" class="st6 st2 st3">links folder</tspan><tspan x="0" y="67.6" class="st4 st2 st3">reset internal object ID&apos;s </tspan><tspan x="0" y="82" class="st4 st2 st3">for </tspan><tspan x="16.584" y="82" class="st6 st2 st3">CSS</tspan><tspan x="36.252" y="82" class="st4 st2 st3"> or </tspan><tspan x="51.731" y="82" class="st6 st2 st3">animation</tspan></text>
+		<text transform="matrix(1 0 0 1 107.4266 18.8001)"><tspan x="0" y="0" class="st15 st3 st4">relink </tspan><tspan x="31.031" y="0" class="st2 st3 st4">all images</tspan><tspan x="0" y="19.4" class="st2 st3 st4">reset ID&apos;s for </tspan><tspan x="65.074" y="19.4" class="st15 st3 st4">CSS</tspan><tspan x="84.742" y="19.4" class="st2 st3 st4"> or </tspan><tspan x="100.21" y="19.4" class="st15 st3 st4">JS</tspan><tspan x="0" y="38.8" class="st2 st3 st4">copy </tspan><tspan x="26.64" y="38.8" class="st15 st3 st4">unlocked layers</tspan><tspan x="105.574" y="38.8" class="st2 st3 st4"> to  </tspan><tspan x="0" y="53.2" class="st2 st3 st4">all open documents</tspan><tspan x="0" y="72.6" class="st2 st3 st4">load </tspan><tspan x="24.672" y="72.6" class="st15 st3 st4">Paragraph &amp;  </tspan><tspan x="0" y="87" class="st15 st3 st4">Character styles</tspan><tspan x="80.41" y="87" class="st2 st3 st4"> from  </tspan><tspan x="0" y="101.4" class="st2 st3 st4">a source document</tspan></text>
 	</g>
 </g>
 <g id="links">
-	<a xlink:href="index.html" >
-		<rect id="linkInfoPanel" class="st8" width="240" height="130"/>
-	</a>
+	<g class="st17">
+		<a xlink:href="index.html" >
+			<rect id="linkInfoPanel" class="st18" width="240" height="130"/>
+		</a>
+	</g>
 </g>
 </svg>
