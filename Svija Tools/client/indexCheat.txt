@@ -4,92 +4,61 @@ id=gray1 index.html
 
 
 
-       background color
-                    (i)
-    visit / tips & info
-              docs text
-               all text
-               docs URL
-            top buttons
-        top button text
-        all button font
-         bottom buttons
-     bottom button text
-       button mouseover
-  button mouseover text
-       button mousedown
-  button mousedown text
-        horizontal line
-              logo fill
-          grouped links
-      logo & docs texts
-           button links
-           button links
 
        background color
-                    (i)
-    visit / tips & info
-              docs text
-               all text
-               docs URL
-            top buttons
-        top button text
-        all button font
-         bottom buttons
-     bottom button text
-       button mouseover
-  button mouseover text
-       button mousedown
-  button mousedown text
-        horizontal line
-              logo fill
-          grouped links
-      logo & docs texts
-           button links
-           button links
+                buttons
+        dim button text
+        all button text
+        all button text
+        all button text
+             logo ? url
+               url text
+           mouseover bg
+      mouseover+down fg
+           mousedown bg
+                  links
+                  links
 
        background color
-                    (i)
-    visit / tips & info
-              docs text
-               all text
-               docs URL
-            top buttons
-        top button text
-        all button font
-         bottom buttons
-     bottom button text
-       button mouseover
-  button mouseover text
-       button mousedown
-  button mousedown text
-        horizontal line
-              logo fill
-          grouped links
-      logo & docs texts
-           button links
-           button links
+                buttons
+        dim button text
+        all button text
+        all button text
+        all button text
+             logo ? url
+               url text
+           mouseover bg
+      mouseover+down fg
+           mousedown bg
+                  links
+                  links
 
        background color
-                    (i)
-    visit / tips & info
-              docs text
-               all text
-               docs URL
-            top buttons
-        top button text
-        all button font
-         bottom buttons
-     bottom button text
-       button mouseover
-  button mouseover text
-       button mousedown
-  button mousedown text
-        horizontal line
-          grouped links
-              logo fill
-      logo & docs texts
-           button links
-           button links
+            all buttons
+        dim button text
+        all button text
+        all button text
+        all button text
+             logo ? url
+               url text
+           mouseover bg
+      mouseover+down fg
+           mousedown bg
+                  links
+                  links
+
+       background color
+            all buttons
+        dim button text
+        all button text
+        all button text
+        all button text
+             logo ? url
+               url text
+           mouseover bg
+      mouseover+down fg
+           mousedown bg
+                  links
+                  links
 
 

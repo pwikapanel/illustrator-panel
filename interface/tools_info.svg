@@ -9,7 +9,8 @@
 	.st3{font-size:12px;}
 	.st4{font-family:'SourceSansPro-Regular';}
 	.st5{fill:#AAAAAA;}
-	.st6{opacity:0;fill:#FF0080;}
+	.st6{opacity:0;}
+	.st7{fill:#FF0088;}
 </style>
 <g id="background">
 	<rect x="0" class="st0" width="240" height="130"/>
@@ -33,8 +34,10 @@
 <g id="mousedown">
 </g>
 <g id="links">
-	<a xlink:href="index.html" >
-		<rect id="linkMain" class="st6" width="240" height="130"/>
+	<a id="linkMain" xlink:href="index.html" >
+		<g class="st6">
+			<rect class="st7" width="240" height="130"/>
+		</g>
 	</a>
 </g>
 </svg>
