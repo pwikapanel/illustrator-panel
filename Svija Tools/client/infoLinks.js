@@ -1,7 +1,7 @@
-//———————————————————————————————————————— client/indexLinks.js
+//———————————————————————————————————————— client/infoLinks.js
 
 // link to info pane
-linkInfoPanel.addEventListener('mouseup', callURL);
+linkMain.addEventListener('mouseup', callURL);
 function callURL(){ location.href='index.html'; }
 
 //———————————————————————————————————————— fin

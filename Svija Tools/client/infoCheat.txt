@@ -5,42 +5,45 @@ id=gray1 index.html
 
 
        background color
-    visit / tips & info
-    visit / tips & info
-              main text
-              main text
-                    (x)
-            bright text
-         left bold text
-                   link
-
-       background color
-            darker text
-          non-bold text
+               dim text
+             right text
                all text
                     (x)
-            bright text
+              impt text
               left text
             links group
                   links
 
        background color
-    visit / tips & info
-    visit / tips & info
-              main text
-              main text
-                    (x)
-            bright text
-         left bold text
-                   link
+              impt text
+              left text
+               all text
+             right text
+               dim text
+                  links
 
        background color
-    visit / tips & info
-    visit / tips & info
-              main text
-              main text
-                    (x)
-            bright text
-         left bold text
-                   link
+              impt text
+              left text
+               all text
+             right text
+               dim text
+                  links
+
+       background color
+              impt text
+              left text
+               all text
+             right text
+               dim text
+                  links
+
+       background color
+              impt text
+              left text
+               all text
+             right text
+               dim text
+                  links
+
 

@@ -12,9 +12,9 @@ var buttons = [
   ['Resetting Object Ids…', '4. Reset Object IDs — ⌘ F4.jsx',  ''     ],
   ['Duplicating Layers…',   '2. Duplicate Layers — ⌘ F2.jsx',  ''     ],
   ['Resetting Links…',      '3. Reset Image Links — ⌘ F3.jsx', ''     ],
-  ['Saving as Svija…',      '1. Save as Svija — ⌘ F1.jsx',     'save' ],
-  ['Saving All…',           '1. Save as Svija — ⌘ F1.jsx',     'all'  ],
   ['Closing All…',          '1. Save as Svija — ⌘ F1.jsx',     'close'],
+  ['Saving All…',           '1. Save as Svija — ⌘ F1.jsx',     'all'  ],
+  ['Saving as Svija…',      '1. Save as Svija — ⌘ F1.jsx',     'save' ],
   ['',                      'show info panel',                 'x'    ]
 ];
 
@@ -40,13 +40,15 @@ for (var x=0; x<buttons.length; x++){
 var path = csif.getSystemPath(SystemPath.EXTENSION) + '/host/';
 
 function funcExec(btnId, scriptName, arg, titl){
-
   funcMou(btnId);
   changeTitle(titl);
 
-  file = path + encodeURI(scriptName);
-  csif.evalScript("arg = '" + arg + "'");
-  csif.evalScript("$.evalFile('" + file + "')");
+  if (arg=='x') {location.href = 'info.html';}
+  else {
+    file = path + encodeURI(scriptName);
+    csif.evalScript("arg = '" + arg + "'");
+    csif.evalScript("$.evalFile('" + file + "')");
+  }
 }
 
 //———————————————————————————————————————— utility functions
