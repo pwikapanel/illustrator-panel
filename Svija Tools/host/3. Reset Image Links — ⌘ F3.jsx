@@ -117,8 +117,10 @@ else{
   if (treated == 1) msg = 'One issue found.';
   else msg = treated + ' issues found.';
 
-  showResults = confirm('View Report?\n' + msg);
-  if (showResults) alert('Issues Found:\n' + report);
+  msg += '\n\nExit without report?'
+
+  showResults = confirm('Images Relinked\n' + msg);
+  if (!showResults) alert('Issues Found:\n' + report);
 }
 
 //———————————————————————————————————————— close main function
