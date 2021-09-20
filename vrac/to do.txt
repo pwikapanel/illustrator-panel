@@ -1,0 +1,18 @@
+Tools tooltips
+templates: set up common styles as if there were buttons bold, underlined etc.
+
+ADD ILLUSTRATOR SUBLAYERS
+
+
+add some default views to see just top of page, next section etc. useful for long pages
+
+add keyboard shortcuts file, emphasize moving forward & backward for text organization
+
+two scripts: export docs as svg & export artboards as svg
+
+export AI settings, include in tools
+
+script to fix all ID's of all objects layers
+
+  save AI files to their original location rather than looking for Links folder       
+   could use both desktop & mobile at same time that way 

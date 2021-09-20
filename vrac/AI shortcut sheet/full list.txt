@@ -1,0 +1,38 @@
+———————————————————————————————————————— conflicts
+
+CONFLICT Em Space			shift-cmd-M
+CONFLICT En Space			shift-cmd-N
+Thin Space					alt-shift-cmd-M
+CONFLICT Uniform Type		shift-cmd-X
+
+———————————————————————————————————————— punctuation
+
+Increase Diameter						]
+Decrease Diameter						[
+Symbolism Tools - Increase Intensity	shift-}
+Symbolism Tools - Decrease Intensity	shift-{
+
+Navigate to Next Document				cmd-`
+Navigate to Previous Document			shift-cmd-`
+Navigate to Next Document Group			alt-cmd-`
+Navigate to Previous Document Group		alt-shift-cmd-`
+
+Bring to Front				shift-cmd-]
+Bring Forward				cmd-]
+Send Backward				cmd-[
+Send to Back				shift-cmd-[
+Next Object Above			alt-cmd-]
+Next Object Below			alt-cmd-[
+
+Show Grid					cmd-'
+Snap to Grid				shift-cmd-'
+Snap to Point				alt-cmd-'
+
+Other Text
+Point Size Up				shift-cmd-.
+Point Size Down				shift-cmd-,
+Font Size Step Up			alt-shift-cmd-.
+Font Size Step Down			alt-shift-cmd-,
+Kern Looser					shift-cmd-]
+Kern Tighter				shift-cmd-[
+Switch Selection Tools		alt-cmd-Tab

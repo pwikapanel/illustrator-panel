@@ -1,0 +1,12 @@
+importing my settings imported palette positions
+
+did import:
+¬ pdf settings
+¬ keyboard shortcut files (but didn't select the one I had)
+
+did not import:
+¬ templates
+¬ keyboard shortcuts
+¬ "Home Screen" prefs
+¬ Application Frame
+¬ Application Bar

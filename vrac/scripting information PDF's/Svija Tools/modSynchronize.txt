@@ -1,0 +1,176 @@
+// synchronize.jsx
+#target illustrator
+#targetengine 'whileAIopen'
+$.level = 2; // full debugging
+
+//---------------------------------------- messages
+
+var msgNothing = 'No elements are selected for update';
+//var msg = 'Files Synchronized';
+var msgConfirm = 'Are you sure? Is the correct document active? Are you updating in the right direction?';
+var msgCancled = 'Synchronization canceled';
+var msgOpenSyn = 'Open Documents Synchronized';
+var msgFileSyn = 'Source File Synchronized';
+var msgScSaved = 'Source File Saved';
+var msgScNtSvd = 'Source File Not Saved';
+
+//---------------------------------------- only while opening without palette
+
+	var zoop = {
+		file: false, // update file or update open documents
+		conf: false,  // confirm each operation
+		chrs: true, // update characterStyles
+		para: false, // update paragraphStyles
+		symb: false, // update symbols
+		unus: false, // update unused elements 
+		srce: '~/Downloads/AI Library Tools Script/source.ai'
+	}
+
+	var args = zoop.toSource();
+
+//---------------------------------------- update text styles from file
+
+//	updates character styles in open documents from a specified
+//	source file. The user has a choice of updating styles that are used in
+//	the document or importing all styles from the source document.
+
+//---------------------------------------- 
+
+//	copyright 2017 © Ozaké Communication
+//	ozake.com · contact@ozake.com ·	+33 618-260-961
+
+//---------------------------------------- parameters passed from palette
+
+// 	need to check if source is open because it could be opened after the source was selected and before synchronize was pushed
+var params = eval(args);
+
+var msg = '';
+
+//if (params.unus == false) msg += '' else msg += 'update unused · ';
+//msg += 'src: '+params.srce;
+
+//---------------------------------------- confirm if necessary
+
+if (!params.chrs && !params.para && !params.symb){
+	msg = msgNothing;
+	contnue = false;
+}
+else if (params.conf){
+	var contnue = confirm(msgConfirm);
+	if (!contnue){ msg = msgCancled };
+}
+else{ contnue = true; }
+
+//---------------------------------------- open source document 
+// active document is always 0 on stack
+
+if(contnue){
+app.open(File(params.srce));
+
+//---------------------------------------- source doc index & array of dest doc indices
+
+// this is not necessary, because I can just use the numbers.
+// still, it might be the cleanest, avoids flags
+
+if (params.file == false){// file to update: open documents
+	var sourceDoc = 0;
+	var destDocs = [];
+  var i = app.documents.length;
+	for (x=1; x<i; x++){
+		destDocs.push(x);
+	}
+	msg += msgOpenSyn;
+}
+else{ // file to update: library file
+	var sourceDoc = 1;
+	var destDocs  = [0];
+	msg += msgFileSyn;
+}
+
+//---------------------------------------- next steps...
+
+
+// if an already-open doc will be modified, I need to save, close & reopen it or revert, or undo all changes
+
+var docs = destDocs.length;
+
+for(var docIndex=0; docIndex<docs; docIndex++){
+	var thisIndex = destDocs[docIndex];
+	var destDoc  = app.documents[thisIndex];
+
+	msg += ' '+destDoc.name+' ';
+
+//------------------------------------------------------------------------------------------------------------------------
+
+if (params.chrs == true){
+	msg += ' (update characters)';
+}
+
+//---------------------------------------- 
+
+if (params.para == true){
+	msg += ' (update paragraphs)';
+}
+
+//---------------------------------------- 
+
+if (params.symb == true){
+	msg += ' (update symbols)';
+}
+
+//------------------------------------------------------------------------------------------------------------------------
+}
+
+
+
+//---------------------------------------- close source document
+
+// if the source was updated, we save changes. Otherwise not.
+
+if (params.file == true){
+	app.documents[0].close(SaveOptions.SAVECHANGES);
+	msg += msgScSaved;
+}
+else{
+	app.documents[sourceDoc].close(SaveOptions.DONOTSAVECHANGES);
+	msg += msgScNtSvd;
+}
+
+//---------------------------------------- finish
+
+r = msg; alert(msg); app.beep();
+
+//---------------------------------------- whole thing was canceled
+
+} else { alert(msg); app.beep(); }
+
+////------------------------------------------------------------------------------------------------------------------------
+////---------------------------------------- determine if a document is already open
+//
+//function docIsOpen(addr){
+//	for (k=0; k<app.documents.length; k++){
+//		var nm = encodeURIComponent(app.documents[k].name);
+//		var thisPath = app.documents[k].path + '/' + nm;
+//		if(thisPath == addr){ return 'true'; }
+//	 }
+//	return addr;
+//}
+////---------------------------------------- dialog boxes
+//
+//var selectedPath = File.openDialog(msgSelect); // get source of Character Styles
+//
+////---------------------------------------- validate path
+//
+//	if (selectedPath == null){ // cancel if the user didn't choose file
+//	 	alert(msgNoFile);
+//	}
+//
+//	else if (docIsOpen(selectedPath)){ // verify that source file is closed
+//		alert(msgSrcOpen);
+//		selectedPath = null;
+//	}
+//
+//libraryPath  = selectedPath;
+//
+//
+////---------------------------------------- fin

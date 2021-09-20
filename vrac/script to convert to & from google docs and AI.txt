@@ -1,0 +1,11 @@
+https://gist.github.com/hotohoto/ba01d4b53edeef1005181ee95f6dfb13
+
+script to remove vertical tabs (linebreak in a paragraph) in google docs
+
+function removeVerticalTabs() {
+  var body = DocumentApp.getActiveDocument().getBody();
+  var bodyText = body.getText();
+  bodyText = bodyText.replace( /\r/g, "\n" );
+  body.setText( bodyText );
+}
+

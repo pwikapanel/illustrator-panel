@@ -1,0 +1,5 @@
+<pre>plugin convert text box paths (for bold/not bold on same line)
+convert all kerning & tracking to 0
+set text to re-import on save from some source file
+
+flag bad AI id's when saving as SVG
