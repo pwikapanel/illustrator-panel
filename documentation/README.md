@@ -20,7 +20,7 @@ you can't directly add the shortcut using "add a menu item":
 
 Testing a CEP panel requires setting the CEP engine to **debug mode**. To check if this is the case:
 
-    $ defaults read /Users/Base/Library/Preferences/com.adobe.CSXS.8.plist
+    $ defaults read ~/Library/Preferences/com.adobe.CSXS.8.plist
     {
         LogLevel = 1;
         PlayerDebugMode = 1;
