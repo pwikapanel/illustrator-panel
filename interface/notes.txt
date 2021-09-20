@@ -1,0 +1,7 @@
+- resizable panels?
+- cookies for prefs?
+
+4 panels
+
+simple + help
+adv + help

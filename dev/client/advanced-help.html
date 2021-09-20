@@ -2,8 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Your First Panel</title>
     <script type="text/javascript" src="cookies.js"></script>
+    <script type="text/javascript" src="CSInterface.js"></script>
+    <script>
+      
+      var CSLibrary = new CSInterface();
+      CSLibrary.setWindowTitle('Svija Tools');
+
+    </script>
 </head>
 <body style="background-color:yellow;">
     <a href="simple.html">simple version</a> · <a href="advanced.html">close</a>
@@ -11,10 +17,18 @@
     <h1>advanced help</h1>
     <button id="open-button">Open</button>
     /* Add your script dependencies here. */
-    <script type="text/javascript" src="CSInterface.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <script>
 
+      width = parseInt(240);
+      height = parseInt(500);
+      CSLibrary.resizeContent(width, height);
+
+      function resetHeight(){
+        CSLibrary.resizeContent(width, height);
+      }
+
+      setInterval(resetHeight, 500);
     </script>
 </body>
 </html>

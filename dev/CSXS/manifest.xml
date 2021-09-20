@@ -29,12 +29,23 @@
         <UI>
           <Type>Panel</Type>
           <Menu>My First Panel</Menu>
-          <Geometry>
-            <Size>
-              <Height>500</Height>
-              <Width>350</Width>
-            </Size>
-          </Geometry>
+            <Geometry>
+              <Size>
+                  <Width>240</Width>
+                  <Height>230</Height>
+              </Size>
+              <MinSize>
+                  <Width>240</Width>
+                  <Height>40</Height>
+              </MinSize>
+              <MaxSize>
+                  <Width>240</Width>
+                  <Height>2000</Height>
+              </MaxSize>
+            </Geometry>
+
+
+
           <Icons />
         </UI>
       </DispatchInfo>
