@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="cookies.js"></script>
+</head>
+<body style="background-color:lime;">
+    <a href="simple-help.html">help</a> · <a href="advanced.html">advanced version</a>
+
+    <h1>Simple Version</h1>
+    <ul>
+    <li>update image links</li>
+    <li>save as svija</li>
+    <li>advanced mode</li>
+    </ul>
+    <button id="open-button">Open</button>
+    /* Add your script dependencies here. */
+    <script type="text/javascript" src="CSInterface.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script>
+
+      document.write ('<p>cookie: ' + document.cookie);
+      setCookie('advanced', 0, 365); 
+
+    </script>
+</body>
+</html>

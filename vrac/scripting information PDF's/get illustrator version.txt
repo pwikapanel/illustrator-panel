@@ -1,3 +1,0 @@
-open .ai in textedit, search for
-
-    RoundtripVersion

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="cookies.js"></script>
+</head>
+<body style="background-color:orange;">
+    <a href="advanced-help.html">help</a> · <a href="simple.html">simple version</a>
+
+    <h1>Advanced Version</h1>
+    <button id="open-button">Open</button>
+    /* Add your script dependencies here. */
+    <script type="text/javascript" src="CSInterface.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script>
+
+      document.write ('<p>cookie: ' + document.cookie);
+      setCookie('advanced', 1, 365); 
+
+    </script>
+</body>
+</html>
