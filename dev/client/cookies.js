@@ -1,15 +1,12 @@
-function setCookie(cname, cvalue, exdays) {
-
-//if (exdays > 7) exdays = 7; // max in Safari
+function setCookie(cname, cvalue) {
 
   var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  d.setTime(d.getTime() + (365*24*60*60*1000));
 
   var name = cname + '=' + cvalue + '; ';
   var expy = 'expires=' + d.toUTCString(); + '; ';
   var domn = '; domain=' + window.location.hostname + '; ';
   var path = '/; ';
-//var secr = 'secure;';
   var secr = '';
 
   document.cookie = name + expy + domn + path + secr;

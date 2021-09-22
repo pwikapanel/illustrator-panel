@@ -37,20 +37,20 @@
         <UI>
           <Type>Panel</Type>
           <Menu>Svija Tools</Menu>
-            <Geometry>
-              <Size>
-                  <Width>240</Width>
-                  <Height>230</Height>
-              </Size>
-              <MinSize>
-                  <Width>137</Width>
-                  <Height>40</Height>
-              </MinSize>
-              <MaxSize>
-                  <Width>240</Width>
-                  <Height>2000</Height>
-              </MaxSize>
-            </Geometry>
+          <Geometry>
+            <Size>
+              <Height>130</Height>
+              <Width>240</Width>
+            </Size>
+            <MaxSize>
+              <Height>130</Height>
+              <Width>240</Width>
+            </MaxSize>
+            <MinSize>
+              <Height>130</Height>
+              <Width>240</Width>
+            </MinSize>
+          </Geometry>
           <Icons />
         </UI>
       </DispatchInfo>
@@ -71,7 +71,8 @@
         </Lifecycle>
 
         <UI>
-          <Type>Custom</Type>
+          <Type>Panel</Type>
+          <Menu>Svija Launcher Utility</Menu>
           <Geometry>
             <Size>
               <Height>130</Height>

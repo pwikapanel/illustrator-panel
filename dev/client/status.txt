@@ -1,0 +1,3 @@
+make all buttons 2px higher
+check svg source for odd colors, other messiness
+changed Advanced Mode to ADVANCED in bold, or lowercase if easier to read

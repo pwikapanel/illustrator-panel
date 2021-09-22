@@ -1,36 +1,152 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <script type="text/javascript" src="cookies.js"></script>
-    <script type="text/javascript" src="CSInterface.js"></script>
-    <script>
-      
-      var CSLibrary = new CSInterface();
-      CSLibrary.setWindowTitle('Svija Tools');
+<html><head>
 
-    </script>
-</head><body style="background-color:orange;">
-    <a href="advanced-help.html">help</a> · <a href="simple.html">simple version</a> · <a href="index.html">reload</a>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="cookies.js"></script>
+  <link rel="stylesheet" href="initializeStyles.css">
+  <link rel="stylesheet" href="indexColors.css">
+  <script type="text/javascript" src="CSInterface.js"></script>
+  <script>
 
-    <h1>Advanced Version</h1>
-    <button id="open-button">Open</button>
-    /* Add your script dependencies here. */
-    <script type="text/javascript" src="index.js"></script>
-    <script>
+    panel_width = 240;
+    panel_height = 144;
+    setCookie('advanced', 1);
 
-      width = parseInt(240);
-      height = parseInt(300);
-      CSLibrary.resizeContent(width, height);
+//———————————————————————————————————————— opened by manifest
 
-      document.write ('<p>cookie: ' + document.cookie);
-      setCookie('advanced', 1, 365); 
+  var csif = new CSInterface();
+  csif.setWindowTitle('Svija Tools');
 
-      function resetHeight(){
-        CSLibrary.resizeContent(width, height);
-      }
+</script><!-- style> svg:first-of-type{ display:none; } </style --></head><body>
+<script>
 
-      setInterval(resetHeight, 500);
-    </script>
-</body>
-</html>
+  var interface_scale = window.__adobe_cep__.getScaleFactor()
+
+  function setSize(){
+    var xFactor = Math.round(panel_width/interface_scale);
+    var yFactor = Math.round((panel_height-.5)/interface_scale);
+    csif.resizeContent(xFactor, yFactor);
+    setTimeout(setSize, 500);
+  }
+
+  setSize();
+
+</script>
+<script type="text/javascript" src="themeChange.js"></script>
+<script type="text/javascript" src="indexLinks.js"></script>
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 240 144" style="enable-background:new 0 0 240 144;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#535353;}
+	.st1{fill:#474747;}
+	.st2{fill:#474747;stroke:#636363;stroke-miterlimit:10;}
+	.st3{fill:#999999;}
+	.st4{font-family:'SourceSansPro-SemiBold';}
+	.st5{font-size:12px;}
+	.st6{font-size:11.4px;}
+	.st7{fill:#DEDEDE;}
+	.st8{fill:#888888;}
+	.st9{font-size:8.4415px;}
+	.st10{fill:#BBBBBB;}
+	.st11{fill:#383838;}
+	.st12{opacity:0;fill:#FF0088;}
+</style>
+<g id="background">
+	<rect y="0" class="st0" width="250" height="154"/>
+</g>
+<g id="interface">
+	<rect x="115" y="82.85" class="st1" width="115" height="6.3"/>
+	<path class="st2" d="M226.5,120.5h-40c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h40c1.657,0,3,1.343,3,3v13
+		C229.5,119.157,228.157,120.5,226.5,120.5z"/>
+	<g id="btnClose_00000061441295217952502490000000699521444146572712_">
+		<path class="st2" d="M101.5,120.5h-88c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h88c1.657,0,3,1.343,3,3v13
+			C104.5,119.157,103.157,120.5,101.5,120.5z"/>
+	</g>
+	<g id="btnClose_00000094588670347109088510000007579534645315584183_">
+		<path class="st2" d="M101.5,95.5h-88c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h88c1.657,0,3,1.343,3,3v13
+			C104.5,94.157,103.157,95.5,101.5,95.5z"/>
+	</g>
+	<g id="btnSave_00000049916718001203657350000016004142237341462185_">
+		<path class="st2" d="M169.5,120.5h-51c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h51c1.657,0,3,1.343,3,3v13
+			C172.5,119.157,171.157,120.5,169.5,120.5z"/>
+	</g>
+	<g>
+		<g id="btnObjects_00000066515234493441965930000006557068784932220810_">
+			<path class="st2" d="M226.5,29.5h-98c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h98c1.657,0,3,1.343,3,3v13
+				C229.5,28.157,228.157,29.5,226.5,29.5z"/>
+		</g>
+		<g id="btnObjects_00000093890507281988270260000004520170227225084561_">
+			<path class="st2" d="M226.5,54.5h-98c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h98c1.657,0,3,1.343,3,3v13
+				C229.5,53.157,228.157,54.5,226.5,54.5z"/>
+		</g>
+		<text transform="matrix(1 0 0 1 134.0547 23.8424)" class="st3 st4 st5">Reset Object ID&apos;s</text>
+	</g>
+	<g>
+		<g id="btnImages_00000049203913129231687720000002212106752987532173_">
+			<path class="st2" d="M111.5,29.5h-98c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h98c1.657,0,3,1.343,3,3v13
+				C114.5,28.157,113.157,29.5,111.5,29.5z"/>
+		</g>
+		<text transform="matrix(1.0526 0 0 1 31.3728 23.8425)" class="st3 st4 st6">Instructions</text>
+	</g>
+	<g>
+		<g id="btnLayers_00000114060326904877083420000002216464654939867010_">
+			<path class="st2" d="M111.5,54.5h-98c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h98c1.657,0,3,1.343,3,3v13
+				C114.5,53.157,113.157,54.5,111.5,54.5z"/>
+		</g>
+		<text transform="matrix(1 0 0 1 19.6126 48.6913)" class="st3 st4 st5">Duplicate Layers</text>
+	</g>
+	<g>
+		<g>
+			<text transform="matrix(1 0 0 1 21.4224 89.6529)" class="st7 st4 st5">Relink Images</text>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 142.8082 48.6914)" class="st3 st4 st5">Import Styles</text>
+	<g>
+		<text transform="matrix(1 0 0 1 17.0844 114.662)" class="st7 st4 st5">Save All &amp; Close</text>
+	</g>
+	<g id="btnSaveAll_00000064325768518473792620000015409613481605806479_">
+		<g>
+			<g>
+				<text transform="matrix(1 0 0 1 194.9201 114.6617)" class="st7 st4 st5">Save</text>
+			</g>
+		</g>
+	</g>
+	<g>
+		<text transform="matrix(1 0 0 1 124.7976 114.6617)" class="st7 st4 st5">Save All</text>
+	</g>
+	<rect x="10" y="65" class="st1" width="220" height="1"/>
+	<rect x="0" y="132" class="st1" width="250" height="22"/>
+	<g>
+		<text transform="matrix(1 0 0 1 171.2921 140.5822)" class="st8 st4 st9">Simple Mode</text>
+	</g>
+	<path class="st10" d="M182.608,80.084h-2.698v11.692h2.698V80.084z M187.404,75.287h-7.495v2.698h7.495V75.287z M187.404,80.084
+		h-2.698v16.189h2.698V80.084z M155.497,91.776h-17.688v-2.698h14.99v-1.043l-14.99-1.82v-6.131h17.688v2.698h-14.99v1.042
+		l14.99,1.82V91.776z M207.191,80.084h-17.688v2.698h14.99v1.042l-14.99,1.82v6.131h17.688V80.084z M192.201,88.035l12.291-1.493
+		v2.535h-12.291V88.035z M175.768,80.084l-5.55,8.581c-0.167,0.259-0.451,0.413-0.759,0.413h-3.547
+		c-0.308,0-0.592-0.154-0.759-0.413l-5.55-8.581h-3.213l6.497,10.046c0.667,1.031,1.797,1.646,3.024,1.646h3.547
+		c1.227,0,2.358-0.615,3.024-1.646l6.497-10.046H175.768z"/>
+	<polygon class="st8" points="229.898,138 222.881,142.051 222.881,133.949 	"/>
+	<g>
+		<rect y="131" class="st11" width="250" height="1"/>
+	</g>
+</g>
+<g id="links_00000042698266642997088470000007689919531009145249_">
+	<a xlink:href="advanced-info.html" >
+		<rect x="6.145" y="5.56" class="st12" width="113.691" height="29.94"/>
+	</a>
+	<a xlink:href="simple.html" >
+		<rect x="160" y="131" class="st12" width="80" height="13"/>
+	</a>
+</g>
+</svg>
+</body></html>
