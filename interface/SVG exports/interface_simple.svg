@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 240 78" style="enable-background:new 0 0 240 78;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#555555;}
+	.st1{fill:#444444;}
+	.st2{fill:#444444;stroke:#666666;stroke-miterlimit:1;}
+	.st3{fill:#DDDDDD;}
+	.st4{font-family:'SourceSansPro-SemiBold';}
+	.st5{font-size:12px;}
+	.st6{fill:#999999;}
+	.st7{fill:#888888;}
+	.st8{font-size:8.5px;}
+	.st9{fill:#BBBBBB;}
+	.st10{fill:#333333;}
+	.st11{opacity:0;}
+</style>
+<g id="background">
+	<rect x="-0.1" y="0.019" class="st0" width="250" height="88"/>
+</g>
+<g id="interface">
+	<rect x="125" y="16.85" class="st1" width="105" height="6.3"/>
+	<rect y="66" class="st1" width="250" height="22"/>
+	<path class="st2" d="M111.5,54.5h-98c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h98c1.657,0,3,1.343,3,3v13
+		C114.5,53.157,113.157,54.5,111.5,54.5z"/>
+	<g>
+		<text transform="matrix(1 0 0 1 26.4226 48.4625)" class="st3 st4 st5">Relink Images</text>
+	</g>
+	<path class="st2" d="M111.5,29.5h-98c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h98c1.657,0,3,1.343,3,3v13
+		C114.5,28.157,113.157,29.5,111.5,29.5z"/>
+	<text transform="matrix(1 0 0 1 31.3723 24.2624)" class="st6 st4 st5">Instructions</text>
+	<path class="st2" d="M226.5,54.5h-98c-1.657,0-3-1.343-3-3v-13c0-1.657,1.343-3,3-3h98c1.657,0,3,1.343,3,3v13
+		C229.5,53.157,228.157,54.5,226.5,54.5z"/>
+	<g>
+		<text transform="matrix(1 0 0 1 142.8025 48.4624)" class="st3 st4 st5">Save for Svija</text>
+	</g>
+	<g>
+		<text transform="matrix(1 0 0 1 160.6508 74.7061)" class="st7 st4 st8">Advanced Mode</text>
+	</g>
+	<path class="st9" d="M187.501,14.159h-2.698v11.692h2.698V14.159z M192.298,9.362h-7.495v2.698h7.495V9.362z M192.298,14.159H189.6
+		v16.189h2.698V14.159z M160.391,25.851h-17.688v-2.698h14.99V22.11l-14.99-1.82v-6.131h17.688v2.698h-14.99v1.042l14.99,1.82
+		V25.851z M212.084,14.159h-17.688v2.698h14.99v1.042l-14.99,1.82v6.131h17.688V14.159z M197.094,22.11l12.291-1.493v2.535h-12.291
+		V22.11z M180.661,14.159l-5.55,8.581c-0.167,0.259-0.451,0.413-0.759,0.413h-3.547c-0.308,0-0.592-0.154-0.759-0.413l-5.55-8.581
+		h-3.213l6.497,10.046c0.666,1.031,1.797,1.646,3.024,1.646h3.547c1.227,0,2.358-0.615,3.024-1.646l6.497-10.046H180.661z"/>
+	<polygon class="st7" points="230.084,72 223.067,76.051 223.067,67.949 	"/>
+	<rect x="-0.1" y="65.019" class="st10" width="250" height="1"/>
+</g>
+<g id="links_00000042698266642997088470000007689919531009145249_">
+	<a xlink:href="advanced.html" >
+		<rect x="150" y="65" class="st11" width="90" height="13"/>
+	</a>
+	<a xlink:href="simple-info.html" >
+		<rect x="6.209" y="5.56" class="st11" width="113.691" height="29.94"/>
+	</a>
+</g>
+</svg>
