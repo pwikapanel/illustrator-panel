@@ -37,7 +37,7 @@ for (var x=0; x<buttons.length; x++){
 
 //———————————————————————————————————————— mouseup = execution
 
-var path = csif.getSystemPath(SystemPath.EXTENSION) + '/host/';
+var path = csif.getSystemPath(SystemPath.EXTENSION) + '/scripts/';
 
 function funcExec(btnId, scriptName, arg, titl){
   funcMou(btnId);

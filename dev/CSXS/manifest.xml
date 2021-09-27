@@ -23,8 +23,14 @@
     <Extension Id="love.svija.SvijaTools.panel"><!-- ———————————————————— -->
       <DispatchInfo>
         <Resources>
-          <MainPath>./client/index.html</MainPath>
-          <CEFCommandLine />
+
+
+          <MainPath>./panel/index.html</MainPath>
+          <CEFCommandLine>
+            <Parameter>--allow-file-access-from-files</Parameter>
+          </CEFCommandLine>
+
+
         </Resources>
 
         <Lifecycle>
@@ -59,7 +65,7 @@
     <Extension Id="love.svija.SvijaLauncher.panel"><!-- ———————————————————— -->
       <DispatchInfo>
         <Resources>
-          <MainPath>./client/launcher.html</MainPath>
+          <MainPath>./panel/launcher.html</MainPath>
           <CEFCommandLine />
         </Resources>
 
