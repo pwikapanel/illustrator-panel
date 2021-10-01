@@ -24,7 +24,10 @@
 4. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
 
 5. Check for extra hidden files like **.un~** and **.swp**
-
+```
+find . -type f -name '*.un~' -delete
+find . -type f -name '*.swp' -delete
+```
 ---
 
 ### Generate the Certificate

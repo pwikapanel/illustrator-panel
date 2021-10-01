@@ -45,7 +45,7 @@ if (doc.rasterItems.length + doc.placedItems.length == '00') {
 
     if there is no links folder, do we create it? */
 
-var linksFolder = Folder(app.activeDocument.path) + '/links';
+var linksFolder = Folder(app.activeDocument.path) + '/Links';
 
 if (!Folder(linksFolder).exists){
   var msg = 'No "links" folder found.\nDo you want to create it?';
@@ -121,7 +121,7 @@ else{
   if (treated == 1) msg = 'One issue found.';
   else msg = treated + ' issues found.';
 
-  msg += '\n\nExit without report?'
+  msg += '\nSkip the report?'
 
   showResults = confirm('Images Relinked\n' + msg);
   if (!showResults) alert('Issues Found:\n' + report);
@@ -196,7 +196,7 @@ function placedItem(obj){
 	catch(e){ return false; }
 
   var docFolder = Folder(app.activeDocument.path);
-  var linksFolder    = docFolder + '/links';
+  var linksFolder    = docFolder + '/Links';
 
   if (thisFolder == linksFolder) return false;
 
@@ -215,13 +215,13 @@ function placedItem(obj){
   if(newFile.exists) var report = 'link updated';
   else{
     obj.file.copy(newFile);
-    var report = 'copied to links';
+    var report = 'copied to Links';
   }
 
   // if the file was in Ai folder we delete orig
   if (thisFolder == docFolder){
     obj.file.remove();
-    var report = 'moved to links';
+    var report = 'moved to Links';
   }
 
   obj.file = newFile;
