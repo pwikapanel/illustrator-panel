@@ -6,6 +6,12 @@
 
 # Svija Tools
 
+The Svija Tools folder contains the **unsigned** plugin.
+
+To use the **signed version** copy the **ZXP file** from the code signing and unzip it.
+
+---
+
 ### Run JSX files directly to see errors
 
 ### no longer true V
