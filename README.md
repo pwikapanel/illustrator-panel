@@ -1,9 +1,14 @@
-*Updated 20 September, 2021 · Toulouse*
+[logo]: http://files.svija.love/github/readme-logo.png "Svija: SVG-based websites built in Adobe Illustrator"
 
-![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
+*Updated 1 October, 2021 · Toulouse*
 
-**Svija Tools REMOVE Ai VERSION REDUCTION IN SAVE AS**
--------------------
+![Svija: SVG-based websites built in Adobe Illustrator][logo]
+
+# Svija Tools
+
+### Run JSX files directly to see errors
+
+### no longer true V
 
 **IMPORTANT NOTE:** the actual scripts are developed in a separate repository called [Presets-Scripts](https://github.com/svijasvg/Presets-Scripts).
 

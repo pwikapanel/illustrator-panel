@@ -1,13 +1,14 @@
-*Updated 25 March, 2021*
+[logo]: http://files.svija.love/github/readme-logo.png "Svija: SVG-based websites built in Adobe Illustrator"
 
-![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?3 "Svija: SVG-based websites built in Adobe Illustrator")
+*Updated 1 October, 2021*
 
-**Documentation**
------------------
+![Svija: SVG-based websites built in Adobe Illustrator][logo]
+
+# Documentation
 
 The Adobe Exchange [website](https://partners.adobe.com/exchangeprogram/creativecloud) does not work in Safari.
 
-* * * * *
+---
 
 For Svija Actions:
 
@@ -16,7 +17,11 @@ you can't directly add the shortcut using "add a menu item":
 1. Add a menu item
 2. **Search** for the term ("save as")
 
-* * * * *
+---
+
+### Debug Mode
+
+Debug mode for CEP 8.0 doesn't seem to work in Illustrator 25 — **development must be done in Illustrator 24**.
 
 Testing a CEP panel requires setting the CEP engine to **debug mode**. To check if this is the case:
 
