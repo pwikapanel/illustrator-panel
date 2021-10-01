@@ -17,9 +17,9 @@
 
 1. Rename **Svija Tools** to **Svija Tools Prev**
 
-2. Copy the code from **extensions** to **Svija Tools**
+2. Copy **extensions** to **Svija Tools**
 
-2. Edit CSXS/manifest.xml
+2. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
 
 ---
 
