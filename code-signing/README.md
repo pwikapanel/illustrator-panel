@@ -36,11 +36,11 @@ Generate a 16-character password at [passwordsgenerator.net](https://passwordsge
 
     $ cd ZXPSignCmd-64bit 4.1.2
     $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [filename].p12
-    $ mv [filename].p12 ../
 
     # Self-signed certificate generated successfully
 
-Copy the terminal command to the top of signing-records.txt for our records.
+    $ mv [filename].p12 ../
+    $ vi ../passwords.txt   # paste the command line
 
 ---
 
