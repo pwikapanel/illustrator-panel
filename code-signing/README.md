@@ -25,7 +25,7 @@
 
 ---
 
-### Generate the certificate
+### Generate the Certificate
 
 Generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box).
 
@@ -38,7 +38,7 @@ Copy the terminal command to the top of signing-records.txt for our records.
 
 ---
 
-### Sign the bundle
+### Sign the Bundle
 
 **Note:** the bundle (**Svija Tools** in the root directory of this repository) should already have a custom icon. It is not possile to add a custom icon after signing if it was not in place at the time of signing.
 ```
@@ -46,6 +46,14 @@ Copy the terminal command to the top of signing-records.txt for our records.
 $ ./ZXPSignCmd-64bit -sign [bundle folder] ../[filename].zxp [certificate] [pwd] -tsa http://timestamp.digicert.com
 # Signed successfully
 ```
+---
+
+### Installing the Signed Version
+
+To install the bundle:
+
+1. just change the extension from **zxp** to **zip** and unzip it
+2. paste it into the Adobe extensions folder
 
 *Reminder: you can drag a file or folder onto the terminal window to insert its path.*
 
