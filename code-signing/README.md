@@ -35,7 +35,8 @@ find . -type f -name '*.swp' -delete
 Generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box).
 
     $ cd ZXPSignCmd-64bit 4.1.2
-    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] ../[filename].p12
+    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [filename].p12
+    $ mv [filename].p12 ../
 
     # Self-signed certificate generated successfully
 
