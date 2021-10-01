@@ -21,6 +21,8 @@ you can't directly add the shortcut using "add a menu item":
 
 ### Debug Mode
 
+**Correction:** when I added the mimetype file to the plugin, it started working in Ai 25.
+
 Debug mode for CEP 8.0 doesn't seem to work in Illustrator 25 — **development must be done in Illustrator 24**.
 
 Testing a CEP panel requires setting the CEP engine to **debug mode**. To check if this is the case:
