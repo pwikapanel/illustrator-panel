@@ -49,4 +49,4 @@ For information:
 
 The META-INF folder is created during the signing process and contains certificate information.
 
-*More info [here](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).*
+*Valuable debugging information [here](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).*
