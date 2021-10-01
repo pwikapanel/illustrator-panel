@@ -21,7 +21,7 @@
 
 3. Copy the **custom icon** from the previous Svija Tools folder
 
-2. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
+4. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
 
 ---
 
@@ -29,7 +29,8 @@
 
 Generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box).
 
-    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [destination].p12
+    $ cd ZXPSignCmd-64bit 4.1.2
+    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] ../[filename].p12
 
     # Self-signed certificate generated successfully
 
