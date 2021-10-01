@@ -3,42 +3,33 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 240 138" style="enable-background:new 0 0 240 138;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#323232;stroke:#323232;stroke-miterlimit:10;}
-	.st1{fill:#535353;stroke:#535353;stroke-miterlimit:10;}
-	.st2{fill:#B9B9B9;stroke:#B9B9B9;stroke-miterlimit:10;}
-	.st3{fill:#F0F0F0;stroke:#F0F0F0;stroke-miterlimit:10;}
-	.st4{fill:#1E1E1E;stroke:#000000;stroke-miterlimit:10;}
-	.st5{fill:#787878;stroke:#787878;stroke-miterlimit:10;}
-	.st6{fill:#B4B4B4;stroke:#B4B4B4;stroke-miterlimit:10;}
-	.st7{fill:#3C3C3C;stroke:#3C3C3C;stroke-miterlimit:10;}
-	.st8{fill:#464646;stroke:#464646;stroke-miterlimit:10;}
-	.st9{fill:#AAAAAA;stroke:#AAAAAA;stroke-miterlimit:10;}
-	.st10{fill:#DCDCDC;stroke:#DCDCDC;stroke-miterlimit:10;}
+	.st0{fill:#323232;}
+	.st1{fill:#535353;}
+	.st2{fill:#B9B9B9;}
+	.st3{fill:#F0F0F0;}
+	.st4{fill:#181818;}
+	.st5{fill:#787878;}
+	.st6{fill:#B4B4B4;}
+	.st7{fill:#252525;}
+	.st8{fill:#464646;}
+	.st9{fill:#AAAAAA;}
+	.st10{fill:#DCDCDC;}
 	.st11{fill:#828282;}
 	.st12{fill:#8C8C8C;}
-	.st13{fill:#464646;}
-	.st14{fill:#5A5A5A;}
-	.st15{font-family:'SourceSansPro-SemiBold';}
-	.st16{font-size:8.5px;}
-	.st17{font-size:12px;}
-	.st18{fill:none;}
-	.st19{fill:#787878;}
-	.st20{font-family:'SourceSansPro-Regular';}
-	.st21{fill:#969696;}
-	.st22{fill:#AAAAAA;}
-	.st23{fill:#5A5A5A;stroke:#5A5A5A;stroke-miterlimit:10;}
-	.st24{fill:#828282;stroke:#828282;stroke-miterlimit:10;}
-	.st25{fill:#646464;stroke:#646464;stroke-miterlimit:10;}
-	.st26{fill:#969696;stroke:#969696;stroke-miterlimit:10;}
-	.st27{fill:#C8C8C8;stroke:#C8C8C8;stroke-miterlimit:10;}
-	.st28{fill:#505050;stroke:#505050;stroke-miterlimit:10;}
-	.st29{fill:#E6E6E6;stroke:#E6E6E6;stroke-miterlimit:10;}
-	.st30{fill:#2D8CEB;}
-	.st31{fill:#C8C8C8;}
-	.st32{fill:#323232;}
-	.st33{fill:#646464;}
-	.st34{fill:#DCDCDC;}
-	.st35{opacity:0;}
+	.st13{fill:#5A5A5A;}
+	.st14{font-family:'SourceSansPro-SemiBold';}
+	.st15{font-size:8.5px;}
+	.st16{font-size:12px;}
+	.st17{fill:none;}
+	.st18{font-family:'SourceSansPro-Regular';}
+	.st19{fill:#969696;}
+	.st20{fill:#3C3C3C;}
+	.st21{fill:#646464;}
+	.st22{fill:#C8C8C8;}
+	.st23{fill:#505050;}
+	.st24{fill:#E6E6E6;}
+	.st25{fill:#2D8CEB;}
+	.st26{opacity:0;}
 </style>
 <g id="not_buttons__xBB_">
 	<g id="background">
@@ -58,20 +49,20 @@
 	</g>
 	<g id="bottom_bar_text">
 		<g>
-			<text transform="matrix(1 0 0 1 24.2852 134.9133)" class="st14 st15 st16">R E T U R N</text>
+			<text transform="matrix(1 0 0 1 24.2852 134.9133)" class="st13 st14 st15">R E T U R N</text>
 		</g>
-		<path class="st14" d="M10.041,132l2.692-2.691l0.51,0.51L11.061,132l2.183,2.182l-0.51,0.51L10.041,132z M17.274,134.692
+		<path class="st13" d="M10.041,132l2.692-2.691l0.51,0.51L11.061,132l2.183,2.182l-0.51,0.51L10.041,132z M17.274,134.692
 			l0.51-0.51L15.602,132l2.182-2.182l-0.51-0.51L14.582,132L17.274,134.692z"/>
 	</g>
 	<g id="left_help">
 		<g>
-			<text transform="matrix(1 0 0 1 9.3831 18.8193)"><tspan x="0" y="0" class="st14 st15 st17">Relink Images </tspan><tspan x="72.155" y="15" class="st14 st15 st17"> </tspan><tspan x="72.155" y="30" class="st14 st15 st17"> </tspan><tspan x="6.265" y="65" class="st14 st15 st17">Save as Svija</tspan></text>
+			<text transform="matrix(1 0 0 1 9.3831 18.8193)"><tspan x="0" y="0" class="st13 st14 st16">Relink Images </tspan><tspan x="72.155" y="15" class="st13 st14 st16"> </tspan><tspan x="72.155" y="30" class="st13 st14 st16"> </tspan><tspan x="6.265" y="65" class="st13 st14 st16">Save as Svija</tspan></text>
 		</g>
 	</g>
 	<g id="logo__x26__right_help">
 		<g>
-			<rect x="91.527" y="8.76" class="st18" width="142.652" height="108.464"/>
-			<text transform="matrix(1 0 0 1 91.5266 18.7198)"><tspan x="0" y="0" class="st19 st20 st17">relink any </tspan><tspan x="51.647" y="0" class="st14 st20 st17">embedded </tspan><tspan x="0" y="15" class="st14 st20 st17">images</tspan><tspan x="35.977" y="15" class="st19 st20 st17"> and link all images </tspan><tspan x="0" y="30" class="st19 st20 st17">to files in the closest  </tspan><tspan x="0" y="45" class="st14 st20 st17">&quot;Links&quot; folder</tspan><tspan x="0" y="65" class="st19 st20 st17">save the </tspan><tspan x="43.969" y="65" class="st14 st20 st17">Illustrator file </tspan><tspan x="0" y="80" class="st19 st20 st17">and save an </tspan><tspan x="61.718" y="80" class="st14 st20 st17">SVG version</tspan><tspan x="120.878" y="80" class="st19 st20 st17">  </tspan><tspan x="0" y="95" class="st19 st20 st17">in </tspan><tspan x="11.917" y="95" class="st14 st20 st17">sync/Svija/SVG Files</tspan></text>
+			<rect x="91.527" y="8.76" class="st17" width="142.652" height="108.464"/>
+			<text transform="matrix(1 0 0 1 91.5266 18.7198)"><tspan x="0" y="0" class="st5 st18 st16">relink any </tspan><tspan x="51.647" y="0" class="st13 st18 st16">embedded </tspan><tspan x="0" y="15" class="st13 st18 st16">images</tspan><tspan x="35.977" y="15" class="st5 st18 st16"> and link all images </tspan><tspan x="0" y="30" class="st5 st18 st16">to files in the closest  </tspan><tspan x="0" y="45" class="st13 st18 st16">&quot;Links&quot; folder</tspan><tspan x="0" y="65" class="st5 st18 st16">save the </tspan><tspan x="43.969" y="65" class="st13 st18 st16">Illustrator file </tspan><tspan x="0" y="80" class="st5 st18 st16">and save an </tspan><tspan x="61.718" y="80" class="st13 st18 st16">SVG version</tspan><tspan x="120.878" y="80" class="st5 st18 st16">  </tspan><tspan x="0" y="95" class="st5 st18 st16">in </tspan><tspan x="11.917" y="95" class="st13 st18 st16">sync/Svija/SVG Files</tspan></text>
 		</g>
 	</g>
 </g>
@@ -122,7 +113,7 @@
 <g id="ai_links__xBB_">
 	<g id="return">
 		<a xlink:href="simple.html" >
-			<rect x="0" y="0" class="st35" width="240" height="138"/>
+			<rect x="0" y="0" class="st26" width="240" height="138"/>
 		</a>
 	</g>
 	<g id="bottom_bar">
