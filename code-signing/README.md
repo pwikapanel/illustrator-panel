@@ -17,7 +17,9 @@
 
 1. Rename **Svija Tools** to **Svija Tools Prev**
 
-2. Copy **extensions** to **Svija Tools**
+2. Duplicate **extensions** and rename to **Svija Tools**
+
+3. Copy the **custom icon** from the previous Svija Tools folder
 
 2. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
 

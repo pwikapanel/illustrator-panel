@@ -1,9 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="love.svija.SvijaTools" ExtensionBundleVersion="1.0.0" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="love.svija.SvijaToolsDev" ExtensionBundleVersion="1.0.0" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<!-- search for Id=", add Dev at end of everything, + menu name -->
+<!-- when done, just remove all occurences of Dev               -->
 
   <ExtensionList>
-    <Extension Id="love.svija.SvijaTools.panel" Version="1.0.0" />
-    <Extension Id="love.svija.SvijaLauncher.panel" Version="1.0.0" />
+    <Extension Id="love.svija.SvijaToolsDev.panel" Version="1.0.0" />
+    <Extension Id="love.svija.SvijaLauncherDev.panel" Version="1.0.0" />
   </ExtensionList>
 
   <ExecutionEnvironment>
@@ -20,11 +22,17 @@
 
   <DispatchInfoList>
     
-    <Extension Id="love.svija.SvijaTools.panel"><!-- ———————————————————— -->
+    <Extension Id="love.svija.SvijaToolsDev.panel"><!-- ———————————————————— -->
       <DispatchInfo>
         <Resources>
-          <MainPath>./client/index.html</MainPath>
-          <CEFCommandLine />
+
+
+          <MainPath>./panel/index.html</MainPath>
+          <CEFCommandLine>
+            <Parameter>--allow-file-access-from-files</Parameter>
+          </CEFCommandLine>
+
+
         </Resources>
 
         <Lifecycle>
@@ -36,30 +44,30 @@
 
         <UI>
           <Type>Panel</Type>
-          <Menu>Svija Tools</Menu>
-          <Geometry>
-            <Size>
-              <Height>130</Height>
-              <Width>240</Width>
-            </Size>
-            <MaxSize>
-              <Height>130</Height>
-              <Width>240</Width>
-            </MaxSize>
-            <MinSize>
-              <Height>130</Height>
-              <Width>240</Width>
-            </MinSize>
-          </Geometry>
+          <Menu>Svija Tools Dev</Menu>
+            <Geometry>
+              <Size>
+                  <Width>240</Width>
+                  <Height>230</Height>
+              </Size>
+              <MinSize>
+                  <Width>137</Width>
+                  <Height>40</Height>
+              </MinSize>
+              <MaxSize>
+                  <Width>240</Width>
+                  <Height>2000</Height>
+              </MaxSize>
+            </Geometry>
           <Icons />
         </UI>
       </DispatchInfo>
     </Extension>
 
-    <Extension Id="love.svija.SvijaLauncher.panel"><!-- ———————————————————— -->
+    <Extension Id="love.svija.SvijaLauncherDev.panel"><!-- ———————————————————— -->
       <DispatchInfo>
         <Resources>
-          <MainPath>./client/launcher.html</MainPath>
+          <MainPath>./panel/launcher.html</MainPath>
           <CEFCommandLine />
         </Resources>
 
