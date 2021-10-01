@@ -11,6 +11,18 @@
 
 *See below for more complete instructions*
 
+---
+
+### Prepare the Bundle
+
+1. Rename **Svija Tools** to **Svija Tools Prev**
+
+2. Copy the code from **extensions** to **Svija Tools**
+
+2. Edit CSXS/manifest.xml
+
+---
+
 ### Generate the certificate
 
 Generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box).
