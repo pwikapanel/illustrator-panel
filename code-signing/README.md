@@ -11,17 +11,17 @@
 
 *See below for more complete instructions*
 
-Generate a 16-character password at [this page](https://passwordsgenerator.net) (check all but the first box).
-
 ### Generate the certificate
+
+Generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box).
 
     $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [destination].p12
 
-    Self-signed certificate generated successfully
+    # Self-signed certificate generated successfully
 
 Copy the terminal command to the top of signing-records.txt for our records.
 
-* * * * *
+---
 
 ### Sign the bundle
 
@@ -35,7 +35,7 @@ Copy the terminal command to the top of signing-records.txt for our records.
 
 *Reminder: you can drag a file or folder onto the terminal window to insert its path.*
 
-* * * * *
+---
 
 # More Information
 
@@ -54,7 +54,7 @@ Download the **.dmg file** for the most recent version, and open it. It contains
 
 We will keep these files in the local Mac folder associated with **Svija Tools**.
 
-* * * * *
+---
 
 ### Creating a self-signed certificate:
 
@@ -93,7 +93,7 @@ signed extension in the final ZXP archive:
 * signatures.xml: A file in the META-INF directory at the root level of the container file system that
 holds digital signatures of the container and its contents.
 
-* * * * *
+---
 
 ### Using ZXPSignCmd-64bit
 
@@ -111,7 +111,7 @@ The various options
     p12Password      certificate password
     options          -tsa <timestampURL> timestamp server
 
-* * * * *
+---
 
 ### more stuff
 
