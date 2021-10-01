@@ -23,6 +23,8 @@
 
 4. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
 
+5. Check for extra hidden files like **.un~** and **.swp**
+
 ---
 
 ### Generate the Certificate
