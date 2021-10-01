@@ -41,12 +41,12 @@ Copy the terminal command to the top of signing-records.txt for our records.
 ### Sign the bundle
 
 **Note:** the bundle (**Svija Tools** in the root directory of this repository) should already have a custom icon. It is not possile to add a custom icon after signing if it was not in place at the time of signing.
-
+```
 *Aide-mémoire:* program destination certificate password timestamp
+```
+    $ ./ZXPSignCmd-64bit -sign [bundle folder] ../[filename].zxp [certficate] [pwd] -tsa http://timestamp.digicert.com
 
-    $ ./ZXPSignCmd-64bit -sign [bundle folder] [dest path].zxp [certficate] [pwd] -tsa http://timestamp.digicert.com
-
-    Signed successfully
+    # Signed successfully
 
 *Reminder: you can drag a file or folder onto the terminal window to insert its path.*
 
