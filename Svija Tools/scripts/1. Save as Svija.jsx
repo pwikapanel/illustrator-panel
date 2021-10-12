@@ -86,29 +86,35 @@ for (index=0; index<iters; index++){
 
   //———————————————————————————————— save SVG's then Illustrator
 
-  st_saveAsSvgs(sourceDoc);
-  var aiFile = new File(realPath);
-  sourceDoc.saveAs(aiFile, aiOptions);
-
-  //————— housekeeping after SVG export
-
-  sourceDoc.artboards.setActiveArtboardIndex(activeBoard);
-
-  if (param == 'save') break;
-  if (param == 'close'){
-    sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
-    iters -= 1;
-    index -= 1;
+  var didSave = st_saveAsSvgs(sourceDoc);
+  if (!didSave){
+    break;
+  }
+  else {
+    var aiFile = new File(realPath);
+    sourceDoc.saveAs(aiFile, aiOptions);
+  
+    //————— housekeeping after SVG export
+  
+    sourceDoc.artboards.setActiveArtboardIndex(activeBoard);
+  
+    if (param == 'save') break;
+    if (param == 'close'){
+      sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
+      iters -= 1;
+      index -= 1;
+    }
   }
 }
 
-if (param != 'close') app.activeDocument = activeDoc;
-
-var d = new Date(); ms = d.getTime() - ms;
-if (index < 2) var msg = 'File saved.';
-else var msg = 'Files saved.';
-alert(msg + ' ('+ms+' ms)');
-
+if (didSave){
+  if (param != 'close') app.activeDocument = activeDoc;
+  
+  var d = new Date(); ms = d.getTime() - ms;
+  if (index < 2) var msg = 'File saved.';
+  else var msg = 'Files saved.';
+  alert(msg + ' ('+ms+' ms)');
+}
 
 //———————————————————————————————————————— main functions
 
@@ -124,8 +130,11 @@ function st_saveAsSvgs(doc){
   //———————————————————————————————— get save path
 
   var savePath = '' + app.activeDocument.path;
-  var splitChar = savePath.indexOf('/sync');
-  if (splitChar < 0) return false;
+  var splitChar = savePath.lastIndexOf('/sync');
+  if (splitChar < 0) {
+    alert('Damaged project folder\nSave aborted.');
+    return false;
+  }
 
   savePath = savePath.substr(0,splitChar) + '/sync/Svija/SVG%20files';
   var folder = Folder(savePath);
@@ -177,7 +186,7 @@ function st_newFile(folder, name) {
   // check access rights
   if (newFile.open("w")){ newFile.close(); }
   //else { throw new Error(access_is_denied); }
-  else { alert('File missing — did you move it?'); }
+  else { alert('Can\'t write to ' + folder + '.'); }
 
   return newFile;
 }
