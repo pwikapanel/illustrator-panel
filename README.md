@@ -8,7 +8,7 @@
 
 ---
 
-### File Organization
+### File Versions
 
 ★ **Svija Tools Dev**: contains the contents of **/Library/Application Support/Adobe/CEP/extensions/Svija Tools Dev**
 
