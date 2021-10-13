@@ -50,8 +50,8 @@ git push origin master
 
 Copy info from/to:
 
-- [github.com/svijalove/sync/commits/beta](https://github.com/svijalove/sync/commits/beta)
-- [tech.svija.love/manual/changelog-sync](https://tech.svija.love/manual/changelog-sync)
+- [github.com/svijalove/tools/commits/beta](https://github.com/svijalove/tools/commits/beta)
+- [tech.svija.love/manual/changelog-tools](https://tech.svija.love/manual/changelog-tools)
 
 ---
 ### 3. Create a Notarized Version of Sync Direct
