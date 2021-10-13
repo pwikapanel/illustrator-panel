@@ -28,7 +28,7 @@ It is generally the same as **Svija Tools Dev** except that the bundle identifie
 Following are the instructions for releasing a new version of Svija Sync.
 
 1. create new signed version, zipped in the distribution folder
-2. create [new DMG](https://github.com/svijalove/dmg-installation), in the distribution folder
+2. create a [new DMG](https://github.com/svijalove/dmg-installation), in the distribution folder
 
 ---
 ### 1. Merge to Master
@@ -54,19 +54,7 @@ Copy info from/to:
 - [tech.svija.love/manual/changelog-tools](https://tech.svija.love/manual/changelog-tools)
 
 ---
-### 3. Create a Notarized Version of Sync Direct
-
-Create an **notarized version** so that will be available in case of future compatibility problems.
-
-Zip it and store it in notarized.
-
----
-### 4. Create a new App Store version of Sync
-
-See the [dedicated document](https://github.com/svijalove/sync/tree/master/app-store).
-
----
-### 5. Create A New Github Release
+### 3. Create A New Github Release
 
 On github, create a new release from the **master branch**.
 
@@ -75,7 +63,7 @@ On github, create a new release from the **master branch**.
 - use the changelog text for the description
 
 ---
-### 6. Check Out the Beta Branch
+### 4. Check Out the Beta Branch
 
 Commit any changes, then check out the beta branch:
 ```
