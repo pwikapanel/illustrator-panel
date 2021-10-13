@@ -4,7 +4,7 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
-# Svija Tools 1.0.1
+# Svija Tools 1.0.2
 
 ---
 
@@ -80,9 +80,7 @@ git push -u
 ### 7. Increment the Version Number
 
 Places to update the version number:
-- both Xcode targets
 - this README.md
-- msg.svija.love
 
 ---
 ### 8. Update tutorial content at tech.svija.com
@@ -101,6 +99,7 @@ Find a nice picture or make an ad to accompany the update, then
 - [instagram/svijalove](https://instagram/svijalove) (make it 3x wide · has to be posted from phone)
 - [linkedin.com/company/svijalove](https://linkedin.com/company/svijalove) (add text before adding image)
 
+---
 ---
 
 ### older content
