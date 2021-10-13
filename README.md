@@ -87,7 +87,7 @@ Places to update the version number:
 
 Read through the [changelog](https://tech.svija.love/reference/changelogs/changelog-tools) and make a list of modfications for the new version.
 
-Update the [documentation pages](https://tech.svija.com) if necessary.
+Update the [documentation pages](https://tech.svija.love) if necessary.
 
 ---
 ### 7. Post to Social Media
@@ -102,7 +102,7 @@ Find a nice picture or make an ad to accompany the update, then
 ---
 ---
 
-### older content
+# older content
 
 The Svija Tools folder contains the **unsigned** plugin.
 
