@@ -14,6 +14,11 @@
 
 It is updated manually as the aformentioned code is modified.
 
+**Svija Tools**: contains the **unsigned** contents of the final extension.
+
+It is generally the same as **Svija Tools Dev** except that the bundle identifier does not contain dev.
+
+**distribution**: contains the final, signed .zip extension, as well as the most recent DMG.
 
 ---
 ### Version Updates
