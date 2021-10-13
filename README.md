@@ -10,15 +10,15 @@
 
 ### File Organization
 
-**Svija Tools Dev**: contains the contents of **/Library/Application Support/Adobe/CEP/extensions/Svija Tools Dev**
+★ **Svija Tools Dev**: contains the contents of **/Library/Application Support/Adobe/CEP/extensions/Svija Tools Dev**
 
 It is updated manually as the aformentioned code is modified.
 
-**Svija Tools**: contains the **unsigned** contents of the final extension.
+★ **Svija Tools**: contains the **unsigned** contents of the final extension.
 
 It is generally the same as **Svija Tools Dev** except that the bundle identifier does not contain dev.
 
-**distribution** contains:
+★ **distribution** contains:
 - the final, signed .zip extension
 - the most recent DMG
 
