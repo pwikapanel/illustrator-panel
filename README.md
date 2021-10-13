@@ -28,7 +28,7 @@ It is generally the same as **Svija Tools Dev** except that the bundle identifie
 Following are the instructions for releasing a new version of Svija Sync.
 
 1. create new signed version, zipped in the distribution folder
-2. create new DMG, in the distribution folder
+2. create [new DMG](https://github.com/svijalove/dmg-installation), in the distribution folder
 
 ---
 ### 1. Merge to Master
