@@ -1,35 +1,69 @@
+[logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
+
+*Updated 1 October, 2021 · Toulouse*
+
+![Svija: SVG-based websites built in Adobe Illustrator][logo]
+
+# Code Signing
+
 *Updated 30 March, 2021 · based on [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
 
-![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png "Svija: SVG-based websites built in Adobe Illustrator")
-
-**Software Signing**
---------------------
 
 *See below for more complete instructions*
 
-Generate a 16-character password at [this page](https://passwordsgenerator.net) (check all but the first box).
+---
 
-### Generate the certificate
+### Prepare the Bundle
 
-    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [destination].p12
+1. Rename **Svija Tools** to **Svija Tools Prev**
 
-    Self-signed certificate generated successfully
+2. Duplicate **extensions** and rename to **Svija Tools**
 
-Copy the terminal command to the top of signing-records.txt for our records.
+3. Copy the **custom icon** from the previous Svija Tools folder
 
-* * * * *
+4. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
 
-### Sign the bundle
+5. Check for extra hidden files like **.un~** and **.swp**
+```
+find . -type f -name '*.un~' -delete
+find . -type f -name '*.swp' -delete
+```
+---
 
-*Aide-mémoire:* program destination certificate password timestamp
+### Generate the Certificate
 
-    $ ./ZXPSignCmd-64bit -sign [bundle folder] [dest path].zxp [certficate] [pwd] -tsa http://timestamp.digicert.com
+Generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box).
 
-    Signed successfully
+    $ cd ZXPSignCmd-64bit 4.1.2
+    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [filename].p12
+
+    # Self-signed certificate generated successfully
+
+    $ mv [filename].p12 ../
+    $ vi ../passwords.txt   # paste the command line
+
+---
+
+### Sign the Bundle
+
+**Note:** the bundle (**Svija Tools** in the root directory of this repository) should already have a custom icon. It is not possile to add a custom icon after signing if it was not in place at the time of signing.
+```
+#                           bundle            destination     certificate  pword  timestamp
+$ ./ZXPSignCmd-64bit -sign [bundle folder] ../[filename].zxp [certificate] [pwd] -tsa http://timestamp.digicert.com
+# Signed successfully
+```
+---
+
+### Installing the Signed Version
+
+To install the bundle:
+
+1. just change the extension from **zxp** to **zip** and unzip it
+2. paste it into the Adobe extensions folder
 
 *Reminder: you can drag a file or folder onto the terminal window to insert its path.*
 
-* * * * *
+---
 
 # More Information
 
@@ -48,7 +82,7 @@ Download the **.dmg file** for the most recent version, and open it. It contains
 
 We will keep these files in the local Mac folder associated with **Svija Tools**.
 
-* * * * *
+---
 
 ### Creating a self-signed certificate:
 
@@ -87,7 +121,7 @@ signed extension in the final ZXP archive:
 * signatures.xml: A file in the META-INF directory at the root level of the container file system that
 holds digital signatures of the container and its contents.
 
-* * * * *
+---
 
 ### Using ZXPSignCmd-64bit
 
@@ -105,7 +139,7 @@ The various options
     p12Password      certificate password
     options          -tsa <timestampURL> timestamp server
 
-* * * * *
+---
 
 ### more stuff
 
