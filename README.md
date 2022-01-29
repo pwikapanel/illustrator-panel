@@ -6,7 +6,9 @@
 
 # Svija Tools 1.0.2
 
-**Process notes:** script develompent happens in the presets-scripts repository.
+**Process notes:** script develompent happens in the [scripts-presets][l1] repository.
+
+[l1]: https://github.com/svijalove/scripts-presets
 
 This repository is ONLY for the user interface and specific functionality that cannot be tested with the scripts alone.
 
