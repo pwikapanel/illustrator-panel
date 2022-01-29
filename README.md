@@ -1,10 +1,16 @@
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 13 October, 2021 · Toulouse*
+*Updated 29 January, 2021 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
 # Svija Tools 1.0.2
+
+**Process notes:** script develompent happens in the presets-scripts repository.
+
+This repository is ONLY for the user interface and specific functionality that cannot be tested with the scripts alone.
+
+There is a second issue where there need to be two signed programs — beta and master. This is because it is not possible to run an unsigned panel in recent versions of Illustrator, making debugging complicated.
 
 ---
 
