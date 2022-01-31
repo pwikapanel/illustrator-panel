@@ -14,7 +14,7 @@ This repository contains *only* development of the **user interface** and **spec
 
 ---
 
-### Three Versions
+### Two Versions
 
 Two versions of Svija Tools are maintained: the master ZIP and the beta folder.
 
