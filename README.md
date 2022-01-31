@@ -8,7 +8,7 @@
 
 This repository contains *only* development of the **user interface** and **specific functionality** that cannot be tested with scripts-presets.
 
-**Script develompent** happens in the [scripts-presets][l1] repository.
+**Script development** happens in the [scripts-presets][l1] repository.
 
 [l1]: https://github.com/svijalove/scripts-presets
 
@@ -16,15 +16,15 @@ This repository contains *only* development of the **user interface** and **spec
 
 ### Tools Versions
 
-There is a second issue where there need to be two signed programs — beta and master. This is because it is not possible to run an unsigned panel in recent versions of Illustrator, making debugging complicated.
+Because it is not possible to run an unsigned panel in recent versions of Illustrator, two versions of Svija Tools are maintained: Beta & Master.
 
-**Svija Tools Beta**: contains the contents of **/Library/Application Support/Adobe/CEP/extensions/Svija Tools Beta**
+**Svija Tools**: (master) contains the signed contents of the final extension.
 
-It is updated manually as the aformentioned code is modified.
+It is updated when a new release is prepared.
 
-**Svija Tools**: contains the **unsigned** contents of the final extension.
+It is different from **Svija Tools Beta** only in that the bundle identifier does not contain beta.
 
-It is generally the same as **Svija Tools Beta** except that the bundle identifier does not contain dev.
+**Svija Tools Beta**: is updated and signed when a new release **presets-scripts** is prepared.
 
 **Distribution** contains:
 - the final, signed .zip extension
