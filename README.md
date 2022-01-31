@@ -18,15 +18,15 @@ There is a second issue where there need to be two signed programs — beta and
 
 ### File Versions
 
-- **Svija Tools Beta**: contains the contents of **/Library/Application Support/Adobe/CEP/extensions/Svija Tools Beta**
+**Svija Tools Beta**: contains the contents of **/Library/Application Support/Adobe/CEP/extensions/Svija Tools Beta**
 
 It is updated manually as the aformentioned code is modified.
 
-- **Svija Tools**: contains the **unsigned** contents of the final extension.
+**Svija Tools**: contains the **unsigned** contents of the final extension.
 
 It is generally the same as **Svija Tools Beta** except that the bundle identifier does not contain dev.
 
-**distribution** contains:
+**Distribution** contains:
 - the final, signed .zip extension
 - the most recent DMG
 
