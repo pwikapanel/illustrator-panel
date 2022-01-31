@@ -40,7 +40,7 @@ Create a temporary master version:
 
 - duplicate the **beta version folder** to **Svija Tools**
 - remove the word **beta** from the bundle identifier in **CSXS/manifest.xml**
-- create new signed version, zipped in the distribution folder
+- create new signed version, zipped in the **master** folder
 
 ---
 ### 2. Git Merge to Master
