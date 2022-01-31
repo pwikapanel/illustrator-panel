@@ -16,7 +16,7 @@ This repository contains *only* development of the **user interface** and **spec
 
 ### Two Versions
 
-Two versions of Svija Tools are maintained: **beta**, a folder, and **master**, a ZIP archive.
+Two versions of Svija Tools are maintained: **beta** (a folder), and **master** (a ZIP archive).
 
 > **Svija Tools Beta**: used for testing and user interface development.
 
