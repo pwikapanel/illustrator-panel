@@ -26,7 +26,7 @@ It is different from **Svija Tools Beta** only in that the bundle identifier doe
 
 > **Svija Tools Beta**: is updated and signed when a new release **presets-scripts** is prepared.
 
-> **Distribution** contains:
+**Distribution** contains:
 - the final, signed .zip extension
 - the most recent DMG
 
