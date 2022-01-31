@@ -29,6 +29,16 @@ The master is updated *only* when a **new release** is prepared, and is simply t
 To enable both versions to be installed at the same time, the beta version as a separate bundle identifier including the word **beta**.
 
 ---
+### Illustrator Versions
+
+The **interface** folder contains two Illustrator files:
+
+- **interface.ai** · the actual interface of Svija Tools
+- **colors.ai** · used for evaluating color choices
+
+Once colors are finalized in **colors.ai**, the final values are **applied to swatches** in interface.ai.
+
+---
 ### Version Updates
 
 Instructions for releasing a new version of Svija Tools.
