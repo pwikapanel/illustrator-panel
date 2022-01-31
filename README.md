@@ -24,7 +24,7 @@ The beta is updated and signed when a new release **presets-scripts** is prepare
 
 > **master**: the zipped, signed contents of the final public release.
 
-The master is updated *only* when a new release is prepared, and is simply the signed ZXP file, renamed.
+The master is updated *only* when a **new release** is prepared, and is simply the signed ZXP file, renamed.
 
 To enable both versions to be installed at the same time, the beta version as a separate bundle identifier including the word **beta**.
 
