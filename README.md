@@ -53,6 +53,12 @@ Images: Link
 Object IDs: Layer Names
 Decimal: 3
 √ Minify √ Responsive
+
+copy contents of SVG Exports to Svija Tools Beta/panel/svg
+
+this will break the signing
+
+create new signed version, unzip and replace folder Svija Tools Beta
 ---
 ### Version Updates
 
