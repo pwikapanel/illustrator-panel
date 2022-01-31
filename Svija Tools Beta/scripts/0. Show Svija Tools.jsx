@@ -4,7 +4,7 @@
 
     0. Show Svija Tools — ⇧ F1.jsx
 
-    1.0.1
+    1.0.3
 
     A very simple script that dispatches a custom event
     that can be listened for by a CEP panel (the launcher).

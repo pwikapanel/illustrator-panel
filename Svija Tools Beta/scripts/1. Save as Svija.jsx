@@ -1,31 +1,10 @@
 #target illustrator  
 
-/*———————————————————————————————————————— 1 Save as Svija — ⌘ F1.jsx
+/*———————————————————————————————————————— 1. Save as Svija.jsx
 
     1. Save as Svija — ⌘ F1.jsx
 
-    1.0.2
-
-    Saves one or all open documents as SVG, with the correct options
-    for use with Svija.
-
-    The main challenge was how to use artboards without provoking an overwrite
-    confirmation each time the files are saved.
-
-    Using artboards excludes anything that is outside of the saved artboard,
-    whereas not using artboards includes all artwork, even a large image that is
-    outside the bounds of the saved file, for example).
-
-    This required some trickiness, because just saving using artboards caused the
-    overwrite dialogs. Each artboard is saved separately (all others are deleted
-    then restored after the save).
-
-    Since the app.undo() method is unpredictable, the artboards are stored in an
-    array then recreated after each save.
-
-    The other big challenge was to engineer the whole process so that the file 
-    never has to be closed. This means making some changes (deleting template layers),
-    saving the file, then undoing the changes.
+    1.0.3
 
     notes:
 
@@ -48,74 +27,159 @@
   	svija.love · contact@svija.love */
 
 
-//———————————————————————————————————————— setup */
+//:::::::::::::::::::::::::::::::::::::::: program
 
-var appDocs = app.documents;
-var iters   = appDocs.length;
+//———————————————————————————————————————— ▼ begin program()
 
-//———————————————————————————————————————— if run as standalone */
+var program = new function(){ // can use "return" to quit at any time
 
-var msgWhat = 'Save All Documents?\n' +
-              'Press return to save all documents.\n\n' +
-              'Type command-period to save this document only.';
+//———————————————————————————————————————— initialization
+
+var   execute = true;
+var   appDocs = app.documents;
+var  docsOpen = appDocs.length;
+var activeDoc = app.activeDocument;
+var aiOptions = optionsForVersion(0);
+var         d = new Date();
+var        ms = d.getTime();
+
+//———————————————————————————————————————— if run as standalone
+
+var msgWhat = 'Save All Open Documents?\n' +
+              'Click no to save only this document.';
 
 if (typeof param == 'undefined'){
-  if (iters == 1) var param = 'save';
+  if (docsOpen == 1) var param = 'save';
   else {
     if (confirm(msgWhat)) param = 'save all'
     else param = 'save';
   }
 }
 
-//———————————————————————————————————————— program
+//———————————————————————————————————————— check for unsupported techniques
 
-var d = new Date(); var ms = d.getTime();
-var activeDoc = app.activeDocument;
-var aiOptions = st_optionsForVersion(0);
+var infringingDocs = [];
 
-for (index=0; index<iters; index++){
+//———————————————————————————————— check all open docs
 
-  // moves the doc to place 0
-  app.activeDocument = appDocs[index]; // ISG251
-  var sourceDoc = app.activeDocument;   
+for (var index=0; index<docsOpen; index++){
 
-  //———————————————————————————————— save state
+  // ISG251: moves this doc to 0 in appDocs array
+  app.activeDocument = appDocs[index];
+
+  var sourceDoc = app.activeDocument;
+  var testResults = checkForInfringement(sourceDoc);
+
+  if (testResults.length>0)
+    infringingDocs.push(testResults);
+
+	if (param=='save') break;
+}
+
+
+if (infringingDocs.length > 0){
+
+	var word = 'File contains';
+	if (infringingDocs.length > 1) word = 'Files contain'
+  
+  var msg = 'Could Not Save\n' + word + ' embedded images:\n\n';
+  for (var index=0; index<infringingDocs.length; index++){
+    msg += infringingDocs[index][1] + '\n';
+  }
+  msg += '\nPlease click Relink Images in Svija Tools.';
+  msg += '\n\nFor more information, visit tech.svija.love.';
+
+  execute = false;
+  app.activeDocument = activeDoc;
+  alert(msg);
+  return
+}
+
+//———————————————————————————————————————— loop through documents
+
+var count = 0;
+
+for (var index=0; index<docsOpen; index++){
+	count += 1;
+
+  // ISG251: moves this doc to 0 in appDocs array
+  app.activeDocument = appDocs[index];
+
+  var sourceDoc = app.activeDocument;
+
+  //———————————————————————————————— store original path & active artboard
 
   var realPath    = sourceDoc.path + '/' + sourceDoc.name;
   var activeBoard = sourceDoc.artboards.getActiveArtboardIndex();
 
-  //———————————————————————————————— save SVG's then Illustrator
+  //———————————————————————————————— save artboard SVG's then Illustrator file
 
-  st_saveAsSvgs(sourceDoc);
+  saveAsSvgs(sourceDoc);
+
   var aiFile = new File(realPath);
   sourceDoc.saveAs(aiFile, aiOptions);
 
-  //————— housekeeping after SVG export
+  //———————————————————————————————— reset active artboard or close document
 
   sourceDoc.artboards.setActiveArtboardIndex(activeBoard);
 
-  if (param == 'save') break;
   if (param == 'close'){
     sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
-    iters -= 1;
+    docsOpen -= 1;
     index -= 1;
   }
+
+  //———————————————————————————————— close document list loop
+
+  if (param == 'save') break;
 }
+
+//———————————————————————————————————————— restore frontmost doc and alert user
 
 if (param != 'close') app.activeDocument = activeDoc;
 
-var d = new Date(); ms = d.getTime() - ms;
-if (index < 2) var msg = 'File saved.';
+if (count < 2) var msg = 'File saved.';
 else var msg = 'Files saved.';
+
+var d = new Date(); ms = d.getTime() - ms;
 alert(msg + ' ('+ms+' ms)');
 
+//———————————————————————————————————————— ▲ end program()
 
-//———————————————————————————————————————— main functions
+} // program()
 
-/*———————————————————————————————————————— st_saveAsSvgs(doc){
-*/
 
-function st_saveAsSvgs(doc){
+//:::::::::::::::::::::::::::::::::::::::: main functions
+
+/*———————————————————————————————————————— checkForInfringement(sourceDoc)
+
+  checks for embedded images
+  in the future will check for:
+  - mesh
+  - freeform gradients
+  - layer blending modes
+  - effect › stylize
+
+  returns array [x, doc name, type of infringement] */
+
+function checkForInfringement(sourceDoc){
+  if (hasRasterImages(sourceDoc))
+    return [1, sourceDoc.name, 2];
+  else return [];
+}
+
+/*———————————————————————————————————————— saveAsSvgs(doc)
+
+  saves file as SVG:
+
+  - saves in sync/Svija/SVG Files
+  - removes any existing files that would provoke a confirmation dialog
+  - deletes non-printing layers
+  - saves the SVG
+  - restores the non-printing layers
+  - resets the locked/visible status of non-printing layers */
+
+function saveAsSvgs(doc){
 
   var destName   = doc.name.slice(0, -3);
   var boardsLen  = doc.artboards.length;
@@ -134,18 +198,18 @@ function st_saveAsSvgs(doc){
 
   for (j=0; j<boardsLen; j++){
     var name = destName + '_' + doc.artboards[j].name + '.svg';
-    var file = st_newFile(folder, name);
+    var file = newFile(folder, name);
     file.remove();
   }
 
   //———————————————————————————————— delete non-printing layers
 
   // array w/ information about locked & visible
-  var backupLayers = st_deleteNonPrintingLayers(doc);
+  var backupLayers = deleteNonPrintingLayers(doc);
 
   //———————————————————————————————— save svg files
 
-  var options  = st_getSvgOptions();
+  var options  = getSvgOptions();
   doc.exportFile(folder, ExportType.SVG, options);
 
   //———————————————————————————————— restore to original state
@@ -163,13 +227,14 @@ function st_saveAsSvgs(doc){
 }
 
 
-//———————————————————————————————————————— utility functions
+//:::::::::::::::::::::::::::::::::::::::: utility functions
 
-/*———————————————————————————————————————— st_newFile(folder, name) {
-returns file to save into
-// https://extendscript.docsforadobe.dev */
+/*———————————————————————————————————————— newFile(folder, name)
 
-function st_newFile(folder, name) {
+  returns file to save into
+  https://extendscript.docsforadobe.dev */
+
+function newFile(folder, name) {
 
 //var folder = Folder(app.activeDocument.path);
   var newFile = new File(folder + '/' + name);
@@ -182,11 +247,11 @@ function st_newFile(folder, name) {
   return newFile;
 }
 
-/*———————————————————————————————————————— st_getSvgOptions(){
+/*———————————————————————————————————————— getSvgOptions()
 
-    options for SVG file */
+  sets options for SVG file */
 
-function st_getSvgOptions(){
+function getSvgOptions(){
 
   var options = new ExportOptionsSVG();
 
@@ -217,11 +282,12 @@ function st_getSvgOptions(){
   return options;
 }
 
-/*———————————————————————————————————————— st_deleteNonPrintingLayers(src){
-delete any layers that are not printable
-// returns array with information about locked & visible for deleted layers */
+/*———————————————————————————————————————— deleteNonPrintingLayers(src)
 
-function st_deleteNonPrintingLayers(src){
+  delete any layers that are not printable
+  returns array with locked & visible status of deleted layers */
+
+function deleteNonPrintingLayers(src){
   var layersLen = src.layers.length;
   var results = new Array(layersLen);
 
@@ -246,11 +312,12 @@ function st_deleteNonPrintingLayers(src){
   return results;
 }
 
-/*———————————————————————————————————————— st_optionsForVersion(version){
-options for Illustrator File
-// ISG409 & JSRp84 */
+/*———————————————————————————————————————— optionsForVersion(version)
 
-function st_optionsForVersion(version){
+  options for Illustrator File
+  ISG409 & JSRp84 */
+
+function optionsForVersion(version){
 
   var options = new IllustratorSaveOptions();
 
@@ -263,5 +330,14 @@ function st_optionsForVersion(version){
   return options;
 }
 
+/*———————————————————————————————————————— hasRasterImages(doc)
 
-//———————————————————————————————————————— fin
+  checks if document has any embedded images */
+
+function hasRasterImages(doc){
+  if (doc.rasterItems.length == 0) return false;
+  else return true;
+}
+
+
+//:::::::::::::::::::::::::::::::::::::::: fin

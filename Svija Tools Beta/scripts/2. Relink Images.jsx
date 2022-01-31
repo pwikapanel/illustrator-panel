@@ -1,10 +1,10 @@
 #target illustrator  
 
-/*———————————————————————————————————————— 3 Reset Image Links — ⌘ F3.jsx
+/*———————————————————————————————————————— 2. Relink Images.jsx
 
     3. Reset Image Links — ⌘ F3.jsx
 
-    1.0.1
+    1.0.3
 
     Does a lot */
 
@@ -22,11 +22,12 @@
     github.com/svijasvg/Presets-Scripts
   	svija.love · contact@svija.love */
 
-/*———————————————————————————————————————— begin main function
 
-    this way we can use "return" to quit at any time */
+//:::::::::::::::::::::::::::::::::::::::: program
 
-var w = new function(){
+//———————————————————————————————————————— ▼ begin program()
+
+var program = new function(){ // can use "return" to quit at any time
 
 //———————————————————————————————————————— get active doc
 
@@ -48,7 +49,7 @@ if (doc.rasterItems.length + doc.placedItems.length == '00') {
 var linksFolder = Folder(app.activeDocument.path) + '/Links';
 
 if (!Folder(linksFolder).exists){
-  var msg = 'No "links" folder found.\nDo you want to create it?';
+  var msg = 'No "Links" folder found.\nDo you want to create it?';
   if (confirm(msg)) Folder(linksFolder).create();
   else{
     alert('Operation canceled');
@@ -127,13 +128,14 @@ else{
   if (!showResults) alert('Issues Found:\n' + report);
 }
 
-//———————————————————————————————————————— close main function
+//———————————————————————————————————————— ▲ end program()
 
-} // end function w()
+} // program()
 
-//———————————————————————————————————————— main functions
 
-/*———————————————————————————————————————— rasterItem(obj){
+//:::::::::::::::::::::::::::::::::::::::: main functions
+
+/*———————————————————————————————————————— rasterItem(obj)
 
   notes */
 
@@ -185,7 +187,7 @@ function rasterItem(obj){
 
 }
 
-/*———————————————————————————————————————— placedItem(obj){
+/*———————————————————————————————————————— placedItem(obj)
 
   image can't be missing unless it
   was moved after document was opened */
@@ -229,9 +231,9 @@ function placedItem(obj){
 }
 
 
-//———————————————————————————————————————— utility functions
+//:::::::::::::::::::::::::::::::::::::::: utility functions
 
-/*———————————————————————————————————————— alertRec(obj){
+/*———————————————————————————————————————— alertRec(obj)
 
   create translucent rectangle to signal embedded images
   that can't be found and need to be replaced
@@ -259,4 +261,5 @@ function alertRec(obj){
   return rec;
 }
 
-//———————————————————————————————————————— fin
+
+//:::::::::::::::::::::::::::::::::::::::: fin

@@ -4,7 +4,7 @@
 
     4. Reset Object IDs — ⌘ F4.jsx
 
-    1.0.1
+    1.0.3
 
     description */
 

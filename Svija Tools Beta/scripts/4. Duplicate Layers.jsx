@@ -4,7 +4,7 @@
 
     2. Duplicate Layers — ⌘ F2.jsx
 
-    1.0.1
+    1.0.3
 
     recursive delete in case multiple layers share same name
 
