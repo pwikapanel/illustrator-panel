@@ -4,6 +4,10 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
+# NOTE TO MYSELF
+
+the version should be the TITLE in the MANIFEST for the INSTRUCTIONS panel
+
 # Svija Tools 1.0.1
 
 This repository contains *only* development of the **user interface** and **specific functionality** that cannot be tested with scripts-presets.
@@ -38,6 +42,17 @@ The **interface** folder contains two Illustrator files:
 
 Once colors are finalized in **colors.ai**, the final values are **applied to swatches** in interface.ai.
 
+File › Export As…
+to folder "SVG Exports"
+Format: SVG
+√ Use Artboards
+
+Styling: Internal CSS
+Font: SVG
+Images: Link
+Object IDs: Layer Names
+Decimal: 3
+√ Minify √ Responsive
 ---
 ### Version Updates
 
