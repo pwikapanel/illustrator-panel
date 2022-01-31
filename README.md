@@ -18,15 +18,15 @@ This repository contains *only* development of the **user interface** and **spec
 
 Because it is not possible to run an unsigned panel in recent versions of Illustrator, two versions of Svija Tools are maintained: Beta & Master.
 
-**Svija Tools**: (master) contains the signed contents of the final public release.
+> **Svija Tools**: (master) contains the signed contents of the final public release.
 
 It is updated only when a new release is prepared.
 
 It is different from **Svija Tools Beta** only in that the bundle identifier does not contain beta.
 
-**Svija Tools Beta**: is updated and signed when a new release **presets-scripts** is prepared.
+> **Svija Tools Beta**: is updated and signed when a new release **presets-scripts** is prepared.
 
-**Distribution** contains:
+> **Distribution** contains:
 - the final, signed .zip extension
 - the most recent DMG
 
