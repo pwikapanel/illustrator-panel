@@ -4,13 +4,13 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
-# Svija Tools 1.0.2
+# Svija Tools 1.0.0
 
 **Process notes:** script develompent happens in the [scripts-presets][l1] repository.
 
 [l1]: https://github.com/svijalove/scripts-presets
 
-This repository is ONLY for the user interface and specific functionality that cannot be tested with the scripts alone.
+This repository is *only* for the **user interface** and **specific functionality** that cannot be tested with scripts-presets.
 
 There is a second issue where there need to be two signed programs — beta and master. This is because it is not possible to run an unsigned panel in recent versions of Illustrator, making debugging complicated.
 
@@ -18,15 +18,15 @@ There is a second issue where there need to be two signed programs — beta and
 
 ### File Versions
 
-★ **Svija Tools Dev**: contains the contents of **/Library/Application Support/Adobe/CEP/extensions/Svija Tools Dev**
+- **Svija Tools Beta**: contains the contents of **/Library/Application Support/Adobe/CEP/extensions/Svija Tools Beta**
 
 It is updated manually as the aformentioned code is modified.
 
-★ **Svija Tools**: contains the **unsigned** contents of the final extension.
+- **Svija Tools**: contains the **unsigned** contents of the final extension.
 
-It is generally the same as **Svija Tools Dev** except that the bundle identifier does not contain dev.
+It is generally the same as **Svija Tools Beta** except that the bundle identifier does not contain dev.
 
-★ **distribution** contains:
+**distribution** contains:
 - the final, signed .zip extension
 - the most recent DMG
 
