@@ -18,11 +18,13 @@ This repository contains *only* development of the **user interface** and **spec
 
 Two versions of Svija Tools are maintained: the master ZIP and the beta folder.
 
-> **Svija Tools Beta**: is updated and signed when a new release **presets-scripts** is prepared.
+> **Svija Tools Beta**: used for testing and user interface development.
+
+The beta is updated and signed when a new release **presets-scripts** is prepared.
 
 > **master**: the zipped, signed contents of the final public release.
 
-It is updated *only* when a new release is prepared, and is simple the signed ZXP file, renamed.
+The master is updated *only* when a new release is prepared, and is simply the signed ZXP file, renamed.
 
 To enable both versions to be installed at the same time, the beta version as a separate bundle identifier including the word **beta**.
 
