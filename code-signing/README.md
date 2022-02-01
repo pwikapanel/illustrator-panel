@@ -38,7 +38,7 @@ At the end, change the .zxp extension to **.zip**, and put the file in the **mas
 Use the included password below *or* generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box):
 
 ```
-cd code-signing/ZXPSignCmd-64bit\ 4.1.2
+cd ZXPSignCmd-64bit\ 4.1.2
 ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift UjfcXTWjW8q3b35h signed-certificate.p12
 
 # Self-signed certificate generated successfully
