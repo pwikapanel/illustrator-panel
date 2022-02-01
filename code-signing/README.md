@@ -52,15 +52,13 @@ git push -u
 
 If the password was changed:
 
-    vi ../passwords.txt     # paste the entire ./ZXP... command line
+    vi passwords.txt     # paste the entire ./ZXP... command line
 
 Then commit the change:
-
 ```
-git commit -m "signed certificate password added" ../passwords.txt
+git commit -m "signed certificate password added" passwords.txt
 git push -u
 ```
-
 ---
 ### Sign the Bundle
 
