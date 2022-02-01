@@ -35,17 +35,21 @@ At the end, change the extension .zxp to .zip, and put the file in the **master*
 
 Use the password below or generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box):
 
-    cd code-signing/ZXPSignCmd-64bit\ 4.1.2
-    ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift UjfcXTWjW8q3b35h signed-certificate.p12
+```
+cd code-signing/ZXPSignCmd-64bit\ 4.1.2
+./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift UjfcXTWjW8q3b35h signed-certificate.p12
 
-    # Self-signed certificate generated successfully
+# Self-signed certificate generated successfully
+```
 
 Then move the certificate to the **code-signing** directory, and add it to the repository:
 
-    mv signed-certificate.p12 ../
-    git add ../signed-certificate.p12
-    git commit -m "signed certificate created" ../signed-certificate.p12
-    git push -u
+```
+mv signed-certificate.p12 ../
+git add ../signed-certificate.p12
+git commit -m "signed certificate created" ../signed-certificate.p12
+git push -u
+```
 
 If the password was changed:
 
@@ -53,17 +57,23 @@ If the password was changed:
 
 Then commit the change:
 
-    git commit -m "signed certificate password added" ../passwords.txt
-    git push -u
+```
+git commit -m "signed certificate password added" ../passwords.txt
+git push -u
+```
 
 ---
 ### Sign the Bundle
 
-**Note:** the bundle (**Svija Tools** in the root directory of this repository) should already have a custom icon. It is not possile to add a custom icon after signing if it was not in place at the time of signing.
+If this is a public release, a **custom icon** needs to be added to the folder *before* the bundle is signed.
+
+To sign **Svija Tools Beta**:
 ```
-#                           bundle            destination     certificate  pword  timestamp
-$ ./ZXPSignCmd-64bit -sign [bundle folder] ../[filename].zxp [certificate] [pwd] -tsa http://timestamp.digicert.com
-# Signed successfully
+cd code-signing/ZXPSignCmd-64bit\ 4.1.2
+
+#                         bundle            destination     certificate  pword  timestamp
+./ZXPSignCmd-64bit -sign ../ ../[filename].zxp [certificate] UjfcXTWjW8q3b35h -tsa http://timestamp.digicert.com
+Signed successfully
 ```
 ---
 
@@ -88,10 +98,12 @@ To be installed normally, an Adobe extension has to be signed.
 
 Download the **.dmg file** for the most recent version, and open it. It contains four files:
 
-    ZXPSignCmd-64bit
-    ZXPSignCmd-64bit-minimal
-    ZXPSignCmd-64bit-minimal.dSYM
-    ZXPSignCmd-64bit.dSYM
+```
+ZXPSignCmd-64bit
+ZXPSignCmd-64bit-minimal
+ZXPSignCmd-64bit-minimal.dSYM
+ZXPSignCmd-64bit.dSYM
+```
 
 We will keep these files in the local Mac folder associated with **Svija Tools**.
 
@@ -99,21 +111,25 @@ We will keep these files in the local Mac folder associated with **Svija Tools**
 
 ### Creating a self-signed certificate:
 
-    ZXPSignCmd-64bit -selfSignedCert <countryCode> <stateOrProvince> <organization>
-                                     <commonName> <password> <outputPath.p12> [options]
+```
+ZXPSignCmd-64bit -selfSignedCert <countryCode> <stateOrProvince> <organization>
+                                 <commonName> <password> <outputPath.p12> [options]
+```
 
 The various options:
 
-    countryCode                  certificate identifying information
-    stateOrProvince
-    organization
-    commonName
-    password                     password for the new certificate
-    outputPath.p12               path and file name for the new certificate
-    options -locality <code>     locale code to associate with this certificate
-            -orgUnit <name>      organizational unit to associate with this certificate
-            -email <addr>        email address to associate with this certificate
-            -validityDays <num>  number of days from today certificate remains valid
+```
+countryCode                  certificate identifying information
+stateOrProvince
+organization
+commonName
+password                     password for the new certificate
+outputPath.p12               path and file name for the new certificate
+options -locality <code>     locale code to associate with this certificate
+        -orgUnit <name>      organizational unit to associate with this certificate
+        -email <addr>        email address to associate with this certificate
+        -validityDays <num>  number of days from today certificate remains valid
+```
 
 *Example:*
 
@@ -146,11 +162,13 @@ You can use this tool to create a self-signed certificate, create a signed ZXP p
 
 The various options
 
-    inputDir         path to the folder containing the files to package
-    outputZxp        path and file name for the resulting ZXP package
-    p12              path to the signing certificate
-    p12Password      certificate password
-    options          -tsa <timestampURL> timestamp server
+```
+inputDir         path to the folder containing the files to package
+outputZxp        path and file name for the resulting ZXP package
+p12              path to the signing certificate
+p12Password      certificate password
+options          -tsa <timestampURL> timestamp server
+```
 
 ---
 
@@ -158,18 +176,22 @@ The various options
 
 make certificate:
 
-    $ ./ZXPSignCmd-64bit -selfSignedCert <countryCode> <stateOrProvince> <organization> <commonName> <password> <outputPath.p12> [options]
+```
+./ZXPSignCmd-64bit -selfSignedCert <countryCode> <stateOrProvince> <organization> <commonName> <password> <outputPath.p12> [options]
 
-    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift q8BZeCLqx3a TestCert.p12
+./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift q8BZeCLqx3a TestCert.p12
 Self-signed certificate generated successfully
+```
 
 create zxp:
 
-    $ ./ZXPSignCmd-64bit -sign <inputDirectory> <outputZxp> <p12> <p12Password> [options]
+```
+./ZXPSignCmd-64bit -sign <inputDirectory> <outputZxp> <p12> <p12Password> [options]
 
 option -tsa [time stamp server]
+```
 see list here: https://gist.github.com/Manouchehri/fd754e402d98430243455713efada710
 
-    $ ./ZXPSignCmd-64bit -sign /Library/Application\ Support/Adobe/CEP/extensions/Svija\ Tools.extension SvijaTools.zxp TestCert.p12 q8BZeCLqx3a -tsa http://timestamp.digicert.com
+    ./ZXPSignCmd-64bit -sign /Library/Application\ Support/Adobe/CEP/extensions/Svija\ Tools.extension SvijaTools.zxp TestCert.p12 q8BZeCLqx3a -tsa http://timestamp.digicert.com
 
 Signed successfully
