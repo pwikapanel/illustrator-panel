@@ -59,7 +59,10 @@ Use the password below or generate a 16-character password at [passwordsgenerato
 Then:
 
     mv signed-certificate.p12 ../
-    # vi ../passwords.txt             # paste the entire ./ZXP... command line
+
+If the password was changed:
+
+    vi ../passwords.txt     # paste the entire ./ZXP... command line
 
 ---
 ### Sign the Bundle
