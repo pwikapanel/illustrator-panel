@@ -6,7 +6,7 @@
 
 # Code Signing
 
-*Based on [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
+*Based on [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*.
 
 
 All the commands below start from the **code-signing** directory.
@@ -23,8 +23,10 @@ All the commands below start from the **code-signing** directory.
 3. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
 4. Check for extra hidden files like **.un~** and **.swp**
 ```
+cd ../Svija\ Tools
 find . -type f -name '*.un~' -delete
 find . -type f -name '*.swp' -delete
+cd code-signing
 ```
 You can then sign the package as described.
 
