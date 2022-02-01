@@ -12,14 +12,32 @@
 *See below for more complete instructions*
 
 ---
+### New Instructions
 
+*If you are just signing the **Beta version** for testing, skip down to [Generate the Certificate][gs].*
+
+[gs]: #generate-the-certificate
+
+1. Copy **Svija Tools Beta** to **Svija Tools** (do *not* add it to the repository)
+2. Copy the **custom icon** from the previous Svija Tools folder (in the DMG)
+3. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
+4. Check for extra hidden files like **.un~** and **.swp**
+```
+find . -type f -name '*.un~' -delete
+find . -type f -name '*.swp' -delete
+```
+You can then sign the package as described.
+
+At the end, change the extension .zxp to .zip, and put the file in the **master** folder.
+
+---
 ### Prepare the Bundle
 
 1. Rename **Svija Tools** to **Svija Tools Prev**
 
 2. Duplicate **extensions** and rename to **Svija Tools**
 
-3. Copy the **custom icon** from the previous Svija Tools folder
+3. Copy the **custom icon** from the previous Svija Tools folder (in the DMG)
 
 4. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
 
