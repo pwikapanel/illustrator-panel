@@ -30,7 +30,7 @@ cd ../code-signing
 ```
 You can then sign the package as described below.
 
-At the end, change the extension .zxp to .zip, and put the file in the **master** folder.
+At the end, change the .zxp extension to **.zip**, and put the file in the **master** folder.
 
 ---
 ### Generate the Certificate
