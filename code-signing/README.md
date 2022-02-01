@@ -85,6 +85,7 @@ password=UjfcXTWjW8q3b35h
 tsa=http://timestamp.digicert.com
 
 ./ZXPSignCmd-64bit -sign "$bundle" "$filename" "$certificate" "$password" -tsa "$tsa"
+
 cd ..
 ```
 ---
