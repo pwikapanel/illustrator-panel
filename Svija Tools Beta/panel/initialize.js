@@ -2,7 +2,7 @@
 
 var csif = new CSInterface();
 csif.setWindowTitle(title);
-setCookie('advanced', advanced);
+setCookie('more', more);
 
 //———————————————————————————————————————— set size
 
