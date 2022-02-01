@@ -1,12 +1,12 @@
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 1 October, 2021 · Toulouse*
+*Updated 31 January, 2022 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
 # Code Signing
 
-*Updated 30 March, 2021 · based on [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
+*Based on [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*
 
 
 *See below for more complete instructions*
