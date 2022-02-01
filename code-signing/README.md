@@ -40,12 +40,8 @@ Use the included password below *or* generate a 16-character password at [passwo
 ```
 cd ZXPSignCmd-64bit\ 4.1.2
 ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift UjfcXTWjW8q3b35h signed-certificate.p12
-
-# Self-signed certificate generated successfully
 ```
-
 Then move the certificate to the **code-signing** directory, and add it to the repository:
-
 ```
 mv signed-certificate.p12 ../
 git add ../signed-certificate.p12
