@@ -31,22 +31,6 @@ You can then sign the package as described.
 At the end, change the extension .zxp to .zip, and put the file in the **master** folder.
 
 ---
-### Prepare the Bundle
-
-1. Rename **Svija Tools** to **Svija Tools Prev**
-
-2. Duplicate **extensions** and rename to **Svija Tools**
-
-3. Copy the **custom icon** from the previous Svija Tools folder (in the DMG)
-
-4. Edit **CSXS/manifest.xml** and remove all occurences of **Dev**
-
-5. Check for extra hidden files like **.un~** and **.swp**
-```
-find . -type f -name '*.un~' -delete
-find . -type f -name '*.swp' -delete
-```
----
 ### Generate the Certificate
 
 Use the password below or generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box):
