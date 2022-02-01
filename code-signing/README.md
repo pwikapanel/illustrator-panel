@@ -76,7 +76,7 @@ To sign the **Public Release**:
 bundle=../../Svija\ Tools
 filename=../svija-tools.zip
 ```
-Finish the actual signing:
+**Sign the bundle**:
 ```
 cd ZXPSignCmd-64bit\ 4.1.2
 
