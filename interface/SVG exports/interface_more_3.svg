@@ -351,12 +351,12 @@
 	<g id="return">
 	</g>
 	<g id="bottom_bar">
-		<a xlink:href="simple.html" >
+		<a xlink:href="less.html" >
 			<rect x="160" y="139" class="st24" width="80" height="13"/>
 		</a>
 	</g>
 	<g id="logos">
-		<a xlink:href="advanced-info.html" >
+		<a xlink:href="more-info.html" >
 			<rect x="112" y="77" class="st24" width="121" height="27.5"/>
 		</a>
 	</g>
