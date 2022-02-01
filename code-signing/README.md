@@ -26,9 +26,9 @@ All the commands below start from the **code-signing** directory.
 cd ../Svija\ Tools
 find . -type f -name '*.un~' -delete
 find . -type f -name '*.swp' -delete
-cd code-signing
+cd ../code-signing
 ```
-You can then sign the package as described.
+You can then sign the package as described below.
 
 At the end, change the extension .zxp to .zip, and put the file in the **master** folder.
 
@@ -197,3 +197,9 @@ see list here: https://gist.github.com/Manouchehri/fd754e402d98430243455713efada
     ./ZXPSignCmd-64bit -sign /Library/Application\ Support/Adobe/CEP/extensions/Svija\ Tools.extension SvijaTools.zxp TestCert.p12 q8BZeCLqx3a -tsa http://timestamp.digicert.com
 
 Signed successfully
+
+---
+
+You can then sign the package as described below.
+
+At the end, change the extension .zxp to .zip, and put the file in the **master** folder.
