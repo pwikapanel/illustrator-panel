@@ -49,17 +49,17 @@ find . -type f -name '*.swp' -delete
 ---
 ### Generate the Certificate
 
-Generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box).
+Use the password below or generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box):
 
-    cd ZXPSignCmd-64bit 4.1.2
-    ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [filename].p12
+    cd code-signing/ZXPSignCmd-64bit\ 4.1.2
+    ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift UjfcXTWjW8q3b35h signed-certificate.p12
 
     # Self-signed certificate generated successfully
 
 Then:
 
-    $ mv [filename].p12 ../
-    $ vi ../passwords.txt   # paste the command line
+    mv signed-certificate.p12 ../
+    # vi ../passwords.txt             # paste the entire ./ZXP... command line
 
 ---
 ### Sign the Bundle
