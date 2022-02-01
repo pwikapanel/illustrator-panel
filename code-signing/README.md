@@ -66,10 +66,10 @@ If this is a public release, a **custom icon** needs to be added to the folder *
 
 To sign **Svija Tools Beta**:
 ```
-cd code-signing/ZXPSignCmd-64bit\ 4.1.2
+cd ZXPSignCmd-64bit\ 4.1.2
 
 #                         bundle            destination     certificate  pword  timestamp
-./ZXPSignCmd-64bit -sign ../ ../[filename].zxp [certificate] UjfcXTWjW8q3b35h -tsa http://timestamp.digicert.com
+./ZXPSignCmd-64bit -sign ../../ ../[filename].zxp [certificate] UjfcXTWjW8q3b35h -tsa http://timestamp.digicert.com
 Signed successfully
 ```
 ---
