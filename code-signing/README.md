@@ -66,8 +66,6 @@ If this is a public release, a **custom icon** needs to be added to the folder *
 
 To sign **Svija Tools Beta**:
 ```
-cd ZXPSignCmd-64bit\ 4.1.2
-
 bundle=../../Svija\ Tools\ Beta
 filename=../svija-tools-beta.zip
 ```
