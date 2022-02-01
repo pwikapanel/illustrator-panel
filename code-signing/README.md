@@ -14,7 +14,7 @@
 ---
 ### New Instructions
 
-*If you are just signing the **Beta version** for testing, skip down to [Generate the Certificate][gs].*
+*If you are just signing the **beta version** for testing, skip down to [Generate the Certificate][gs].*
 
 [gs]: #generate-the-certificate
 
