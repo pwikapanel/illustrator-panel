@@ -1,6 +1,6 @@
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 29 January, 2021 · Toulouse*
+*Updated 1 February, 2021 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
@@ -123,9 +123,9 @@ git push -u
 ### 6. Increment the Version Number
 
 Places to update the version number:
-- this README.md
-- Svija Tools Beta/CSXS/manifest.xml
-
+```
+vi -O README.md Svija\ Tools\ Beta/panel/*info*
+```
 ---
 ### 7. Update tutorial content at tech.svija.com
 
