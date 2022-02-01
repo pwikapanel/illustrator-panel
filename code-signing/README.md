@@ -12,7 +12,7 @@
 *See below for more complete instructions*
 
 ---
-### New Instructions
+### For Public Release
 
 *If you are just signing the **beta version** for testing, skip down to [Generate the Certificate][gs].*
 
