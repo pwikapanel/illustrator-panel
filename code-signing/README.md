@@ -56,13 +56,21 @@ Use the password below or generate a 16-character password at [passwordsgenerato
 
     # Self-signed certificate generated successfully
 
-Then:
+Then move the certificate to the **code-signing** directory, and add it to the repository:
 
     mv signed-certificate.p12 ../
+    git add ../signed-certificate.p12
+    git commit -m "signed certificate created" ../signed-certificate.p12
+    git push -u
 
 If the password was changed:
 
     vi ../passwords.txt     # paste the entire ./ZXP... command line
+
+Then commit the change:
+
+    git commit -m "signed certificate password added" ../passwords.txt
+    git push -u
 
 ---
 ### Sign the Bundle
