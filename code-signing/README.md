@@ -47,21 +47,21 @@ find . -type f -name '*.un~' -delete
 find . -type f -name '*.swp' -delete
 ```
 ---
-
 ### Generate the Certificate
 
 Generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box).
 
-    $ cd ZXPSignCmd-64bit 4.1.2
-    $ ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [filename].p12
+    cd ZXPSignCmd-64bit 4.1.2
+    ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift [password] [filename].p12
 
     # Self-signed certificate generated successfully
+
+Then:
 
     $ mv [filename].p12 ../
     $ vi ../passwords.txt   # paste the command line
 
 ---
-
 ### Sign the Bundle
 
 **Note:** the bundle (**Svija Tools** in the root directory of this repository) should already have a custom icon. It is not possile to add a custom icon after signing if it was not in place at the time of signing.
