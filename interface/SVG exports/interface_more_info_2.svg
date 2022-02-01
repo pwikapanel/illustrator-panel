@@ -29,8 +29,7 @@
 	.st23{fill:#505050;}
 	.st24{fill:#E6E6E6;}
 	.st25{fill:#2D8CEB;}
-	.st26{opacity:0.2;fill:#00FF00;}
-	.st27{opacity:0.2;fill:#FF0000;}
+	.st26{opacity:0;}
 </style>
 <g id="not_buttons__xBB_">
 	<g id="background">
@@ -115,7 +114,7 @@
 <g id="ai_links__xBB_">
 	<g id="return">
 		<a xlink:href="more.html" >
-			<rect x="0" y="0" class="st27" width="240" height="327"/>
+			<rect x="0" y="0" class="st26" width="240" height="327"/>
 		</a>
 	</g>
 	<g id="bottom_bar">

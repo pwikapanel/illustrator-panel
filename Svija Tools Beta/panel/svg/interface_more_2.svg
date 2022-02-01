@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 26.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 240 152" style="enable-background:new 0 0 240 152;" xml:space="preserve">
 <style type="text/css">
@@ -28,8 +28,7 @@
 	.st22{fill:#E6E6E6;}
 	.st23{fill:#2D8CEB;}
 	.st24{fill:#282828;}
-	.st25{opacity:0.2;fill:#00FF00;}
-	.st26{opacity:0.2;fill:#FF0000;}
+	.st25{opacity:0;}
 </style>
 <g id="not_buttons__xBB_">
 	<g id="background">
@@ -51,7 +50,7 @@
 	</g>
 	<g id="bottom_bar_text">
 		<g>
-			<text transform="matrix(1 0 0 1 191.9962 148.5822)" class="st8 st13 st14">L E S S</text>
+			<text transform="matrix(1 0 0 1 179.5529 148.5822)" class="st8 st13 st14">S I M P L E</text>
 		</g>
 		<path class="st8" d="M227.304,148.692l-0.51-0.51l2.183-2.182l-2.183-2.182l0.51-0.51l2.692,2.691L227.304,148.692z M225.455,146
 			l-2.691-2.691l-0.51,0.51l2.182,2.182l-2.182,2.182l0.51,0.51L225.455,146z"/>
@@ -353,13 +352,13 @@
 	<g id="return">
 	</g>
 	<g id="bottom_bar">
-		<a xlink:href="simple.html" >
-			<rect x="160" y="139" class="st26" width="80" height="13"/>
+		<a xlink:href="less.html" >
+			<rect x="160" y="139" class="st25" width="80" height="13"/>
 		</a>
 	</g>
 	<g id="logos">
-		<a xlink:href="advanced-info.html" >
-			<rect x="112" y="77" class="st26" width="121" height="27.5"/>
+		<a xlink:href="more-info.html" >
+			<rect x="112" y="77" class="st25" width="121" height="27.5"/>
 		</a>
 	</g>
 </g>

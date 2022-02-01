@@ -41,24 +41,28 @@ The **interface** folder contains two Illustrator files:
 - **colors.ai** · used for evaluating color choices
 
 Once colors are finalized in **colors.ai**, the final values are **applied to swatches** in interface.ai.
-
-File › Export As…
-to folder "SVG Exports"
+```
+File › Save As…
+Name: interface.svg
 Format: SVG
+In folder "SVG Exports"
 √ Use Artboards
 
-Styling: Internal CSS
-Font: SVG
-Images: Link
-Object IDs: Layer Names
-Decimal: 3
-√ Minify √ Responsive
+Fonts › Type: SVG
+Subsetting: None
+Image Location: Link
+Uncheck Preserve Illustrator Editing Capabilities
+CSS Properties: Style Elements
+Decimal Places: 3
+Check Output fewer <tspan> elements
+Check Responsive
+```
+After exporting, copy the contents of **SVG Exports** to **Svija Tools Beta/panel/svg**
 
-copy contents of SVG Exports to Svija Tools Beta/panel/svg
+The bundle will need to be re-signed before the panel will function.
 
-this will break the signing
+After creating a new signed version, **unzip it** and replace the **folder Svija Tools Beta**.
 
-create new signed version, unzip and replace folder Svija Tools Beta
 ---
 ### Version Updates
 

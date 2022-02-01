@@ -28,8 +28,7 @@
 	.st22{fill:#E6E6E6;}
 	.st23{fill:#2D8CEB;}
 	.st24{fill:#282828;}
-	.st25{opacity:0.2;fill:#00FF00;}
-	.st26{opacity:0.2;fill:#FF0000;}
+	.st25{opacity:0;}
 </style>
 <g id="not_buttons__xBB_">
 	<g id="background">
@@ -354,12 +353,12 @@
 	</g>
 	<g id="bottom_bar">
 		<a xlink:href="simple.html" >
-			<rect x="160" y="139" class="st26" width="80" height="13"/>
+			<rect x="160" y="139" class="st25" width="80" height="13"/>
 		</a>
 	</g>
 	<g id="logos">
 		<a xlink:href="advanced-info.html" >
-			<rect x="112" y="77" class="st26" width="121" height="27.5"/>
+			<rect x="112" y="77" class="st25" width="121" height="27.5"/>
 		</a>
 	</g>
 </g>
