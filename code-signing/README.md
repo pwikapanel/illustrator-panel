@@ -69,8 +69,12 @@ To sign **Svija Tools Beta**:
 cd ZXPSignCmd-64bit\ 4.1.2
 
 #                         bundle            destination     certificate  pword  timestamp
-./ZXPSignCmd-64bit -sign ../../ ../[filename].zxp [certificate] UjfcXTWjW8q3b35h -tsa http://timestamp.digicert.com
-Signed successfully
+bundle=../../Svija\ Tools\ Beta
+filename=../signed-extension.zxp
+certificate=../signed-certificate.p12
+password=UjfcXTWjW8q3b35h
+tsa=http://timestamp.digicert.com
+./ZXPSignCmd-64bit -sign "$bundle" "$filename" "$certificate" "$password" -tsa "$tsa"
 ```
 ---
 
