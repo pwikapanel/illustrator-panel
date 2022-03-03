@@ -94,11 +94,11 @@ cd ..
 To install the bundle:
 
 1. just change the extension from **zxp** to **zip** and unzip it
-2. paste it into the Adobe extensions folder. In the Finder:
-```
-copy this path: /Library/Application Support/Adobe/CEP/extensions
-cmd-shift-G then paste
-```
+2. paste it into the Adobe extensions folder  
+in the Finder, type **cmd-shift-G**, then paste:
+
+    /Library/Application Support/Adobe/CEP/extensions
+
 *Reminder: you can drag a file or folder onto the terminal window to insert its path.*
 
 ---
