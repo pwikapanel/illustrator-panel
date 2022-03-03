@@ -43,6 +43,13 @@ var aiOptions = optionsForVersion(0);
 var         d = new Date();
 var        ms = d.getTime();
 
+//———————————————————————————————————————— if run by Tools panel
+
+// param is set by panel right before script is called
+
+if (typeof param == 'undefined') alert('param is undefined');
+else alert('param = '+param);
+
 //———————————————————————————————————————— if run as standalone
 
 var msgWhat = 'Save All Open Documents?\n' +
