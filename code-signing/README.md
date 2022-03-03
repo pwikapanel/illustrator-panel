@@ -68,7 +68,7 @@ If this is a public release, a **custom icon** needs to be added to the folder *
 To sign **Svija Tools Beta**:
 ```
 bundle=../../Svija\ Tools\ Beta
-filename=../svija-tools-beta.zip
+filename=../../Svija/ Tools\ Beta.zip
 ```
 To sign the **Public Release**:
 ```
