@@ -88,6 +88,7 @@ tsa=http://timestamp.digicert.com
 cd ..
 ```
 At this point, you can delete the previous version in the finder and replace it with the new version.
+
 ---
 ### Installing the Signed Version
 
