@@ -68,7 +68,7 @@ If this is a public release, a **custom icon** needs to be added to the folder *
 To sign **Svija Tools Beta**:
 ```
 bundle=../../Svija\ Tools\ Beta
-filename=../../Svija/ Tools\ Beta.zip
+filename=../../Svija\ Tools\ Beta.zip
 ```
 To sign the **Public Release**:
 ```
@@ -87,8 +87,8 @@ tsa=http://timestamp.digicert.com
 
 cd ..
 ```
+At this point, you can delete the previous version in the finder and replace it with the new version.
 ---
-
 ### Installing the Signed Version
 
 To install the bundle:
