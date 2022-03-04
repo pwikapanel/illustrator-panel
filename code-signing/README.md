@@ -65,14 +65,18 @@ git push -u
 
 Remove all invisible files from the bundle:
 ```
-rm -rf ../Svija\ Tools\ Beta/\.*
+rm -rf ../Svija\ Tools\ Beta/\.[!.]*
+rm -rf ../Svija\ Tools\ Beta/*/\.[!.]*
+rm -rf ../Svija\ Tools\ Beta/*/*/\.[!.]*
 ```
 *Note: this will remove Vim undo's.*
 
 <details><summary>For the regular release</summary>
 
 ```
-rm -rf ../Svija\ Tools/\.*
+rm -rf ../Svija\ Tools/\.[!.]*
+rm -rf ../Svija\ Tools/*/\.[!.]*
+rm -rf ../Svija\ Tools/*/*/\.[!.]*
 ```
 </details>
 
