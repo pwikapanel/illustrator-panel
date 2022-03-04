@@ -29,6 +29,23 @@ find . -type f -name '*.un~' -delete
 find . -type f -name '*.swp' -delete
 cd ../code-signing
 ```
+Remove all invisible files from the bundle:
+```
+rm -rf ../Svija\ Tools\ Beta/\.[!.]*
+rm -rf ../Svija\ Tools\ Beta/*/\.[!.]*
+rm -rf ../Svija\ Tools\ Beta/*/*/\.[!.]*
+```
+*Note: this will remove Vim undo's.*
+
+<details><summary>For the regular release</summary>
+
+```
+rm -rf ../Svija\ Tools/\.[!.]*
+rm -rf ../Svija\ Tools/*/\.[!.]*
+rm -rf ../Svija\ Tools/*/*/\.[!.]*
+```
+</details>
+
 You can then sign the package as described below.
 
 At the end, change the .zxp extension to **.zip**, and put the file in the **master** folder.
@@ -60,26 +77,6 @@ Then commit the change:
 git commit -m "signed certificate password added" passwords.txt
 git push -u
 ```
----
-### Prepare the Bundle
-
-Remove all invisible files from the bundle:
-```
-rm -rf ../Svija\ Tools\ Beta/\.[!.]*
-rm -rf ../Svija\ Tools\ Beta/*/\.[!.]*
-rm -rf ../Svija\ Tools\ Beta/*/*/\.[!.]*
-```
-*Note: this will remove Vim undo's.*
-
-<details><summary>For the regular release</summary>
-
-```
-rm -rf ../Svija\ Tools/\.[!.]*
-rm -rf ../Svija\ Tools/*/\.[!.]*
-rm -rf ../Svija\ Tools/*/*/\.[!.]*
-```
-</details>
-
 ---
 ### Sign the Bundle
 
