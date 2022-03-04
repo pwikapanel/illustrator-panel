@@ -18,6 +18,19 @@ This repository contains *only* development of the **user interface** and **spec
 
 ---
 
+<details><summary>Expand test codes</summary>
+```
+svija.dev
+svija210901
+r2vv5Qf6cS7D6hPy
+
+newuser.svija.dev
+newuser220303
+CqGlXJM1tUXIkOIn
+```
+</details>
+
+---
 ### Two Versions
 
 Two versions of Svija Tools are maintained: **beta** (a folder), and **master** (a ZIP archive).
