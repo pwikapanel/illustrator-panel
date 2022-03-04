@@ -56,7 +56,7 @@ cd ZXPSignCmd-64bit\ 4.1.2
 mv signed-certificate.p12 ../
 cd ..
 ```
-Then move the certificate to the **code-signing** directory, and add it to the repository:
+Then add it to the repository:
 ```
 git add signed-certificate.p12
 git commit -m "signed certificate created" signed-certificate.p12
