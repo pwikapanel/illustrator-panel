@@ -14,9 +14,9 @@ All the commands below start from the **code-signing** directory.
 ---
 ### Public Releases
 
-*If you are just signing the **beta version** for testing, skip down to [Sign the Bundle][gs].*
+*If you are just signing the **beta version** for testing, skip down to [Prepare the Bundle][gs].*
 
-[gs]: #sign-the-bundle
+[gs]: #prepare-the-bundle
 
 1. Copy **Svija Tools Beta** to **Svija Tools** (do *not* add it to the repository)
 2. Copy and paste the **custom icon** from the previous Svija Tools folder (in the DMG)
@@ -59,6 +59,13 @@ Then commit the change:
 ```
 git commit -m "signed certificate password added" passwords.txt
 git push -u
+```
+---
+### Prepare the Bundle
+
+Remove all invisible files from the bundle:
+```
+rm -rf ../../Svija\ Tools\ Beta/\.*
 ```
 ---
 ### Sign the Bundle
