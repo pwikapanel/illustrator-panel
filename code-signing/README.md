@@ -53,11 +53,11 @@ Use the included password below *or* generate a 16-character password at [passwo
 ```
 cd ZXPSignCmd-64bit\ 4.1.2
 ./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift UjfcXTWjW8q3b35h signed-certificate.p12
+mv signed-certificate.p12 ../
+cd ..
 ```
 Then move the certificate to the **code-signing** directory, and add it to the repository:
 ```
-mv signed-certificate.p12 ../
-cd ..
 git add signed-certificate.p12
 git commit -m "signed certificate created" signed-certificate.p12
 git push -u
