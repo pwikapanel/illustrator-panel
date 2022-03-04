@@ -14,9 +14,9 @@ All the commands below start from the **code-signing** directory.
 ---
 ### Public Releases
 
-*If you are just signing the **beta version** for testing, skip down to [Generate the Certificate][gs].*
+*If you are just signing the **beta version** for testing, skip down to [Sign the Bundle][gs].*
 
-[gs]: #generate-the-certificate
+[gs]: #sign-the-bundle
 
 1. Copy **Svija Tools Beta** to **Svija Tools** (do *not* add it to the repository)
 2. Copy and paste the **custom icon** from the previous Svija Tools folder (in the DMG)
