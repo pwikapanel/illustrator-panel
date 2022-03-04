@@ -24,10 +24,30 @@
     permission of Svija.
 
     github.com/svijasvg/Presets-Scripts
-  	svija.love · contact@svija.love */
+    svija.love · contact@svija.love */
 
 
 //:::::::::::::::::::::::::::::::::::::::: program
+
+//———————————————————————————————————————— if run as standalone
+
+if (typeof param == 'undefined'){
+
+  var msgWhat = 'Save All Open Documents?\n' +
+                'Click no to save only this document.';
+
+  if (app.documents.length == 1)
+    var param = 'save';
+  else {
+    if (confirm(msgWhat)) param = 'save all'
+    else param = 'save';
+  }
+}
+
+//———————————————————————————————————————— capture param
+
+var _param = param;
+
 
 //———————————————————————————————————————— ▼ begin program()
 
@@ -42,26 +62,6 @@ var activeDoc = app.activeDocument;
 var aiOptions = optionsForVersion(0);
 var         d = new Date();
 var        ms = d.getTime();
-
-//———————————————————————————————————————— if run by Tools panel
-
-// param is set by panel right before script is called
-
-if (typeof param == 'undefined') alert('param is undefined');
-else alert('param = '+param);
-
-//———————————————————————————————————————— if run as standalone
-
-var msgWhat = 'Save All Open Documents?\n' +
-              'Click no to save only this document.';
-
-if (typeof param == 'undefined'){
-  if (docsOpen == 1) var param = 'save';
-  else {
-    if (confirm(msgWhat)) param = 'save all'
-    else param = 'save';
-  }
-}
 
 //———————————————————————————————————————— check for unsupported techniques
 
@@ -80,14 +80,15 @@ for (var index=0; index<docsOpen; index++){
   if (testResults.length>0)
     infringingDocs.push(testResults);
 
-	if (param=='save') break;
+  if (_param=='save') break;
 }
 
+//———————————————————————————————— stop if infringing
 
 if (infringingDocs.length > 0){
 
-	var word = 'File contains';
-	if (infringingDocs.length > 1) word = 'Files contain'
+  var word = 'File contains';
+  if (infringingDocs.length > 1) word = 'Files contain'
   
   var msg = 'Could Not Save\n' + word + ' embedded images:\n\n';
   for (var index=0; index<infringingDocs.length; index++){
@@ -107,7 +108,7 @@ if (infringingDocs.length > 0){
 var count = 0;
 
 for (var index=0; index<docsOpen; index++){
-	count += 1;
+  count += 1;
 
   // ISG251: moves this doc to 0 in appDocs array
   app.activeDocument = appDocs[index];
@@ -130,7 +131,7 @@ for (var index=0; index<docsOpen; index++){
 
   sourceDoc.artboards.setActiveArtboardIndex(activeBoard);
 
-  if (param == 'close'){
+  if (_param == 'close'){
     sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
     docsOpen -= 1;
     index -= 1;
@@ -138,12 +139,14 @@ for (var index=0; index<docsOpen; index++){
 
   //———————————————————————————————— close document list loop
 
-  if (param == 'save') break;
+  if (_param == 'save') break;
+
+
 }
 
 //———————————————————————————————————————— restore frontmost doc and alert user
 
-if (param != 'close') app.activeDocument = activeDoc;
+if (_param != 'close') app.activeDocument = activeDoc;
 
 if (count < 2) var msg = 'File saved.';
 else var msg = 'Files saved.';
