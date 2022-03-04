@@ -33,7 +33,6 @@ function exe(c, b){
   changeTitle(title);
   file = path + encodeURI(script);
 
-  alert("param = '" + param + "'");
   csif.evalScript("param = '" + param + "'");
   csif.evalScript("$.evalFile('" + file + "')");
 }
