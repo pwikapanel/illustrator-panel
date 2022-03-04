@@ -19,6 +19,7 @@ This repository contains *only* development of the **user interface** and **spec
 ---
 
 <details><summary>Expand test codes</summary>
+
 ```
 svija.dev
 svija210901
@@ -28,7 +29,6 @@ newuser.svija.dev
 newuser220303
 CqGlXJM1tUXIkOIn
 ```
-
 </details>
 
 ---
