@@ -11,7 +11,7 @@
 
 All the commands below start from the **/code-signing** directory.
 
-*N.B. the workd **bundle** refers to the installable folder containing the program.*
+*N.B. the word **bundle** refers to the installable folder containing the program.*
 
 ---
 ### Preparing the Bundle
