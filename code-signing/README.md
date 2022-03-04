@@ -16,13 +16,6 @@ All the commands below start from the **/code-signing** directory.
 ---
 ### Preparing the Bundle
 
-5. Check for extra hidden files like **.un~** and **.swp**:
-```
-cd ../Svija\ Tools
-find . -type f -name '*.un~' -delete
-find . -type f -name '*.swp' -delete
-cd ../code-signing
-```
 Remove all invisible files from the bundle:
 ```
 rm -rf ../Svija\ Tools\ Beta/\.[!.]*
@@ -31,7 +24,7 @@ rm -rf ../Svija\ Tools\ Beta/*/*/\.[!.]*
 ```
 *Note: this will remove Vim undo's.*
 
-<details><summary>For the regular release</summary>
+<details><summary>For the public release</summary>
 
 ```
 rm -rf ../Svija\ Tools/\.[!.]*
