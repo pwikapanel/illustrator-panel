@@ -43,7 +43,7 @@ rm -rf ../Svija\ Tools/*/*/\.[!.]*
 4. Edit **panel/less.html** and **panel/more.html** and remove Beta from the page title
 You can then sign the package as described below.
 
-At the end, change the .zxp extension to **.zip**, and put the file in the **master** folder.
+At the end, put the file in the **master** folder.
 
 ---
 ### Generate the Certificate
@@ -106,7 +106,7 @@ At this point, you can delete the previous version in the finder and replace it 
 
 To install the bundle:
 
-1. just change the extension from **zxp** to **zip** and unzip it
+1. unzip the .zip file, and copy it 
 2. paste it into the Adobe extensions folder  
 in the Finder, type **cmd-shift-G**, then paste:
 ```
