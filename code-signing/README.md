@@ -9,10 +9,12 @@
 *Based on [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*.
 
 
-All the commands below start from the **code-signing** directory.
+All the commands below start from the **/code-signing** directory.
+
+*N.B. the workd **bundle** refers to the installable folder containing the program.*
 
 ---
-### Public Releases
+### Preparing the Bundle
 
 5. Check for extra hidden files like **.un~** and **.swp**:
 ```
