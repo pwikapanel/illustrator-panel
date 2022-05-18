@@ -67,8 +67,6 @@ git push -u
 ---
 ### Sign the Bundle
 
-If this is a public release, a **custom icon** needs to be added to the folder *before* the bundle is signed.
-
 To sign **Svija Tools Beta**:
 ```
 bundle=../../Svija\ Tools\ Beta
@@ -221,3 +219,5 @@ Signed successfully
 You can then sign the package as described below.
 
 At the end, change the extension .zxp to .zip, and put the file in the **master** folder.
+
+If this is a public release, a **custom icon** needs to be added to the folder *before* the bundle is signed.
