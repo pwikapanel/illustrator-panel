@@ -16,8 +16,6 @@ This repository is *only* for development of the **user interface**.
 
 [l1]: https://github.com/svijalove/scripts-presets
 
----
-
 <details><summary>Test website login (Expand ▸)</summary>
 
 ```
