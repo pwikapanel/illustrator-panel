@@ -94,6 +94,8 @@ cd ..
 ---
 ### Installing the Signed Version
 
+**Important: if the **archive utility** is set to delete .zip files once expanded, make a copy *before* unzipping!
+
 To install the bundle:
 
 1. unzip the .zip file, and copy it 
