@@ -67,7 +67,9 @@ On github, create a new release from the **master branch**.
 
 - use the current version number
 - use the month & year for the title
-- use the changelog text for the description
+- use the changelog text for the description ([presets-scripts][ps])
+
+[ps]: https://github.com/svijalove/scripts-presets/releases
 
 ---
 ### 6. Check Out the Beta Branch
