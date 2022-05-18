@@ -53,9 +53,9 @@ git commit -m "signed certificate created" signed-certificate.p12
 git push -u
 ```
 
-If the password was changed:
+If the password was changed, **copy the line beginning .ZXPS… above** then:
 
-    vi passwords.txt     # paste the entire ./ZXP... command line
+    vi passwords.txt     # paste the entire ./ZXP... command line AT THE TOP
 
 Then commit the change:
 ```
@@ -75,7 +75,7 @@ filename=../../Svija\ Tools\ Beta.zip
 To sign the **Public Release**, paste the following in Terminal:
 ```
 bundle=../../Svija\ Tools
-filename=../svija-tools.zip
+filename=../Svia\ Tools.zip
 ```
 **Complete the signing process**:
 ```
