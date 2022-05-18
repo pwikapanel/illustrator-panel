@@ -15,13 +15,10 @@ The beta version **does not** need to be signed.
 
 Create a temporary **master version**:
 
-- duplicate the **beta version** folder to a folder called **Svija Tools**
+- duplicate the **beta version** folder to a folder called **Svija Tools** (do *not* add it to the repository)
 - remove the word **Beta** from **CSXS/manifest.xml**
-1. Copy **Svija Tools Beta** to **Svija Tools** (do *not* add it to the repository)
-2. Copy and paste the **custom icon** from the previous Svija Tools folder (in the DMG)
-3. Edit **CSXS/manifest.xml** and remove all occurences of **Beta**
-4. Edit **panel/less.html** and **panel/more.html** and remove Beta from the page title
-You can then sign the package as described below.
+- Edit **panel/less.html** and **panel/more.html** and remove Beta from the page title
+- Copy and paste the **custom icon** from the previous Svija Tools folder (in the DMG)
 ```
 vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
 ```
