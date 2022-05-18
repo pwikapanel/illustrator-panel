@@ -32,7 +32,11 @@ cd ~/Documents/tools/code-signing
 Copy and paste the **custom icon** from the previous Svija Tools folder (in the DMG)
 
 ---
+<details><summary>Generate a Certificate (Expand ▸)</summary>
+
 ### Generate the Certificate
+
+*Because we reuse the same certificate, this step is generally omitted.*
 
 Use the included password below *or* generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box):
 
@@ -58,6 +62,8 @@ Then commit the change:
 git commit -m "signed certificate password added" passwords.txt
 git push -u
 ```
+</details>
+
 ---
 ### Sign the Bundle
 
