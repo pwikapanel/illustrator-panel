@@ -17,14 +17,14 @@ Create a temporary **master version**:
 
 - duplicate the **beta version** folder to a folder called **Svija Tools** (do *not* add it to the repository)
 - remove the word **Beta** from **CSXS/manifest.xml**
+```
+vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
+```
 - Edit **panel/less.html** and **panel/more.html** and remove Beta from the page title
 ```
 vi -O ~/Documents/tools/Svija\ Tools/panel/less.html ~/Documents/tools/Svija\ Tools/panel/more.html
 ```
 - Copy and paste the **custom icon** from the previous Svija Tools folder (in the DMG)
-```
-vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
-```
 - [sign][cs] the new version and move the .zip to the **master** folder
 
 [cs]: https://github.com/svijalove/tools/tree/beta/code-signing
