@@ -16,10 +16,11 @@ The beta version **does not** need to be signed.
 Create a temporary **master version**:
 
 - duplicate the **beta version** folder to a folder called **Svija Tools**
-- remove the word **beta** from the bundle identifier in **CSXS/manifest.xml**
-<!-- search for Id=", add Beta at end of everything, + menu name -->
-<!-- when done, just remove all occurences of Beta               -->
-- create new signed version, zipped in the **master** folder
+- remove the word **Beta** from **CSXS/manifest.xml**
+```
+vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
+```
+- sign the new version, zipped in the **master** folder
 
 ---
 ### 2. Git Merge to Master
@@ -74,6 +75,8 @@ Places to update the version number:
 ```
 vi -O README.md Svija\ Tools\ Beta/panel/*info*
 ```
+
+Search for previous version number in manifest.xml and update it
 
 And the version should be the TITLE in the MANIFEST for the INSTRUCTIONS panel
 
