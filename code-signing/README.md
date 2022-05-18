@@ -38,10 +38,11 @@ Copy and paste the **custom icon** from the previous Svija Tools folder (in the 
 Use the included password below *or* generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box):
 
 new password: 7FeJ2Zph2uxPMGmJ
+prev password: UjfcXTWjW8q3b35h
 
 ```
 cd ZXPSignCmd-64bit\ 4.1.2
-./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift UjfcXTWjW8q3b35h signed-certificate.p12
+./ZXPSignCmd-64bit -selfSignedCert FR HG Svija AndrewSwift 7FeJ2Zph2uxPMGmJ signed-certificate.p12
 mv signed-certificate.p12 ../
 cd ..
 ```
