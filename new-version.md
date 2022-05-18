@@ -67,7 +67,7 @@ On github, create a new release from the **master branch**.
 
 - use the current version number
 - use the month & year for the title
-- use the [commit list][cl] for the description ([presets-scripts][ps])
+- use the [commit list][cl] for the description (see also [presets-scripts][ps])
 
 [cl]: https://github.com/svijalove/tools/commits/beta
 [ps]: https://github.com/svijalove/scripts-presets/releases
