@@ -29,18 +29,6 @@ cd ~/Documents/tools/code-signing
 ```
 *Note: this will remove Vim undo's.*
 
-*If you are just signing the **beta version** for testing, skip down to [Sign the Bundle][gs].*
-
-[gs]: #sign-the-bundle
-
-1. Copy **Svija Tools Beta** to **Svija Tools** (do *not* add it to the repository)
-2. Copy and paste the **custom icon** from the previous Svija Tools folder (in the DMG)
-3. Edit **CSXS/manifest.xml** and remove all occurences of **Beta**
-4. Edit **panel/less.html** and **panel/more.html** and remove Beta from the page title
-You can then sign the package as described below.
-
-At the end, put the file in the **master** folder.
-
 ---
 ### Generate the Certificate
 
