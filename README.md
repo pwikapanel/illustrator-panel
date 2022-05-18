@@ -8,7 +8,7 @@
 
 the version should be the TITLE in the MANIFEST for the INSTRUCTIONS panel
 
-# Svija Tools 1.0.1
+# Svija Tools 1.0.2
 
 This repository contains *only* development of the **user interface** and **specific functionality** that cannot be tested with scripts-presets.
 
@@ -18,7 +18,7 @@ This repository contains *only* development of the **user interface** and **spec
 
 ---
 
-<details><summary>Expand test codes</summary>
+<details><summary>Expand test codes ▸</summary>
 
 ```
 svija.dev
