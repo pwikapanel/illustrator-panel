@@ -19,8 +19,7 @@ Create a temporary **master version**:
 - remove the word **Beta** from **CSXS/manifest.xml**
 - Edit **panel/less.html** and **panel/more.html** and remove Beta from the page title
 ```
-vi ~/Documents/tools/Svija\ Tools/panel/less.html
-vi ~/Documents/tools/Svija\ Tools/panel/more.html
+vi -O ~/Documents/tools/Svija\ Tools/panel/less.html ~/Documents/tools/Svija\ Tools/panel/more.html
 ```
 - Copy and paste the **custom icon** from the previous Svija Tools folder (in the DMG)
 ```
