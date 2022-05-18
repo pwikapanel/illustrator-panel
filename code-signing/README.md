@@ -18,9 +18,12 @@ All the commands below start from the **/code-signing** directory.
 
 Remove all invisible files from the bundle:
 ```
-rm -rf ../Svija\ Tools\ Beta/\.[!.]*
-rm -rf ../Svija\ Tools\ Beta/*/\.[!.]*
-rm -rf ../Svija\ Tools\ Beta/*/*/\.[!.]*
+cd /Users/Main/Documents/tools/Svija\ Tools # add \ Beta if needed
+```
+Remove invisible files:
+rm -rf \.[!.]*
+rm -rf */\.[!.]*
+rm -rf */*/\.[!.]*
 ```
 *Note: this will remove Vim undo's.*
 
