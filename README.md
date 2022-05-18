@@ -4,10 +4,6 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
-# NOTE TO MYSELF
-
-the version should be the TITLE in the MANIFEST for the INSTRUCTIONS panel
-
 # Svija Tools 1.0.2
 
 This repository is *only* for development of the **user interface**.

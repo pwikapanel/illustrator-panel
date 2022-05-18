@@ -70,6 +70,9 @@ Places to update the version number:
 ```
 vi -O README.md Svija\ Tools\ Beta/panel/*info*
 ```
+
+And the version should be the TITLE in the MANIFEST for the INSTRUCTIONS panel
+
 ---
 ### 7. Update tutorial content at tech.svija.com
 
