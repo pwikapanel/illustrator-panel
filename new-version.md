@@ -88,10 +88,8 @@ git push -u
 
 Places to update the version number:
 ```
-vi -O README.md Svija\ Tools\ Beta/panel/*info*
+vi -O README.md Svija\ Tools\ Beta/panel/*info* Svija\ Tools\ Beta/CSXS/manifest.xml
 ```
-
-Search for previous version number in manifest.xml and update it
 
 And the version should be the TITLE in the MANIFEST for the INSTRUCTIONS panel
 
