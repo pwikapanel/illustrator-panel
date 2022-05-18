@@ -10,9 +10,9 @@ the version should be the TITLE in the MANIFEST for the INSTRUCTIONS panel
 
 # Svija Tools 1.0.2
 
-This repository contains *only* development of the **user interface** and **specific functionality** that cannot be tested with scripts-presets.
+This repository is *only* for development of the **user interface**.
 
-**Script development** happens in the [scripts-presets][l1] repository.
+**Specific functionality** is developed in the [scripts-presets][l1] repository.
 
 [l1]: https://github.com/svijalove/scripts-presets
 
