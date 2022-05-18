@@ -106,9 +106,11 @@ in the Finder, type **cmd-shift-G**, then paste:
 ```
 /Library/Application Support/Adobe/CEP/extensions
 ```
-*Reminder: you can drag a file or folder onto the terminal window to insert its path.*
+
+**Note:** the custom icon has to be re-pasted onto the folder after unzipping.
 
 ---
+<details><summary>Previous Notes (Expand ▸)</summary>
 
 # More Information
 
@@ -225,3 +227,5 @@ You can then sign the package as described below.
 At the end, change the extension .zxp to .zip, and put the file in the **master** folder.
 
 If this is a public release, a **custom icon** needs to be added to the folder *before* the bundle is signed.
+
+</details>
