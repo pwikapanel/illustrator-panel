@@ -13,7 +13,7 @@ Instructions for releasing a new version of Svija Tools.
 
 Create a temporary master version:
 
-- duplicate the **beta version folder** to a folder called **Svija Tools**
+- duplicate the **beta version** folder to a folder called **Svija Tools**
 - remove the word **beta** from the bundle identifier in **CSXS/manifest.xml**
 - create new signed version, zipped in the **master** folder
 
