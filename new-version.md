@@ -20,7 +20,7 @@ Create a temporary **master version**:
 ```
 vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
 ```
-- sign the new version, zipped in the **master** folder
+- sign the new version and move the .zip to the **master** folder
 
 ---
 ### 2. Git Merge to Master
