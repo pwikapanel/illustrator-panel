@@ -37,8 +37,7 @@ Copy and paste the **custom icon** from the previous Svija Tools folder (in the 
 
 Use the included password below *or* generate a 16-character password at [passwordsgenerator.net](https://passwordsgenerator.net) (check all but the first box):
 
-new password: 7FeJ2Zph2uxPMGmJ
-prev password: UjfcXTWjW8q3b35h
+**Important:** if you change the password here, you'll need to change it below for the actual signing process.
 
 ```
 cd ZXPSignCmd-64bit\ 4.1.2
@@ -82,7 +81,7 @@ filename=../Svia\ Tools.zip
 cd ZXPSignCmd-64bit\ 4.1.2
 
 certificate=../signed-certificate.p12
-password=UjfcXTWjW8q3b35h
+password=7FeJ2Zph2uxPMGmJ
 tsa=http://timestamp.digicert.com
 
 ./ZXPSignCmd-64bit -sign "$bundle" "$filename" "$certificate" "$password" -tsa "$tsa"
