@@ -18,7 +18,7 @@ This repository contains *only* development of the **user interface** and **spec
 
 ---
 
-<details><summary>Expand test codes ▸</summary>
+<details><summary>Test Codes (Expand ▸)</summary>
 
 ```
 svija.dev
