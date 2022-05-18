@@ -18,7 +18,7 @@ This repository is *only* for development of the **user interface**.
 
 ---
 
-<details><summary>Test Connection (Expand ▸)</summary>
+<details><summary>Test website login (Expand ▸)</summary>
 
 ```
 svija.dev
