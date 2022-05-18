@@ -67,17 +67,17 @@ git push -u
 ---
 ### Sign the Bundle
 
-To sign **Svija Tools Beta**:
+To sign **Svija Tools Beta**, paste the following in Terminal:
 ```
 bundle=../../Svija\ Tools\ Beta
 filename=../../Svija\ Tools\ Beta.zip
 ```
-To sign the **Public Release**:
+To sign the **Public Release**, paste the following in Terminal:
 ```
 bundle=../../Svija\ Tools
 filename=../svija-tools.zip
 ```
-**Sign the bundle**:
+**Complete the signing process**:
 ```
 cd ZXPSignCmd-64bit\ 4.1.2
 
