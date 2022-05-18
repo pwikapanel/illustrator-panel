@@ -91,6 +91,8 @@ cd ..
 ```
 **Beta version:** delete the previous folder in the Finder and replace it with the new version (unzipped).
 
+**Public Release:** delete the temporary folder in the Finder.
+
 ---
 ### Installing the Signed Version
 
