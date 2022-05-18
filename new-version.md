@@ -24,7 +24,6 @@ vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
 ```
 vi -O ~/Documents/tools/Svija\ Tools/panel/less.html ~/Documents/tools/Svija\ Tools/panel/more.html
 ```
-- Copy and paste the **custom icon** from the previous Svija Tools folder (in the DMG)
 - [sign][cs] the new version and move the .zip to the **master** folder
 
 [cs]: https://github.com/svijalove/tools/tree/beta/code-signing

@@ -29,6 +29,8 @@ cd ~/Documents/tools/code-signing
 ```
 *Note: this will remove Vim undo's.*
 
+Copy and paste the **custom icon** from the previous Svija Tools folder (in the DMG)
+
 ---
 ### Generate the Certificate
 
