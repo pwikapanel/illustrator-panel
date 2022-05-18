@@ -29,11 +29,13 @@ vi -O ~/Documents/tools/Svija\ Tools/panel/less.html ~/Documents/tools/Svija\ To
 [cs]: https://github.com/svijalove/tools/tree/beta/code-signing
 
 ---
-### 2. Test the New Version
+### 2. Test the New Version and copy to DMG repository
 
 Code-signing is a delicate process and Illustrator is very picky about it.
 
-Install the new version of Svija Tools and **verify that the panel displays correctly** before proceeding.
+**After pasting the correct icon**, install the new version of Svija Tools and **verify that the panel displays correctly** before proceeding.
+
+If all goes well, copy Svija Tools to the **dmg-installation** repository.
 
 ---
 ### 3. Git Merge to Master
