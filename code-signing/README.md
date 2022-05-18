@@ -89,7 +89,7 @@ tsa=http://timestamp.digicert.com
 
 cd ..
 ```
-At this point, you can delete the previous version in the finder and replace it with the new version.
+**Beta version:** delete the previous folder in the Finder and replace it with the new version (unzipped).
 
 ---
 ### Installing the Signed Version
