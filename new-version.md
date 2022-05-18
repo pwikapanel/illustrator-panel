@@ -91,8 +91,6 @@ Places to update the version number:
 vi -O README.md Svija\ Tools\ Beta/panel/*info* Svija\ Tools\ Beta/CSXS/manifest.xml
 ```
 
-And the version should be the TITLE in the MANIFEST for the INSTRUCTIONS panel
-
 ---
 ### 8. Update tutorial content at tech.svija.com
 
