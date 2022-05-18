@@ -29,7 +29,14 @@ vi -O ~/Documents/tools/Svija\ Tools/panel/less.html ~/Documents/tools/Svija\ To
 [cs]: https://github.com/svijalove/tools/tree/beta/code-signing
 
 ---
-### 2. Git Merge to Master
+### 2. Test the New Version
+
+Code-signing is a delicate process and Illustrator is very picky about it.
+
+Install the new version of Svija Tools and **verify that the panel displays correctly** before proceeding.
+
+---
+### 3. Git Merge to Master
 
 Check out the **destination branch** and merge ([list of commits](https://github.com/svijalove/Svija-Tools/commits/beta)):
 ```
@@ -44,7 +51,7 @@ Push the new version:
 git push origin master
 ```
 ---
-### 3. Update the Documentation
+### 4. Update the Documentation
 
 Copy info from/to:
 
@@ -52,7 +59,7 @@ Copy info from/to:
 - [tech.svija.love/manual/changelog-tools](https://tech.svija.love/manual/changelog-tools)
 
 ---
-### 4. Create A New Github Release
+### 5. Create A New Github Release
 
 On github, create a new release from the **master branch**.
 
@@ -61,7 +68,7 @@ On github, create a new release from the **master branch**.
 - use the changelog text for the description
 
 ---
-### 5. Check Out the Beta Branch
+### 6. Check Out the Beta Branch
 
 Commit any changes, then check out the beta branch:
 ```
@@ -75,7 +82,7 @@ git merge master --no-ff -m "starting new version"
 git push -u
 ```
 ---
-### 6. Increment the Version Number
+### 7. Increment the Version Number
 
 Places to update the version number:
 ```
@@ -87,14 +94,14 @@ Search for previous version number in manifest.xml and update it
 And the version should be the TITLE in the MANIFEST for the INSTRUCTIONS panel
 
 ---
-### 7. Update tutorial content at tech.svija.com
+### 8. Update tutorial content at tech.svija.com
 
 Read through the [changelog](https://tech.svija.love/reference/changelogs/changelog-tools) and make a list of modfications for the new version.
 
 Update the [documentation pages](https://tech.svija.love) if necessary.
 
 ---
-### 8. Post to Social Media
+### 9. Post to Social Media
 
 Find a nice picture or make an ad to accompany the update, then
 
