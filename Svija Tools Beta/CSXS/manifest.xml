@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ExtensionManifest ExtensionBundleId="love.svija.SvijaToolsBeta" ExtensionBundleVersion="1.0.2" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <ExtensionList>
+    <Extension Id="love.svija.SvijaToolsBeta.panel" Version="1.0.2" />
+    <Extension Id="love.svija.SvijaLauncherBeta.panel" Version="1.0.2" />
+  </ExtensionList>
+
+  <ExecutionEnvironment>
+    <HostList>
+      <Host Name="ILST" Version="17" />
+    </HostList>
+    <LocaleList>
+      <Locale Code="All" />
+    </LocaleList>
+    <RequiredRuntimeList>
+      <RequiredRuntime Name="CSXS" Version="8.0" />
+    </RequiredRuntimeList>
+  </ExecutionEnvironment>
+
+  <DispatchInfoList>
+    
+    <Extension Id="love.svija.SvijaToolsBeta.panel"><!-- ———————————————————— -->
+      <DispatchInfo>
+        <Resources>
+
+
+          <MainPath>./panel/index.html</MainPath>
+          <CEFCommandLine>
+            <Parameter>--allow-file-access-from-files</Parameter>
+          </CEFCommandLine>
+
+
+        </Resources>
+
+        <Lifecycle>
+          <AutoVisible>false</AutoVisible>  
+          <StartOn>  
+            <Event>documentAfterActivate</Event>
+          </StartOn>  
+        </Lifecycle>
+
+        <UI>
+          <Type>Panel</Type>
+          <Menu>Svija Tools Beta</Menu>
+            <Geometry>
+              <Size>
+                  <Width>240</Width>
+                  <Height>230</Height>
+              </Size>
+              <MinSize>
+                  <Width>137</Width>
+                  <Height>40</Height>
+              </MinSize>
+              <MaxSize>
+                  <Width>240</Width>
+                  <Height>2000</Height>
+              </MaxSize>
+            </Geometry>
+          <Icons />
+        </UI>
+      </DispatchInfo>
+    </Extension>
+
+    <Extension Id="love.svija.SvijaLauncherBeta.panel"><!-- ———————————————————— -->
+      <DispatchInfo>
+        <Resources>
+          <MainPath>./panel/launcher.html</MainPath>
+          <CEFCommandLine />
+        </Resources>
+
+        <Lifecycle>
+          <AutoVisible>false</AutoVisible>  
+          <StartOn>  
+            <Event>documentAfterActivate</Event>
+          </StartOn>  
+        </Lifecycle>
+
+        <UI>
+          <Type>Custom</Type>
+          <Geometry>
+            <Size>
+              <Height>130</Height>
+              <Width>240</Width>
+            </Size>
+            <MaxSize>
+              <Height>130</Height>
+              <Width>240</Width>
+            </MaxSize>
+            <MinSize>
+              <Height>130</Height>
+              <Width>240</Width>
+            </MinSize>
+          </Geometry>
+          <Icons />
+        </UI>
+      </DispatchInfo>
+    </Extension>
+
+  </DispatchInfoList>
+</ExtensionManifest>

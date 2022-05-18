@@ -1,8 +1,0 @@
-# to check debug mode:
-$ defaults read /Users/Base/Library/Preferences/com.adobe.CSXS.8.plist
-
-# to enable debug mode:
-$ defaults write com.adobe.CSXS.8 PlayerDebugMode 1 && killall -u `whoami` cfprefsd
-
-# to disable debug mode:
-$ defaults write com.adobe.CSXS.8 PlayerDebugMode 0 && killall -u `whoami` cfprefsd

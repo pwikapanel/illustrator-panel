@@ -1,222 +1,72 @@
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 13 October, 2021 · Toulouse*
+*Updated 18 May, 2021 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
-# Svija Tools 1.0.1
+# Svija Tools 1.0.2
 
----
+This repository is *only* for development of the **user interface**.
 
-### File Versions
+**Specific functionality** is developed in the [scripts-presets][l1] repository.
 
-★ **Svija Tools Dev**: contains the contents of **/Library/Application Support/Adobe/CEP/extensions/Svija Tools Dev**
+[l1]: https://github.com/svijalove/scripts-presets
 
-It is updated manually as the aformentioned code is modified.
+<details><summary>Test website login (Expand ▸)</summary>
 
-★ **Svija Tools**: contains the **unsigned** contents of the final extension.
-
-It is generally the same as **Svija Tools Dev** except that the bundle identifier does not contain dev.
-
-★ **distribution** contains:
-- the final, signed .zip extension
-- the most recent DMG
-
----
-### Version Updates
-
-Following are the instructions for releasing a new version of Svija Sync.
-
-1. create new signed version, zipped in the distribution folder
-2. create a [new DMG](https://github.com/svijalove/dmg-installation), in the distribution folder
-
----
-### 1. Merge to Master
-
-Check out the **destination branch** and merge ([list of commits](https://github.com/svijalove/Svija-Tools/commits/beta)):
 ```
-git status
-```
-```
-git checkout master
-git merge beta --no-ff
-```
-Push the new version:
-```
-git push origin master
-```
----
-### 2. Update the Documentation
+svija.dev
+svija210901
+r2vv5Qf6cS7D6hPy
 
-Copy info from/to:
-
-- [github.com/svijalove/tools/commits/beta](https://github.com/svijalove/tools/commits/beta)
-- [tech.svija.love/manual/changelog-tools](https://tech.svija.love/manual/changelog-tools)
+newuser.svija.dev
+newuser220303
+CqGlXJM1tUXIkOIn
+```
+</details>
 
 ---
-### 3. Create A New Github Release
+### Two Versions
 
-On github, create a new release from the **master branch**.
+Two versions of Svija Tools are maintained: **beta** (a folder), and **master** (a ZIP archive).
 
-- use the current version number
-- use the month & year for the title
-- use the changelog text for the description
+> **Svija Tools Beta**: used for testing and user interface development.
+
+The beta is updated and signed when a new release **presets-scripts** is prepared.
+
+> **master**: the zipped, signed contents of the final public release.
+
+The master is updated *only* when a **new release** is prepared, and is simply the signed ZXP file, renamed.
+
+To enable both versions to be installed at the same time, the beta version has a separate bundle identifier including the word **beta**.
 
 ---
-### 4. Check Out the Beta Branch
+### Illustrator Interface Files
 
-Commit any changes, then check out the beta branch:
+The **interface** folder contains two Illustrator files:
+
+- **interface.ai** · the actual interface of Svija Tools
+- **colors.ai** · used for evaluating color choices
+
+Once colors are finalized in **colors.ai**, the final values are **applied to swatches** in interface.ai.
 ```
-git status
-git commit -m "last commit before going back to beta" -a
+File › Save As…
+Name: interface.svg
+Format: SVG
+In folder "SVG Exports"
+√ Use Artboards
+
+Fonts › Type: SVG
+Subsetting: None
+Image Location: Link
+Uncheck Preserve Illustrator Editing Capabilities
+CSS Properties: Style Elements
+Decimal Places: 3
+Check Output fewer <tspan> elements
+Check Responsive
 ```
-Commit any changes, then check out the beta branch:
-```
-git checkout beta 
-git merge master --no-ff -m "starting new version"
-git push -u
-```
----
-### 7. Increment the Version Number
+After exporting, copy the contents of **SVG Exports** to **Svija Tools Beta/panel/svg**
 
-Places to update the version number:
-- both Xcode targets
-- this README.md
-- msg.svija.love
+The bundle will need to be re-signed before the panel will function.
 
----
-### 8. Update tutorial content at tech.svija.com
-
-Read through the [changelog](https://tech.svija.love/reference/changelogs/changelog-tools) and make a list of modfications for the new version.
-
-Update the [documentation pages](https://tech.svija.com) if necessary.
-
----
-### 7. Post to Social Media
-
-Find a nice picture or make an ad to accompany the update, then
-
-- [facebook.com/svijalove](https://facebook.com/svijalove)
-- [twitter.com/svijalove](https://twitter.com/svijalove)
-- [instagram/svijalove](https://instagram/svijalove) (make it 3x wide · has to be posted from phone)
-- [linkedin.com/company/svijalove](https://linkedin.com/company/svijalove) (add text before adding image)
-
----
-
-### older content
-
-The Svija Tools folder contains the **unsigned** plugin.
-
-To use the **signed version** copy the **ZXP file** from the code signing and unzip it.
-
----
-
-### Run JSX files directly to see errors
-
-### no longer true V
-
-**IMPORTANT NOTE:** the actual scripts are developed in a separate repository called [Presets-Scripts](https://github.com/svijasvg/Presets-Scripts).
-
-This is because scripts stored in:
-
-    Adobe Illustrator 2021/Presets/en_US/Scripts
-
-can be worked on in real-time, whereas scripts that are integrated into the CEP panel need to be signed and installed each time they are updated.
-
-The scripts are written in such a way that they can be run from the **File › Scripts** menu with shortcut keys or called from the panel. Although the scripts could be developed separately, making the scripts identical in both places accelerates development and also provides a more unified user experience.
-
-* * * * *
-
-next big thing is to add recursive sublayers to **Propagate Layers**.
-
-then add warnings for everything from **trouble** page to **Save as Svija**.
-
-* * * * *
-
-use Document.fullName, which includes path
-
-**Don't forget to test on versions prior to CC25, and Engine 10.0**
-
-it all works, but I am iterating through the artboards for no reason.
-
-I should just delete the files quickly, then save in a single go
-
-* * * * *
-
-**NEW BRANCH:** dedicated to saving using artboards.
-
-**Save as SVG** saves artwork from all artboards, even if it is outside the artboards.
-
-**Use Artboards** deletes artwork outside of artboard boundaries, and is therefore more efficient.
-
-If we want to contain multiple pages (desktop, mobile) in a single file, we should use artboards. Otherwise the resulting pages will contain double the necessary artwork. 
-
-so always use artboards, then I have to keep track of artboard names
-
-will I have the "save as" problem if I only save one artboard?
-how can I even get a file?
-
-this is a problem for the next version
-
-* * * * *
-
-Need to restore locked & invisibel non-printin layers
-
-* need to add the index to each rect, then make sure they're correctly attributed afterwards
-* multiple artboards still doesn't actually save the SVG file
-* need to see if it will mess up the global undo for re-saving as .ai if there are hidden layers
-
-* * * * *
-
-Remaining tasks
-
-* change title while processing
-* change title for help pane
-* jsx scripts for all buttons
-* actions for all buttons
-* line 52-ish in saveassvg just deletes all ".ai" in the file name, should only be at end
-
-* * * * *
-
-Don't forget to remove the ai version from shipping version, that should just be for us to set up templates
-
-* * * * *
-
-Next version:
-
-* preference pane with Ai version, prompts etc.
-* popup progress bar panel : "processing"
-* investigate svg options  // options.sVGAutoKerning = true/false;     ISG339
-and exportOptionsSVG.typename
-
-Description
-The class name of the referenced object.
-
-
-**old svija sync fixed a problem where home 2.svg was renamed to home.svg**
-
-* * * * *
-
-##A note about the logic
-
-The main functionality of saving as svg involves:
-
-a loop through all artboards ———
-
-save a copy of all artboard info
-make an array of all layers to say if locked/hidden
-
-deleting any non-printing layers
-- unlock layer if locked
-- make visible if hidden
-- delete non-printing layer
-
-delete all but current artboards
-
-save as svg
-
-undo until the number of artboards is correct
-undo until the number of layers is correct
-
-restore all artboard parameters
-restore all non-printing layer locked & visible flags
+After creating a new signed version, **unzip it** and replace the **folder Svija Tools Beta**.
