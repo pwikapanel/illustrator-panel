@@ -11,6 +11,8 @@ Instructions for releasing a new version of Svija Tools.
 ---
 ### 1. New Master Version
 
+The beta version **does not** need to be signed.
+
 Create a temporary master version:
 
 - duplicate the **beta version** folder to a folder called **Svija Tools**
