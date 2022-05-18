@@ -13,10 +13,12 @@ Instructions for releasing a new version of Svija Tools.
 
 The beta version **does not** need to be signed.
 
-Create a temporary master version:
+Create a temporary **master version**:
 
 - duplicate the **beta version** folder to a folder called **Svija Tools**
 - remove the word **beta** from the bundle identifier in **CSXS/manifest.xml**
+<!-- search for Id=", add Beta at end of everything, + menu name -->
+<!-- when done, just remove all occurences of Beta               -->
 - create new signed version, zipped in the **master** folder
 
 ---
