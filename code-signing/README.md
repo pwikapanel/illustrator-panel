@@ -6,9 +6,6 @@
 
 # Code Signing
 
-*Based on [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*.
-
-
 All the commands below start from the **/code-signing** directory.
 
 *N.B. the word **bundle** refers to the installable folder containing the program.*
@@ -111,6 +108,8 @@ in the Finder, type **cmd-shift-G**, then paste:
 
 ---
 <details><summary>Previous Notes (Expand ▸)</summary>
+
+*Based on [this page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Package%20Distribute%20Install) and [this Adobe PDF](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/creativesuite/pdfs/SigningTechNote_CC.pdf)*.
 
 # More Information
 
