@@ -76,7 +76,7 @@ filename=../../Svija\ Tools\ Beta.zip
 To sign the **Public Release**, paste the following in Terminal:
 ```
 bundle=../../Svija\ Tools
-filename=../Svia\ Tools.zip
+filename=../Svija\ Tools.zip
 ```
 **Complete the signing process**:
 ```
