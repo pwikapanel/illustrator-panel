@@ -108,7 +108,7 @@ in the Finder, type **cmd-shift-G**, then paste:
 /Library/Application Support/Adobe/CEP/extensions
 ```
 
-**Note:** the custom icon has to be re-pasted onto the folder after unzipping.
+**Note:** the custom icon has to be re-pasted onto the folder after unzipping: open [Svija Tools.png][stp] in **Preview**, copy it, and paste it into the bundle's folder information window.
 
 ---
 <details><summary>Previous Notes (Expand ▸)</summary>
