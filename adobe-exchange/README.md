@@ -38,8 +38,27 @@ If you are not correctly signed in, this link will return a **404 error**.
 
 Click the blue **Create Listing** button, then:
 
-> Title: **Svija Sync**  
-> Purchase Method: **Free**  
+> Title: **Svija Tools**  
+> Purchase Method: **Free** (will open profile info window)  
+
+---
+### 1.2 Profile
+
+Developer Name: Svija SAS  
+Contact Email: tech@svija.com  
+Support Email: support@svija.com  
+
+Description (255 chars max):
+
+Svija is a website builder based on Adobe Illustrator. 
+
+With Svija, what you create in Adobe illustrator, is what you see online, instantly.
+
+Svija is lightweight and fast. Using Illustrator, you'll be able to create rich, detailed web pages that are simply impossible with other website builders.
+
+---
+### 1.3 Details (Cont'd.)
+
 > Private: **unchecked**  
 > Developer: edit profile to change (down in Edge on 240407)  
 > Primary Tags: **Sharing, Publishing**  
@@ -94,7 +113,6 @@ For the first time, it's possible to make a website where the details are perfec
 Create a free account today at https://svija.love
 
 ---
-
 ### 2. Upload Images & Videos
 
 The following images are included in this repository:
