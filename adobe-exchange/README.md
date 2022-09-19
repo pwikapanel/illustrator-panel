@@ -63,7 +63,7 @@ Svija is lightweight and fast. You'll be able to create rich, detailed web pages
 > Developer: edit profile to change (down in Edge on 240407)  
 > Primary Tags: **Sharing, Publishing**  
 > Secondary Tags: **Collaboration, Asset Management, Graphics**  
-> Custom Tags: **SVG, Website**  
+> Custom Tags: **SVG, Website** (add one at a time)
 > Languages Supported: (default)  
 
 **Summary (170 Chars):**
