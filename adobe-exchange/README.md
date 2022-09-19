@@ -4,6 +4,8 @@
 
 ### Adobe Exchange Submission
 
+**LISTING ALREADY EXISTS, BUT HOW TO ACCESS IT?**
+
 *Note: the Exchange website does not work in Safari.*
 
 ### Previous rejection
