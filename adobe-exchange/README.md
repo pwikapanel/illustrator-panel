@@ -6,11 +6,32 @@
 
 *Note: the Exchange website does not work in Safari.*
 
+### Previous rejection
+
+**Mon, Apr 12, 2021, 10:01 AM**
+  
+Hello Andrew,
+
+Your product Svija Tools 1.0.0 does not currently meet the requirements to be published on Adobe Exchange. Your Product has been rejected for the following reasons:
+
+Rejection Reason: The submission does not adhere to the Adobe branding guidelines for the following reason: The Featured Image contains Adobe Illustrator Icon without the Adobe Branding team's approval.
+
+Please refer to Adobe Brand Guidelines for more info.
+
+The .ZXP file included with the product submission could not be installed. The error we encountered was: [-402]. kindly refer this site for error code https://community.adobe.com/t5/exchange/every-exman-command-error-code-exmancmd-error-code-list/m-p/11386103?page&equals;1
+
+We tried to signup using the form we got an error while submitting that form. For attaching Licenses you can attach them to the Upload and Docs Segment.
+
+You may resubmit your product after applying the above mentioned changes.
+
+---
 ### Logging In
 
-Log in at [adobe.com/partners.html](https://www.adobe.com/partners.html) with **tech@svija.com** (click "Sign In" under "Adobe Exchange Partner Program for Creative Cloud").
+Log in at [adobe.com/partners.html](https://www.adobe.com/partners.html) with **tech@svija.com** (click **Sign In** under **Adobe Exchange Partner Program for Creative Cloud**).
 
 Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html).
+
+If you are not correctly signed in, this link will return a **404 error**.
 
 ---
 ### 1. Details
