@@ -36,14 +36,16 @@ If you are not correctly signed in, this link will return a **404 error**.
 ---
 ### 1. Details
 
-Title: **Svija Sync**  
-Purchase Method: **Free**  
-Private: **unchecked**  
-Developer: edit profile to change (down in Edge on 240407)  
-Primary Tags: **Sharing, Publishing**  
-Secondary Tags: **Collaboration, Asset Management, Graphics**  
-Custom Tags: **SVG, Website**  
-Languages Supported: (default)  
+Click the blue **Create Listing** button, then:
+
+> Title: **Svija Sync**  
+> Purchase Method: **Free**  
+> Private: **unchecked**  
+> Developer: edit profile to change (down in Edge on 240407)  
+> Primary Tags: **Sharing, Publishing**  
+> Secondary Tags: **Collaboration, Asset Management, Graphics**  
+> Custom Tags: **SVG, Website**  
+> Languages Supported: (default)  
 
 **Summary (170 Chars):**
 
