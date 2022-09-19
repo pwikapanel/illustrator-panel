@@ -1,11 +1,10 @@
-*Updated 2 April, 2021*
+*Updated 19 September, 2022*
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
-**Adobe Exchange Submission**
------------------------------
+### Adobe Exchange Submission
 
-**Note:**  the Exchange website **does not work in Safari.**
+*Note: the Exchange website **does not work in Safari.*
 
 ### Logging In
 
@@ -13,8 +12,7 @@ Log in at [adobe.com/partners.html](https://www.adobe.com/partners.html) with **
 
 Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html).
 
-* * * * *
-
+---
 ### 1. Details
 
 Title: **Svija Sync**  
@@ -72,7 +70,7 @@ For the first time, it's possible to make a website where the details are perfec
 
 Create a free account today at https://svija.love
 
-* * * * *
+---
 
 ### 2. Upload Images & Videos
 
@@ -84,7 +82,7 @@ The following images are included in this repository:
 
 Youtube link: [Using Svija to build a web page with Adobe Illustrator](https://www.youtube.com/watch?v=UTjExzeUn-s) (19 minutes).
 
-* * * * *
+---
 
 ### 3. Upload & Docs
 
@@ -106,13 +104,13 @@ Need to delete previous upload (click on x) before uploading a more recent versi
 
 upload single ZXP
 
-* * * * *
+---
 
 ### 4. Notes & EULA
 
 The EULA was written with the help of [this page](https://choosealicense.com/licenses/mit/):
 
-* * * * *
+---
 
 Copyright (c) 2021 Svija
 
@@ -122,7 +120,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-* * * * *
+---
 
 Where To Find It: **In Adobe Illustrator, got to the menu Window › Extensions › Svija Tools.**
 
