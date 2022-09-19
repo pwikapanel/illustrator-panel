@@ -4,7 +4,7 @@
 
 ### Adobe Exchange Submission
 
-*Note: the Exchange website **does not work in Safari.*
+*Note: the Exchange website does not work in Safari.*
 
 ### Logging In
 
