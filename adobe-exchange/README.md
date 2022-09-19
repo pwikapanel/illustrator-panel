@@ -52,9 +52,9 @@ Description (255 chars max):
 
 Svija is a website builder based on Adobe Illustrator. 
 
-With Svija, what you create in Adobe illustrator, is what you see online, instantly.
+What you create in Adobe illustrator is what you see online, instantly.
 
-Svija is lightweight and fast. Using Illustrator, you'll be able to create rich, detailed web pages that are simply impossible with other website builders.
+Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
 
 ---
 ### 1.3 Details (Cont'd.)
