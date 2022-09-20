@@ -4,6 +4,10 @@
 
 ### Adobe Exchange Submission
 
+<details><summary>problems</summary>
+
+---
+
 **LISTING ALREADY EXISTS, BUT HOW TO ACCESS IT?**
 
 email addresses that don't work:
@@ -46,6 +50,8 @@ We tried to signup using the form we got an error while submitting that form. Fo
 You may resubmit your product after applying the above mentioned changes.
 
 ---
+---
+</details>
 ### Logging In
 
 Log in at [adobe.com/partners.html](https://www.adobe.com/partners.html) with **tech@svija.com** (click **Sign In** under **Adobe Exchange Partner Program for Creative Cloud**).
@@ -53,17 +59,6 @@ Log in at [adobe.com/partners.html](https://www.adobe.com/partners.html) with **
 Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html).
 
 If you are not correctly signed in, this link will return a **404 error**.
-
----
-### 1. Details
-
-Click the blue **Create Listing** button, then:
-
-Title: **Svija Tools**:
-```
-Svija Tools
-```
-Purchase Method: **Free** (will open profile info window)  
 
 ---
 ### 1.2 Profile
@@ -79,6 +74,17 @@ Svija is a website builder based on Adobe Illustrator.
 What you create in Adobe illustrator is what you see online, instantly.
 
 Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
+
+---
+### 1. Details
+
+Click the blue **Create Listing** button, then:
+
+Title:
+```
+Svija Tools
+```
+Purchase Method: **Free** (will open profile info window)  
 
 ---
 ### 1.3 Details (Cont'd.)
