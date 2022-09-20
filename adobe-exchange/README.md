@@ -111,29 +111,29 @@ Svija is a simple tool that enables the creation of a professional website writt
 • web site loads rapidly
 • no HTML or CSS necessary
 
-Svija Sync
+——— Svija Sync ———
 
 Tiny app that continuously synchronizes the content of your computer with your website.
 
-Svija Tools
+——— Svija Tools ———
 
 Scripts and templates for Adobe Illustrator that facilitate building a website.
 
-Svija Admin
+——— Svija Admin ———
 
 Web interface for organizing your content, allowing you to define pages and recurring or temporary modules.
 
 Svija requires a free account, available at https://svija.love
 
-All SVG
+——— All SVG ———
 
 A Svija website is constructed entirely in SVG: the pages themselves plus extra content in the form of separate, reusable modules.
 
-Instantaneous
+——— Instantaneous ———
 
 Your Illustrator design is available on the internet immediately in finished form. Experience the pleasure of spending your time creating, instead of endless debugging and verifying.
 
-Details, Finally
+——— Details, Finally ———
 
 For the first time, it's possible to make a website where the details are perfect, without spending weeks getting there. Your design is the site, with no compromise. Every pixel is in place, on every platform.
 
