@@ -92,15 +92,12 @@ What you create in Adobe illustrator is what you see online, instantly.
 
 Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
 ```
-
----
-### 1.3 Details (Cont'd.)
+Primary Tags: **Sharing, Publishing**  
+Secondary Tags: **Collaboration, Asset Management, Graphics**  
+Custom Tags: **SVG, Website** (add one at a time)
 
 > Private: **unchecked**  
 > Developer: edit profile to change (down in Edge on 240407)  
-> Primary Tags: **Sharing, Publishing**  
-> Secondary Tags: **Collaboration, Asset Management, Graphics**  
-> Custom Tags: **SVG, Website** (add one at a time)
 > Languages Supported: (default)  
 
 **Summary (170 Chars):**
