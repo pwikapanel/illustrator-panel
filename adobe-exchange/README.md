@@ -73,15 +73,15 @@ Title:
 ```
 Svija Tools
 ```
-- Purchase Method: **Free** (will open profile info window)
+- Purchase Method: **Free**
 - Private: **unchecked**
 
 Developer:
 ```
 Svija SAS  
 ```
-- Primary Tags: **Sharing, Publishing**  
-- Secondary Tags: **Collaboration, Asset Management, Graphics**  
+- Primary Tags: **Publishing** & **Collaboration**
+- Secondary Tags: **Asset Management, Graphics, Project Management** & **Sharing**  
 - Custom Tags: **SVG, Website** (add one at a time)
 
 Contact Email
