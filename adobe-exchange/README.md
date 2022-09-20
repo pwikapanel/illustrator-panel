@@ -73,7 +73,7 @@ Click the blue **Create Listing** button, then:
 Title:
 ```
 Svija Tools
-```
+``
 - Purchase Method: **Free**
 - Private: **unchecked**
 
@@ -89,14 +89,6 @@ Svija SAS
 **Summary** (170 Chars):
 ```
 An Illustrator panel that synchronizes your local files with your Svija website and facilitates working on groups of pages.
-```
-**Description** (255 chars): **UNUSED??**
-```
-Svija is a website builder based on Adobe Illustrator. 
-
-What you create in Adobe illustrator is what you see online, instantly.
-
-Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
 ```
 **Detailed Description:**
 ```
@@ -140,27 +132,7 @@ For the first time, it's possible to make a website where the details are perfec
 
 Create a free account today at https://svija.love
 ```
-
 Click **Save & Next**
----
-
-
-
-
-
-
-
-Contact Email
-```
-tech@svija.com  
-```
-Support Email
-```
-support@svija.com  
-```
-> Developer: edit profile to change (down in Edge on 240407)  
-
----
 
 </details>
 
@@ -235,4 +207,25 @@ We intend to use this build to test the installation process and make sure every
 Thanks for your time,
 Andrew Swift
 
+</details>
+
+<details><summary>unused content</summary>
+
+**Description** (255 chars): **UNUSED??**
+```
+Svija is a website builder based on Adobe Illustrator. 
+
+What you create in Adobe illustrator is what you see online, instantly.
+
+Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
+```
+Contact Email
+```
+tech@svija.com  
+```
+Support Email
+```
+support@svija.com  
+```
+> Developer: edit profile to change (down in Edge on 240407)  
 </details>
