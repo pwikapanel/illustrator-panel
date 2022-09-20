@@ -89,7 +89,7 @@ Svija SAS
 ```
 An Illustrator panel that synchronizes your local files with your Svija website and facilitates working on groups of pages.
 ```
-**Description** (255 chars):
+**Description** (255 chars): **UNUSED??**
 ```
 Svija is a website builder based on Adobe Illustrator. 
 
@@ -97,36 +97,19 @@ What you create in Adobe illustrator is what you see online, instantly.
 
 Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
 ```
-
-
-
-
-
-
-
-Contact Email
-```
-tech@svija.com  
-```
-Support Email
-```
-support@svija.com  
-```
-> Developer: edit profile to change (down in Edge on 240407)  
-
 **Detailed Description:**
-
+```
 Techniques that have been trivially easy for more than 25 years in graphics software are still impossible in HTML.
 
 It's time to evolve.
 
 Svija is a simple tool that enables the creation of a professional website written entirely in SVG, based on files created in Adobe Illustrator:
 
-* website updated in real time
-* no conversion or development necessary
-* ranked normally by search-engines
-* web site loads rapidly
-* no HTML or CSS necessary
+• website updated in real time
+• no conversion or development necessary
+• ranked normally by search-engines
+• web site loads rapidly
+• no HTML or CSS necessary
 
 Svija Sync
 
@@ -155,6 +138,24 @@ Details, Finally
 For the first time, it's possible to make a website where the details are perfect, without spending weeks getting there. Your design is the site, with no compromise. Every pixel is in place, on every platform.
 
 Create a free account today at https://svija.love
+```
+---
+
+
+
+
+
+
+
+Contact Email
+```
+tech@svija.com  
+```
+Support Email
+```
+support@svija.com  
+```
+> Developer: edit profile to change (down in Edge on 240407)  
 
 ---
 
