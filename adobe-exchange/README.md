@@ -55,7 +55,7 @@ You may resubmit your product after applying the above mentioned changes.
 
 ### Logging In
 
-Log in at [adobe.com/partners.html](https://www.adobe.com/partners.html) with **tech@svija.com** (click **Sign In** under **Adobe Exchange Partner Program for Creative Cloud**).
+Log in at [https://partners.adobe.com/exchangeprogram/creativecloud](https://partners.adobe.com/exchangeprogram/creativecloud) with **tech@svija.com** (click **Sign In** under **Adobe Exchange Partner Program for Creative Cloud**).
 
 Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html).
 
@@ -64,17 +64,26 @@ If you are not correctly signed in, this link will return a **404 error**.
 ---
 ### 1.2 Profile
 
-Developer Name: Svija SAS  
-Contact Email: tech@svija.com  
-Support Email: support@svija.com  
-
+Developer:
+```
+Svija SAS  
+```
+Contact Email
+```
+tech@svija.com  
+```
+Support Email
+```
+support@svija.com  
+```
 Description (255 chars max):
-
+```
 Svija is a website builder based on Adobe Illustrator. 
 
 What you create in Adobe illustrator is what you see online, instantly.
 
 Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
+```
 
 ---
 ### 1. Details
