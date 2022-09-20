@@ -6,6 +6,25 @@
 
 **LISTING ALREADY EXISTS, BUT HOW TO ACCESS IT?**
 
+email addresses that don't work:
+- login-en@svija.love
+- admin@svija.love
+- hello@svija.love
+- hello@svija.com
+
+no emails in
+- support@svija.cloud
+- hello@svija.cloud
+- tech@svija.cloud
+
+Fri, Apr 21, 2021, 1:14 PM: email to login-en@svija.love
+Fri, Apr 16, 2021, 1:14 PM: email to login-en@svija.love
+
+I confirmed that andrew@svija.love was changed to tech@svija.com
+
+but:
+
+
 *Note: the Exchange website does not work in Safari.*
 
 ### Previous rejection
@@ -40,8 +59,11 @@ If you are not correctly signed in, this link will return a **404 error**.
 
 Click the blue **Create Listing** button, then:
 
-> Title: **Svija Tools**  
-> Purchase Method: **Free** (will open profile info window)  
+Title: **Svija Tools**:
+```
+Svija Tools
+```
+Purchase Method: **Free** (will open profile info window)  
 
 ---
 ### 1.2 Profile
