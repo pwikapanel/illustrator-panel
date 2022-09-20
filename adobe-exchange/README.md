@@ -67,6 +67,7 @@ Click the blue **Create Listing** button, then:
 
 <details><summary>1. Details</summary>
 
+### 1. Details
 ---
 
 Title:
@@ -178,7 +179,6 @@ Youtube link: [Using Svija to build a web page with Adobe Illustrator](https://w
 ---
 
 </details>
-
 <details><summary>3. Upload & Docs</summary>
 
 ---
@@ -204,7 +204,6 @@ upload single ZXP
 ---
 
 </details>
-
 <details><summary>4. Notes & EULA</summary>
 
 The EULA was written with the help of [this page](https://choosealicense.com/licenses/mit/):
