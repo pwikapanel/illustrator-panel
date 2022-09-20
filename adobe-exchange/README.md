@@ -4,7 +4,7 @@
 
 ### Adobe Exchange Submission
 
-<details><summary>problems</summary>
+<details><summary>expand notes</summary>
 
 ---
 
