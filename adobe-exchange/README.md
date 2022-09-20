@@ -83,6 +83,18 @@ Svija SAS
 - Primary Tags: **Publishing** & **Collaboration**
 - Secondary Tags: **Asset Management, Graphics, Project Management** & **Sharing**  
 - Custom Tags: **SVG, Website** (add one at a time)
+- Languages Supported: leave **Select Option(s)**
+
+**Summary (170 Chars):**
+```
+An Illustrator panel that synchronizes your local files with your Svija website and facilitates working on groups of pages.
+```
+
+
+
+
+
+
 
 Contact Email
 ```
@@ -101,11 +113,6 @@ What you create in Adobe illustrator is what you see online, instantly.
 Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
 ```
 > Developer: edit profile to change (down in Edge on 240407)  
-> Languages Supported: (default)  
-
-**Summary (170 Chars):**
-
-An Illustrator panel that synchronizes your local files with your Svija website and facilitates working on groups of pages.
 
 **Detailed Description:**
 
