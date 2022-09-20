@@ -139,6 +139,8 @@ For the first time, it's possible to make a website where the details are perfec
 
 Create a free account today at https://svija.love
 ```
+
+Click **Save & Next**
 ---
 
 
@@ -161,7 +163,9 @@ support@svija.com
 
 </details>
 
-### 2. Upload Images & Videos
+<details><summary>2. Upload Images & Videos</summary>
+
+---
 
 The following images are included in this repository:
 
@@ -173,7 +177,11 @@ Youtube link: [Using Svija to build a web page with Adobe Illustrator](https://w
 
 ---
 
-### 3. Upload & Docs
+</details>
+
+<details><summary>3. Upload & Docs</summary>
+
+---
 
 **Attention:** the app was rejected with the following note:
 
@@ -195,7 +203,9 @@ upload single ZXP
 
 ---
 
-### 4. Notes & EULA
+</details>
+
+<details><summary>4. Notes & EULA</summary>
 
 The EULA was written with the help of [this page](https://choosealicense.com/licenses/mit/):
 
@@ -225,3 +235,5 @@ We intend to use this build to test the installation process and make sure every
 
 Thanks for your time,
 Andrew Swift
+
+</details>
