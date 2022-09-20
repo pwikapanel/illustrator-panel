@@ -62,20 +62,28 @@ Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](htt
 If you are not correctly signed in, this link will return a **404 error**.
 
 ---
-### 1. Details
 
 Click the blue **Create Listing** button, then:
+
+<details><summary>1. Details</summary>
+
+---
 
 Title:
 ```
 Svija Tools
 ```
-Purchase Method: **Free** (will open profile info window)  
+- Purchase Method: **Free** (will open profile info window)
+- Private: **unchecked**
 
 Developer:
 ```
 Svija SAS  
 ```
+- Primary Tags: **Sharing, Publishing**  
+- Secondary Tags: **Collaboration, Asset Management, Graphics**  
+- Custom Tags: **SVG, Website** (add one at a time)
+
 Contact Email
 ```
 tech@svija.com  
@@ -92,11 +100,6 @@ What you create in Adobe illustrator is what you see online, instantly.
 
 Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
 ```
-Primary Tags: **Sharing, Publishing**  
-Secondary Tags: **Collaboration, Asset Management, Graphics**  
-Custom Tags: **SVG, Website** (add one at a time)
-
-> Private: **unchecked**  
 > Developer: edit profile to change (down in Edge on 240407)  
 > Languages Supported: (default)  
 
@@ -147,6 +150,9 @@ For the first time, it's possible to make a website where the details are perfec
 Create a free account today at https://svija.love
 
 ---
+
+</details>
+
 ### 2. Upload Images & Videos
 
 The following images are included in this repository:
