@@ -52,6 +52,7 @@ You may resubmit your product after applying the above mentioned changes.
 ---
 ---
 </details>
+
 ### Logging In
 
 Log in at [adobe.com/partners.html](https://www.adobe.com/partners.html) with **tech@svija.com** (click **Sign In** under **Adobe Exchange Partner Program for Creative Cloud**).
