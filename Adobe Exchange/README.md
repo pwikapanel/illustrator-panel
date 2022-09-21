@@ -142,6 +142,7 @@ Create a free account today at https://svija.love
 ```
 Click **Save & Next**
 
+---
 </details>
 <details><summary>2. Upload Images & Videos</summary>
 
