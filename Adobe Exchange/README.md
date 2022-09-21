@@ -2,15 +2,12 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
-### Adobe Exchange Submission
+### Submission to Adobe Exchange
 
-**Attention:** the signed .zxp file will be necessary for step 3, **Upload & Docs**.
+#### Preliminary Notes
 
-Verify that it can be installed using this app:
-```
-http://install.anastasiy.com
-```
-*remember to remove all references to **beta** from **manifest.xml**.*
+- use **Google Chrome** for the submission (Safari doesn't work)
+- the signed .zxp file will be necessary for step 3, **Upload & Docs**
 
 <details><summary>Previous Rejection</summary>
 
@@ -77,7 +74,6 @@ dYtr)54Ytra
 ---
 
 </details>
-
 <details><summary>1. Edit Profile</summary>
 
 ---
@@ -184,7 +180,6 @@ Create a free account today at https://svija.love
 Click **Save & Next**
 
 </details>
-
 <details><summary>2. Upload Images & Videos</summary>
 
 ---
@@ -206,8 +201,13 @@ https://www.youtube.com/watch?v=TJCQV5IziJ4
 ---
 
 </details>
-
 <details><summary>3. Upload & Docs</summary>
+
+Verify that it can be installed using this app:
+```
+http://install.anastasiy.com
+```
+*remember to remove all references to **beta** from **manifest.xml**.*
 
 ---
 
@@ -237,7 +237,6 @@ Finally the power of the Svija Tools Scripts has been integrated into one easy-t
 ---
 
 </details>
-
 <details><summary>4. Notes & EULA</summary>
 
 ---
@@ -272,7 +271,6 @@ Thanks for your time,
 Andrew Swift
 
 </details>
-
 <details><summary>Instructions to Testers</summary>
 
 
@@ -456,7 +454,6 @@ support@svija.com
 ```
 > Developer: edit profile to change (down in Edge on 240407)  
 </details>
-
 <details><summary>new content to attribute</summary>
 
 
@@ -530,4 +527,3 @@ Use Svija Sync to manage up to 100 websites.
 Music: The Duel · Michael Ramir C. · https://www.youtube.com/watch?v=deJklhkybZw
 
 </details>
-
