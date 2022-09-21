@@ -27,7 +27,7 @@ tech@svija.com
 ```
 V29VhNJM7gt
 ```
-Navigate to the [Dashboard](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html), or [list of unpublished apps](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html#listing-adobe-producer-notpublished).
+Navigate to the [dashboard](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html), or skip to the list of [unpublished apps](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html#listing-adobe-producer-notpublished).
 
 *Note: we have an old account that cannot be deleted or modified (login-en@svija.love / dYtr)54Ytra).*
 ---
