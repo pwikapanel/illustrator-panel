@@ -13,7 +13,7 @@ need to add instructions to submission (à la the Mac App Store) for testers, an
 #### Preliminary Notes
 
 - use **Google Chrome** for the submission (Safari doesn't work)
-- the signed .zxp file will be necessary for step 3, **Upload & Docs**
+- a **signed .zxp file** will be necessary for step 3, **Upload & Docs**
 
 <details><summary>1. Logging In</summary>
 
