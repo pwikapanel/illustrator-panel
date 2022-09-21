@@ -152,7 +152,7 @@ Click **Save & Next**
 The following images are included in this repository:
 
 - Listing Icon.png
-- Featured Image.png
+- Featured Image.png (300 kB max.)
 - Preview Image (caption below)
 
 ```
