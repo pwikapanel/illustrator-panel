@@ -102,7 +102,7 @@ Svija SAS
 
 **Summary** (170 Chars):
 ```
-An Illustrator panel that synchronizes your local files with your Svija website and facilitates working on groups of pages.
+The Svija Tools panel works with Svija: effortlessly create amazing web content with the most powerful design software available — Adobe Illustrator.
 ```
 **Detailed Description:**
 ```
