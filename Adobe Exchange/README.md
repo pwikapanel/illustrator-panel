@@ -171,7 +171,7 @@ This would be nice (a little like the App Store) to give people more of an idea 
 
 ---
 </details>
-<details><summary>3. Upload & Docs</summary>
+<details><summary>3. Create a Listing: <b>Upload & Docs</b></summary>
 
 Verify that it can be installed using this app:
 ```
