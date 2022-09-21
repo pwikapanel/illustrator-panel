@@ -2,80 +2,6 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
-<details><summary>new content to attribute</summary>
-
-
-# to preview what submission will look like:
-
-```
-https://partners.adobe.com/exchangeprogram/creativecloud/exchange.details.108899.html
-```
-
----
-
-version information
-
-Svija has been updated, and with this new version the folder hierarchy has been radically simplified.
-You now get immediate access to your most important files. And, a link to helpful answers has been
-added to the main panel.
-
----
-
-#### promotional text
-
-Svija Sync works with Svija: effortlessly create amazing web content with the
-most powerful design software available — Adobe Illustrator.
-
----
-#### description
-
-Description · 4000 chars
-
-NEEDS TO BE REPLACED · TWO TYPOS WERE FIXED
-
-A description of your app, detailing features and functionality.
-Users will only see the first five lines unless they click the “more” link.
-The first few lines of the app description should include the value proposition and mention your best features, to entice users to click the link to read more.
-Svija makes it easy to publish online from within Adobe Illustrator.
-
-Before Svija, publishing on the internet was a cumbersome process, with limited and hard-to-use tools.
-
-With Svija, you can use the most powerful design software available, effortlessly creating amazing web content.
-
-Svija is only possible because of Svija Sync, a streamlined app that does just two things:
-
-• Download changed or missing content
-• Continuously upload modifications
-
-————————————————————————————————————————
-
-DOWNLOAD CHANGED OR MISSING CONTENT
-
-Clicking the Download button will retrieve any files that have been modified or that are missing from your computer.
-
-The first time you use Svija Sync, downloading will retrieve your entire website.
-
-Later, it's most useful when working with a team or if you use more than one computer.
-
-————————————————————————————————————————
-
-CONTINUOUSLY UPLOAD MODIFICATIONS
-
-Each time you start a design session, you'll launch Svija Sync and click Upload.
-
-While you're creating, Svija Sync will check for any changes and continuously update your website.
-
-As the site owner, you'll see the changes right away. Other people will see them after a 24-hour delay.
-
-Of course, you can always choose to publish immediately or to keep content private if it's not ready.
-
-————————————————————————————————————————
-
-Use Svija Sync to manage up to 100 websites.
-Music: The Duel · Michael Ramir C. · https://www.youtube.com/watch?v=deJklhkybZw
-
-</details>
-
 ### Adobe Exchange Submission
 
 **Attention:** the signed .zxp file will be necessary for step 3, **Upload & Docs**.
@@ -530,3 +456,78 @@ support@svija.com
 ```
 > Developer: edit profile to change (down in Edge on 240407)  
 </details>
+
+<details><summary>new content to attribute</summary>
+
+
+# to preview what submission will look like:
+
+```
+https://partners.adobe.com/exchangeprogram/creativecloud/exchange.details.108899.html
+```
+
+---
+
+version information
+
+Svija has been updated, and with this new version the folder hierarchy has been radically simplified.
+You now get immediate access to your most important files. And, a link to helpful answers has been
+added to the main panel.
+
+---
+
+#### promotional text
+
+Svija Sync works with Svija: effortlessly create amazing web content with the
+most powerful design software available — Adobe Illustrator.
+
+---
+#### description
+
+Description · 4000 chars
+
+NEEDS TO BE REPLACED · TWO TYPOS WERE FIXED
+
+A description of your app, detailing features and functionality.
+Users will only see the first five lines unless they click the “more” link.
+The first few lines of the app description should include the value proposition and mention your best features, to entice users to click the link to read more.
+Svija makes it easy to publish online from within Adobe Illustrator.
+
+Before Svija, publishing on the internet was a cumbersome process, with limited and hard-to-use tools.
+
+With Svija, you can use the most powerful design software available, effortlessly creating amazing web content.
+
+Svija is only possible because of Svija Sync, a streamlined app that does just two things:
+
+• Download changed or missing content
+• Continuously upload modifications
+
+————————————————————————————————————————
+
+DOWNLOAD CHANGED OR MISSING CONTENT
+
+Clicking the Download button will retrieve any files that have been modified or that are missing from your computer.
+
+The first time you use Svija Sync, downloading will retrieve your entire website.
+
+Later, it's most useful when working with a team or if you use more than one computer.
+
+————————————————————————————————————————
+
+CONTINUOUSLY UPLOAD MODIFICATIONS
+
+Each time you start a design session, you'll launch Svija Sync and click Upload.
+
+While you're creating, Svija Sync will check for any changes and continuously update your website.
+
+As the site owner, you'll see the changes right away. Other people will see them after a 24-hour delay.
+
+Of course, you can always choose to publish immediately or to keep content private if it's not ready.
+
+————————————————————————————————————————
+
+Use Svija Sync to manage up to 100 websites.
+Music: The Duel · Michael Ramir C. · https://www.youtube.com/watch?v=deJklhkybZw
+
+</details>
+
