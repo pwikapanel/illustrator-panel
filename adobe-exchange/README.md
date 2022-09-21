@@ -150,7 +150,7 @@ The following images are included in this repository:
 
 * Listing Icon.png
 * Featured Image.png
-* Preview Image
+* Preview Image (caption below)
 
 ```
 The Svija Tools Panel integrates seamlessly with Illustrator
