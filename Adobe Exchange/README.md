@@ -81,8 +81,8 @@ Adobe Illustrator
 </details>
 <details><summary>3. Create a Listing: Details</summary>
 
-### 1. Details
 ---
+### 3. Create a Listing: Details
 
 Title:
 ```
