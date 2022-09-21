@@ -56,22 +56,38 @@ You may resubmit your product after applying the above mentioned changes.
 ---
 ---
 </details>
-
 <details><summary>Logging In</summary>
 
-Log in at [https://partners.adobe.com/exchangeprogram/creativecloud](https://partners.adobe.com/exchangeprogram/creativecloud) (hamburger menu at top right):
-```
-login-en@svija.love
-dYtr)54Ytra
-```
+---
 
-Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html).
+Log in (hamburger menu at top right):
+```
+[https://partners.adobe.com/exchangeprogram/creativecloud](https://partners.adobe.com/exchangeprogram/creativecloud
+```
+```
+tech@svija.com
+```
+```
+V29VhNJM7gt
+```
+Navigate to
+```
+[partners.adobe.com/exchangeprogram/creativecloud/appslist.html](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html
+```
 
 If you are not correctly signed in, this link will return a **404 error**.
 
 ---
 
 Click the blue **Create Listing** button, then:
+**Note:** there is an old account that cannot be deleted or modified:
+```
+login-en@svija.love
+```
+dYtr)54Ytra
+```
+
+---
 
 </details>
 
