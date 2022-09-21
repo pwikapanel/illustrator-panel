@@ -155,7 +155,10 @@ The following images are included in this repository:
 ```
 The Svija Tools Panel integrates seamlessly with Illustrator
 ```
-Youtube link: [Using Svija to build a web page with Adobe Illustrator](https://www.youtube.com/watch?v=UTjExzeUn-s) (19 minutes).
+Youtube link:
+```
+https://www.youtube.com/watch?v=UTjExzeUn-s
+```
 
 ---
 
