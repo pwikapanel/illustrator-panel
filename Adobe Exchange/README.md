@@ -9,10 +9,9 @@
 - use **Google Chrome** for the submission (Safari doesn't work)
 - the signed .zxp file will be necessary for step 3, **Upload & Docs**
 
-<details><summary>Logging In</summary>
+<details><summary>1. Logging In</summary>
 
 ---
-
 The Adobe Exchange website is at:
 ```
 https://partners.adobe.com/exchangeprogram/creativecloud
@@ -37,16 +36,8 @@ https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html#listing-a
 
 Click the blue **Create Listing** button, then:
 
----
 
-**Note:** there is an old account that cannot be deleted or modified:
-```
-login-en@svija.love
-```
-```
-dYtr)54Ytra
-```
-
+*\**Note:** there is an old account that cannot be deleted or modified (login-en@svija.love / dYtr)54Ytra).*
 ---
 
 </details>
