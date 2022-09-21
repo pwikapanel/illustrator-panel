@@ -1,4 +1,4 @@
-*Updated 19 September, 2022*
+*Updated 20 September, 2022 · Andrew's Mac*
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
