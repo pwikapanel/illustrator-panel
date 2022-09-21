@@ -73,7 +73,7 @@ Click the blue **Create Listing** button, then:
 Title:
 ```
 Svija Tools
-``
+```
 - Purchase Method: **Free**
 - Private: **unchecked**
 
