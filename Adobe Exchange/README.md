@@ -163,8 +163,13 @@ Youtube link (Essential Tasks):
 https://www.youtube.com/watch?v=TJCQV5IziJ4
 ```
 
----
+#### Next Steps
 
+It's possible, at this point, to add more videos and images.
+
+This would be nice (a little like the App Store) to give people more of an idea of what it is, or just to be more professional.
+
+---
 </details>
 <details><summary>3. Upload & Docs</summary>
 
