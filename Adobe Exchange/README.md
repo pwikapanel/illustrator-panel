@@ -29,13 +29,18 @@ V29VhNJM7gt
 ```
 Navigate to the [dashboard](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html), or skip to the list of [unpublished apps](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html#listing-adobe-producer-notpublished).
 
-*Note: we have an old account that cannot be deleted or modified (login-en@svija.love / dYtr)54Ytra).*
+*Note: we have an old account that cannot be deleted or modified (login-en@svija.love · dYtr)54Ytra).*
 
 ---
 </details>
 <details><summary>2. Edit Profile</summary>
 
 ---
+### 2. Edit Profile
+
+This is confusing and non-obvious.
+
+Start with this link:
 ```
 https://adobedealreg.secure.force.com/PartnerManager/PartnerRegistration
 ```
@@ -65,11 +70,8 @@ Svija is a website builder based on Adobe Illustrator. What you create in Adobe 
 Adobe Illustrator
 
 [SAVE AND CONTINUE]
+
 ---
-
-#### Add/Edit Users
-
-
 </details>
 <details><summary>3. Create a Listing: <b>Details</b></summary>
 
