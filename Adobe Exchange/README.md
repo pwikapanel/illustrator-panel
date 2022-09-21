@@ -79,7 +79,7 @@ Adobe Illustrator
 
 
 </details>
-<details><summary>3. Create a Listing: Details</summary>
+<details><summary>3. Create a Listing: <b>Details</b></summary>
 
 ---
 ### 3. Create a Listing: Details
