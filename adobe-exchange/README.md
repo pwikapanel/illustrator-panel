@@ -173,8 +173,9 @@ https://www.youtube.com/watch?v=UTjExzeUn-s
 You have put the installation instruction in the Release Notes Section instead of the "Installation Instructions for the CCT/Enterprise Users" Section.
 
 **Release Notes:**
-
+```
 Finally the power of the Svija Tools Scripts has been integrated into one easy-to-use Illustrator Panel.
+```
 
 **ADD MORE DOCUMENTS**
 
@@ -186,6 +187,10 @@ Need to delete previous upload (click on x) before uploading a more recent versi
 
 upload single ZXP
 
+Version:
+```
+1.0.3
+```
 ---
 
 </details>

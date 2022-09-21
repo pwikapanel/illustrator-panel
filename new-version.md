@@ -93,6 +93,9 @@ Places to update the version number:
 ```
 vi -O README.md Svija\ Tools\ Beta/panel/*info* Svija\ Tools\ Beta/CSXS/manifest.xml
 ```
+```
+vi adobe-exchange/README.md
+```
 **Note:** this will break signing for the **Svija Tools Beta** folder, but that folder has no utility until it is update for other reasons.
 
 ---
