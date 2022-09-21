@@ -53,9 +53,13 @@ You may resubmit your product after applying the above mentioned changes.
 ---
 </details>
 
-### Logging In
+<details><summary>Logging In</summary>
 
-Log in at [https://partners.adobe.com/exchangeprogram/creativecloud](https://partners.adobe.com/exchangeprogram/creativecloud) with **tech@svija.com** (click **Sign In** under **Adobe Exchange Partner Program for Creative Cloud**).
+Log in at [https://partners.adobe.com/exchangeprogram/creativecloud](https://partners.adobe.com/exchangeprogram/creativecloud) (hamburger menu at top right):
+```
+login-en@svija.love
+dYtr)54Ytra
+```
 
 Navigate to [partners.adobe.com/exchangeprogram/creativecloud/appslist.html](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html).
 
@@ -64,6 +68,8 @@ If you are not correctly signed in, this link will return a **404 error**.
 ---
 
 Click the blue **Create Listing** button, then:
+
+</details>
 
 <details><summary>1. Details</summary>
 
