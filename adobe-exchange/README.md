@@ -150,8 +150,11 @@ The following images are included in this repository:
 
 * Listing Icon.png
 * Featured Image.png
-* Preview Image · caption "The Svija Tools Panel integrates seamlessly with Illustrator"
+* Preview Image
 
+```
+The Svija Tools Panel integrates seamlessly with Illustrator
+```
 Youtube link: [Using Svija to build a web page with Adobe Illustrator](https://www.youtube.com/watch?v=UTjExzeUn-s) (19 minutes).
 
 ---
