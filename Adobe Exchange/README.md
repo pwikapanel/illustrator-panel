@@ -4,6 +4,69 @@
 
 # to preview what submission will look like:
 
+---
+
+version information
+
+Svija has been updated, and with this new version the folder hierarchy has been radically simplified.
+You now get immediate access to your most important files. And, a link to helpful answers has been
+added to the main panel.
+
+---
+
+#### promotional text
+
+Svija Sync works with Svija: effortlessly create amazing web content with the
+most powerful design software available — Adobe Illustrator.
+
+---
+#### description
+
+Description · 4000 chars
+
+NEEDS TO BE REPLACED · TWO TYPOS WERE FIXED
+
+A description of your app, detailing features and functionality.
+Users will only see the first five lines unless they click the “more” link.
+The first few lines of the app description should include the value proposition and mention your best features, to entice users to click the link to read more.
+Svija makes it easy to publish online from within Adobe Illustrator.
+
+Before Svija, publishing on the internet was a cumbersome process, with limited and hard-to-use tools.
+
+With Svija, you can use the most powerful design software available, effortlessly creating amazing web content.
+
+Svija is only possible because of Svija Sync, a streamlined app that does just two things:
+
+• Download changed or missing content
+• Continuously upload modifications
+
+————————————————————————————————————————
+
+DOWNLOAD CHANGED OR MISSING CONTENT
+
+Clicking the Download button will retrieve any files that have been modified or that are missing from your computer.
+
+The first time you use Svija Sync, downloading will retrieve your entire website.
+
+Later, it's most useful when working with a team or if you use more than one computer.
+
+————————————————————————————————————————
+
+CONTINUOUSLY UPLOAD MODIFICATIONS
+
+Each time you start a design session, you'll launch Svija Sync and click Upload.
+
+While you're creating, Svija Sync will check for any changes and continuously update your website.
+
+As the site owner, you'll see the changes right away. Other people will see them after a 24-hour delay.
+
+Of course, you can always choose to publish immediately or to keep content private if it's not ready.
+
+————————————————————————————————————————
+
+Use Svija Sync to manage up to 100 websites.
+Music: The Duel · Michael Ramir C. · https://www.youtube.com/watch?v=deJklhkybZw
+
 ```
 https://partners.adobe.com/exchangeprogram/creativecloud/exchange.details.108899.html
 ```
@@ -281,6 +344,147 @@ Andrew Swift
 
 <details><summary>Instructions to Testers</summary>
 
+
+Test user:
+
+Ann Davidson URL: ann.svija.site Connect ID: ann Connect PW: D87p9yXSvUeYnGPX
+
+Admin ID: ann Admin PW: 5PdzfpyeFAF6Dk7S
+
+Changes will not be visible unless you sign in to Svija Admin (link on app) The cache is refreshed every 24 hours
+
+---
+
+Login information for testing:
+
+Nickname: Ann
+URL: ann.svija.site
+Connect ID: ann
+Password: D87p9yXSvUeYnGPX
+
+Login information for clicking on Admin icon:
+
+Username: ann
+Password: 5PdzfpyeFAF6Dk7S
+
+————————————————————————————————————————
+
+You will modify the test website https://ann.svija.site:
+
+1. Configure the app
+
+2. Download website files
+3. Verify the downloaded files
+
+4. Connect to Svija Admin
+
+5. Start uploading
+6. Modify files & verify publication of modifications
+
+7. Verify functioning of icon buttons
+
+————————————————————————————————————————
+
+1. CONFIGURE THE APP
+
+- Launch Svija Sync
+- Click on "Click here to get started…" or go to menu Svija Sync › Preferences
+- Add a Nickname (suggestion: "Ann")
+- Paste the following information into the other fields:
+
+URL: ann.svija.site
+Connect ID: ann
+Password: D87p9yXSvUeYnGPX
+
+- Click "Set Folder" to select a new empty folder on your computer (suggestion: "ann.svija.site")
+- Click "Done" or press Escape to return to the main screen
+
+————————————————————————————————————————
+
+2. DOWNLOAD WEBSITE FILES
+
+Begin by downloading the website files:
+
+- Click Download
+- Wait for the message "Download Complete" (approx. 17MB)
+
+————————————————————————————————————————
+
+3. VERIFY THE DOWNLOADED FILES
+
+- Click the "Folder" icon to open the local folder
+- You will see the files used for designing the website
+- Open the "Svija" folder containing the actual website content
+
+————————————————————————————————————————
+
+4. CONNECT TO SVIJA ADMIN
+
+For modifications to be visible without waiting 24 hours, it is necessary to connect to Svija Admin:
+
+- In Svija Sync, click the "Admin" icon to launch Svija Admin in a browser window
+- Connect using the following information:
+
+Username: ann
+Password: 5PdzfpyeFAF6Dk7S
+
+You can close the browser window. As long as you're signed in, changes are visible immediately.
+
+————————————————————————————————————————
+
+5. START UPLOADING
+
+A design session begins by uploading:
+
+- Click "Upload" or press the space bar
+- Click "Continue" at the alert that someone else has modified the website
+
+The progress bar should advance slowly:
+
+- When the right edge advances, a sync has started
+- When the left edge advances, the sync has finished
+- There is a 3-second wait between each transfer
+
+————————————————————————————————————————
+
+6. MODIFY FILES & VERIFY PUBLICATION OF MODIFICATIONS
+
+NOTE: Svija Sync should be continuously uploading during this phase.
+
+To verify uploading, you will modify some files in the "Svija" folder.
+
+Suggestions:
+
+- Create a text file in Svija/Shared Files (suggestion: "test.txt")
+- Visit the file at https://ann.svija.site/files/test.txt
+
+You can also put a pdf in sync/files and it should be available at the corresponding web address.
+
+Arbitrary folders will not work (e.g. ann.svija.site/myfolder/test.pdf). This is intentional.
+
+To modify the website pages:
+
+- Open Svija/SVG Files/page_1_1200.svg with a text editor and replace the text "Page One" near the bottom
+- After uploading, visiting https://ann.svija.love on a computer will show the new text as the headline
+
+Or for mobile:
+
+- Open Svija/SVG Files/page_1_300.svg with a text editor and replace the text "Page One" near the bottom
+- After uploading, visiting ann.svija.love on mobile should show the new text as the headline
+
+It will be necessary to click the Cache icon for the change to be visible.
+
+When you are done with these tests, press the Pause button or spacebar to stop synchronizing.
+
+————————————————————————————————————————
+
+7. verify functioning of icon buttons
+
+- Click on Site and verify that the website opens in a browser window
+- Click on Admin and verify that Svija Admin opens in a browser window
+- Click on Cache and verify that an alert "Cache Cleard" is shown
+- Click on Folder and verify that the local folder is opened
+- Click on Answers and verify that the "Next Steps" web page opens
 ---
 
 Test user:
