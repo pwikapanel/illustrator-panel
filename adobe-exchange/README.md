@@ -62,7 +62,7 @@ You may resubmit your product after applying the above mentioned changes.
 
 Log in (hamburger menu at top right):
 ```
-[https://partners.adobe.com/exchangeprogram/creativecloud](https://partners.adobe.com/exchangeprogram/creativecloud
+https://partners.adobe.com/exchangeprogram/creativecloud
 ```
 ```
 tech@svija.com
