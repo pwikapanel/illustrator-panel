@@ -2,6 +2,12 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
+---
+
+need to add instructions to submission (à la the Mac App Store) for testers, and re-submit.
+
+---
+
 ### Submission to Adobe Exchange
 
 #### Preliminary Notes
@@ -174,7 +180,7 @@ This would be nice (a little like the App Store) to give people more of an idea 
 <details><summary>3. Create a Listing: <b>Upload & Docs</b></summary>
 
 ---
-###3. Create a Listing: Upload & Docs<
+### 3. Create a Listing: Upload & Docs<
 
 Verify that it can be installed using this app:
 ```
@@ -190,7 +196,7 @@ You have put the installation instruction in the Release Notes Section instead o
 
 #### Release Notes
 ```
-Finally the power of the Svija Tools Scripts has been integrated into one easy-to-use Illustrator Panel.
+Svija has been updated, and with this new version the folder hierarchy has been radically simplified. You now get immediate access to your most important files. And, a link to helpful answers has been added to the main panel.
 ```
 
 #### ADD MORE DOCUMENTS
