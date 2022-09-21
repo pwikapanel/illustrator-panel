@@ -2,6 +2,12 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
+# to preview what submission will look like:
+
+```
+https://partners.adobe.com/exchangeprogram/creativecloud/exchange.details.108899.html
+```
+
 ### Adobe Exchange Submission
 
 **Attention:** the signed .zxp file will be necessary for step 3, **Upload & Docs**.
