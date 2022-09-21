@@ -4,6 +4,10 @@
 
 ### Adobe Exchange Submission
 
+**Attention:** the signed .zxp file will be necessary for step 3, **Upload & Docs**.
+
+Verify that it can be installed using that app that I forgot the name of.
+
 <details><summary>expand notes</summary>
 
 ---
