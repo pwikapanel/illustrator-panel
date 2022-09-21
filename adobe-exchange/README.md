@@ -190,9 +190,9 @@ The following images are included in this repository:
 ```
 The Svija Tools Panel integrates seamlessly with Illustrator
 ```
-Youtube link:
+Youtube link (Essential Tasks):
 ```
-https://www.youtube.com/watch?v=UTjExzeUn-s
+https://www.youtube.com/watch?v=TJCQV5IziJ4
 ```
 
 ---
