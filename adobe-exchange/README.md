@@ -55,6 +55,10 @@ Navigate to
 ```
 https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html
 ```
+or (if not yet published)
+```
+https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html#listing-adobe-producer-notpublished
+```
 
 *If you are not correctly signed in, this link will return a **404 error**.*
 
@@ -269,6 +273,28 @@ Andrew Swift
 
 </details>
 
+<details><summary>Instructions to Testers</summary>
+
+---
+
+Test user:
+
+Ashley Davidson URL: ashley.svija.site
+
+Admin ID: ann Admin PW: 5PdzfpyeFAF6Dk7S
+
+Changes will not be visible unless you sign in to Svija Admin (link on app) The cache is refreshed every 24 hours
+
+```
+ashley.svija.site ashley  BG9cxc5amdq5ELvW
+```
+```
+ashley  rnh6C6h3qjtGq4gm
+```
+
+---
+
+</details>
 <details><summary>unused content</summary>
 
 **Description** (255 chars): **UNUSED??**
