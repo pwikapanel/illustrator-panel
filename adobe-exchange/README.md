@@ -152,9 +152,9 @@ Click **Save & Next**
 
 The following images are included in this repository:
 
-* Listing Icon.png
-* Featured Image.png
-* Preview Image (caption below)
+- Listing Icon.png
+- Featured Image.png
+- Preview Image (caption below)
 
 ```
 The Svija Tools Panel integrates seamlessly with Illustrator
@@ -176,25 +176,25 @@ https://www.youtube.com/watch?v=UTjExzeUn-s
 
 You have put the installation instruction in the Release Notes Section instead of the "Installation Instructions for the CCT/Enterprise Users" Section.
 
-**Release Notes:**
+#### Release Notes
 ```
 Finally the power of the Svija Tools Scripts has been integrated into one easy-to-use Illustrator Panel.
 ```
 
-**ADD MORE DOCUMENTS**
+#### ADD MORE DOCUMENTS
 
-Nothing at this time.
+- nothing at this time.
 
-**Upload your file**
+#### Upload your file
 
-Need to delete previous upload (click on x) before uploading a more recent version.
+**Note:**: delete previous upload (click on x) before uploading a more recent version.
 
-upload single ZXP
+- upload single ZXP
 
-Version:
-```
-1.0.3
-```
+#### How to Sell
+
+- nothing at this time.
+
 ---
 
 </details>
