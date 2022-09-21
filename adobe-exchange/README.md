@@ -6,7 +6,11 @@
 
 **Attention:** the signed .zxp file will be necessary for step 3, **Upload & Docs**.
 
-Verify that it can be installed using that app that I forgot the name of.
+Verify that it can be installed using this app:
+```
+http://install.anastasiy.com
+```
+*remember to remove all references to **beta** from **manifest.xml**.*
 
 <details><summary>Previous Rejection</summary>
 
@@ -244,10 +248,11 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
+Where To Find It:
+```
+In Adobe Illustrator, got to the menu Window › Extensions › Svija Tools.
 
----
-
-Where To Find It: **In Adobe Illustrator, got to the menu Window › Extensions › Svija Tools.**
+```
 
 CCT/Enterprise user: **Svija Tools can easily be installed with Extension Manager, available for free at http://install.anastasiy.com.**
 
