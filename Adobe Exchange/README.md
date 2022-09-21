@@ -16,7 +16,7 @@ The Adobe Exchange website is at:
 ```
 https://partners.adobe.com/exchangeprogram/creativecloud
 ```
-Log in (hamburger menu at top right):
+Log in (blue button or hamburger menu, top right):
 ```
 tech@svija.com
 ```
@@ -37,11 +37,11 @@ https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html#listing-a
 Click the blue **Create Listing** button, then:
 
 
-*\**Note:** there is an old account that cannot be deleted or modified (login-en@svija.love / dYtr)54Ytra).*
+*Note: we have an old account that cannot be deleted or modified (login-en@svija.love / dYtr)54Ytra).*
 ---
 
 </details>
-<details><summary>1. Edit Profile</summary>
+<details><summary>2. Edit Profile</summary>
 
 ---
 ```
@@ -77,7 +77,7 @@ Adobe Illustrator
 
 
 </details>
-<details><summary>1. Details</summary>
+<details><summary>Create a Listing 1. Details</summary>
 
 ### 1. Details
 ---
