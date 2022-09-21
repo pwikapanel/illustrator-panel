@@ -2,7 +2,14 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
+<details><summary>new content to attribute</summary>
+
+
 # to preview what submission will look like:
+
+```
+https://partners.adobe.com/exchangeprogram/creativecloud/exchange.details.108899.html
+```
 
 ---
 
@@ -67,9 +74,7 @@ Of course, you can always choose to publish immediately or to keep content priva
 Use Svija Sync to manage up to 100 websites.
 Music: The Duel · Michael Ramir C. · https://www.youtube.com/watch?v=deJklhkybZw
 
-```
-https://partners.adobe.com/exchangeprogram/creativecloud/exchange.details.108899.html
-```
+</details>
 
 ### Adobe Exchange Submission
 
