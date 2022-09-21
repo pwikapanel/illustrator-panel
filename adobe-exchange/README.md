@@ -60,10 +60,10 @@ You may resubmit your product after applying the above mentioned changes.
 
 ---
 
-Log in (hamburger menu at top right):
 ```
 https://partners.adobe.com/exchangeprogram/creativecloud
 ```
+Log in (hamburger menu at top right):
 ```
 tech@svija.com
 ```
@@ -72,14 +72,15 @@ V29VhNJM7gt
 ```
 Navigate to
 ```
-[partners.adobe.com/exchangeprogram/creativecloud/appslist.html](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html
+https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html
 ```
 
-If you are not correctly signed in, this link will return a **404 error**.
+*If you are not correctly signed in, this link will return a **404 error**.*
+
+Click the blue **Create Listing** button, then:
 
 ---
 
-Click the blue **Create Listing** button, then:
 **Note:** there is an old account that cannot be deleted or modified:
 ```
 login-en@svija.love
