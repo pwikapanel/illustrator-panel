@@ -70,6 +70,35 @@ dYtr)54Ytra
 
 </details>
 
+<details><summary>1. Edit Profile</summary>
+
+---
+
+#### Organization Info
+
+Andrew Swift  
+tech@svija.com  
++33618260961  
+
+CTO  
+Svija  
+34 rue Jean Giraudoux  
+Cusset  
+FRANCE  
+Puy-de-Dôme  
+03300  
+
+svija.love
+
+```
+Svija is a website builder based on Adobe Illustrator. What you create in Adobe illustrator is what you see online, instantly.Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
+```
+[Independent Developer] [High-Tech]
+Adobe Illustrator
+
+[SAVE AND CONTINUE]
+---
+</details>
 <details><summary>1. Details</summary>
 
 ### 1. Details
