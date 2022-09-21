@@ -144,10 +144,10 @@ Click **Save & Next**
 
 ---
 </details>
-<details><summary>3. Create a Listing: <b>Upload Images & Videos</b></summary>
+<details><summary>3. Create a Listing: <b>Images</b></summary>
 
 ---
-### 3. Create a Listing: Upload Images & Videos
+### 3. Create a Listing: Images
 
 The following images are included in this repository:
 
