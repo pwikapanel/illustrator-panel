@@ -9,30 +9,6 @@
 - use **Google Chrome** for the submission (Safari doesn't work)
 - the signed .zxp file will be necessary for step 3, **Upload & Docs**
 
-<details><summary>Previous Rejection</summary>
-
----
-
-### Previous rejection
-
-**Mon, Apr 12, 2021, 10:01 AM**
-  
-Hello Andrew,
-
-Your product Svija Tools 1.0.0 does not currently meet the requirements to be published on Adobe Exchange. Your Product has been rejected for the following reasons:
-
-Rejection Reason: The submission does not adhere to the Adobe branding guidelines for the following reason: The Featured Image contains Adobe Illustrator Icon without the Adobe Branding team's approval.
-
-Please refer to Adobe Brand Guidelines for more info.
-
-The .ZXP file included with the product submission could not be installed. The error we encountered was: [-402]. kindly refer this site for error code https://community.adobe.com/t5/exchange/every-exman-command-error-code-exmancmd-error-code-list/m-p/11386103?page&equals;1
-
-We tried to signup using the form we got an error while submitting that form. For attaching Licenses you can attach them to the Upload and Docs Segment.
-
-You may resubmit your product after applying the above mentioned changes.
-
----
-</details>
 <details><summary>Logging In</summary>
 
 ---
@@ -526,4 +502,28 @@ Of course, you can always choose to publish immediately or to keep content priva
 Use Svija Sync to manage up to 100 websites.
 Music: The Duel · Michael Ramir C. · https://www.youtube.com/watch?v=deJklhkybZw
 
+</details>
+<details><summary>Previous Rejection</summary>
+
+---
+
+### Previous rejection
+
+**Mon, Apr 12, 2021, 10:01 AM**
+  
+Hello Andrew,
+
+Your product Svija Tools 1.0.0 does not currently meet the requirements to be published on Adobe Exchange. Your Product has been rejected for the following reasons:
+
+Rejection Reason: The submission does not adhere to the Adobe branding guidelines for the following reason: The Featured Image contains Adobe Illustrator Icon without the Adobe Branding team's approval.
+
+Please refer to Adobe Brand Guidelines for more info.
+
+The .ZXP file included with the product submission could not be installed. The error we encountered was: [-402]. kindly refer this site for error code https://community.adobe.com/t5/exchange/every-exman-command-error-code-exmancmd-error-code-list/m-p/11386103?page&equals;1
+
+We tried to signup using the form we got an error while submitting that form. For attaching Licenses you can attach them to the Upload and Docs Segment.
+
+You may resubmit your product after applying the above mentioned changes.
+
+---
 </details>
