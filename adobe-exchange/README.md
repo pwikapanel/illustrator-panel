@@ -8,32 +8,9 @@
 
 Verify that it can be installed using that app that I forgot the name of.
 
-<details><summary>expand notes</summary>
+<details><summary>Previous Rejection</summary>
 
 ---
-
-**LISTING ALREADY EXISTS, BUT HOW TO ACCESS IT?**
-
-email addresses that don't work:
-- login-en@svija.love
-- admin@svija.love
-- hello@svija.love
-- hello@svija.com
-
-no emails in
-- support@svija.cloud
-- hello@svija.cloud
-- tech@svija.cloud
-
-Fri, Apr 21, 2021, 1:14 PM: email to login-en@svija.love
-Fri, Apr 16, 2021, 1:14 PM: email to login-en@svija.love
-
-I confirmed that andrew@svija.love was changed to tech@svija.com
-
-but:
-
-
-*Note: the Exchange website does not work in Safari.*
 
 ### Previous rejection
 
@@ -53,7 +30,6 @@ We tried to signup using the form we got an error while submitting that form. Fo
 
 You may resubmit your product after applying the above mentioned changes.
 
----
 ---
 </details>
 <details><summary>Logging In</summary>
