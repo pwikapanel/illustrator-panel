@@ -60,6 +60,7 @@ You may resubmit your product after applying the above mentioned changes.
 
 ---
 
+The Adobe Exchange website is at:
 ```
 https://partners.adobe.com/exchangeprogram/creativecloud
 ```
