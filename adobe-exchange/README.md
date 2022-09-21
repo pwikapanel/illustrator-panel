@@ -73,6 +73,9 @@ dYtr)54Ytra
 <details><summary>1. Edit Profile</summary>
 
 ---
+```
+https://adobedealreg.secure.force.com/PartnerManager/PartnerRegistration
+```
 
 #### Organization Info
 
@@ -93,11 +96,15 @@ svija.love
 ```
 Svija is a website builder based on Adobe Illustrator. What you create in Adobe illustrator is what you see online, instantly.Svija is lightweight and fast. You'll be able to create rich, detailed web pages that would be impossible with other tools.
 ```
-[Independent Developer] [High-Tech]
+[Independent Developer] [High-Tech]  
 Adobe Illustrator
 
 [SAVE AND CONTINUE]
 ---
+
+#### Add/Edit Users
+
+
 </details>
 <details><summary>1. Details</summary>
 
