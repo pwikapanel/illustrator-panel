@@ -173,6 +173,9 @@ This would be nice (a little like the App Store) to give people more of an idea 
 </details>
 <details><summary>3. Create a Listing: <b>Upload & Docs</b></summary>
 
+---
+###3. Create a Listing: Upload & Docs<
+
 Verify that it can be installed using this app:
 ```
 http://install.anastasiy.com
