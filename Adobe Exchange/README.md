@@ -50,6 +50,8 @@ https://adobedealreg.secure.force.com/PartnerManager/PartnerRegistration
 
 #### Organization Info
 
+**Developer name can be edited in EDIT PROFILE > Exchange Profile**
+
 Andrew Swift  
 tech@svija.com  
 +33618260961  
@@ -93,7 +95,7 @@ Developer:
 ```
 Svija SAS  
 ```
-- Primary Tags: **Publishing** & **Collaboration**
+- Primary Tags: **Publishing, Collaboration**
 - Secondary Tags: **Asset Management, Graphics, Project Management** & **Sharing**  
 - Custom Tags: **SVG, Website** (add one at a time)
 - Languages Supported: leave **Select Option(s)**
