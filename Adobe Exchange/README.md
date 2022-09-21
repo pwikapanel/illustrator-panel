@@ -10,8 +10,6 @@ need to add instructions to submission (à la the Mac App Store) for testers, an
 
 ### Submission to Adobe Exchange
 
-#### Preliminary Notes
-
 - use **Google Chrome** for the submission (Safari doesn't work)
 - a **signed .zxp file** will be necessary for step 3, **Upload & Docs**
 
@@ -22,7 +20,7 @@ The Adobe Exchange website is at:
 ```
 https://partners.adobe.com/exchangeprogram/creativecloud
 ```
-Log in (blue button or hamburger menu, top right):
+**Log In** (blue button or `hamburger` menu, top right):
 ```
 tech@svija.com
 ```
