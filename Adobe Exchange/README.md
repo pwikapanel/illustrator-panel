@@ -23,7 +23,7 @@ tech@svija.com
 ```
 V29VhNJM7gt
 ```
-Navigate to
+Navigate to the **Dashboard** or paste this link:
 ```
 https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html
 ```
