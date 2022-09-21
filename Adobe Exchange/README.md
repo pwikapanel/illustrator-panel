@@ -20,26 +20,14 @@ The Adobe Exchange website is at:
 ```
 https://partners.adobe.com/exchangeprogram/creativecloud
 ```
-**Log In** (blue button or `hamburger` menu, top right):
+**Log In** (blue button or hamburger menu, top right):
 ```
 tech@svija.com
 ```
 ```
 V29VhNJM7gt
 ```
-Navigate to the **Dashboard** or paste this link:
-```
-https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html
-```
-or (if not yet published)
-```
-https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html#listing-adobe-producer-notpublished
-```
-
-*If you are not correctly signed in, this link will return a **404 error**.*
-
-Click the blue **Create Listing** button, then:
-
+Navigate to the [Dashboard](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html), or [list of unpublished apps](https://partners.adobe.com/exchangeprogram/creativecloud/appslist.html#listing-adobe-producer-notpublished).
 
 *Note: we have an old account that cannot be deleted or modified (login-en@svija.love / dYtr)54Ytra).*
 ---
