@@ -106,11 +106,11 @@ The Svija Tools panel works with Svija: effortlessly create amazing web content 
 ```
 **Detailed Description:**
 ```
-Techniques that have been trivially easy for more than 25 years in graphics software are still impossible in HTML.
+Techniques that have been trivially easy for more than 30 years in graphics software are still impossible in HTML.
 
 It's time to evolve.
 
-Svija is a simple tool that enables the creation of a professional website written entirely in SVG, based on files created in Adobe Illustrator:
+Svija is a suite of tools that enables the creation of a professional website written entirely in SVG, based on files created with Adobe Illustrator:
 
 • website updated in real time
 • no conversion or development necessary
@@ -120,15 +120,15 @@ Svija is a simple tool that enables the creation of a professional website writt
 
 ——— Svija Sync ———
 
-Tiny app that continuously synchronizes the content of your computer with your website.
+A macOS app that continuously synchronizes the content of your computer with your website.
 
 ——— Svija Tools ———
 
-Scripts and templates for Adobe Illustrator that facilitate building a website.
+An Adobe Illustrator panel that saves your pages and helps organize files.
 
 ——— Svija Admin ———
 
-Web interface for organizing your content, allowing you to define pages and recurring or temporary modules.
+A web interface for organizing your content, allowing you to define pages and recurring or temporary modules.
 
 Svija requires a free account, available at https://svija.love
 
