@@ -39,6 +39,14 @@ Create the following folder hiearchy:
 ·         └ Svija/  
 ·                └ SVG Files  
 
+You can use any reasonably-sized JPG image in the Links folder, and name it whatever you like.
+
+------------------------------
+  
+#### Let's Get Started
+
+Open the template file Blank Page.ait
+
 ------------------------------
 
 | ashley.svija.site/  
