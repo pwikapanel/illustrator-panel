@@ -32,38 +32,38 @@ Svija Tools expects a specific folder hierarchy to be present.
 
 Unzip the accompanying files so that the following folder hiearchy is available:
 
-ashley.svija.site/  
-|└─ sync/  
-|     ├─ Blank Page.ait    
-|     └─ Links/    
-|        ├─Half Shadow.png    
-|        ├─Horizontal Glow.png    
-|        └─Horizontal Shadow.png    
-|     ┌─ Missing.ai    
-|     ├─ Modules/    
-|        ├─Computer Header.ai  
-|        ├─Footer.ai  
-|        ├─Links/  
-|             Half Shadow.png  
-|     Horizontal Glow.png  
-|     Horizontal Shadow.png  
-|     Menu Shadow Collapsed.png  
-|     Menu Shadow Expanded.png  
-|        ├─Mobile Menu.ai  
-|       
-|     ├─ Page 1.ai    
-|     ├─ Page 2.ai    
-|     ├─ Page 3.ai  
-|     ├─ Svija/  
-|         ├─ Svija  
-|         ├─ Svija  
-|         └─ Svija  
-|         Fonts
-|         Images
-|         Scripts
-|         Shared Files
-|         SVG Files
-|         Svija Admin
+| ashley.svija.site/  
+| └─ sync/  
+|     ├─ Blank Page.ait    
+|     └─ Links/    
+|        ├─Half Shadow.png    
+|        ├─Horizontal Glow.png    
+|        └─Horizontal Shadow.png    
+|     ┌─ Missing.ai    
+|     ├─ Modules/    
+|        ├─Computer Header.ai  
+|        ├─Footer.ai  
+|        ├─Links/  
+|             Half Shadow.png  
+|     Horizontal Glow.png  
+|     Horizontal Shadow.png  
+|     Menu Shadow Collapsed.png  
+|     Menu Shadow Expanded.png  
+|        ├─Mobile Menu.ai  
+|       
+|     ├─ Page 1.ai    
+|     ├─ Page 2.ai    
+|     ├─ Page 3.ai  
+|     ├─ Svija/  
+|         ├─ Svija  
+|         ├─ Svija  
+|         └─ Svija  
+|         Fonts
+|         Images
+|         Scripts
+|         Shared Files
+|         SVG Files
+|         Svija Admin
 
 <details><summary>more content</summary>
 
