@@ -32,22 +32,22 @@ Svija Tools expects a specific folder hierarchy to be present.
 
 Unzip the accompanying files so that the following folder hiearchy is available:
 
-ashley.svija.site/
-└─ sync/
-     ├─ Blank Page.ait
-     ├─ Links/
-     │  ├─Half Shadow.png
-     │  ├─Horizontal Glow.png
-     │  └─Horizontal Shadow.png
-     ├─ Missing.ai
-     ├─ Modules/
-     ├─ Page 1.ai
-     ├─ Page 2.ai
-     ├─ Page 3.ai
-     ├─ Svija/
-         ├─ Svija
-         ├─ Svija
-         └─ Svija
+ashley.svija.site/  
+└─ sync/  
+     ├─ Blank Page.ait  
+     ├─ Links/  
+     │  ├─Half Shadow.png  
+     │  ├─Horizontal Glow.png  
+     │  └─Horizontal Shadow.png  
+     ├─ Missing.ai  
+     ├─ Modules/  
+     ├─ Page 1.ai  
+     ├─ Page 2.ai  
+     ├─ Page 3.ai  
+     ├─ Svija/  
+         ├─ Svija  
+         ├─ Svija  
+         └─ Svija  
 
 <details><summary>more content</summary>
 
