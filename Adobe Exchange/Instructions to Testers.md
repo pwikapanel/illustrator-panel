@@ -13,20 +13,41 @@ Hello,
 
 Thank you for considering our app, Svija Tools, for Adobe Exchange.
 
-The app is used primarily to save SVG files from Adobe Illustrator, but it also can be used to:
+The app is used primarily to save SVG files from Adobe Illustrator that represent pages in a website.
+
+However, Svija Tools also can be used to:
 
 - duplicate layers
 - reset names
 - import styles
 - relink images
 
-You have a choice, in testing the app, to test the specific functionality of the Svija Tools panel, or to modify an actual website.
+You will want to test the specific functionality of the Svija Tools panel, but I will also include instructions for modifying an actual web site, ashley.svija.site
 
 ------------------------------
 
 TESTING SPECIFIC FUNCTIONALITY OF THE PANEL
 
-Svija Tools expects a specific folder hierarchy to be present
+Svija Tools expects a specific folder hierarchy to be present.
+
+Unzip the accompanying files so that the following folder hiearchy is available:
+
+ashley.svija.site/
+└─ sync/
+     ├─ Blank Page.ait
+     ├─ Links/
+     │  ├─Half Shadow.png
+     │  ├─Horizontal Glow.png
+     │  └─Horizontal Shadow.png
+     ├─ Missing.ai
+     ├─ Modules/
+     ├─ Page 1.ai
+     ├─ Page 2.ai
+     ├─ Page 3.ai
+     ├─ Svija/
+         ├─ Svija
+         ├─ Svija
+         └─ Svija
 
 <details><summary>more content</summary>
 
@@ -322,3 +343,26 @@ Thanks for your time,
 Andrew Swift
 
 
+0x6a j ┘
+0x6b k ┐
+0x6c l ┌
+0x6d m └
+0x6e n ┼
+0x71 q ─
+0x74 t ├
+0x75 u ┤
+0x76 v ┴
+0x77 w ┬
+0x78 x │
+
+┘
+┐
+┌
+└
+┼
+─
+├
+┤
+┴
+┬
+│
