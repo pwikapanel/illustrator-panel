@@ -5,6 +5,7 @@
 ### Instructions to Testers
 
 - include ashley.svija.site files, zipped up
+- convert following to code text, replacing - with •
 
 ------------------------------
 
