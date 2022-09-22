@@ -2,6 +2,20 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
+Hello,
+
+Thank you for considering our app, Svija Tools, for Adobe Exchange.
+
+The app is used primarily to save SVG files from Adobe Illustrator, but it also can be used to:
+- duplicate layers
+- reset names
+- import styles
+- relink images
+
+<details><summary>more content</summary>
+
+---
+
 Test user:
 
 Ann Davidson URL: ann.svija.site Connect ID: ann Connect PW: D87p9yXSvUeYnGPX
