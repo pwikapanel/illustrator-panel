@@ -204,7 +204,7 @@ Svija has been updated, and with this new version the folder hierarchy has been 
 ---
 
 </details>
-<details><summary>4. Notes & EULA</summary>
+<details><summary>4. Create Listing: <b>Notes & EULA</b></summary>
 
 ---
 
@@ -237,15 +237,11 @@ We intend to use this build to test the installation process and make sure every
 Thanks for your time,
 Andrew Swift
 
-</details>
-<details><summary>Instructions to Testers</summary>
-
 ---
 ### Instructions to Testers
 
 See [Instructions to Testers.md](Instructions%20to%20Testers.md)
 
----
 </details>
 <details><summary>unused content</summary>
 
