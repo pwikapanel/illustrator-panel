@@ -73,10 +73,10 @@ Adobe Illustrator
 
 ---
 </details>
-<details><summary>3. Create a Listing: <b>Details</b></summary>
+<details><summary>3. Create Listing: <b>Details</b></summary>
 
 ---
-### 3. Create a Listing: Details
+### 3. Create Listing: Details
 
 Title:
 ```
@@ -138,10 +138,10 @@ Click **Save & Next**
 
 ---
 </details>
-<details><summary>3. Create a Listing: <b>Images</b></summary>
+<details><summary>3. Create Listing: <b>Images</b></summary>
 
 ---
-### 3. Create a Listing: Images
+### 3. Create Listing: Images
 
 The following images are included in this repository:
 
@@ -165,10 +165,10 @@ This would be nice (a little like the App Store) to give people more of an idea 
 
 ---
 </details>
-<details><summary>3. Create a Listing: <b>Upload & Docs</b></summary>
+<details><summary>3. Create Listing: <b>Upload & Docs</b></summary>
 
 ---
-### 3. Create a Listing: Upload & Docs<
+### 3. Create Listing: Upload & Docs<
 
 Verify that it can be installed using this app:
 ```
@@ -245,6 +245,7 @@ Andrew Swift
 
 See [Instructions to Testers.md](Instructions%20to%20Testers.md)
 
+---
 </details>
 <details><summary>unused content</summary>
 
