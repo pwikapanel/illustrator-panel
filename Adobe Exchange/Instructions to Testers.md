@@ -32,12 +32,12 @@ Svija Tools expects a specific folder hierarchy to be present. The necessary par
 
 Create the following folder hiearchy:
 
-|    sync/  
-|         ├─ Blank Page.ait      
-|         └─ Links/      
-|                └─any_image.jpg  
-|         └─ Svija/  
-|                 └─ SVG Files  
+·    sync/  
+·         ├ Blank Page.ait      
+·         └ Links/      
+·                └any_image.jpg  
+·         └ Svija/  
+·                └ SVG Files  
 
 ------------------------------
 
