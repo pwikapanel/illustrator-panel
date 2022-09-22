@@ -44,7 +44,7 @@ ashley.svija.site/
 |        ├─Computer Header.ai  
 |        ├─Footer.ai  
 |        ├─Links/  
-|    Half Shadow.png  
+|             Half Shadow.png  
 |     Horizontal Glow.png  
 |     Horizontal Shadow.png  
 |     Menu Shadow Collapsed.png  
