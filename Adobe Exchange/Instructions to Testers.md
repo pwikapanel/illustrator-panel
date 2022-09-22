@@ -32,35 +32,14 @@ Svija Tools expects a specific folder hierarchy to be present. The necessary par
 
 Create the following folder hiearchy:
 
-| └─ sync/  
+|    sync/  
 |         ├─ Blank Page.ait      
 |         └─ Links/      
 |                └─any_image.jpg  
-|         ┌─ Missing.ai      
-|         ├─ Modules/      
-|                ├─Computer Header.ai  
-|                ├─Footer.ai  
-|                ├─Links/  
-|                         Half Shadow.png  
-|         Horizontal Glow.png  
-|         Horizontal Shadow.png  
-|         Menu Shadow Collapsed.png  
-|         Menu Shadow Expanded.png  
-|                ├─Mobile Menu.ai  
-|             
-|         ├─ Page 1.ai      
-|         ├─ Page 2.ai      
-|         ├─ Page 3.ai  
-|         ├─ Svija/  
-|                 ├─ Svija  
-|                 ├─ Svija  
-|                 └─ Svija  
-|                 Fonts  
-|                 Images  
-|                 Scripts  
-|                 Shared Files  
-|                 SVG Files  
-|                 Svija Admin  
+|         └─ Svija/  
+|                 └─ SVG Files  
+
+------------------------------
 
 | ashley.svija.site/  
 | └─ sync/  
