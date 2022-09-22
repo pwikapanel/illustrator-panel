@@ -58,12 +58,12 @@ Unzip the accompanying files so that the following folder hiearchy is available:
 |         ├─ Svija  
 |         ├─ Svija  
 |         └─ Svija  
-|         Fonts
-|         Images
-|         Scripts
-|         Shared Files
-|         SVG Files
-|         Svija Admin
+|         Fonts  
+|         Images  
+|         Scripts  
+|         Shared Files  
+|         SVG Files  
+|         Svija Admin  
 
 <details><summary>more content</summary>
 
