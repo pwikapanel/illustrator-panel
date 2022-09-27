@@ -34,28 +34,7 @@ preliminary note: Svija Tools has two interfaces
 The "less" interface uses the same scripts as the "more" interface, so you will be mainly testing the "more" interface.
 
 ------------------------------
-### 1. The Folder Hierarchy
-
-1. THE FOLDER HIERARCHY
-
-Svija Tools expects a specific folder hierarchy to be present.
-
-Create the following folder hiearchy:
-```
-sync/  
-  ├ empty_illustrator_file.ai
-  └ Links/      
-    └any_image.jpg  
-  └ Svija/  
-    └ SVG Files/
-```
-Lines ending in "/" represent folders.
-- put a new empty illustrator file in the "sync/" folder
-- put a JPG image (100-500kb) in the "Links" folder
-- the SVG output will be saved in "Svija/SVG Files/"
-
-------------------------------
-### 2. Interface Functionality
+### 1. Interface Functionality
 
 *Testing interface functionality:*
 
@@ -74,11 +53,34 @@ If necessary you can test with different Illustrator interface sizes and colors:
 I believe that changing the size of the interface requires a restart to take effect.
 
 ------------------------------
+### 2. The Folder Hierarchy
+
+1. THE FOLDER HIERARCHY
+
+Svija Tools requires a specific folder hierarchy to be present.
+
+This hierarchy is synched with a web server to serve a website.
+
+Create the following folder hiearchy:
+```
+sync/  
+  ├ empty_illustrator_file.ai (can be named anything)
+  └ Links/      
+    └any_image.jpg (can be named anything)
+  └ Svija/  
+    └ SVG Files/
+```
+Lines ending in "/" represent folders.
+- put a new empty illustrator file in the "sync/" folder
+- put a JPG image (100-500kb) in the "Links" folder
+- the SVG output will be saved in "Svija/SVG Files/"
+
+------------------------------
 ### 3. Save as Svija
 
 *Testing the "Save" button:* 
 
-Open the empty Illustrator file and draw anything (rectangle, text, etc.).
+Open the empty Illustrator file in "sync/" and draw anything (rectangle, text, etc.).
 
 1. navigate to "Window › Extensions › Svija Tools"
 
@@ -98,6 +100,9 @@ At the bottom of the Svija Tools panel, click "Save All"
 
 4. in the Finder, navigate to sync/Svija/SVG Files and verify that the SVG files were saved correctly
 ------------------------------
+
+
+
 
 | ashley.svija.site/  
 | └─ sync/  
