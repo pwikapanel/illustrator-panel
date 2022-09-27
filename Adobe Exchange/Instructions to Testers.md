@@ -13,7 +13,7 @@ Hello,
 
 Thank you for considering our app, Svija Tools, for Adobe Exchange.
 
-The app is used primarily to save SVG files from Adobe Illustrator that represent pages in a website.
+The app is used primarily to save SVG files from Adobe Illustrator that will become pages in a website.
 
 However, Svija Tools also can be used to:
 
@@ -25,24 +25,25 @@ However, Svija Tools also can be used to:
 You will want to test the specific functionality of the Svija Tools panel, but I will also include instructions for modifying an actual web site, ashley.svija.site
 
 ------------------------------
+### 1. THE FOLDER HIERARCHY
 
-TESTING SPECIFIC FUNCTIONALITY OF THE PANEL
-
-Svija Tools expects a specific folder hierarchy to be present. The necessary part is that there is a folder called sync, contining 
+Svija Tools expects a specific folder hierarchy to be present.
 
 Create the following folder hiearchy:
 ```
 sync/  
-     ├ Blank Page.ait      
-     └ Links/      
-            └any_image.jpg  
-     └ Svija/  
-            └ SVG Files  
+  ├ empty_illustrator_file.ai
+  └ Links/      
+    └any_image.jpg  
+  └ Svija/  
+    └ SVG Files/
 ```
-You can use any reasonably-sized JPG image in the Links folder, and name it whatever you like.
+Lines ending in "/" represent folders.
+- put a new empty illustrator file in the "sync/" folder
+- put any JPG image (100-500kb) in the "Links" folder
+- the SVG output will be saved in "SVG Files/" inside the "Svija" folder
 
 ------------------------------
-  
 #### Let's Get Started
 
 Open the template file Blank Page.ait
