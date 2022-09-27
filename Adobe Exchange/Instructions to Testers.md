@@ -31,14 +31,14 @@ TESTING SPECIFIC FUNCTIONALITY OF THE PANEL
 Svija Tools expects a specific folder hierarchy to be present. The necessary part is that there is a folder called sync, contining 
 
 Create the following folder hiearchy:
-
-·    sync/  
-·         ├ Blank Page.ait      
-·         └ Links/      
-·                └any_image.jpg  
-·         └ Svija/  
-·                └ SVG Files  
-
+```
+sync/  
+     ├ Blank Page.ait      
+     └ Links/      
+            └any_image.jpg  
+     └ Svija/  
+            └ SVG Files  
+```
 You can use any reasonably-sized JPG image in the Links folder, and name it whatever you like.
 
 ------------------------------
@@ -51,36 +51,36 @@ Open the template file Blank Page.ait
 
 | ashley.svija.site/  
 | └─ sync/  
-|         ├─ Blank Page.ait      
-|         └─ Links/      
-|                ├─Half Shadow.png      
-|                ├─Horizontal Glow.png      
-|                └─Horizontal Shadow.png      
-|         ┌─ Missing.ai      
-|         ├─ Modules/      
-|                ├─Computer Header.ai  
-|                ├─Footer.ai  
-|                ├─Links/  
-|                         Half Shadow.png  
-|         Horizontal Glow.png  
-|         Horizontal Shadow.png  
-|         Menu Shadow Collapsed.png  
-|         Menu Shadow Expanded.png  
-|                ├─Mobile Menu.ai  
-|             
-|         ├─ Page 1.ai      
-|         ├─ Page 2.ai      
-|         ├─ Page 3.ai  
-|         ├─ Svija/  
-|                 ├─ Svija  
-|                 ├─ Svija  
-|                 └─ Svija  
-|                 Fonts  
-|                 Images  
-|                 Scripts  
-|                 Shared Files  
-|                 SVG Files  
-|                 Svija Admin  
+|         ├─ Blank Page.ait      
+|         └─ Links/      
+|                ├─Half Shadow.png      
+|                ├─Horizontal Glow.png      
+|                └─Horizontal Shadow.png      
+|         ┌─ Missing.ai      
+|         ├─ Modules/      
+|                ├─Computer Header.ai  
+|                ├─Footer.ai  
+|                ├─Links/  
+|                         Half Shadow.png  
+|         Horizontal Glow.png  
+|         Horizontal Shadow.png  
+|         Menu Shadow Collapsed.png  
+|         Menu Shadow Expanded.png  
+|                ├─Mobile Menu.ai  
+|             
+|         ├─ Page 1.ai      
+|         ├─ Page 2.ai      
+|         ├─ Page 3.ai  
+|         ├─ Svija/  
+|                 ├─ Svija  
+|                 ├─ Svija  
+|                 └─ Svija  
+|                 Fonts  
+|                 Images  
+|                 Scripts  
+|                 Shared Files  
+|                 SVG Files  
+|                 Svija Admin  
 
 
 
