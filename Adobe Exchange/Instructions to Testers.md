@@ -55,6 +55,15 @@ Lines ending in "/" represent folders.
 ------------------------------
 #### 2. Save as Svija
 
+*Test 1: interface functionality*
+
+1. navigate to "Window › Extensions › Svija Tools"
+2. click "Instructions" to see the help pane
+3. click "Return" or click anywhere to return
+4. click "More" to show the full interface
+5. click "Instructions" to see the help pane
+6. click "Return" or click anywhere to return
+
 *Test 1: the "Save" button* 
 
 Open the empty Illustrator file and draw anything (rectangle, text, etc.).
