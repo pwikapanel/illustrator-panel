@@ -7,7 +7,7 @@
 - include ashley.svija.site files, zipped up
 - convert following to code text, replacing - with •
 
-you can test with different sizes and colors of interface if you're interested
+
 
 ------------------------------
 ### Introduction
@@ -53,7 +53,7 @@ Lines ending in "/" represent folders.
 - the SVG output will be saved in "Svija/SVG Files/"
 
 ------------------------------
-#### 2. Save as Svija
+#### 2. Interface Functionality
 
 *Test 1: interface functionality*
 
@@ -63,6 +63,14 @@ Lines ending in "/" represent folders.
 4. click "More" to show the full interface
 5. click "Instructions" to see the help pane
 6. click "Return" or click anywhere to return
+
+If necessary you can test with different Illustrator interface sizes and colors:  
+> Illustrator Preferences > User Interface
+
+I believe that changing the size of the interface requires a restart to take effect.
+
+------------------------------
+#### 2. Save as Svija
 
 *Test 1: the "Save" button* 
 
