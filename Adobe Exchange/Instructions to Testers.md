@@ -34,7 +34,9 @@ preliminary note: Svija Tools has two interfaces
 The "less" interface uses the same scripts as the "more" interface, so you will be mainly testing the "more" interface.
 
 ------------------------------
-### 1. THE FOLDER HIERARCHY
+### 1. The Folder Hierarchy
+
+1. THE FOLDER HIERARCHY
 
 Svija Tools expects a specific folder hierarchy to be present.
 
@@ -53,9 +55,11 @@ Lines ending in "/" represent folders.
 - the SVG output will be saved in "Svija/SVG Files/"
 
 ------------------------------
-#### 2. Interface Functionality
+### 2. Interface Functionality
 
-*Test 1: interface functionality*
+*Testing interface functionality:*
+
+Open any Illustrator file then:
 
 1. navigate to "Window › Extensions › Svija Tools"
 2. click "Instructions" to see the help pane
@@ -70,9 +74,9 @@ If necessary you can test with different Illustrator interface sizes and colors:
 I believe that changing the size of the interface requires a restart to take effect.
 
 ------------------------------
-#### 2. Save as Svija
+### 3. Save as Svija
 
-*Test 1: the "Save" button* 
+*Testing the "Save" button:* 
 
 Open the empty Illustrator file and draw anything (rectangle, text, etc.).
 
