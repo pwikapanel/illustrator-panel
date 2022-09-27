@@ -7,7 +7,10 @@
 - include ashley.svija.site files, zipped up
 - convert following to code text, replacing - with •
 
+you can test with different sizes and colors of interface if you're interested
+
 ------------------------------
+### Introduction
 
 Hello,
 
@@ -23,6 +26,12 @@ However, Svija Tools also can be used to:
 - relink images
 
 You will want to test the specific functionality of the Svija Tools panel, but I will also include instructions for modifying an actual web site, ashley.svija.site
+
+preliminary note: Svija Tools has two interfaces
+- a "less" interface with 2 buttons
+- a "more" interface with 7 buttons
+
+The "less" interface uses the same scripts as the "more" interface, so you will be mainly testing the "more" interface.
 
 ------------------------------
 ### 1. THE FOLDER HIERARCHY
@@ -40,14 +49,33 @@ sync/
 ```
 Lines ending in "/" represent folders.
 - put a new empty illustrator file in the "sync/" folder
-- put any JPG image (100-500kb) in the "Links" folder
-- the SVG output will be saved in "SVG Files/" inside the "Svija" folder
+- put a JPG image (100-500kb) in the "Links" folder
+- the SVG output will be saved in "Svija/SVG Files/"
 
 ------------------------------
-#### Let's Get Started
+#### 2. Save as Svija
 
-Open the template file Blank Page.ait
+*Test 1: the "Save" button* 
 
+Open the empty Illustrator file and draw anything (rectangle, text, etc.).
+
+1. navigate to "Window › Extensions › Svija Tools"
+
+2. at the bottom of the Svija Tools panel, click "more" to show the full interface
+
+3. click "Save"
+
+4. in the Finder, navigate to sync/Svija/SVG Files and verify that the SVG file (or files: there will be one per artboard) was saved correctly
+
+*Test 2: the "Save All" button*
+
+Duplicate the Illustrator file in the Finder and open both in Illustrator
+
+Make some changes to both files
+
+At the bottom of the Svija Tools panel, click "Save All"
+
+4. in the Finder, navigate to sync/Svija/SVG Files and verify that the SVG files were saved correctly
 ------------------------------
 
 | ashley.svija.site/  
