@@ -1,3 +1,112 @@
+In the Finder:
+
+1. make a new folder called sync
+2. inside, make a new folder called Svija
+3. inside, make a new folder called SVG files
+
+In Illustrator:
+
+1. make a new file using preset Web › Web-Large (1920x1080 px)
+2. save it as "page1.ai" in folder "sync"
+3. add some text and a rectangle
+
+Open Svija Tools: go to menu Window › Extensions › Svija Tools
+
+Test the Interface:
+
+1. click "Instructions"
+2. click anywhere to return
+3. click "MORE"
+4. click "Instructions"
+5. click anywhere to return
+6. if desired, change Illustrator interface preferences (color & size) to verify that Svija Tools adapts correctly
+
+Test the "Save" button
+
+1. click "Save"
+2. wait for alert then click "OK"
+3. verify in Finder that sync/Svija/SVG Files/page1-01.svg was created
+4. press space for quick look or open the SVG in Safari to verify that it matches the Illustrator file
+
+Test the "Save All" buttons
+
+1. make a second Illustrator file using preset Web › Web-Large (1920x1080 px)
+2. save it as "page2.ai" in folder "sync"
+3. add some text and a rectangle
+4. click "Save All"
+5. wait for alert then click "OK"
+6. verify in Finder that sync/Svija/SVG Files/page1-01.svg and page2-01 were created  
+you will get a "replace files" confirmation alert
+7. press space for quick look or open the SVG in Safari to verify that it matches the Illustrator file
+
+Repeat steps 3-7 but use the button "Save All & Close"
+
+03:13 Test the "Import Styles" button
+
+1. in file "page1.ai" create some area text with at least two paragraphs
+2. modify the font and the paragraph spacing
+3. in the "Character Styles" panel, create a new style called "Char Test"
+4. in the "Paragraph Styles" panel, create a new style called "Para Test"
+5. save changes
+6. in file "page2.ai" press "Import Styles" in the Svija Tools panel
+7. select "page1.ai" when prompted
+8. for confirmation "Include all styles?" click "Yes"
+9. click "OK" in confirmation window
+10. create some area text and apply the imported styles  
+note: it will be necessary to choose a fill color after applying the styles
+
+05:47 Test the "Relink Images" button
+
+1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the working folders  
+- make sure the "Link" is checked in the "Place" dialog box
+2. click the "Relink Images" button  
+- it is NOT necessary for the image to be selected
+3. click "Yes" to create a "Links" folder
+4. click "No" to view the report
+5. in the Finder, verify that the image has been copied to sync/Links
+6. in Illustrator, verify that "Location" in the Links panel shows the path to the Links folder
+7. delete the image in Illustrator
+8. delete the image in the Links folder
+9. repeat steps 1-6 but do NOT check "Link" in the "Place" dialog
+
+07:45 Test the "Reset Names" button
+
+This button changes the name of any named element in the "Layers" palette by adding extra characters, then changes it back.
+
+It exists to fix a probem where naming conflicts in exported SVG file objects are not fixed even when the conflict is eliminated within Illustrator.
+
+It has no visible effect with Illustrator.
+
+1. in file "page1.ai" delete everything
+2. create two rectangles, both named "henry"
+3. rename one of the rectangles to "joe"
+4. click the button "Reset Names"
+5. click "OK" when complete
+6. click the button "Save" in Svija Tools
+7. open the SVG file in sync/Svija/SVG Files and verify that there are rectangles named henry and joe
+
+08:05 Test the "Duplicate Layers" button
+
+1. open files "page1.ai" and "page2.ai"
+2. in file "page1.ai" create a new layer called "test"
+3. draw a rectangle on the new layer
+4. lock any other layers
+5. click the "Duplicate Layers" button
+6. click "Yes" when asked if the correct document is active
+7. click "OK" when the process is complete
+8. in "page2.ai" verify that the layer was copied correctly
+
+Note: the confirmation dialog specifies that it is possible to add any object called "bottom-align" to a layer to cause the contents to be aligned relative to the bottom edge of the artboard. This function is currently broken but will be fixed soon.
+
+
+
+
+
+
+
+
+
+
 *Updated 22 September, 2022 · Andrew's Mac*
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
@@ -54,8 +163,6 @@ I believe that changing the size of the interface requires a restart to take eff
 
 ------------------------------
 ### 2. The Folder Hierarchy
-
-1. THE FOLDER HIERARCHY
 
 Svija Tools requires a specific folder hierarchy to be present.
 
