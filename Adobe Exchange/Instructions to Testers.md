@@ -28,10 +28,10 @@ If you prefer to test the process on a real website, reject this application wit
 2. save it as "page1.ai" in folder "sync"
 3. add some text and a rectangle
 
-Open Svija Tools: go to menu Window › Extensions › Svija Tools
-
 ------------------------------
 ### Test the Interface:
+
+Open Svija Tools: go to menu Window › Extensions › Svija Tools
 
 1. click "Instructions"
 2. click anywhere to return
