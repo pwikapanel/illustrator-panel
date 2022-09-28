@@ -50,7 +50,7 @@ Open Svija Tools (under menu Window › Extensions › Svija Tools), then:
 The Illustrator file must already have been saved at least once in the "sync" folder.
 
 1. click the "Save" button
-2. wait for the alert then click "OK"
+2. click "OK" when finished
 3. verify in the Finder that sync/Svija/SVG Files/page1-01.svg was created
 4. press space for quick look or open the SVG in Safari to verify that it matches the Illustrator file
 
@@ -62,7 +62,7 @@ The Illustrator file must already have been saved at least once in the "sync" fo
 3. save it as "page2.ai" in folder "sync"
 4. click "Save All"      
 you will get a "replace files" confirmation alert
-5. wait for the alert then click "OK"
+5. click "OK" when finished
 6. verify in the Finder that sync/Svija/SVG Files/page1-01.svg and page2-01 were created
 7. press space for quick look or open the SVG in Safari to verify that it matches the Illustrator file
 
