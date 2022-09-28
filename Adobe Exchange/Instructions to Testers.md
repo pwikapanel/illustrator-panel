@@ -6,14 +6,15 @@
 
 Svija Tools is a panel that functions within a larger system to publish web content built in Illustrator.
 
-You can see it in action at https://youtube.com/video/to_come
+An account is required, available by signing up for free at https://svija.love/access
 
-However, I have only included steps to test the precise functioning of the panel, without a website.
+You can see how it works at https://youtube.com/video/to_come
 
-If you would prefer to test the whole process on a real website, simply reject this application with a note to that effect and I will submit revisted testing instructions.
+Here, I have only included steps to test the functioning of the Svija Tools panel, without a website.
+
+If you would prefer to test the whole process on a real website, simply reject this application with a note to that effect and I will submit revisted testing instructions with a test account.
 
 ------------------------------
-
 ### In the Finder:
 
 1. make a new folder called sync
