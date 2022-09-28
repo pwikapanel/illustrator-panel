@@ -32,6 +32,7 @@ If you would prefer to test the whole process on a real website, simply reject t
 
 Open Svija Tools: go to menu Window › Extensions › Svija Tools
 
+------------------------------
 ### Test the Interface:
 
 1. click "Instructions"
@@ -41,6 +42,7 @@ Open Svija Tools: go to menu Window › Extensions › Svija Tools
 5. click anywhere to return
 6. if desired, change Illustrator interface preferences (color & size) to verify that Svija Tools adapts correctly
 
+------------------------------
 ### Test the "Save" button
 
 1. click "Save"
@@ -48,6 +50,7 @@ Open Svija Tools: go to menu Window › Extensions › Svija Tools
 3. verify in Finder that sync/Svija/SVG Files/page1-01.svg was created
 4. press space for quick look or open the SVG in Safari to verify that it matches the Illustrator file
 
+------------------------------
 ### Test the "Save All" buttons
 
 1. make a second Illustrator file using preset Web › Web-Large (1920x1080 px)
@@ -61,6 +64,7 @@ you will get a "replace files" confirmation alert
 
 Repeat steps 3-7 but use the button "Save All & Close"
 
+------------------------------
 ### 03:13 Test the "Import Styles" button
 
 1. in file "page1.ai" create some area text with at least two paragraphs
@@ -75,6 +79,7 @@ Repeat steps 3-7 but use the button "Save All & Close"
 10. create some area text and apply the imported styles  
 note: it will be necessary to choose a fill color after applying the styles
 
+------------------------------
 ### 05:47 Test the "Relink Images" button
 
 1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the working folders  
@@ -89,6 +94,7 @@ note: it will be necessary to choose a fill color after applying the styles
 8. delete the image in the Links folder
 9. repeat steps 1-6 but do NOT check "Link" in the "Place" dialog
 
+------------------------------
 ### 07:45 Test the "Reset Names" button
 
 This button changes the name of any named element in the "Layers" palette by adding extra characters, then changes it back.
@@ -105,6 +111,7 @@ It has no visible effect with Illustrator.
 6. click the button "Save" in Svija Tools
 7. open the SVG file in sync/Svija/SVG Files and verify that there are rectangles named henry and joe
 
+------------------------------
 ### 08:05 Test the "Duplicate Layers" button
 
 1. open files "page1.ai" and "page2.ai"
@@ -118,6 +125,7 @@ It has no visible effect with Illustrator.
 
 Note: the confirmation dialog specifies that it is possible to add any object called "bottom-align" to a layer to cause the contents to be aligned relative to the bottom edge of the artboard. This function is currently broken but will be fixed soon.
 
+------------------------------
 
 
 <details><summary>more content</summary>
