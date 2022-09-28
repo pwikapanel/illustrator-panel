@@ -25,8 +25,8 @@ If you prefer to test the process on a real website, reject this application wit
 ### In Illustrator:
 
 1. make a new file using preset Web › Web-Large (1920x1080 px)
-2. save it as "page1.ai" in folder "sync"
-3. add some text and a rectangle
+2. add some text and a rectangle
+3. save it as "page1.ai" in folder "sync"
 
 ------------------------------
 ### Test the Interface:
