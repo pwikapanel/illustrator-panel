@@ -2,15 +2,11 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
-### Instructions to Testers
-
-------------------------------
-
 ### Preliminary note:
 
-Svija Tools is a panel that functions in a larger system that publishes web sites.
+Svija Tools is a panel that functions within a larger system to publish web content built in Illustrator.
 
-I will include a link to a video that shows the entire process so you can see how it works.
+You can see it in action at https://youtube.com/video/to_come
 
 However, I have only included steps to test the precise functioning of the panel, without a website.
 
