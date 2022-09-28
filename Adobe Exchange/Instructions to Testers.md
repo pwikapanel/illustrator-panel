@@ -4,7 +4,7 @@
 
 ### Preliminary note:
 
-Svija Tools is a panel that functions within a larger system to publish web content built in Illustrator.
+Svija Tools is an Illustrator panel that functions within a larger system to publish web content built in Illustrator.
 
 A free account is required, available by signing up at https://svija.love/access
 
