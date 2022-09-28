@@ -31,7 +31,7 @@ If you prefer to test the process on a real website, reject this application wit
 ------------------------------
 ### Test the Interface:
 
-Open Svija Tools: go to menu Window › Extensions › Svija Tools
+Open Svija Tools (under menu Window › Extensions › Svija Tools), then:
 
 1. click "Instructions"
 2. click anywhere to return
