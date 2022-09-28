@@ -100,11 +100,11 @@ note: it will be necessary to choose a fill color after applying the styles
 ------------------------------
 ### 7. Test the "Reset Names" button
 
-This button changes the name of any named element in the "Layers" palette by adding extra characters, then changes it back.
+This button fixes a naming conflicts in exported SVG file objects when two objects have had the same name in Illustrator. 
 
-It exists to fix a probem where naming conflicts in exported SVG file objects are not fixed even when the conflict is eliminated within Illustrator.
+It works by adding extra characters to the name of any named element in the "Layers" palette, then removes the extra characters.
 
-It has no visible effect with Illustrator.
+This forces Illustrator to reset the internal object ID's, but it has no visible effect for the user.
 
 1. in file "page1.ai" delete everything
 2. create two rectangles, both named "henry"
@@ -113,6 +113,8 @@ It has no visible effect with Illustrator.
 5. click "OK" when complete
 6. click the button "Save" in Svija Tools
 7. open the SVG file in sync/Svija/SVG Files and verify that there are rectangles named henry and joe
+
+The problem varies depending on the Illustrator version, and your version may not even suffer from this issue.
 
 ------------------------------
 ### 08:05 Test the "Duplicate Layers" button
