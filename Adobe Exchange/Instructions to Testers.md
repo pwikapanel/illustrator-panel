@@ -156,6 +156,7 @@ Known bug: the confirmation dialog specifies that it is possible to add any obje
 Conclusion
 
 Thank you for your time.
+
 Sincerely,
 Andrew Swift
 ```
@@ -300,5 +301,6 @@ Known bug: the confirmation dialog specifies that it is possible to add any obje
 ### Conclusion
 
 Thank you for your time.
+
 Sincerely,
 Andrew Swift
