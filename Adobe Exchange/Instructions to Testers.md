@@ -60,13 +60,13 @@ The Illustrator file must already have been saved at least once in the "sync" fo
 1. make a second Illustrator file using preset Web › Web-Large (1920x1080 px)
 2. add some text and a rectangle
 3. save it as "page2.ai" in folder "sync"
-4. click "Save All"      
+4. click the "Save All" button    
 you will get a "replace files" confirmation alert
 5. click "OK" when finished
 6. verify in the Finder that sync/Svija/SVG Files/page1-01.svg and page2-01.svg were created
 7. press space for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
 
-Repeat steps 3-7 but use the button "Save All & Close"
+Repeat steps 3-7 but use the "Save All & Close" button
 
 ------------------------------
 ### 03:13 Test the "Import Styles" button
