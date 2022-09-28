@@ -21,6 +21,10 @@ If you prefer to test the process on a real website, reject this application wit
 2. inside, make a new folder called Svija
 3. inside, make a new folder called SVG files
 
+The result is three nested folders:
+
+> sync/Svija/SVG Files
+
 ------------------------------
 ### In Illustrator:
 
