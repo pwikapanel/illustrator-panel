@@ -75,7 +75,7 @@ Repeat steps 3-7 but use the "Save All & Close" button
 2. modify the font and the paragraph spacing
 3. in the "Character Styles" panel, create a new style called "Char Test"
 4. in the "Paragraph Styles" panel, create a new style called "Para Test"
-5. save changes
+5. save changes and close page1.ai
 6. in file "page2.ai" press "Import Styles" in the Svija Tools panel
 7. select "page1.ai" when prompted
 8. for confirmation "Include all styles?" click "Yes"
