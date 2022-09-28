@@ -1,10 +1,30 @@
-In the Finder:
+*Updated 22 September, 2022 · Andrew's Mac*
+
+![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
+
+### Instructions to Testers
+
+------------------------------
+
+### Preliminary note:
+
+Svija Tools is a panel that functions in a larger system that publishes web sites.
+
+I will include a link to a video that shows the entire process so you can see how it works.
+
+However, I have only included steps to test the precise functioning of the panel, without a website.
+
+If you would prefer to test the whole process on a real website, simply reject this application with a note to that effect and I will submit revisted testing instructions.
+
+------------------------------
+
+### In the Finder:
 
 1. make a new folder called sync
 2. inside, make a new folder called Svija
 3. inside, make a new folder called SVG files
 
-In Illustrator:
+### In Illustrator:
 
 1. make a new file using preset Web › Web-Large (1920x1080 px)
 2. save it as "page1.ai" in folder "sync"
@@ -12,7 +32,7 @@ In Illustrator:
 
 Open Svija Tools: go to menu Window › Extensions › Svija Tools
 
-Test the Interface:
+### Test the Interface:
 
 1. click "Instructions"
 2. click anywhere to return
@@ -21,14 +41,14 @@ Test the Interface:
 5. click anywhere to return
 6. if desired, change Illustrator interface preferences (color & size) to verify that Svija Tools adapts correctly
 
-Test the "Save" button
+### Test the "Save" button
 
 1. click "Save"
 2. wait for alert then click "OK"
 3. verify in Finder that sync/Svija/SVG Files/page1-01.svg was created
 4. press space for quick look or open the SVG in Safari to verify that it matches the Illustrator file
 
-Test the "Save All" buttons
+### Test the "Save All" buttons
 
 1. make a second Illustrator file using preset Web › Web-Large (1920x1080 px)
 2. save it as "page2.ai" in folder "sync"
@@ -41,7 +61,7 @@ you will get a "replace files" confirmation alert
 
 Repeat steps 3-7 but use the button "Save All & Close"
 
-03:13 Test the "Import Styles" button
+### 03:13 Test the "Import Styles" button
 
 1. in file "page1.ai" create some area text with at least two paragraphs
 2. modify the font and the paragraph spacing
@@ -55,7 +75,7 @@ Repeat steps 3-7 but use the button "Save All & Close"
 10. create some area text and apply the imported styles  
 note: it will be necessary to choose a fill color after applying the styles
 
-05:47 Test the "Relink Images" button
+### 05:47 Test the "Relink Images" button
 
 1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the working folders  
 - make sure the "Link" is checked in the "Place" dialog box
@@ -69,7 +89,7 @@ note: it will be necessary to choose a fill color after applying the styles
 8. delete the image in the Links folder
 9. repeat steps 1-6 but do NOT check "Link" in the "Place" dialog
 
-07:45 Test the "Reset Names" button
+### 07:45 Test the "Reset Names" button
 
 This button changes the name of any named element in the "Layers" palette by adding extra characters, then changes it back.
 
@@ -85,7 +105,7 @@ It has no visible effect with Illustrator.
 6. click the button "Save" in Svija Tools
 7. open the SVG file in sync/Svija/SVG Files and verify that there are rectangles named henry and joe
 
-08:05 Test the "Duplicate Layers" button
+### 08:05 Test the "Duplicate Layers" button
 
 1. open files "page1.ai" and "page2.ai"
 2. in file "page1.ai" create a new layer called "test"
@@ -100,6 +120,7 @@ Note: the confirmation dialog specifies that it is possible to add any object ca
 
 
 
+<details><summary>more content</summary>
 
 
 
@@ -107,14 +128,6 @@ Note: the confirmation dialog specifies that it is possible to add any object ca
 
 
 
-*Updated 22 September, 2022 · Andrew's Mac*
-
-![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
-
-### Instructions to Testers
-
-- include ashley.svija.site files, zipped up
-- convert following to code text, replacing - with •
 
 
 
@@ -246,7 +259,6 @@ At the bottom of the Svija Tools panel, click "Save All"
 
 
 
-<details><summary>more content</summary>
 
 ---
 
@@ -409,8 +421,6 @@ ashley  rnh6C6h3qjtGq4gm
 
 ---
 
-</details>
-<details><summary>unused content</summary>
 
 **Description** (255 chars): **UNUSED??**
 ```
@@ -429,8 +439,6 @@ Support Email
 support@svija.com  
 ```
 > Developer: edit profile to change (down in Edge on 240407)  
-</details>
-<details><summary>new content to attribute</summary>
 
 
 # to preview what submission will look like:
@@ -502,8 +510,6 @@ Of course, you can always choose to publish immediately or to keep content priva
 Use Svija Sync to manage up to 100 websites.
 Music: The Duel · Michael Ramir C. · https://www.youtube.com/watch?v=deJklhkybZw
 
-</details>
-<details><summary>Previous Rejection</summary>
 
 ---
 
@@ -526,7 +532,6 @@ We tried to signup using the form we got an error while submitting that form. Fo
 You may resubmit your product after applying the above mentioned changes.
 
 ---
-</details>
 
 **Note to approver:**
 
@@ -563,3 +568,4 @@ Andrew Swift
 ┴
 ┬
 │
+</details>
