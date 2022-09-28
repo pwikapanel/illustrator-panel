@@ -78,13 +78,13 @@ Repeat steps 3-7 but use the "Save All & Close" button
 5. save changes and close page1.ai
 6. in file "page2.ai" click the "Import Styles" button
 7. select "page1.ai" when prompted
-8. for confirmation "Include all styles?" click "Yes"
+8. when asked "Include all styles?" click "Yes"
 9. click "OK" in confirmation window
 10. create some area text and apply the imported styles  
 note: it will be necessary to choose a fill color after applying the styles
 
 ------------------------------
-### 05:47 Test the "Relink Images" button
+### 6. Test the "Relink Images" button
 
 1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the working folders  
 - make sure the "Link" is checked in the "Place" dialog box
