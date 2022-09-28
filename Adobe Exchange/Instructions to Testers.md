@@ -104,7 +104,7 @@ This button fixes a naming conflicts in exported SVG file objects when two objec
 
 It works by adding extra characters to the name of any named element in the "Layers" palette, then removes the extra characters.
 
-This forces Illustrator to reset the internal object ID's, but it has no visible effect for the user.
+This forces Illustrator to reset the internal object ID's, but has no visible effect for the user.
 
 1. in file "page1.ai" delete everything
 2. create two rectangles, both named "henry"
@@ -117,7 +117,7 @@ This forces Illustrator to reset the internal object ID's, but it has no visible
 The problem varies depending on the Illustrator version, and your version may not even suffer from this issue.
 
 ------------------------------
-### 08:05 Test the "Duplicate Layers" button
+### 8. Test the "Duplicate Layers" button
 
 1. open files "page1.ai" and "page2.ai"
 2. in file "page1.ai" create a new layer called "test"
