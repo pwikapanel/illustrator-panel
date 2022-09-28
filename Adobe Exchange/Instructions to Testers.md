@@ -6,9 +6,9 @@
 
 Svija Tools is a panel that functions within a larger system to publish web content built in Illustrator.
 
-An account is required, available by signing up for free at https://svija.love/access
+A free account is required, available by signing up at https://svija.love/access
 
-You can see how it works at https://youtube.com/video/to_come
+To see how it works, visit https://youtube.com/video/to_come (3 minutes).
 
 Here, I have only included steps to test the functioning of the Svija Tools panel, without a website.
 
