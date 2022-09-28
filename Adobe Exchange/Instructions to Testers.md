@@ -4,8 +4,11 @@
 
 <details><summary>Pasteable Version</summary>
 
+1. Replace `### ` with a carriage return
+
 ```
-### Preliminary note:
+
+Preliminary note:
 
 Svija Tools is an Illustrator panel that functions within a larger system to publish web content built in Illustrator.
 
@@ -18,7 +21,8 @@ Here, I have only included steps to test the functioning of the Svija Tools pane
 If you prefer to test the process on a real website, reject this application with a note to that effect and I will submit revisted testing instructions including a test account.
 
 ------------------------------
-### In the Finder:
+
+In the Finder:
 
 1. make a new folder called sync
 2. inside, make a new folder called Svija
@@ -29,14 +33,16 @@ The result is three nested folders:
 > sync/Svija/SVG Files
 
 ------------------------------
-### In Illustrator:
+
+In Illustrator:
 
 1. make a new file using preset Web › Web-Large (1920x1080 px)
 2. add some text and a rectangle
 3. save it as "page1.ai" in folder "sync"
 
 ------------------------------
-### 1. Test the Interface:
+
+1. Test the Interface:
 
 Open Svija Tools (under menu Window › Extensions › Svija Tools), then:
 
@@ -48,7 +54,8 @@ Open Svija Tools (under menu Window › Extensions › Svija Tools), then:
 6. if desired, change Illustrator interface preferences (color & size) to verify that Svija Tools adapts correctly
 
 ------------------------------
-### 2. Test the "Save" button
+
+2. Test the "Save" button
 
 The Illustrator file must already have been saved at least once in the "sync" folder.
 
@@ -58,7 +65,8 @@ The Illustrator file must already have been saved at least once in the "sync" fo
 4. press space for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
 
 ------------------------------
-### 3. & 4. Test the "Save All" buttons
+
+3. & 4. Test the "Save All" buttons
 
 1. make a second Illustrator file using preset Web › Web-Large (1920x1080 px)
 2. add some text and a rectangle
@@ -72,7 +80,8 @@ The Illustrator file must already have been saved at least once in the "sync" fo
 Repeat steps 3-7 but use the "Save All & Close" button
 
 ------------------------------
-### 5. Test the "Import Styles" button
+
+5. Test the "Import Styles" button
 
 1. in file "page1.ai" create some area text with at least two paragraphs
 2. modify the font and the paragraph spacing
@@ -87,7 +96,8 @@ Repeat steps 3-7 but use the "Save All & Close" button
 note: it will be necessary to choose a fill color after applying the styles
 
 ------------------------------
-### 6. Test the "Relink Images" button
+
+6. Test the "Relink Images" button
 
 1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the working folders    
 — make sure that "Link" is checked in the "Place" dialog box
@@ -101,7 +111,8 @@ note: it will be necessary to choose a fill color after applying the styles
 9. repeat steps 1-6 but do NOT check "Link" in the "Place" dialog box
 
 ------------------------------
-### 7. Test the "Reset Names" button
+
+7. Test the "Reset Names" button
 
 This button fixes a naming conflicts in exported SVG file objects when two objects have had the same name in Illustrator. 
 
@@ -120,7 +131,8 @@ This forces Illustrator to reset the internal object ID's, but has no visible ef
 The problem varies depending on the Illustrator version, and your version may not even suffer from this issue.
 
 ------------------------------
-### 8. Test the "Duplicate Layers" button
+
+8. Test the "Duplicate Layers" button
 
 This button will copy any unlocked layers from the frontmost document to any other open documents.
 
@@ -140,7 +152,8 @@ In the event of a mistake, the user can simply undo any modifications.
 Known bug: the confirmation dialog specifies that it is possible to add any object called "bottom-align" to a layer to cause the contents to be aligned relative to the bottom edge of the artboard. This function is currently broken but will be fixed soon.
 
 ------------------------------
-### Conclusion
+
+Conclusion
 
 Thank you for your time.
 Sincerely,
