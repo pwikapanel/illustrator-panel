@@ -21,6 +21,7 @@ If you prefer to test the process on a real website, reject this application wit
 2. inside, make a new folder called Svija
 3. inside, make a new folder called SVG files
 
+------------------------------
 ### In Illustrator:
 
 1. make a new file using preset Web › Web-Large (1920x1080 px)
