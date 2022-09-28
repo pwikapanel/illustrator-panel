@@ -39,7 +39,7 @@ Open Svija Tools (under menu Window › Extensions › Svija Tools), then:
 
 1. click "Instructions"
 2. click anywhere to close instructions
-3. click "MORE"
+3. click "MORE" to show full button panel
 4. click "Instructions"
 5. click anywhere to close instructions
 6. if desired, change Illustrator interface preferences (color & size) to verify that Svija Tools adapts correctly
