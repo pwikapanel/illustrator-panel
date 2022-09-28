@@ -2,6 +2,11 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
+<details><summary>Copy/Paste Version</summary>
+```
+sumpin
+```
+</details>
 ### Preliminary note:
 
 Svija Tools is an Illustrator panel that functions within a larger system to publish web content built in Illustrator.
