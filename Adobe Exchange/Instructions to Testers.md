@@ -69,7 +69,7 @@ you will get a "replace files" confirmation alert
 Repeat steps 3-7 but use the "Save All & Close" button
 
 ------------------------------
-### 03:13 Test the "Import Styles" button
+### 5. Test the "Import Styles" button
 
 1. in file "page1.ai" create some area text with at least two paragraphs
 2. modify the font and the paragraph spacing
