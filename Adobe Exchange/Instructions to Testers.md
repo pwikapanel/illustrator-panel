@@ -119,6 +119,12 @@ The problem varies depending on the Illustrator version, and your version may no
 ------------------------------
 ### 8. Test the "Duplicate Layers" button
 
+This button will copy any unlocked layers from the frontmost document to any other open documents.
+
+It tries to be intelligent about which order the layers are added, and any layers with the same names are replaced.
+
+In the event of a mistake, the user can simply undo any modifications.
+
 1. open files "page1.ai" and "page2.ai"
 2. in file "page1.ai" create a new layer called "test"
 3. draw a rectangle on the new layer
@@ -128,7 +134,7 @@ The problem varies depending on the Illustrator version, and your version may no
 7. click "OK" when the process is complete
 8. in "page2.ai" verify that the layer was copied correctly
 
-Note: the confirmation dialog specifies that it is possible to add any object called "bottom-align" to a layer to cause the contents to be aligned relative to the bottom edge of the artboard. This function is currently broken but will be fixed soon.
+Known bug: the confirmation dialog specifies that it is possible to add any object called "bottom-align" to a layer to cause the contents to be aligned relative to the bottom edge of the artboard. This function is currently broken but will be fixed soon.
 
 ------------------------------
 
