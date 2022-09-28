@@ -87,19 +87,18 @@ note: it will be necessary to choose a fill color after applying the styles
 ### 6. Test the "Relink Images" button
 
 1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the working folders    
-— make sure the "Link" is checked in the "Place" dialog box
-2. click the "Relink Images" button    
-— it is NOT necessary for the image to be selected
-3. click "Yes" to create a "Links" folder
-4. click "No" to view the report
+— make sure that "Link" is checked in the "Place" dialog box
+2. click the "Relink Images" button (it is NOT necessary for the image to be selected)
+3. when asked whether to create a "Links" folder, click "Yes"
+4. when finished, click "No" to view the report
 5. in the Finder, verify that the image has been copied to sync/Links
-6. in Illustrator, verify that "Location" in the Links panel shows the path to the Links folder
+6. in Illustrator, verify that "Location" in the Links panel shows the path to the new image in the Links folder
 7. delete the image in Illustrator
 8. delete the image in the Links folder
-9. repeat steps 1-6 but do NOT check "Link" in the "Place" dialog
+9. repeat steps 1-6 but do NOT check "Link" in the "Place" dialog box
 
 ------------------------------
-### 07:45 Test the "Reset Names" button
+### 7. Test the "Reset Names" button
 
 This button changes the name of any named element in the "Layers" palette by adding extra characters, then changes it back.
 
