@@ -33,7 +33,7 @@ The result is three nested folders:
 3. save it as "page1.ai" in folder "sync"
 
 ------------------------------
-### Test the Interface:
+### 1. Test the Interface:
 
 Open Svija Tools (under menu Window › Extensions › Svija Tools), then:
 
@@ -45,7 +45,9 @@ Open Svija Tools (under menu Window › Extensions › Svija Tools), then:
 6. if desired, change Illustrator interface preferences (color & size) to verify that Svija Tools adapts correctly
 
 ------------------------------
-### Test the "Save" button
+### 2. Test the "Save" button
+
+The Illustrator file must already have been saved at least once in the "sync" folder.
 
 1. click "Save"
 2. wait for alert then click "OK"
