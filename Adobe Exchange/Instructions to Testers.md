@@ -52,7 +52,7 @@ The Illustrator file must already have been saved at least once in the "sync" fo
 1. click the "Save" button
 2. click "OK" when finished
 3. verify in the Finder that sync/Svija/SVG Files/page1-01.svg was created
-4. press space for quick look or open the SVG in Safari to verify that it matches the Illustrator file
+4. press space for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
 
 ------------------------------
 ### 3. & 4. Test the "Save All" buttons
@@ -63,8 +63,8 @@ The Illustrator file must already have been saved at least once in the "sync" fo
 4. click "Save All"      
 you will get a "replace files" confirmation alert
 5. click "OK" when finished
-6. verify in the Finder that sync/Svija/SVG Files/page1-01.svg and page2-01 were created
-7. press space for quick look or open the SVG in Safari to verify that it matches the Illustrator file
+6. verify in the Finder that sync/Svija/SVG Files/page1-01.svg and page2-01.svg were created
+7. press space for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
 
 Repeat steps 3-7 but use the button "Save All & Close"
 
