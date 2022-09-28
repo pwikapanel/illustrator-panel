@@ -12,7 +12,7 @@ To see how it works, visit https://youtube.com/video/to_come (3 minutes).
 
 Here, I have only included steps to test the functioning of the Svija Tools panel, without a website.
 
-If you would prefer to test the whole process on a real website, simply reject this application with a note to that effect and I will submit revisted testing instructions with a test account.
+If you prefer to test the process on a real website, reject this application with a note to that effect and I will submit revisted testing instructions including a test account.
 
 ------------------------------
 ### In the Finder:
