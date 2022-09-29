@@ -1,0 +1,64 @@
+:vertical resize 30
+id=gray1 index.html
+
+
+
+
+
+       background color
+                buttons
+        dim button text
+        all button text
+        all button text
+        all button text
+             logo ? url
+               url text
+           mouseover bg
+      mouseover+down fg
+           mousedown bg
+                  links
+                  links
+
+       background color
+                buttons
+        dim button text
+        all button text
+        all button text
+        all button text
+             logo ? url
+               url text
+           mouseover bg
+      mouseover+down fg
+           mousedown bg
+                  links
+                  links
+
+       background color
+            all buttons
+        dim button text
+        all button text
+        all button text
+        all button text
+             logo ? url
+               url text
+           mouseover bg
+      mouseover+down fg
+           mousedown bg
+                  links
+                  links
+
+       background color
+            all buttons
+        dim button text
+        all button text
+        all button text
+        all button text
+             logo ? url
+               url text
+           mouseover bg
+      mouseover+down fg
+           mousedown bg
+                  links
+                  links
+
+
