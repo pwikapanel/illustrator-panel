@@ -1,6 +1,6 @@
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 18 May, 2021 · Toulouse*
+*Updated 29 September 2022 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
@@ -12,23 +12,12 @@ This repository is *only* for development of the **user interface**.
 
 [l1]: https://github.com/svijalove/scripts-presets
 
-<details><summary>Test website login (Expand ▸)</summary>
-
-```
-svija.dev
-svija210901
-r2vv5Qf6cS7D6hPy
-
-newuser.svija.dev
-newuser220303
-CqGlXJM1tUXIkOIn
-```
-</details>
-
 ---
 ### Two Versions
 
-Two versions of Svija Tools are maintained: **beta** (a folder), and **master** (a ZIP archive).
+Two versions of Svija Tools are maintained:
+- **beta** (a folder)
+- **master** (a ZXP archive).
 
 > **Svija Tools Beta**: used for testing and user interface development.
 
@@ -36,7 +25,7 @@ The beta is updated and signed when a new release **presets-scripts** is prepare
 
 > **master**: the zipped, signed contents of the final public release.
 
-The master is updated *only* when a **new release** is prepared, and is simply the signed ZXP file, renamed.
+The master is updated *only* when a **new release** is prepared, and consists simply of the signed ZXP file.
 
 To enable both versions to be installed at the same time, the beta version has a separate bundle identifier including the word **beta**.
 
