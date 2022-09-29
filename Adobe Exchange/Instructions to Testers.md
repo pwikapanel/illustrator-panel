@@ -4,11 +4,9 @@
 
 <details><summary>Pasteable Version</summary>
 
-    
-1. Replace `### ` with a carriage return
+<br>*go to end in Vim, then replace `### ` with a carriage return up to top*
 
 ```
-
 Preliminary note:
 
 Svija Tools is an Illustrator panel that functions within a larger system to publish web content built in Illustrator.
@@ -37,8 +35,8 @@ The result is three nested folders:
 
 In Illustrator:
 
-1. make a new file using preset Web › Web-Large (1920x1080 px)
-2. add some text and a rectangle
+1. make a new file using preset "Web › Web-Large" (1920x1080 px)
+2. draw some text and a rectangle
 3. save it as "page1.ai" in folder "sync"
 
 ------------------------------
@@ -63,22 +61,22 @@ The Illustrator file must already have been saved at least once in the "sync" fo
 1. click the "Save" button
 2. click "OK" when finished
 3. verify in the Finder that sync/Svija/SVG Files/page1-01.svg was created
-4. press space for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
+4. press the spacebar for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
 
 ------------------------------
 
 3. & 4. Test the "Save All" buttons
 
-1. make a second Illustrator file using preset Web › Web-Large (1920x1080 px)
-2. add some text and a rectangle
+1. make a second Illustrator file using preset "Web › Web-Large" (1920x1080 px)
+2. draw some text and a rectangle
 3. save it as "page2.ai" in folder "sync"
 4. click the "Save All" button    
 — you will get a "replace files" confirmation alert
 5. click "OK" when finished
 6. verify in the Finder that sync/Svija/SVG Files/page1-01.svg and page2-01.svg were created
-7. press space for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
+7. press the spacebar for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
 
-Repeat steps 3-7 but use the "Save All & Close" button
+Repeat steps 3-7 but click the "Save All & Close" button
 
 ------------------------------
 
@@ -100,7 +98,11 @@ note: it will be necessary to choose a fill color after applying the styles
 
 6. Test the "Relink Images" button
 
-1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the working folders    
+This button copies any placed images to a "Links" adjacent to the active Illustrator file.
+
+If a placed image file is in the SAME folder as the Illustrator file, it will be moved rather than copied.
+
+1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the test folders    
 — make sure that "Link" is checked in the "Place" dialog box
 2. click the "Relink Images" button (it is NOT necessary for the image to be selected)
 3. when asked whether to create a "Links" folder, click "Yes"
@@ -117,9 +119,9 @@ note: it will be necessary to choose a fill color after applying the styles
 
 This button fixes a naming conflicts in exported SVG file objects when two objects have had the same name in Illustrator. 
 
-It works by adding extra characters to the name of any named element in the "Layers" palette, then removes the extra characters.
+It works by renaming all named elements in the active Illustrator file then renaming them BACK to the correct values.
 
-This forces Illustrator to reset the internal object ID's, but has no visible effect for the user.
+This has no visible effect for the user, but forces Illustrator to reset the internal object ID's.
 
 1. in file "page1.ai" delete everything
 2. create two rectangles, both named "henry"
@@ -129,7 +131,7 @@ This forces Illustrator to reset the internal object ID's, but has no visible ef
 6. click the button "Save" in Svija Tools
 7. open the SVG file in sync/Svija/SVG Files and verify that there are rectangles named henry and joe
 
-The problem varies depending on the Illustrator version, and your version may not even suffer from this issue.
+The problem varies depending on the Illustrator version; this issue may not affect your version.
 
 ------------------------------
 
@@ -137,7 +139,7 @@ The problem varies depending on the Illustrator version, and your version may no
 
 This button will copy any unlocked layers from the frontmost document to any other open documents.
 
-It tries to be intelligent about which order the layers are added, and any layers with the same names are replaced.
+Any layers with the same names are replaced, and it tries to be intelligent about which order the layers are added.
 
 In the event of a mistake, the user can simply undo any modifications.
 
@@ -150,8 +152,6 @@ In the event of a mistake, the user can simply undo any modifications.
 7. click "OK" when the process is complete
 8. in "page2.ai" verify that the layer was copied correctly
 
-Known bug: the confirmation dialog specifies that it is possible to add any object called "bottom-align" to a layer to cause the contents to be aligned relative to the bottom edge of the artboard. This function is currently broken but will be fixed soon.
-
 ------------------------------
 
 Conclusion
@@ -159,7 +159,7 @@ Conclusion
 Thank you for your time.
 
 Sincerely,
-Andrew Swift
+Andrew Swift, Svija
 ```
 
 </details>
@@ -190,8 +190,8 @@ The result is three nested folders:
 ------------------------------
 ### In Illustrator:
 
-1. make a new file using preset Web › Web-Large (1920x1080 px)
-2. add some text and a rectangle
+1. make a new file using preset "Web › Web-Large" (1920x1080 px)
+2. draw some text and a rectangle
 3. save it as "page1.ai" in folder "sync"
 
 ------------------------------
@@ -214,21 +214,21 @@ The Illustrator file must already have been saved at least once in the "sync" fo
 1. click the "Save" button
 2. click "OK" when finished
 3. verify in the Finder that sync/Svija/SVG Files/page1-01.svg was created
-4. press space for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
+4. press the spacebar for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
 
 ------------------------------
 ### 3. & 4. Test the "Save All" buttons
 
-1. make a second Illustrator file using preset Web › Web-Large (1920x1080 px)
-2. add some text and a rectangle
+1. make a second Illustrator file using preset "Web › Web-Large" (1920x1080 px)
+2. draw some text and a rectangle
 3. save it as "page2.ai" in folder "sync"
 4. click the "Save All" button    
 — you will get a "replace files" confirmation alert
 5. click "OK" when finished
 6. verify in the Finder that sync/Svija/SVG Files/page1-01.svg and page2-01.svg were created
-7. press space for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
+7. press the spacebar for Quick Look or open the SVG in Safari to verify that it matches the Illustrator file
 
-Repeat steps 3-7 but use the "Save All & Close" button
+Repeat steps 3-7 but click the "Save All & Close" button
 
 ------------------------------
 ### 5. Test the "Import Styles" button
@@ -248,7 +248,11 @@ note: it will be necessary to choose a fill color after applying the styles
 ------------------------------
 ### 6. Test the "Relink Images" button
 
-1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the working folders    
+This button copies any placed images to a "Links" adjacent to the active Illustrator file.
+
+If a placed image file is in the SAME folder as the Illustrator file, it will be moved rather than copied.
+
+1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the test folders    
 — make sure that "Link" is checked in the "Place" dialog box
 2. click the "Relink Images" button (it is NOT necessary for the image to be selected)
 3. when asked whether to create a "Links" folder, click "Yes"
@@ -264,9 +268,9 @@ note: it will be necessary to choose a fill color after applying the styles
 
 This button fixes a naming conflicts in exported SVG file objects when two objects have had the same name in Illustrator. 
 
-It works by adding extra characters to the name of any named element in the "Layers" palette, then removes the extra characters.
+It works by renaming all named elements in the active Illustrator file then renaming them BACK to the correct values.
 
-This forces Illustrator to reset the internal object ID's, but has no visible effect for the user.
+This has no visible effect for the user, but forces Illustrator to reset the internal object ID's.
 
 1. in file "page1.ai" delete everything
 2. create two rectangles, both named "henry"
@@ -276,14 +280,14 @@ This forces Illustrator to reset the internal object ID's, but has no visible ef
 6. click the button "Save" in Svija Tools
 7. open the SVG file in sync/Svija/SVG Files and verify that there are rectangles named henry and joe
 
-The problem varies depending on the Illustrator version, and your version may not even suffer from this issue.
+The problem varies depending on the Illustrator version; this issue may not affect your version.
 
 ------------------------------
 ### 8. Test the "Duplicate Layers" button
 
 This button will copy any unlocked layers from the frontmost document to any other open documents.
 
-It tries to be intelligent about which order the layers are added, and any layers with the same names are replaced.
+Any layers with the same names are replaced, and it tries to be intelligent about which order the layers are added.
 
 In the event of a mistake, the user can simply undo any modifications.
 
@@ -296,12 +300,10 @@ In the event of a mistake, the user can simply undo any modifications.
 7. click "OK" when the process is complete
 8. in "page2.ai" verify that the layer was copied correctly
 
-Known bug: the confirmation dialog specifies that it is possible to add any object called "bottom-align" to a layer to cause the contents to be aligned relative to the bottom edge of the artboard. This function is currently broken but will be fixed soon.
-
 ------------------------------
 ### Conclusion
 
 Thank you for your time.
 
 Sincerely,
-Andrew Swift
+Andrew Swift, Svija
