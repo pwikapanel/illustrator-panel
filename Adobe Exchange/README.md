@@ -224,27 +224,22 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ```
 Where To Find It:
 ```
-In Adobe Illustrator, got to the menu Window › Extensions › Svija Tools.
+In Adobe Illustrator, under menu Window › Extensions › Svija Tools.
 
 ```
-
-CCT/Enterprise user: **Svija Tools can easily be installed with Extension Manager, available for free at http://install.anastasiy.com.**
-
-**Note to approver:**
-
+CCT/Enterprise user:
+```
+Svija Tools can also be installed with Extension Manager, available at http://install.anastasiy.com.
+```
+Note to approver:
+```
 Q: I would have liked to include the license in the ZXP file, but I could not find documentation about where to put it. Can I just include it as a text file in the root directory?
 
-Q: I am not clear about what kind of information would be helpful for a CCT/Enterprise user. I inserted the Extension Manager link because I know it works, but I'm not sure it's appropriate. Please advise.
-
-We intend to use this build to test the installation process and make sure everything works smoothly. There will be a further update before we start promoting this project.
+Q: I am not clear about what kind of information is needed for a CCT/Enterprise user. I inserted the Extension Manager link, but please advise.
 
 Thanks for your time,
 Andrew Swift
-
----
-### Instructions to Testers
-
-See [Instructions to Testers.md](Instructions%20to%20Testers.md)
+```
 
 </details>
 
