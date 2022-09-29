@@ -1,12 +1,6 @@
-*Updated 20 September, 2022 · Andrew's Mac*
+*Updated 29 September, 2022 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
-
----
-
-need to add instructions to submission (à la the Mac App Store) for testers, and re-submit.
-
----
 
 ### Submission to Adobe Exchange
 
