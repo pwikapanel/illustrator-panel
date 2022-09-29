@@ -23,7 +23,7 @@ Two versions of Svija Tools are maintained:
 
 The beta is updated and signed when a new release of **presets-scripts** is available.
 
-> **master**: based on beta version but any beta references are removed from`CSXS/manifest.xml` 
+> **master**: based on beta version but any beta references are removed from `CSXS/manifest.xml` 
 
 The master is updated *only* when a **new release** is prepared.
 

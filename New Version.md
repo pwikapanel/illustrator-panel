@@ -4,18 +4,16 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
-# Version Update
+# A New Version
 
 Instructions for releasing a new version of Svija Tools.
 
 ---
 ### 1. New Master Version
 
-The beta version **does not** need to be signed.
-
 Create a temporary **master version**:
 
-- duplicate the **beta version** folder to a folder called **Svija Tools** (do *not* add it to the repository)
+- duplicate the **beta version** folder, replacing the folder called **Svija Tools**
 - remove the word **Beta** from **CSXS/manifest.xml**
 ```
 vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
