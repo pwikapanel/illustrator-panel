@@ -241,6 +241,11 @@ Thanks for your time,
 Andrew Swift
 ```
 
+---
+### Instructions to Testers
+
+See [Instructions to Testers.md](Instructions%20to%20Testers.md)
+
 </details>
 
 ---
