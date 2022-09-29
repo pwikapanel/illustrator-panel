@@ -19,7 +19,7 @@ cd ~/Documents/tools
 rm -rf Svija\ Tools
 cp -r Svija\ Tools\ Beta Svija\ Tools
 ```
-- remove the word **Beta** from **CSXS/manifest.xml**
+- remove the word **Beta** from **CSXS/manifest.xml** (there are no lower-case occurences but there are some leading spaces)
 ```
 vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
 ```
