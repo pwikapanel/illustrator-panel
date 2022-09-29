@@ -19,13 +19,9 @@ cd ~/Documents/tools
 rm -rf Svija\ Tools
 cp -r Svija\ Tools\ Beta Svija\ Tools
 ```
-- remove the word **Beta** from **CSXS/manifest.xml** (there are no lower-case occurences but there are some leading spaces)
+- remove " **Beta**" and " **Beta**" from **manifest.xml**, "less.html" and "more.html":
 ```
-vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
-```
-- Edit **panel/less.html** and **panel/more.html** and remove " Beta" from the page title
-```
-vi -O ~/Documents/tools/Svija\ Tools/panel/less.html ~/Documents/tools/Svija\ Tools/panel/more.html
+vi -O Svija\ Tools/CSXS/manifest.xml Svija\ Tools/panel/less.html Svija\ Tools/panel/more.html
 ```
 ---
 ### 2. Code Signing
