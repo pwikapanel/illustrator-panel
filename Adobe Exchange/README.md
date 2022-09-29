@@ -10,6 +10,9 @@
 
 See the [Adobe page captures](./Adobe%20Page%20Captures) to remember what the submission process looks like.
 
+*To do:*
+- understand "How to Sell" section of "Upload & Docs" submission, to see if that could help us.
+
 ---
 
 <details><summary>1. Logging In</summary>
@@ -211,7 +214,7 @@ Svija has been updated, and with this new version the folder hierarchy has been 
 
 The EULA was written with the help of [this page](https://choosealicense.com/licenses/mit/):
 ```
-Copyright (c) 2021 Svija
+Copyright (c) 2022 Svija
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
