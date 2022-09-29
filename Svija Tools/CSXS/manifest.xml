@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="love.svija.SvijaToolsBeta" ExtensionBundleVersion="1.0.3" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="love.svija.SvijaTools" ExtensionBundleVersion="1.0.3" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <ExtensionList>
-    <Extension Id="love.svija.SvijaToolsBeta.panel" Version="1.0.3" />
-    <Extension Id="love.svija.SvijaLauncherBeta.panel" Version="1.0.3" />
+    <Extension Id="love.svija.SvijaTools.panel" Version="1.0.3" />
+    <Extension Id="love.svija.SvijaLauncher.panel" Version="1.0.3" />
   </ExtensionList>
 
   <ExecutionEnvironment>
@@ -20,7 +20,7 @@
 
   <DispatchInfoList>
     
-    <Extension Id="love.svija.SvijaToolsBeta.panel"><!-- ———————————————————— -->
+    <Extension Id="love.svija.SvijaTools.panel"><!-- ———————————————————— -->
       <DispatchInfo>
         <Resources>
 
@@ -42,7 +42,7 @@
 
         <UI>
           <Type>Panel</Type>
-          <Menu>Svija Tools Beta</Menu>
+          <Menu>Svija Tools</Menu>
             <Geometry>
               <Size>
                   <Width>240</Width>
@@ -62,7 +62,7 @@
       </DispatchInfo>
     </Extension>
 
-    <Extension Id="love.svija.SvijaLauncherBeta.panel"><!-- ———————————————————— -->
+    <Extension Id="love.svija.SvijaLauncher.panel"><!-- ———————————————————— -->
       <DispatchInfo>
         <Resources>
           <MainPath>./panel/launcher.html</MainPath>
