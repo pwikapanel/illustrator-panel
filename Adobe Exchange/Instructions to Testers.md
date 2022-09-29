@@ -1,4 +1,4 @@
-*Updated 22 September, 2022 · Andrew's Mac*
+*Updated 29 September, 2022 · Andrew's Mac*
 
 ![Svija: SVG-based websites built in Adobe Illustrator](http://files.svija.love/github/readme-logo.png?2 "Svija: SVG-based websites built in Adobe Illustrator")
 
@@ -174,7 +174,7 @@ To see how it works, visit https://youtube.com/video/to_come (3 minutes).
 
 Here, I have only included steps to test the functioning of the Svija Tools panel, without a website.
 
-If you prefer to test the process on a real website, reject this application with a note to that effect and I will submit revisted testing instructions including a test account.
+If you prefer to test the process on a real website, reject this application with a note to that effect and I will submit revisted testing instructions, including a test account.
 
 ------------------------------
 ### In the Finder:
