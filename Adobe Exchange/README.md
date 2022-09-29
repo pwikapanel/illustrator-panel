@@ -15,6 +15,8 @@ See the [Adobe page captures](./Adobe%20Page%20Captures) to remember what the su
 <details><summary>1. Logging In</summary>
 
 ---
+**[update]** I have now added andy@svija.com as a collaborator.
+
 The Adobe Exchange website is at:
 ```
 https://partners.adobe.com/exchangeprogram/creativecloud
