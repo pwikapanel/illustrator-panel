@@ -12,9 +12,7 @@ Adobe Exchange submission for Svija Tools 1.0.3
 ```
 Description:
 ```
-Length: 2 minutes
-
-This video will go through the basic Svija workflow so you can see how Svija Tools is used.
+Length: 2 minutes — this video will go through the basic Svija workflow so you can see how Svija Tools is used.
 
 Chapter List ▼
 ——————————————————————
