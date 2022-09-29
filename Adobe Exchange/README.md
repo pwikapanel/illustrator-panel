@@ -8,6 +8,8 @@
 - use **Google Chrome** for the submission (Safari doesn't work)
 - a **signed .zxp file** will be necessary for step 3, **Upload & Docs**
 
+See the [Adobe page captures](./Adobe%20Page%20Captures) to remember what the submission process looks like.
+
 <details><summary>1. Logging In</summary>
 
 ---
