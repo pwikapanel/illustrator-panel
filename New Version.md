@@ -23,7 +23,7 @@ cp -r Svija\ Tools\ Beta Svija\ Tools
 ```
 vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
 ```
-- Edit **panel/less.html** and **panel/more.html** and remove Beta from the page title
+- Edit **panel/less.html** and **panel/more.html** and remove " Beta" from the page title
 ```
 vi -O ~/Documents/tools/Svija\ Tools/panel/less.html ~/Documents/tools/Svija\ Tools/panel/more.html
 ```
