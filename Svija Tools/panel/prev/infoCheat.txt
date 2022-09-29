@@ -1,0 +1,49 @@
+:vertical resize 30
+id=gray1 index.html
+
+
+
+
+       background color
+               dim text
+             right text
+               all text
+                    (x)
+              impt text
+              left text
+            links group
+                  links
+
+       background color
+              impt text
+              left text
+               all text
+             right text
+               dim text
+                  links
+
+       background color
+              impt text
+              left text
+               all text
+             right text
+               dim text
+                  links
+
+       background color
+              impt text
+              left text
+               all text
+             right text
+               dim text
+                  links
+
+       background color
+              impt text
+              left text
+               all text
+             right text
+               dim text
+                  links
+
+

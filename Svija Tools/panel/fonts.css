@@ -1,0 +1,22 @@
+body{
+  background-color:#535353;
+  margin:0;
+  padding:0;
+}
+
+/*———————————————————————————————————————— to prevent wrong scaling  */
+
+    svg:first-of-type{ width:240px; }
+
+/*———————————————————————————————————————— hide mouseover buttons */
+
+#btn1mo, #btn2mo, #btn3mo, #btn4mo, #btn5mo, #btn6mo, #btn7mo, #btn8mo,
+#btn1md, #btn2md, #btn3md, #btn4md, #btn5md, #btn6md, #btn7md, #btn8md,
+#x { display:none; }
+
+/*———————————————————————————————————————— fonts */
+
+@font-face { font-family:'SourceSansPro-Regular'; src:url('fonts/SourceSansPro-Regular.ttf') format('woff'); }
+@font-face { font-family:'SourceSansPro-Semibold'; src:url('fonts/SourceSansPro-Semibold.ttf') format('woff'); }
+
+/*———————————————————————————————————————— fin */
