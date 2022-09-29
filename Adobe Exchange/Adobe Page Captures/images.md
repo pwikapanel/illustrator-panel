@@ -4,4 +4,4 @@
 
 ![details page][im]
 
-[im]: docs.jpg
+[im]: images.jpg
