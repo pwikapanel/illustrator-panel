@@ -4,20 +4,29 @@
 
 <details><summary>Pasteable Version</summary>
 
-<br>*paste between ticks from Github, then go to the end in Vim and replace `### ` with a carriage return up to top*
+<br>*paste between ticks from Github, then go to the end in Vim and replace `
+` with a carriage return up to top*
 
 ```
 Preliminary note:
 
+Q: I would have liked to include the license in the ZXP file, but I could not find documentation about where to put it.
+
+Can I just include it as a text file in the root directory?
+
+Q: What kind of information is needed for a CCT/Enterprise user? I inserted the Extension Manager link, but please advise.
+
+------------------------------
+
 Svija Tools is an Illustrator panel that functions within a larger system to publish web content built in Illustrator.
 
-A free account is required, available by signing up at https://svija.love/access
+A free account is required, available at https://svija.love/access (you will not need it to test the panel).
 
 To see how it works, visit https://www.youtube.com/watch?v=PgCX6D9pHm8 (2 minutes).
 
 Here, I have only included steps to test the functioning of the Svija Tools panel, without a website.
 
-If you prefer to test the process on a real website, reject this application with a note to that effect and I will submit revisted testing instructions including a test account.
+If you prefer to test the process on a real website, reject this application with a note to that effect and I will submit revisted testing instructions, including a test account.
 
 ------------------------------
 
