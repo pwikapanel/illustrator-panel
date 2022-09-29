@@ -13,7 +13,7 @@ Svija Tools is an Illustrator panel that functions within a larger system to pub
 
 A free account is required, available by signing up at https://svija.love/access
 
-To see how it works, visit https://youtube.com/video/to_come (3 minutes).
+To see how it works, visit https://www.youtube.com/watch?v=PgCX6D9pHm8 (2 minutes).
 
 Here, I have only included steps to test the functioning of the Svija Tools panel, without a website.
 
@@ -170,7 +170,7 @@ Svija Tools is an Illustrator panel that functions within a larger system to pub
 
 A free account is required, available by signing up at https://svija.love/access
 
-To see how it works, visit https://youtube.com/video/to_come (3 minutes).
+To see how it works, visit https://www.youtube.com/watch?v=PgCX6D9pHm8 (2 minutes).
 
 Here, I have only included steps to test the functioning of the Svija Tools panel, without a website.
 
