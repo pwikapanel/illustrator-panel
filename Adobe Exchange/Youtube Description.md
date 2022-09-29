@@ -11,7 +11,7 @@ Title (100 chars)
 Adobe Exchange submission for Svija Tools 1.0.3
 ```
 Description:
-
+```
 Length: 2 minutes
 
 This video will go through the basic Svija workflow so you can see how Svija Tools is used.
@@ -32,4 +32,4 @@ Chapter List ▼
 1:41 — Save using Svija Tools
 1:47 — Verify the change in the browser
 1:53 — Stop the synchronization process
-
+```
