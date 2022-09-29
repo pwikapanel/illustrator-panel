@@ -27,9 +27,12 @@ vi ~/Documents/tools/Svija\ Tools/CSXS/manifest.xml
 ```
 vi -O ~/Documents/tools/Svija\ Tools/panel/less.html ~/Documents/tools/Svija\ Tools/panel/more.html
 ```
+---
+### 2. Code Signing
+
 - [sign][cs] the new version and move the .zip to the **master** folder
 
-[cs]: https://github.com/svijalove/tools/tree/beta/code-signing
+[cs]: Code%20Signing
 
 ---
 ### 2. Test the New Version and copy to DMG repository
