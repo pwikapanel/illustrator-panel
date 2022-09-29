@@ -4,8 +4,7 @@
 
 <details><summary>Pasteable Version</summary>
 
-<br>*paste between ticks from Github, then go to the end in Vim and replace `
-` with a carriage return up to top*
+<br>*paste between ticks from Github, then go to the end in Vim and replace `### ` with a carriage return up to top*
 
 ```
 Preliminary note:
