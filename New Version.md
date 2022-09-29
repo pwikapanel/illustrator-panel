@@ -58,6 +58,14 @@ in the Finder, type **cmd-shift-G**, then paste:
 ---
 ### 3. Git Merge to Master
 
+**VERY IMPORTANT**
+
+The last time I did this, iCloud caused duplicates of every single file, with a " 2" added before the extension.
+
+It might be good to temporarily move the directory into Downloads before proceeding.
+
+---
+
 Check out the **destination branch** and merge ([list of commits](https://github.com/svijalove/Svija-Tools/commits/beta)):
 ```
 git status
