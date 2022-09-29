@@ -1,2 +1,2 @@
-![details page][img]
-[img]: details.jpg "Svija: SVG-based websites built in Adobe Illustrator"
+![details page][im]
+[im]: details.jpg "Svija: SVG-based websites built in Adobe Illustrator"
