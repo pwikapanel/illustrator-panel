@@ -39,6 +39,24 @@ Code-signing is a delicate process and Illustrator is very picky about it.
 
 If all goes well, copy Svija Tools to the **dmg-installation** repository.
 
+There are three ways to install an extension:
+- from Adobe CC
+- via Anastasiy's Extension Manager ([link](https://install.anastasiy.com))
+- installing the unzipped ZXP file manually
+
+**Important:** if the **archive utility** is set to delete .zip files once expanded, make a copy *before* unzipping!
+
+To install the bundle:
+
+1. unzip the .zip file, and copy it 
+2. paste it into the Adobe extensions folder  
+in the Finder, type **cmd-shift-G**, then paste:
+```
+/Library/Application Support/Adobe/CEP/extensions
+```
+**Note:** the custom icon has to be re-pasted onto the folder after unzipping: open [Svija Tools.png][stp] in **Preview**, copy it, and paste it into the bundle's folder information window.
+
+
 ---
 ### 3. Git Merge to Master
 
