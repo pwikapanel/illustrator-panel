@@ -31,14 +31,16 @@
 /*———————————————————————————————————————— user messages */
 
 var msgSingle     = 'Only One Document is Open\n' +
-                    'This tool copies unlocked layers to all other open documents.';
+                    'This tool copies unlocked layers to all other open documents.\n\n' +
+                    'To bottom-align a layer add any object named "bottom-align" to it.';
 
 var msgNoUnlocked = 'No Unlocked Layers\n' +
                     'This tool copies unlocked layers to all other open documents.\n\n' +
                     'Only named layers are copied.';
 
 var msgConfirm    = 'Is the correct document active?\n' +
-                    'You can undo changes by typing cmd-Z in each destination document.';
+                    'You can undo changes by typing cmd-Z in each destination document.\n\n' +
+                    'To bottom-align a layer add any object\nnamed "bottom-align" to it.';
 
 var msgComplete   = ' completed';
 var msgNoChange   = 'No changes made.';
