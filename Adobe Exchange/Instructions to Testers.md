@@ -4,6 +4,7 @@
 
 <details><summary>Pasteable Version</summary>
 
+    
 1. Replace `### ` with a carriage return
 
 ```
