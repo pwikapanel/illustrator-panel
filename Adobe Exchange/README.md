@@ -10,6 +10,8 @@
 
 See the [Adobe page captures](./Adobe%20Page%20Captures) to remember what the submission process looks like.
 
+---
+
 <details><summary>1. Logging In</summary>
 
 ---
