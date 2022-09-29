@@ -81,7 +81,7 @@ Copy info from/to:
 ---
 ### 5. Create A New Github Release
 
-On github, create a new release from the **master branch**.
+On github, create a [new release](./releases) from the **master branch**.
 
 - use the current version number
 - use the month & year for the title
