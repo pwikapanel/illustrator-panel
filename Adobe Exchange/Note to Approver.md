@@ -166,6 +166,12 @@ Andrew Swift, Svija
 
 ### Preliminary note:
 
+Q: I would have liked to include the license in the ZXP file, but I could not find documentation about where to put it. Can I just include it as a text file in the root directory?
+
+Q: I am not clear about what kind of information is needed for a CCT/Enterprise user. I inserted the Extension Manager link, but please advise.
+
+Thanks for your time,
+Andrew Swift
 Svija Tools is an Illustrator panel that functions within a larger system to publish web content built in Illustrator.
 
 A free account is required, available by signing up at https://svija.love/access

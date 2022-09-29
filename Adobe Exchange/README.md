@@ -231,20 +231,11 @@ CCT/Enterprise user:
 ```
 Svija Tools can also be installed with Extension Manager, available at http://install.anastasiy.com.
 ```
-Note to approver:
-```
-Q: I would have liked to include the license in the ZXP file, but I could not find documentation about where to put it. Can I just include it as a text file in the root directory?
-
-Q: I am not clear about what kind of information is needed for a CCT/Enterprise user. I inserted the Extension Manager link, but please advise.
-
-Thanks for your time,
-Andrew Swift
-```
 
 ---
-### Instructions to Testers
+### Note to Approver 
 
-See [Instructions to Testers.md](Instructions%20to%20Testers.md)
+See [Note to Approver.md](Note%20to%20Approver.md)
 
 </details>
 
