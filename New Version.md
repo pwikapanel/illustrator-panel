@@ -30,12 +30,12 @@ vi -O ~/Documents/tools/Svija\ Tools/panel/less.html ~/Documents/tools/Svija\ To
 ---
 ### 2. Code Signing
 
-- [sign][cs] the new version and move the .zip to the **master** folder
+See the [instructions][cs] above.
 
 [cs]: Code%20Signing
 
 ---
-### 2. Test the New Version and copy to DMG repository
+### 3. Test the New Version and copy to DMG repository
 
 Code-signing is a delicate process and Illustrator is very picky about it.
 
