@@ -4,6 +4,7 @@
 
 ### Submission to Adobe Exchange
 
+- use the **master** branch for this document
 - use **Google Chrome** for the submission (Safari doesn't work)
 - a **signed .zxp file** will be necessary for step 3, **Upload & Docs**
 
