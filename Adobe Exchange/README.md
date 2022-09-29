@@ -212,9 +212,9 @@ Svija has been updated, and with this new version the folder hierarchy has been 
 
 ---
 
-After there was an apparent error "Please use standard characters only", something like that.
+After submission, there was an apparent error "Enter Plain text only".
 
-But on closer examination, the submission had been sent (buttons grayed-out, note "thanks for the submission" etc.).
+However, the submission *had* been sent (buttons grayed-out, note "thanks for the submission" etc.).
 
 The EULA was written with the help of [this page](https://choosealicense.com/licenses/mit/):
 ```
