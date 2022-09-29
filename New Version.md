@@ -31,13 +31,9 @@ See the [instructions][cs] above.
 [cs]: Code%20Signing
 
 ---
-### 3. Test the New Version and copy to DMG repository
+### 3. Test the New Version
 
 Code-signing is a delicate process and Illustrator is very picky about it.
-
-**After pasting the correct icon**, install the new version of Svija Tools and **verify that the panel displays correctly** before proceeding.
-
-If all goes well, copy Svija Tools to the **dmg-installation** repository.
 
 <details><summary>installing an extension</summary>
 <br>
