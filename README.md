@@ -1,6 +1,6 @@
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 29 September 2022 · Toulouse*
+*Updated 23 November 2022 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
@@ -32,6 +32,7 @@ The master is updated *only* when a **new release** is prepared.
 
 The **interface** folder contains two Illustrator files:
 
+- **layout.ai** · used for testing layout ideas
 - **interface.ai** · the actual interface of Svija Tools
 - **colors.ai** · used for evaluating color choices
 
