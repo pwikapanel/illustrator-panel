@@ -13,3 +13,11 @@ If there are new scripts, make sure to add them to the repo:
 ```
 git add ./Svija\ Tools\ Beta/scripts/.
 ```
+
+---
+### Modifying Button Functions
+
+```
+cd ~/Documents/tools/Svija Tools Beta/panel
+vi action-list.js
+```
