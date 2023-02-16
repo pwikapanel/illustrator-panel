@@ -1,82 +1,100 @@
 #target illustrator  
 
-/*———————————————————————————————————————— 2. Relink Images.jsx
+/*———————————————————————————————————————— Verify.jsx
 
-    3. Reset Image Links — ⌘ F3.jsx
+    Verify.jsx
 
     1.0.3
 
     Does a lot */
 
-/*———————————————————————————————————————— copyright
+/*———————————————————————————————————————— EULA
 
-    (c) 2021 Svija SAS
-    All Rights Reserved
-   
-    NOTICE:  Svija permits you to use, modify, and distribute this file in
-    accordance with the terms of the Svija license agreement accompanying it.
-    If you have received this file from a source other than Svija, then your
-    use, modification, or distribution of it requires the prior written
-    permission of Svija.
+    Copyright (c) 2023 Svija
 
-    github.com/svijasvg/Presets-Scripts
-  	svija.love · contact@svija.love */
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+    
+    The software is provided "as is", without warranty of any kind, express or
+    implied, including but not limited to the warranties of merchantability,
+    fitness for a particular purpose and noninfringement. In no event shall the
+    authors or copyright holders be liable for any claim, damages or other
+    liability, whether in an action of contract, tort or otherwise, arising from,
+    out of or in connection with the software or the use or other dealings in
+    the software.
+
+  	svija.com · hello@svija.com*/
 
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
-//———————————————————————————————————————— ▼ begin program()
+/*———————————————————————————————————————— ▼ program:{
 
-var program = new function(){ // can use "return" to quit at any time
+    can use "break program;" to quit at any moment */
 
-//———————————————————————————————————————— get active doc
+program:{ // can use "return" to quit at any time
+
+  var d = new Date();
+  var env_start_ms = d.getTime();
+
+//———————————————————————————————————————— initialization
 
 var doc = app.activeDocument;
+var err, warn;
+var env_errs = [];                   // error messages for user
+var env_warn = [];                   // warnings for user
 
-/*———————————————————————————————————————— check if there are images
+//———————————————————————————————————————— check if doc has been saved
 
-    if there are no images, no point in continuing */
+err = hasPath(doc);           // has file been saved at least once?
+if (err != '')
+  env_errs.push(err);
 
-if (doc.rasterItems.length + doc.placedItems.length == '00') {
-  alert('No images found');
-  return;
-}
+err = hasLinks(doc);          // is there a Links folder?
+if (err != '')
+  env_warn.push(err);
 
-/*———————————————————————————————————————— check if there is a links folder
+err = hasEmbeds(doc);         // are there embedded images?
+if (err != '')
+  env_warn.push(err);
 
-    if there is no links folder, do we create it? */
+// rasterItem can return either warning or error depending on if image can be fixed
+// we'll deal with that later
 
-var linksFolder = Folder(app.activeDocument.path) + '/Links';
+// rasterItem (embedded images)
 
-if (!Folder(linksFolder).exists){
-  var msg = 'No "Links" folder found.\nDo you want to create it?';
-  if (confirm(msg)) Folder(linksFolder).create();
-  else{
-    alert('Operation canceled');
-    return;
-  }
-}
-
-//———————————————————————————————————————— raster images
-// before placed, because will be changed to placed then fixed with others
-
-var raster = doc.rasterItems.length;
-var rasterFixes = [];
-
-for (var x=raster; x>0; x--){
-  var val = rasterItem(doc.rasterItems[x-1]);
-  if (val != false) rasterFixes.push(val);
-}
+/*  to add once old functionality has been repaired
+    • embedded images 
+    • non-native items
+    • artboard names don't match likely screen codes
+    • artboard sizes don't match likely screen sizes
+    • unsupported techniques (mesh, filters)
+    • missing font
+    • correct text tracking
+    • effect › stylize
+    • opacity masks
+    • freeform gradients
+    • layer blending modes
+    • gradient midpoints
+    • cloud images
+    • TT automatic uppercase see JavaScript Scripting Reference p24 */
 
 //———————————————————————————————————————— placed images
 
-var placed = doc.placedItems.length;
-var placedFixes = [];
-
-for (var x=placed; x>0; x--){
-  var val = placedItem(doc.placedItems[x-1]);
-  if (val != false) placedFixes.push(val);
-}
+// var placed = doc.placedItems.length;
+// var placedFixes = [];
+// 
+// for (var x=placed; x>0; x--){
+//   var val = placedItem(doc.placedItems[x-1]);
+//   if (val != false) placedFixes.push(val);
+// }
 
 //———————————————————————————————————————— prepare report
 
@@ -84,108 +102,53 @@ for (var x=placed; x>0; x--){
 // when doing rasterFixes, skip any that have names in names list
 // [name, fixed boolean, message]
 
-var names = [];
-var fixed = [];
-var failed = [];
+// var names = [];
+// var fixed = [];
+// var failed = [];
+// 
+// for (var x=0; x<placedFixes.length; x++){
+//   names.push(placedFixes[x][0]);
+//   if (placedFixes[x][1]) fixed.push(placedFixes[x][0] + ': ' + placedFixes[x][2]);
+//   else failed.push(placedFixes[x][0] + ': ' + placedFixes[x][2]);
+// }
+// 
+// var report_parts = [];
+// if (fixed.length>0) report_parts.push('——— FIXED IMAGES ———\n' + fixed.join('\n'));
+// if (failed.length>0) report_parts.push('——— BROKEN IMAGES ———\n' + failed.join('\n'));
+// 
+// report_parts.push("See \"Links\" panel for information.");
+// report = decodeURI(report_parts.join('\n\n'));
 
-for (var x=0; x<placedFixes.length; x++){
-  names.push(placedFixes[x][0]);
-  if (placedFixes[x][1]) fixed.push(placedFixes[x][0] + ': ' + placedFixes[x][2]);
-  else failed.push(placedFixes[x][0] + ': ' + placedFixes[x][2]);
-}
+//———————————————————————————————————————— present report
 
-for (var x=0; x<rasterFixes.length; x++){
+// doc.selection = null;
+// 
+// var d = new Date();
+// var elapsedMs = ' (' + (d.getTime()-env_start_ms) + ' ms)';
+// 
+// var treated = fixed.length + failed.length;
+// 
+// if (treated==0)
+//   alert('No issues found' + elapsedMs);
+// 
+// if (treated == 1) msg = 'One issue found';
+// else msg = treated + ' issues found';
+// 
+// msg += '\nSkip the report?'
+// skip = confirm('Images Relinked' + elapsedMs + '\n' + msg);
+// 
+// if (!skip) alert('Issues Found:\n' + report);
 
-  var skip = false;
-  for (var y=0; y<names.length; y++)
-    if (rasterFixes[x][0] == names[y]) skip = true;
-  if(skip) continue; 
+//———————————————————————————————————————— alert user
+   
+finalFeedback(doc);
 
-  if (rasterFixes[x][1]) fixed.push(rasterFixes[x][0] + ': ' + rasterFixes[x][2]);
-  else failed.push(rasterFixes[x][0] + ': ' + rasterFixes[x][2]);
-}
+//———————————————————————————————————————— ▲ } // program 
 
-var report_parts = [];
-if (fixed.length>0) report_parts.push('——— FIXED IMAGES ———\n' + fixed.join('\n'));
-if (failed.length>0) report_parts.push('——— BROKEN IMAGES ———\n' + failed.join('\n'));
-
-report_parts.push("See Links panel for more information.");
-report = decodeURI(report_parts.join('\n\n'));
-
-//———————————————————————————————————————— get out
-
-var treated = fixed.length + failed.length;
-
-doc.selection = null;
-if (treated==0) alert('No issues found');
-else{
-  if (treated == 1) msg = 'One issue found.';
-  else msg = treated + ' issues found.';
-
-  msg += '\nSkip the report?'
-
-  showResults = confirm('Images Relinked\n' + msg);
-  if (!showResults) alert('Issues Found:\n' + report);
-}
-
-//———————————————————————————————————————— ▲ end program()
-
-} // program()
+} // program 
 
 
 //:::::::::::::::::::::::::::::::::::::::: main functions
-
-/*———————————————————————————————————————— rasterItem(obj)
-
-  notes */
-
-function rasterItem(obj){
- 
-  // we don't care about non-printing information layers
-  if (!obj.layer.printable) return false;
-
-  app.activeDocument.activeLayer = obj.layer;
-  app.activeDocument.activeLayer.visible = true;
-
-	try{
-    var newName = obj.file;
-    var newFile = new File(newName);
-    var fileMissing = false;
-	}
-	catch(e){ var fileMissing = true; }
-
-  // this is a precaution, not encountered so far
-  if (obj.status != 'RasterLinkState.DATAFROMFILE') fileMissing = true;
-
-  if(fileMissing){
-    var rec = alertRec(obj);
-    var report = 'missing, highlighted';
-    if (obj.name == '') var nm = '<image>';
-    else var nm = obj.name;
-    return [nm, false, report];
-  }
-
-  // ————— we have the original file, need to re-link it
-
-  newObj = app.activeDocument.activeLayer.placedItems.add()
-  newObj.file = newFile;
-
-  for (var key in obj)
-    if (key != 'parent' && key != 'embedded' && key != 'wrapOffset' && key != 'wrapInside')
-      newObj[key] = obj[key];
- 
-  // objects were appearing upside down
-  var moveMatrix = app.getScaleMatrix(100,-100);
-  var totalMatrix = concatenateRotationMatrix(moveMatrix, 10);
-  newObj.transform(moveMatrix);
-
-  // remove the rasterItem
-  obj.remove();
-
-  var report = ' file relinked';
-  return [newObj.file.name, true, report];
-
-}
 
 /*———————————————————————————————————————— placedItem(obj)
 
@@ -230,6 +193,33 @@ function placedItem(obj){
   return [imgName, true, report];
 }
 
+/*———————————————————————————————————————— finalFeedback(count)
+
+    alert with:
+    - elapsed time
+    - errors (big problems)
+    - warnings (minor problems) */
+
+function finalFeedback(doc){
+
+  var d = new Date();
+  var ms = ' (' + (d.getTime()-env_start_ms) + ' ms)';
+
+  var title = doc.name+' Verified' + ms;
+  var body = '';
+
+  if (env_errs.length > 0)
+    body += '\nErrors\n' + env_errs.join('\n');
+  
+  if (env_warn.length > 0)
+    body += '\nWarnings\n' + env_warn.join('\n');
+
+  if (env_errs.length == 0 && env_warn.length == 0)
+    body = '\nNo issues found';
+
+  alert(title + body);
+}
+
 
 //:::::::::::::::::::::::::::::::::::::::: utility functions
 
@@ -261,5 +251,248 @@ function alertRec(obj){
   return rec;
 }
 
+/*———————————————————————————————————————— hasPath(sourceDoc)
+
+    has file been saved at least once?
+    returns '' or error message */
+
+function hasPath(doc){
+
+  if (doc.path != '') return '';
+
+  var f = File.saveDialog('Save ' + doc.name + ' to continue','');
+  if (f == null)
+    return 'You chose not to save ' + doc.name;
+
+  app.activeDocument.saveAs(f, undefined);
+  return '';
+    
+}
+
+/*———————————————————————————————————————— hasLinks(sourceDoc) FIX
+
+    has file been saved at least once?
+    returns '' or error message */
+
+function hasLinks(doc){
+
+  var linksFolder = Folder(app.activeDocument.path + '/Links');
+
+  if (Folder(linksFolder).exists)
+    return '';
+
+  var msg = 'No "Links" folder found.\nDo you want to create it?';
+  if (confirm(msg)){
+    Folder(linksFolder).create();
+    return '';
+  }
+  else
+    return "Missing \"Links\" folder for images";
+}
+
+/*———————————————————————————————————————— hasEmbeds(doc)
+
+    embedded images will be re-linked, converting
+    them to placed images (if possible) */
+
+function hasEmbeds(doc){
+
+  var l = doc.rasterItems.length;
+
+  var fixes = [];  
+
+  for (var x = l; x > 0; x--){
+
+    var val = relink(doc.rasterItems[x-1]); // val = array // returns false if non-printing layer
+    if (val != false) fixes.push(val);
+
+  }
+
+  // prepare messages
+  for (var x=0; x<fixes.length; x++){
+  
+    var skip = false;
+
+    for (var y=0; y<names.length; y++)
+      if (fixes[x][0] == names[y]) skip = true;
+
+    if(skip) continue; 
+  
+    if (fixes[x][1]) fixed.push(fixes[x][0] + ': ' + fixes[x][2]);
+    else failed.push(fixes[x][0] + ': ' + fixes[x][2]);
+  }
+ 
+}
+
+/*———————————————————————————————————————— relink(obj) 
+
+  tries to relink embedded files
+
+  returns [filename, true, message] if success
+  returns [filename, true, message] if success
+  notes */
+
+function relink(img){
+ 
+  if (!img.layer.printable) return false;
+
+  app.activeDocument.activeLayer         = img.layer;
+  app.activeDocument.activeLayer.visible = true;
+
+	try{
+    var newName = img.file;
+    var newFile = new File(newName);
+    var fileMissing = false;
+	}
+
+	catch(e){ var fileMissing = true; }
+
+  // this is a precaution, not encountered so far
+  if (img.status != 'RasterLinkState.DATAFROMFILE') fileMissing = true;
+
+  if(fileMissing){
+    var rec = alertRec(img);
+    var report = 'missing, highlighted';
+
+    if (img.name == '')
+      var imageName = '<image>';
+    else
+      var imageName = img.name;
+
+    return [imageName, false, report];
+  }
+
+  // ————— we have the original file, need to re-link it
+
+  newObj = app.activeDocument.activeLayer.placedItems.add()
+  newObj.file = newFile;
+
+  for (var key in img)
+    if (key != 'parent' && key != 'embedded' && key != 'wrapOffset' && key != 'wrapInside')
+      newObj[key] = img[key];
+ 
+  // imgects were appearing upside down
+  var moveMatrix = app.getScaleMatrix(100,-100);
+  var totalMatrix = concatenateRotationMatrix(moveMatrix, 10);
+  newObj.transform(moveMatrix);
+
+  // remove the rasterItem
+  img.remove();
+
+  var report = ' file relinked';
+  return [newObj.file.name, true, report];
+
+}
 
 //:::::::::::::::::::::::::::::::::::::::: fin
+
+/*———————————————————————————————————————— embeddedImages(sourceDoc)
+
+    are there embedded images?
+
+    returns '' or error message */
+
+//   err = embeddedImages(sourceDoc);     // are there embedded images?
+//   if (err != '')
+//     return dontSave(err);
+// 
+// function embeddedImages(doc){
+//   if (doc.rasterItems.length == 0) return '';
+//   return doc.name + " was not saved; use \"Collect Images\" to link embedded images";
+// }
+
+/*———————————————————————————————————————— nonNative(sourceDoc)
+
+    are there non-native items?
+
+    returns '' or warning message */
+
+//   warn = nonNative(sourceDoc);         // are there non-native items? 
+//   if (warn != '')
+//     env_warn.push(warn);
+// 
+// function nonNative(doc){
+//   if (doc.nonNativeItems.length == 0) return '';
+//   return doc.name + " may not display correctly; check the \"Links\" panel for non-native items";
+// }
+
+/*———————————————————————————————————————— liveEffects(doc)
+
+    these are technically called "Live Effects"
+
+    https://mark1bean.github.io/live-effect-functions-for-illustrator/
+
+    right now I have no way to find them
+
+    returns '' or warning message */
+
+//   warn = liveEffects(sourceDoc);       // are there unsupported techniques?
+//   if (warn != '')
+//     env_warn.push(warn);
+// 
+// function liveEffects(doc){
+//   //alert(doc.pageItems.getByName('thisOne'));
+//   return '';
+// }
+
+/*———————————————————————————————————————— artboardNames(sourceDoc)
+
+    artboard names have to be two-letter codes
+
+    returns '' or warning message */
+
+//   warn = artboardNames(sourceDoc);     // do artboard names seem likely? 
+//   if (warn != '')
+//     env_warn.push(warn);
+// 
+// function artboardNames(doc){
+// 
+//   for(x=0; x<doc.artboards.length; x++)
+//     if (!isTwoLetters(doc.artboards[x].name))
+//       return doc.name + " contains artboards that don't correspond to screen codes";
+// 
+//   return '';
+// 
+// }
+
+/*———————————————————————————————————————— artboardSizes(doc)
+
+    do artboard sizes seem likely? (round numbers)
+
+    returns '' or warning message */
+
+//   warn = artboardSizes(sourceDoc);     // do artboard sizes seem likely?
+//   if (warn != '')
+//     env_warn.push(warn);
+// 
+// function artboardSizes(doc){
+// 
+//   for(x=0; x<doc.artboards.length; x++){
+//     var w = doc.artboards[x].artboardRect[2]-doc.artboards[x].artboardRect[0];
+// 
+//     if (!isRoundNumber(w))
+//       return doc.name + " contains artboards with widths that may not correspond to screen codes: " + w + " px";
+//   }
+// 
+//   return '';
+// }
+
+/*———————————————————————————————————————— missingFonts(doc)
+
+    are there missing fonts?
+    p228
+    https://community.adobe.com/t5/illustrator-discussions/change-a-font-using-extendscript-in-illustrator/td-p/6322550
+
+    returns '' or warning message */
+
+//   warn = missingFonts(sourceDoc);      // are there missing fonts?
+//   if (warn != '')
+//     env_warn.push(warn);
+// 
+// function missingFonts(doc){
+//   return '';
+// 
+//   var o = doc.pageItems.getByName('thisOne'); 
+//   alert(o.textRange.characterAttributes.textFont); // crashes AI
+// }
+

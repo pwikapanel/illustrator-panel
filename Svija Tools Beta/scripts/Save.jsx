@@ -1,8 +1,8 @@
 #target illustrator  
 
-/*———————————————————————————————————————— 1. Save as Svija.jsx
+/*———————————————————————————————————————— Save wCanvas.jsx
 
-    1. Save as Svija — ⌘ F1.jsx
+    Save wCanvas.jsx
 
     1.0.3
 
@@ -12,173 +12,121 @@
     ISG = Illustrator Scripting Guide
     using ampersands in // comments causes crashes
 
-/*———————————————————————————————————————— copyright
+		This same script is used for both Save as Svija
+    and "Save CC (Legacy).jsx" but Version(0) is
+    changed to Version(17) for the latter. */
 
-    (c) 2021 Svija SAS
-    All Rights Reserved
-   
-    NOTICE:  Svija permits you to use, modify, and distribute this file in
-    accordance with the terms of the Svija license agreement accompanying it.
-    If you have received this file from a source other than Svija, then your
-    use, modification, or distribution of it requires the prior written
-    permission of Svija.
+/*———————————————————————————————————————— EULA
 
-    github.com/svijasvg/Presets-Scripts
-    svija.love · contact@svija.love */
+    Copyright (c) 2023 Svija
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+    
+    The software is provided "as is", without warranty of any kind, express or
+    implied, including but not limited to the warranties of merchantability,
+    fitness for a particular purpose and noninfringement. In no event shall the
+    authors or copyright holders be liable for any claim, damages or other
+    liability, whether in an action of contract, tort or otherwise, arising from,
+    out of or in connection with the software or the use or other dealings in
+    the software.
+
+  	svija.com · hello@svija.com*/
 
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
-//———————————————————————————————————————— if run as standalone
+/*———————————————————————————————————————— ▼ program:{
+
+    can use "break program;" to quit at any moment */
+
+program:{
+
+  var d = new Date();
+  var env_start_ms = d.getTime();
+
+/*———————————————————————————————————————— get param if standalone
+
+    save, all or canvas */
 
 if (typeof param == 'undefined'){
 
-  var msgWhat = 'Save All Open Documents?\n' +
-                'Click no to save only this document.';
+  var msg   = 'Please enter param\nsave  all  canvas';
 
-  if (app.documents.length == 1)
-    var param = 'save';
-  else {
-    if (confirm(msgWhat)) param = 'save all'
-    else param = 'save';
+  var param = prompt(msg, 'save');
+  if (param == null)
+    param = ''; 
+
+  const regex = /save|all|canvas/g;
+  if(param.match(regex) === null){
+    alert('Invalid Param\nSave operation canceled');
+    break program;
   }
 }
-
-//———————————————————————————————————————— capture param
-
-var _param = param;
-
-
-//———————————————————————————————————————— ▼ begin program()
-
-var program = new function(){ // can use "return" to quit at any time
 
 //———————————————————————————————————————— initialization
 
-var   execute = true;
-var   appDocs = app.documents;
-var  docsOpen = appDocs.length;
-var activeDoc = app.activeDocument;
-var aiOptions = optionsForVersion(0);
-var         d = new Date();
-var        ms = d.getTime();
+var  env_errs = [];                   // error messages for user
+var  env_warn = [];                   // warnings for user
+var   appDocs = app.documents;        // array of open documents
+var  docsOpen = appDocs.length;       // number of open documents
+var activeDoc = app.activeDocument;   // active document
+var aiVersion = 0;                    // 0=default, 17=CC Legacy
+var aiOpts    = aiOptions(aiVersion);
 
-//———————————————————————————————————————— check for unsupported techniques
+var single = param == 'all'    ? false : true; // save only frontmost doc?
+var canvas = param == 'canvas' ? true : false; // save entire canvas?
 
-var infringingDocs = [];
-
-//———————————————————————————————— check all open docs
-
-for (var index=0; index<docsOpen; index++){
-
-  // ISG251: moves this doc to 0 in appDocs array
-  app.activeDocument = appDocs[index];
-
-  var sourceDoc = app.activeDocument;
-  var testResults = checkForInfringement(sourceDoc);
-
-  if (testResults.length>0)
-    infringingDocs.push(testResults);
-
-  if (_param=='save') break;
-}
-
-//———————————————————————————————— stop if infringing
-
-if (infringingDocs.length > 0){
-
-  var word = 'File contains';
-  if (infringingDocs.length > 1) word = 'Files contain'
-  
-  var msg = 'Could Not Save\n' + word + ' embedded images:\n\n';
-  for (var index=0; index<infringingDocs.length; index++){
-    msg += infringingDocs[index][1] + '\n';
-  }
-  msg += '\nPlease click Relink Images in Svija Tools.';
-  msg += '\n\nFor more information, visit tech.svija.love.';
-
-  execute = false;
-  app.activeDocument = activeDoc;
-  alert(msg);
-  return
-}
-
-//———————————————————————————————————————— loop through documents
+//———————————————————————————————————————— "for" loop through documents
 
 var count = 0;
 
 for (var index=0; index<docsOpen; index++){
-  count += 1;
 
-  // ISG251: moves this doc to 0 in appDocs array
   app.activeDocument = appDocs[index];
+  var sourceDoc      = app.activeDocument;
 
-  var sourceDoc = app.activeDocument;
+  if (isValid(sourceDoc, canvas)){
 
-  //———————————————————————————————— store original path & active artboard
+    var activeBoard = sourceDoc.artboards.getActiveArtboardIndex();
+    var pathOrig = sourceDoc.path + '/' + sourceDoc.name;
 
-  var realPath    = sourceDoc.path + '/' + sourceDoc.name;
-  var activeBoard = sourceDoc.artboards.getActiveArtboardIndex();
+    saveSVG(sourceDoc, canvas);
+  
+    var aiFile = new File(pathOrig);
+    sourceDoc.saveAs(aiFile, aiOpts);
 
-  //———————————————————————————————— save artboard SVG's then Illustrator file
-
-  saveAsSvgs(sourceDoc);
-
-  var aiFile = new File(realPath);
-  sourceDoc.saveAs(aiFile, aiOptions);
-
-  //———————————————————————————————— reset active artboard or close document
-
-  sourceDoc.artboards.setActiveArtboardIndex(activeBoard);
-
-  if (_param == 'close'){
-    sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
-    docsOpen -= 1;
-    index -= 1;
+    sourceDoc.artboards.setActiveArtboardIndex(activeBoard);
+    count += 1;
   }
 
-  //———————————————————————————————— close document list loop
-
-  if (_param == 'save') break;
-
-
+  if (single) break;
 }
 
 //———————————————————————————————————————— restore frontmost doc and alert user
 
-if (_param != 'close') app.activeDocument = activeDoc;
+if (!single)
+  app.activeDocument = activeDoc;
 
-if (count < 2) var msg = 'File saved.';
-else var msg = 'Files saved.';
+finalFeedback(count);
 
-var d = new Date(); ms = d.getTime() - ms;
-alert(msg + ' ('+ms+' ms)');
+//———————————————————————————————————————— ▲ } // program 
 
-//———————————————————————————————————————— ▲ end program()
+} // program 
 
-} // program()
 
+// move messages to variables
 
 //:::::::::::::::::::::::::::::::::::::::: main functions
 
-/*———————————————————————————————————————— checkForInfringement(sourceDoc)
-
-  checks for embedded images
-  in the future will check for:
-  - mesh
-  - freeform gradients
-  - layer blending modes
-  - effect › stylize
-
-  returns array [x, doc name, type of infringement] */
-
-function checkForInfringement(sourceDoc){
-  if (hasRasterImages(sourceDoc))
-    return [1, sourceDoc.name, 2];
-  else return [];
-}
-
-/*———————————————————————————————————————— saveAsSvgs(doc)
+/*———————————————————————————————————————— saveSVG(doc, abName)
 
   saves file as SVG:
 
@@ -187,83 +135,217 @@ function checkForInfringement(sourceDoc){
   - deletes non-printing layers
   - saves the SVG
   - restores the non-printing layers
-  - resets the locked/visible status of non-printing layers */
+  - resets the locked/visible status of non-printing layers
 
-function saveAsSvgs(doc){
+  - if artboardName is given, use it as extension & save normally
+  - else save using artboards */
 
-  var destName   = doc.name.slice(0, -3);
-  var boardsLen  = doc.artboards.length;
-  var layersLen  = doc.layers.length;
+function saveSVG(doc, canvas){
 
-  //———————————————————————————————— get save path
+  var layerInfo = deleteNonPrintingLayers(doc); // info about locked & visible
 
-  var savePath = '' + app.activeDocument.path;
-  var splitChar = savePath.indexOf('/sync');
-  if (splitChar < 0) return false;
+  //———————————————————————————————— destination folder & file
 
-  savePath = savePath.substr(0,splitChar) + '/sync/Svija/SVG%20files';
-  var folder = Folder(savePath);
+  var destName  = doc.name.slice(0, -3);           // remove .ai
+  var destPath  = '' + app.activeDocument.path;    // current folder
+
+  var sync = destPath.indexOf('/sync');
+  destpath = destPath.substr(0,sync) + '/sync/Svija/SVG%20files';
+  var destFolder = Folder(destPath);
+
+  if (canvas)
+    var destFile = Folder(destPath+'/' + destName + '_' + doc.artboards[0].name + '.svg');
 
   //———————————————————————————————— avoid overwrite confirmations
 
-  for (j=0; j<boardsLen; j++){
+  for (j=0; j<doc.artboards.length; j++){
     var name = destName + '_' + doc.artboards[j].name + '.svg';
-    var file = newFile(folder, name);
+    var file = newFile(destFolder, name);
     file.remove();
   }
 
-  //———————————————————————————————— delete non-printing layers
-
-  // array w/ information about locked & visible
-  var backupLayers = deleteNonPrintingLayers(doc);
-
   //———————————————————————————————— save svg files
 
-  var options  = getSvgOptions();
-  doc.exportFile(folder, ExportType.SVG, options);
+  var svgOpts = svgOptions(canvas);
+
+  if (canvas)
+    doc.exportFile(destFile,   ExportType.SVG, svgOpts);
+  else
+    doc.exportFile(destFolder, ExportType.SVG, svgOpts);
 
   //———————————————————————————————— restore to original state
 
   // restore layers
-  while (doc.layers.length<layersLen) app.undo();
+  while (doc.layers.length<layerInfo.length)
+    app.undo();
 
-  // restore visibile & locked layer states
-  for (var r=0; r<layersLen; r++){
-    if (backupLayers[r] == 1 || backupLayers[r] == 3){doc.layers[r].locked  = true; }
-    if (backupLayers[r] == 2 || backupLayers[r] == 3){doc.layers[r].visible = false;}
+  // restore layer states
+  for (var r=0; r<layerInfo.length; r++){
+    if (layerInfo[r] == 1 || layerInfo[r] == 3){doc.layers[r].locked  = true; }
+    if (layerInfo[r] == 2 || layerInfo[r] == 3){doc.layers[r].visible = false;}
   }
 
+  return true;
+}
+
+/*———————————————————————————————————————— isValid(sourceDoc, canvas)
+
+    three possible results:
+    • everything's fine                 return true
+    • warning message, proceed anyway   return true
+    • error message, skip this file     return false
+
+    env_errs = [];                   // error messages for user
+    env_warn = [];                   // warnings for user
+
+    errors:
+    • file was not yet saved, user refuses to save
+    • save w/canvas, multiple artboards */
+
+function isValid(sourceDoc, canvas){
+  var err, warn;
+
+  err = hasPath(sourceDoc);           // has file been saved at least once?
+  if (err != '')
+    return dontSave(err);
+
+  err = hasSync(sourceDoc);           // is file in a /sync/ folder?
+  if (err != '')
+    return dontSave(err);
+
+  err = goodCanvas(sourceDoc, canvas); // if save-with-canvas, is there only one?
+  if (err != '')
+    return dontSave(err);
+
+  err = hasLinks(sourceDoc);           // is there a Links folder?
+  if (err != '')
+    env_warn.push(err);
+
+  return true;
+}
+
+/*———————————————————————————————————————— finalFeedback(count)
+
+    alert with:
+    - elapsed time
+    - errors (files not saved)
+    - warnings (files saved) */
+
+function finalFeedback(count){
+
+  var d = new Date();
+  var ms = ' (' + (d.getTime()-env_start_ms) + ' ms)';
+
+  switch(count){
+    case  0: var title = 'File(s) Not Saved';  break;
+    case  1: var title = 'File Saved' + ms;    break;
+    default: var title = count + ' Files Saved' + ms;
+  }
+
+  var body = '';
+
+  if (env_errs.length > 0)
+    body += '\n' + env_errs.join('\n');
+  
+  if (env_warn.length > 0)
+    body += '\n' + env_warn.join('\n');
+
+  alert(title + body);
   return true;
 }
 
 
 //:::::::::::::::::::::::::::::::::::::::: utility functions
 
+/*———————————————————————————————————————— hasPath(sourceDoc)
+
+    has file been saved at least once?
+    returns '' or error message */
+
+function hasPath(doc){
+
+  if (doc.path != '') return '';
+
+  var f = File.saveDialog('Save ' + doc.name + ' to continue','');
+  if (f == null)
+    return 'File ' + doc.name + ' was not saved';
+
+  app.activeDocument.saveAs(f, undefined);
+  return '';
+    
+}
+
+/*———————————————————————————————————————— hasSync(sourceDoc)
+
+    is file inside a /sync/ folder?
+    returns '' or error message */
+
+function hasSync(doc){
+
+  var folderPath = '' + app.activeDocument.path;
+  var sync = folderPath.indexOf('/sync');
+
+  if (sync < 0)
+    return doc.name + ' is not inside a \"sync\" folder and was not saved';
+  else
+    return '';
+}
+
+/*———————————————————————————————————————— hasLinks(sourceDoc)
+
+    has file been saved at least once?
+    returns '' or error message */
+
+function hasLinks(doc){
+
+  var linksFolder = Folder(app.activeDocument.path + '/Links');
+
+  if (!Folder(linksFolder).exists)
+    return doc.name + ' has no \"Links\" folder';
+  else
+    return '';
+}
+
+/*———————————————————————————————————————— goodCanvas(doc, canvas)
+
+    if save-with-canvas, is there only one?
+    returns '' or error message */
+
+function goodCanvas(doc, canvas){ // 
+  if (!canvas)                   return '';
+  if (doc.artboards.length == 1) return '';
+
+  return "\"Save w/Canvas\" requires only one artboard — " + doc.name + " was not saved";
+}
+
 /*———————————————————————————————————————— newFile(folder, name)
 
-  returns file to save into
-  https://extendscript.docsforadobe.dev */
+    returns file to save into
+
+    https://extendscript.docsforadobe.dev */
 
 function newFile(folder, name) {
 
-//var folder = Folder(app.activeDocument.path);
-  var newFile = new File(folder + '/' + name);
+  var f = new File(folder + '/' + name);
 
-  // check access rights
-  if (newFile.open("w")){ newFile.close(); }
-  //else { throw new Error(access_is_denied); }
-  else { alert('File missing — did you move it?'); }
+  if (f.open("w")){ f.close(); } // check access rights
+  else alert('File ' + f + ' could not be written');
 
-  return newFile;
+  return f;
 }
 
-/*———————————————————————————————————————— getSvgOptions()
+/*———————————————————————————————————————— svgOptions(canvas)
 
   sets options for SVG file */
 
-function getSvgOptions(){
+function svgOptions(canvas){
 
   var options = new ExportOptionsSVG();
+
+  if (canvas)
+    options.saveMultipleArtboards = false;                       // Preserves all artwork outside active artboard
+  else
+    options.saveMultipleArtboards = true;                        // Deletes all artwork outside active artboard
 
   // options.artboardRange
   // options.compressed
@@ -280,7 +362,6 @@ function getSvgOptions(){
   // options.includeVariablesAndDatasets
   // options.optimizeForSVGViewer
   options.preserveEditability = false;                           // Preserve Illustrator Editing Capabilities
-  options.saveMultipleArtboards = true;                          // Deletes all artwork outside active artboard
   options.slices = false;                                        // Include Slicing Data
   // options.sVGAutoKerning = true/false;
   options.sVGTextOnPath = false;                                 // Use <textpath> for Text on Path
@@ -322,12 +403,12 @@ function deleteNonPrintingLayers(src){
   return results;
 }
 
-/*———————————————————————————————————————— optionsForVersion(version)
+/*———————————————————————————————————————— aiOptions(version)
 
   options for Illustrator File
   ISG409 & JSRp84 */
 
-function optionsForVersion(version){
+function aiOptions(version){
 
   var options = new IllustratorSaveOptions();
 
@@ -340,14 +421,151 @@ function optionsForVersion(version){
   return options;
 }
 
-/*———————————————————————————————————————— hasRasterImages(doc)
+/*———————————————————————————————————————— dontSave(err)
 
-  checks if document has any embedded images */
+    permits deleting braces in function isValid */
 
-function hasRasterImages(doc){
-  if (doc.rasterItems.length == 0) return false;
-  else return true;
+function dontSave(err){
+  env_errs.push(err);
+  return false;
+}
+
+/*———————————————————————————————————————— isTwoLetters(n)
+
+    returns true if n is two letters or numbers
+    a-z, A-Z, 0-9 */
+
+function isTwoLetters(n){
+  const regex = /^[a-zA-Z\d][a-zA-Z\d]$/g
+  if(n.match(regex) === null) return false
+  return true;
+}
+
+/*———————————————————————————————————————— isRoundNumber(n)
+
+    returns true if n is a nice round number:
+
+    30, 120, 168, etc. */
+
+// 6, 24, 336 etc.
+
+function isRoundNumber(n){
+
+  n = n/5;
+
+  if (isInteger(n/3)) return true;
+  if (isInteger(n/4)) return true;
+  if (isInteger(n/5)) return true;
+  if (isInteger(n/6)) return true;
+
+  return false;
+}
+
+//———————————————————————————————————————— isInteger(n)
+
+function isInteger(n){
+  if (n == Math.round(n)) return true;
+  else return false;
 }
 
 
 //:::::::::::::::::::::::::::::::::::::::: fin
+
+/*———————————————————————————————————————— appendix A — all doc keys
+
+  var res = '';
+  for (var i in doc){
+    try{
+      res += '\n'+i+': '+doc[i].typename;
+    }
+    catch(e){
+      res += '\n'+i+': error';
+    }
+  }
+  alert(res);
+
+XMPString: undefined
+activeDataSet: error
+activeLayer: Layer
+activeView: View
+artboards: Artboards
+assets: Assets
+brushes: Brushes
+characterStyles: CharacterStyles
+cloudPath: error
+colorProfileName: undefined
+compoundPathItems: CompoundPathItems
+cropBox: undefined
+cropStyle: CropOptions.Standard
+dataSets: DataSets
+defaultFillColor: RGBColor
+defaultFillOverprint: undefined
+defaultFilled: undefined
+defaultStrokeCap: StrokeCap.BUTTENDCAP
+defaultStrokeColor: NoColor
+defaultStrokeDashOffset: undefined
+defaultStrokeDashes: undefined
+defaultStrokeJoin: StrokeJoin.MITERENDJOIN
+defaultStrokeMiterLimit: undefined
+defaultStrokeOverprint: undefined
+defaultStrokeWidth: undefined
+defaultStroked: undefined
+documentColorSpace: DocumentColorSpace.RGB
+embeddedItems: EmbeddedItems
+fullName: undefined
+geometricBounds: undefined
+gradients: Gradients
+graphItems: GraphItems
+graphicStyles: GraphicStyles
+gridRepeatItems: GridRepeatItems
+groupItems: GroupItems
+height: undefined
+inkList: undefined
+isCloudDocument: undefined
+kinsokuSet: undefined
+layers: Layers
+legacyTextItems: LegacyTextItems
+listStyles: ListStyles
+meshItems: MeshItems
+mojikumiSet: undefined
+name: undefined
+nonNativeItems: NonNativeItems
+outputResolution: undefined
+pageItems: PageItems
+pageOrigin: undefined
+paragraphStyles: ParagraphStyles
+parent: Application
+path: undefined
+pathItems: PathItems
+patterns: Patterns
+placedItems: PlacedItems
+pluginItems: PluginItems
+printTiles: undefined
+radialRepeatItems: RadialRepeatItems
+rasterEffectSettings: RasterEffectOptions
+rasterItems: RasterItems
+rulerOrigin: undefined
+rulerUnits: RulerUnits.Picas
+saved: undefined
+scaleFactor: undefined
+selection: undefined
+showPlacedImages: undefined
+splitLongPaths: undefined
+spots: Spots
+stationery: undefined
+stories: Stories
+swatchGroups: SwatchGroups
+swatches: Swatches
+symbolItems: SymbolItems
+symbols: Symbols
+symmetryRepeatItems: SymmetryRepeatItems
+tags: Tags
+textFrames: TextFrames
+tileFullPages: undefined
+typename: undefined
+useDefaultScreen: undefined
+variables: Variables
+variablesLocked: undefined
+views: Views
+visibleBounds: undefined
+width: undefined */
