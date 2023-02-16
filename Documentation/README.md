@@ -47,6 +47,7 @@ I will confirm with:
 ```
 defaults read ~/Library/Preferences/com.adobe.CSXS.11.plist
 ```
+Output was as expected
 
 
 ---
