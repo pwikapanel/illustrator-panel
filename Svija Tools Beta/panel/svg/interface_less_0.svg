@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 88">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 82">
   <defs>
     <style>
       .cls-1 {
@@ -15,12 +15,16 @@
         font-weight: 600;
       }
 
-      .cls-2, .cls-5 {
+      .cls-2 {
         fill: #969696;
       }
 
-      .cls-6 {
+      .cls-5 {
         fill: #323232;
+      }
+
+      .cls-6 {
+        fill: #cf0;
       }
 
       .cls-7 {
@@ -40,18 +44,14 @@
       }
 
       .cls-11 {
-        fill: #2d8ceb;
-      }
-
-      .cls-12 {
         fill: #5a5a5a;
       }
 
-      .cls-13 {
+      .cls-12 {
         fill: #3c3c3c;
       }
 
-      .cls-14, .cls-4 {
+      .cls-13, .cls-4 {
         fill: #828282;
       }
 
@@ -63,14 +63,14 @@
         font-size: 8.5px;
       }
 
-      .cls-15 {
+      .cls-14 {
         opacity: 0;
       }
     </style>
   </defs>
-  <g id="not_buttons_" data-name="not buttons »">
+  <g id="content_" data-name="content »">
     <g id="background">
-      <rect class="cls-6" x="0" y="0" width="240" height="88"/>
+      <rect class="cls-5" x="0" y="0" width="240" height="82"/>
     </g>
     <g id="bottom_bar_stroke" data-name="bottom bar stroke">
       <rect class="cls-9" y="69.019" width="240" height="1"/>
@@ -81,53 +81,54 @@
     </g>
     <g id="bottom_bar_text" data-name="bottom bar text">
       <text class="cls-4" transform="translate(188.607 78.706)"><tspan x="0" y="0">M O R E</tspan></text>
-      <path class="cls-14" d="M227.246,78.692l-.51-.51,2.183-2.182-2.183-2.182,.51-.51,2.692,2.691-2.692,2.692Zm-1.849-2.692l-2.691-2.691-.51,.51,2.182,2.182-2.182,2.182,.51,.51,2.691-2.692Z"/>
+      <path class="cls-13" d="M227.246,78.692l-.51-.51,2.183-2.182-2.183-2.182,.51-.51,2.692,2.691-2.692,2.692Zm-1.849-2.692l-2.691-2.691-.51,.51,2.182,2.182-2.182,2.182,.51,.51,2.691-2.692Z"/>
+      <text class="cls-4" transform="translate(9.373 78.706)"><tspan x="0" y="0">H E L P</tspan></text>
     </g>
     <g id="logo_right_help" data-name="logo &amp;amp; right help">
-      <path class="cls-5" d="M187.501,15.159h-2.698v11.692h2.698V15.159Zm4.797-4.797h-7.495v2.698h7.495v-2.698Zm0,4.797h-2.698V31.347h2.698V15.159Zm-31.907,11.692h-17.688v-2.698h14.99v-1.043l-14.99-1.82v-6.131h17.688v2.698h-14.99v1.042l14.99,1.82v6.131Zm51.693-11.692h-17.688v2.698h14.99v1.042l-14.99,1.82v6.131h17.688V15.159Zm-14.99,7.951l12.291-1.493v2.535h-12.291v-1.043Zm-16.433-7.951l-5.55,8.581c-.167,.259-.451,.413-.759,.413h-3.547c-.308,0-.592-.154-.759-.413l-5.55-8.581h-3.213l6.497,10.046c.666,1.031,1.797,1.646,3.024,1.646h3.547c1.227,0,2.358-.615,3.024-1.646l6.497-10.046h-3.213Z"/>
+      <path class="cls-6" d="M187.501,15.159h-2.698v11.692h2.698V15.159Zm4.797-4.797h-7.495v2.698h7.495v-2.698Zm0,4.797h-2.698V31.347h2.698V15.159Zm-31.907,11.692h-17.688v-2.698h14.99v-1.043l-14.99-1.82v-6.131h17.688v2.698h-14.99v1.042l14.99,1.82v6.131Zm51.693-11.692h-17.688v2.698h14.99v1.042l-14.99,1.82v6.131h17.688V15.159Zm-14.99,7.951l12.291-1.493v2.535h-12.291v-1.043Zm-16.433-7.951l-5.55,8.581c-.167,.259-.451,.413-.759,.413h-3.547c-.308,0-.592-.154-.759-.413l-5.55-8.581h-3.213l6.497,10.046c.666,1.031,1.797,1.646,3.024,1.646h3.547c1.227,0,2.358-.615,3.024-1.646l6.497-10.046h-3.213Z"/>
     </g>
   </g>
   <g id="buttons_" data-name="buttons »">
     <g id="bottom_stroke" data-name="bottom stroke">
       <g>
-        <path class="cls-12" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <path class="cls-12" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-11" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-11" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
       </g>
     </g>
     <g id="bottom_fill" data-name="bottom fill">
-      <rect class="cls-13" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
-      <rect class="cls-13" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+      <rect class="cls-12" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+      <rect class="cls-12" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
     </g>
     <g id="bottom_label" data-name="bottom label">
-      <text class="cls-3" transform="translate(26.423 52.063)"><tspan x="0" y="0">Relink Images</tspan></text>
+      <text class="cls-3" transform="translate(36.251 52.063)"><tspan x="0" y="0">Check File</tspan></text>
       <text class="cls-3" transform="translate(144.554 52.062)"><tspan x="0" y="0">Save as Svija</tspan></text>
     </g>
     <g id="top_stroke" data-name="top stroke">
       <rect class="cls-10" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
     </g>
     <g id="top_fill" data-name="top fill">
-      <rect class="cls-6" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
+      <rect class="cls-5" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
     </g>
     <g id="top_label" data-name="top label">
-      <text class="cls-2" transform="translate(31.372 24.862)"><tspan x="0" y="0">Instructions</tspan></text>
+      <text class="cls-2" transform="translate(23.656 24.862)"><tspan x="0" y="0">Animation Tips</tspan></text>
     </g>
   </g>
   <g id="mouseover_" data-name="mouseover »">
     <g id="mouseover_0" data-name="mouseover 0">
       <g id="mov0-2">
-        <path class="cls-11" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-6" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+        <path class="cls-6" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <rect class="cls-5" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-3" transform="translate(144.554 52.062)"><tspan x="0" y="0">Save as Svija</tspan></text>
       </g>
       <g id="mov0-1">
-        <path class="cls-11" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-6" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
-        <text class="cls-3" transform="translate(26.423 52.063)"><tspan x="0" y="0">Relink Images</tspan></text>
+        <path class="cls-6" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <rect class="cls-5" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+        <text class="cls-3" transform="translate(36.251 52.063)"><tspan x="0" y="0">Check File</tspan></text>
       </g>
       <g id="mov0-0">
-        <rect class="cls-11" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-6" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
-        <text class="cls-3" transform="translate(31.372 24.862)"><tspan x="0" y="0">Instructions</tspan></text>
+        <rect class="cls-6" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-5" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
+        <text class="cls-3" transform="translate(23.656 24.862)"><tspan x="0" y="0">Animation Tips</tspan></text>
       </g>
     </g>
   </g>
@@ -135,38 +136,36 @@
     <g id="mousedown_0" data-name="mousedown 0">
       <g id="mod0-2">
         <path class="cls-7" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-6" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-5" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(144.554 52.062)"><tspan x="0" y="0">Save as Svija</tspan></text>
       </g>
       <g id="mod0-1">
         <path class="cls-7" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-6" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
-        <text class="cls-1" transform="translate(26.423 52.063)"><tspan x="0" y="0">Relink Images</tspan></text>
+        <rect class="cls-5" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+        <text class="cls-1" transform="translate(36.251 52.063)"><tspan x="0" y="0">Check File</tspan></text>
       </g>
       <g id="mod0-0">
         <rect class="cls-7" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-6" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
-        <text class="cls-1" transform="translate(31.372 24.862)"><tspan x="0" y="0">Instructions</tspan></text>
+        <rect class="cls-5" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
+        <text class="cls-1" transform="translate(23.656 24.862)"><tspan x="0" y="0">Animation Tips</tspan></text>
       </g>
-    </g>
-  </g>
-  <g id="listener_links_" data-name="listener links »">
-    <g id="links0">
-      <rect id="link0-2" class="cls-15" x="122.099" y="34.5" width="111" height="27.5"/>
-      <rect id="link0-1" class="cls-15" x="7" y="34.5" width="111" height="27.5"/>
-      <rect id="link0-0" class="cls-15" x="7" y="7" width="111" height="27.5"/>
     </g>
   </g>
   <g id="ai_links_" data-name="ai links »">
     <g id="bottom_bar" data-name="bottom bar">
       <a xlink:href="more.html">
-        <rect class="cls-15" x="150" y="69" width="90" height="13"/>
+        <rect class="cls-14" x="150" y="69" width="90" height="13"/>
+      </a>
+      <a xlink:href="less-help.html">
+        <rect class="cls-14" x="0" y="69" width="43.2" height="13"/>
       </a>
     </g>
-    <g id="logos">
-      <a xlink:href="less-info.html">
-        <rect class="cls-15" x="122" y="7" width="111" height="27.5"/>
-      </a>
+  </g>
+  <g id="listener_links_" data-name="listener links »">
+    <g id="links0">
+      <rect id="link0-02" class="cls-14" x="122.099" y="34.5" width="111" height="27.5"/>
+      <rect id="link0-01" class="cls-14" x="7" y="34.5" width="111" height="27.5"/>
+      <rect id="link0-00" class="cls-14" x="7" y="7" width="111" height="27.5"/>
     </g>
   </g>
 </svg>
