@@ -26,7 +26,6 @@ Debug mode for CEP 8.0 doesn't seem to work in Illustrator 25 — **development 
 
 Testing a CEP panel requires setting the CEP engine to **debug mode**. To check if this is the case:
 ```
-
     $ defaults read ~/Library/Preferences/com.adobe.CSXS.8.plist
 ```
 ```
