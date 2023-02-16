@@ -28,12 +28,26 @@ Testing a CEP panel requires setting the CEP engine to **debug mode**. To check 
 ```
 defaults read ~/Library/Preferences/com.adobe.CSXS.8.plist
 ```
+If debug mode is enabled, it should output:
 ```
 {
     LogLevel = 1;
     PlayerDebugMode = 1;
 }
 ```
+However, I got an error:
+```
+Domain /Users/Main/Library/Preferences/com.adobe.CSXS.8.plist does not exist
+```
+Since `com.adobe.CSXS.11.plist` does exist, I will try setting debug mode for that and see what happens:
+```
+defaults write com.adobe.CSXS.11 PlayerDebugMode 1
+```
+I will confirm with:
+```
+defaults read ~/Library/Preferences/com.adobe.CSXS.11.plist
+```
+
 
 ---
 ### To enter debug mode
