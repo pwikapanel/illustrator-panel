@@ -49,6 +49,8 @@ defaults read ~/Library/Preferences/com.adobe.CSXS.11.plist
 ```
 Output was as expected
 
+# IT WORKED
+
 
 ---
 ### To enter debug mode

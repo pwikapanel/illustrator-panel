@@ -1,19 +1,28 @@
-<!DOCTYPE html><html><head>
-<script type="text/javascript" src="cookies.js"></script>
-<script type="text/javascript" src="CSInterface.js"     ></script>
-</head><body style="background-color:#505050;"><script>
+<!DOCTYPE html><html><head><script>
+
+  var title = '';
+  var svg   = '';
+//var more  = 0;
 
   var panel_width  = 240;
-  var panel_height = 78; 
-  var title        = 'Svija Tools';
+  var panel_height = 82;
 
-  var csif = new CSInterface();
-  csif.setWindowTitle(title);
+</script>
+<meta charset="utf-8">
+<script type="text/javascript" src="js/CSInterface.js"></script>
+<script type="text/javascript" src="js/cookies.js"></script>
+<script type="text/javascript" src="js/initialize.js"></script>
+<link    rel="stylesheet"     href="css/initialize.css">
 
-  var c = window.__adobe_cep__.getScaleFactor()
-  csif.resizeContent(panel_width/c, panel_height/c);
+</head><body style="background:#535353;"><script>
 
-  if (getCookie('more') == '1') location.href = "more.html";
-  else                          location.href = "less.html";
+  if (getCookie('more') == '1') openLink('more.html');
+                           else openLink('less.html');
  
-</script></body></html>
+</script><br>&nbsp; &nbsp;<a href="index.html">reload</a></body><!--
+
+    This file exists so that people can be sent
+    to the "less" or "more" panels depending on where they
+    were when they last used the program
+
+--></html>

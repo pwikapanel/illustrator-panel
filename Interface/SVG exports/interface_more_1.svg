@@ -23,35 +23,31 @@
         fill: #323232;
       }
 
-      .cls-7, .cls-5 {
-        fill: #8c8c8c;
-      }
-
-      .cls-8 {
+      .cls-7 {
         fill: #cf0;
       }
 
-      .cls-9 {
+      .cls-8 {
         fill: #dcdcdc;
       }
 
-      .cls-10 {
+      .cls-9 {
         fill: #464646;
       }
 
-      .cls-11 {
+      .cls-10 {
         fill: #535353;
       }
 
-      .cls-12 {
+      .cls-11 {
         fill: #646464;
       }
 
-      .cls-13 {
+      .cls-12 {
         fill: #787878;
       }
 
-      .cls-14 {
+      .cls-13 {
         fill: #505050;
       }
 
@@ -64,51 +60,51 @@
       }
 
       .cls-5 {
+        fill: #8c8c8c;
         font-size: 8.5px;
       }
 
-      .cls-15 {
+      .cls-14 {
         opacity: 0;
       }
     </style>
   </defs>
   <g id="content_" data-name="content »">
     <g id="background">
-      <rect class="cls-11" width="240" height="152"/>
+      <rect class="cls-10" width="240" height="152"/>
     </g>
     <g id="bottom_bar_stroke" data-name="bottom bar stroke">
       <rect class="cls-6" x=".096" y="139" width="239.904" height="1"/>
     </g>
     <g id="logo_bar_bar_bottom_bar" data-name="logo bar, bar &amp;amp; bottom bar">
       <g>
-        <rect class="cls-10" x="115" y="87.85" width="115" height="6.3"/>
-        <rect class="cls-10" x="10" y="69" width="220" height="1"/>
+        <rect class="cls-9" x="115" y="87.85" width="115" height="6.3"/>
+        <rect class="cls-9" x="10" y="69" width="220" height="1"/>
       </g>
-      <rect class="cls-10" x="0" y="140" width="240" height="12"/>
+      <rect class="cls-9" x="0" y="140" width="240" height="12"/>
     </g>
     <g id="bottom_bar_text" data-name="bottom bar text">
-      <text class="cls-5" transform="translate(191.996 148.582)"><tspan x="0" y="0">L E S S</tspan></text>
-      <path class="cls-7" d="M227.304,148.692l-.51-.51,2.183-2.182-2.183-2.182,.51-.51,2.692,2.691-2.692,2.692Zm-1.849-2.692l-2.691-2.691-.51,.51,2.182,2.182-2.182,2.182,.51,.51,2.691-2.692Z"/>
+      <text class="cls-5" transform="translate(199.372 148.582)"><tspan x="0" y="0">L E S S  –</tspan></text>
       <text class="cls-5" transform="translate(9.201 148.582)"><tspan x="0" y="0">H E L P</tspan></text>
     </g>
     <g id="logo_right_help" data-name="logo &amp;amp; right help">
-      <path class="cls-8" d="M182.608,85.084h-2.698v11.692h2.698v-11.692Zm4.797-4.797h-7.495v2.698h7.495v-2.698Zm0,4.797h-2.698v16.189h2.698v-16.189Zm-31.907,11.692h-17.688v-2.698h14.99v-1.043l-14.99-1.82v-6.131h17.688v2.698h-14.99v1.042l14.99,1.82v6.131Zm51.693-11.692h-17.688v2.698h14.99v1.042l-14.99,1.82v6.131h17.688v-11.692Zm-14.99,7.951l12.291-1.493v2.535h-12.291v-1.043Zm-16.433-7.951l-5.55,8.581c-.167,.259-.451,.413-.759,.413h-3.547c-.308,0-.592-.154-.759-.413l-5.55-8.581h-3.213l6.497,10.046c.666,1.031,1.797,1.646,3.024,1.646h3.547c1.227,0,2.358-.615,3.024-1.646l6.497-10.046h-3.213Z"/>
+      <path class="cls-7" d="M182.608,85.084h-2.698v11.692h2.698v-11.692Zm4.797-4.797h-7.495v2.698h7.495v-2.698Zm0,4.797h-2.698v16.189h2.698v-16.189Zm-31.907,11.692h-17.688v-2.698h14.99v-1.043l-14.99-1.82v-6.131h17.688v2.698h-14.99v1.042l14.99,1.82v6.131Zm51.693-11.692h-17.688v2.698h14.99v1.042l-14.99,1.82v6.131h17.688v-11.692Zm-14.99,7.951l12.291-1.493v2.535h-12.291v-1.043Zm-16.433-7.951l-5.55,8.581c-.167,.259-.451,.413-.759,.413h-3.547c-.308,0-.592-.154-.759-.413l-5.55-8.581h-3.213l6.497,10.046c.666,1.031,1.797,1.646,3.024,1.646h3.547c1.227,0,2.358-.615,3.024-1.646l6.497-10.046h-3.213Z"/>
     </g>
   </g>
   <g id="buttons_" data-name="buttons »">
     <g id="bottom_stroke" data-name="bottom stroke">
       <g>
-        <path class="cls-13" d="M226.5,129h-40c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h40c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <path class="cls-13" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <path class="cls-13" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <path class="cls-13" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-12" d="M226.5,129h-40c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h40c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-12" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-12" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-12" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
       </g>
     </g>
     <g id="bottom_fill" data-name="bottom fill">
-      <rect class="cls-10" x="184" y="108" width="45" height="20" rx="2.5" ry="2.5"/>
-      <rect class="cls-10" x="11" y="108" width="93" height="20" rx="2.5" ry="2.5"/>
-      <rect class="cls-10" x="116" y="108" width="56" height="20" rx="2.5" ry="2.5"/>
-      <rect class="cls-10" x="11" y="81" width="93" height="20" rx="2.5" ry="2.5"/>
+      <rect class="cls-9" x="184" y="108" width="45" height="20" rx="2.5" ry="2.5"/>
+      <rect class="cls-9" x="11" y="108" width="93" height="20" rx="2.5" ry="2.5"/>
+      <rect class="cls-9" x="116" y="108" width="56" height="20" rx="2.5" ry="2.5"/>
+      <rect class="cls-9" x="11" y="81" width="93" height="20" rx="2.5" ry="2.5"/>
     </g>
     <g id="bottom_label" data-name="bottom label">
       <text class="cls-4" transform="translate(31.251 94.653)"><tspan x="0" y="0">Check File</tspan></text>
@@ -118,18 +114,18 @@
     </g>
     <g id="top_stroke" data-name="top stroke">
       <g>
-        <rect class="cls-12" x="125" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-12" x="125" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-12" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-12" x="10" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-11" x="125" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-11" x="125" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-11" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-11" x="10" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
       </g>
     </g>
     <g id="top_fill" data-name="top fill">
       <g>
-        <rect class="cls-14" x="126" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
-        <rect class="cls-14" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
-        <rect class="cls-14" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
-        <rect class="cls-14" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-13" x="126" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-13" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-13" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-13" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
       </g>
     </g>
     <g id="top_label" data-name="top label">
@@ -142,43 +138,43 @@
   <g id="mouseover_" data-name="mouseover »">
     <g id="mouseover_1" data-name="mouseover 1">
       <g id="mov1-10">
-        <path class="cls-8" d="M226.5,129h-40c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h40c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-10" x="184" y="108" width="45" height="20" rx="2.5" ry="2.5"/>
+        <path class="cls-7" d="M226.5,129h-40c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h40c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <rect class="cls-9" x="184" y="108" width="45" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(194.92 121.662)"><tspan x="0" y="0">Save</tspan></text>
       </g>
       <g id="mov1-9">
-        <path class="cls-8" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-10" x="116" y="108" width="56" height="20" rx="2.5" ry="2.5"/>
+        <path class="cls-7" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <rect class="cls-9" x="116" y="108" width="56" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(124.798 121.662)"><tspan x="0" y="0">Save All</tspan></text>
       </g>
       <g id="mov1-8">
-        <path class="cls-8" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-10" x="11" y="108" width="93" height="20" rx="2.5" ry="2.5"/>
+        <path class="cls-7" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <rect class="cls-9" x="11" y="108" width="93" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(18.807 121.662)"><tspan x="0" y="0">Save w/Canvas</tspan></text>
       </g>
       <g id="mov1-7">
-        <path class="cls-8" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-10" x="11" y="81" width="93" height="20" rx="2.5" ry="2.5"/>
+        <path class="cls-7" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <rect class="cls-9" x="11" y="81" width="93" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(31.251 94.653)"><tspan x="0" y="0">Check File</tspan></text>
       </g>
       <g id="mov1-6">
-        <rect class="cls-8" x="125" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-10" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-7" x="125" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-9" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(142.808 52.062)"><tspan x="0" y="0">Import Styles</tspan></text>
       </g>
       <g id="mov1-5">
-        <rect class="cls-8" x="10" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-10" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-7" x="10" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-9" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(28.241 52.062)"><tspan x="0" y="0">Create Group</tspan></text>
       </g>
       <g id="mov1-4">
-        <rect class="cls-8" x="125" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-10" x="126" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-7" x="125" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-9" x="126" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(134.613 25.262)"><tspan x="0" y="0">Duplicate Layers</tspan></text>
       </g>
       <g id="mov1-3">
-        <rect class="cls-8" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-10" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-7" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-9" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(23.657 25.262)"><tspan x="0" y="0">Animation Tips</tspan></text>
       </g>
     </g>
@@ -186,67 +182,67 @@
   <g id="mousedowns_" data-name="mousedowns »">
     <g id="mousedown_1" data-name="mousedown 1">
       <g id="mod1-10">
-        <path class="cls-9" d="M226.5,129h-40c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h40c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-10" x="184" y="108" width="45" height="20" rx="2.5" ry="2.5"/>
+        <path class="cls-8" d="M226.5,129h-40c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h40c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <rect class="cls-9" x="184" y="108" width="45" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-2" transform="translate(194.92 121.662)"><tspan x="0" y="0">Save</tspan></text>
       </g>
       <g id="mod1-9">
-        <path class="cls-9" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-10" x="116" y="108" width="56" height="20" rx="2.5" ry="2.5"/>
+        <path class="cls-8" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <rect class="cls-9" x="116" y="108" width="56" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-2" transform="translate(124.798 121.662)"><tspan x="0" y="0">Save All</tspan></text>
       </g>
       <g id="mod1-8">
-        <path class="cls-9" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-10" x="11" y="108" width="93" height="20" rx="2.5" ry="2.5"/>
+        <path class="cls-8" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <rect class="cls-9" x="11" y="108" width="93" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-2" transform="translate(18.807 121.662)"><tspan x="0" y="0">Save w/Canvas</tspan></text>
       </g>
       <g id="mod1-7">
-        <path class="cls-9" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <rect class="cls-10" x="11" y="81" width="93" height="20" rx="2.5" ry="2.5"/>
+        <path class="cls-8" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <rect class="cls-9" x="11" y="81" width="93" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-2" transform="translate(31.251 94.653)"><tspan x="0" y="0">Check File</tspan></text>
       </g>
       <g id="mod1-6">
-        <rect class="cls-9" x="125" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-10" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-8" x="125" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-9" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-2" transform="translate(142.808 52.062)"><tspan x="0" y="0">Import Styles</tspan></text>
       </g>
       <g id="mod1-5">
-        <rect class="cls-9" x="10" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-10" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-8" x="10" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-9" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-2" transform="translate(28.241 52.062)"><tspan x="0" y="0">Create Group</tspan></text>
       </g>
       <g id="mod1-4">
-        <rect class="cls-9" x="125" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-10" x="126" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-8" x="125" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-9" x="126" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-2" transform="translate(134.613 25.262)"><tspan x="0" y="0">Duplicate Layers</tspan></text>
       </g>
       <g id="mod1-3">
-        <rect class="cls-9" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
-        <rect class="cls-10" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
+        <rect class="cls-8" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-9" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-2" transform="translate(23.657 25.262)"><tspan x="0" y="0">Animation Tips</tspan></text>
       </g>
     </g>
   </g>
   <g id="ai_links_" data-name="ai links »">
     <g id="bottom_bar" data-name="bottom bar">
-      <a xlink:href="less.html">
-        <rect class="cls-15" x="160" y="139" width="80" height="13"/>
+      <a xlink:href="javascript:openLink(&apos;less.html&apos;);">
+        <rect class="cls-14" x="160" y="139" width="80" height="13"/>
       </a>
-      <a xlink:href="more-help.html">
-        <rect class="cls-15" x="0" y="139" width="42.24" height="13"/>
+      <a xlink:href="javascript:openLink(&apos;moreHelp.html&apos;);">
+        <rect class="cls-14" x="0" y="139" width="42.24" height="13"/>
       </a>
     </g>
   </g>
   <g id="listener_links_" data-name="listener links »">
     <g id="links1">
-      <rect id="link1-10" class="cls-15" x="178" y="104.5" width="55" height="27.5"/>
-      <rect id="link1-09" class="cls-15" x="112" y="104.5" width="66" height="27.5"/>
-      <rect id="link1-08" class="cls-15" x="7" y="104.5" width="101" height="27.5"/>
-      <rect id="link1-07" class="cls-15" x="7" y="77" width="101" height="27.5"/>
-      <rect id="link1-06" class="cls-15" x="122" y="34.5" width="111" height="27.5"/>
-      <rect id="link1-05" class="cls-15" x="7" y="34.5" width="111" height="27.5"/>
-      <rect id="link1-04" class="cls-15" x="122" y="7" width="111" height="27.5"/>
-      <rect id="link1-03" class="cls-15" x="7" y="7" width="111" height="27.5"/>
+      <rect id="link1-10" class="cls-14" x="178" y="104.5" width="55" height="27.5"/>
+      <rect id="link1-09" class="cls-14" x="112" y="104.5" width="66" height="27.5"/>
+      <rect id="link1-08" class="cls-14" x="7" y="104.5" width="101" height="27.5"/>
+      <rect id="link1-07" class="cls-14" x="7" y="77" width="101" height="27.5"/>
+      <rect id="link1-06" class="cls-14" x="122" y="34.5" width="111" height="27.5"/>
+      <rect id="link1-05" class="cls-14" x="7" y="34.5" width="111" height="27.5"/>
+      <rect id="link1-04" class="cls-14" x="122" y="7" width="111" height="27.5"/>
+      <rect id="link1-03" class="cls-14" x="7" y="7" width="111" height="27.5"/>
     </g>
   </g>
 </svg>

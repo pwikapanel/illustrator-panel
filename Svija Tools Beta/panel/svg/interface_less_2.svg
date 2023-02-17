@@ -35,16 +35,16 @@
         fill: #c8c8c8;
       }
 
-      .cls-12, .cls-3, .cls-6 {
-        fill: #464646;
-      }
-
-      .cls-13 {
+      .cls-12 {
         fill: #787878;
       }
 
-      .cls-14 {
+      .cls-13 {
         fill: #828282;
+      }
+
+      .cls-3, .cls-6 {
+        fill: #464646;
       }
 
       .cls-4 {
@@ -59,7 +59,7 @@
         font-size: 8.5px;
       }
 
-      .cls-15 {
+      .cls-14 {
         opacity: 0;
       }
     </style>
@@ -69,15 +69,14 @@
       <rect class="cls-9" x="0" y="0" width="240" height="82"/>
     </g>
     <g id="bottom_bar_stroke" data-name="bottom bar stroke">
-      <rect class="cls-13" x="0" y="69.019" width="240" height="1"/>
+      <rect class="cls-12" x="0" y="69.019" width="240" height="1"/>
     </g>
     <g id="logo_bar_bar_bottom_bar" data-name="logo bar, bar &amp;amp; bottom bar">
       <rect class="cls-10" x="125" y="17.85" width="105" height="6.3"/>
       <rect class="cls-10" x="0" y="70" width="240" height="12"/>
     </g>
     <g id="bottom_bar_text" data-name="bottom bar text">
-      <text class="cls-6" transform="translate(188.607 78.706)"><tspan x="0" y="0">M O R E</tspan></text>
-      <path class="cls-12" d="M227.246,78.692l-.51-.51,2.183-2.182-2.183-2.182,.51-.51,2.692,2.691-2.692,2.692Zm-1.849-2.692l-2.691-2.691-.51,.51,2.182,2.182-2.182,2.182,.51,.51,2.691-2.692Z"/>
+      <text class="cls-6" transform="translate(195.689 78.706)"><tspan x="0" y="0">M O R E  +</tspan></text>
       <text class="cls-6" transform="translate(9.373 78.706)"><tspan x="0" y="0">H E L P</tspan></text>
     </g>
     <g id="logo_right_help" data-name="logo &amp;amp; right help">
@@ -87,8 +86,8 @@
   <g id="buttons_" data-name="buttons »">
     <g id="bottom_stroke" data-name="bottom stroke">
       <g>
-        <path class="cls-14" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <path class="cls-14" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-13" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-13" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
       </g>
     </g>
     <g id="bottom_fill" data-name="bottom fill">
@@ -111,17 +110,17 @@
   </g>
   <g id="mouseover_" data-name="mouseover »">
     <g id="mouseover_2" data-name="mouseover 2">
-      <g id="mov2-2">
+      <g id="mov2-02">
         <path class="cls-7" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-4" transform="translate(144.554 52.062)"><tspan x="0" y="0">Save as Svija</tspan></text>
       </g>
-      <g id="mov2-1">
+      <g id="mov2-01">
         <path class="cls-7" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-4" transform="translate(36.251 52.063)"><tspan x="0" y="0">Check File</tspan></text>
       </g>
-      <g id="mov2-0">
+      <g id="mov2-00">
         <rect class="cls-7" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-11" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-4" transform="translate(23.656 24.862)"><tspan x="0" y="0">Animation Tips</tspan></text>
@@ -130,17 +129,17 @@
   </g>
   <g id="mousedowns_" data-name="mousedowns »">
     <g id="mousedown_2" data-name="mousedown 2">
-      <g id="mod2-2">
+      <g id="mod2-02">
         <path class="cls-2" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(36.251 52.063)"><tspan x="0" y="0">Check File</tspan></text>
       </g>
-      <g id="mod2-1">
+      <g id="mod2-01">
         <path class="cls-2" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(144.554 52.062)"><tspan x="0" y="0">Save as Svija</tspan></text>
       </g>
-      <g id="mod2-0">
+      <g id="mod2-00">
         <rect class="cls-2" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-11" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(23.656 24.862)"><tspan x="0" y="0">Animation Tips</tspan></text>
@@ -149,19 +148,19 @@
   </g>
   <g id="ai_links_" data-name="ai links »">
     <g id="bottom_bar" data-name="bottom bar">
-      <a xlink:href="more.html">
-        <rect class="cls-15" x="150" y="69" width="90" height="13"/>
+      <a xlink:href="javascript:openLink(&apos;more.html&apos;);">
+        <rect class="cls-14" x="150" y="69" width="90" height="13"/>
       </a>
-      <a xlink:href="less-help.html">
-        <rect class="cls-15" x="0" y="69" width="43.2" height="13"/>
+      <a xlink:href="javascript:openLink(&apos;lessHelp.html&apos;);">
+        <rect class="cls-14" x="0" y="69" width="43.2" height="13"/>
       </a>
     </g>
   </g>
   <g id="listener_links_" data-name="listener links »">
     <g id="links2">
-      <rect id="link2-02" class="cls-15" x="122" y="34.5" width="111" height="27.5"/>
-      <rect id="link2-01" class="cls-15" x="7" y="34.5" width="111" height="27.5"/>
-      <rect id="link2-00" class="cls-15" x="7" y="7" width="111" height="27.5"/>
+      <rect id="link2-02" class="cls-14" x="122" y="34.5" width="111" height="27.5"/>
+      <rect id="link2-01" class="cls-14" x="7" y="34.5" width="111" height="27.5"/>
+      <rect id="link2-00" class="cls-14" x="7" y="7" width="111" height="27.5"/>
     </g>
   </g>
 </svg>

@@ -43,10 +43,6 @@
         fill: #646464;
       }
 
-      .cls-13, .cls-4, .cls-5 {
-        fill: #5a5a5a;
-      }
-
       .cls-2 {
         fill: #464646;
       }
@@ -55,11 +51,15 @@
         fill: #787878;
       }
 
+      .cls-4, .cls-5 {
+        fill: #5a5a5a;
+      }
+
       .cls-5 {
         font-size: 8.5px;
       }
 
-      .cls-14 {
+      .cls-13 {
         opacity: 0;
       }
     </style>
@@ -79,9 +79,8 @@
       <rect class="cls-10" x="0" y="140" width="240" height="12"/>
     </g>
     <g id="bottom_bar_text" data-name="bottom bar text">
-      <text class="cls-5" transform="translate(191.996 148.582)"><tspan x="0" y="0">L E S S</tspan></text>
+      <text class="cls-5" transform="translate(199.372 148.582)"><tspan x="0" y="0">L E S S  –</tspan></text>
       <text class="cls-5" transform="translate(9.201 148.582)"><tspan x="0" y="0">H E L P</tspan></text>
-      <path class="cls-13" d="M227.304,148.692l-.51-.51,2.183-2.182-2.183-2.182,.51-.51,2.692,2.691-2.692,2.692Zm-1.849-2.692l-2.691-2.691-.51,.51,2.182,2.182-2.182,2.182,.51,.51,2.691-2.692Z"/>
     </g>
     <g id="logo_right_help" data-name="logo &amp;amp; right help">
       <path class="cls-8" d="M182.608,85.084h-2.698v11.692h2.698v-11.692Zm4.797-4.797h-7.495v2.698h7.495v-2.698Zm0,4.797h-2.698v16.189h2.698v-16.189Zm-31.907,11.692h-17.688v-2.698h14.99v-1.043l-14.99-1.82v-6.131h17.688v2.698h-14.99v1.042l14.99,1.82v6.131Zm51.693-11.692h-17.688v2.698h14.99v1.042l-14.99,1.82v6.131h17.688v-11.692Zm-14.99,7.951l12.291-1.493v2.535h-12.291v-1.043Zm-16.433-7.951l-5.55,8.581c-.167,.259-.451,.413-.759,.413h-3.547c-.308,0-.592-.154-.759-.413l-5.55-8.581h-3.213l6.497,10.046c.666,1.031,1.797,1.646,3.024,1.646h3.547c1.227,0,2.358-.615,3.024-1.646l6.497-10.046h-3.213Z"/>
@@ -221,24 +220,24 @@
   </g>
   <g id="ai_links_" data-name="ai links »">
     <g id="bottom_bar" data-name="bottom bar">
-      <a xlink:href="less.html">
-        <rect class="cls-14" x="160" y="139" width="80" height="13"/>
+      <a xlink:href="javascript:openLink(&apos;less.html&apos;);">
+        <rect class="cls-13" x="160" y="139" width="80" height="13"/>
       </a>
-      <a xlink:href="more-help.html">
-        <rect class="cls-14" x="0" y="139" width="42.24" height="13"/>
+      <a xlink:href="javascript:openLink(&apos;moreHelp.html&apos;);">
+        <rect class="cls-13" x="0" y="139" width="42.24" height="13"/>
       </a>
     </g>
   </g>
   <g id="listener_links_" data-name="listener links »">
     <g id="links3">
-      <rect id="link3-10" class="cls-14" x="178" y="104.5" width="55" height="27.5"/>
-      <rect id="link3-09" class="cls-14" x="112" y="104.5" width="66" height="27.5"/>
-      <rect id="link3-08" class="cls-14" x="7" y="104.5" width="101" height="27.5"/>
-      <rect id="link3-07" class="cls-14" x="7" y="77" width="101" height="27.5"/>
-      <rect id="link3-06" class="cls-14" x="122" y="34.5" width="111" height="27.5"/>
-      <rect id="link3-05" class="cls-14" x="7" y="34.5" width="111" height="27.5"/>
-      <rect id="link3-04" class="cls-14" x="122" y="7" width="111" height="27.5"/>
-      <rect id="link3-03" class="cls-14" x="7" y="7" width="111" height="27.5"/>
+      <rect id="link3-10" class="cls-13" x="178" y="104.5" width="55" height="27.5"/>
+      <rect id="link3-09" class="cls-13" x="112" y="104.5" width="66" height="27.5"/>
+      <rect id="link3-08" class="cls-13" x="7" y="104.5" width="101" height="27.5"/>
+      <rect id="link3-07" class="cls-13" x="7" y="77" width="101" height="27.5"/>
+      <rect id="link3-06" class="cls-13" x="122" y="34.5" width="111" height="27.5"/>
+      <rect id="link3-05" class="cls-13" x="7" y="34.5" width="111" height="27.5"/>
+      <rect id="link3-04" class="cls-13" x="122" y="7" width="111" height="27.5"/>
+      <rect id="link3-03" class="cls-13" x="7" y="7" width="111" height="27.5"/>
     </g>
   </g>
 </svg>

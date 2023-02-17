@@ -9,10 +9,12 @@
 
 //———————————————————————————————————————— set interface color
 
-interfaceCode = getInterfaceCode();
-readSvg('svg/' + svg + interfaceCode);
+var thisSvg = 'svg/' + svg + '_' + env_interface + '.svg';
+readSvg(thisSvg);
 
 csif.addEventListener( CSInterface.THEME_COLOR_CHANGED_EVENT, reloadPage );
+
+document.body.style.backgroundColor = env_bgColors[env_interface];
 
 
 //:::::::::::::::::::::::::::::::::::::::: functions
@@ -23,29 +25,7 @@ function reloadPage(){
   location.href=location.href;
 }
 
-/*———————————————————————————————————————— getInterfaceCode()
-
-  https://fenomas.com/2014/09/cep-5-events-en/
-
-  returns 0-3, corresponding to the 4 shades
-  of interface colors availablein Ai prefs */
-
-function getInterfaceCode() { // did have (event) as arg
-  var hostEnv = window.__adobe_cep__.getHostEnvironment();
-  var skinInfo = JSON.parse(hostEnv).appSkinInfo;
-  var color = skinInfo.panelBackgroundColor.color;
-
-  switch(color.red) {
-  case  50: code = '_0.svg'; break;
-  case 184: code = '_2.svg'; break;
-  case 240: code = '_3.svg'; break;
-   default: code = '_1.svg'; break; // case 83
-  }
-  return code;
-}
-
 /*———————————————————————————————————————— readSvg(file)
-
   autoedit.gitbook.io/documentation/adobe-panel/autoedit-adobe-cep-panel-dev-setup/manifest.xml */
 
 function readSvg(file){

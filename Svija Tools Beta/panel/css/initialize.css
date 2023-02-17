@@ -1,6 +1,15 @@
 /*———————————————————————————————————————— prevent scrolling */
 
-html, body  { margin: 0; height: 100%; overflow: hidden; cursor:default;}
+html, body{
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  cursor:default;
+}
+
+body{
+  background-color:lime;
+}
 
 /*———————————————————————————————————————— hide mouseover & mousedown states */
 
@@ -11,5 +20,12 @@ g[id^='mov'] { display: none; }
 /*———————————————————————————————————————— correct cursor over links */
 
 rect[id^='link'] { cursor: pointer; }
+
+/*———————————————————————————————————————— tracking iframe */
+
+iframe{
+  height:1px;
+  border:none;
+}
 
 /*———————————————————————————————————————— fin */

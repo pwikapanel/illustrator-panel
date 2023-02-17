@@ -150,7 +150,7 @@ function saveSVG(doc, canvas){
   var destPath  = '' + app.activeDocument.path;    // current folder
 
   var sync = destPath.indexOf('/sync');
-  destpath = destPath.substr(0,sync) + '/sync/Svija/SVG%20files';
+  destPath = destPath.substr(0,sync) + '/sync/Svija/SVG%20files';
   var destFolder = Folder(destPath);
 
   if (canvas)
