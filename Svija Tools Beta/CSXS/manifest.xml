@@ -46,15 +46,15 @@
             <Geometry>
               <Size>
                   <Width>240</Width>
-                  <Height>230</Height>
+                  <Height>82</Height>
               </Size>
               <MinSize>
-                  <Width>137</Width>
-                  <Height>40</Height>
+                  <Width>60</Width>
+                  <Height>20</Height>
               </MinSize>
               <MaxSize>
                   <Width>240</Width>
-                  <Height>2000</Height>
+                  <Height>641</Height>
               </MaxSize>
             </Geometry>
           <Icons />

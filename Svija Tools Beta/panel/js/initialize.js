@@ -1,3 +1,4 @@
+
 //:::::::::::::::::::::::::::::::::::::::: initialize.js
 
 /*———————————————————————————————————————— notes
@@ -14,11 +15,10 @@
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
-//———————————————————————————————————————— variables
+//———————————————————————————————————————— const & variable 
 
-  var csif  = new CSInterface();
-
-//———————————————————————————————————————— constants
+var csif          = new CSInterface();
+var env_interface = getInterfaceCode(); // 0-3 dark to light in AI prefs
 
 const env_sizes={
     'index.html'     : [240,  82],
@@ -60,16 +60,17 @@ const env_bgColors = ['#252525', '#464646', '#aaaaaa', '#dcdcdc']; // bottom bar
 
 const env_path = csif.getSystemPath(SystemPath.EXTENSION) + '/scripts/';
 
-//———————————————————————————————————————— title & cookie
+//———————————————————————————————————————— set title and cookie, set window size
 
 csif.setWindowTitle(title);
 
 if (typeof more != 'undefined')
   setCookie('more', more);
 
-/*———————————————————————————————————————— getInterfaceCode()*/
+var parts = document.URL.split('/');
+var url = parts[parts.length-1];
 
-var env_interface = getInterfaceCode(); // 0-3 dark to light in AI prefs
+setSize(url);
 
 
 //:::::::::::::::::::::::::::::::::::::::: functions
@@ -122,23 +123,6 @@ function openLink(url){
   location.href = url;
 }
 
-//———————————————————————————————————————— setSize(url)
-
-function setSize(url){
-  url = stripQuery(url);
-
-  var w = env_sizes[url][0];
-  var h = env_sizes[url][1];
-
-  var factor = window.__adobe_cep__.getScaleFactor()
-
-  var xFactor = Math.round(w/factor);
-  var yFactor = Math.round((h-0.5)/factor);
-
-  csif.resizeContent(xFactor, yFactor);
-  setTimeout(setSize, 500, url);
-}
-
 //———————————————————————————————————————— stripQuery(url)
 
 function stripQuery(url){
@@ -146,6 +130,27 @@ function stripQuery(url){
 
   var bits = url.split('?');
   return bits[0]
+}
+
+/*———————————————————————————————————————— setSize(url)
+
+    MinSize in manifest must be no more than 60x20
+  
+    this is 1/2 the minimum size below, but may be coincidence */
+
+function setSize(url){
+  url = stripQuery(url);
+
+  var widthOrig  = env_sizes[url][0];
+  var heightOrig = env_sizes[url][1]; //var heightOrig = env_sizes[url][1] - 0.5;
+
+  var factor = csif.getScaleFactor()
+
+  var widthNew  = Math.round( widthOrig / factor);
+  var heightNew = Math.round(heightOrig / factor);
+
+  csif.resizeContent(widthNew, heightNew);
+
 }
 
 

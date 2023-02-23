@@ -22,7 +22,7 @@ document.body.style.backgroundColor = env_bgColors[env_interface];
 //———————————————————————————————————————— reloadPage()
 
 function reloadPage(){
-  location.href=location.href;
+  location.href = location.href;
 }
 
 /*———————————————————————————————————————— readSvg(file)
