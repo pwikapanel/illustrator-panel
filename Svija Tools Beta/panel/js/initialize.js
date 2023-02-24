@@ -36,7 +36,7 @@ const actions = [
   //————— less
 
   [''                     , 'vibe.html?less.html' , ''      ], // top
-  ['Verifying File…'      , 'Verify.jsx'          , ''      ], // bot
+  ['Checking File…'       , 'Check.jsx'           , ''      ], // bot
   ['Saving File…'         , 'Save.jsx'            , 'save'  ], // bot
 
   //————— more
@@ -47,7 +47,7 @@ const actions = [
   ['Creating Group…'      , 'Create Group.jsx'    , ''      ], // 2nd
   ['Importing Styles…'    , 'Import Styles.jsx'   , ''      ], // 2nd
 
-  ['Verifying File…'      , 'Verify.jsx'          , ''      ], // 3rd
+  ['Checking File…'       , 'Check.jsx'           , ''      ], // 3rd
 
   ['Saving File…'         , 'Save.jsx'            , 'canvas'], // bot
   ['Saving Files…'        , 'Save.jsx'            , 'all'   ], // bot
