@@ -1,10 +1,33 @@
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 23 November 2022 · Toulouse*
+*Updated 24 February 2023 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
-# add this
+### dev setup
+
+the "installed" version in /Library/Application Support/Adobe/CEP is just a simlink towards `Svija Tools Beta` in this repo.
+
+To create it:
+```
+ln -s /Users/Main/Documents/tools/Svija\ Tools\ Beta /Library/Application\ Support/Adobe/CEP/extensions/Svija\ Tools\ Beta
+```
+Additionally, the scripts in Svija Tools Beta/scripts are symlinks to the `scripts-presets` repo, created by:
+```
+ln -s /Users/Main/Documents/scripts-presets/Create\ Group.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Create\ Group.jsx 
+ln -s /Users/Main/Documents/scripts-presets/Duplicate\ Layers.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Duplicate\ Layers.jsx 
+ln -s /Users/Main/Documents/scripts-presets/Import\ Styles.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Import\ Styles.jsx 
+ln -s /Users/Main/Documents/scripts-presets/Save.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Save.jsx 
+ln -s /Users/Main/Documents/scripts-presets/Show\ Svija\ Tools.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Show\ Svija\ Tools.jsx 
+ln -s /Users/Main/Documents/scripts-presets/Verify.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Verify.jsx 
+```
+
+The goal is to avoid having multiple copies of the same files. With this system:
+- all interface & panel dev happens in the **tools** repo
+- all script development happens in the **scripts-presets** repo
+
+---
+### add this
 
 csif.getScaleFactor returns a number between 1 (smallest interface) and 2 (biggest interface):
 - 1
