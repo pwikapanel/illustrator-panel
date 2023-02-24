@@ -69,6 +69,8 @@ function launchScript(buttonCode){
 
   csif.evalScript("param = '" + param + "'");
   csif.evalScript("$.evalFile('" + file + "')");
+
+  // document.blur(); // if we find that the panel steals focus
 }
 
 //———————————————————————————————————————— mouseEffect(which, buttonCode)
