@@ -26,7 +26,7 @@ const env_sizes={
     'lessHelp.html'  : [240, 160],
     'more.html'      : [240, 152],
     'moreHelp.html'  : [240, 339],
-    'vibe.html'      : [240, 641]
+    'vibe.html'      : [240, 671]
 }
 
 const actions = [

@@ -44,10 +44,14 @@
       }
 
       .cls-11 {
-        fill: #5a5a5a;
+        fill: #2d8ceb;
       }
 
       .cls-12 {
+        fill: #5a5a5a;
+      }
+
+      .cls-13 {
         fill: #3c3c3c;
       }
 
@@ -60,7 +64,7 @@
         font-size: 8.5px;
       }
 
-      .cls-13 {
+      .cls-14 {
         opacity: 0;
       }
     </style>
@@ -87,16 +91,16 @@
   <g id="buttons_" data-name="buttons »">
     <g id="bottom_stroke" data-name="bottom stroke">
       <g>
-        <path class="cls-11" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <path class="cls-11" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-12" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-12" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
       </g>
     </g>
     <g id="bottom_fill" data-name="bottom fill">
-      <rect class="cls-12" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
-      <rect class="cls-12" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+      <rect class="cls-13" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
+      <rect class="cls-13" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
     </g>
     <g id="bottom_label" data-name="bottom label">
-      <text class="cls-3" transform="translate(36.251 52.063)"><tspan x="0" y="0">Check File</tspan></text>
+      <text class="cls-3" transform="translate(23.633 52.063)"><tspan x="0" y="0">Check &amp; Repair</tspan></text>
       <text class="cls-3" transform="translate(144.554 52.062)"><tspan x="0" y="0">Save as Svija</tspan></text>
     </g>
     <g id="top_stroke" data-name="top stroke">
@@ -112,17 +116,17 @@
   <g id="mouseover_" data-name="mouseover »">
     <g id="mouseover_0" data-name="mouseover 0">
       <g id="mov0-02">
-        <path class="cls-6" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-11" d="M226.5,59h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-5" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-3" transform="translate(144.554 52.062)"><tspan x="0" y="0">Save as Svija</tspan></text>
       </g>
       <g id="mov0-01">
-        <path class="cls-6" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-11" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-5" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
-        <text class="cls-3" transform="translate(36.251 52.063)"><tspan x="0" y="0">Check File</tspan></text>
+        <text class="cls-3" transform="translate(23.633 52.063)"><tspan x="0" y="0">Check &amp; Repair</tspan></text>
       </g>
       <g id="mov0-00">
-        <rect class="cls-6" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
+        <rect class="cls-11" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-5" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-3" transform="translate(23.656 24.862)"><tspan x="0" y="0">Animation Tips</tspan></text>
       </g>
@@ -138,7 +142,7 @@
       <g id="mod0-01">
         <path class="cls-7" d="M111.5,59H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H111.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-5" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
-        <text class="cls-1" transform="translate(36.251 52.063)"><tspan x="0" y="0">Check File</tspan></text>
+        <text class="cls-1" transform="translate(23.633 52.063)"><tspan x="0" y="0">Check &amp; Repair</tspan></text>
       </g>
       <g id="mod0-00">
         <rect class="cls-7" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
@@ -150,18 +154,18 @@
   <g id="ai_links_" data-name="ai links »">
     <g id="bottom_bar" data-name="bottom bar">
       <a xlink:href="javascript:openLink(&apos;more.html&apos;);">
-        <rect class="cls-13" x="150" y="69" width="90" height="13"/>
+        <rect class="cls-14" x="150" y="69" width="90" height="13"/>
       </a>
       <a xlink:href="javascript:openLink(&apos;lessHelp.html&apos;);">
-        <rect class="cls-13" x="0" y="69" width="43.2" height="13"/>
+        <rect class="cls-14" x="0" y="69" width="43.2" height="13"/>
       </a>
     </g>
   </g>
   <g id="listener_links_" data-name="listener links »">
     <g id="links0">
-      <rect id="link0-02" class="cls-13" x="122.099" y="34.5" width="111" height="27.5"/>
-      <rect id="link0-01" class="cls-13" x="7" y="34.5" width="111" height="27.5"/>
-      <rect id="link0-00" class="cls-13" x="7" y="7" width="111" height="27.5"/>
+      <rect id="link0-02" class="cls-14" x="122.099" y="34.5" width="111" height="27.5"/>
+      <rect id="link0-01" class="cls-14" x="7" y="34.5" width="111" height="27.5"/>
+      <rect id="link0-00" class="cls-14" x="7" y="7" width="111" height="27.5"/>
     </g>
   </g>
 </svg>

@@ -36,10 +36,14 @@
       }
 
       .cls-12 {
-        fill: #787878;
+        fill: #2d8ceb;
       }
 
       .cls-13 {
+        fill: #787878;
+      }
+
+      .cls-14 {
         fill: #828282;
       }
 
@@ -59,7 +63,7 @@
         font-size: 8.5px;
       }
 
-      .cls-14 {
+      .cls-15 {
         opacity: 0;
       }
     </style>
@@ -69,7 +73,7 @@
       <rect class="cls-9" width="240" height="152"/>
     </g>
     <g id="bottom_bar_stroke" data-name="bottom bar stroke">
-      <rect class="cls-12" x="0" y="139" width="240" height="1"/>
+      <rect class="cls-13" x="0" y="139" width="240" height="1"/>
     </g>
     <g id="logo_bar_bar_bottom_bar" data-name="logo bar, bar &amp;amp; bottom bar">
       <g>
@@ -89,10 +93,10 @@
   <g id="buttons_" data-name="buttons »">
     <g id="bottom_stroke" data-name="bottom stroke">
       <g>
-        <path class="cls-13" d="M226.5,129h-40c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h40c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <path class="cls-13" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <path class="cls-13" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
-        <path class="cls-13" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-14" d="M226.5,129h-40c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h40c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-14" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-14" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-14" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
       </g>
     </g>
     <g id="bottom_fill" data-name="bottom fill">
@@ -102,7 +106,7 @@
       <rect class="cls-10" x="11" y="81" width="93" height="20" rx="2.5" ry="2.5"/>
     </g>
     <g id="bottom_label" data-name="bottom label">
-      <text class="cls-3" transform="translate(31.251 94.653)"><tspan x="0" y="0">Check File</tspan></text>
+      <text class="cls-3" transform="translate(18.633 94.653)"><tspan x="0" y="0">Check &amp; Repair</tspan></text>
       <text class="cls-3" transform="translate(18.807 121.662)"><tspan x="0" y="0">Save w/Canvas</tspan></text>
       <text class="cls-3" transform="translate(194.92 121.662)"><tspan x="0" y="0">Save</tspan></text>
       <text class="cls-3" transform="translate(124.798 121.662)"><tspan x="0" y="0">Save All</tspan></text>
@@ -133,42 +137,42 @@
   <g id="mouseover_" data-name="mouseover »">
     <g id="mouseover_2" data-name="mouseover 2">
       <g id="mov2-10">
-        <path class="cls-7" d="M226.5,129h-40c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h40c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+        <path class="cls-12" d="M226.5,129h-40c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h40c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="184" y="108" width="45" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-4" transform="translate(194.92 121.662)"><tspan x="0" y="0">Save</tspan></text>
       </g>
-      <g id="mov2-9">
-        <path class="cls-7" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+      <g id="mov2-09">
+        <path class="cls-12" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="116" y="108" width="56" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-4" transform="translate(124.798 121.662)"><tspan x="0" y="0">Save All</tspan></text>
       </g>
-      <g id="mov2-8">
-        <path class="cls-7" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+      <g id="mov2-08">
+        <path class="cls-12" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="11" y="108" width="93" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-4" transform="translate(18.807 121.662)"><tspan x="0" y="0">Save w/Canvas</tspan></text>
       </g>
-      <g id="mov2-7">
-        <path class="cls-7" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
+      <g id="mov2-07">
+        <path class="cls-12" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="11" y="81" width="93" height="20" rx="2.5" ry="2.5"/>
-        <text class="cls-4" transform="translate(31.251 94.653)"><tspan x="0" y="0">Check File</tspan></text>
+        <text class="cls-4" transform="translate(18.633 94.653)"><tspan x="0" y="0">Check &amp; Repair</tspan></text>
       </g>
-      <g id="mov2-6">
-        <rect class="cls-7" x="125" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
+      <g id="mov2-06">
+        <rect class="cls-12" x="125" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-11" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-4" transform="translate(142.808 52.062)"><tspan x="0" y="0">Import Styles</tspan></text>
       </g>
-      <g id="mov2-5">
-        <rect class="cls-7" x="10" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
+      <g id="mov2-05">
+        <rect class="cls-12" x="10" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-11" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-4" transform="translate(28.241 52.062)"><tspan x="0" y="0">Create Group</tspan></text>
       </g>
-      <g id="mov2-4">
-        <rect class="cls-7" x="125" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
+      <g id="mov2-04">
+        <rect class="cls-12" x="125" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-11" x="126" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-4" transform="translate(134.613 25.262)"><tspan x="0" y="0">Duplicate Layers</tspan></text>
       </g>
-      <g id="mov2-3">
-        <rect class="cls-7" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
+      <g id="mov2-03">
+        <rect class="cls-12" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-11" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-4" transform="translate(23.657 25.262)"><tspan x="0" y="0">Animation Tips</tspan></text>
       </g>
@@ -181,37 +185,37 @@
         <rect class="cls-11" x="184" y="108" width="45" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(194.92 121.662)"><tspan x="0" y="0">Save</tspan></text>
       </g>
-      <g id="mod2-9">
+      <g id="mod2-09">
         <path class="cls-2" d="M169.5,129h-51c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h51c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="116" y="108" width="56" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(124.798 121.662)"><tspan x="0" y="0">Save All</tspan></text>
       </g>
-      <g id="mod2-8">
+      <g id="mod2-08">
         <path class="cls-2" d="M101.5,129H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="11" y="108" width="93" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(18.807 121.662)"><tspan x="0" y="0">Save w/Canvas</tspan></text>
       </g>
-      <g id="mod2-7">
+      <g id="mod2-07">
         <path class="cls-2" d="M101.5,102H13.5c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5H101.5c1.93,0,3.5,1.57,3.5,3.5v15c0,1.93-1.57,3.5-3.5,3.5Z"/>
         <rect class="cls-11" x="11" y="81" width="93" height="20" rx="2.5" ry="2.5"/>
-        <text class="cls-1" transform="translate(31.251 94.653)"><tspan x="0" y="0">Check File</tspan></text>
+        <text class="cls-1" transform="translate(18.633 94.653)"><tspan x="0" y="0">Check &amp; Repair</tspan></text>
       </g>
-      <g id="mod2-6">
+      <g id="mod2-06">
         <rect class="cls-2" x="125" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-11" x="126" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(142.808 52.062)"><tspan x="0" y="0">Import Styles</tspan></text>
       </g>
-      <g id="mod2-5">
+      <g id="mod2-05">
         <rect class="cls-2" x="10" y="37" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-11" x="11" y="38" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(28.241 52.062)"><tspan x="0" y="0">Create Group</tspan></text>
       </g>
-      <g id="mod2-4">
+      <g id="mod2-04">
         <rect class="cls-2" x="125" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-11" x="126" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(134.613 25.262)"><tspan x="0" y="0">Duplicate Layers</tspan></text>
       </g>
-      <g id="mod2-3">
+      <g id="mod2-03">
         <rect class="cls-2" x="10" y="10" width="105" height="22" rx="3.5" ry="3.5"/>
         <rect class="cls-11" x="11" y="11" width="103" height="20" rx="2.5" ry="2.5"/>
         <text class="cls-1" transform="translate(23.657 25.262)"><tspan x="0" y="0">Animation Tips</tspan></text>
@@ -221,23 +225,23 @@
   <g id="ai_links_" data-name="ai links »">
     <g id="bottom_bar" data-name="bottom bar">
       <a xlink:href="javascript:openLink(&apos;less.html&apos;);">
-        <rect class="cls-14" x="160" y="139" width="80" height="13"/>
+        <rect class="cls-15" x="160" y="139" width="80" height="13"/>
       </a>
       <a xlink:href="javascript:openLink(&apos;moreHelp.html&apos;);">
-        <rect class="cls-14" x="0" y="139" width="42.24" height="13"/>
+        <rect class="cls-15" x="0" y="139" width="42.24" height="13"/>
       </a>
     </g>
   </g>
   <g id="listener_links_" data-name="listener links »">
     <g id="links2">
-      <rect id="link2-10" class="cls-14" x="178" y="104.5" width="55" height="27.5"/>
-      <rect id="link2-09" class="cls-14" x="112" y="104.5" width="66" height="27.5"/>
-      <rect id="link2-08" class="cls-14" x="7" y="104.5" width="101" height="27.5"/>
-      <rect id="link2-07" class="cls-14" x="7" y="77" width="101" height="27.5"/>
-      <rect id="link2-06" class="cls-14" x="122" y="34.5" width="111" height="27.5"/>
-      <rect id="link2-05" class="cls-14" x="7" y="34.5" width="111" height="27.5"/>
-      <rect id="link2-04" class="cls-14" x="122" y="7" width="111" height="27.5"/>
-      <rect id="link2-03" class="cls-14" x="7" y="7" width="111" height="27.5"/>
+      <rect id="link2-10" class="cls-15" x="178" y="104.5" width="55" height="27.5"/>
+      <rect id="link2-09" class="cls-15" x="112" y="104.5" width="66" height="27.5"/>
+      <rect id="link2-08" class="cls-15" x="7" y="104.5" width="101" height="27.5"/>
+      <rect id="link2-07" class="cls-15" x="7" y="77" width="101" height="27.5"/>
+      <rect id="link2-06" class="cls-15" x="122" y="34.5" width="111" height="27.5"/>
+      <rect id="link2-05" class="cls-15" x="7" y="34.5" width="111" height="27.5"/>
+      <rect id="link2-04" class="cls-15" x="122" y="7" width="111" height="27.5"/>
+      <rect id="link2-03" class="cls-15" x="7" y="7" width="111" height="27.5"/>
     </g>
   </g>
 </svg>
