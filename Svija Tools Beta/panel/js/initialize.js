@@ -49,7 +49,7 @@ const actions = [
 
   ['Checking File…'       , 'Check.jsx'           , ''      ], // 3rd
 
-  ['Saving File…'         , 'Save.jsx'            , 'canvas'], // bot
+//['Saving File…'         , 'Save.jsx'            , 'canvas'], // bot
   ['Saving Files…'        , 'Save.jsx'            , 'all'   ], // bot
   ['Saving File…'         , 'Save.jsx'            , 'save'  ]  // bot
 

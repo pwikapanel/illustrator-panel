@@ -4,6 +4,12 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
+---
+
+note: font locations seem to be relative to stylesheet, not to document using font
+
+---
+
 ### dev setup
 
 the "installed" version in /Library/Application Support/Adobe/CEP is just a simlink towards `Svija Tools Beta` in this repo.

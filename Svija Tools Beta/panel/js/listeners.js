@@ -10,6 +10,7 @@
 
 //———————————————————————————————————————— button listeners
 
+// alert(actions.length); // 10
 for (var x=0; x<actions.length; x++){ try{
 
   var dbl = twoDigits(x);
@@ -30,13 +31,6 @@ for (var x=0; x<actions.length; x++){ try{
 
 window.onresize = resizeFunc;
 
-function resizeFunc(){
-  var parts = document.URL.split('/');
-  var url = parts[parts.length-1];
-
-  setSize(url);
-}
-
 /*———————————————————————————————————————— right-click listener
 
   https://stackoverflow.com/questions/6789843/disable-right-click-menu-in-chrome */
@@ -54,6 +48,15 @@ function resizeFunc(){
 
 //:::::::::::::::::::::::::::::::::::::::: functions
 
+//———————————————————————————————————————— resizeFunc()
+
+function resizeFunc(){
+  var parts = document.URL.split('/');
+  var url = parts[parts.length-1];
+
+  setSize(url);
+}
+
 //———————————————————————————————————————— launchScript(buttonCode)
 
 function launchScript(buttonCode){
@@ -69,8 +72,6 @@ function launchScript(buttonCode){
 
   csif.evalScript("param = '" + param + "'");
   csif.evalScript("$.evalFile('" + file + "')");
-
-  // document.blur(); // if we find that the panel steals focus
 }
 
 //———————————————————————————————————————— mouseEffect(which, buttonCode)
