@@ -53,7 +53,7 @@
 	</g>
 	<g id="bottom_bar_text">
 		<g>
-			<text transform="matrix(1 0 0 1 199.3724 148.5822)" class="st11 st12 st13">L E S S  –</text>
+			<text transform="matrix(1 0 0 1 200.266 148.5822)" class="st11 st12 st13">L E S S  –</text>
 		</g>
 		<g>
 			<text transform="matrix(1 0 0 1 9.2013 148.5822)" class="st11 st12 st13">H E L P</text>
@@ -103,13 +103,13 @@
 	</g>
 	<g id="bottom_label">
 		<g>
-			<text transform="matrix(1 0 0 1 18.6329 94.653)" class="st20 st12 st21">Check &amp; Repair</text>
+			<text transform="matrix(1 0 0 1 20.1026 94.653)" class="st20 st12 st21">Check &amp; Repair</text>
 		</g>
 		<g>
-			<text transform="matrix(1 0 0 1 37.3222 121.662)" class="st20 st12 st21">Save All</text>
+			<text transform="matrix(1 0 0 1 37.9824 121.662)" class="st20 st12 st21">Save All</text>
 		</g>
 		<g>
-			<text transform="matrix(1 0 0 1 144.5541 121.6617)" class="st20 st12 st21">Save as Svija</text>
+			<text transform="matrix(1 0 0 1 146.348 121.6617)" class="st20 st12 st21">Save as Svija</text>
 		</g>
 	</g>
 	<g id="top_stroke">
@@ -146,16 +146,16 @@
 	</g>
 	<g id="top_label">
 		<g>
-			<text transform="matrix(1 0 0 1 134.6128 25.2622)" class="st9 st12 st21">Duplicate Layers</text>
+			<text transform="matrix(1 0 0 1 136.2266 25.2622)" class="st9 st12 st21">Duplicate Layers</text>
 		</g>
 		<g>
-			<text transform="matrix(1 0 0 1 23.657 25.2624)" class="st9 st12 st21">Animation Tips</text>
+			<text transform="matrix(1 0 0 1 24.7371 25.2624)" class="st9 st12 st21">Animation Tips</text>
 		</g>
 		<g>
-			<text transform="matrix(1 0 0 1 28.2405 52.0623)" class="st9 st12 st21">Create Group</text>
+			<text transform="matrix(1 0 0 1 29.0442 52.0623)" class="st9 st12 st21">Create Group</text>
 		</g>
 		<g>
-			<text transform="matrix(1 0 0 1 142.8082 52.0624)" class="st9 st12 st21">Import Styles</text>
+			<text transform="matrix(1 0 0 1 144.566 52.0624)" class="st9 st12 st21">Import Styles</text>
 		</g>
 	</g>
 </g>
@@ -165,13 +165,13 @@
 	<g id="mouseover_2">
 	</g>
 	<g id="mouseover_1">
-		<g id="mov1-09_00000146465644265235747750000007150238142686549636_">
+		<g id="mov1-09">
 			<path class="st26" d="M226.5,129h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15
 				C230,127.43,228.43,129,226.5,129z"/>
 			<path class="st8" d="M128.5,108c-1.379,0-2.5,1.121-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.379-1.121-2.5-2.5-2.5H128.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 144.5541 121.6617)" class="st3 st12 st21">Save as Svija</text>
+				<text transform="matrix(1 0 0 1 146.348 121.6617)" class="st3 st12 st21">Save as Svija</text>
 			</g>
 		</g>
 		<g id="mov1-08">
@@ -180,7 +180,7 @@
 			<path class="st8" d="M13.5,108c-1.379,0-2.5,1.121-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.379-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 37.3222 121.662)" class="st3 st12 st21">Save All</text>
+				<text transform="matrix(1 0 0 1 37.9824 121.662)" class="st3 st12 st21">Save All</text>
 			</g>
 		</g>
 		<g id="mov1-07">
@@ -189,7 +189,7 @@
 			<path class="st8" d="M13.5,81c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 18.6329 94.653)" class="st3 st12 st21">Check &amp; Repair</text>
+				<text transform="matrix(1 0 0 1 20.1026 94.653)" class="st3 st12 st21">Check &amp; Repair</text>
 			</g>
 		</g>
 		<g id="mov1-06">
@@ -198,7 +198,7 @@
 			<path class="st8" d="M128.5,38c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.378,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H128.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 142.8082 52.0624)" class="st3 st12 st21">Import Styles</text>
+				<text transform="matrix(1 0 0 1 144.566 52.0624)" class="st3 st12 st21">Import Styles</text>
 			</g>
 		</g>
 		<g id="mov1-05">
@@ -207,7 +207,7 @@
 			<path class="st8" d="M13.5,38c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.378,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 28.2405 52.0623)" class="st3 st12 st21">Create Group</text>
+				<text transform="matrix(1 0 0 1 29.0442 52.0623)" class="st3 st12 st21">Create Group</text>
 			</g>
 		</g>
 		<g id="mov1-04">
@@ -216,7 +216,7 @@
 			<path class="st8" d="M128.5,11c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.378,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H128.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 134.6128 25.2622)" class="st3 st12 st21">Duplicate Layers</text>
+				<text transform="matrix(1 0 0 1 136.2266 25.2622)" class="st3 st12 st21">Duplicate Layers</text>
 			</g>
 		</g>
 		<g id="mov1-03">
@@ -225,7 +225,7 @@
 			<path class="st8" d="M13.5,11c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.378,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 23.657 25.2624)" class="st3 st12 st21">Animation Tips</text>
+				<text transform="matrix(1 0 0 1 24.7371 25.2624)" class="st3 st12 st21">Animation Tips</text>
 			</g>
 		</g>
 	</g>
@@ -238,13 +238,13 @@
 	<g id="mousedown_2">
 	</g>
 	<g id="mousedown_1">
-		<g id="mod1-09_00000030481498684811937960000000483564100980055460_">
+		<g id="mod1-09">
 			<path class="st10" d="M226.5,129h-98c-1.93,0-3.5-1.57-3.5-3.5v-15c0-1.93,1.57-3.5,3.5-3.5h98c1.93,0,3.5,1.57,3.5,3.5v15
 				C230,127.43,228.43,129,226.5,129z"/>
 			<path class="st8" d="M128.5,108c-1.379,0-2.5,1.121-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.379-1.121-2.5-2.5-2.5H128.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 144.5541 121.6617)" class="st27 st12 st21">Save as Svija</text>
+				<text transform="matrix(1 0 0 1 146.348 121.6617)" class="st27 st12 st21">Save as Svija</text>
 			</g>
 		</g>
 		<g id="mod1-08">
@@ -253,7 +253,7 @@
 			<path class="st8" d="M13.5,108c-1.379,0-2.5,1.121-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.379-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 37.3222 121.662)" class="st27 st12 st21">Save All</text>
+				<text transform="matrix(1 0 0 1 37.9824 121.662)" class="st27 st12 st21">Save All</text>
 			</g>
 		</g>
 		<g id="mod1-07">
@@ -262,7 +262,7 @@
 			<path class="st8" d="M13.5,81c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 18.6329 94.653)" class="st27 st12 st21">Check &amp; Repair</text>
+				<text transform="matrix(1 0 0 1 20.1026 94.653)" class="st27 st12 st21">Check &amp; Repair</text>
 			</g>
 		</g>
 		<g id="mod1-06">
@@ -271,7 +271,7 @@
 			<path class="st8" d="M128.5,38c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.378,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H128.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 142.8082 52.0624)" class="st27 st12 st21">Import Styles</text>
+				<text transform="matrix(1 0 0 1 144.566 52.0624)" class="st27 st12 st21">Import Styles</text>
 			</g>
 		</g>
 		<g id="mod1-05">
@@ -280,7 +280,7 @@
 			<path class="st8" d="M13.5,38c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.378,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 28.2405 52.0623)" class="st27 st12 st21">Create Group</text>
+				<text transform="matrix(1 0 0 1 29.0442 52.0623)" class="st27 st12 st21">Create Group</text>
 			</g>
 		</g>
 		<g id="mod1-04">
@@ -289,7 +289,7 @@
 			<path class="st8" d="M128.5,11c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.378,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H128.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 134.6128 25.2622)" class="st27 st12 st21">Duplicate Layers</text>
+				<text transform="matrix(1 0 0 1 136.2266 25.2622)" class="st27 st12 st21">Duplicate Layers</text>
 			</g>
 		</g>
 		<g id="mod1-03">
@@ -298,7 +298,7 @@
 			<path class="st8" d="M13.5,11c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.378,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 23.657 25.2624)" class="st27 st12 st21">Animation Tips</text>
+				<text transform="matrix(1 0 0 1 24.7371 25.2624)" class="st27 st12 st21">Animation Tips</text>
 			</g>
 		</g>
 	</g>
@@ -323,10 +323,9 @@
 	<g id="links2">
 	</g>
 	<g id="links1">
-		<rect id="link1-10" x="178" y="104.5" class="st28" width="55" height="27.5"/>
-		<rect id="link1-09" x="112" y="104.5" class="st28" width="66" height="27.5"/>
-		<rect id="link1-08" x="7" y="104.5" class="st28" width="101" height="27.5"/>
-		<rect id="link1-07" x="7" y="77" class="st28" width="101" height="27.5"/>
+		<rect id="link1-09" x="122" y="104.5" class="st28" width="111" height="27.5"/>
+		<rect id="link1-08" x="7" y="104.5" class="st28" width="111" height="27.5"/>
+		<rect id="link1-07" x="7" y="77" class="st28" width="111" height="27.5"/>
 		<rect id="link1-06" x="122" y="34.5" class="st28" width="111" height="27.5"/>
 		<rect id="link1-05" x="7" y="34.5" class="st28" width="111" height="27.5"/>
 		<rect id="link1-04" x="122" y="7" class="st28" width="111" height="27.5"/>

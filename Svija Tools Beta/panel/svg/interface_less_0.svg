@@ -52,7 +52,7 @@
 	</g>
 	<g id="bottom_bar_text">
 		<g>
-			<text transform="matrix(1 0 0 1 195.689 78.7061)" class="st11 st12 st13">M O R E  +</text>
+			<text transform="matrix(1 0 0 1 194.7798 78.7061)" class="st11 st12 st13">M O R E  +</text>
 		</g>
 		<g>
 			<text transform="matrix(1 0 0 1 9.3734 78.7061)" class="st11 st12 st13">H E L P</text>
@@ -93,10 +93,10 @@
 	</g>
 	<g id="bottom_label">
 		<g>
-			<text transform="matrix(1 0 0 1 23.633 52.0625)" class="st10 st12 st20">Check &amp; Repair</text>
+			<text transform="matrix(1 0 0 1 25.1028 52.0625)" class="st10 st12 st20">Check &amp; Repair</text>
 		</g>
 		<g>
-			<text transform="matrix(1 0 0 1 144.5544 52.0625)" class="st10 st12 st20">Save as Svija</text>
+			<text transform="matrix(1 0 0 1 146.3484 52.0625)" class="st10 st12 st20">Save as Svija</text>
 		</g>
 	</g>
 	<g id="top_stroke">
@@ -115,7 +115,7 @@
 	</g>
 	<g id="top_label">
 		<g>
-			<text transform="matrix(1 0 0 1 23.656 24.8624)" class="st22 st12 st20">Animation Tips</text>
+			<text transform="matrix(1 0 0 1 24.7361 24.8624)" class="st22 st12 st20">Animation Tips</text>
 		</g>
 	</g>
 </g>
@@ -133,7 +133,7 @@
 			<path class="st0" d="M128.5,38c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.378,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H128.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 144.5544 52.0625)" class="st10 st12 st20">Save as Svija</text>
+				<text transform="matrix(1 0 0 1 146.3484 52.0625)" class="st10 st12 st20">Save as Svija</text>
 			</g>
 		</g>
 		<g id="mov0-01">
@@ -142,7 +142,7 @@
 			<path class="st0" d="M13.5,38c-1.378,0-2.5,1.122-2.5,2.5v15c0,1.378,1.122,2.5,2.5,2.5h98c1.378,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.122-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 23.633 52.0625)" class="st10 st12 st20">Check &amp; Repair</text>
+				<text transform="matrix(1 0 0 1 25.1028 52.0625)" class="st10 st12 st20">Check &amp; Repair</text>
 			</g>
 		</g>
 		<g id="mov0-00">
@@ -151,7 +151,7 @@
 			<path class="st0" d="M13.5,11c-1.378,0-2.5,1.122-2.5,2.5v15c0,1.378,1.122,2.5,2.5,2.5h98c1.378,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.122-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 23.656 24.8624)" class="st10 st12 st20">Animation Tips</text>
+				<text transform="matrix(1 0 0 1 24.7361 24.8624)" class="st10 st12 st20">Animation Tips</text>
 			</g>
 		</g>
 	</g>
@@ -170,7 +170,7 @@
 			<path class="st0" d="M128.5,38c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.378,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H128.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 144.5544 52.0625)" class="st27 st12 st20">Save as Svija</text>
+				<text transform="matrix(1 0 0 1 146.3484 52.0625)" class="st27 st12 st20">Save as Svija</text>
 			</g>
 		</g>
 		<g id="mod0-01">
@@ -179,7 +179,7 @@
 			<path class="st0" d="M13.5,38c-1.378,0-2.5,1.122-2.5,2.5v15c0,1.378,1.122,2.5,2.5,2.5h98c1.378,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.122-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 23.633 52.0625)" class="st27 st12 st20">Check &amp; Repair</text>
+				<text transform="matrix(1 0 0 1 25.1028 52.0625)" class="st27 st12 st20">Check &amp; Repair</text>
 			</g>
 		</g>
 		<g id="mod0-00">
@@ -188,7 +188,7 @@
 			<path class="st0" d="M13.5,11c-1.378,0-2.5,1.122-2.5,2.5v15c0,1.378,1.122,2.5,2.5,2.5h98c1.378,0,2.5-1.122,2.5-2.5v-15
 				c0-1.378-1.122-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 23.656 24.8624)" class="st27 st12 st20">Animation Tips</text>
+				<text transform="matrix(1 0 0 1 24.7361 24.8624)" class="st27 st12 st20">Animation Tips</text>
 			</g>
 		</g>
 	</g>
