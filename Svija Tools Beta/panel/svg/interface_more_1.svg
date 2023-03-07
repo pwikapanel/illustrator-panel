@@ -103,10 +103,10 @@
 	</g>
 	<g id="bottom_label">
 		<g>
-			<text transform="matrix(1 0 0 1 20.1026 94.653)" class="st20 st12 st21">Check &amp; Repair</text>
+			<text transform="matrix(1 0 0 1 25.1021 94.653)" class="st20 st12 st21">Check &amp; Repair</text>
 		</g>
 		<g>
-			<text transform="matrix(1 0 0 1 37.9824 121.662)" class="st20 st12 st21">Save All</text>
+			<text transform="matrix(1 0 0 1 42.9819 121.662)" class="st20 st12 st21">Save All</text>
 		</g>
 		<g>
 			<text transform="matrix(1 0 0 1 146.348 121.6617)" class="st20 st12 st21">Save as Svija</text>
@@ -180,7 +180,7 @@
 			<path class="st8" d="M13.5,108c-1.379,0-2.5,1.121-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.379-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 37.9824 121.662)" class="st3 st12 st21">Save All</text>
+				<text transform="matrix(1 0 0 1 42.9819 121.662)" class="st3 st12 st21">Save All</text>
 			</g>
 		</g>
 		<g id="mov1-07">
@@ -189,7 +189,7 @@
 			<path class="st8" d="M13.5,81c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 20.1026 94.653)" class="st3 st12 st21">Check &amp; Repair</text>
+				<text transform="matrix(1 0 0 1 25.1021 94.653)" class="st3 st12 st21">Check &amp; Repair</text>
 			</g>
 		</g>
 		<g id="mov1-06">
@@ -253,7 +253,7 @@
 			<path class="st8" d="M13.5,108c-1.379,0-2.5,1.121-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.379-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 37.9824 121.662)" class="st27 st12 st21">Save All</text>
+				<text transform="matrix(1 0 0 1 42.9824 121.662)" class="st27 st12 st21">Save All</text>
 			</g>
 		</g>
 		<g id="mod1-07">
@@ -262,7 +262,7 @@
 			<path class="st8" d="M13.5,81c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 20.1026 94.653)" class="st27 st12 st21">Check &amp; Repair</text>
+				<text transform="matrix(1 0 0 1 25.1026 94.653)" class="st27 st12 st21">Check &amp; Repair</text>
 			</g>
 		</g>
 		<g id="mod1-06">

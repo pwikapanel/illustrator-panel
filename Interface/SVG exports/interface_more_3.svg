@@ -102,10 +102,10 @@
 	</g>
 	<g id="bottom_label">
 		<g>
-			<text transform="matrix(1 0 0 1 20.1027 94.653)" class="st11 st12 st20">Check &amp; Repair</text>
+			<text transform="matrix(1 0 0 1 25.1027 94.653)" class="st11 st12 st20">Check &amp; Repair</text>
 		</g>
 		<g>
-			<text transform="matrix(1 0 0 1 37.9824 121.662)" class="st11 st12 st20">Save All</text>
+			<text transform="matrix(1 0 0 1 42.9825 121.662)" class="st11 st12 st20">Save All</text>
 		</g>
 		<g>
 			<text transform="matrix(1 0 0 1 146.348 121.6617)" class="st11 st12 st20">Save as Svija</text>
@@ -148,10 +148,10 @@
 			<text transform="matrix(1 0 0 1 136.2266 25.2622)" class="st5 st12 st20">Duplicate Layers</text>
 		</g>
 		<g>
-			<text transform="matrix(1 0 0 1 24.7371 25.2624)" class="st5 st12 st20">Animation Tips</text>
+			<text transform="matrix(1 0 0 1 24.7364 25.2624)" class="st5 st12 st20">Animation Tips</text>
 		</g>
 		<g>
-			<text transform="matrix(1 0 0 1 29.0443 52.0623)" class="st5 st12 st20">Create Group</text>
+			<text transform="matrix(1 0 0 1 29.0452 52.0623)" class="st5 st12 st20">Create Group</text>
 		</g>
 		<g>
 			<text transform="matrix(1 0 0 1 144.566 52.0624)" class="st5 st12 st20">Import Styles</text>
@@ -175,7 +175,7 @@
 			<path class="st23" d="M13.5,108c-1.379,0-2.5,1.121-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.379-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 37.9824 121.662)" class="st0 st12 st20">Save All</text>
+				<text transform="matrix(1 0 0 1 42.9819 121.662)" class="st0 st12 st20">Save All</text>
 			</g>
 		</g>
 		<g id="mov3-07">
@@ -184,7 +184,7 @@
 			<path class="st23" d="M13.5,81c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 20.1027 94.653)" class="st0 st12 st20">Check &amp; Repair</text>
+				<text transform="matrix(1 0 0 1 25.1022 94.653)" class="st0 st12 st20">Check &amp; Repair</text>
 			</g>
 		</g>
 		<g id="mov3-06">
@@ -248,7 +248,7 @@
 			<path class="st23" d="M13.5,108c-1.379,0-2.5,1.121-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.379-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 37.9824 121.662)" class="st8 st12 st20">Save All</text>
+				<text transform="matrix(1 0 0 1 42.9824 121.662)" class="st8 st12 st20">Save All</text>
 			</g>
 		</g>
 		<g id="mod3-07">
@@ -257,7 +257,7 @@
 			<path class="st23" d="M13.5,81c-1.379,0-2.5,1.122-2.5,2.5v15c0,1.379,1.121,2.5,2.5,2.5h98c1.379,0,2.5-1.121,2.5-2.5v-15
 				c0-1.378-1.121-2.5-2.5-2.5H13.5z"/>
 			<g>
-				<text transform="matrix(1 0 0 1 20.1027 94.653)" class="st8 st12 st20">Check &amp; Repair</text>
+				<text transform="matrix(1 0 0 1 25.1027 94.653)" class="st8 st12 st20">Check &amp; Repair</text>
 			</g>
 		</g>
 		<g id="mod3-06">
