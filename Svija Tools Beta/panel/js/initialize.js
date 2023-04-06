@@ -65,7 +65,7 @@ const env_path = csif.getSystemPath(SystemPath.EXTENSION) + '/scripts/';
 csif.setWindowTitle(title);
 
 if (typeof more != 'undefined')
-  setCookie('more', more);
+  setCookie('more', more, 30);
 
 var parts = document.URL.split('/');
 var url = parts[parts.length-1];

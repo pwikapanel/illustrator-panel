@@ -13,15 +13,15 @@
 // alert(actions.length); // 10
 for (var x=0; x<actions.length; x++){ try{
 
-  var dbl = twoDigits(x);
-  var objId = 'link' + env_interface + '-' + dbl;
+  var dbl = twoDigits(x)
+  var objId = 'link' + env_interface + '-' + dbl
 
-  var obj = document.getElementById(objId);
+  var obj = document.getElementById(objId)
 
-  obj.addEventListener('mouseover',  mouseEffect.bind(null, 'mov', x), false);
-  obj.addEventListener('mouseout' ,  mouseEffect.bind(null, 'mot', x), false);
-  obj.addEventListener('mousedown',  mouseEffect.bind(null, 'mod', x), false);
-  obj.addEventListener('mouseup'  , launchScript.bind(null,        x), false);
+  obj.addEventListener('mouseover',  mouseEffect.bind(null, 'mov', x), false)
+  obj.addEventListener('mouseout' ,  mouseEffect.bind(null, 'mot', x), false)
+  obj.addEventListener('mousedown',  mouseEffect.bind(null, 'mod', x), false)
+  obj.addEventListener('mouseup'  , launchScript.bind(null,        x), false)
 
 } catch(e){
   // expected: 3-10 fail on less panel · 0-2 fail on more panel
@@ -29,7 +29,7 @@ for (var x=0; x<actions.length; x++){ try{
 
 //———————————————————————————————————————— onresize listener
 
-window.onresize = resizeFunc;
+window.onresize = resizeFunc
 
 /*———————————————————————————————————————— right-click listener
 
@@ -37,13 +37,10 @@ window.onresize = resizeFunc;
 
 (function (){
 
-  var blockContextMenu = function (evt) {
-    evt.preventDefault();
-  };
+  var blockContextMenu = function (evt) { evt.preventDefault() }
+  document.body.addEventListener('contextmenu', blockContextMenu)
 
-  var myElement = document.body;
-  myElement.addEventListener('contextmenu', blockContextMenu);
-})();
+})()
 
 
 //:::::::::::::::::::::::::::::::::::::::: functions
@@ -51,54 +48,54 @@ window.onresize = resizeFunc;
 //———————————————————————————————————————— resizeFunc()
 
 function resizeFunc(){
-  var parts = document.URL.split('/');
-  var url = parts[parts.length-1];
+  var parts = document.URL.split('/')
+  var url = parts[parts.length-1]
 
-  setSize(url);
+  setSize(url)
 }
 
 //———————————————————————————————————————— launchScript(buttonCode)
 
 function launchScript(buttonCode){
 
-  mouseEffect('mou', buttonCode); 
+  mouseEffect('mou', buttonCode) 
 
-  let [title, script, param] = actions[buttonCode];
+  let [title, script, param] = actions[buttonCode]
 
-  if (script.indexOf('.html') > 0) openLink(script);
+  if (script.indexOf('.html') > 0) openLink(script)
 
-  changeTitle(title);
-  file = env_path + encodeURI(script);
+  changeTitle(title)
+  file = env_path + encodeURI(script)
 
-  csif.evalScript("param = '" + param + "'");
-  csif.evalScript("$.evalFile('" + file + "')");
+  csif.evalScript("param = '" + param + "'")
+  csif.evalScript("$.evalFile('" + file + "')")
 }
 
 //———————————————————————————————————————— mouseEffect(which, buttonCode)
 
 function mouseEffect(which, buttonCode){
 
-  buttonCode = twoDigits(buttonCode);
+  buttonCode = twoDigits(buttonCode)
   
-  var mov_id = 'mov' + env_interface + '-' + buttonCode;
-  var mod_id = 'mod' + env_interface + '-' + buttonCode;
+  var mov_id = 'mov' + env_interface + '-' + buttonCode
+  var mod_id = 'mod' + env_interface + '-' + buttonCode
 
-  var mov_obj = document.getElementById(mov_id);
-  var mod_obj = document.getElementById(mod_id);
+  var mov_obj = document.getElementById(mov_id)
+  var mod_obj = document.getElementById(mod_id)
 
   switch(which) {
-    case 'mov': mov_obj.style.display = 'block'; mod_obj.style.display = 'none' ; break;
-    case 'mod': mov_obj.style.display = 'none' ; mod_obj.style.display = 'block'; break;
-    case 'mou': mov_obj.style.display = 'block'; mod_obj.style.display = 'none' ; break;
-    default:    mov_obj.style.display = 'none' ; mod_obj.style.display = 'none' ; break;
+    case 'mov': mov_obj.style.display = 'block'; mod_obj.style.display = 'none' ; break
+    case 'mod': mov_obj.style.display = 'none' ; mod_obj.style.display = 'block'; break
+    case 'mou': mov_obj.style.display = 'block'; mod_obj.style.display = 'none' ; break
+    default:    mov_obj.style.display = 'none' ; mod_obj.style.display = 'none' ; break
   }
 }
 
 //———————————————————————————————————————— twoDigits(n)
 
 function twoDigits(n){
-  if (n > 9) return n;
-  return '0' + n;
+  if (n > 9) return n
+  return '0' + n
 }
 
 /*———————————————————————————————————————— changeTitle(newTitle)
@@ -108,15 +105,13 @@ function twoDigits(n){
     the setTimeout is fake — it won't be executed until
     the script finishes running */
 
+var staticTitle = csif.getWindowTitle()
+
 function changeTitle(newTitle){
 
-  prevTitle = csif.getWindowTitle();
+  csif.setWindowTitle(newTitle)
 
-  csif.setWindowTitle(newTitle);
-
-  setTimeout(function(){
-      csif.setWindowTitle(prevTitle);
-    }, 500);
+  setTimeout(function(){ csif.setWindowTitle(staticTitle) }, 500)
 
 }
 
