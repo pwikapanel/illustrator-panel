@@ -1,6 +1,6 @@
 [logo]: http://files.svija.love/github/readme-logo.png "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 1 October, 2021*
+*Updated 11 April, 2023*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
@@ -22,11 +22,9 @@ you can't directly add the shortcut using "add a menu item":
 
 **Correction:** when I added the mimetype file to the plugin, it started working in Ai 25.
 
-Debug mode for CEP 8.0 doesn't seem to work in Illustrator 25 — **development must be done in Illustrator 24**.
-
 Testing a CEP panel requires setting the CEP engine to **debug mode**. To check if this is the case:
 ```
-defaults read ~/Library/Preferences/com.adobe.CSXS.8.plist
+defaults read ~/Library/Preferences/com.adobe.CSXS.11.plist
 ```
 If debug mode is enabled, it should output:
 ```
@@ -35,32 +33,13 @@ If debug mode is enabled, it should output:
     PlayerDebugMode = 1;
 }
 ```
-However, I got an error:
-```
-Domain /Users/Main/Library/Preferences/com.adobe.CSXS.8.plist does not exist
-```
-Since `com.adobe.CSXS.11.plist` does exist, I will try setting debug mode for that and see what happens:
+To enable or disable:
 ```
 defaults write com.adobe.CSXS.11 PlayerDebugMode 1
 ```
-I will confirm with:
 ```
-defaults read ~/Library/Preferences/com.adobe.CSXS.11.plist
+defaults write com.adobe.CSXS.11 PlayerDebugMode 0
 ```
-Output was as expected
-
-# IT WORKED
-
-
----
-### To enter debug mode
-
-    $ defaults write com.adobe.CSXS.8 PlayerDebugMode 1
-
----
-### To turn off debug mode
-
-    $ defaults write com.adobe.CSXS.8 PlayerDebugMode 0
 
 ---
 ### Installing the extension
