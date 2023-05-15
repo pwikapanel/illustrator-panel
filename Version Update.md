@@ -1,10 +1,11 @@
-[logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 29 September · Toulouse*
+*Updated 15 May, 2023 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
-# A New Version
+[logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
+
+### A New Version
 
 Instructions for releasing a new version of Svija Tools.
 
@@ -23,6 +24,7 @@ cp -r Svija\ Tools\ Beta Svija\ Tools
 ```
 vi -O Svija\ Tools/CSXS/manifest.xml Svija\ Tools/panel/less.html Svija\ Tools/panel/more.html
 ```
+- remove the custom icon from the folder.
 ---
 ### 2. Code Signing
 
@@ -56,7 +58,7 @@ in the Finder, type **cmd-shift-G**, then paste:
 </details>
 
 ---
-### 3. Git Merge to Master
+### 4. Git Merge to Master
 
 **VERY IMPORTANT**
 
@@ -79,7 +81,7 @@ Push the new version:
 git push origin master
 ```
 ---
-### 4. Update the Documentation
+### 5. Update the Documentation
 
 Copy info from/to:
 
@@ -87,7 +89,7 @@ Copy info from/to:
 - [tech.svija.love/manual/changelog-tools](https://tech.svija.love/manual/changelog-tools)
 
 ---
-### 5. Create A New Github Release
+### 6. Create A New Github Release
 
 On github, create a [new release](./releases) from the **master branch**.
 
@@ -99,7 +101,7 @@ On github, create a [new release](./releases) from the **master branch**.
 [ps]: https://github.com/svijalove/scripts-presets/releases
 
 ---
-### 6. Check Out the Beta Branch
+### 7. Check Out the Beta Branch
 
 Commit any changes, then check out the beta branch:
 ```
@@ -113,7 +115,7 @@ git merge master --no-ff -m "starting new version"
 git push -u
 ```
 ---
-### 7. Increment the Version Number
+### 8. Increment the Version Number
 
 Places to update the version number:
 ```
@@ -126,14 +128,14 @@ vi Adobe\ Exchange/README.md
 **Note:** this will break signing for the **Svija Tools Beta** folder, but that folder has no utility until it is updated for other reasons.
 
 ---
-### 8. Update tutorial content at tech.svija.com
+### 9. Update tutorial content at tech.svija.com
 
 Read through the [changelog](https://tech.svija.love/reference/changelogs/changelog-tools) and make a list of modfications for the new version.
 
 Update the [documentation pages](https://tech.svija.love) if necessary.
 
 ---
-### 9. Post to Social Media
+### 10. Post to Social Media
 
 Find a nice picture or make an ad to accompany the update, then
 
