@@ -21,7 +21,7 @@ A signed version is created and sent to Adobe. A response will be received in 2-
 
 ### Extension Installer
 
-The extension installer seems to work fine.
+**Extension Installer** by Anastasiy seems to work fine.
 
 It is available at [install.anastasiy.com](http://install.anastasiy.com/), and quickly installs or uninstalls the extension. It is useful for debugging.
 
