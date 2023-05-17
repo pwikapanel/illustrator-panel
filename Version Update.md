@@ -32,7 +32,6 @@ cp -r 'Svija Tools Beta' 'Svija Tools'
 ```
 vi -O 'Svija Tools/CSXS/manifest.xml' 'Svija Tools/panel/js/initialize.js'
 ```
-- for **Adobe Exchange**, remove the custom icon from the folder [MAYBE NOT].
 ---
 ### 2. Code Signing
 
