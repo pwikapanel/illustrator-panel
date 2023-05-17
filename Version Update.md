@@ -30,7 +30,7 @@ cp -r Svija\ Tools\ Beta Svija\ Tools
 ```
 vi -O Svija\ Tools/CSXS/manifest.xml Svija\ Tools/panel/less.html Svija\ Tools/panel/more.html
 ```
-- remove the custom icon from the folder.
+- for **Adobe Exchange**, remove the custom icon from the folder.
 ---
 ### 2. Code Signing
 
