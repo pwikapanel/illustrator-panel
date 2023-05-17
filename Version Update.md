@@ -9,6 +9,12 @@
 
 Instructions for releasing a new version of Svija Tools.
 
+Unfortunately it is not possible to use the same signed version for Adobe Excange and DMG distribution:
+- the Adobe Exchange version does not have a custom icon
+- the DMB version does have a custom icon
+
+Once the AE version has been created, redo the process with a custom icon.
+
 ---
 ### 1. New Master Version
 
