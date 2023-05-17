@@ -5,7 +5,7 @@
 
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-### A New Version
+### Version Update
 
 Instructions for releasing a new version of Svija Tools.
 
@@ -13,7 +13,9 @@ Unfortunately it is not possible to use the same signed version for Adobe Excang
 - the Adobe Exchange version does not have a custom icon
 - the DMB version does have a custom icon
 
-Once the AE version has been created, redo the process with a custom icon.
+This time we will try the signed version *with* the icon to see if it breaks or not.
+
+Otherwise, once the AE version has been created, redo the process with a custom icon.
 
 ---
 ### 1. New Master Version
