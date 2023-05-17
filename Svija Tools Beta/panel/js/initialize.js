@@ -70,7 +70,7 @@ const env_path = csif.getSystemPath(SystemPath.EXTENSION) + '/scripts/';
 if (title != 'Svija Tools'){
   title += ' ' + env_version
 
-  if (env_beta == ' Beta')
+  if (env_beta != '')
     title += env_verLong
 }
 
