@@ -28,7 +28,7 @@ cp -r Svija\ Tools\ Beta Svija\ Tools
 ```
 - remove " **Beta**" and " **Beta**" from **manifest.xml**, **less.html** and **more.html**:
 ```
-vi -O Svija\ Tools/CSXS/manifest.xml Svija\ Tools/panel/less.html Svija\ Tools/panel/more.html
+vi -O Svija\ Tools/CSXS/manifest.xml Svija\ Tools/panel/js/initialize.js
 ```
 - for **Adobe Exchange**, remove the custom icon from the folder.
 ---
