@@ -28,7 +28,7 @@ cd ~/Documents/tools
 rm -rf 'Svija Tools'
 cp -r 'Svija Tools Beta' 'Svija Tools'
 ```
-- remove " **Beta**" and " **Beta**" from **manifest.xml**, and the HTML files:
+- remove " **Beta**" and "**Beta**" from **manifest.xml** and **initialize.js**:
 ```
 vi -O 'Svija Tools/CSXS/manifest.xml' 'Svija Tools/panel/js/initialize.js'
 ```
