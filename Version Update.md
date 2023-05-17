@@ -25,8 +25,8 @@ Create a temporary **master version**:
 - duplicate the **beta version** folder, replacing the folder called **Svija Tools**
 ```
 cd ~/Documents/tools
-rm -rf Svija\ Tools
-cp -r Svija\ Tools\ Beta Svija\ Tools
+rm -rf 'Svija Tools'
+cp -r 'Svija Tools Beta' 'Svija Tools'
 ```
 - remove " **Beta**" and " **Beta**" from **manifest.xml**, and the HTML files:
 ```
