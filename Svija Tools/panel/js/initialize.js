@@ -5,7 +5,7 @@
 
   in parent html file:
 
-  var title = 'Svija Tools Beta';
+  var title = 'Svija Tools';
   var svg   = 'interface_less';
   var more  = 0;
 
@@ -16,7 +16,7 @@
 //:::::::::::::::::::::::::::::::::::::::: program
 
 
-var env_beta    = ' Beta'
+var env_beta    = ''
 var env_version = '1.0.4'
 var env_verLong = 'v230517'
 
@@ -70,7 +70,7 @@ const env_path = csif.getSystemPath(SystemPath.EXTENSION) + '/scripts/';
 if (title != 'Svija Tools'){
   title += ' ' + env_version
 
-  if (env_beta == ' Beta')
+  if (env_beta == '')
     title += env_verLong
 }
 

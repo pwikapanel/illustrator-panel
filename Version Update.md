@@ -36,7 +36,7 @@ vi -O 'Svija Tools/CSXS/manifest.xml' 'Svija Tools/panel/js/initialize.js'
 ---
 ### 2. Code Signing
 
-See the [instructions][cs] above.
+‹— See [Code Signing][cs] at left.
 
 [cs]: Code%20Signing
 
