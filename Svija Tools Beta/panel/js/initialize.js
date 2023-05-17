@@ -15,8 +15,10 @@
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
-var env_version  = '1.0.4'
-var env_extended = '.230517'
+
+var env_beta    = ' Beta'
+var env_version = '1.0.4'
+var env_verLong = 'v230517'
 
 //———————————————————————————————————————— const & variable 
 
@@ -65,8 +67,12 @@ const env_path = csif.getSystemPath(SystemPath.EXTENSION) + '/scripts/';
 
 //———————————————————————————————————————— set title and cookie, set window size
 
-if (title != 'Svija Tools')
-  title = title + ' ' + env_version + env_extended
+if (title != 'Svija Tools'){
+  title += ' ' + env_version
+
+  if (env_beta == ' Beta')
+    title += env_verLong
+}
 
 csif.setWindowTitle(title);
 
