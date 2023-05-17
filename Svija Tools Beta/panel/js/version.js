@@ -1,8 +1,7 @@
 
 //:::::::::::::::::::::::::::::::::::::::: version.js
 
-var env_version = "1.0.4"
-var env_versionLong = "1.0.4 v230411"
+var env_version = "Beta 1.0.4v230517"
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

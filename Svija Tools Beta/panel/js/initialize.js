@@ -15,6 +15,8 @@
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
+var env_version = "Beta 1.0.4v230517"
+
 //———————————————————————————————————————— const & variable 
 
 var csif          = new CSInterface();
@@ -61,6 +63,9 @@ const env_bgColors = ['#252525', '#464646', '#aaaaaa', '#dcdcdc']; // bottom bar
 const env_path = csif.getSystemPath(SystemPath.EXTENSION) + '/scripts/';
 
 //———————————————————————————————————————— set title and cookie, set window size
+
+if (title != 'Svija Tools')
+  title = title + ' ' + env_version
 
 csif.setWindowTitle(title);
 
