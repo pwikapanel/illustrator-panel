@@ -36,7 +36,7 @@ cp -r 'Svija Tools Beta' 'Svija Tools'
 ```
 vi -O 'Svija Tools/CSXS/manifest.xml' 'Svija Tools/panel/js/initialize.js'
 ```
-**[THIS TIME]** I deleted the custom icon, because the previous version wouldn't run on the guest account.
+**[THIS TIME]** added a custom icon to Svija Tools, *not* to Svija Tools Beta, which had never had a custom icon.
 
 ---
 ### 2. Code Signing
