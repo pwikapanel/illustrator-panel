@@ -15,6 +15,11 @@
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
+
+var env_beta    = ' Beta'
+var env_version = '1.0.4'
+var env_verLong = 'v230517'
+
 //———————————————————————————————————————— const & variable 
 
 var csif          = new CSInterface();
@@ -61,6 +66,13 @@ const env_bgColors = ['#252525', '#464646', '#aaaaaa', '#dcdcdc']; // bottom bar
 const env_path = csif.getSystemPath(SystemPath.EXTENSION) + '/scripts/';
 
 //———————————————————————————————————————— set title and cookie, set window size
+
+if (title != 'Svija Tools'){
+  title += ' ' + env_version
+
+  if (env_beta != '')
+    title += env_verLong
+}
 
 csif.setWindowTitle(title);
 
@@ -152,7 +164,6 @@ function setSize(url){
   csif.resizeContent(widthNew, heightNew);
 
 }
-
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

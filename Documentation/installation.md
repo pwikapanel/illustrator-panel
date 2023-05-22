@@ -21,7 +21,7 @@ A signed version is created and sent to Adobe. A response will be received in 2-
 
 ### Extension Installer
 
-The extension installer seems to work fine.
+**Extension Installer** by Anastasiy seems to work fine.
 
 It is available at [install.anastasiy.com](http://install.anastasiy.com/), and quickly installs or uninstalls the extension. It is useful for debugging.
 
@@ -37,7 +37,7 @@ The only drawback so far is that it is not possible to show the panel with a key
 
 *To enable/disable debug mode for a given CEP version:*
 
-    $ defaults read /Users/Base/Library/Preferences/com.adobe.CSXS.10.plist
-    $ defaults write com.adobe.CSXS.10 PlayerDebugMode 1
+    $ defaults read /Users/Base/Library/Preferences/com.adobe.CSXS.11.plist
+    $ defaults write com.adobe.CSXS.11 PlayerDebugMode 1
 
 More info: [here](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).
