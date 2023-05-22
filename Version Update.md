@@ -1,5 +1,5 @@
 
-*Updated 17 May, 2023 · Toulouse*
+*Updated 22 May, 2023 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
@@ -48,32 +48,7 @@ Adding a custom icon to Svija Tools, *not* to Svija Tools Beta, made it impossib
 [cs]: Code%20Signing
 
 ---
-### 3. Test the New Version
-
-Code-signing is a delicate process and Illustrator is very picky about it.
-
-<details><summary>installing an extension</summary>
-<br>
-- from Adobe CC
-- via Anastasiy's Extension Manager ([link](https://install.anastasiy.com))
-- installing the unzipped ZXP file manually
-
-**Important:** if the **archive utility** is set to delete .zip files once expanded, make a copy *before* unzipping!
-
-To install the bundle:
-
-1. unzip the .zip file, and copy it 
-2. paste it into the Adobe extensions folder  
-in the Finder, type **cmd-shift-G**, then paste:
-```
-/Library/Application Support/Adobe/CEP/extensions
-```
-**Note:** the custom icon has to be re-pasted onto the folder after unzipping: open [Svija Tools.png][stp] in **Preview**, copy it, and paste it into the bundle's folder information window.
-
-</details>
-
----
-### 4. Git Merge to Master
+### 3. Git Merge to Master
 
 **VERY IMPORTANT**
 
@@ -96,7 +71,7 @@ Push the new version:
 git push origin master
 ```
 ---
-### 5. Update the Documentation
+### 4. Update the Documentation
 
 Copy info from/to:
 
@@ -104,7 +79,7 @@ Copy info from/to:
 - [tech.svija.love/manual/changelog-tools](https://tech.svija.love/manual/changelog-tools)
 
 ---
-### 6. Create A New Github Release
+### 5. Create A New Github Release
 
 On github, create a [new release](./releases) from the **master branch**.
 
@@ -116,7 +91,7 @@ On github, create a [new release](./releases) from the **master branch**.
 [ps]: https://github.com/svijalove/scripts-presets/releases
 
 ---
-### 7. Check Out the Beta Branch
+### 6. Check Out the Beta Branch
 
 Commit any changes, then check out the beta branch:
 ```
@@ -130,7 +105,7 @@ git merge master --no-ff -m "starting new version"
 git push -u
 ```
 ---
-### 8. Increment the Version Number
+### 7. Increment the Version Number
 
 Places to update the version number:
 ```
@@ -143,14 +118,14 @@ vi Adobe\ Exchange/README.md
 **Note:** this will break signing for the **Svija Tools Beta** folder, but that folder has no utility until it is updated for other reasons.
 
 ---
-### 9. Update tutorial content at tech.svija.com
+### 8. Update tutorial content at tech.svija.com
 
 Read through the [changelog](https://tech.svija.love/reference/changelogs/changelog-tools) and make a list of modfications for the new version.
 
 Update the [documentation pages](https://tech.svija.love) if necessary.
 
 ---
-### 10. Post to Social Media
+### 9. Post to Social Media
 
 Find a nice picture or make an ad to accompany the update, then
 
