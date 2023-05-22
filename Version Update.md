@@ -77,8 +77,8 @@ git push origin master
 
 Copy info from/to:
 
-- [github.com/svijalove/tools/commits/beta](https://github.com/svijalove/tools/commits/beta)
-- [tech.svija.love/manual/changelog-tools](https://tech.svija.love/manual/changelog-tools)
+- [github.com/svijalove/tools/commits/master](https://github.com/svijalove/tools/commits/master)
+- [tech.svija.love/programs/tools/changelog](https://tech.svija.love/programs/tools/changelog)
 
 ---
 ### 5. Create A New Github Release
