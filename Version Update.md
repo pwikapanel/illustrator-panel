@@ -113,10 +113,6 @@ Places to update the version number:
 ```
 vi -O README.md Svija\ Tools\ Beta/panel/js/initialize.js Svija\ Tools\ Beta/CSXS/manifest.xml
 ```
-The following file did not need to be updated last time.
-```
-vi ~/Documents/distribution/Adobe\ Exchange/README.md
-```
 **Note:** this will break signing for the **Svija Tools Beta** folder, but that folder has no utility until it is updated for other reasons.
 
 ---
