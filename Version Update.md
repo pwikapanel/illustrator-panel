@@ -111,7 +111,7 @@ git push -u
 
 Places to update the version number:
 ```
-vi -O README.md Svija\ Tools\ Beta/js/initialize.js Svija\ Tools\ Beta/CSXS/manifest.xml
+vi -O README.md Svija\ Tools\ Beta/panel/js/initialize.js Svija\ Tools\ Beta/CSXS/manifest.xml
 ```
 The following file did not need to be updated last time.
 ```
