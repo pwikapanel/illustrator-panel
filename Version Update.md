@@ -24,6 +24,8 @@ THIS TIME STARTED WITH BETA WITH NO CUSTOM ICON
 ---
 ### 1. New Master Version
 
+Note: it is important that the beta version folder has never had a custom icon.
+
 Create a temporary **master version**:
 
 - duplicate the **beta version** folder, replacing the folder called **Svija Tools**

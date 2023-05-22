@@ -1,9 +1,11 @@
-[logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 24 February 2023 · Toulouse*
+*Updated 22 May 2023 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
+[logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
+
+### Svija Tools 1.0.4
 ---
 
 note: font locations seem to be relative to stylesheet, not to document using font
