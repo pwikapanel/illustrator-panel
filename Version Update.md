@@ -38,7 +38,7 @@ cp -r 'Svija Tools Beta' 'Svija Tools'
 ```
 vi -O 'Svija Tools/CSXS/manifest.xml' 'Svija Tools/panel/js/initialize.js'
 ```
-**[THIS TIME]** added a custom icon to Svija Tools, *not* to Svija Tools Beta, which had never had a custom icon.
+Adding a custom icon to Svija Tools, *not* to Svija Tools Beta, made it impossible to install.
 
 ---
 ### 2. Code Signing
