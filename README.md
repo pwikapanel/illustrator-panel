@@ -5,7 +5,7 @@
 
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-### Svija Tools 1.0.4
+### Svija Tools 1.0.5
 ---
 
 note: font locations seem to be relative to stylesheet, not to document using font
@@ -118,7 +118,7 @@ I will look in non-beta version and see when it was called previously
 
 PROBLEM WAS WRONG LIMITS IN MANIFEST.XML
 
-# Svija Tools 1.0.4
+# Svija Tools 1.0.5
 
 This repository is *only* for development of the **user interface**.
 

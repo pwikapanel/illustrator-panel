@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="love.svija.SvijaToolsBeta" ExtensionBundleVersion="1.0.4" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="love.svija.SvijaToolsBeta" ExtensionBundleVersion="1.0.5" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <ExtensionList>
-    <Extension Id="love.svija.SvijaToolsBeta.panel" Version="1.0.4" />
-    <Extension Id="love.svija.SvijaLauncherBeta.panel" Version="1.0.4" />
+    <Extension Id="love.svija.SvijaToolsBeta.panel" Version="1.0.5" />
+    <Extension Id="love.svija.SvijaLauncherBeta.panel" Version="1.0.5" />
   </ExtensionList>
 
   <ExecutionEnvironment>
