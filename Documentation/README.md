@@ -1,10 +1,10 @@
 [logo]: http://files.svija.love/github/readme-logo.png "Svija: SVG-based websites built in Adobe Illustrator"
 
-*Updated 1 October, 2021*
+*Updated 11 April, 2023*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
-# Documentation
+### Documentation
 
 The Adobe Exchange [website](https://partners.adobe.com/exchangeprogram/creativecloud) does not work in Safari.
 
@@ -18,32 +18,33 @@ you can't directly add the shortcut using "add a menu item":
 2. **Search** for the term ("save as")
 
 ---
-
 ### Debug Mode
 
 **Correction:** when I added the mimetype file to the plugin, it started working in Ai 25.
 
-Debug mode for CEP 8.0 doesn't seem to work in Illustrator 25 — **development must be done in Illustrator 24**.
-
 Testing a CEP panel requires setting the CEP engine to **debug mode**. To check if this is the case:
+```
+defaults read ~/Library/Preferences/com.adobe.CSXS.11.plist
+```
+If debug mode is enabled, it should output:
+```
+{
+    LogLevel = 1;
+    PlayerDebugMode = 1;
+}
+```
+To enable or disable:
+```
+defaults write com.adobe.CSXS.11 PlayerDebugMode 1
+```
+```
+defaults write com.adobe.CSXS.11 PlayerDebugMode 0
+```
 
-    $ defaults read ~/Library/Preferences/com.adobe.CSXS.8.plist
-    {
-        LogLevel = 1;
-        PlayerDebugMode = 1;
-    }
-
-### To enter debug mode
-
-    $ defaults write com.adobe.CSXS.8 PlayerDebugMode 1
-
-### To turn off debug mode
-
-    $ defaults write com.adobe.CSXS.8 PlayerDebugMode 0
-
+---
 ### Installing the extension
 
-Place the extension folder (containing subfolders **CSXS**, **client** and **host**) in:
+Place the extension folder (**Svija Tools** or **Svija Tools Beta**) in:
 
     /Library/Application Support/Adobe/CEP/extensions
 

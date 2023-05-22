@@ -1,0 +1,7 @@
+.gitconfig
+.gitignore
+*.un~
+untracked/*
+.DS*
+"Icon\r"
+*.swp
