@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 240 278" style="enable-background:new 0 0 240 278;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#535353;}
+	.st1{fill:#424242;}
+	.st2{fill:#383838;}
+	.st3{fill:#878787;}
+	.st4{font-family:'SourceSansPro-SemiBold';}
+	.st5{font-size:8.5px;}
+	.st6{fill:#FD44CF;}
+	.st7{fill:#2D8CEB;}
+	.st8{fill:#616161;}
+	.st9{fill:#4B4B4B;}
+	.st10{fill:#D1D1D1;}
+	.st11{font-size:12px;}
+	.st12{fill:#FFFFFF;}
+	.st13{font-family:'SourceSansPro-Regular';}
+	.st14{fill:none;}
+	.st15{fill:#AEAEAE;}
+	.st16{font-family:'SourceSansPro-Italic';}
+	.st17{fill:#505050;}
+	.st18{opacity:0.2;fill:#FD44CF;}
+</style>
+<g id="panels_w_x2F_heights">
+	<rect class="st0" width="240" height="278"/>
+</g>
+<g id="bottom_links">
+	<g id="bottom_bars">
+		<rect x="0" y="266" transform="matrix(-1 -4.493662e-11 4.493662e-11 -1 240 544)" class="st1" width="240" height="12"/>
+	</g>
+	<g id="bottom_separator">
+		<rect x="0.096" y="265" class="st2" width="239.904" height="1"/>
+	</g>
+	<g id="text_00000065771443224263479680000013577236598927111830_">
+		<g>
+			<text transform="matrix(1 0 0 1 24.2854 274.9134)" class="st3 st4 st5">R E T U R N</text>
+		</g>
+	</g>
+	<g id="chevrons">
+		<path class="st3" d="M10.042,272l2.692-2.691l0.51,0.51L11.061,272l2.183,2.182l-0.51,0.51L10.042,272z M17.274,274.692l0.51-0.51
+			L15.602,272l2.182-2.182l-0.51-0.51L14.583,272L17.274,274.692z"/>
+	</g>
+</g>
+<g id="vibe_buttons">
+	<g id="colored_button_borders">
+		<path class="st1" d="M150,31V13c0-1.105,0.895-2,2-2h76c1.105,0,2,0.895,2,2v18c0,1.105-0.895,2-2,2h-76
+			C150.895,33,150,32.105,150,31z"/>
+	</g>
+	<g id="colored_buttons">
+		<path class="st7" d="M228,12c0.552,0,1,0.448,1,1v18c0,0.552-0.448,1-1,1h-76c-0.552,0-1-0.448-1-1V13c0-0.552,0.448-1,1-1H228z"
+			/>
+	</g>
+	<g id="button_stroke">
+		<g>
+			<path class="st8" d="M72,33H12c-1.105,0-2-0.895-2-2V13c0-1.105,0.895-2,2-2h60c1.105,0,2,0.895,2,2v18
+				C74,32.105,73.105,33,72,33z"/>
+		</g>
+		<g>
+			<path class="st8" d="M138,33H86c-1.105,0-2-0.895-2-2V13c0-1.105,0.895-2,2-2h52c1.105,0,2,0.895,2,2v18
+				C140,32.105,139.105,33,138,33z"/>
+		</g>
+	</g>
+	<g id="button_fill">
+		<path class="st9" d="M12,12c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h60c0.552,0,1-0.448,1-1V13c0-0.552-0.448-1-1-1H12z"/>
+		<path class="st9" d="M86,12c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h52c0.552,0,1-0.448,1-1V13c0-0.552-0.448-1-1-1H86z"/>
+	</g>
+	<g id="text">
+		<g>
+			<text transform="matrix(1 0 0 1 94.6481 25.6614)" class="st10 st4 st11">Events</text>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 20.8084 25.6614)" class="st10 st4 st11">Triggers</text>
+		</g>
+	</g>
+	<g id="white_text">
+		<g>
+			<text transform="matrix(1 0 0 1 160.5467 25.6617)" class="st12 st4 st11">Event Flags</text>
+		</g>
+	</g>
+</g>
+<g id="help_left_text">
+	<g>
+		<text transform="matrix(1 0 0 1 23.4954 52.0609)"><tspan x="0" y="0" class="st10 st13 st11">acceleration </tspan><tspan x="62.243" y="15" class="st10 st13 st11"> </tspan><tspan x="34.92" y="30" class="st10 st13 st11">delay </tspan><tspan x="18.768" y="45" class="st10 st13 st11">duration </tspan><tspan x="16.968" y="60" class="st10 st13 st11">direction </tspan><tspan x="62.243" y="75" class="st10 st13 st11"> </tspan><tspan x="7.716" y="90" class="st10 st13 st11">movement </tspan><tspan x="62.243" y="105" class="st10 st13 st11"> </tspan><tspan x="21.396" y="120" class="st10 st13 st11">rotation </tspan><tspan x="62.243" y="135" class="st10 st13 st11"> </tspan><tspan x="62.243" y="150" class="st10 st13 st11"> </tspan><tspan x="36.684" y="165" class="st10 st13 st11">scale </tspan><tspan x="-4.08" y="180" class="st10 st13 st11">transparency</tspan><tspan x="-7.872" y="200" class="st10 st13 st11">combine flags</tspan></text>
+	</g>
+</g>
+<g id="help_right_text">
+	<g>
+		<rect x="95.727" y="42" class="st14" width="142.652" height="213.476"/>
+		<text transform="matrix(1 0 0 1 95.7268 51.9599)"><tspan x="0" y="0" class="st10 st13 st11">hard  soft  softin  softout </tspan><tspan x="0" y="15" class="st15 st16 st11">soft or hard start &amp; stop </tspan><tspan x="0" y="30" class="st10 st13 st11">d3</tspan><tspan x="12.624" y="30" class="st15 st13 st11"> · 3-second delay </tspan><tspan x="0" y="45" class="st10 st13 st11">3</tspan><tspan x="5.964" y="45" class="st15 st13 st11"> · 3-second duration </tspan><tspan x="0" y="60" class="st10 st13 st11">&lt;</tspan><tspan x="5.964" y="60" class="st15 st13 st11"> · from the changed state </tspan><tspan x="0" y="75" class="st10 st13 st11">&gt;</tspan><tspan x="5.964" y="75" class="st15 st13 st11"> · to the changed state </tspan><tspan x="0" y="90" class="st10 st13 st11">-x20  +x20  -y20  +y20 </tspan><tspan x="0" y="105" class="st15 st13 st11">move 20px </tspan><tspan x="0" y="120" class="st10 st13 st11">&lt;90  90&gt;   o100,0 </tspan><tspan x="0" y="135" class="st15 st13 st11">rotate 90° left or right </tspan><tspan x="0" y="150" class="st15 st13 st11">origin top right corner </tspan><tspan x="0" y="165" class="st10 st13 st11">%50  x%50  y%50 </tspan><tspan x="0" y="180" class="st10 st13 st11">t20</tspan><tspan x="15.983" y="180" class="st15 st13 st11"> · 20% transparency</tspan><tspan x="0" y="200" class="st15 st13 st11">click/name/</tspan><tspan x="59.808" y="200" class="st10 st13 st11">%50/90&gt;/4/t20</tspan></text>
+	</g>
+</g>
+<g id="bars">
+</g>
+<g id="logos">
+</g>
+<g id="bottom_buttons">
+</g>
+<g id="top_buttons">
+</g>
+<g id="mouseovers">
+</g>
+<g id="mousedowns">
+</g>
+<g id="listener_objects">
+</g>
+<g id="attributes_links">
+	<a xlink:href="javascript:openLink(&apos;vibeBack&apos;);" >
+		<rect x="0" y="44" class="st18" width="240" height="234"/>
+	</a>
+	<rect x="0" class="st18" width="79" height="44"/>
+	<rect x="79" class="st18" width="66" height="44"/>
+	<rect x="145" class="st18" width="95" height="44"/>
+</g>
+</svg>

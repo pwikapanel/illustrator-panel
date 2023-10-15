@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 240 82" style="enable-background:new 0 0 240 82;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#323232;}
+	.st1{fill:#262626;}
+	.st2{fill:#202020;}
+	.st3{fill:#656565;}
+	.st4{font-family:'SourceSansPro-SemiBold';}
+	.st5{font-size:8.5px;}
+	.st6{fill:#FD44CF;}
+	.st7{fill:#2D8CEB;}
+	.st8{fill:#3D3D3D;}
+	.st9{fill:#2A2A2A;}
+	.st10{fill:#ABABAB;}
+	.st11{font-size:12px;}
+	.st12{fill:#2F2F2F;}
+	.st13{fill:#8D8D8D;}
+	.st14{fill:#D1D1D1;}
+	.st15{opacity:0.2;fill:#FD44CF;}
+</style>
+<g id="panels_w_x2F_heights">
+	<rect class="st0" width="240" height="82"/>
+</g>
+<g id="bottom_links">
+	<g id="bottom_bars">
+		<rect x="0" y="70" class="st1" width="240" height="12"/>
+	</g>
+	<g id="bottom_separator">
+		<rect x="0" y="69.019" class="st2" width="240" height="1"/>
+	</g>
+	<g id="text_00000065771443224263479680000013577236598927111830_">
+		<g>
+			<text transform="matrix(1 0 0 1 188.54 78.7061)" class="st3 st4 st5">M O R E</text>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 9.3734 78.7061)" class="st3 st4 st5">H E L P  ·  V I B E</text>
+		</g>
+	</g>
+	<g id="chevrons">
+		<path class="st3" d="M229.9,76l-2.692,2.691l-0.51-0.51L228.88,76l-2.183-2.182l0.51-0.51L229.9,76z M222.668,73.308l-0.51,0.51
+			L224.339,76l-2.182,2.182l0.51,0.51L225.359,76L222.668,73.308z"/>
+	</g>
+</g>
+<g id="vibe_buttons">
+</g>
+<g id="help_left_text">
+</g>
+<g id="help_right_text">
+</g>
+<g id="bars">
+	<rect x="125" y="17.85" class="st1" width="105" height="6.3"/>
+</g>
+<g id="logos">
+	
+		<image style="overflow:visible;" width="525" height="110" xlink:href="../links/svija logo 525x110 aaaaaa 2.png"  transform="matrix(0.2 0 0 0.2 125 10)">
+	</image>
+</g>
+<g id="bottom_buttons">
+	<g id="stroke_00000118361485539416385660000018338809076477919126_">
+		<path class="st8" d="M113,59H12c-1.105,0-2-0.895-2-2V39c0-1.105,0.895-2,2-2h101c1.105,0,2,0.895,2,2v18
+			C115,58.104,114.105,59,113,59z"/>
+		<path class="st8" d="M228,59H127c-1.105,0-2-0.895-2-2V39c0-1.105,0.895-2,2-2h101c1.105,0,2,0.895,2,2v18
+			C230,58.104,229.105,59,228,59z"/>
+	</g>
+	<g id="fill_00000182514900546192819580000007412422089178247562_">
+		<path class="st9" d="M12,38c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h101c0.552,0,1-0.448,1-1V39c0-0.552-0.448-1-1-1H12z"/>
+		<path class="st9" d="M127,38c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h101c0.552,0,1-0.448,1-1V39c0-0.552-0.448-1-1-1H127z"
+			/>
+	</g>
+	<g id="label_00000011022648416360047400000011859907090433285043_">
+		<g>
+			<text transform="matrix(1 0 0 1 37.0847 52.0625)" class="st10 st4 st11">New Page</text>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 151.1721 52.0624)" class="st10 st4 st11">Save Page</text>
+		</g>
+	</g>
+</g>
+<g id="top_buttons">
+	<g id="stroke">
+		<path class="st8" d="M113,32H12c-1.105,0-2-0.895-2-2V12c0-1.105,0.895-2,2-2h101c1.105,0,2,0.895,2,2v18
+			C115,31.104,114.105,32,113,32z"/>
+	</g>
+	<g id="fill">
+		<path class="st12" d="M12,11c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h101c0.552,0,1-0.448,1-1V12c0-0.552-0.448-1-1-1H12z"/>
+	</g>
+	<g id="label">
+		<g>
+			<text transform="matrix(1 0 0 1 23.6325 24.8624)" class="st13 st4 st11">Check &amp; Repair</text>
+		</g>
+	</g>
+</g>
+<g id="mouseovers">
+	<g id="mov-02">
+		<path class="st7" d="M228,59H127c-1.105,0-2-0.895-2-2V39c0-1.105,0.895-2,2-2h101c1.105,0,2,0.895,2,2v18
+			C230,58.104,229.105,59,228,59z"/>
+		<path class="st9" d="M127,38c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h101c0.552,0,1-0.448,1-1V39c0-0.552-0.448-1-1-1H127z"
+			/>
+		<g>
+			<text transform="matrix(1 0 0 1 151.1721 52.0624)" class="st10 st4 st11">Save Page</text>
+		</g>
+	</g>
+	<g id="mov-01">
+		<path class="st7" d="M113,59H12c-1.105,0-2-0.895-2-2V39c0-1.105,0.895-2,2-2h101c1.105,0,2,0.895,2,2v18
+			C115,58.104,114.105,59,113,59z"/>
+		<path class="st9" d="M12,38c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h101c0.552,0,1-0.448,1-1V39c0-0.552-0.448-1-1-1H12z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 37.0847 52.0625)" class="st10 st4 st11">New Page</text>
+		</g>
+	</g>
+	<g id="mov-00">
+		<path class="st7" d="M113,32H12c-1.105,0-2-0.895-2-2V12c0-1.105,0.895-2,2-2h101c1.105,0,2,0.895,2,2v18
+			C115,31.104,114.105,32,113,32z"/>
+		<path class="st9" d="M12,11c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h101c0.552,0,1-0.448,1-1V12c0-0.552-0.448-1-1-1H12z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 23.6325 24.8624)" class="st10 st4 st11">Check &amp; Repair</text>
+		</g>
+	</g>
+</g>
+<g id="mousedowns">
+	<g id="mod-02">
+		<path class="st10" d="M228,59H127c-1.105,0-2-0.895-2-2V39c0-1.105,0.895-2,2-2h101c1.105,0,2,0.895,2,2v18
+			C230,58.104,229.105,59,228,59z"/>
+		<path class="st9" d="M127,38c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h101c0.552,0,1-0.448,1-1V39c0-0.552-0.448-1-1-1H127z"
+			/>
+		<g>
+			<text transform="matrix(1 0 0 1 151.1721 52.0624)" class="st14 st4 st11">Save Page</text>
+		</g>
+	</g>
+	<g id="mod-01">
+		<path class="st10" d="M113,59H12c-1.105,0-2-0.895-2-2V39c0-1.105,0.895-2,2-2h101c1.105,0,2,0.895,2,2v18
+			C115,58.104,114.105,59,113,59z"/>
+		<path class="st9" d="M12,38c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h101c0.552,0,1-0.448,1-1V39c0-0.552-0.448-1-1-1H12z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 37.0847 52.0625)" class="st14 st4 st11">New Page</text>
+		</g>
+	</g>
+	<g id="mod-00">
+		<path class="st10" d="M113,32H12c-1.105,0-2-0.895-2-2V12c0-1.105,0.895-2,2-2h101c1.105,0,2,0.895,2,2v18
+			C115,31.104,114.105,32,113,32z"/>
+		<path class="st9" d="M12,11c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h101c0.552,0,1-0.448,1-1V12c0-0.552-0.448-1-1-1H12z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 23.6325 24.8624)" class="st14 st4 st11">Check &amp; Repair</text>
+		</g>
+	</g>
+</g>
+<g id="listener_objects">
+	<rect id="link-02" x="122" y="34.5" class="st15" width="111" height="27.5"/>
+	<rect id="link-01" x="7" y="34.5" class="st15" width="111" height="27.5"/>
+	<rect id="link-00" x="7" y="7" class="st15" width="111" height="27.5"/>
+</g>
+<g id="attributes_links">
+	<a xlink:href="javascript:openLink(&apos;more.html&apos;);" >
+		<rect x="177.5" y="68.741" class="st15" width="62.5" height="13"/>
+	</a>
+	<a xlink:href="javascript:openLink(&apos;lessHelp.html&apos;);" >
+		<rect x="0.096" y="68.741" class="st15" width="38.471" height="13"/>
+	</a>
+	<a xlink:href="javascript:openLink(&apos;vibe.html?less.html&apos;);" >
+		<rect x="38.567" y="68.741" class="st15" width="38.471" height="13"/>
+	</a>
+</g>
+</svg>
