@@ -37,12 +37,12 @@ The only drawback so far is that it is not possible to show the panel with a key
 
 *To see the status of debug mode:*
 ```
-ls /Users/Base/Library/Preferences/com.adobe.CSXS*
+ls /Users/Main/Library/Preferences/com.adobe.CSXS*
 ```
 
 *To enable/disable debug mode for a given CEP version:*
 ```
-defaults read /Users/Base/Library/Preferences/com.adobe.CSXS.11.plist
+defaults read /Users/Main/Library/Preferences/com.adobe.CSXS.11.plist
 defaults write com.adobe.CSXS.11 PlayerDebugMode 1
 ```
 More info: [here](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).
