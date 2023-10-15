@@ -30,6 +30,10 @@ ln -s /Users/Main/Documents/scripts-presets/Save.jsx /Users/Main/Documents/tools
 ln -s /Users/Main/Documents/scripts-presets/Show\ Svija\ Tools.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Show\ Svija\ Tools.jsx 
 ln -s /Users/Main/Documents/scripts-presets/Verify.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Verify.jsx 
 ```
+Connect the SVG files from the Interface folder to the beta panel:
+```
+ln -s /Users/Main/Documents/tools/Interface/SVG\ exports /Users/Main/Documents/tools/Svija\ Tools\ Beta/panel/svg
+```
 
 The goal is to avoid having multiple copies of the same files. With this system:
 - all interface & panel dev happens in the **tools** repo
