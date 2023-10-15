@@ -14,12 +14,20 @@ body{
 /*———————————————————————————————————————— hide mouseover & mousedown states */
 
 /* couldn't be overridden in JS */
-g[id^='mod'] { display: none; }
-g[id^='mov'] { display: none; }
+g[id^=mod] { display: none; }
+g[id^=mov] { display: none; }
+
+/* duplicate with end of file */
+
+/*———————————————————————————————————————— hide "attributes" links */
+
+/* DOESN'T WORK */
+
+rect[id^=attrLink] { opacity:0; }
 
 /*———————————————————————————————————————— correct cursor over links */
 
-rect[id^='link'] { cursor: pointer; }
+rect[id^=link] { cursor: pointer; }
 
 /*———————————————————————————————————————— tracking iframe */
 
@@ -42,8 +50,11 @@ body{
 
 /*———————————————————————————————————————— hide mouseover buttons */
 
-#btn1mo, #btn2mo, #btn3mo, #btn4mo, #btn5mo, #btn6mo, #btn7mo, #btn8mo,
-#btn1md, #btn2md, #btn3md, #btn4md, #btn5md, #btn6md, #btn7md, #btn8md,
+/* duplicate with line15 */
+
+#mov-00, #mov-01, #mov-02, #mov-03, #mov-04, #mov-05, #mov-06, #mov-07, #mov-08, #mov-09, #mov-10, #mov-11, 
+#mod-00, #mod-01, #mod-02, #mod-03, #mod-04, #mod-05, #mod-06, #mod-07, #mod-08, #mod-09, #mod-10, #mod-11, 
+
 #x { display:none; }
 
 /*———————————————————————————————————————— fin */

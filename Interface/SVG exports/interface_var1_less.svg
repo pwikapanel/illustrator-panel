@@ -153,13 +153,16 @@
 </g>
 <g id="attributes_links">
 	<a xlink:href="javascript:openLink(&apos;more.html&apos;);" >
-		<rect x="177.5" y="68.741" class="st15" width="62.5" height="13"/>
+		
+			<rect id="attrLink_00000147206414625164314570000007150038944029111452_" x="177.5" y="68.741" class="st15" width="62.5" height="13"/>
 	</a>
 	<a xlink:href="javascript:openLink(&apos;lessHelp.html&apos;);" >
-		<rect x="0.096" y="68.741" class="st15" width="38.471" height="13"/>
+		
+			<rect id="attrLink_00000171704497057942422210000012408702727539545503_" x="0.096" y="68.741" class="st15" width="38.471" height="13"/>
 	</a>
 	<a xlink:href="javascript:openLink(&apos;vibe.html?less.html&apos;);" >
-		<rect x="38.567" y="68.741" class="st15" width="38.471" height="13"/>
+		
+			<rect id="attrLink_00000028299769491605846240000000595039614538161083_" x="38.567" y="68.741" class="st15" width="38.471" height="13"/>
 	</a>
 </g>
 </svg>

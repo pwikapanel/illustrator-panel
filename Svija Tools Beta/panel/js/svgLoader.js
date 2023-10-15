@@ -9,7 +9,8 @@
 
 //———————————————————————————————————————— set interface color
 
-var thisSvg = 'svg/' + svg + '_' + env_interface + '.svg';
+var thisSvg = 'svg/interface_var' + env_interface + '_' + svg +'.svg';
+
 readSvg(thisSvg);
 
 csif.addEventListener( CSInterface.THEME_COLOR_CHANGED_EVENT, reloadPage );

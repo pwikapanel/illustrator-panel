@@ -107,10 +107,10 @@
 </g>
 <g id="attributes_links">
 	<a xlink:href="javascript:openLink(&apos;vibeBack&apos;);" >
-		<rect x="0" y="44" class="st18" width="240" height="234"/>
+		<rect id="attrLink_00000084518611610206236660000005473426658744881795_" x="0" y="44" class="st18" width="240" height="234"/>
 	</a>
-	<rect x="0" class="st18" width="79" height="44"/>
-	<rect x="79" class="st18" width="66" height="44"/>
-	<rect x="145" class="st18" width="95" height="44"/>
+	<rect id="attrLink_00000006706911353058219060000008132608786967613112_" x="0" class="st18" width="79" height="44"/>
+	<rect id="attrLink_00000163778716152401926560000004748138404046275775_" x="79" class="st18" width="66" height="44"/>
+	<rect id="attrLink_00000057143065615157505340000011591618236799717524_" x="145" class="st18" width="95" height="44"/>
 </g>
 </svg>
