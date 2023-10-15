@@ -22,6 +22,7 @@ ln -s /Users/Main/Documents/tools/Svija\ Tools\ Beta /Library/Application\ Suppo
 ```
 Additionally, the scripts in Svija Tools Beta/scripts are symlinks to the `scripts-presets` repo, created by:
 ```
+rm /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/*
 ln -s /Users/Main/Documents/scripts-presets/Create\ Group.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Create\ Group.jsx 
 ln -s /Users/Main/Documents/scripts-presets/Duplicate\ Layers.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Duplicate\ Layers.jsx 
 ln -s /Users/Main/Documents/scripts-presets/Import\ Styles.jsx /Users/Main/Documents/tools/Svija\ Tools\ Beta/scripts/Import\ Styles.jsx 
