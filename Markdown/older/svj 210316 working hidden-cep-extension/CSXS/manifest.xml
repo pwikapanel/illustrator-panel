@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest Version="10.0" ExtensionBundleId="com.klustre.hidden" ExtensionBundleVersion="0.0.1"
+		ExtensionBundleName="com.klustre.hidden" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ExtensionList>
+		<Extension Id="com.klustre.hidden" Version="0.0.1" />
+	</ExtensionList>
+	<ExecutionEnvironment>
+		<HostList>
+            <Host Name="ILST" Version="25" />
+		</HostList>
+		<LocaleList>
+			<Locale Code="All" />
+		</LocaleList>
+		<RequiredRuntimeList>
+			<RequiredRuntime Name="CSXS" Version="10.0" />
+		</RequiredRuntimeList>
+	</ExecutionEnvironment>
+	<DispatchInfoList>
+		<Extension Id="com.klustre.hidden">
+			<DispatchInfo >
+				<Resources>
+					<MainPath>./index.html</MainPath>
+					<CEFCommandLine>
+					</CEFCommandLine>
+				</Resources>
+				<Lifecycle>
+                    <AutoVisible>false</AutoVisible>  
+                    <StartOn>  
+                        <Event>documentAfterActivate</Event>
+                    </StartOn>  
+				</Lifecycle>
+				<UI>
+          <Type>Panel</Type>
+          <Menu>launcher panel</Menu>
+          <Geometry>
+            <Size>
+              <Height>130</Height>
+              <Width>240</Width>
+            </Size>
+            <MaxSize>
+              <Height>130</Height>
+              <Width>240</Width>
+            </MaxSize>
+            <MinSize>
+              <Height>130</Height>
+              <Width>240</Width>
+            </MinSize>
+          </Geometry>
+          <Icons />
+				</UI>
+			</DispatchInfo>
+		</Extension>
+	</DispatchInfoList>
+</ExtensionManifest>
