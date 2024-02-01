@@ -18,7 +18,8 @@ the "installed" version in /Library/Application Support/Adobe/CEP is just a siml
 
 To create it:
 ```
-ln -s /Users/Main/Documents/tools/Svija\ Tools\ Beta /Library/Application\ Support/Adobe/CEP/extensions/Svija\ Tools\ Beta
+repo="/Users/Main/Library/Mobile Documents/com~apple~CloudDocs/Repositories/tools"
+ln -s "$repo/Svija Tools Beta" "/Library/Application Support/Adobe/CEP/extensions/Svija Tools Beta"
 ```
 Additionally, the scripts in Svija Tools Beta/scripts are symlinks to the `scripts-presets` repo, created by:
 ```
