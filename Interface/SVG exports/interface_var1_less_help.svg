@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 240 180" style="enable-background:new 0 0 240 180;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#535353;}
+	.st1{fill:#424242;}
+	.st2{fill:#383838;}
+	.st3{fill:#878787;}
+	.st4{font-family:'SourceSansPro-SemiBold';}
+	.st5{font-size:8.5px;}
+	.st6{fill:#FD44CF;}
+	.st7{fill:#2D8CEB;}
+	.st8{fill:#616161;}
+	.st9{fill:#4B4B4B;}
+	.st10{fill:#D1D1D1;}
+	.st11{font-size:12px;}
+	.st12{fill:none;}
+	.st13{fill:#AEAEAE;}
+	.st14{font-family:'SourceSansPro-Regular';}
+	.st15{fill:#505050;}
+	.st16{opacity:0.2;fill:#FD44CF;}
+</style>
+<g id="panels_w_x2F_heights">
+	<rect class="st0" width="240" height="180"/>
+</g>
+<g id="bottom_links">
+	<g id="bottom_bars">
+		<rect x="0" y="168" transform="matrix(-1 -4.493662e-11 4.493662e-11 -1 240 348)" class="st1" width="240" height="12"/>
+	</g>
+	<g id="bottom_separator">
+		<rect x="0.096" y="167" class="st2" width="239.904" height="1"/>
+	</g>
+	<g id="text_00000065771443224263479680000013577236598927111830_">
+		<g>
+			<text transform="matrix(1 0 0 1 24.2852 176.9133)" class="st3 st4 st5">R E T U R N</text>
+		</g>
+	</g>
+	<g id="chevrons">
+		<path class="st3" d="M10.041,174l2.692-2.691l0.51,0.51L11.061,174l2.183,2.182l-0.51,0.51L10.041,174z M17.274,176.692l0.51-0.51
+			L15.602,174l2.182-2.182l-0.51-0.51L14.582,174L17.274,176.692z"/>
+	</g>
+</g>
+<g id="vibe_buttons">
+</g>
+<g id="help_left_text">
+	<g>
+		<text transform="matrix(1 0 0 1 8.804 19.8193)"><tspan x="0" y="0" class="st10 st4 st11">Check &amp; Repair</tspan><tspan x="77.734" y="20" class="st10 st4 st11"> </tspan><tspan x="77.734" y="35" class="st10 st4 st11"> </tspan><tspan x="77.734" y="50" class="st10 st4 st11"> </tspan><tspan x="26.903" y="85" class="st10 st4 st11">New Page</tspan><tspan x="25.079" y="105" class="st10 st4 st11">Save Page</tspan></text>
+	</g>
+</g>
+<g id="help_right_text">
+	<g>
+		<rect x="96.527" y="9.76" class="st12" width="142.652" height="148.476"/>
+		<text transform="matrix(1 0 0 1 96.5266 19.7198)"><tspan x="0" y="0" class="st13 st14 st11">check for </tspan><tspan x="48.337" y="0" class="st10 st14 st11">common issues</tspan><tspan x="126.194" y="0" class="st13 st14 st11">:</tspan><tspan x="0" y="20" class="st13 st14 st11">• </tspan><tspan x="6.048" y="20" class="st10 st14 st11">artboard names</tspan><tspan x="86.269" y="20" class="st13 st14 st11"> &amp; sizes </tspan><tspan x="0" y="35" class="st13 st14 st11">• </tspan><tspan x="6.048" y="35" class="st10 st14 st11">images</tspan><tspan x="42.024" y="35" class="st13 st14 st11"> not in the nearest </tspan><tspan x="0" y="50" class="st13 st14 st11">  &quot;Links&quot; folder </tspan><tspan x="0" y="65" class="st13 st14 st11">• </tspan><tspan x="6.048" y="65" class="st10 st14 st11">unsupported techniques</tspan><tspan x="0" y="85" class="st13 st14 st11">create a </tspan><tspan x="42.492" y="85" class="st10 st14 st11">new page</tspan><tspan x="0" y="105" class="st13 st14 st11">save the </tspan><tspan x="43.969" y="105" class="st10 st14 st11">Illustrator file </tspan><tspan x="0" y="120" class="st13 st14 st11">as well as an </tspan><tspan x="65.054" y="120" class="st10 st14 st11">SVG version</tspan><tspan x="124.214" y="120" class="st13 st14 st11">  </tspan><tspan x="0" y="135" class="st13 st14 st11">in </tspan><tspan x="11.917" y="135" class="st10 st14 st11">sync/SVIJA/SVG Files</tspan></text>
+	</g>
+</g>
+<g id="bars">
+</g>
+<g id="logos">
+</g>
+<g id="bottom_buttons">
+</g>
+<g id="top_buttons">
+</g>
+<g id="mouseovers">
+</g>
+<g id="mousedowns">
+</g>
+<g id="listener_objects">
+</g>
+<g id="attributes_links">
+	<a xlink:href="javascript:openLink(&apos;less.html&apos;);" >
+		<rect id="attrLink_00000113321392362565962540000004008605986871586724_" x="0" class="st16" width="240" height="180"/>
+	</a>
+</g>
+</svg>

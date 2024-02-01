@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest Version="5.0" ExtensionBundleId="com.klustre.hidden" ExtensionBundleVersion="0.0.1"
+		ExtensionBundleName="com.klustre.hidden" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ExtensionList>
+		<Extension Id="com.klustre.hidden" Version="0.0.1" />
+	</ExtensionList>
+	<ExecutionEnvironment>
+		<HostList>
+            <Host Name="AEFT" Version="13.0" />
+		</HostList>
+		<LocaleList>
+			<Locale Code="All" />
+		</LocaleList>
+		<RequiredRuntimeList>
+			<RequiredRuntime Name="CSXS" Version="5.0" />
+		</RequiredRuntimeList>
+	</ExecutionEnvironment>
+	<DispatchInfoList>
+		<Extension Id="com.klustre.hidden">
+			<DispatchInfo >
+				<Resources>
+					<MainPath>./index.html</MainPath>
+					<CEFCommandLine>
+					</CEFCommandLine>
+				</Resources>
+				<Lifecycle>
+                    <AutoVisible>false</AutoVisible>  
+                    <StartOn>  
+                        <Event>com.adobe.csxs.events.ApplicationInitialized</Event>
+                    </StartOn>  
+				</Lifecycle>
+				<UI>
+					<Type>Custom</Type>
+					<Geometry>
+						<Size>
+							<Height>240</Height>
+							<Width>240</Width>
+						</Size>                        
+					</Geometry>					
+				</UI>
+			</DispatchInfo>
+		</Extension>
+	</DispatchInfoList>
+</ExtensionManifest>
