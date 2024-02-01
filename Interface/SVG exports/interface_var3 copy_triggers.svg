@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 240 213" style="enable-background:new 0 0 240 213;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#F0F0F0;}
+	.st1{fill:#DBDBDB;}
+	.st2{fill:#CCCCCC;}
+	.st3{fill:#969696;}
+	.st4{font-family:'SourceSansPro-SemiBold';}
+	.st5{font-size:8.5px;}
+	.st6{fill:#FD44CF;}
+	.st7{fill:#2D8CEB;}
+	.st8{fill:#FBFBFB;}
+	.st9{fill:#595959;}
+	.st10{font-size:12px;}
+	.st11{fill:#FFFFFF;}
+	.st12{fill:none;}
+	.st13{font-family:'SourceSansPro-Regular';}
+	.st14{fill:#959595;}
+	.st15{fill:#F3F3F3;}
+	.st16{opacity:0.2;fill:#FD44CF;}
+</style>
+<g id="panels_w_x2F_heights">
+	<rect class="st0" width="240" height="213"/>
+</g>
+<g id="bottom_links">
+	<g id="bottom_bars">
+		<rect x="0" y="201" transform="matrix(-1 -4.493662e-11 4.493662e-11 -1 240 414)" class="st1" width="240" height="12"/>
+	</g>
+	<g id="bottom_separator">
+		<rect x="0.096" y="200" class="st2" width="239.904" height="1"/>
+	</g>
+	<g id="text_00000065771443224263479680000013577236598927111830_">
+		<g>
+			<text transform="matrix(1 0 0 1 24.2851 209.9131)" class="st3 st4 st5">R E T U R N</text>
+		</g>
+	</g>
+	<g id="chevrons">
+		<path class="st3" d="M10.041,207l2.692-2.691l0.51,0.51L11.061,207l2.183,2.182l-0.51,0.51L10.041,207z M17.274,209.691l0.51-0.51
+			L15.602,207l2.182-2.182l-0.51-0.51L14.582,207L17.274,209.691z"/>
+	</g>
+</g>
+<g id="vibe_buttons">
+	<g id="colored_button_borders">
+		<path class="st1" d="M72,33H12c-1.105,0-2-0.895-2-2V13c0-1.105,0.895-2,2-2h60c1.105,0,2,0.895,2,2v18C74,32.105,73.105,33,72,33
+			z"/>
+	</g>
+	<g id="colored_buttons">
+		<path class="st6" d="M12,12c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h60c0.552,0,1-0.448,1-1V13c0-0.552-0.448-1-1-1H12z"/>
+	</g>
+	<g id="button_stroke">
+		<g>
+			<path class="st1" d="M150,31V13c0-1.105,0.895-2,2-2h76c1.105,0,2,0.895,2,2v18c0,1.105-0.895,2-2,2h-76
+				C150.895,33,150,32.105,150,31z"/>
+		</g>
+		<g>
+			<path class="st1" d="M138,33H86c-1.105,0-2-0.895-2-2V13c0-1.105,0.895-2,2-2h52c1.105,0,2,0.895,2,2v18
+				C140,32.105,139.105,33,138,33z"/>
+		</g>
+	</g>
+	<g id="button_fill">
+		<path class="st8" d="M228,12c0.552,0,1,0.448,1,1v18c0,0.552-0.448,1-1,1h-76c-0.552,0-1-0.448-1-1V13c0-0.552,0.448-1,1-1H228z"
+			/>
+		<path class="st8" d="M86,12c-0.552,0-1,0.448-1,1v18c0,0.552,0.448,1,1,1h52c0.552,0,1-0.448,1-1V13c0-0.552-0.448-1-1-1H86z"/>
+	</g>
+	<g id="text">
+		<g>
+			<text transform="matrix(1 0 0 1 160.5467 25.6617)" class="st9 st4 st10">Event Flags</text>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 94.6481 25.6614)" class="st9 st4 st10">Events</text>
+		</g>
+	</g>
+	<g id="white_text">
+		<g>
+			<text transform="matrix(1 0 0 1 20.8084 25.6614)" class="st11 st4 st10">Triggers</text>
+		</g>
+	</g>
+</g>
+<g id="help_left_text">
+	<g>
+		<text transform="matrix(1 0 0 1 12.6721 52.0609)"><tspan x="0" y="0" class="st9 st4 st10">Mouse Trigger </tspan><tspan x="73.066" y="15" class="st9 st4 st10"> </tspan><tspan x="73.066" y="30" class="st9 st4 st10"> </tspan><tspan x="73.066" y="45" class="st9 st4 st10"> </tspan><tspan x="73.066" y="80" class="st9 st4 st10"> </tspan><tspan x="3.804" y="115" class="st9 st4 st10">Scroll Trigger</tspan><tspan x="7.56" y="135" class="st9 st4 st10">Time Trigger</tspan></text>
+	</g>
+</g>
+<g id="help_right_text">
+	<g>
+		<rect x="95.727" y="42" class="st12" width="142.652" height="148.476"/>
+		<text transform="matrix(1 0 0 1 95.7268 51.9599)"><tspan x="0" y="0" class="st9 st13 st10">mouse/name </tspan><tspan x="0" y="15" class="st9 st13 st10">/n</tspan><tspan x="10.765" y="15" class="st14 st13 st10"> = open in new window </tspan><tspan x="0" y="30" class="st9 st13 st10">/a</tspan><tspan x="10.248" y="30" class="st14 st13 st10"> = arrow cursor </tspan><tspan x="0" y="45" class="st9 st13 st10">/h</tspan><tspan x="10.729" y="45" class="st14 st13 st10"> = hand cursor </tspan><tspan x="0" y="60" class="st9 st13 st10">/i</tspan><tspan x="7.152" y="60" class="st14 st13 st10"> = I-beam cursor</tspan><tspan x="0" y="80" class="st9 st13 st10">/func/1/2</tspan><tspan x="46.596" y="80" class="st14 st13 st10"> call javascript </tspan><tspan x="0" y="95" class="st9 st13 st10">function func_name(1, 2)</tspan><tspan x="0" y="115" class="st9 st13 st10">scroll</tspan><tspan x="27.287" y="115" class="st14 st13 st10">/name</tspan><tspan x="0" y="135" class="st9 st13 st10">time</tspan><tspan x="22.908" y="135" class="st14 st13 st10">/name/</tspan><tspan x="59.821" y="135" class="st9 st13 st10">[# of seconds]</tspan></text>
+	</g>
+</g>
+<g id="bars">
+</g>
+<g id="logos">
+</g>
+<g id="bottom_buttons">
+</g>
+<g id="top_buttons">
+</g>
+<g id="mouseovers">
+</g>
+<g id="mousedowns">
+</g>
+<g id="listener_objects">
+</g>
+<g id="attributes_links">
+	<a xlink:href="javascript:openLink(&apos;vibeBack&apos;);" >
+		<rect y="44" class="st16" width="240" height="169"/>
+	</a>
+	<rect x="0" class="st16" width="79" height="44"/>
+	<rect x="79" class="st16" width="66" height="44"/>
+	<rect x="145" class="st16" width="95" height="44"/>
+</g>
+</svg>

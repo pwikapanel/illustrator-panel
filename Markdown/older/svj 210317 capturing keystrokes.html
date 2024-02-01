@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html><head>
+
+  <meta charset="utf-8">
+  <title>NOT VISIBLE</title>
+  <link rel="stylesheet" href="initializeStyles.css">
+  <script type="text/javascript" src="CSInterface.js"></script>
+  <script>
+  </script>
+  <script>l
+//———————————————————————————————————————— gray alert after launching
+
+//    new CSInterface().evalScript('alert("Svija Tools loaded")')
+    var csif = new CSInterface();
+    csif.evalScript('alert("Svija Tools loaded")')
+
+// to open a panel (broken)
+//csif.requestOpenExtension(extensions[0].id);
+
+//———————————————————————————————————————— gray alert after launching
+
+// had to load panel once, then the listening worked even if panel was closed
+
+    csif.addEventListener( // worked 
+      "documentAfterActivate",
+      function(event) {
+        alert("Event type:" + event.type +
+           "\nData: " + event.data );
+      }
+    )
+
+// JavaScript Alert - file:///Library/Application%20Support/Adobe/CEP/extensions/Svija%20Tools.extension/client/index.html
+// Event type:documentAfterActivate
+// Data: <documentAfterActivate><url>Untitled-3</url><name>Untitled-3</name></documentAfterActivate>
+
+//———————————————————————————————————————— events FROM csif to Panel
+// https://github.com/Adobe-CEP/CEP-Resources/issues/238
+
+// worked: I created new document, loaded CEP panel, then loaded script
+// after hiding panel, it still worked
+
+// this is activated by jsx script in presets/scripts
+
+  csif.addEventListener('csif-event', () => {
+    alert('The csif-event has happened');
+  })
+
+//———————————————————————————————————————— capturing keystrokes
+
+// https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_9.x/Documentation/CEP%209.0%20HTML%20Extension%20Cookbook.md#register-an-interest-in-specific-key-events
+
+//keyEventsInterest = [{ "keyCode": 3, "ctrlKey": true }];
+
+// from Key Codes.app
+// charactes: f
+// unicod: 102 / 0x66
+// keys: cmd-F (cmd-sign)
+// key code: 3
+// modifiers: 1048840 / 0x100108
+
+//csif.prototype.registerKeyEventsInterest = function(keyEventsInterest)
+//csif.registerKeyEventsInterest = function(JSON.stringify(keyEventsInterest))
+
+			 // alt-f
+     var keyInterests = [
+      { "keyCode": 3, "altKey": true }
+     ];
+     csif.registerKeyEventsInterest( JSON.stringify( keyInterests ) );
+     csif.addEventListener('keyup',function(e){ 
+       alert("keyup detected"); 
+     });
+
+// https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_9.x/Documentation/CEP%209.0%20HTML%20Extension%20Cookbook.md#register-an-interest-in-specific-key-events
+// This JSON string should be an array, each object has following keys:
+// 
+// keyCode: [Required] represents an OS system dependent virtual key code identifying the unmodified value of the pressed key.
+// ctrlKey: [optional]  control key was pressed (true) or not (false) when the event occurred.
+// altKey: [optional]  alt key was pressed (true) or not (false) when the event occurred.
+// shiftKey: [optional]  shift key was pressed (true) or not (false) when the event occurred.
+// metaKey: [optional] (macOS Only)  Meta key was pressed (true) or not (false) when the event occurred. On Macintosh keyboards, this is the command key. To detect Windows key on Windows, please use keyCode instead.
+
+</script></head><body>
+
+
+
+<!-- svg pasted directly from Ai export with no modifications -->
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 240 130" style="enable-background:new 0 0 240 130;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#535353;}
+	.st1{fill:#C2C2C2;}
+	.st2{fill:#808080;}
+	.st3{font-family:'SourceSansPro-Regular';}
+	.st4{font-size:12px;}
+	.st5{fill:#999999;}
+	.st6{fill:#4B4B4B;stroke:#666666;stroke-width:0.995;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st7{font-family:'SourceSansPro-Semibold';}
+	.st8{fill:#4B4B4B;stroke:#666666;stroke-width:0.9954;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st9{fill:#454545;stroke:#666666;stroke-width:0.995;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st10{fill:#FFFFFF;}
+	.st11{fill:#454545;stroke:#666666;stroke-width:0.9909;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st12{fill:#454545;stroke:#666666;stroke-width:0.9888;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st13{fill:none;stroke:#45A0F5;stroke-width:1.0143;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st14{fill:#303030;stroke:#45A0F5;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st15{clip-path:url(#SVGID_2_);}
+	.st16{clip-path:url(#SVGID_4_);fill:#FFFFFF;}
+	.st17{fill:#4B4B4B;stroke:#666666;stroke-width:0.9702;stroke-miterlimit:10;}
+	.st18{opacity:0;}
+	.st19{opacity:0.2;fill:#FF0080;}
+	.st20{opacity:0.2;}
+	.st21{fill:#FF0080;}
+</style>
+<g id="background">
+	<rect class="st0" width="240" height="130"/>
+</g>
+<g id="i_link">
+	<g>
+		<g>
+			<g>
+				<path class="st1" d="M28.593,109.551c3.027,0,5.49,2.463,5.49,5.49s-2.463,5.49-5.49,5.49s-5.49-2.463-5.49-5.49
+					S25.566,109.551,28.593,109.551 M28.593,108.541c-3.59,0-6.5,2.91-6.5,6.5s2.91,6.5,6.5,6.5s6.5-2.91,6.5-6.5
+					S32.183,108.541,28.593,108.541L28.593,108.541z"/>
+			</g>
+			<circle class="st1" cx="28.612" cy="111.769" r="1.132"/>
+			<rect x="27.609" y="113.826" class="st1" width="2.135" height="4.858"/>
+			<rect x="27.043" y="117.789" class="st1" width="3.338" height="0.894"/>
+			<rect x="27.043" y="113.826" class="st1" width="2.701" height="0.894"/>
+		</g>
+	</g>
+	<g>
+		<text transform="matrix(1 0 0 1 42.4373 119.0263)"><tspan x="0" y="0" class="st2 st3 st4">Visit </tspan><tspan x="23.591" y="0" class="st5 st3 st4">docs.svija.love</tspan><tspan x="97.042" y="0" class="st2 st3 st4"> for tips and info.</tspan></text>
+	</g>
+</g>
+<g id="buttons">
+	<g id="btnObjects">
+		<path class="st6" d="M226.906,30.5h-93.812c-1.433,0-2.594-1.161-2.594-2.594V13.094c0-1.433,1.161-2.594,2.594-2.594h93.812
+			c1.433,0,2.594,1.161,2.594,2.594v14.812C229.5,29.339,228.339,30.5,226.906,30.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 136.7018 24.4932)" class="st5 st7 st4">Reset Object ID&apos;s</text>
+		</g>
+	</g>
+	<g id="btnImages">
+		<path class="st8" d="M116.901,30.5H13.099c-1.435,0-2.599-1.164-2.599-2.599V13.099c0-1.435,1.164-2.599,2.599-2.599h103.802
+			c1.435,0,2.599,1.164,2.599,2.599v14.802C119.5,29.336,118.336,30.5,116.901,30.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 19.4242 24.4932)" class="st5 st7 st4">Reset Image Links</text>
+		</g>
+	</g>
+	<g id="btnLayers">
+		<path class="st8" d="M116.901,56.5H13.099c-1.435,0-2.599-1.164-2.599-2.599V39.099c0-1.435,1.164-2.599,2.599-2.599h103.802
+			c1.435,0,2.599,1.164,2.599,2.599v14.802C119.5,55.336,118.336,56.5,116.901,56.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 20.7381 50.6721)" class="st5 st7 st4">Propagate Layers</text>
+		</g>
+	</g>
+	<g id="btnClose">
+		<path class="st9" d="M107.023,97.5H12.977c-1.368,0-2.477-1.109-2.477-2.477V79.977c0-1.368,1.109-2.477,2.477-2.477h94.046
+			c1.368,0,2.477,1.109,2.477,2.477v15.046C109.5,96.391,108.391,97.5,107.023,97.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 19.2764 91.6429)" class="st10 st7 st4">Close &amp; Save All</text>
+		</g>
+	</g>
+	<g id="btnSaveAll">
+		<path class="st11" d="M226.865,97.5h-48.73c-1.455,0-2.635-1.18-2.635-2.635v-14.73c0-1.455,1.18-2.635,2.635-2.635h48.73
+			c1.455,0,2.635,1.18,2.635,2.635v14.73C229.5,96.32,228.32,97.5,226.865,97.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 182.3485 91.6429)" class="st10 st7 st4">Save All</text>
+		</g>
+	</g>
+	<g id="btnSave">
+		<path class="st12" d="M161.736,97.5h-38.472c-1.526,0-2.764-1.237-2.764-2.764V80.264c0-1.526,1.237-2.764,2.764-2.764h38.472
+			c1.526,0,2.764,1.237,2.764,2.764v14.472C164.5,96.263,163.263,97.5,161.736,97.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 130.2554 91.6429)" class="st10 st7 st4">Save</text>
+		</g>
+	</g>
+</g>
+<g id="hover_1_">
+	<g id="btnObjectsHover">
+		<path class="st13" d="M226.906,30.5h-93.812c-1.433,0-2.594-1.161-2.594-2.594V13.094c0-1.433,1.161-2.594,2.594-2.594h93.812
+			c1.433,0,2.594,1.161,2.594,2.594v14.812C229.5,29.339,228.339,30.5,226.906,30.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 136.7018 24.4932)" class="st10 st7 st4">Reset Object ID&apos;s</text>
+		</g>
+	</g>
+	<g id="btnImagesHover">
+		<path class="st13" d="M116.901,30.5H13.099c-1.435,0-2.599-1.164-2.599-2.599V13.099c0-1.435,1.164-2.599,2.599-2.599h103.802
+			c1.435,0,2.599,1.164,2.599,2.599v14.802C119.5,29.336,118.336,30.5,116.901,30.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 19.4242 24.4932)" class="st10 st7 st4">Reset Image Links</text>
+		</g>
+	</g>
+	<g id="btnLayersHover">
+		<path class="st13" d="M116.901,56.5H13.099c-1.435,0-2.599-1.164-2.599-2.599V39.099c0-1.435,1.164-2.599,2.599-2.599h103.802
+			c1.435,0,2.599,1.164,2.599,2.599v14.802C119.5,55.336,118.336,56.5,116.901,56.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 20.7381 50.6721)" class="st10 st7 st4">Propagate Layers</text>
+		</g>
+	</g>
+	<g id="btnCloseHover">
+		<path class="st13" d="M107.023,97.5H12.977c-1.368,0-2.477-1.109-2.477-2.477V79.977c0-1.368,1.109-2.477,2.477-2.477h94.046
+			c1.368,0,2.477,1.109,2.477,2.477v15.046C109.5,96.391,108.391,97.5,107.023,97.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 19.2764 91.6429)" class="st10 st7 st4">Close &amp; Save All</text>
+		</g>
+	</g>
+	<g id="btnSaveAllHover">
+		<path class="st13" d="M226.865,97.5h-48.73c-1.455,0-2.635-1.18-2.635-2.635v-14.73c0-1.455,1.18-2.635,2.635-2.635h48.73
+			c1.455,0,2.635,1.18,2.635,2.635v14.73C229.5,96.32,228.32,97.5,226.865,97.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 182.3485 91.6429)" class="st10 st7 st4">Save All</text>
+		</g>
+	</g>
+	<g id="btnSaveHover">
+		<path class="st13" d="M161.736,97.5h-38.472c-1.526,0-2.764-1.237-2.764-2.764V80.264c0-1.526,1.237-2.764,2.764-2.764h38.472
+			c1.526,0,2.764,1.237,2.764,2.764v14.472C164.5,96.263,163.263,97.5,161.736,97.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 130.2554 91.6429)" class="st10 st7 st4">Save</text>
+		</g>
+	</g>
+</g>
+<g id="active">
+	<g id="btnObjectsActive">
+		<path class="st14" d="M226.906,30.5h-93.812c-1.433,0-2.594-1.161-2.594-2.594V13.094c0-1.433,1.161-2.594,2.594-2.594h93.812
+			c1.433,0,2.594,1.161,2.594,2.594v14.812C229.5,29.339,228.339,30.5,226.906,30.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 136.7018 24.4932)" class="st10 st7 st4">Reset Object ID&apos;s</text>
+		</g>
+	</g>
+	<g id="btnImagesActive">
+		<path class="st14" d="M116.901,30.5H13.099c-1.435,0-2.599-1.164-2.599-2.599V13.099c0-1.435,1.164-2.599,2.599-2.599h103.802
+			c1.435,0,2.599,1.164,2.599,2.599v14.802C119.5,29.336,118.336,30.5,116.901,30.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 19.4242 24.4932)" class="st10 st7 st4">Reset Image Links</text>
+		</g>
+	</g>
+	<g id="btnLayersActive">
+		<path class="st14" d="M116.901,56.5H13.099c-1.435,0-2.599-1.164-2.599-2.599V39.099c0-1.435,1.164-2.599,2.599-2.599h103.802
+			c1.435,0,2.599,1.164,2.599,2.599v14.802C119.5,55.336,118.336,56.5,116.901,56.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 20.7381 50.6721)" class="st10 st7 st4">Propagate Layers</text>
+		</g>
+	</g>
+	<g id="btnCloseActive">
+		<path class="st14" d="M107.023,97.5H12.977c-1.368,0-2.477-1.109-2.477-2.477V79.977c0-1.368,1.109-2.477,2.477-2.477h94.046
+			c1.368,0,2.477,1.109,2.477,2.477v15.046C109.5,96.391,108.391,97.5,107.023,97.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 19.2764 91.6429)" class="st10 st7 st4">Close &amp; Save All</text>
+		</g>
+	</g>
+	<g id="btnSaveAllActive">
+		<path class="st14" d="M226.865,97.5h-48.73c-1.455,0-2.635-1.18-2.635-2.635v-14.73c0-1.455,1.18-2.635,2.635-2.635h48.73
+			c1.455,0,2.635,1.18,2.635,2.635v14.73C229.5,96.32,228.32,97.5,226.865,97.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 182.3485 91.6429)" class="st10 st7 st4">Save All</text>
+		</g>
+	</g>
+	<g id="btnSaveActive">
+		<path class="st14" d="M161.736,97.5h-38.472c-1.526,0-2.764-1.237-2.764-2.764V80.264c0-1.526,1.237-2.764,2.764-2.764h38.472
+			c1.526,0,2.764,1.237,2.764,2.764v14.472C164.5,96.263,163.263,97.5,161.736,97.5z"/>
+		<g>
+			<text transform="matrix(1 0 0 1 130.2554 91.6429)" class="st10 st7 st4">Save</text>
+		</g>
+	</g>
+</g>
+<g id="other">
+	<g>
+		<g>
+			<defs>
+				<rect id="SVGID_1_" x="142.777" y="35.164" width="74.957" height="22.672"/>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+			</clipPath>
+			<g class="st15">
+				<defs>
+					<rect id="SVGID_3_" x="142.777" y="35.164" width="74.957" height="22.672"/>
+				</defs>
+				<clipPath id="SVGID_4_">
+					<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+				</clipPath>
+				<path class="st16" d="M191.175,40.346h-2.915v12.632h2.915V40.346z M196.357,35.164h-8.097v2.915h8.097V35.164z M196.357,40.346
+					h-2.915v17.49h2.915V40.346z M161.886,52.978h-19.109v-2.915h16.194v-1.126l-16.194-1.967v-6.623h19.109v2.915h-16.194v1.126
+					l16.194,1.967V52.978z M217.734,40.346h-19.109v2.915h16.194v1.126l-16.194,1.967v6.624h19.109V40.346z M201.539,48.936
+					l13.279-1.613v2.739h-13.279V48.936z M183.785,40.346l-5.996,9.27c-0.181,0.28-0.487,0.446-0.82,0.446h-3.832
+					c-0.333,0-0.64-0.167-0.82-0.446l-5.996-9.27h-3.471l7.02,10.853c0.72,1.113,1.941,1.778,3.268,1.778h3.832
+					c1.326,0,2.547-0.665,3.267-1.778l7.019-10.853H183.785z"/>
+			</g>
+		</g>
+	</g>
+	<line class="st17" x1="10" y1="67" x2="230" y2="67"/>
+</g>
+<g id="help">
+</g>
+<g id="links">
+	<g class="st18">
+		<rect id="linkInfo" x="16" y="105" class="st19" width="208" height="20"/>
+		<g id="linkSaveAll" class="st20">
+			<rect x="175.5" y="77.5" class="st21" width="54" height="20"/>
+		</g>
+		<g id="linkSave" class="st20">
+			<rect x="120.5" y="77.5" class="st21" width="44" height="20"/>
+		</g>
+		<g id="linkClose" class="st20">
+			<rect x="11.025" y="77.77" class="st21" width="98.475" height="19.73"/>
+		</g>
+		<rect id="linkLogo" x="139.713" y="33.477" class="st19" width="80.473" height="26.249"/>
+		<g id="linkLayers" class="st20">
+			<rect x="10.5" y="36.5" class="st21" width="109" height="20"/>
+		</g>
+		<g id="linkObjects" class="st20">
+			<rect x="130.5" y="10.5" class="st21" width="99" height="20"/>
+		</g>
+		<g id="linkImages" class="st20">
+			<rect x="10.5" y="10.5" class="st21" width="109.75" height="20"/>
+		</g>
+	</g>
+</g>
+</svg>
+
+
+
+
+
+<link rel="stylesheet" href="themeColor.css">
+<script type="text/javascript" src="themeColor.js"></script>
+<script type="text/javascript" src="buttonLinks.js"></script>
+</body></html>
+

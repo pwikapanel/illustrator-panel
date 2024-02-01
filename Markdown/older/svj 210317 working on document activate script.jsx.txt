@@ -1,0 +1,15 @@
+//———————————————————————————————————————— not useful for me
+
+// had to load panel once, then the listening worked even if panel was closed
+
+    csif.addEventListener( // worked 
+      "documentAfterActivate",
+      function(event) {
+        alert("Event type:" + event.type +
+           "\nData: " + event.data );
+      }
+    )
+
+// JavaScript Alert - file:///Library/Application%20Support/Adobe/CEP/extensions/Svija%20Tools.extension/client/index.html
+// Event type:documentAfterActivate
+// Data: <documentAfterActivate><url>Untitled-3</url><name>Untitled-3</name></documentAfterActivate>

@@ -1,0 +1,80 @@
+Extension Manager Command Line Tool
+
+
+usage:
+	ExManCmd --help
+description: Display help information
+	--help       	
+
+
+usage:
+	ExManCmd [--locale <locale>] --install <extension-file-path>
+description: Install the extension
+	--locale       	the locale for Extension Manager
+	--install       	the zxp file path
+
+
+usage:
+	ExManCmd [--locale <locale>] --install_for_all <extension-file-path>
+description: Install the per user extension for all users in the machine
+	--locale               	the locale for Extension Manager
+	--install_for_all       	the zxp file path
+
+
+usage:
+	ExManCmd --remove <extension-name>
+description: Remove the extension
+	--remove       	the extension name 
+
+
+usage:
+	ExManCmd --remove_for_all <extension-name>
+description: Remove the extension for all user in the machine
+	--remove_for_all       	the extension name 
+
+
+usage:
+	ExManCmd --enable <extension-name>
+description: Enable the extension
+	--enable       	the extension name 
+
+
+usage:
+	ExManCmd --disable <extension name>
+description: Disable the extension
+	--disable       	the extension name
+
+
+usage:
+	ExManCmd --list <all || product display name>
+description: List all extensions or list extensions for a specified product
+	--list       	'all' or the product display name
+
+
+usage:
+	ExManCmd --list_update <all || product display name>
+description: List which extension(s) need update
+	--list_update	'all' or the product display name
+
+
+usage:
+	ExManCmd --list_update_extension <extension name>
+description: List the update of an extension
+	--list_update_extension	the extension name
+
+
+usage:
+	ExManCmd --update <extension-name>
+description: Update the extension
+	--update       	the extension name
+
+
+usage:
+	ExManCmd --enable_logging <all | info | warning>
+description: enable logging with specified logging level
+	--enable_logging       	all or info or warning
+
+
+usage:
+	ExManCmd --verbose
+description: Show helpx link for information about error codes in case of failure
