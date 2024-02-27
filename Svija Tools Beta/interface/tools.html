@@ -26,16 +26,22 @@ Illustrator.evalScript("$.evalFile('" + file + "')")
 file = env_path + 'object.jsx'
 Illustrator.evalScript("$.evalFile('" + file + "')")
   
-file = env_path + 'create-group.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
-  
 file = env_path + 'save-page.jsx'
 Illustrator.evalScript("$.evalFile('" + file + "')")
 
+file = env_path + 'place-image.jsx'
+Illustrator.evalScript("$.evalFile('" + file + "')")
+
+file = env_path + 'create-group.jsx'
+Illustrator.evalScript("$.evalFile('" + file + "')")
+  
 file = env_path + 'change-case.jsx'
 Illustrator.evalScript("$.evalFile('" + file + "')")
 
 file = env_path + 'check-repair.jsx'
+Illustrator.evalScript("$.evalFile('" + file + "')")
+
+file = env_path + 'new-page.jsx'
 Illustrator.evalScript("$.evalFile('" + file + "')")
 
 </script>
@@ -470,6 +476,48 @@ function setSmart(swap){
   if (!swap) Illustrator.evalScript('menuCommand("Snapomatic on-off menu item")')
 }
 
+/*———————————————————————————————————————— save & open
+
+    saves file
+    +alt saves all files
+
+    if no open file, will open a file
+    +alt opens most recently closed file */
+
+btnSave.addEventListener('click', (evn) => {
+  var shift = evn.getModifierState('Shift');
+  var ctrl  = evn.getModifierState('Control');
+  var alt   = evn.getModifierState('Alt');
+
+  // functions as a save button
+  if (localStorage.openFiles > 0){
+    aiTimeout('savePage(' + alt + ')',  'feedback', 100)
+    return true
+  }
+
+  // open, no useful path
+  if (localStorage.lastPath == ''){
+    Illustrator.evalScript('menuCommand("open")'); 
+    return true
+  }
+
+  // open, use last known path or file
+  var str = localStorage.lastPath + '", "' + localStorage.url
+
+  if (alt){ Illustrator.evalScript(  'openPage("' + str + '")') }
+  else    { Illustrator.evalScript('openFolder("' + str + '")') }
+
+})
+
+/*———————————————————————————————————————— place image
+
+    */
+
+placeImage.addEventListener('click', (evn) => {
+  var alt   = evn.getModifierState('Alt');
+  Illustrator.evalScript('placeImage(' + alt +')')
+})
+
 /*———————————————————————————————————————— change case */
 
 changeCase.addEventListener('mouseup', (evn) => {
@@ -527,39 +575,6 @@ function openFolder(){
     Illustrator.evalScript("createGroup()", feedbackSimple)
   }
 
-/*———————————————————————————————————————— save & open
-
-    saves file
-    +alt saves all files
-
-    if no open file, will open a file
-    +alt opens most recently closed file */
-
-btnSave.addEventListener('click', (evn) => {
-  var shift = evn.getModifierState('Shift');
-  var ctrl  = evn.getModifierState('Control');
-  var alt   = evn.getModifierState('Alt');
-
-  // functions as a save button
-  if (localStorage.openFiles > 0){
-    aiTimeout('savePage(' + alt + ')',  'feedback', 100)
-    return true
-  }
-
-  // open, no useful path
-  if (localStorage.lastPath == ''){
-    Illustrator.evalScript('menuCommand("open")'); 
-    return true
-  }
-
-  // open, use last known path or file
-  var str = localStorage.lastPath + '", "' + localStorage.url
-
-  if (alt){ Illustrator.evalScript(  'openPage("' + str + '")') }
-  else    { Illustrator.evalScript('openFolder("' + str + '")') }
-
-})
-
 /*———————————————————————————————————————— windowExpand()
 
     manages the panel height and the expand button */
@@ -584,12 +599,21 @@ function windowExpand(){
   }
 }
 
-/*———————————————————————————————————————— check & repair  COMMENTED OUT
+/*———————————————————————————————————————— check & repair
 
     */
 
 chkRepair.addEventListener('click', (evn) => {
   aiTimeout('checkRepair()', 'feedback', 100)
+})
+
+/*———————————————————————————————————————— new page/module
+
+    alt = create module instead of page */
+
+newPage.addEventListener('click', (evn) => {
+  var alt   = evn.getModifierState('Alt');
+  Illustrator.evalScript('newPage(' + alt +')')
 })
 
 /*———————————————————————————————————————— new page/module COMMENTED OUT

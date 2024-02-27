@@ -192,96 +192,96 @@ function checkRepair(){
 
 //:::::::::::::::::::::::::::::::::::::::: main functions
 
-/*———————————————————————————————————————— fixEmbeddedImage(obj)
+		  /*———————————————————————————————————————— fixEmbeddedImage(obj)
 
-    takes an embedded image and tries to change it to
-    a link to an external file. Not sure what happens
-    if the original cannot be found, a yellow rectangle
-    is placed over the image — function drawYellowRectangle()
+				takes an embedded image and tries to change it to
+				a link to an external file. Not sure what happens
+				if the original cannot be found, a yellow rectangle
+				is placed over the image — function drawYellowRectangle()
 
-    returns image filename, succes/failure, message if modification
-    returns [] if no change */
+				returns image filename, succes/failure, message if modification
+				returns [] if no change */
 
-function fixEmbeddedImage(img){
- 
-  if (!img.layer.printable) return []; // we don't care about non-printing information layers
+		  function fixEmbeddedImage(img){
+			
+			 if (!img.layer.printable) return []; // we don't care about non-printing information layers
 
-  // setup
+			 // setup
 
-  var activeLayer  = img.layer;
-  var activeParent = img.parent;
+			 var activeLayer  = img.layer;
+			 var activeParent = img.parent;
 
-  // save state
+			 // save state
 
-  var activeLayerLocked   = img.layer.locked;
-  var activeParentLocked  = img.parent.locked;
+			 var activeLayerLocked   = img.layer.locked;
+			 var activeParentLocked  = img.parent.locked;
 
-  var activeLayerVisible  = img.layer.visible;
-  var activeParentVisible = img.parent.visible;
+			 var activeLayerVisible  = img.layer.visible;
+			 var activeParentVisible = img.parent.visible;
 
-  if (img.name == '') var imgName = 'Missing image';
-  else var imgName = img.name;
+			 if (img.name == '') var imgName = 'Missing image';
+			 else var imgName = img.name;
 
-  var imgDepth    = img.absoluteZOrderPosition;
-  var parentLocks = unlockHierarchy(img);
+			 var imgDepth    = img.absoluteZOrderPosition;
+			 var parentLocks = unlockHierarchy(img);
 
-  // is original findable?
+			 // is original findable?
 
-  var fileMissing
+			 var fileMissing
 
-  try{
-    var newName = img.file;   // usually contains original file, even if image is embedded
-    var newFile = new File(newName);
-    fileMissing = false;
-  }
-  catch(e){ fileMissing = true; }
+			 try{
+				var newName = img.file;   // usually contains original file, even if image is embedded
+				var newFile = new File(newName);
+				fileMissing = false;
+			 }
+			 catch(e){ fileMissing = true; }
 
-  if (img.status != 'RasterLinkState.DATAFROMFILE') // this is a precaution
-    fileMissing = true;                             // not encountered so far
+			 if (img.status != 'RasterLinkState.DATAFROMFILE') // this is a precaution
+				fileMissing = true;                             // not encountered so far
 
-  // original is missing so highlight it
+			 // original is missing so highlight it
 
-  if(fileMissing)
-    var newImg = drawYellowRectangle(img);
+			 if(fileMissing)
+				var newImg = drawYellowRectangle(img);
 
-  // original is found so re-link it
+			 // original is found so re-link it
 
-  else{
-    var newImg  = activeParent.placedItems.add();
-    newImg.file = newFile;
-  
-    for (var key in img){
-      try{ newImg[key] = img[key]; }
-      catch(e){}
-    }
-   
-    var moveMatrix  = app.getScaleMatrix(100,-100);
-    var totalMatrix = concatenateRotationMatrix(moveMatrix, 10);
-    newImg.transform(moveMatrix);
-  }
+			 else{
+				var newImg  = activeParent.placedItems.add();
+				newImg.file = newFile;
+			 
+				for (var key in img){
+				  try{ newImg[key] = img[key]; }
+				  catch(e){}
+				}
+			  
+				var moveMatrix  = app.getScaleMatrix(100,-100);
+				var totalMatrix = concatenateRotationMatrix(moveMatrix, 10);
+				newImg.transform(moveMatrix);
+			 }
 
-  // correct depth of image
+			 // correct depth of image
 
-  while (newImg.absoluteZOrderPosition > imgDepth+1)
-    newImg.zOrder(ZOrderMethod.SENDBACKWARD); 
+			 while (newImg.absoluteZOrderPosition > imgDepth+1)
+				newImg.zOrder(ZOrderMethod.SENDBACKWARD); 
 
-  // clean up & prepare response
-  if (fileMissing){
-    var msg = '(highlighted)';
-    var success = false;
-    newImg.name = '▼ embedded image';
-  }
-  else{
-    var msg = 'file relinked';
-    var success = true;
-    newImg.name = imgName;
-    img.remove();
-  }
+			 // clean up & prepare response
+			 if (fileMissing){
+				var msg = '(highlighted)';
+				var success = false;
+				newImg.name = '▼ embedded image';
+			 }
+			 else{
+				var msg = 'file relinked';
+				var success = true;
+				newImg.name = imgName;
+				img.remove();
+			 }
 
-  relockHierarchy(parentLocks)
+			 relockHierarchy(parentLocks)
 
-  return [imgName, success, msg];
-}
+			 return [imgName, success, msg];
+		  }
 
 /*———————————————————————————————————————— fixPlacedImage(obj)
 
@@ -464,6 +464,36 @@ function inSync(doc){
   }
 
   return true;
+}
+
+/*———————————————————————————————————————— drawYellowRectangle(obj)
+
+  create translucent rectangle to signal embedded images
+  that can't be found and need to be replaced */
+
+function drawYellowRectangle(obj){
+  var alertColor = new RGBColor();
+  alertColor.red = 192; alertColor.green = 255; alertColor.blue = 0;
+  
+  var r = obj.geometricBounds; // coords [left -top right -bottom]
+
+  var rLeft   = r[0];
+  var rNegTop = r[1];
+  var rWidth  = r[2]-r[0];
+  var rHeight = r[1]-r[3];
+
+  // unlock activeLayer
+
+  // isg81 -top, left, width, height
+  var rec = obj.parent.pathItems.rectangle( rNegTop, rLeft, rWidth, rHeight );
+
+  rec.filled = true;
+  rec.stroked = false;
+  rec.fillColor = alertColor;
+  rec.opacity = 50;
+  rec.name = 'UNFIXABLE IMAGE'
+
+  return rec;
 }
 
 

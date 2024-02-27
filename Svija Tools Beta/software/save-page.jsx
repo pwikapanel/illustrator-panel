@@ -217,6 +217,32 @@ function saveSvgs(doc){
 
 }
 
+/*———————————————————————————————————————— openFolder(lastPath)
+
+    open dialog with folder of most recent document */
+
+function openFolder(lastPath, url){
+  var slashPos = lastPath.lastIndexOf('/')
+  var newPath = lastPath.substr(0, slashPos)
+  var localFolder = Folder(newPath)
+  var prpt = url
+  try{      localFolder.openDlg(prpt, '', true) }
+  catch(errMsg){ alert(errMsg)                  }
+}
+
+/*———————————————————————————————————————— openPage(lastPath)
+
+    opens most recently closed file */
+
+function openPage(lastPath, url){
+  var slashPos = lastPath.lastIndexOf('/')
+  var newPath = lastPath.substr(0, slashPos)
+  var openFile = new File(lastPath)
+  try{
+    app.open(openFile)
+  }catch(e){ openFolder(lastPath, url) }
+}
+
 
 //:::::::::::::::::::::::::::::::::::::::: main functions
 

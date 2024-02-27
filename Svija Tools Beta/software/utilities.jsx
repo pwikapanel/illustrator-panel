@@ -44,36 +44,6 @@ function convertArray(arr){
   return result.join('\n');
 }
 
-/*———————————————————————————————————————— drawYellowRectangle(obj)
-
-  create translucent rectangle to signal embedded images
-  that can't be found and need to be replaced */
-
-function drawYellowRectangle(obj){
-  var alertColor = new RGBColor();
-  alertColor.red = 192; alertColor.green = 255; alertColor.blue = 0;
-  
-  var r = obj.geometricBounds; // coords [left -top right -bottom]
-
-  var rLeft   = r[0];
-  var rNegTop = r[1];
-  var rWidth  = r[2]-r[0];
-  var rHeight = r[1]-r[3];
-
-  // unlock activeLayer
-
-  // isg81 -top, left, width, height
-  var rec = obj.parent.pathItems.rectangle( rNegTop, rLeft, rWidth, rHeight );
-
-  rec.filled = true;
-  rec.stroked = false;
-  rec.fillColor = alertColor;
-  rec.opacity = 50;
-  rec.name = 'UNFIXABLE IMAGE'
-
-  return rec;
-}
-
 /*———————————————————————————————————————— dumpKeys(obj)
 
     provides a alert listing all keys in a dictionary */
