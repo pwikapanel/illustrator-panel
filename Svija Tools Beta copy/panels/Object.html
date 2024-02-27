@@ -1,0 +1,1119 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<script type="text/javascript" src="js/CSInterface.js"></script>
+
+<script>/* load external scripts & set up environment */
+
+/*———————————————————————————————————————— announce any errors */
+
+window.addEventListener('error', (event)=>{ alert(event.message) })
+
+/*———————————————————————————————————————— create CS Interface */
+
+var         ai = new CSInterface();
+
+/*———————————————————————————————————————— load external scripts */
+
+const env_path = ai.getSystemPath(SystemPath.EXTENSION) + encodeURI('/scripts/');
+
+var file
+
+file = env_path + 'LoadPreferences.jsx'
+ai.evalScript("$.evalFile('" + file + "')")
+  
+file = env_path + 'Utilities.jsx'
+ai.evalScript("$.evalFile('" + file + "')")
+  
+file = env_path + 'Object.jsx'
+ai.evalScript("$.evalFile('" + file + "')")
+  
+file = env_path + 'CreateGroupNew.jsx'
+ai.evalScript("$.evalFile('" + file + "')")
+  
+file = env_path + 'SaveNew.jsx'
+ai.evalScript("$.evalFile('" + file + "')")
+
+// file = env_path + encodeURI('CheckNew.jsx')
+// ai.evalScript("$.evalFile('" + file + "')")
+
+
+</script>
+
+<style>/* all stylesheets */
+
+/*———————————————————————————————————————— basic tags */
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  background-color:#535353;
+  color:white;
+  margin:0;
+  font-family:'Lucida Grande';
+  font-size:12px;
+  line-height:17px;
+}
+
+input:focus{ /* get rid of blue line when focused */
+    outline: none!important;
+    box-shadow: none!important;
+}
+
+/*———————————————————————————————————————— font families */
+
+@font-face {
+  font-family:'Lucida Grande';
+  font-weight:normal;
+  src:url('../fonts/Lucida Grande.woff') format('woff');
+}
+
+@font-face {
+  font-family:'Lucida Grande';
+  font-weight:bold;
+  src:url('../fonts/Lucida Grande Bold.woff') format('woff');
+}
+
+/*———————————————————————————————————————— colors */
+
+:root {
+
+  --online      : #ccff00;
+  --offline     : #888;
+
+  --indicatorOn : #bbb;
+  --indicatorOff: #888;
+
+}
+
+/*———————————————————————————————————————— indicators & mouseover */
+
+#indicatorRow{
+  margin-top:0px;
+
+  font-family:'Lucida Grande';
+  font-size:8px;
+  font-weight:bold;
+  letter-spacing:1px;
+  color:#aaa;
+  user-select: none;
+}
+
+#indOnline{
+  margin-left:12px;
+  margin-right:10px;
+  width: 20px;
+  height: 8px;
+  background-color:var(--offline);
+  border:none;
+}
+
+.inpIndicator{
+  border:none;
+  background:none;
+  height:20px;
+
+  margin-left:0px;
+  margin-bottom:2px;
+
+  font-family:'Lucida Grande';
+  font-weight:bold;
+  font-size:8px;
+  line-height:22px;
+
+  color: var(--indicatorOff);
+  cursor:default;
+  text-transform:uppercase;
+
+}
+
+.inpIndicator:hover{
+  cursor:pointer;
+}
+
+#mouseover{
+  margin-left:15px;
+  color:white;
+  letter-spacing:0;
+  font-weight:normal;
+  font-size:11px;
+}
+
+/*———————————————————————————————————————— display field & save button */
+
+#txtDisplay{
+  width:700px;
+  height:32px;
+  font-family:'Lucida Grande';
+  font-weight:regular;
+  font-size:14px;
+  padding:5px;
+  padding-left:8px;
+  background-color:#aaa;
+  border:1px solid #616161;
+  border-radius:3px;
+  margin-top:8px;
+  margin-left:10px;
+
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+#txtDisplay:focus{
+  background-color:white;
+}
+
+#btnSave{
+  width:40px;
+  height:32px;
+  color:#d1d1d1;
+  background-color:#888;
+  border:1px solid #616161;
+  border-radius:3px;
+  font-family:'Lucida Grande';
+  font-size:21px;
+  line-height:10px;
+  padding:5px;
+  padding-top:0px;
+  padding-bottom:-4px;
+
+  margin-top:8px;
+  margin-left:10px;
+  cursor:pointer;
+}
+
+#btnSave:hover{
+  background-color:#777;
+}
+
+#btnSave:active{
+  background-color:#08f;
+}
+
+#objType{
+  width:200px;
+  height:12px;
+  margin-top:5px;
+  font-family:'Lucida Grande';
+  font-size:11px;
+  line-height:15px;
+  color:#aaa;
+  padding:0 0 0 30px;
+  background:none;
+  border:none;
+  cursor:default;
+}
+
+/*———————————————————————————————————————— sync buttons */
+
+input.hubIcon{
+  height:18px;
+  width:64px;
+  border:1px solid #383838;
+  border-radius:3px;
+  margin-left:10px;
+  margin-top:5px;
+  font-family:'Lucida Grande';
+  font-weight:bold;
+  font-size:11px;
+  line-height:10px;
+  color:#888;
+  background-color:#555;
+  cursor:pointer;
+  text-transform:uppercase;
+}
+
+input.hubIcon:hover{
+  background-color:#444;
+}
+
+input.hubIcon:active{
+  background-color:#222;
+}
+
+/*———————————————————————————————————————— show more button */
+
+#showMore{
+  color:#aaa;
+  background-color:#424242;
+  border:1px solid #383838;
+  border-bottom:none;
+  cursor:pointer;
+
+  font-size:11px;
+  font-weight:bold;
+  position:absolute;
+  right:0;
+  top:93px;
+  width:70px;
+  height:22px;
+  rotation:-20deg;
+}
+
+#bottomSection{
+  margin-top:0px;
+  background-color:#424242;
+  height:34px;
+  border-top:1px solid #383838;
+  padding-top:2px;
+  padding-bottom:6px;
+}
+
+/*———————————————————————————————————————— icon buttons */
+
+.buttOnly{
+  color:#aaa;
+  background:none;
+  border:none;
+  font-size:22px;
+  vertical-align:-4px;
+  cursor:pointer;
+}
+
+.buttOnly:hover{
+  color:white;
+}
+
+#dumpLS:link{
+  color:#999;
+  text-decoration:none;
+  font-family:'Lucida Grande';
+  font-size:12px;
+  line-height:14px;
+}
+
+#dumpLS:hover{
+  color:white;
+}
+
+/*———————————————————————————————————————— spinner */
+
+#spinner{
+  display:none;
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background-color:#535353;
+  background-image:url(../images/spinner.gif);
+  background-repeat:no-repeat;
+  background-position:50% 50%;
+  background-size:10%;
+}
+
+/*———————————————————————————————————————— completion */
+
+div#completion{
+  display:none;
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background-color:#535353;
+  color:white;
+}
+
+
+</style>
+
+</head><body><!-- all html -->
+<div id='indicatorRow'>
+  <input id='indOnline'                                       title='État de connexion Internet'                       type='button'>
+  <input id='indGrid'   class='inpIndicator' value='0:0'      title='Grille magnétique (alt-cliquer pour inverser)'    type='button'>
+  <input id='indGuide'  class='inpIndicator' value='répère'   title='Répères magnétiques (alt-cliquer pour inverser)'  type='button'>
+  <input id='indPoint'  class='inpIndicator' value='point'    title='Points magnétiques'                               type='button'>
+  <input id='indPixel'  class='inpIndicator' value='pixel'    title='Pixels magnétiques (voir menu Affichage)'         type='button'>
+  <input id='indSmart'  class='inpIndicator' value='commenté' title='Repères commentés (alt-cliquer pour inverser)'    type='button'>
+  <input id='indReload' class='inpIndicator' value='reload'   title='Actualiser le contenu de ce panneau'              type='button' onclick='location.reload()'> 
+  <input id='dumpLS'    class='inpIndicator' value='LS'       title='Afficher les informations stockées'               type='button' onclick='javascript:dumpLocal()'>
+  <span id='mouseover'></span>
+</div>
+
+<input id='txtDisplay' type='text' placeholder='' title="Informations à propos de l'élément sélectionné" value='—'>
+<input id='btnSave'    type='button' value='↯' title='Sauvegarder la page (alt pour sauvegarder toutes les pages)'
+                                                 alt='Ouvrir un ficher (alt pour ouvrir le fichier le plus récent)'><br>
+
+<input id='objType' type='text' onfocus='this.blur();' title="Type d'object sélectionné"><br>
+
+<input id='placeImage'  class='hubIcon'  type='button' value='img'     title='Importer une image'>
+<input id='changeCase'  class='hubIcon'  type='button' value='casse'   title='Changer la casse'>
+<input id='launchSite'  class='hubIcon'  type='button' value='site'    title='Ouvrir le site web dans le navigateur'>
+<input id='launchCloud' class='hubIcon'  type='button' value='cloud'   title='Ouvrir Svija Cloud dans le navigateur'>
+<input id='showFolder'  class='hubIcon'  type='button' value='dossier' title='Ouvrir le dossier local'>
+<input id='createGrp'   class='buttOnly' type='button' value='⧉' title='Créer un groupe'>
+
+<br><input id='showMore' type='button' value='• • •' title='plus de capacités en bas'>
+
+<div id='bottomSection'>
+<input id='makeHome'    class='hubIcon'  type='button' value='home'    title="Cette page sera la page d'accueil">
+<input id='chkRepair'   class='hubIcon'  type='button' value='check'   title='Vérifier & réparer le fichier'>
+<input id='launchCache' class='hubIcon'  type='button' value='cache'   title='Vider le cache (si activé)'>
+<input id='newPage'     class='hubIcon'  type='button' value='+page'   title='Nouvelle page (alt pour nouveau module)'>
+<input id='newProject'  class='hubIcon'  type='button' value='+projet'  title='Créer un nouveau projet Svija'>
+<input id='getSupport'  class='hubIcon'  type='button' value='support' title='Chercher du support technique'>
+</div>
+
+
+<script>/* all body javascript */
+
+/*:::::::::::::::::::::::::::::::::::::::: control functions */
+
+/*———————————————————————————————————————— getEnvironment(arg)
+
+    gets info about ai-land and updates
+    environmental variables in panel-land constantly.
+
+    all info is stored in localStorage unless empty */
+
+//setInterval(getEnvironmentInit, 300)
+
+localStorage.myDocs = ai.getSystemPath(SystemPath.MY_DOCUMENTS);
+
+//setTimeout(function(){
+setInterval(function(){
+  var scrpt = 'getEnvironment("' + localStorage.myDocs + '")'
+  ai.evalScript(scrpt, getEnvironment)
+}, 300);
+
+//function getEnvironmentInit(){ ai.evalScript('getEnvironment("' + localStorage.myDocs + '")', getEnvironment) }
+
+
+var btnSaveTitle = btnSave.title
+
+function getEnvironment(val){
+
+  // 
+  file = env_path + 'LoadPreferences.jsx'
+  ai.evalScript("$.evalFile('" + file + "')")
+
+  var lines = val.split('¬')
+
+  for (var x=0; x<lines.length; x+=1){
+    var [key_, value_] = lines[x].split('|')
+    if (value_ != '')
+      localStorage.setItem(key_, value_);
+  }
+
+  // set online status light ————————————————————————————————————————
+
+  if (navigator.onLine) indOnline.style.backgroundColor = 'var(--online)'
+                   else indOnline.style.backgroundColor = 'var(--offline)'
+
+  // set title ——————————————————————————————————————————————————————
+
+  if (typeof localStorage.url == 'undefined')
+    localStorage.url = ''
+
+  if (localStorage.url != '')
+    ai.setWindowTitle(localStorage.url)
+  else
+    ai.setWindowTitle('Svija Tools 3.0')
+
+  // set save button mouseover ——————————————————————————————————————
+
+  if (localStorage.openFiles == 0) btnSave.title = btnSave.alt
+  else                             btnSave.title = btnSaveTitle
+
+  // set grid spacing ———————————————————————————————————————————————
+
+  var gridLine = localStorage.gridLine
+  var gridSub  = localStorage.gridSub
+
+  indGrid.value = gridLine + ' ⋮ ' + gridSub
+
+  // point indicator  ———————————————————————————————————————————————
+
+  if (localStorage.pointSnap == '1') indPoint.style.color = 'var(--indicatorOn)'
+  else                               indPoint.style.color = 'var(--indicatorOff)'
+
+  // pixel indicator  ———————————————————————————————————————————————
+
+  if (localStorage.pixelSnap == '1') indPixel.style.color = 'var(--indicatorOn)'
+  else                               indPixel.style.color = 'var(--indicatorOff)'
+
+  // object properties  —————————————————————————————————————————————
+
+  txtDisplay.value = localStorage.select
+  objType.value    = localStorage.selectType
+  
+
+}
+
+
+/*———————————————————————————————————————— grid indicator */
+
+indGrid.addEventListener('mouseup', (evn) => {
+  var swap = evn.getModifierState('Alt');
+  if (swap) setGrid(true); else setGrid(false)
+})
+
+if (typeof localStorage.gridSnap == 'undefined') localStorage.gridSnap = 'true';
+if (localStorage.gridSnap == 'true')             localStorage.gridSnap = 'false'
+else                                             localStorage.gridSnap = 'true'
+
+setGrid(true)
+
+function setGrid(swap){
+
+  if (localStorage.gridSnap == 'true'){
+    localStorage.gridSnap = 'false'
+    indGrid.style.color = 'var(--indicatorOff)'
+  }
+  else{
+    localStorage.gridSnap = 'true'
+    indGrid.style.color = 'var(--indicatorOn)'
+  }
+
+  if (!swap) ai.evalScript('menuCommand("snapgrid")')
+}
+
+/*———————————————————————————————————————— guides indicator */
+
+indGuide.addEventListener('mouseup', (evn) => {
+  var swap = evn.getModifierState('Alt');
+  if (swap) setGuide(true); else setGuide(false)
+})
+
+if (typeof localStorage.guideSnap == 'undefined') localStorage.guideSnap = 'true';
+if (localStorage.guideSnap == 'true')             localStorage.guideSnap = 'false'
+else                                              localStorage.guideSnap = 'true'
+
+setGuide(true)
+
+function setGuide(swap){
+
+  if (localStorage.guideSnap == 'true'){
+    localStorage.guideSnap = 'false'
+    indGuide.style.color = 'var(--indicatorOff)'
+  }
+  else{
+    localStorage.guideSnap = 'true'
+    indGuide.style.color = 'var(--indicatorOn)'
+  }
+
+  if (!swap) ai.evalScript('menuCommand("showguide")')
+}
+
+/*———————————————————————————————————————— point indicator */
+
+indPoint.addEventListener('mouseup', (evn) => {
+  setPoint()
+})
+
+function setPoint(){
+
+  if (localStorage.pointSnap == 'true') indPoint.style.color = 'var(--indicatorOff)'
+  else                                  indPoint.style.color = 'var(--indicatorOn)'
+
+  ai.evalScript('menuCommand("snappoint")')
+}
+
+/*———————————————————————————————————————— pixel indicator NO WAY TO IMPLEMENT */
+
+indPixel.addEventListener('mouseup', (evn) => {
+  setPixel()
+})
+
+function setPixel(){
+  lert('Menu « Affichage »\r6e avant dernier')
+}
+
+/*function setPixel(){
+
+  if (localStorage.pixelSnap == 'true') indPixel.style.color = 'var(--indicatorOff)'
+  else                                  indPixel.style.color = 'var(--indicatorOn)'
+
+  ai.evalScript('setPreference("snappixel", 1)')
+} */
+
+/*———————————————————————————————————————— smart guides indicator */
+
+indSmart.addEventListener('mouseup', (evn) => {
+  var swap = evn.getModifierState('Alt');
+  if (swap) setSmart(true); else setSmart(false)
+})
+
+if (typeof localStorage.smartSnap == 'undefined') localStorage.smartSnap = 'true';
+if (localStorage.smartSnap == 'true')             localStorage.smartSnap = 'false'
+else                                              localStorage.smartSnap = 'true'
+
+setSmart(true)
+
+function setSmart(swap){
+
+  if (localStorage.smartSnap == 'true'){
+    localStorage.smartSnap = 'false'
+    indSmart.style.color = 'var(--indicatorOff)'
+  }
+  else{
+    localStorage.smartSnap = 'true'
+    indSmart.style.color = 'var(--indicatorOn)'
+  }
+
+  if (!swap) ai.evalScript('menuCommand("Snapomatic on-off menu item")')
+}
+
+
+/*———————————————————————————————————————— launch site & cloud */
+
+  launchSite.addEventListener('mouseup', launchUrl.bind(null, ''));
+  launchCloud.addEventListener('mouseup', launchUrl.bind(null, '/c'));
+
+  function launchUrl(arg){
+    if(localStorage.isSvija == 0){
+      lert('Not a Svija site.')
+      return true
+    }
+    url = localStorage.url
+    ai.openURLInDefaultBrowser('https://' + url + arg)
+  }
+
+/*———————————————————————————————————————— open folder */
+
+const pcOpener  = 'C:\\Windows\\explorer.exe'
+const macOpener = '/usr/bin/open'
+
+showFolder.addEventListener('mouseup', openFolder);
+
+function openFolder(){
+
+  if (isMac()) var opener = macOpener
+  else         var opener = pcOpener
+
+  var path = localStorage.lastPath
+
+  if (path == ''){
+    lert('Pas de projet Svija enregistré')
+    return true
+  }
+
+  path = path.substr(0, path.lastIndexOf('/'))
+  window.cep.process.createProcess(opener, path)
+}
+
+/*———————————————————————————————————————— create group
+
+    */
+
+  createGrp.addEventListener("click", createGroupInit)
+
+  function createGroupInit(){
+    ai.evalScript("createGroup()", feedbackSimple)
+  }
+
+/*———————————————————————————————————————— save & open
+
+    saves file
+    +alt saves all files
+
+    if no open file, will open a file
+    +alt opens most recently closed file */
+
+btnSave.addEventListener('click', (evn) => {
+  var shift = evn.getModifierState('Shift');
+  var ctrl  = evn.getModifierState('Control');
+  var alt   = evn.getModifierState('Alt');
+
+  if (alt) saveOpen(true)
+  else saveOpen(false)
+})
+
+function saveOpen(alt){
+  if (localStorage.openFiles > 0){
+    if (alt){ aiTimeout('savePage("true")',  'feedback', 100) }
+    else    { aiTimeout('savePage("false")', 'feedback', 100) }
+    return true
+  }
+
+  if (localStorage.lastPath == ''){
+    ai.evalScript('menuCommand("open")'); 
+    return true
+  }
+
+  var str = localStorage.lastPath + '", "' + localStorage.url
+  if (alt){ ai.evalScript(  'openPage("' + str + '")') }
+  else    { ai.evalScript('openFolder("' + str + '")') }
+
+}
+
+// /*———————————————————————————————————————— check & repair 
+// 
+//     */
+// 
+//   chkRepair.addEventListener("click", checkRepairInit)
+// 
+//   function checkRepairInit(){
+//     ai.evalScript("checkRepairx()", feedback)
+//   }
+
+/*———————————————————————————————————————— new page/module COMMENTED OUT
+
+    saves file
+    +alt saves all files
+
+    if no open file, will open a file
+    +alt WILL open most recently closed file */
+
+// newPage.addEventListener("click", (evn) => {
+//   var shift = evn.getModifierState("Shift");
+//   var ctrl  = evn.getModifierState("Control");
+//   var alt   = evn.getModifierState("Alt");
+// 
+//   if (alt) createNewModule()
+//   else createNewPage()
+// })
+// 
+// function createNewModule(){
+//   lert('new module')
+// }
+// 
+// function createNewPage(){
+//   lert('new page')
+// }
+// 
+// //  function savePage(arg){
+// //    if (localStorage.openFiles < 1){
+// //      ai.evalScript('menuCommand("open")')
+// //      return true
+// //    }
+// //    else
+// //      spinner.style.display='block'
+// //      aiTimeout('savePage("'+arg+'")', 'feedback', 100)
+// //  }
+// //  
+// //  function openLast(){
+// //    lert('open last file used')
+// //  }
+// //  
+// //  function aiTimeout(script, callback, delay){
+// //    setTimeout(ai.evalScript, 1*delay, script, window[callback])
+// //  }
+// 
+
+/*———————————————————————————————————————— set object properties COMMENTED OUT
+
+    */
+
+// I have a problem where the above code is updated if it doesn't match.
+// I need to know if the field is focused and not update it if it is
+// but if it is, I
+
+//   txtDisplay.addEventListener('change', snooky);
+
+//   function snooky(){
+//     ai.evalScript('newName=' + txtDisplay.value)
+//     ai.evalScript("updateName()")
+//   }
+
+//   txtDisplay.addEventListener('keydown', function onEvent(event) {
+//     if (event.key === "Enter") {
+//       ai.evalScript("alert('Pressed Return')")
+//     }
+// });
+
+// /* setTimeout(launchScript, 100)
+// function launchScript(){
+
+//   script="Object.jsx"
+//   file = env_path + encodeURI(script)
+
+//   param="1"
+
+//   ai.evalScript("param = '" + param + "'")
+
+//   ai.evalScript("getState()", callback)
+// }
+
+// function callback(result){
+//   display.value=result
+// } */
+
+/*———————————————————————————————————————— windowExpand()
+
+    manages the panel height and the expand button */
+
+var collapsedHeight = 115
+var expandedHeight  = 142
+
+showMore.addEventListener('click', windowExpand)
+windowExpand()
+
+function windowExpand(){
+  var currentWidth  = parent.window.innerWidth
+  var currentHeight = parent.window.innerHeight
+
+  if (currentHeight != collapsedHeight){
+    bottomSection.style.display='none'
+    ai.resizeContent(currentWidth, collapsedHeight)
+  }
+  else{
+    bottomSection.style.display='block'
+    ai.resizeContent(currentWidth, expandedHeight)
+  }
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::: utility functions */
+
+/*———————————————————————————————————————— waitScreen()
+
+    starts the wait screen during long operations
+    called by aiTimeout() */
+
+function waitScreen(){
+    spinner.style.display='block'
+}
+
+/*———————————————————————————————————————— aiTimeout(script, callback, delay)
+
+    executes a script after a short delay to give the spinner
+    time to be displayed correctly */
+
+function aiTimeout(script, callback, delay){
+  waitScreen()
+  setTimeout(ai.evalScript, 1*delay, script, window[callback])
+}
+
+/*———————————————————————————————————————— feedbackSimple()
+
+    feedback only if error, for simple operations */
+
+  function feedbackSimple(arg){
+    if (arg != ''){
+      spinner.style.display='none'
+      completion.style.display='block'
+      completion.innerHTML = '<pre>' + arg + '</pre>'
+      setTimeout(clearCompletion, 2000)
+    }
+  }
+
+/*———————————————————————————————————————— feedback(arg)
+
+    fils out feedback square */
+
+  function feedback(arg){
+    spinner.style.display='none'
+    completion.style.display='block'
+    completion.innerHTML = '<pre>' + arg + '</pre>'
+    setTimeout(clearCompletion, 2000)
+  }
+
+/*———————————————————————————————————————— clear completion */
+
+  function clearCompletion(){
+    completion.style.display = 'none'
+  }
+
+/*———————————————————————————————————————— isMac() */
+
+function isMac(){
+  var os = ai.getOSInformation()
+  if (os.substring(0,3) == 'Mac') return true
+  else return false
+}
+
+/*———————————————————————————————————————— lert(msg)
+
+    alerts in ai-land don't exit program space */
+
+function lert(msg){
+  msg = JSON.stringify(String(msg));
+  msg = msg.substr(1, msg.length-2)
+  //alert(msg)
+  ai.evalScript('alert("' + msg + '")')
+}
+
+/*———————————————————————————————————————— dumpLocal() */
+
+// localStorage.removeItem('undefined')
+
+function dumpLocal(){
+  var res = 'localStorage contains '+localStorage.length + ' items:\n\n'
+
+  for (var key in localStorage){
+    if (localStorage.hasOwnProperty(key)){
+      if (key.length       == 0      ) localStorage.removeItem(key)
+      if (key.substr(0, 5) == 'Error') localStorage.removeItem(key)
+      else
+        res += key +': '+ localStorage[key] + '\n'
+    }
+  }
+
+  alert(res)
+}
+
+
+/*———————————————————————————————————————— tooltips
+
+    need to set a delay and if still over, show tooltip
+
+    tooltip for save needs to change depending on whether
+    a document is open (changes from save to open)  */
+
+var ttDelay = 700
+
+var targetList = ['indOnline',  'indGrid',    'indGuide', 'indPoint', 'indPixel', 'indSmart', 'indReload', 'dumpLS',
+                  'txtDisplay', 'btnSave',    'objType',
+                  'placeImage', 'changeCase', 'launchSite', 'launchCloud', 'showFolder', 'createGrp',
+                  'makeHome',   'chkRepair',  'launchCache', 'newPage', 'newProject', 'getSupport']
+
+for (x=0; x<targetList.length; x++){
+  window[targetList[x]].addEventListener('mouseover', function(e){
+    e.currentTarget.over = true
+    setTimeout(showTip, ttDelay, e.currentTarget.id)
+  })
+
+  window[targetList[x]].addEventListener('mouseout' , function(e){
+    e.currentTarget.over = false
+    mouseover.innerHTML = ''
+  })
+}
+
+
+function showTip(objName){
+  if(window[objName].over)
+    mouseover.innerHTML = window[objName].title
+}
+
+
+</script>
+
+<div id='spinner' onclick="this.style.display='none'"></div>
+<div id='completion' onclick="this.style.display='none'"></div>
+
+</body></html><!--
+
+NOTES ETC.
+
+create gropu should work on multiple objects, because why not.
+
+button to center obj on page, left, top, right, bottom
+
+XXX MISMATCH BETWEEN OPEN DIALOG TITLE & ACTUAL FOLDER
+after working on the vbca red round logo, I clicked the open button and saw vbca.svija.site
+but was really in centrefrance.levillagebyca.com
+clicking "dossier" had the same problem
+because url.txt was missing from cnetrefrance…
+
+how to specify levels to change height when double click on top tab?
+
+ruler	: View > Rulers > Show Rulers
+rulerCoordinateSystem	: View > Rulers > Change to Global Rulers
+Find and Replace : Edit > Find & Replace
+UpperCase : Change Case Item	Type > Change Case > UPPERCASE
+LowerCase : Change Case Item	Type > Change Case > lowercase
+Title Case : Change Case Item	Type > Change Case > Title Case
+Sentence case : Change Case Item	Type > Change Case > Sentence case
+
+next steps:
+
+  • mouseover doesn't go away on click
+  • missing url.txt should provoke an alert instead of showing the wrong site
+  • user new info to make point & pixel reflect actual status, remove alt-click
+  
+  lower case = "LowerCase Change Case Item" & "UpperCase Change Case Item"
+  make one button — does opposite of first letter
+  
+  reset 0,0 automaticslly
+  global/artboard rulers
+  
+  logo when expanded?
+  fix check & repair
+  
+  save svg w/o AI name, maybe w/prefix
+  append artboard widths?`
+
+  save files sizes in a table and show them at all times
+
+  button make home page / new page / new module / new site
+
+  add alerts to the Adobe CEP panel to see what is actually added to the flyout menu
+
+  move "reload" to flyout menu
+
+
+  tab in middle of bottom to make panel taller or shorter
+
+  cmd/ctrl click open to reopen most recent file (need to store file path all the time)
+		IF IT'S NOT STILL OPEN
+
+  change save button icon when alt is pressed
+
+  set rulers to artboard rulers, set 0,0 correctly
+
+  nicer format of save complete message & increase delay before closing
+  preference for beep when done
+  buttons to set uppercase/lowercase
+  access to find/replace more easily
+
+  integrate into repo to avoid data loss
+
+  ———————————————————————————————————————— more ambitious
+
+  check for /sync/sync/, __init__.py and signs of other trouble
+
+  add link destination field, modifiable
+
+  get return character to submit display field
+  - multiple lines of feedback for nested groups
+  - possiblity to swap labels in nested hierarchy
+  textarea readonly for display
+
+  try mp4 for spinner, maybe hardware acceleration will stop jankiness?
+
+  • clicking "open" should navigate to correct folder
+  • warning if folder is in iCloud
+
+  open/close panels (cs api's › open/close) to open other panels, main panel is a hub
+
+  https://www.davidebarranca.com/2014/01/html-panels-tips-3-get-data-from-jsx-send-it-to-html/
+  https://kagi.com/search?q=site%3Awww.davidebarranca.com+html+panel  -->
+
+
+<!-- <script>/* flyout html 1 */
+  
+	var setMenuXML;
+
+	function setPanelCallback(event) {
+		if (event.type === "com.adobe.csxs.events.flyoutMenuClicked") {
+			document.getElementById("ReturnObject").value = 'The menu ID is: ' + event.data.menuId + '\n' + 'The menu name is: ' + event.data.menuName;
+			GreenLightImg.style.display='inline'
+		} else if (event.type === "com.adobe.csxs.events.flyoutMenuOpened") {
+			GreenLightImg2.style.display='inline'
+		} else if (event.type === "com.adobe.csxs.events.flyoutMenuClosed") {
+			GreenLightImg3.style.display='inline'
+		}
+	}
+	
+	function checkCapabilities() {
+		if (ai.getHostCapabilities().EXTENDED_PANEL_MENU) {
+			document.getElementById('LabelList').removeAttribute('disabled');
+			document.getElementById('ItemEnabled').removeAttribute('disabled');
+			document.getElementById('ItemChecked').removeAttribute('disabled');
+			document.getElementById('UpdateMenuItem').removeAttribute('disabled');	
+			document.getElementById("CapabilityLabel").innerHTML  += 'true';		
+		}
+		else {
+			document.getElementById("CapabilityLabel").innerHTML  += 'false';	
+		}
+	}
+	
+	function onclickSetPanelMenu() {
+	  var menuXML = document.getElementById("TestMenuStructure").value;
+    ai.setPanelFlyoutMenu(menuXML, setPanelCallback);
+		setMenuXML = menuXML;
+		setMenuList();
+	}
+	
+	function onclickClearPanelMenu() {
+		ai.setPanelFlyoutMenu("", setPanelCallback);
+		setMenuXML = "";
+		setMenuList();
+	}
+
+	function onclickReset() {
+  	GreenLightImg.style.display='none'
+  	GreenLightImg2.style.display='none'
+  	GreenLightImg3.style.display='none'
+		document.getElementById("ReturnObject").value = "";
+	}	
+	
+	function onclickUpdateMenuItem(){
+		var list = document.getElementById("LabelList");	
+		ai.updatePanelMenuItem(list.options[list.selectedIndex].text, document.getElementById("ItemEnabled").checked, document.getElementById("ItemChecked").checked);
+	}
+	
+	function setMenuList() { 
+		var list = document.getElementById("LabelList");
+		list.innerHTML = "";
+		xmlDoc = $.parseXML(setMenuXML),
+		$xml = $(xmlDoc);
+		var i = 0;
+		$($xml).find("MenuItem").each(function() {
+			var option = document.createElement("option");
+			var name = $(this).attr("Label");
+			if (-1 == name.indexOf('---')) {
+			    option.value = ++i;
+				option.appendChild(document.createTextNode(name));
+				list.appendChild(option);
+			}
+		});
+	}
+
+    window.onload = function() {
+  	GreenLightImg.style.display='none'
+  	GreenLightImg2.style.display='none'
+  	GreenLightImg3.style.display='none'
+		ai.addEventListener("com.adobe.csxs.events.flyoutMenuClicked", setPanelCallback);
+		ai.addEventListener("com.adobe.csxs.events.flyoutMenuOpened", setPanelCallback);
+		ai.addEventListener("com.adobe.csxs.events.flyoutMenuClosed", setPanelCallback);
+		checkCapabilities();
+    } 
+
+</script>
+	
+<!-- flyout html 
+<p>menu structure<br>
+<textarea name="TestMenuStructure" id="TestMenuStructure" cols="80" rows="6" align="left">
+  <Menu>
+    <MenuItem Id="menuItemId1" Label="TestExample1" Enabled="true" Checked="false"/>
+    <MenuItem Label="TestExample2">
+      <MenuItem Label="TestExample2-1" >
+        <MenuItem Label="TestExample2-1-1" Enabled="false" Checked="true"/>
+      </MenuItem>
+      <MenuItem Label="TestExample2-2" Enabled="true" Checked="true"/>
+    </MenuItem>
+    <MenuItem Label="---" />
+    <MenuItem Label="TestExample3" Enabled="false" Checked="false"/>
+  </Menu>
+</textarea>
+
+<p>return object<br>
+<form id="formESP" name="formESP" method="post" action="">
+  <textarea name="ReturnObject" id="ReturnObject" cols="80" rows="4" align="left"></textarea>
+</form>
+
+<p>Dispatch XML (set menu):
+<form id="formIES" name="formIES" method="post" action="">
+  <input type="button" name="SetPanelMenu" id="SetPanelMenu" value="SetPanelMenu" onclick="onclickSetPanelMenu()" />
+</form>
+
+<p>Dispatch Null (clear menu):
+<form id="formIES" name="formIES" method="post" action="">
+  <input type="button" name="ClearPanelMenu" id="ClearPanelMenu" value="ClearPanelMenu" onclick="onclickClearPanelMenu()" />
+</form>
+
+<h3>Test flyout menu events</h3>
+
+Flyout MenuItem Clicked:
+<input type="image" name="GreenLightImg" id="GreenLightImg" src="../images/greenLED.png"/><br>
+
+Flyout MenuItem Opened:
+<input type="image" name="GreenLightImg2" id="GreenLightImg2" src="../images/greenLED.png"/><br>
+
+Flyout MenuItem Closed:
+<input type="image" name="GreenLightImg3" id="GreenLightImg3" src="../images/greenLED.png"/><br>
+
+<input type="button" value="Reset" onclick="onclickReset()" />
+
+<h3>Update Extension Menu Item:</h3>
+
+<p style="color: #FFF" id="CapabilityLabel">EXTENDED_PANEL_MENU is : </p>
+
+<form id="formESP" name="formESP" method="post" action="">
+Item Labels: <select name="LabelList" id="LabelList" style="width:300px" disabled="disable"/>
+</form>
+
+<form id="formIES" name="formIES" method="post" action="">
+Item Enabled: <input type="checkbox" name="ItemEnabled" id="ItemEnabled" disabled="disable"/>
+</form>
+
+<form id="formIES" name="formIES" method="post" action="">
+Item Checked: <input type="checkbox" name="ItemChecked" id="ItemChecked" disabled="disable"/>
+</form>
+
+<form id="formIES" name="formIES" method="post" action="">
+Dispatch: <input type="button" name="UpdateMenuItem" id="UpdateMenuItem" value="UpdateMenuItem" onclick="onclickUpdateMenuItem()" disabled="disable"/>
+</form> -->
+
+

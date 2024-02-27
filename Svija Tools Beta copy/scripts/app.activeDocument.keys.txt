@@ -1,0 +1,81 @@
+stationery: false
+fullName: ~/Desktop/example.svija.site/sync/trash.ai
+activeLayer: [Layer Layer 2]
+activeView: [View]
+geometricBounds: 94.5,150,1648.4365234375,-1000
+visibleBounds: 94.5,150,1648.4365234375,-1000
+rulerOrigin: 0,2000
+rulerUnits: RulerUnits.Pixels
+pageOrigin: 593.5,-8087
+cropBox: 0,0,1200,-2000
+cropStyle: CropOptions.Standard
+width: 1200
+height: 2000
+showPlacedImages: false
+outputResolution: 800
+printTiles: false
+selection: 
+splitLongPaths: false
+tileFullPages: false
+useDefaultScreen: true
+documentColorSpace: DocumentColorSpace.RGB
+name: trash.ai
+path: ~/Desktop/example.svija.site/sync
+isCloudDocument: false
+cloudPath: error
+saved: true
+<xmpTPg:HasVisibleOverprint>False</xmpTPg:HasVisibleOverprint>
+<xmpTPg:HasVisibleTransparency>False</xmpTPg:HasVisibleTransparency>
+<xmpTPg:NPages>1</xmpTPg:NPages>
+<xmpTPg:MaxPageSize rdf:parseType="Resource">
+<stDim:w>1200.000000</stDim:w>
+<stDim:h>2000.000000</stDim:h>
+<stDim:unit>Pixels</stDim:unit>
+</xmpTPg:MaxPageSize>
+<?xpacket end="w"?>
+rasterEffectSettings: error
+colorProfileName: 
+scaleFactor: 1
+assets: [Assets]
+artboards: [Artboards]
+compoundPathItems: [CompoundPathItems]
+layers: [Layers]
+pageItems: [PageItems]
+pathItems: [PathItems]
+tags: [Tags]
+views: [Views]
+rasterItems: [RasterItems]
+placedItems: [PlacedItems]
+embeddedItems: [EmbeddedItems]
+meshItems: [MeshItems]
+pluginItems: [PluginItems]
+graphItems: [GraphItems]
+nonNativeItems: [NonNativeItems]
+groupItems: [GroupItems]
+textFrames: [TextFrames]
+stories: [Stories]
+characterStyles: [CharacterStyles]
+paragraphStyles: [ParagraphStyles]
+
+	listStyles: [ListStyles]
+
+kinsokuSet: Hard,Soft
+mojikumiSet: YakumonoHankaku,GyomatsuYakumonoHankaku,GyomatsuYakumonoZenkaku,YakumonoZenkaku
+swatches: [Swatches]
+swatchGroups: [SwatchGroups]
+gradients: [Gradients]
+patterns: [Patterns]
+spots: [Spots]
+symbols: [Symbols]
+symbolItems: [SymbolItems]
+brushes: [Brushes]
+graphicStyles: [GraphicStyles]
+variables: [Variables]
+inkList: [Ink Process Cyan],[Ink Process Magenta],[Ink Process Yellow],[Ink Process Black]
+dataSets: [DataSets]
+legacyTextItems: [LegacyTextItems]
+symmetryRepeatItems: [SymmetryRepeatItems]
+radialRepeatItems: [RadialRepeatItems]
+gridRepeatItems: [GridRepeatItems]
+typename: document
+parent: [application adobe illustrator]
