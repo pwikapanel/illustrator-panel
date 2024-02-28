@@ -41,16 +41,16 @@
           <Menu>Svija Tools Beta</Menu>
             <Geometry>
               <Size>
-                  <Width>240</Width>
-                  <Height>80</Height>
+                  <Width>474</Width>
+                  <Height>75</Height>
               </Size>
               <MinSize>
-                  <Width>240</Width>
-                  <Height>20</Height>
+                  <Width>474</Width>
+                  <Height>75</Height>
               </MinSize>
               <MaxSize>
-                  <Width>900</Width>
-                  <Height>800</Height>
+                  <Width>474</Width>
+                  <Height>105</Height>
               </MaxSize>
             </Geometry>
           <Icons />

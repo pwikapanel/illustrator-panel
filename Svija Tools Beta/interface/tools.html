@@ -121,6 +121,8 @@ input:focus{ /* get rid of blue line when focused */
   background:none;
   height:20px;
 
+  padding:4px;
+  margin:0px;
   margin-left:0px;
   margin-bottom:2px;
 
@@ -139,7 +141,7 @@ input:focus{ /* get rid of blue line when focused */
   cursor:pointer;
 }
 
-/*———————————————————————————————————————— sync buttons */
+/*———————————————————————————————————————— buttons */
 
 input.hubIcon{
   height:18px;
@@ -166,62 +168,53 @@ input.hubIcon:active{
   background-color:#222;
 }
 
-/*———————————————————————————————————————— show more button */
+div#bottomSection input.hubIcon{
+  color:#777;
+  background-color:#383838;
+}
+
+div#bottomSection input.hubIcon:hover{
+  color:#aaa;
+  background-color:#484848;
+}
+
+div#bottomSection input.hubIcon:active{
+  background-color:#222;
+}
+
+
+/*———————————————————————————————————————— show more & bottom section */
 
 #showMore{
-  color:#aaa;
-  background-color:#424242;
-  border:1px solid #383838;
-  border-bottom:none;
+  color:#bbbbbb;
+  background:none;
+  border:none;
   cursor:pointer;
 
   font-size:11px;
   font-weight:bold;
   position:absolute;
   right:0;
-  top:93px;
-  width:70px;
+  top:0;
+  width:48px;
   height:22px;
   rotation:-20deg;
 }
 
+#showMore:hover{
+  color:var(--online);
+}
+
 #bottomSection{
-  margin-top:0px;
+  margin-top:6px;
   background-color:#424242;
-  height:34px;
+  height:35px;
   border-top:1px solid #383838;
   padding-top:2px;
   padding-bottom:6px;
 }
 
-/*———————————————————————————————————————— icon buttons */
-
-.buttOnly{
-  color:#aaa;
-  background:none;
-  border:none;
-  font-size:22px;
-  vertical-align:-4px;
-  cursor:pointer;
-}
-
-.buttOnly:hover{
-  color:white;
-}
-
-#dumpLS:link{
-  color:#999;
-  text-decoration:none;
-  font-family:'Lucida Grande';
-  font-size:12px;
-  line-height:14px;
-}
-
-#dumpLS:hover{
-  color:white;
-}
-
-/*———————————————————————————————————————— spinner */
+/*———————————————————————————————————————— spinner & feedback */
 
 #spinner{
   display:none;
@@ -236,9 +229,7 @@ input.hubIcon:active{
   background-size:10%;
 }
 
-/*———————————————————————————————————————— completion */
-
-div#completion{
+div#feedback{
   display:none;
   position:absolute;
   top:0; left:0;
@@ -248,13 +239,21 @@ div#completion{
   color:white;
 }
 
+.closeX{
+  position:absolute;
+  top:0; right:5px;
+  color:#333;
+  cursor:pointer;
+}
+
 /*———————————————————————————————————————— mouseover */
 
 div#mouseover{
-  margin-left:15px;
-  color:white;
+  margin-top:5px;
+  margin-left:12px;
+  color:#999;
   letter-spacing:0;
-  font-weight:normal;
+  font-weight:regular;
   font-size:11px;
 }
 
@@ -264,42 +263,39 @@ div#mouseover{
 </head><body>
 
 <div id='indicatorRow'>
-  <input id='indOnline'                                       title='État de connexion Internet'                       type='button'>
+  <input id='indOnline'                                       title='État de connexion Internet'                       type='button'> &nbsp; &nbsp;
   <input id='indGrid'   class='inpIndicator' value='0:0'      title='Grille magnétique (alt-cliquer pour inverser)'    type='button'>
   <input id='indGuide'  class='inpIndicator' value='répère'   title='Répères magnétiques (alt-cliquer pour inverser)'  type='button'>
-  <input id='indSmart'  class='inpIndicator' value='commenté' title='Repères commentés (alt-cliquer pour inverser)'    type='button'> &nbsp;·&nbsp;
+  <input id='indSmart'  class='inpIndicator' value='commenté' title='Repères commentés (alt-cliquer pour inverser)'    type='button'> &nbsp; &nbsp; &nbsp;
   <input id='indPoint'  class='inpIndicator' value='point'    title='Points magnétiques'                               type='button'>
-  <input id='indPixel'  class='inpIndicator' value='pixel'    title='Pixels magnétiques (voir menu Affichage)'         type='button'> &nbsp;·&nbsp;
+  <input id='indPixel'  class='inpIndicator' value='pixel'    title='Pixels magnétiques (voir menu Affichage)'         type='button'> &nbsp; &nbsp; &nbsp;
   <input id='indReload' class='inpIndicator' value='reload'   title='Actualiser le contenu de ce panneau'              type='button' onclick='location.reload()'> 
   <input id='dumpLS'    class='inpIndicator' value='LS'       title='Afficher les informations stockées'               type='button' onclick='javascript:dumpLocal()'>
 </div>
 
+<input id='showMore' type='button' value='• • •' title='plus de capacités en bas'>
+
+<input id='createGrp'   class='hubIcon'  type='button' value='groupe'  title='Créer un groupe'>
+<input id='placeImage'  class='hubIcon'  type='button' value='img'     title='Importer une image'>
+<input id='changeCase'  class='hubIcon'  type='button' value='casse'   title='Changer la casse (alt pour Premières Lettres En Maj)'>
+<input id='showFolder'  class='hubIcon'  type='button' value='dossier' title='Ouvrir le dossier local'>
+<input id='launchSite'  class='hubIcon'  type='button' value='site'    title='Ouvrir le site web (alt pour ouvrir Svija Cloud)'>
 <input id='btnSave'     class='hubIcon'  type='button' value='sauver'
        title='Sauvegarder la page (alt pour sauvegarder toutes les pages)'
          alt='Ouvrir un ficher (alt pour ouvrir le fichier le plus récent)'>
 
-<input id='placeImage'  class='hubIcon'  type='button' value='img'     title='Importer une image'>
-<input id='changeCase'  class='hubIcon'  type='button' value='casse'   title='Changer la casse'>
-<input id='launchSite'  class='hubIcon'  type='button' value='site'    title='Ouvrir le site web dans le navigateur'>
-<input id='launchCloud' class='hubIcon'  type='button' value='cloud'   title='Ouvrir Svija Cloud dans le navigateur'>
-<input id='showFolder'  class='hubIcon'  type='button' value='dossier' title='Ouvrir le dossier local'>
-<input id='createGrp'   class='buttOnly' type='button' value='⧉' title='Créer un groupe'>
-
-<br><input id='showMore' type='button' value='• • •' title='plus de capacités en bas'>
+<div id='mouseover'>Svija Tools 2.0</div>
 
 <div id='bottomSection'>
-<input id='makeHome'    class='hubIcon'  type='button' value='home'    title="Cette page sera la page d'accueil">
 <input id='chkRepair'   class='hubIcon'  type='button' value='check'   title='Vérifier & réparer le fichier'>
-<input id='launchCache' class='hubIcon'  type='button' value='cache'   title='Vider le cache (si activé)'>
 <input id='newPage'     class='hubIcon'  type='button' value='+page'   title='Nouvelle page (alt pour nouveau module)'>
-<input id='newProject'  class='hubIcon'  type='button' value='+projet'  title='Créer un nouveau projet Svija'>
-<input id='getSupport'  class='hubIcon'  type='button' value='support' title='Chercher du support technique'>
+<input id='newProject'  class='hubIcon'  type='button' value='+projet' title='Créer un nouveau projet Svija'>
+<input id='launchCache' class='hubIcon'  type='button' value='cache'   title='Vider le cache (si activé)'>
+<input id='launchSupport'  class='hubIcon'  type='button' value='support' title='Ouvrir le site de support technique (alt pour envoyer un mail)'>
 </div>
 
-<div id='mouseover'></div>
-
-<div id='spinner' onclick="this.style.display='none'"></div>
-<div id='completion' onclick="this.style.display='none'"></div>
+<div id='spinner'    onclick="this.style.display='none'"><span class='closeX'>×</span></div>
+<div id='feedback' onclick="this.style.display='none'"><span class='closeX'>×</span></div>
 
 <script>/* all body javascript */
 
@@ -366,7 +362,7 @@ function getEnvironment(val){
   var gridLine = localStorage.gridLine
   var gridSub  = localStorage.gridSub
 
-  indGrid.value = gridLine + ' ⋮ ' + gridSub
+  indGrid.value = gridLine + '⋮' + gridSub
 
   // point indicator  ———————————————————————————————————————————————
 
@@ -476,6 +472,30 @@ function setSmart(swap){
   if (!swap) Illustrator.evalScript('menuCommand("Snapomatic on-off menu item")')
 }
 
+/*———————————————————————————————————————— windowExpand()
+
+    manages the panel height and the expand button */
+
+var collapsedHeight = 75
+var expandedHeight  = 105
+
+showMore.addEventListener('click', windowExpand)
+windowExpand()
+
+function windowExpand(){
+  var currentWidth  = parent.window.innerWidth
+  var currentHeight = parent.window.innerHeight
+
+  if (currentHeight != collapsedHeight){
+    bottomSection.style.display='none'
+    Illustrator.resizeContent(currentWidth, collapsedHeight)
+  }
+  else{
+    bottomSection.style.display='block'
+    Illustrator.resizeContent(currentWidth, expandedHeight)
+  }
+}
+
 /*———————————————————————————————————————— save & open
 
     saves file
@@ -530,17 +550,22 @@ changeCase.addEventListener('mouseup', (evn) => {
 
 /*———————————————————————————————————————— launch site & cloud */
 
-launchSite.addEventListener('mouseup', launchUrl.bind(null, ''));
-launchCloud.addEventListener('mouseup', launchUrl.bind(null, '/c'));
+launchSite.addEventListener('click', (evn) => {
+  var alt = evn.getModifierState('Alt');
 
-function launchUrl(arg){
   if(localStorage.isSvija == 0){
     lert('Not a Svija site.')
     return true
   }
-  url = localStorage.url
-  Illustrator.openURLInDefaultBrowser('https://' + url + arg)
-}
+
+  url = 'https://' + localStorage.url
+  if (alt) url += '/c'
+
+  Illustrator.openURLInDefaultBrowser(url)
+})
+
+/*———————————————————————————————————————— launch site, cloud & support */
+// launchSupport
 
 /*———————————————————————————————————————— open folder */
 
@@ -574,30 +599,6 @@ function openFolder(){
   function createGroupInit(){
     Illustrator.evalScript("createGroup()", feedbackSimple)
   }
-
-/*———————————————————————————————————————— windowExpand()
-
-    manages the panel height and the expand button */
-
-var collapsedHeight = 115
-var expandedHeight  = 142
-
-showMore.addEventListener('click', windowExpand)
-windowExpand()
-
-function windowExpand(){
-  var currentWidth  = parent.window.innerWidth
-  var currentHeight = parent.window.innerHeight
-
-  if (currentHeight != collapsedHeight){
-    bottomSection.style.display='none'
-    Illustrator.resizeContent(currentWidth, collapsedHeight)
-  }
-  else{
-    bottomSection.style.display='block'
-    Illustrator.resizeContent(currentWidth, expandedHeight)
-  }
-}
 
 /*———————————————————————————————————————— check & repair
 
@@ -677,6 +678,38 @@ function setPixel(){
   Illustrator.evalScript('setPreference("snappixel", 1)')
 } */
 
+/*———————————————————————————————————————— tooltips
+
+    need to set a delay and if still over, show tooltip
+
+    tooltip for save needs to change depending on whether
+    a document is open (changes from save to open)  */
+
+var ttText  = mouseover.innerHTML
+var ttDelay = 1500
+
+var targetList = ['indOnline',  'indGrid',    'indGuide', 'indPoint', 'indPixel', 'indSmart', 'indReload', 'dumpLS',
+                  'btnSave',    
+                  'placeImage', 'changeCase', 'launchSite', 'showFolder', 'createGrp',
+                  'chkRepair',  'launchCache', 'newPage', 'newProject', 'launchSupport']
+
+for (x=0; x<targetList.length; x++){
+  window[targetList[x]].addEventListener('mouseover', function(e){
+    e.currentTarget.over = true
+    setTimeout(showTip, ttDelay, e.currentTarget.id)
+  })
+
+  window[targetList[x]].addEventListener('mouseout' , function(e){
+    e.currentTarget.over = false
+    mouseover.innerHTML = ttText
+  })
+}
+
+function showTip(objName){
+  if(window[objName].over)
+    mouseover.innerHTML = window[objName].title
+}
+
 
 /*:::::::::::::::::::::::::::::::::::::::: utility functions */
 
@@ -706,9 +739,9 @@ function aiTimeout(script, callback, delay){
   function feedbackSimple(arg){
     if (arg != ''){
       spinner.style.display='none'
-      completion.style.display='block'
-      completion.innerHTML = '<pre>' + arg + '</pre>'
-      setTimeout(clearCompletion, 2000)
+      feedback.style.display='block'
+      feedback.innerHTML = '<pre>' + arg + '</pre>'
+      setTimeout(clearFeedback, 2000)
     }
   }
 
@@ -720,15 +753,15 @@ var showTime = 6000
 
 function feedback(arg){
   spinner.style.display='none'
-  completion.style.display='block'
-  completion.innerHTML = '<pre>' + arg + '</pre>'
-  setTimeout(clearCompletion, showTime)
+  feedback.style.display='block'
+  feedback.innerHTML = '<pre>' + arg + '</pre>'
+  setTimeout(clearFeedback, showTime)
 }
 
-/*———————————————————————————————————————— clear completion */
+/*———————————————————————————————————————— clear feedback */
 
-  function clearCompletion(){
-    completion.style.display = 'none'
+  function clearFeedback(){
+    feedback.style.display = 'none'
   }
 
 /*———————————————————————————————————————— isMac() */
@@ -769,38 +802,6 @@ function dumpLocal(){
   alert(res)
 }
 
-/*———————————————————————————————————————— tooltips
-
-    need to set a delay and if still over, show tooltip
-
-    tooltip for save needs to change depending on whether
-    a document is open (changes from save to open)  */
-
-var ttDelay = 700
-
-var targetList = ['indOnline',  'indGrid',    'indGuide', 'indPoint', 'indPixel', 'indSmart', 'indReload', 'dumpLS',
-                  'btnSave',    
-                  'placeImage', 'changeCase', 'launchSite', 'launchCloud', 'showFolder', 'createGrp',
-                  'makeHome',   'chkRepair',  'launchCache', 'newPage', 'newProject', 'getSupport']
-
-for (x=0; x<targetList.length; x++){
-  window[targetList[x]].addEventListener('mouseover', function(e){
-    e.currentTarget.over = true
-    setTimeout(showTip, ttDelay, e.currentTarget.id)
-  })
-
-  window[targetList[x]].addEventListener('mouseout' , function(e){
-    e.currentTarget.over = false
-    mouseover.innerHTML = ''
-  })
-}
-
-
-function showTip(objName){
-  if(window[objName].over)
-    mouseover.innerHTML = window[objName].title
-}
-
 
 /*:::::::::::::::::::::::::::::::::::::::: end */
 
@@ -809,6 +810,24 @@ function showTip(objName){
 </body></html><!--
 
 NOTES ETC.
+
+  • x to close alert
+  • support doesn't work
+  • new page/module needs to save
+  • cache doesn't work (/csync)
+  • alert if missing URL.txt (prevent saving)
+  • save error: 
+
+    Error 21: undefined is not an object.
+    Line: 428
+    ->
+    1f (env_repairs.length > 0)
+
+  • check error
+
+  Error 9024: Cannot modify a layer that is locked
+  Line: 488
+  -> var rec = obj •parent pathItems.rectangle( rNegTop, rLeft, rw...
 
 ———————————————————————————————————————— next
 
