@@ -593,21 +593,6 @@ function artboardWidth(artboard){
   return thisRect[2] - thisRect[0]
 }
 
-/*———————————————————————————————————————— newAiOptions()
-
-  options for Illustrator File
-  ISG409 & JSRp84 */
-
-function newAiOptions(){
-
-  var options = new IllustratorSaveOptions();
-
-  options.pdfCompatible = false; // much faster
-  options.compressed    = false; // a bit faster
-
-  return options;
-}
-
 /*———————————————————————————————————————— isAi(doc)
 
     just checks if file is a .ai and not a PDF

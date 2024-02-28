@@ -173,6 +173,21 @@ function nameExists(neme, arrayList){
   return -1;
 }
 
+/*———————————————————————————————————————— newAiOptions()
+
+  options for Illustrator File
+  ISG409 & JSRp84 */
+
+function newAiOptions(){
+
+  var options = new IllustratorSaveOptions();
+
+  options.pdfCompatible = false; // much faster
+  options.compressed    = false; // a bit faster
+
+  return options;
+}
+
 /*———————————————————————————————————————— newFile(folder, name)
 
     returns file to save into

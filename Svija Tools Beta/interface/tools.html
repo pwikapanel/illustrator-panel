@@ -13,7 +13,7 @@ var         Illustrator = new CSInterface();
 
 /*———————————————————————————————————————— load external scripts */
 
-const env_path = Illustrator.getSystemPath(SystemPath.EXTENSION) + encodeURI('/software/');
+const env_path = Illustrator.getSystemPath(SystemPath.EXTENSION) + encodeURI('/jsx/');
 
 var file
 
@@ -42,6 +42,9 @@ file = env_path + 'check-repair.jsx'
 Illustrator.evalScript("$.evalFile('" + file + "')")
 
 file = env_path + 'new-page.jsx'
+Illustrator.evalScript("$.evalFile('" + file + "')")
+
+file = env_path + 'clear-cache.jsx'
 Illustrator.evalScript("$.evalFile('" + file + "')")
 
 </script>
@@ -290,7 +293,7 @@ div#mouseover{
 <input id='chkRepair'   class='hubIcon'  type='button' value='check'   title='Vérifier & réparer le fichier'>
 <input id='newPage'     class='hubIcon'  type='button' value='+page'   title='Nouvelle page (alt pour nouveau module)'>
 <input id='newProject'  class='hubIcon'  type='button' value='+projet' title='Créer un nouveau projet Svija'>
-<input id='launchCache' class='hubIcon'  type='button' value='cache'   title='Vider le cache (si activé)'>
+<input id='clearCache' class='hubIcon'  type='button' value='cache'   title='Vider le cache (si activé)'>
 <input id='launchSupport'  class='hubIcon'  type='button' value='support' title='Ouvrir le site de support technique (alt pour envoyer un mail)'>
 </div>
 
@@ -298,6 +301,7 @@ div#mouseover{
 <div id='feedback' onclick="this.style.display='none'"><span class='closeX'>×</span></div>
 
 <script>/* all body javascript */
+
 
 /*:::::::::::::::::::::::::::::::::::::::: control functions */
 
@@ -312,11 +316,13 @@ div#mouseover{
 
 localStorage.myDocs = Illustrator.getSystemPath(SystemPath.MY_DOCUMENTS);
 
+var envInterval = 20000
+var scrpt = 'getEnvironment("' + localStorage.myDocs + '")'
+
 //setTimeout(function(){
 setInterval(function(){
-  var scrpt = 'getEnvironment("' + localStorage.myDocs + '")'
   Illustrator.evalScript(scrpt, getEnvironment)
-}, 300);
+}, envInterval);
 
 //function getEnvironmentInit(){ Illustrator.evalScript('getEnvironment("' + localStorage.myDocs + '")', getEnvironment) }
 
@@ -496,7 +502,75 @@ function windowExpand(){
   }
 }
 
-/*———————————————————————————————————————— save & open
+/*———————————————————————————————————————— 1.1 create group
+
+    */
+
+  createGrp.addEventListener("click", createGroupInit)
+
+  function createGroupInit(){
+    Illustrator.evalScript("createGroup()", feedbackSimple)
+  }
+
+/*———————————————————————————————————————— 1.2 place image
+
+    */
+
+placeImage.addEventListener('click', (evn) => {
+  var alt   = evn.getModifierState('Alt');
+  Illustrator.evalScript('placeImage(' + alt +')')
+})
+
+/*———————————————————————————————————————— 1.3 change case */
+
+changeCase.addEventListener('mouseup', (evn) => {
+  var alt = evn.getModifierState('Alt');
+
+  if (alt) str = 'changeCase(true)'
+  else str = 'changeCase(false)'
+  Illustrator.evalScript(str, feedbackSimple)
+})
+
+/*———————————————————————————————————————— 1.4 open folder */
+
+const pcOpener  = 'C:\\Windows\\explorer.exe'
+const macOpener = '/usr/bin/open'
+
+showFolder.addEventListener('mouseup', openFolder);
+
+function openFolder(){
+
+  if (isMac()) var opener = macOpener
+  else         var opener = pcOpener
+
+  var path = localStorage.lastPath
+
+  if (path == ''){
+    lert('Pas de projet Svija enregistré')
+    return true
+  }
+
+  path = path.substr(0, path.lastIndexOf('/'))
+  window.cep.process.createProcess(opener, path)
+}
+
+/*———————————————————————————————————————— 1.5 launch site & cloud */
+
+launchSite.addEventListener('click', (evn) => {
+  var alt = evn.getModifierState('Alt');
+
+  if(localStorage.isSvija == 0){
+    lert('Not a Svija site.')
+    return true
+  }
+
+  url = 'https://' + localStorage.url
+  if (alt) url += '/c'
+
+  Illustrator.openURLInDefaultBrowser(url)
+})
+
+/*———————————————————————————————————————— 1.6 save & open
 
     saves file
     +alt saves all files
@@ -529,155 +603,6 @@ btnSave.addEventListener('click', (evn) => {
 
 })
 
-/*———————————————————————————————————————— place image
-
-    */
-
-placeImage.addEventListener('click', (evn) => {
-  var alt   = evn.getModifierState('Alt');
-  Illustrator.evalScript('placeImage(' + alt +')')
-})
-
-/*———————————————————————————————————————— change case */
-
-changeCase.addEventListener('mouseup', (evn) => {
-  var alt = evn.getModifierState('Alt');
-
-  if (alt) str = 'changeCase(true)'
-  else str = 'changeCase(false)'
-  Illustrator.evalScript(str, feedbackSimple)
-})
-
-/*———————————————————————————————————————— launch site & cloud */
-
-launchSite.addEventListener('click', (evn) => {
-  var alt = evn.getModifierState('Alt');
-
-  if(localStorage.isSvija == 0){
-    lert('Not a Svija site.')
-    return true
-  }
-
-  url = 'https://' + localStorage.url
-  if (alt) url += '/c'
-
-  Illustrator.openURLInDefaultBrowser(url)
-})
-
-/*———————————————————————————————————————— launch site, cloud & support */
-// launchSupport
-
-/*———————————————————————————————————————— open folder */
-
-const pcOpener  = 'C:\\Windows\\explorer.exe'
-const macOpener = '/usr/bin/open'
-
-showFolder.addEventListener('mouseup', openFolder);
-
-function openFolder(){
-
-  if (isMac()) var opener = macOpener
-  else         var opener = pcOpener
-
-  var path = localStorage.lastPath
-
-  if (path == ''){
-    lert('Pas de projet Svija enregistré')
-    return true
-  }
-
-  path = path.substr(0, path.lastIndexOf('/'))
-  window.cep.process.createProcess(opener, path)
-}
-
-/*———————————————————————————————————————— create group
-
-    */
-
-  createGrp.addEventListener("click", createGroupInit)
-
-  function createGroupInit(){
-    Illustrator.evalScript("createGroup()", feedbackSimple)
-  }
-
-/*———————————————————————————————————————— check & repair
-
-    */
-
-chkRepair.addEventListener('click', (evn) => {
-  aiTimeout('checkRepair()', 'feedback', 100)
-})
-
-/*———————————————————————————————————————— new page/module
-
-    alt = create module instead of page */
-
-newPage.addEventListener('click', (evn) => {
-  var alt   = evn.getModifierState('Alt');
-  Illustrator.evalScript('newPage(' + alt +')')
-})
-
-/*———————————————————————————————————————— new page/module COMMENTED OUT
-
-    saves file
-    +alt saves all files
-
-    if no open file, will open a file
-    +alt WILL open most recently closed file */
-
-// newPage.addEventListener("click", (evn) => {
-//   var shift = evn.getModifierState("Shift");
-//   var ctrl  = evn.getModifierState("Control");
-//   var alt   = evn.getModifierState("Alt");
-// 
-//   if (alt) createNewModule()
-//   else createNewPage()
-// })
-// 
-// function createNewModule(){
-//   lert('new module')
-// }
-// 
-// function createNewPage(){
-//   lert('new page')
-// }
-// 
-// //  function savePage(arg){
-// //    if (localStorage.openFiles < 1){
-// //      Illustrator.evalScript('menuCommand("open")')
-// //      return true
-// //    }
-// //    else
-// //      spinner.style.display='block'
-// //      aiTimeout('savePage("'+arg+'")', 'feedback', 100)
-// //  }
-// //  
-// //  function openLast(){
-// //    lert('open last file used')
-// //  }
-// //  
-// //  function aiTimeout(script, callback, delay){
-// //    setTimeout(Illustrator.evalScript, 1*delay, script, window[callback])
-// //  }
-// 
-/*———————————————————————————————————————— pixel indicator NO WAY TO IMPLEMENT */
-
-indPixel.addEventListener('mouseup', (evn) => {
-  setPixel()
-})
-
-function setPixel(){
-  lert('Menu « Affichage »\r6e avant dernier')
-}
-
-/*function setPixel(){
-
-  if (localStorage.pixelSnap == 'true') indPixel.style.color = 'var(--indicatorOff)'
-  else                                  indPixel.style.color = 'var(--indicatorOn)'
-
-  Illustrator.evalScript('setPreference("snappixel", 1)')
-} */
-
 /*———————————————————————————————————————— tooltips
 
     need to set a delay and if still over, show tooltip
@@ -691,7 +616,7 @@ var ttDelay = 1500
 var targetList = ['indOnline',  'indGrid',    'indGuide', 'indPoint', 'indPixel', 'indSmart', 'indReload', 'dumpLS',
                   'btnSave',    
                   'placeImage', 'changeCase', 'launchSite', 'showFolder', 'createGrp',
-                  'chkRepair',  'launchCache', 'newPage', 'newProject', 'launchSupport']
+                  'chkRepair',  'clearCache', 'newPage', 'newProject', 'launchSupport']
 
 for (x=0; x<targetList.length; x++){
   window[targetList[x]].addEventListener('mouseover', function(e){
@@ -709,6 +634,81 @@ function showTip(objName){
   if(window[objName].over)
     mouseover.innerHTML = window[objName].title
 }
+
+/*———————————————————————————————————————— 2.1 check & repair
+
+    */
+
+chkRepair.addEventListener('click', (evn) => {
+  aiTimeout('checkRepair()', 'feedback', 100)
+})
+
+/*———————————————————————————————————————— 2.2 new page/module
+
+    alt = create module instead of page */
+
+newPage.addEventListener('click', (evn) => {
+  var alt   = evn.getModifierState('Alt');
+  Illustrator.evalScript('newPage(' + alt + ', "' + localStorage.lastPath +'")')
+})
+
+/*———————————————————————————————————————— 2.4 empty cache NEEDS HELP
+
+  • cache doesn't work (/csync) */
+
+// clearCache.addEventListener('click', (evn) => {
+//   testFetch()
+// })
+
+//  async function testFetch(){
+//    lert('so far')
+//  }
+/*
+const timeoutId = setTimeout(() => controller.abort(), 5000)
+
+async function testFetch(){
+  var url = 'https://example.svija.site/csync'
+
+  fetch(url, { signal: controller.signal }).then(
+    function(response) {
+      return response.text().then(
+        function(text) {
+          fetchReturn(text);
+})})
+  }
+}
+*/
+
+
+
+/*———————————————————————————————————————— 2.5 launch support */
+
+launchSupport.addEventListener('click', (evn) => {
+  var alt = evn.getModifierState('Alt')
+
+  if (alt) url = 'mailto:support@svija.com?subject=Demande de support Svija&body=Demande envoyé depuis Svija Tools'
+  else     url = 'https://tech.svija.love'
+
+  Illustrator.openURLInDefaultBrowser(url)
+})
+
+/*———————————————————————————————————————— pixel indicator NO WAY TO IMPLEMENT */
+
+indPixel.addEventListener('mouseup', (evn) => {
+  setPixel()
+})
+
+function setPixel(){
+  lert('Menu « Affichage »\r6e avant dernier')
+}
+
+/*function setPixel(){
+
+  if (localStorage.pixelSnap == 'true') indPixel.style.color = 'var(--indicatorOff)'
+  else                                  indPixel.style.color = 'var(--indicatorOn)'
+
+  Illustrator.evalScript('setPreference("snappixel", 1)')
+} */
 
 
 /*:::::::::::::::::::::::::::::::::::::::: utility functions */
@@ -811,10 +811,7 @@ function dumpLocal(){
 
 NOTES ETC.
 
-  • x to close alert
-  • support doesn't work
-  • new page/module needs to save
-  • cache doesn't work (/csync)
+  • new project doesn't work
   • alert if missing URL.txt (prevent saving)
   • save error: 
 
@@ -823,11 +820,15 @@ NOTES ETC.
     ->
     1f (env_repairs.length > 0)
 
-  • check error
+  • check error:
 
   Error 9024: Cannot modify a layer that is locked
   Line: 488
   -> var rec = obj •parent pathItems.rectangle( rNegTop, rLeft, rw...
+
+  • save previously unsaved document error:
+
+  Uncaught TypeError: Cannot set property 'display' of undefined
 
 ———————————————————————————————————————— next
 

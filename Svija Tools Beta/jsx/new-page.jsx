@@ -1,9 +1,9 @@
 
-//:::::::::::::::::::::::::::::::::::::::: place-image.jsx
+//:::::::::::::::::::::::::::::::::::::::: new-page.jsx
 
 /*———————————————————————————————————————— notes 
 
-    place-image.jsx
+    new-page.jsx
 
     1.0.3
 
@@ -53,79 +53,57 @@
 
 #target illustrator  
 
-function placeImage(replaceImg){
+function newPage(module, lastPath){
 
   // initialization ——————————————————————————————————————————————————————————
 
-  var doc       = app.activeDocument
-  var layer     = doc.activeLayer
-  var linksPath = doc.path + '/Links'
+  var doc            = app.activeDocument
 
-  // get layer & unlock if necessary —————————————————————————————————————————
+  var wholePath      = String(doc.path)
+  var syncIndex      = wholePath.indexOf('/sync')
+  var templateFolder = wholePath.substr(0, syncIndex) + '/sync/SVIJA/Templates/'
 
-  layer.locked = false
+  var pagePath       = templateFolder + 'Page.ait'
+  var modulePath     = templateFolder + 'Module.ait'
 
-  // create Links folder if necessary ————————————————————————————————————————
+  // open template if possible ———————————————————————————————————————————————
 
-  if (!Folder(linksPath).exists) Folder(linksPath).create();
-
-  // get positon if possible —————————————————————————————————————————————————
-
-  var centerX = centerY = -1
-
-  if (doc.selection.length > 0){
-    var selection  = doc.selection[0]
-    var r = selection.geometricBounds // global coords [L T R B]
-
-    var rLeft   = r[0]
-    var rTop    =   0 -r[1]
-    var rWidth  = r[2]-r[0]
-    var rHeight = r[1]-r[3]
-
-    var centerX = rLeft + rWidth / 2
-    var centerY = rTop  + rHeight / 2
+  if (module){
+    var openFile = new File(modulePath)
+    try{ app.open(openFile) }
+    catch(e){ alert('Fichier manquant\nMerci de créer\nsync/SVIJA/Templates/Module.ait'); return }
+  }
+  else{
+    var openFile = new File(pagePath)
+    try{ app.open(openFile) }
+    catch(e){ alert('Fichier manquant\nMerci de créer\nsync/SVIJA/Templates/Page.ait'); return }
   }
 
-  // place image —————————————————————————————————————————————————————————————
+  // save file in last known location ————————————————————————————————————————
 
-  var placedImage  = layer.placedItems.add()
-  var aseFile      = Folder(linksPath)
+  var aiOptions = newAiOptions()
 
-  try{
-    placedImage.file = aseFile.openDlg('Choisir l\'image à importer…')
-  } catch(e){ return '' }
+  var lastSlash = lastPath.lastIndexOf('/')
+  var lastDir   = lastPath.substr(0, lastSlash+1)
 
-  // position image ——————————————————————————————————————————————————————————
+  if (module) var str = 'Nom de module.ai'
+  else        var str = 'Nom de page.ai'
 
-  var selection  = doc.selection[0]
-  var r = selection.geometricBounds // global coords [L T R B]
+  var aiFile  = new File(lastDir + str).saveDlg('','')
 
-  var rLeft   = r[0]
-  var rTop    =   0 -r[1]
-  var rWidth  = r[2]-r[0]
-  var rHeight = r[1]-r[3]
+  // close file if save canceled —————————————————————————————————————————————
 
-  var centerXnew = rLeft + rWidth / 2
-  var centerYnew = rTop  + rHeight / 2
-
-  if (centerX != -1)
-    selection.translate(centerX-centerXnew, centerYnew-centerY)
+  if (aiFile == null){
+    app.documents[0].close()
+    return ''
+  }
 
 
-return 'boo'
+  app.activeDocument.saveAs(aiFile, aiOptions)
 
 }
 
-
 //:::::::::::::::::::::::::::::::::::::::: functions
-
-/*———————————————————————————————————————— fileFilter() UNUSED
-
-    decides which type of files can be selected
-    in finder dialog */
-
-function fileFilter(){ return true; }
-
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
