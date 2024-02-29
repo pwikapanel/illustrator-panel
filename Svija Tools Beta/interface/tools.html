@@ -9,43 +9,90 @@ window.addEventListener('error', (event)=>{ alert(event.message) })
 
 /*———————————————————————————————————————— create CS Interface */
 
-var         Illustrator = new CSInterface();
+var         jsx = new CSInterface();
 
 /*———————————————————————————————————————— load external scripts */
 
-const env_path = Illustrator.getSystemPath(SystemPath.EXTENSION) + encodeURI('/jsx/');
+const env_path = jsx.getSystemPath(SystemPath.EXTENSION) + encodeURI('/jsx/');
 
 var file
 
-file = env_path + 'load-preferences.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
+file = env_path + 'preferences-update.jsx'
+jsx.evalScript("$.evalFile('" + file + "')")
   
 file = env_path + 'utilities.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
+jsx.evalScript("$.evalFile('" + file + "')")
   
-file = env_path + 'object.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
+file = env_path + 'status-update.jsx'
+jsx.evalScript("$.evalFile('" + file + "')")
   
 file = env_path + 'save-page.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
+jsx.evalScript("$.evalFile('" + file + "')")
 
 file = env_path + 'place-image.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
+jsx.evalScript("$.evalFile('" + file + "')")
 
 file = env_path + 'create-group.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
+jsx.evalScript("$.evalFile('" + file + "')")
   
 file = env_path + 'change-case.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
+jsx.evalScript("$.evalFile('" + file + "')")
 
 file = env_path + 'check-repair.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
+jsx.evalScript("$.evalFile('" + file + "')")
 
 file = env_path + 'new-page.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
+jsx.evalScript("$.evalFile('" + file + "')")
 
 file = env_path + 'clear-cache.jsx'
-Illustrator.evalScript("$.evalFile('" + file + "')")
+jsx.evalScript("$.evalFile('" + file + "')")
+//———————————————————————————————————————— match highlight color to system
+
+var hostEnv     = jsx.getHostEnvironment();
+var RGBColorObj = hostEnv.appSkinInfo.systemHighlightColor;
+
+var r = RGBColorObj.red
+var g = RGBColorObj.green
+var b = RGBColorObj.blue
+
+var hsl            = rgbToHsl(r, g, b)
+var highlightHue   = Math.round(hsl[0])
+var highlightLight = 50
+
+if (highlightHue>190 && highlightHue < 290)
+  highlightLight += 10
+
+var highlightColor = 'hsl('+highlightHue+', 100%, ' + highlightLight + '%)'
+
+document.documentElement.style.setProperty('--system-highlight', highlightColor);
+
+
+//:::::::::::::::::::::::::::::::::::::::: functions
+
+/*———————————————————————————————————————— rgbToHsl(r, g, b)
+
+    https://www.30secondsofcode.org/js/s/rgb-to-hsl/  */
+
+function rgbToHsl(r, g, b){
+  r /= 255;
+  g /= 255;
+  b /= 255;
+  const l = Math.max(r, g, b);
+  const s = l - Math.min(r, g, b);
+  const h = s
+    ? l === r
+      ? (g - b) / s
+      : l === g
+      ? 2 + (b - r) / s
+      : 4 + (r - g) / s
+    : 0;
+  return [
+    60 * h < 0 ? 60 * h + 360 : 60 * h,
+    100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
+    (100 * (2 * l - s)) / 2,
+  ];
+}
+
 
 </script>
 
@@ -89,11 +136,12 @@ input:focus{ /* get rid of blue line when focused */
 
 :root {
 
-  --online      : #ccff00;
-  --offline     : #888;
+  --offline      : #888;
 
   --indicatorOn : #bbb;
   --indicatorOff: #888;
+
+  --highlight-fill     : #444;
 
 }
 
@@ -164,7 +212,8 @@ input.hubIcon{
 }
 
 input.hubIcon:hover{
-  background-color:#444;
+  background-color: var(--highlight-fill);
+  border:1px solid var(--system-highlight);
 }
 
 input.hubIcon:active{
@@ -177,14 +226,13 @@ div#bottomSection input.hubIcon{
 }
 
 div#bottomSection input.hubIcon:hover{
-  color:#aaa;
-  background-color:#484848;
+  background-color: var(--highlight-fill);
+  border:1px solid var(--system-highlight);
 }
 
 div#bottomSection input.hubIcon:active{
   background-color:#222;
 }
-
 
 /*———————————————————————————————————————— show more & bottom section */
 
@@ -205,7 +253,7 @@ div#bottomSection input.hubIcon:active{
 }
 
 #showMore:hover{
-  color:var(--online);
+  color:var(--system-highlight);
 }
 
 #bottomSection{
@@ -305,35 +353,35 @@ div#mouseover{
 
 /*:::::::::::::::::::::::::::::::::::::::: control functions */
 
-/*———————————————————————————————————————— getEnvironment(arg)
+/*———————————————————————————————————————— statusUpdate(arg)
 
     gets info about ai-land and updates
     environmental variables in panel-land constantly.
 
     all info is stored in localStorage unless empty */
 
-//setInterval(getEnvironmentInit, 300)
+//setInterval(statusUpdateInit, 300)
 
-localStorage.myDocs = Illustrator.getSystemPath(SystemPath.MY_DOCUMENTS);
+localStorage.myDocs = jsx.getSystemPath(SystemPath.MY_DOCUMENTS);
 
-var envInterval = 20000
-var scrpt = 'getEnvironment("' + localStorage.myDocs + '")'
+var envInterval = 300
+var scrpt = 'statusUpdate("' + localStorage.myDocs + '")'
 
 //setTimeout(function(){
 setInterval(function(){
-  Illustrator.evalScript(scrpt, getEnvironment)
+  jsx.evalScript(scrpt, statusUpdate)
 }, envInterval);
 
-//function getEnvironmentInit(){ Illustrator.evalScript('getEnvironment("' + localStorage.myDocs + '")', getEnvironment) }
+//function statusUpdateInit(){ jsx.evalScript('statusUpdate("' + localStorage.myDocs + '")', statusUpdate) }
 
 
 var btnSaveTitle = btnSave.title
 
-function getEnvironment(val){
+function statusUpdate(val){
 
   // 
-  file = env_path + 'load-preferences.jsx'
-  Illustrator.evalScript("$.evalFile('" + file + "')")
+  file = env_path + 'preferences-update.jsx'
+  jsx.evalScript("$.evalFile('" + file + "')")
 
   var lines = val.split('¬')
 
@@ -345,7 +393,7 @@ function getEnvironment(val){
 
   // set online status light ————————————————————————————————————————
 
-  if (navigator.onLine) indOnline.style.backgroundColor = 'var(--online)'
+  if (navigator.onLine) indOnline.style.backgroundColor = 'var(--system-highlight)'
                    else indOnline.style.backgroundColor = 'var(--offline)'
 
   // set title ——————————————————————————————————————————————————————
@@ -354,9 +402,9 @@ function getEnvironment(val){
     localStorage.url = ''
 
   if (localStorage.url != '')
-    Illustrator.setWindowTitle(localStorage.url)
+    jsx.setWindowTitle(localStorage.url)
   else
-    Illustrator.setWindowTitle('Svija Tools 3.0')
+    jsx.setWindowTitle('Svija Tools 3.0')
 
   // set save button mouseover ——————————————————————————————————————
 
@@ -383,6 +431,9 @@ function getEnvironment(val){
 
 }
 
+
+/*:::::::::::::::::::::::::::::::::::::::: indicators */
+
 /*———————————————————————————————————————— grid indicator */
 
 indGrid.addEventListener('mouseup', (evn) => {
@@ -407,7 +458,7 @@ function setGrid(swap){
     indGrid.style.color = 'var(--indicatorOn)'
   }
 
-  if (!swap) Illustrator.evalScript('menuCommand("snapgrid")')
+  if (!swap) jsx.evalScript('menuCommand("snapgrid")')
 }
 
 /*———————————————————————————————————————— guides indicator */
@@ -434,7 +485,7 @@ function setGuide(swap){
     indGuide.style.color = 'var(--indicatorOn)'
   }
 
-  if (!swap) Illustrator.evalScript('menuCommand("showguide")')
+  if (!swap) jsx.evalScript('menuCommand("showguide")')
 }
 
 /*———————————————————————————————————————— point indicator */
@@ -448,8 +499,26 @@ function setPoint(){
   if (localStorage.pointSnap == 'true') indPoint.style.color = 'var(--indicatorOff)'
   else                                  indPoint.style.color = 'var(--indicatorOn)'
 
-  Illustrator.evalScript('menuCommand("snappoint")')
+  jsx.evalScript('menuCommand("snappoint")')
 }
+
+/*———————————————————————————————————————— pixel indicator */
+
+indPixel.addEventListener('mouseup', (evn) => {
+  setPixel()
+})
+
+function setPixel(){
+  lert('Menu « Affichage »\r6e avant dernier')
+}
+
+/*function setPixel(){
+
+  if (localStorage.pixelSnap == 'true') indPixel.style.color = 'var(--indicatorOff)'
+  else                                  indPixel.style.color = 'var(--indicatorOn)'
+
+  jsx.evalScript('setPreference("snappixel", 1)')
+} */
 
 /*———————————————————————————————————————— smart guides indicator */
 
@@ -475,7 +544,7 @@ function setSmart(swap){
     indSmart.style.color = 'var(--indicatorOn)'
   }
 
-  if (!swap) Illustrator.evalScript('menuCommand("Snapomatic on-off menu item")')
+  if (!swap) jsx.evalScript('menuCommand("Snapomatic on-off menu item")')
 }
 
 /*———————————————————————————————————————— windowExpand()
@@ -494,13 +563,16 @@ function windowExpand(){
 
   if (currentHeight != collapsedHeight){
     bottomSection.style.display='none'
-    Illustrator.resizeContent(currentWidth, collapsedHeight)
+    jsx.resizeContent(currentWidth, collapsedHeight)
   }
   else{
     bottomSection.style.display='block'
-    Illustrator.resizeContent(currentWidth, expandedHeight)
+    jsx.resizeContent(currentWidth, expandedHeight)
   }
 }
+
+
+/*:::::::::::::::::::::::::::::::::::::::: buttons top */
 
 /*———————————————————————————————————————— 1.1 create group
 
@@ -509,7 +581,7 @@ function windowExpand(){
   createGrp.addEventListener("click", createGroupInit)
 
   function createGroupInit(){
-    Illustrator.evalScript("createGroup()", feedbackSimple)
+    jsx.evalScript("createGroup()", feedbackSimple)
   }
 
 /*———————————————————————————————————————— 1.2 place image
@@ -518,7 +590,7 @@ function windowExpand(){
 
 placeImage.addEventListener('click', (evn) => {
   var alt   = evn.getModifierState('Alt');
-  Illustrator.evalScript('placeImage(' + alt +')')
+  jsx.evalScript('placeImage(' + alt +')')
 })
 
 /*———————————————————————————————————————— 1.3 change case */
@@ -528,7 +600,7 @@ changeCase.addEventListener('mouseup', (evn) => {
 
   if (alt) str = 'changeCase(true)'
   else str = 'changeCase(false)'
-  Illustrator.evalScript(str, feedbackSimple)
+  jsx.evalScript(str, feedbackSimple)
 })
 
 /*———————————————————————————————————————— 1.4 open folder */
@@ -567,7 +639,7 @@ launchSite.addEventListener('click', (evn) => {
   url = 'https://' + localStorage.url
   if (alt) url += '/c'
 
-  Illustrator.openURLInDefaultBrowser(url)
+  jsx.openURLInDefaultBrowser(url)
 })
 
 /*———————————————————————————————————————— 1.6 save & open
@@ -591,49 +663,20 @@ btnSave.addEventListener('click', (evn) => {
 
   // open, no useful path
   if (localStorage.lastPath == ''){
-    Illustrator.evalScript('menuCommand("open")'); 
+    jsx.evalScript('menuCommand("open")'); 
     return true
   }
 
   // open, use last known path or file
   var str = localStorage.lastPath + '", "' + localStorage.url
 
-  if (alt){ Illustrator.evalScript(  'openPage("' + str + '")') }
-  else    { Illustrator.evalScript('openFolder("' + str + '")') }
+  if (alt){ jsx.evalScript(  'openPage("' + str + '")') }
+  else    { jsx.evalScript('openFolder("' + str + '")') }
 
 })
 
-/*———————————————————————————————————————— tooltips
 
-    need to set a delay and if still over, show tooltip
-
-    tooltip for save needs to change depending on whether
-    a document is open (changes from save to open)  */
-
-var ttText  = mouseover.innerHTML
-var ttDelay = 1500
-
-var targetList = ['indOnline',  'indGrid',    'indGuide', 'indPoint', 'indPixel', 'indSmart', 'indReload', 'dumpLS',
-                  'btnSave',    
-                  'placeImage', 'changeCase', 'launchSite', 'showFolder', 'createGrp',
-                  'chkRepair',  'clearCache', 'newPage', 'newProject', 'launchSupport']
-
-for (x=0; x<targetList.length; x++){
-  window[targetList[x]].addEventListener('mouseover', function(e){
-    e.currentTarget.over = true
-    setTimeout(showTip, ttDelay, e.currentTarget.id)
-  })
-
-  window[targetList[x]].addEventListener('mouseout' , function(e){
-    e.currentTarget.over = false
-    mouseover.innerHTML = ttText
-  })
-}
-
-function showTip(objName){
-  if(window[objName].over)
-    mouseover.innerHTML = window[objName].title
-}
+/*:::::::::::::::::::::::::::::::::::::::: buttons bottom */
 
 /*———————————————————————————————————————— 2.1 check & repair
 
@@ -649,8 +692,11 @@ chkRepair.addEventListener('click', (evn) => {
 
 newPage.addEventListener('click', (evn) => {
   var alt   = evn.getModifierState('Alt');
-  Illustrator.evalScript('newPage(' + alt + ', "' + localStorage.lastPath +'")')
+  jsx.evalScript('newPage(' + alt + ', "' + localStorage.lastPath +'")')
 })
+
+/*———————————————————————————————————————— 2.3 new project
+
 
 /*———————————————————————————————————————— 2.4 empty cache NEEDS HELP
 
@@ -679,8 +725,6 @@ async function testFetch(){
 }
 */
 
-
-
 /*———————————————————————————————————————— 2.5 launch support */
 
 launchSupport.addEventListener('click', (evn) => {
@@ -689,36 +733,55 @@ launchSupport.addEventListener('click', (evn) => {
   if (alt) url = 'mailto:support@svija.com?subject=Demande de support Svija&body=Demande envoyé depuis Svija Tools'
   else     url = 'https://tech.svija.love'
 
-  Illustrator.openURLInDefaultBrowser(url)
+  jsx.openURLInDefaultBrowser(url)
 })
 
-/*———————————————————————————————————————— pixel indicator NO WAY TO IMPLEMENT */
 
-indPixel.addEventListener('mouseup', (evn) => {
-  setPixel()
-})
+/*:::::::::::::::::::::::::::::::::::::::: interface functions */
 
-function setPixel(){
-  lert('Menu « Affichage »\r6e avant dernier')
+/*———————————————————————————————————————— tooltips
+
+    need to set a delay and if still over, show tooltip
+
+    tooltip for save needs to change depending on whether
+    a document is open (changes from save to open)  */
+
+//———————————————————————————————————————— actual tooltips
+
+var ttText  = mouseover.innerHTML
+var ttDelay = 1500
+
+var targetList = ['indOnline',  'indGrid',    'indGuide', 'indPoint', 'indPixel', 'indSmart', 'indReload', 'dumpLS',
+                  'btnSave',    
+                  'placeImage', 'changeCase', 'launchSite', 'showFolder', 'createGrp',
+                  'chkRepair',  'clearCache', 'newPage', 'newProject', 'launchSupport']
+
+for (x=0; x<targetList.length; x++){
+  window[targetList[x]].addEventListener('mouseover', function(e){
+    e.currentTarget.over = true
+    setTimeout(showTip, ttDelay, e.currentTarget.id)
+  })
+
+  window[targetList[x]].addEventListener('mouseout' , function(e){
+    e.currentTarget.over = false
+    mouseover.innerHTML = ttText
+  })
 }
 
-/*function setPixel(){
-
-  if (localStorage.pixelSnap == 'true') indPixel.style.color = 'var(--indicatorOff)'
-  else                                  indPixel.style.color = 'var(--indicatorOn)'
-
-  Illustrator.evalScript('setPreference("snappixel", 1)')
-} */
+function showTip(objName){
+  if(window[objName].over)
+    mouseover.innerHTML = window[objName].title
+}
 
 
 /*:::::::::::::::::::::::::::::::::::::::: utility functions */
 
-/*———————————————————————————————————————— waitScreen()
+/*———————————————————————————————————————— showSpinner()
 
     starts the wait screen during long operations
     called by aiTimeout() */
 
-function waitScreen(){
+function showSpinner(){
   spinner.style.display='block'
 }
 
@@ -728,8 +791,8 @@ function waitScreen(){
     time to be displayed correctly */
 
 function aiTimeout(script, callback, delay){
-  waitScreen()
-  setTimeout(Illustrator.evalScript, 1*delay, script, window[callback])
+  showSpinner()
+  setTimeout(jsx.evalScript, 1*delay, script, window[callback])
 }
 
 /*———————————————————————————————————————— feedbackSimple()
@@ -767,7 +830,7 @@ function feedback(arg){
 /*———————————————————————————————————————— isMac() */
 
 function isMac(){
-  var os = Illustrator.getOSInformation()
+  var os = jsx.getOSInformation()
   if (os.substring(0,3) == 'Mac') return true
   else return false
 }
@@ -780,7 +843,7 @@ function lert(msg){
   msg = JSON.stringify(String(msg));
   msg = msg.substr(1, msg.length-2)
   //alert(msg)
-  Illustrator.evalScript('alert("' + msg + '")')
+  jsx.evalScript('alert("' + msg + '")')
 }
 
 /*———————————————————————————————————————— dumpLocal() */
@@ -810,6 +873,11 @@ function dumpLocal(){
 </body></html><!--
 
 NOTES ETC.
+
+  test P3 color
+
+  • get system highlight color & define css variable
+  • like blue outline on mousover on old tools, brighter
 
   • new project doesn't work
   • alert if missing URL.txt (prevent saving)
@@ -884,7 +952,6 @@ NOTES ETC.
   • how to change height when double click on top tab, like adobe panels?
 
  -->
-
 
 <!-- <script>/* flyout html 1 */
   
@@ -1031,5 +1098,3 @@ Item Checked: <input type="checkbox" name="ItemChecked" id="ItemChecked" disable
 <form id="formIES" name="formIES" method="post" action="">
 Dispatch: <input type="button" name="UpdateMenuItem" id="UpdateMenuItem" value="UpdateMenuItem" onclick="onclickUpdateMenuItem()" disabled="disable"/>
 </form> -->
-
-<!-- I'M IN THE MIDDLE OF FIXING SAVE SCRIPT FOR WIDTHS -->

@@ -33,7 +33,7 @@
 
 #target illustrator  
 
-/*———————————————————————————————————————— getEnvironment(which)
+/*———————————————————————————————————————— statusUpdate(which)
 
     supplies any environmental variables */
 
@@ -52,7 +52,7 @@ var selectTypeVal = ''
 //dumpKeys(app.activeDocument)
 //alert('snapToPoint: '+zop)
 
-function getEnvironment(myDocs){
+function statusUpdate(myDocs){
 
   var valArray = []
 
