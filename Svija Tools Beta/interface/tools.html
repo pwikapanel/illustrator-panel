@@ -221,7 +221,6 @@ input.hubIcon{
   color:#888;
   background-color:#555;
   cursor:pointer;
-  text-transform:uppercase;
 }
 
 input.hubIcon:hover{
@@ -249,8 +248,13 @@ div#bottomSection input.hubIcon:active{
   background-color:#222;
 }
 
-input.hubIcon#btnSave{
+input.hubIcon#btnSave,
+input.hubIcon#btnOpen{
   background-color:var(--system-dimlight);
+}
+
+input.hubIcon#btnOpen{
+  display:none;
 }
 
 /*———————————————————————————————————————— show more & bottom section */
@@ -341,27 +345,27 @@ div#mouseover{
   <input id='indPixel'  class='inpIndicator' value='pixel'    title='Pixels magnétiques (voir menu Affichage)'         type='button'> &nbsp; &nbsp; &nbsp;
   <input id='indReload' class='inpIndicator' value='reload'   title='Actualiser le contenu de ce panneau'              type='button' onclick='location.reload()'> 
   <input id='dumpLS'    class='inpIndicator' value='LS'       title='Afficher les informations stockées'               type='button' onclick='javascript:dumpLocal()'>
+  <span id='altState'>-</span>
 </div>
 
 <input id='showMore' type='button' value='• • •' title='plus de capacités en bas'>
 
-<input id='createGrp'   class='hubIcon'  type='button' value='groupe'  title='Créer un groupe'>
-<input id='placeImage'  class='hubIcon'  type='button' value='img'     title='Importer une image'>
-<input id='changeCase'  class='hubIcon'  type='button' value='casse'   title='Changer la casse · alt = Premières Lettres En Maj'>
-<input id='showFolder'  class='hubIcon'  type='button' value='dossier' title='Ouvrir le dossier local'>
-<input id='launchSite'  class='hubIcon'  type='button' value='site'    title='Ouvrir le site web · alt = ouvrir Svija Cloud'>
-<input id='btnSave'     class='hubIcon'  type='button' value='save'
-    title='Sauvegarder la page · alt = sauvegarder toutes les pages ouvertes'
-      alt='Ouvrir un ficher · alt = ouvrir le fichier le plus récent'>
+<input id='createGrp'   class='hubIcon'  type='button'>
+<input id='placeImage'  class='hubIcon'  type='button'>
+<input id='changeCase'  class='hubIcon'  type='button'>
+<input id='showFolder'  class='hubIcon'  type='button'>
+<input id='launchSite'  class='hubIcon'  type='button'>
+<input id='btnSave'     class='hubIcon'  type='button'>
+<input id='btnOpen'     class='hubIcon'  type='button'>
 
 <div id='mouseover'>Svija Tools 2.0</div>
 
 <div id='bottomSection'>
-<input id='chkRepair'   class='hubIcon'  type='button' value='check'   title='Vérifier & réparer le fichier'>
-<input id='newPage'     class='hubIcon'  type='button' value='+page'   title='Nouvelle page · alt = nouveau module'>
-<input id='newProject'  class='hubIcon'  type='button' value='+projet' title='Créer un nouveau projet Svija'>
-<input id='clearCache' class='hubIcon'  type='button' value='cache'   title='Vider le cache (si activé)'>
-<input id='launchSupport'  class='hubIcon'  type='button' value='support' title='Ouvrir le site de support technique · alt = envoyer un mail au support'>
+<input id='chkRepair'     class='hubIcon'  type='button'>
+<input id='newPage'       class='hubIcon'  type='button'>
+<input id='newProject'    class='hubIcon'  type='button'>
+<input id='clearCache'    class='hubIcon'  type='button'>
+<input id='launchSupport' class='hubIcon'  type='button'>
 </div>
 
 <div id='spinner'    onclick="this.style.display='none'"><span class='closeX'>×</span></div>
@@ -427,8 +431,11 @@ function statusUpdate(val){
 
   // set save button mouseover ——————————————————————————————————————
 
-  if (localStorage.openFiles == 0) btnSave.title = btnSave.alt
-  else                             btnSave.title = btnSaveTitle
+  if (localStorage.openFiles == 0) btnSave.style.display = 'none'
+  else                             btnSave.style.display = 'inline'
+
+  if (localStorage.openFiles != 0) btnOpen.style.display = 'none'
+  else                             btnOpen.style.display = 'inline'
 
   // set grid spacing ———————————————————————————————————————————————
 
@@ -521,7 +528,9 @@ function setPoint(){
   jsx.evalScript('menuCommand("snappoint")')
 }
 
-/*———————————————————————————————————————— pixel indicator */
+/*———————————————————————————————————————— pixel indicator
+
+    menu command is pixelconstraints but it doesn't work */
 
 indPixel.addEventListener('mouseup', (evn) => {
   setPixel()
@@ -530,14 +539,6 @@ indPixel.addEventListener('mouseup', (evn) => {
 function setPixel(){
   lert('Menu « Affichage »\r6e avant dernier')
 }
-
-/*function setPixel(){
-
-  if (localStorage.pixelSnap == 'true') indPixel.style.color = 'var(--indicatorOff)'
-  else                                  indPixel.style.color = 'var(--indicatorOn)'
-
-  jsx.evalScript('setPreference("snappixel", 1)')
-} */
 
 /*———————————————————————————————————————— smart guides indicator */
 
@@ -727,6 +728,9 @@ newProject.addEventListener('click', (evn) => {
 
 /*———————————————————————————————————————— 2.4 empty cache NEEDS HELP
 
+    enable-nodejs
+    mixed-context
+
   • cache doesn't work (/csync) */
 
 // clearCache.addEventListener('click', (evn) => {
@@ -765,6 +769,116 @@ launchSupport.addEventListener('click', (evn) => {
 
 
 /*:::::::::::::::::::::::::::::::::::::::: interface functions */
+
+/*———————————————————————————————————————— initializeLabels()
+
+    the area attribute serves as a flag whether title and
+    alt have been exchanged */
+
+buttons = [
+
+//  id               label      alt-label      tooltip
+
+  ['createGrp'    , 'GROUPE' , 'GROUPE'   , 'Créer un groupe'                                                       ],
+  ['placeImage'   , 'IMAGE'  , 'IMAGE'    , 'Importer une image'                                                    ],
+  ['changeCase'   , 'CASSE'  , 'Mot Mot'  , 'Changer la casse · alt = Premières Lettres En Maj'                     ],
+  ['showFolder'   , 'DOSSIER', 'DOSSIER'  , 'Ouvrir le dossier local'                                               ],
+  ['launchSite'   , 'SITE'   , 'CLOUD'    , 'Ouvrir le site web · alt = ouvrir Svija Cloud'                         ],
+  ['btnSave'      , '↯'      , '↯ TOUS'   , 'Sauvegarder la page · alt = sauvegarder toutes les pages ouvertes'     ],
+  ['btnOpen'      , 'OUVRIR' , 'RÉCENT'   , 'Ouvrir un ficher · alt = ouvrir le fichier le plus récent'             ],
+
+  ['chkRepair'    , 'VALIDER', 'VALIDER'  , 'Vérifier & réparer les problèmes'                                      ],
+  ['newPage'      , '+PAGE'  , 'MODULE'   , 'Nouvelle page · alt = nouveau module'                                  ],
+  ['newProject'   , '+PROJET', '+PROJET'  , 'Créer un nouveau projet Svija'                                         ],
+  ['clearCache'   , 'CACHE'  , 'CACHE'    , 'Vider le cache (si activé)'                                            ],
+  ['launchSupport', 'SUPPORT', 'MAIL'     , 'Ouvrir le site de support technique · alt = envoyer un mail au support']
+]
+
+function initializeLabels(){
+  for (var x=0; x<buttons.length; x++){
+    window[buttons[x][0]].value = buttons[x][1]
+    window[buttons[x][0]].name  = buttons[x][1]
+
+    window[buttons[x][0]].alt   = buttons[x][2]
+    window[buttons[x][0]].title = buttons[x][3]
+  }
+}
+
+initializeLabels()
+
+/*———————————————————————————————————————— altButtonLabels(alt)
+
+    alt text should show only when cursor is over panel
+    whether or not alt is pressed before entering airspace
+
+    when mouse moves away from panel it should revert
+
+    the only tricky part is when the mouse moves away from
+    the panel but panel has focus — alt key needs
+    to stop having effect */
+
+// area = flag that alt/title have been swapped
+
+
+function altButtonLabels(alt){
+
+  if (alt) // set to alt state
+    for (var x=0; x<buttons.length; x++)
+      window[buttons[x][0]].value = window[buttons[x][0]].alt
+
+  else // set to normal state
+    for (var x=0; x<buttons.length; x++)
+      window[buttons[x][0]].value = window[buttons[x][0]].name
+
+}
+
+/*———————————————————————————————————————— alt key
+
+    store information about alt key state  */
+
+jsx.registerKeyEventsInterest([{'keyCode': 18}])
+
+document.body.addEventListener('keydown',   altDown )
+document.body.addEventListener('keyup',     altUp   )
+
+
+function altDown(event) {
+lert('down')
+  if (event.altKey)
+    altButtonLabels(true)
+}
+
+function altUp(event) {
+  if (event.altKey)
+    altButtonLabels(false)
+}
+
+/*———————————————————————————————————————— mouse over window
+
+    store info about mouse over window state
+    and alt key if it happened before window
+    got focus */
+
+//  window.addEventListener('mouseover', altOver )
+//  window.addEventListener('mouseout',  altOut  )
+//  
+//  localStorage.isOver = false
+//  
+//  function altOver(event) {
+//    localStorage.isOver = true
+//  
+//    // handle case where alt key was pressed
+//    // before panel was mouseovered
+//    if (event.altKey){
+//      localStorage.altDown = true
+//      altButtonLabels(true)
+//    }
+//  }
+//  
+//  function altOut(event) {
+//    localStorage.isOver = false
+//    altButtonLabels(false)
+//  }
 
 /*———————————————————————————————————————— tooltips
 
@@ -904,9 +1018,6 @@ function dumpLocal(){
 
 NOTES ETC.
 
-  • need to listen for alt key to change titles
-  • save button variant of system accent
-
   • see journal
 
   • save error: 
@@ -981,148 +1092,3 @@ NOTES ETC.
 
  -->
 
-<!-- <script>/* flyout html 1 */
-  
-	var setMenuXML;
-
-	function setPanelCallback(event) {
-		if (event.type === "com.adobe.csxs.events.flyoutMenuClicked") {
-			document.getElementById("ReturnObject").value = 'The menu ID is: ' + event.data.menuId + '\n' + 'The menu name is: ' + event.data.menuName;
-			GreenLightImg.style.display='inline'
-		} else if (event.type === "com.adobe.csxs.events.flyoutMenuOpened") {
-			GreenLightImg2.style.display='inline'
-		} else if (event.type === "com.adobe.csxs.events.flyoutMenuClosed") {
-			GreenLightImg3.style.display='inline'
-		}
-	}
-	
-	function checkCapabilities() {
-		if (ai.getHostCapabilities().EXTENDED_PANEL_MENU) {
-			document.getElementById('LabelList').removeAttribute('disabled');
-			document.getElementById('ItemEnabled').removeAttribute('disabled');
-			document.getElementById('ItemChecked').removeAttribute('disabled');
-			document.getElementById('UpdateMenuItem').removeAttribute('disabled');	
-			document.getElementById("CapabilityLabel").innerHTML  += 'true';		
-		}
-		else {
-			document.getElementById("CapabilityLabel").innerHTML  += 'false';	
-		}
-	}
-	
-	function onclickSetPanelMenu() {
-	  var menuXML = document.getElementById("TestMenuStructure").value;
-    ai.setPanelFlyoutMenu(menuXML, setPanelCallback);
-		setMenuXML = menuXML;
-		setMenuList();
-	}
-	
-	function onclickClearPanelMenu() {
-		ai.setPanelFlyoutMenu("", setPanelCallback);
-		setMenuXML = "";
-		setMenuList();
-	}
-
-	function onclickReset() {
-  	GreenLightImg.style.display='none'
-  	GreenLightImg2.style.display='none'
-  	GreenLightImg3.style.display='none'
-		document.getElementById("ReturnObject").value = "";
-	}	
-	
-	function onclickUpdateMenuItem(){
-		var list = document.getElementById("LabelList");	
-		ai.updatePanelMenuItem(list.options[list.selectedIndex].text, document.getElementById("ItemEnabled").checked, document.getElementById("ItemChecked").checked);
-	}
-	
-	function setMenuList() { 
-		var list = document.getElementById("LabelList");
-		list.innerHTML = "";
-		xmlDoc = $.parseXML(setMenuXML),
-		$xml = $(xmlDoc);
-		var i = 0;
-		$($xml).find("MenuItem").each(function() {
-			var option = document.createElement("option");
-			var name = $(this).attr("Label");
-			if (-1 == name.indexOf('---')) {
-			    option.value = ++i;
-				option.appendChild(document.createTextNode(name));
-				list.appendChild(option);
-			}
-		});
-	}
-
-    window.onload = function() {
-  	GreenLightImg.style.display='none'
-  	GreenLightImg2.style.display='none'
-  	GreenLightImg3.style.display='none'
-		ai.addEventListener("com.adobe.csxs.events.flyoutMenuClicked", setPanelCallback);
-		ai.addEventListener("com.adobe.csxs.events.flyoutMenuOpened", setPanelCallback);
-		ai.addEventListener("com.adobe.csxs.events.flyoutMenuClosed", setPanelCallback);
-		checkCapabilities();
-    } 
-
-</script>
-	
-<!-- flyout html 
-<p>menu structure<br>
-<textarea name="TestMenuStructure" id="TestMenuStructure" cols="80" rows="6" align="left">
-  <Menu>
-    <MenuItem Id="menuItemId1" Label="TestExample1" Enabled="true" Checked="false"/>
-    <MenuItem Label="TestExample2">
-      <MenuItem Label="TestExample2-1" >
-        <MenuItem Label="TestExample2-1-1" Enabled="false" Checked="true"/>
-      </MenuItem>
-      <MenuItem Label="TestExample2-2" Enabled="true" Checked="true"/>
-    </MenuItem>
-    <MenuItem Label="---" />
-    <MenuItem Label="TestExample3" Enabled="false" Checked="false"/>
-  </Menu>
-</textarea>
-
-<p>return object<br>
-<form id="formESP" name="formESP" method="post" action="">
-  <textarea name="ReturnObject" id="ReturnObject" cols="80" rows="4" align="left"></textarea>
-</form>
-
-<p>Dispatch XML (set menu):
-<form id="formIES" name="formIES" method="post" action="">
-  <input type="button" name="SetPanelMenu" id="SetPanelMenu" value="SetPanelMenu" onclick="onclickSetPanelMenu()" />
-</form>
-
-<p>Dispatch Null (clear menu):
-<form id="formIES" name="formIES" method="post" action="">
-  <input type="button" name="ClearPanelMenu" id="ClearPanelMenu" value="ClearPanelMenu" onclick="onclickClearPanelMenu()" />
-</form>
-
-<h3>Test flyout menu events</h3>
-
-Flyout MenuItem Clicked:
-<input type="image" name="GreenLightImg" id="GreenLightImg" src="../images/greenLED.png"/><br>
-
-Flyout MenuItem Opened:
-<input type="image" name="GreenLightImg2" id="GreenLightImg2" src="../images/greenLED.png"/><br>
-
-Flyout MenuItem Closed:
-<input type="image" name="GreenLightImg3" id="GreenLightImg3" src="../images/greenLED.png"/><br>
-
-<input type="button" value="Reset" onclick="onclickReset()" />
-
-<h3>Update Extension Menu Item:</h3>
-
-<p style="color: #FFF" id="CapabilityLabel">EXTENDED_PANEL_MENU is : </p>
-
-<form id="formESP" name="formESP" method="post" action="">
-Item Labels: <select name="LabelList" id="LabelList" style="width:300px" disabled="disable"/>
-</form>
-
-<form id="formIES" name="formIES" method="post" action="">
-Item Enabled: <input type="checkbox" name="ItemEnabled" id="ItemEnabled" disabled="disable"/>
-</form>
-
-<form id="formIES" name="formIES" method="post" action="">
-Item Checked: <input type="checkbox" name="ItemChecked" id="ItemChecked" disabled="disable"/>
-</form>
-
-<form id="formIES" name="formIES" method="post" action="">
-Dispatch: <input type="button" name="UpdateMenuItem" id="UpdateMenuItem" value="UpdateMenuItem" onclick="onclickUpdateMenuItem()" disabled="disable"/>
-</form> -->
