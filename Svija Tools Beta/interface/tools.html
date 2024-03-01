@@ -55,16 +55,24 @@ var r = RGBColorObj.red
 var g = RGBColorObj.green
 var b = RGBColorObj.blue
 
-var hsl            = rgbToHsl(r, g, b)
-var highlightHue   = Math.round(hsl[0])
-var highlightLight = 50
+var hsl        = rgbToHsl(r, g, b)
+var hue        = Math.round(hsl[0])
+var saturation = Math.round(hsl[1])
 
-if (highlightHue>190 && highlightHue < 290)
-  highlightLight += 10
+if (saturation < 10) hue = 72
 
-var highlightColor = 'hsl('+highlightHue+', 100%, ' + highlightLight + '%)'
+var lightness = 50
+var dimness   = 30
 
-document.documentElement.style.setProperty('--system-highlight', highlightColor);
+if (hue>190 && hue < 290) lightness += 10
+
+var highlight = 'hsl('+hue+', 100%, ' + lightness + '%)'
+var  dimlight = 'hsl('+hue+',  30%, ' + dimness   + '%)'
+
+// if system highlight is gray, use official color
+
+document.documentElement.style.setProperty('--system-highlight', highlight);
+document.documentElement.style.setProperty('--system-dimlight',   dimlight);
 
 
 //:::::::::::::::::::::::::::::::::::::::: functions
@@ -136,12 +144,17 @@ input:focus{ /* get rid of blue line when focused */
 
 :root {
 
+  --svija        : #ccff00;
   --offline      : #888;
 
   --indicatorOn : #bbb;
   --indicatorOff: #888;
 
+  --highlight-color    : #fff;
   --highlight-fill     : #444;
+
+  --tooltipOn : #fff;
+  --tooltipOff : #999;
 
 }
 
@@ -212,6 +225,7 @@ input.hubIcon{
 }
 
 input.hubIcon:hover{
+  color: var(--highlight-color);
   background-color: var(--highlight-fill);
   border:1px solid var(--system-highlight);
 }
@@ -226,12 +240,17 @@ div#bottomSection input.hubIcon{
 }
 
 div#bottomSection input.hubIcon:hover{
+  color: var(--highlight-color);
   background-color: var(--highlight-fill);
   border:1px solid var(--system-highlight);
 }
 
 div#bottomSection input.hubIcon:active{
   background-color:#222;
+}
+
+input.hubIcon#btnSave{
+  background-color:var(--system-dimlight);
 }
 
 /*———————————————————————————————————————— show more & bottom section */
@@ -253,7 +272,7 @@ div#bottomSection input.hubIcon:active{
 }
 
 #showMore:hover{
-  color:var(--system-highlight);
+  color:var(--highlight-color);
 }
 
 #bottomSection{
@@ -302,7 +321,7 @@ div#feedback{
 div#mouseover{
   margin-top:5px;
   margin-left:12px;
-  color:#999;
+  color:var(--tooltipOff);
   letter-spacing:0;
   font-weight:regular;
   font-size:11px;
@@ -315,9 +334,9 @@ div#mouseover{
 
 <div id='indicatorRow'>
   <input id='indOnline'                                       title='État de connexion Internet'                       type='button'> &nbsp; &nbsp;
-  <input id='indGrid'   class='inpIndicator' value='0:0'      title='Grille magnétique (alt-cliquer pour inverser)'    type='button'>
-  <input id='indGuide'  class='inpIndicator' value='répère'   title='Répères magnétiques (alt-cliquer pour inverser)'  type='button'>
-  <input id='indSmart'  class='inpIndicator' value='commenté' title='Repères commentés (alt-cliquer pour inverser)'    type='button'> &nbsp; &nbsp; &nbsp;
+  <input id='indGrid'   class='inpIndicator' value='0:0'      title='Grille magnétique · alt = inverser'    type='button'>
+  <input id='indGuide'  class='inpIndicator' value='répère'   title='Répères magnétiques · alt = inverser'  type='button'>
+  <input id='indSmart'  class='inpIndicator' value='commenté' title='Repères commentés · alt = inverser'    type='button'> &nbsp; &nbsp; &nbsp;
   <input id='indPoint'  class='inpIndicator' value='point'    title='Points magnétiques'                               type='button'>
   <input id='indPixel'  class='inpIndicator' value='pixel'    title='Pixels magnétiques (voir menu Affichage)'         type='button'> &nbsp; &nbsp; &nbsp;
   <input id='indReload' class='inpIndicator' value='reload'   title='Actualiser le contenu de ce panneau'              type='button' onclick='location.reload()'> 
@@ -328,21 +347,21 @@ div#mouseover{
 
 <input id='createGrp'   class='hubIcon'  type='button' value='groupe'  title='Créer un groupe'>
 <input id='placeImage'  class='hubIcon'  type='button' value='img'     title='Importer une image'>
-<input id='changeCase'  class='hubIcon'  type='button' value='casse'   title='Changer la casse (alt pour Premières Lettres En Maj)'>
+<input id='changeCase'  class='hubIcon'  type='button' value='casse'   title='Changer la casse · alt = Premières Lettres En Maj'>
 <input id='showFolder'  class='hubIcon'  type='button' value='dossier' title='Ouvrir le dossier local'>
-<input id='launchSite'  class='hubIcon'  type='button' value='site'    title='Ouvrir le site web (alt pour ouvrir Svija Cloud)'>
-<input id='btnSave'     class='hubIcon'  type='button' value='sauver'
-       title='Sauvegarder la page (alt pour sauvegarder toutes les pages)'
-         alt='Ouvrir un ficher (alt pour ouvrir le fichier le plus récent)'>
+<input id='launchSite'  class='hubIcon'  type='button' value='site'    title='Ouvrir le site web · alt = ouvrir Svija Cloud'>
+<input id='btnSave'     class='hubIcon'  type='button' value='save'
+    title='Sauvegarder la page · alt = sauvegarder toutes les pages ouvertes'
+      alt='Ouvrir un ficher · alt = ouvrir le fichier le plus récent'>
 
 <div id='mouseover'>Svija Tools 2.0</div>
 
 <div id='bottomSection'>
 <input id='chkRepair'   class='hubIcon'  type='button' value='check'   title='Vérifier & réparer le fichier'>
-<input id='newPage'     class='hubIcon'  type='button' value='+page'   title='Nouvelle page (alt pour nouveau module)'>
+<input id='newPage'     class='hubIcon'  type='button' value='+page'   title='Nouvelle page · alt = nouveau module'>
 <input id='newProject'  class='hubIcon'  type='button' value='+projet' title='Créer un nouveau projet Svija'>
 <input id='clearCache' class='hubIcon'  type='button' value='cache'   title='Vider le cache (si activé)'>
-<input id='launchSupport'  class='hubIcon'  type='button' value='support' title='Ouvrir le site de support technique (alt pour envoyer un mail)'>
+<input id='launchSupport'  class='hubIcon'  type='button' value='support' title='Ouvrir le site de support technique · alt = envoyer un mail au support'>
 </div>
 
 <div id='spinner'    onclick="this.style.display='none'"><span class='closeX'>×</span></div>
@@ -697,6 +716,14 @@ newPage.addEventListener('click', (evn) => {
 
 /*———————————————————————————————————————— 2.3 new project
 
+    sends an email requesting new project */
+
+newProject.addEventListener('click', (evn) => {
+  var alt = evn.getModifierState('Alt')
+
+  url = 'mailto:support@svija.com?subject=Demande de nouveau projet Svija&body=Bonjour\n\nJe voudrais démarrer un nouveau projet Svija à l\'adresse suivante :\n\n       ______.svija.site\n\nCordialement,'
+  jsx.openURLInDefaultBrowser(url)
+})
 
 /*———————————————————————————————————————— 2.4 empty cache NEEDS HELP
 
@@ -765,12 +792,15 @@ for (x=0; x<targetList.length; x++){
   window[targetList[x]].addEventListener('mouseout' , function(e){
     e.currentTarget.over = false
     mouseover.innerHTML = ttText
+    mouseover.style.color = 'var(--tooltipOff)'
   })
 }
 
 function showTip(objName){
-  if(window[objName].over)
+  if(window[objName].over){
     mouseover.innerHTML = window[objName].title
+    mouseover.style.color = 'var(--tooltipOn)'
+  }
 }
 
 
@@ -848,7 +878,7 @@ function lert(msg){
 
 /*———————————————————————————————————————— dumpLocal() */
 
-// localStorage.removeItem('undefined')
+//localStorage.removeItem('isSvija')
 
 function dumpLocal(){
   var res = 'localStorage contains '+localStorage.length + ' items:\n\n'
@@ -874,13 +904,11 @@ function dumpLocal(){
 
 NOTES ETC.
 
-  test P3 color
+  • need to listen for alt key to change titles
+  • save button variant of system accent
 
-  • get system highlight color & define css variable
-  • like blue outline on mousover on old tools, brighter
+  • see journal
 
-  • new project doesn't work
-  • alert if missing URL.txt (prevent saving)
   • save error: 
 
     Error 21: undefined is not an object.

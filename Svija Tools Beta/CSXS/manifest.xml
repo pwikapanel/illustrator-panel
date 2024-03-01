@@ -26,8 +26,8 @@
           <MainPath>./interface/tools.html</MainPath>
           <CEFCommandLine>
             <Parameter>--allow-file-access-from-files</Parameter>
-<!--        <Parameter>--enable-nodejs</Parameter>                     -->
-<!--        <Parameter>--mixed-context</Parameter>                     -->
+<!--                     enable-nodejs                     -->
+<!--                     mixed-context                     -->
           </CEFCommandLine>
         </Resources>
 

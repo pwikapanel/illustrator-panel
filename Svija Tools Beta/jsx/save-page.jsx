@@ -70,6 +70,15 @@ function savePage(saveAllDocs){
 
   if (app.documents.length < 1) return('')
 
+  // need URL.txt ————————————————————————————————————————————————————————————
+
+  // str urlVal and 0/1 isSvijaVal set by status-update.jsx
+
+  if (urlVal == ''){
+    alert('Fichier manquant\nMerci de créer\nsync/SVIJA/System/URL.txt\navec l\'url du site (sans https://)')
+    return
+  }
+
   // initialization ——————————————————————————————————————————————————————————
 
   var    restoreDoc = app.activeDocument    // active document to be restored
