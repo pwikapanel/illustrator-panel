@@ -119,7 +119,7 @@ function savePage(saveAllDocs){
   
   if (saveAllDocs) app.activeDocument = restoreDoc 
 
-  return finalFeedback(fileSizeArray, env_start_ms, errorArray, warningArray) 
+  return finalFeedbackX(fileSizeArray, env_start_ms, errorArray, warningArray) 
 
 
 }
@@ -385,14 +385,14 @@ function XcheckValidity(doc, errorArray, warningArray){
   return true;
 }
 
-/*———————————————————————————————————————— finalFeedback(fileSizeArray)
+/*———————————————————————————————————————— finalFeedbackX(fileSizeArray) DUPE NAME IN UTILITIES
 
     alert with:
     - elapsed time
     - errors (files not saved)
     - warnings (files saved) */
 
-function finalFeedback(fileSizeArray,env_start_ms, errorArray, warningArray){
+function finalFeedbackX(fileSizeArray,env_start_ms, errorArray, warningArray){
 
   var body  = '';
   var count = fileSizeArray.length
