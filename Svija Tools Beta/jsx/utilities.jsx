@@ -2,9 +2,6 @@
 
 //:::::::::::::::::::::::::::::::::::::::: utility functions
 
-// file.fsName replaces ~ with /Users/Main/
-// https://github.com/Adobe-CEP/Getting-Started-guides/blob/master/Exporting%20files%20from%20the%20host%20app/readme.md
-
 /*———————————————————————————————————————— addMb(x)
 
     givent a number of bytes, returns a value
@@ -303,6 +300,17 @@ function relockHierarchy(arr){
   }
 }
 
+/*———————————————————————————————————————— convertPath(str)
+
+    converts ~/Documents to Users/Main/Documents
+    and handles Windows backslashes */
+
+function convertPath(str){
+  alert(str)
+//var destPath = app.activeDocument.path.fsName;   // current folder
+  return 'zoopy'
+
+}
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

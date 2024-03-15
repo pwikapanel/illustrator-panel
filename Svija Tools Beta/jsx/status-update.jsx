@@ -1,5 +1,5 @@
 
-//:::::::::::::::::::::::::::::::::::::::: Object.jsx
+//:::::::::::::::::::::::::::::::::::::::: status-update.jsx
 
 /*———————————————————————————————————————— notes
 
@@ -33,6 +33,13 @@
 
 #target illustrator  
 
+function returnGrid(){
+  var spacing = appPreferences.getRealPreference('Grid/Horizontal/Spacing')
+  var ticks   = appPreferences.getIntegerPreference('Grid/Horizontal/Ticks')
+  var res = spacing +':'+ ticks
+  return res
+}
+
 /*———————————————————————————————————————— statusUpdate(which)
 
     supplies any environmental variables */
@@ -49,18 +56,22 @@ var selectTypeVal = ''
 // var zop = appPreferences.getIntegerPreference('snapToPoint')
 // WORKSvar zop = appPreferences.getIntegerPreference('snapToPixelOnUserAction')
 
-//dumpKeys(app.activeDocument)
-//alert('snapToPoint: '+zop)
+// alert( appPreferences.getRealPreference('Grid/Horizontal/Spacing') +':'+appPreferences.getIntegerPreference('Grid/Horizontal/Ticks'))
 
-function statusUpdate(myDocs){
+function statusUpdate(isMac){
+
+  if (isMac == 'true' ) isMac = true
+  if (isMac == 'false')  isMac = false
 
   var valArray = []
 
   valArray[ 0] = 'openFiles|'  + openFiles()
   valArray[ 1] = 'isSvija|'    + isSvija()
-  valArray[ 2] = 'syncPath|'   + syncPath(myDocs)
-  valArray[ 3] = 'lastPath|'   + lastPath(myDocs)
-  valArray[ 4] = 'url|'        + url()
+  valArray[ 2] = 'syncPath|'   + syncPath()
+  valArray[ 3] = 'lastPath|'   + lastPath(isMac)
+
+
+  valArray[ 4] = 'url|'        + url(isMac)
 
                                  //prf loaded in Preferences.jsx
   valArray[ 5] = 'gridLine|'   + appPreferences.getRealPreference('Grid/Horizontal/Spacing')
@@ -76,12 +87,12 @@ function statusUpdate(myDocs){
   return valArray.join('¬') 
 }
 
-function openFiles(){
+function openFiles(){ //——————————————————————————————————————————————————————
   openFilesVal = app.documents.length
   return openFilesVal
 }
 
-function isSvija(){
+function isSvija(){ //————————————————————————————————————————————————————————
   var currPath = ''
 
   if (openFilesVal < 1) isSvijaVal = 0
@@ -94,30 +105,34 @@ function isSvija(){
   return isSvijaVal
 }
 
-function syncPath(myDocs){
+function syncPath(){ //———————————————————————————————————————————————————————
+
+// file.fsName replaces ~ with /Users/Main/
 
   if (openFilesVal < 1 || !isSvijaVal) return syncPathVal;
 
-  var destPath  = String(app.activeDocument.path);   // current folder
-  destPath = fixTilde(destPath, myDocs)
+  var destPath = app.activeDocument.path.fsName;   // current folder
 
   var sync = destPath.indexOf('/sync')
   destPath = destPath.substr(0,sync) + '/sync/';
+
   return destPath
 }
 
-function lastPath(myDocs){
+function lastPath(isMac){ //———————————————————————————————————————————————————————
   if (app.documents.length<1 || !isSvijaVal) return lastPathVal
 
-  var destPath  = String(app.activeDocument.path)+'/'+String(app.activeDocument.name)
-  lastPathVal   = fixTilde(destPath, myDocs)
+  if (isMac)
+    lastPathVal  = app.activeDocument.path.fsName + '/'
+  else
+    lastPathVal  = app.activeDocument.path.fsName + '\\'
+
+  lastPathVal += app.activeDocument.name
 
   return lastPathVal
 }
 
-function url(){
-
-/*———————————————————————————————————————— url()
+function url(isMac){ /*———————————————————————————————————————————————————————
 
   using the frontmost document's location, returns
   the url of the website, stored in
@@ -126,12 +141,19 @@ function url(){
 
   if (openFilesVal==0 || isSvijaVal==0) return urlVal
 
-  var destPath  = String(app.activeDocument.path);   // current folder
-  var syncIndex = destPath.indexOf('/sync')
+  var destPath  = String(app.activeDocument.path.fsName);   // current folder
 
+  if (isMac == true)
+    var syncIndex = destPath.indexOf('/sync')
+  else
+    var syncIndex = destPath.indexOf('\\sync')
+  
   if (syncIndex < 0) return urlVal
 
-  destPath = destPath.substr(0, syncIndex) + '/sync/SVIJA/System/URL.txt';
+  if (isMac)
+    destPath = destPath.substr(0, syncIndex) + '/sync/SVIJA/System/URL.txt';
+  else
+    destPath = destPath.substr(0, syncIndex) + '\\sync\\SVIJA\\System\\URL.txt';
 
 // https://community.adobe.com/t5/indesign-discussions/file-read-returns-nothing-for-txt-file/td-p/9335635
 
@@ -297,25 +319,12 @@ var str = 'Workspaces/Essentials/collection1/attributes/ControlPanel\ OIMirrorV'
 // Error 1200: an Illustrator error occurred: 1312902469 ('EMAN')Line: 62->  var res = app.preferences.getIntegerPreference(str);
 
 
+   √ try with lower-case buttons, might be nicer.
+
 var res = app.preferences.getIntegerPreference(str);
 
 return str + ' = '+res
 */
-
-
-//:::::::::::::::::::::::::::::::::::::::: utility functions
-
-/*———————————————————————————————————————— fixTilde(arg, myDocs)
-
-    replaces ~/Documents with /Users/Main/Documents */
-
-function fixTilde(arg, myDocs){
-  myDocs = myDocs.replace('Documents', '')
-  if (arg.substr(0,1) != '~') return arg
-
-  var stem = '/Users/Main'
-  return stem + arg.substr(1)
-}
 
 
 //:::::::::::::::::::::::::::::::::::::::: fin

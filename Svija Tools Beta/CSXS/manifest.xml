@@ -18,7 +18,7 @@
   </ExecutionEnvironment>
 
   <DispatchInfoList>
-    <Extension Id="com.svija.SvijaToolsBeta.panel"><!-- ———————————————————— -->
+    <Extension Id="com.svija.SvijaToolsBeta.panel">
       <DispatchInfo>
 
         <Resources>
@@ -29,7 +29,7 @@
         </Resources>
 
         <Lifecycle>
-          <AutoVisible>false</AutoVisible>  
+          <AutoVisible>true</AutoVisible>  
           <StartOn>  
             <Event>documentAfterActivate</Event>
           </StartOn>  
@@ -37,18 +37,18 @@
 
         <UI>
           <Type>Panel</Type>
-          <Menu>Svija Tools Beta</Menu>
+          <Menu>Svija Tools 2.0 Beta</Menu>
             <Geometry>
               <Size>
-                  <Width>474</Width>
+                  <Width>454</Width>
                   <Height>75</Height>
               </Size>
               <MinSize>
-                  <Width>474</Width>
+                  <Width>454</Width>
                   <Height>75</Height>
               </MinSize>
               <MaxSize>
-                  <Width>474</Width>
+                  <Width>454</Width>
                   <Height>105</Height>
               </MaxSize>
             </Geometry>

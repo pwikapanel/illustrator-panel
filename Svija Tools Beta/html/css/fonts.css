@@ -1,6 +1,16 @@
-/*———————————————————————————————————————— fonts */
+/*———————————————————————————————————————— font families */
 
-@font-face { font-family:'SourceSansPro-Regular' ; src:url('../fonts/SourceSansPro-Regular.woff' ) format('woff'); }
-@font-face { font-family:'SourceSansPro-SemiBold'; src:url('../fonts/SourceSansPro-SemiBold.woff') format('woff'); }
+@font-face {
+  font-family:'Lucida Grande';
+  font-weight:normal;
+  src:url('../fonts/Lucida Grande.woff') format('woff');
+ 
+}
 
-/*———————————————————————————————————————— fin */
+@font-face {
+  font-family:'Lucida Grande';
+  font-weight:bold;
+  src:url('../fonts/Lucida Grande Bold.woff') format('woff');
+}
+
+

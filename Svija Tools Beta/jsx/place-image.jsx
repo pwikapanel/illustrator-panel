@@ -53,13 +53,20 @@
 
 #target illustrator  
 
-function placeImage(replaceImg){
+function placeImage(replaceImg, isMac){
+
+  if (isMac == 'true' ) isMac = true
+  if (isMac == 'false')  isMac = false
 
   // initialization ——————————————————————————————————————————————————————————
 
   var doc       = app.activeDocument
   var layer     = doc.activeLayer
-  var linksPath = doc.path + '/Links'
+
+  if (isMac)
+    var linksPath = doc.path.fsName + '/Links'
+  else
+    var linksPath = doc.path.fsName + '\\Links'
 
   // get layer & unlock if necessary —————————————————————————————————————————
 
@@ -93,7 +100,10 @@ function placeImage(replaceImg){
 
   try{
     placedImage.file = aseFile.openDlg('Choisir l\'image à importer…')
-  } catch(e){ return '' }
+  } catch(e){
+    placedImage.remove()
+    return ''
+  }
 
   // position image ——————————————————————————————————————————————————————————
 

@@ -76,7 +76,7 @@ function savePage(saveAllDocs){
 
   if (urlVal == ''){
     alert('Fichier manquant\nMerci de créer\nsync/SVIJA/System/URL.txt\navec l\'url du site (sans https://)')
-    return
+    return ''
   }
 
   // initialization ——————————————————————————————————————————————————————————
@@ -734,7 +734,7 @@ function fileSizeReport(fileSizeArray){
     var artboard = fileSizeArray[y]
 //  var svgSize = fileSizeArray[y+1]
     var svgSize = addMb(fileSizeArray[y+1])
-    svgSizes.push(' '+artboard+' page '+svgSize)
+    svgSizes.push(' '+artboard+' : '+svgSize)
   }
 
   report  = svgSizes.join('\n')

@@ -1,0 +1,38 @@
+/*———————————————————————————————————————— colors
+
+    should be converted to JSON and loaded dynamically */
+
+:root {
+
+  --svija                     : hsl(72 100%  50%);
+  --offline                   : hsl( 0   0%  53%);
+
+  --indicatorText             : hsl( 0 100%  50%); /* show errors */
+  --indicatorOn               : hsl( 0   0%  87%);
+  --indicatorOff              : hsl( 0   0%  60%);
+
+  --highlight-color           : hsl( 0   0% 100%);
+  --highlight-fill            : hsl( 0   0%  27%);
+
+  --tooltipOn                 : hsl( 0   0% 100%);
+  --tooltipOff                : hsl( 0   0%  60%);
+
+  --body-foreground           : hsl( 0   0% 100%);
+  --body-background           : hsl( 0   0%  33%);
+
+  --button-label              : hsl( 0   0%  67%);
+  --button-border             : hsl( 0   0%  22%);
+  --button-background         : hsl( 0   0%  37%);
+
+  --button-background-active  : hsl( 0   0%  13%);
+
+  --button-bottom-label       : hsl( 0   0%  60%);
+  --button-bottom-border      : hsl( 0   0%  13%);
+  --button-bottom-background  : hsl( 0   0%  22%);
+  --button-bottom-label-active: hsl( 0   0%  13%);
+
+  --showMore: #bbb;
+  --bottomSection-background  : hsl( 0   0%  26%);
+  --bottomSection-border-top  : hsl( 0   0%  22%);
+}
+

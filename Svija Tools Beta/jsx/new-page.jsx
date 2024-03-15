@@ -53,15 +53,28 @@
 
 #target illustrator  
 
-function newPage(module, lastPath){
+function newPage(module, lastPath, isMac){
+
+  if (isMac == 'true' ) isMac = true
+  if (isMac == 'false') isMac = false
 
   // initialization ——————————————————————————————————————————————————————————
 
   var doc            = app.activeDocument
 
-  var wholePath      = String(doc.path)
-  var syncIndex      = wholePath.indexOf('/sync')
-  var templateFolder = wholePath.substr(0, syncIndex) + '/sync/SVIJA/Templates/'
+  var wholePath      = String(doc.path.fsName)
+//alert(wholePath)// returns correct path for current folder
+
+  if (isMac)
+    var syncIndex      = wholePath.indexOf('/sync')
+  else
+    var syncIndex      = wholePath.indexOf('\\sync')
+
+
+  if (isMac)
+    var templateFolder = wholePath.substr(0, syncIndex) + '/sync/SVIJA/Templates/'
+  else
+    var templateFolder = wholePath.substr(0, syncIndex) + '\\sync\\SVIJA\\Templates\\'
 
   var pagePath       = templateFolder + 'Page.ait'
   var modulePath     = templateFolder + 'Module.ait'
@@ -81,9 +94,12 @@ function newPage(module, lastPath){
 
   // save file in last known location ————————————————————————————————————————
 
-  var aiOptions = newAiOptions()
 
-  var lastSlash = lastPath.lastIndexOf('/')
+  if (isMac)
+    var lastSlash = lastPath.lastIndexOf('/')
+  else
+    var lastSlash = lastPath.lastIndexOf('\\')
+
   var lastDir   = lastPath.substr(0, lastSlash+1)
 
   if (module) var str = 'Nom de module.ai'
@@ -98,7 +114,7 @@ function newPage(module, lastPath){
     return ''
   }
 
-
+  var aiOptions = newAiOptions()
   app.activeDocument.saveAs(aiFile, aiOptions)
 
 }

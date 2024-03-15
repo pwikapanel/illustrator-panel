@@ -92,15 +92,15 @@ function checkRepair(){
   
   // if not ready then quit —————————————————————————————————————————————————— 
   
-  if (!doc.saved  ) return 'Merci de sauvegarder en premier'
-  if (!inSync(doc)) return 'Ceci n\'est pas un fichier Svija' 
+  if (!doc.saved  ) return 'Merci de sauvegarder avant de continuer'
+  if (!inSync(doc)) return 'Ceci n\'est pas une page Svija' 
 
   // create Links folder if necessary ———————————————————————————————————————— 
   
   if (hasImages)
     if (!Folder(linksFolder).exists){
       Folder(linksFolder).create();
-      env_repairs.push('"Links" folder created for images.');
+      env_repairs.push('Dossier "Links" créé pour les images.');
     }
   
   // check for non-native items NOT IMPLEMENTED ——————————————————————————————
