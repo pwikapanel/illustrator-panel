@@ -39,6 +39,7 @@ input:focus{ /* get rid of blue line when focused */
   height: 8px;
   background-color:var(--offline);
   border:none;
+  border-radius:2px;
 }
 
 .inpIndicator{
@@ -64,6 +65,10 @@ input:focus{ /* get rid of blue line when focused */
 
 .inpIndicator:hover{
   cursor:pointer;
+}
+
+#indReload{
+  margin-left:30px;
 }
 
 /*———————————————————————————————————————— buttons */
@@ -123,6 +128,13 @@ input.hubIcon#btnOpen{
 
 input.hubIcon#btnOpen{
   display:none;
+}
+
+/*———————————————————————————————————————— disabled buttons */
+
+#impStyles, #expStyles, #clearCache{
+  color:black;
+  text-decoration:line-through;
 }
 
 /*———————————————————————————————————————— indicator spacing */

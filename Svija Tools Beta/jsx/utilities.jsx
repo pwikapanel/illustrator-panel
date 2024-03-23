@@ -21,6 +21,15 @@ function addMb(x){
   return x + ext
 }
 
+/*———————————————————————————————————————— color picker
+
+    */
+
+function colorPicker(){
+  var color = $.colorPicker()
+  return color 
+}
+
 /*———————————————————————————————————————— convertArray(envArray)
 
     accepts an array of three-element arrays:
@@ -311,6 +320,7 @@ function convertPath(str){
   return 'zoopy'
 
 }
+
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
