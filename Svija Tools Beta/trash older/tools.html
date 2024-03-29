@@ -5,10 +5,12 @@
 <script>
 
 window.addEventListener('error', (event)=>{ lert(event.message) })
+var jsx = new CSInterface();
+
+localStorage.clear()
 
 /*———————————————————————————————————————— 1. initialization */
 
-var jsx = new CSInterface();
 
 var  cssList = [ 'fonts'            ,
                  'colors-1'         ,
@@ -26,8 +28,7 @@ var  jsxList = [ 'preferencesUpdate',
                  'checkRepair'      ,
                  'newPage'          ]
 
-var   jsList = [ 'colors'           ,
-                 'tools'            ]
+var   jsList = [ 'tools'            ]
 
 var  varList = [ 'version'          ,
                  'complete'         ]
@@ -109,7 +110,13 @@ function rebuild(){
     document.body.innerHTML += localStorage[thisIndex]
   }
 
-  for (var x=0; x<jsList.length; x++){ // JS   ———————————————————————————————
+  for (var x=0; x<jsxList.length; x++){ // JSX ———————————————————————————————
+    var thisScript = jsxList[x]
+    var thisIndex = thisScript+'Jsx'
+    jsx.evalScript(localStorage[thisIndex])
+  }
+
+  for (var x=0; x<jsList.length; x++){ // JS —————————————————————————————————
     var thisScript = jsList[x]
     var thisIndex = thisScript+'Js'
     var script = document.createElement('script')

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta charset="utf-8">
+<script type="text/javascript" src="js/CSInterface.js"></script>
+<script>
+
+window.addEventListener('error', (event)=>{ lert(event.message) })
+
+var jsx = new CSInterface();
+
+localStorage.clear()
+
+/*———————————————————————————————————————— loadSetup
+
+    loads an initial script into local storage */
+
+function loadSetup(){
+  if (typeof localStorage.setupLoadedVal == 'undefined'){
+    readFile( 'js',  'js',       'setup', ''        )
+    readFile('val', 'val', 'setupLoaded', 'runSetup')
+  }
+  else runSetup()
+}
+
+/*———————————————————————————————————————— runSetup
+
+    converts localStorage val to actual JS
+
+    if panel is already loaded, we don't need to append
+    setup script */
+
+function runSetup(){
+  var script = document.createElement('script')
+  script.innerHTML = localStorage['setupJs']
+  document.body.appendChild(script)
+}
+
+/*———————————————————————————————————————— readFile */
+
+function readFile(ext, folderName, fileName, func){
+
+  file = folderName + '/' + fileName + '.' + ext
+
+// autoedit.gitbook.io/documentation/adobe-panel/autoedit-adobe-cep-panel-dev-setup/manifest.xml
+
+  var rawFile = new XMLHttpRequest();
+  rawFile.open("GET", file, false);
+  rawFile.onreadystatechange = function(){
+    if(rawFile.readyState === 4)
+      if(rawFile.status === 200 || rawFile.status == 0){
+        var varName = fileName + firstLetterCap(ext)
+        localStorage[varName] = rawFile.responseText
+        if (func != '') window[func]()
+      }
+  }
+  rawFile.send(null);
+}
+
+/*———————————————————————————————————————— firstLetterCap
+
+    converts css into CSS to add to variable names */
+
+function firstLetterCap(ext){
+  var firstLetter = ext.substr(0,1).toUpperCase() 
+  var restLetters = ext.substr(1, ext.length-1)
+  return firstLetter + restLetters
+}
+
+/*———————————————————————————————————————— lert(msg)
+
+    alerts in ai-land don't exit program space */
+
+function lert(msg){
+  msg = JSON.stringify(String(msg));
+  msg = msg.substr(1, msg.length-2)
+  //alert(msg)
+  jsx.evalScript('alert("' + msg + '")')
+}
+
+
+</script></head><body bgcolor='white' oncontextmenu='return false'><a href="javascript:location.reload()">O</a><script>
+
+  loadSetup()
+
+</script></body></html>
