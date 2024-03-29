@@ -4,28 +4,11 @@
 <script type="text/javascript" src="js/CSInterface.js"></script>
 <script>
 
-//localStorage.clear()
-
-/*———————————————————————————————————————— create CS Interface */
-
-var jsx = new CSInterface();
-
-/*———————————————————————————————————————— lert(msg)
-
-    alerts in ai-land don't exit program space */
-
-function lert(msg){
-  msg = JSON.stringify(String(msg));
-  msg = msg.substr(1, msg.length-2)
-  //alert(msg)
-  jsx.evalScript('alert("' + msg + '")')
-}
-
-/*———————————————————————————————————————— announce any errors */
-
 window.addEventListener('error', (event)=>{ lert(event.message) })
 
-/*———————————————————————————————————————— script lists */
+/*———————————————————————————————————————— 1. initialization */
+
+var jsx = new CSInterface();
 
 var  cssList = [ 'fonts'            ,
                  'colors-1'         ,
@@ -49,7 +32,7 @@ var   jsList = [ 'colors'           ,
 var  varList = [ 'version'          ,
                  'complete'         ]
 
-/*———————————————————————————————————————— 1. if necessary, load files */
+/*———————————————————————————————————————— 2. if necessary, load files */
 
 if(typeof localStorage.completeVar == 'undefined'){
 
@@ -92,14 +75,14 @@ if(typeof localStorage.completeVar == 'undefined'){
 
 else lert('already loaded')
 
-/*———————————————————————————————————————— 2. check if more recent on server NOT DONE
+/*———————————————————————————————————————— 3. check if more recent on server NOT DONE
     */
 
 
 
 
 
-/*———————————————————————————————————————— 3. build panel from localStorage
+/*———————————————————————————————————————— 4. build panel from localStorage
 
     */
 
@@ -112,7 +95,7 @@ document.body.innerHTML = ''
 */
 
 function rebuild(){
-  for (var x=0; x<cssList.length; x++){ // CSS —————————————————————————————————
+  for (var x=0; x<cssList.length; x++){ // CSS ———————————————————————————————
     var thisScript = cssList[x]
     var thisIndex = thisScript+'Css'
     var script = document.createElement('style')
@@ -120,13 +103,13 @@ function rebuild(){
     document.head.appendChild(script)
   }
   
-  for (var x=0; x<htmlList.length; x++){ // HTML ———————————————————————————————
+  for (var x=0; x<htmlList.length; x++){ // HTML —————————————————————————————
     var thisScript = htmlList[x]
     var thisIndex = thisScript+'Html'
     document.body.innerHTML += localStorage[thisIndex]
   }
 
-  for (var x=0; x<jsList.length; x++){ // HTML ———————————————————————————————
+  for (var x=0; x<jsList.length; x++){ // JS   ———————————————————————————————
     var thisScript = jsList[x]
     var thisIndex = thisScript+'Js'
     var script = document.createElement('script')
@@ -137,6 +120,17 @@ function rebuild(){
 
 
 //:::::::::::::::::::::::::::::::::::::::: functions
+
+/*———————————————————————————————————————— lert(msg)
+
+    alerts in ai-land don't exit program space */
+
+function lert(msg){
+  msg = JSON.stringify(String(msg));
+  msg = msg.substr(1, msg.length-2)
+  //alert(msg)
+  jsx.evalScript('alert("' + msg + '")')
+}
 
 /*———————————————————————————————————————— readFiles */
 
