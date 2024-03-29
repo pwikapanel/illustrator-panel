@@ -2,46 +2,152 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta charset="utf-8">
 <script type="text/javascript" src="js/CSInterface.js"></script>
+<script>
 
-<script>/* load external scripts & set up environment */
-
-/*———————————————————————————————————————— announce any errors */
-
-window.addEventListener('error', (event)=>{ alert(event.message) })
+//localStorage.clear()
 
 /*———————————————————————————————————————— create CS Interface */
 
 var jsx = new CSInterface();
 
+/*———————————————————————————————————————— lert(msg)
 
+    alerts in ai-land don't exit program space */
 
-/*———————————————————————————————————————— scripts list
-
-    if local storage is populated and version is correct, this is not necessary */
-
-var scriptList = [ 'version'           ,
-                   'preferencesUpdate' ,
-                   'utilities'         ,
-                   'statusUpdate'      ,
-                   'savePage'          ,
-                   'placeImage'        ,
-                   'createGroup'       ,
-                   'changeCase'        ,
-                   'checkRepair'       ,
-                   'newPage'           ]
-
-/*———————————————————————————————————————— load external scripts */
-
-// Uncaught NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load
-// 'file:///Library/Application%20Support/Adobe/CEP/extensions/Svija%C2%A0Tools%20Beta/jsx/clear-cache.jsx'.
-
-var jsxFolder = '../jsx'
-
-for (x=0; x<scriptList.length; x++){
-  readJsx(jsxFolder, scriptList[x], 'jsx');
+function lert(msg){
+  msg = JSON.stringify(String(msg));
+  msg = msg.substr(1, msg.length-2)
+  //alert(msg)
+  jsx.evalScript('alert("' + msg + '")')
 }
 
-function readJsx(folderName, fileName, extension){
+/*———————————————————————————————————————— announce any errors */
+
+window.addEventListener('error', (event)=>{ lert(event.message) })
+
+/*———————————————————————————————————————— script lists */
+
+var  cssList = [ 'fonts'            ,
+                 'colors-1'         ,
+                 'layout'           ]
+
+var htmlList = [ 'body'             ]
+
+var  jsxList = [ 'preferencesUpdate',
+                 'utilities'        ,
+                 'statusUpdate'     ,
+                 'savePage'         ,
+                 'placeImage'       ,
+                 'createGroup'      ,
+                 'changeCase'       ,
+                 'checkRepair'      ,
+                 'newPage'          ]
+
+var   jsList = [ 'colors'           ,
+                 'tools'            ]
+
+var  varList = [ 'version'          ,
+                 'complete'         ]
+
+/*———————————————————————————————————————— 1. if necessary, load files */
+
+if(typeof localStorage.completeVar == 'undefined'){
+
+  // load css ————————————————————————————————————————————————————————————————
+
+  var    ext =   'css'
+  var folder =   'css'
+
+  readFiles(ext, folder, cssList)
+
+  // load html ———————————————————————————————————————————————————————————————
+
+  var    ext =   'html'
+  var folder =   'html'
+
+  readFiles(ext, folder, htmlList)
+
+  // load jsx ————————————————————————————————————————————————————————————————
+
+  var    ext =   'jsx'
+  var folder =   'jsx'
+
+  readFiles(ext, folder, jsxList)
+
+  // load js —————————————————————————————————————————————————————————————————
+
+  var    ext =   'js'
+  var folder =   'js'
+
+  readFiles(ext, folder, jsList)
+
+  // load completion —————————————————————————————————————————————————————————
+
+  var    ext =   'var'
+  var folder =   'var'
+
+  readFiles(ext, folder, varList)
+
+}
+
+else lert('already loaded')
+
+/*———————————————————————————————————————— 2. check if more recent on server NOT DONE
+    */
+
+
+
+
+
+/*———————————————————————————————————————— 3. build panel from localStorage
+
+    */
+
+
+/* clear existing content, possibly unnecessary
+
+document.querySelectorAll('[style]').forEach(el => el.removeAttribute('style'))
+document.body.innerHTML = ''
+
+*/
+
+function rebuild(){
+  for (var x=0; x<cssList.length; x++){ // CSS —————————————————————————————————
+    var thisScript = cssList[x]
+    var thisIndex = thisScript+'Css'
+    var script = document.createElement('style')
+    script.innerHTML = localStorage[thisIndex]
+    document.head.appendChild(script)
+  }
+  
+  for (var x=0; x<htmlList.length; x++){ // HTML ———————————————————————————————
+    var thisScript = htmlList[x]
+    var thisIndex = thisScript+'Html'
+    document.body.innerHTML += localStorage[thisIndex]
+  }
+
+  for (var x=0; x<jsList.length; x++){ // HTML ———————————————————————————————
+    var thisScript = jsList[x]
+    var thisIndex = thisScript+'Js'
+    var script = document.createElement('script')
+    script.innerHTML = localStorage[thisIndex]
+    document.body.appendChild(script)
+  }
+}
+
+
+//:::::::::::::::::::::::::::::::::::::::: functions
+
+/*———————————————————————————————————————— readFiles */
+
+function readFiles(ext, folder, list){
+  for (var x=0; x<list.length; x++)
+    readFile(ext, folder, list[x]);
+}
+
+/*———————————————————————————————————————— readFile */
+
+function readFile(extension, folderName, fileName){
 
   file = folderName + '/' + fileName + '.' + extension
 
@@ -54,351 +160,26 @@ function readJsx(folderName, fileName, extension){
     if(rawFile.readyState === 4)
       if(rawFile.status === 200 || rawFile.status == 0)
       {
-//      var allText = rawFile.responseText;
-//      jsx.evalScript(allText);
-        localStorage[fileName] = rawFile.responseText
+        var varName = fileName + firstLetterCap(extension)
+        localStorage[varName] = rawFile.responseText
       }
   }
   rawFile.send(null);
 }
 
+/*———————————————————————————————————————— firstLetterCap
 
+    converts css into CSS to add to variable names */
 
-
-//  var file
-//  
-const env_path = jsx.getSystemPath(SystemPath.EXTENSION) + encodeURI('/jsx/');
-//  
-//  file = env_path + 'preferences-update.jsx'
-//  jsx.evalScript("$.evalFile('" + file + "')")
-//    
-//  file = env_path + 'utilities.jsx'
-//  jsx.evalScript("$.evalFile('" + file + "')")
-//    
-//  file = env_path + 'status-update.jsx'
-//  jsx.evalScript("$.evalFile('" + file + "')")
-//    
-//  file = env_path + 'save-page.jsx'
-//  jsx.evalScript("$.evalFile('" + file + "')")
-//  
-//  file = env_path + 'place-image.jsx'
-//  jsx.evalScript("$.evalFile('" + file + "')")
-//  
-//  file = env_path + 'create-group.jsx'
-//  jsx.evalScript("$.evalFile('" + file + "')")
-//    
-//  file = env_path + 'change-case.jsx'
-//  jsx.evalScript("$.evalFile('" + file + "')")
-//  
-//  file = env_path + 'check-repair.jsx'
-//  jsx.evalScript("$.evalFile('" + file + "')")
-//  
-//  file = env_path + 'new-page.jsx'
-//  jsx.evalScript("$.evalFile('" + file + "')")
-//  
-//  file = env_path + 'clear-cache.jsx'
-//  jsx.evalScript("$.evalFile('" + file + "')")
-
-//———————————————————————————————————————— match highlight color to system
-
-var hostEnv     = jsx.getHostEnvironment();
-var RGBColorObj = hostEnv.appSkinInfo.systemHighlightColor;
-
-var r = RGBColorObj.red
-var g = RGBColorObj.green
-var b = RGBColorObj.blue
-
-var hsl        = rgbToHsl(r, g, b)
-var hue        = Math.round(hsl[0])
-var saturation = Math.round(hsl[1])
-
-if (''+r+g+b == '0120215') hue = 72
-
-if (saturation < 10) hue = 72   // if system highlight is gray, use official color
-
-var lightness = 50
-var dimness   = 30
-
-if (hue>190 && hue < 290) lightness += 10
-
-var highlight = 'hsl('+hue+', 100%, ' + lightness + '%)'
-var  dimlight = 'hsl('+hue+',  30%, ' + dimness   + '%)'
-
-
-if (typeof localStorage.highlight != 'undefined') highlight = localStorage.highlight
-if (typeof localStorage.dimlight  != 'undefined') dimlight  = localStorage.dimlight
-
-document.documentElement.style.setProperty('--system-highlight', highlight);
-document.documentElement.style.setProperty('--system-dimlight',   dimlight);
-
-
-//:::::::::::::::::::::::::::::::::::::::: functions
-
-/*———————————————————————————————————————— rgbToHsl(r, g, b)
-
-    https://www.30secondsofcode.org/js/s/rgb-to-hsl/  */
-
-function rgbToHsl(r, g, b){
-  r /= 255;
-  g /= 255;
-  b /= 255;
-  const l = Math.max(r, g, b);
-  const s = l - Math.min(r, g, b);
-  const h = s
-    ? l === r
-      ? (g - b) / s
-      : l === g
-      ? 2 + (b - r) / s
-      : 4 + (r - g) / s
-    : 0;
-  return [
-    60 * h < 0 ? 60 * h + 360 : 60 * h,
-    100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
-    (100 * (2 * l - s)) / 2,
-  ];
+function firstLetterCap(txt){
+  var firstLetter = ext.substr(0,1).toUpperCase() 
+  var restLetters = ext.substr(1, ext.length-1)
+  return firstLetter + restLetters
 }
 
 
-</script>
+</script></head><body oncontextmenu='return false'><script>
 
-<link media="all" rel="stylesheet" href="css/fonts.css"/>
-<link media="all" rel="stylesheet" href="css/colors-1.css"/>
-<link media="all" rel="stylesheet" href="css/layout.css"/>
+  rebuild()
 
-</head><body oncontextmenu='return false'>
-
-<div id='indicatorRow'>
-  <input id='indOnline'                                       title='État de connexion Internet (gris=pas de connexion)' type='button'>
-  <input id='indGrid'   class='inpIndicator' value='0:0'      title='Grille magnétique · alt = inverser'                 type='button'>
-  <input id='indGuide'  class='inpIndicator' value='répère'   title='Répères magnétiques · alt = inverser'               type='button'>
-  <input id='indSmart'  class='inpIndicator' value='commenté' title='Repères commentés · alt = inverser'                 type='button'>
-<!-- <input id='indPoint'  class='inpIndicator' value='point'    title='Points magnétiques'                              type='button'> -->
-<!-- <input id='indPixel'  class='inpIndicator' value='pixel'    title='Pixels magnétiques (voir menu Affichage)'        type='button'> -->
-  <input id='indReload' class='inpIndicator' value='reload'   title='Actualiser le contenu de ce panneau'                type='button' onclick="location.reload()"> 
-  <input id='dumpLS'    class='inpIndicator' value='LS'       title='Afficher les informations stockées'                 type='button'>
-<!--  <input type=text value='empty' id='testInput'> -->
-</div>
-
-<input id='showMore' type='button' value='• • •' title='plus de capacités en bas'>
-
-<input id='createGrp'   class='hubIcon'  type='button'>
-<input id='placeImage'  class='hubIcon'  type='button'>
-<input id='changeCase'  class='hubIcon'  type='button'>
-<input id='showFolder'  class='hubIcon'  type='button'>
-<input id='launchSite'  class='hubIcon'  type='button'>
-<input id='btnSave'     class='hubIcon'  type='button'>
-<input id='btnOpen'     class='hubIcon'  type='button'>
-
-<div id='mouseover'>Svija Tools 2.0 Beta</div>
-
-<div id='bottomSection'>
-<input id='impStyles'     class='hubIcon'  type='button'>
-<input id='expStyles'     class='hubIcon'  type='button'>
-<input id='newPage'       class='hubIcon'  type='button'>
-<input id='clearCache'    class='hubIcon'  type='button'>
-<input id='chkRepair'     class='hubIcon'  type='button'>
-<input id='launchSupport' class='hubIcon'  type='button'>
-</div>
-
-<div id='spinner'  onclick="this.style.display='none'"><span class='closeX'>×</span></div>
-<div id='doneMsg' onclick="this.style.display='none'"><span class='closeX'>×</span></div>
-
-<script type="text/javascript" src="js/tools.js"></script>
-
-</body></html><!--
-
-next:
-
-   environmental variables isMac (boolean) in both js & jsx
-   functions fixSlashes(isMac) in both js & jsx
-
-PC tests
-
-   lastPath is wrong going into new-page.jsx
-   it has no slashes, just all run together : C:UsersandyDesktoppixside.frsyncExample Pages
-
-   √ test context menu
-   √ test "image" in main and subfolders
-   • test "dossier" in main and subfolders
-     alert '', goes to windows root
-   • make sure "new page" goes in correct folder
-
-PC issues
-
-   • new page button now opens template but tries to save in Links
-     should be in same folder as last path
-
-   • lastPath given to newPage is wrong
-
-   • grid info wrong, even when I refresh the preferences.
-     can I set the grid to match my info?
-
-   √ canceling IMAGE causes fake image
-     image was palced in correct spot
-     created new links folder if needed
-     SEE PHOTO FOR FIX IN JSX
-
-   • make panel dark blue to differentiate, like old pitch deck
-     make indicators same as current background, because there's a thin
-     line at top that I can't get rid of
-   • change px to rem everywhere
-
-   • GRID 72 & 8 are reported by grid, but worked if I changed them
-     — added alert to LS dump
-     — report was incorrect
-     gridline in status changes, see picture
-     alt-click grid to open grid prefs
-
-   ———————————————————————————————————————— won't fix today
-
-   • need to add artboard widths to save report
-   • after "save all" wrong file was in front
-   • in "save all" written "4 files saved", should have been 2
-   • filenames in save confirmation are wrong, footer was listed twice, "no missing"
-   • vérifier fixed problem but didn't give report
-
-   ———————————————————————————————————————— done
-
-   √ button labels too big
-   √ interrupt is timeout
-   √ svija tools 3.0 —› change version to match Exchange version
-   √ link at tech /svija-tools-2.0 not found
-
-   √ dossier button has debugging alert
-     — commented out
-
-   √ URL.txt not found by site/cloud:save buttons after creation
-     — not found even after restartc
-
-   √ feedback screen has no close X
-
-   √ title in manifest should have 3.0
-
-   √ support should go to special link /tools3.0
-
-   √ bottom links too dark
-     — fixed
-
-   √ mail links still broken
-     — simplified new project email in case it's a quote problem
-     — seem to be working — test
-     — wrong charset & newlines see photo
-
-   √ pixel is not 6e avant derneier — re-check (don't include views)
-
-   √ extra dash to right of LS
-
-   √ fixtilde in statusupdate uses hardcoded /Users/Main
-
-   √ blank at startup, had to collapse & uncollapse to see
-     x added timeout to reload panel
-     — added alert in first script tag to see if panel is loaded at all
-     — add Adove test panel to see if it opens, maybe copy headers
-
-   √ fonts still wrong
-  
-   √ dossier opens ABOVE sync, not sync
-     — alert: C:\Users\andy\Documents\pixside.fr
-     — add \sync when it's a PC
-     — need extgra \
-
-   √ when return message is '', feedback should not be shown (saving with no url.txt)
-     — now exit feedback function if no message
-
-   √ overall very dark, not enough contrast
-
-   √ title says tools 3.0 mouseover says 2.0
-     — changed to 3.0 in tools.html
-
-  √ font wrong
-     — tried using TTF, adding second line with '\' instead
-
-   √ clicking on ••• creates scrollbar
-     — added overflow hidden universally
-
-   √ LS alert only showed 2 lines, was cut off and couldn't be scrolled
-
-   √ Dossier just went to Windows Explorer
-     — added alert to see what's going on
-     — changed to \ for PC
-
-   √ site gives aucun project svija. if there's a sync folder, it should say please create URL.txt
-
-   √ save gave alert URL.txt not present but then showed "undefined" message in spinner
-     — changed "return" to "return ''" in save script
-
-   √ C&R says "Merci de sauvegarder en premier" should be "Merci de sauvegarder avant de continuer"
-     — fixed
-
-   √ links to mailto: just did nothing
-     — I'll have to configure a mail program
-
-   √ panels disappear when no open document, so reopening last document is useless
-
-
-NOTES ETC.
-  • make a grid, and then press alt, then the same button in
-    order to delete all the grids that you've created
-
-  • store indicator states in localstorage
-
-
-  • reset 0,0 automaticslly
-
-  • set artboard rulers
-    ruler  : View > Rulers > Show Rulers
-    rulerCoordinateSystem  : View > Rulers > Change to Global Rulers
-
-  • got message "not a svija site" when no page was open, but URL was known
-
-  • check & repair error:
-
-  Error 9024: Cannot modify a layer that is locked
-  Line: 488
-  -> var rec = obj •parent pathItems.rectangle( rNegTop, rLeft, rw...
-
-———————————————————————————————————————— next
-
-  if save is less than 1/2 second, no wait screen (set wait screen after 1/2 second?)
-
-———————————————————————————————————————— to complete
-
-  • fix check & repair
-  • mouseover doesn't go away on click
-  • missing url.txt should provoke an alert instead of showing the wrong site
-  • nicer format of save complete message & increase delay before closing
-
-———————————————————————————————————————— bugs
-
-  xxx mismatch between open dialog title & actual folder
-  
-  after working on the vbca red round logo, I clicked the open button and saw vbca.svija.site
-  but was really in centrefrance.levillagebyca.com
-  clicking "dossier" had the same problem
-  because url.txt was missing from cnetrefrance…
-
-———————————————————————————————————————— possible additions
-
-  • save svg w/o AI name, maybe w/prefix
-    append artboard widths?`
-
-  • set/get styles
-
-  • Find and Replace : Edit > Find & Replace
-
-  • save files sizes in a table and show them at all times
-
-  • add alerts to the Adobe CEP panel to see what is actually added to the flyout menu
-
-  • move "reload" to flyout menu
-
-  • in save, check for /sync/sync/, __init__.py and signs of other trouble
-    warning if folder is in iCloud
-
-  • button to center obj on page, left, top, right, bottom
-  • how to change height when double click on top tab, like adobe panels?
-  • button to create/delete grid (popup with margins, number, gutter)
-
-
- -->
-
+</script></body></html>

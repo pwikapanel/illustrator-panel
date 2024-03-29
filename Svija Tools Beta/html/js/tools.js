@@ -54,6 +54,8 @@ function statusUpdateInit(){ jsx.evalScript('statusUpdate("' + localStorage.myDo
 
 var btnSaveTitle = btnSave.title
 
+const env_path = jsx.getSystemPath(SystemPath.EXTENSION) + encodeURI('/jsx/');
+
 function statusUpdate(val){
 
   file = env_path + 'preferences-update.jsx'
@@ -267,6 +269,10 @@ function setSmart(swap){
     localStorage.removeItem('isSvija') */
 
 dumpLS.addEventListener('click', (evn) => {
+
+  localStorage.clear()
+  lert('localStorage cleared')
+  return
 
   var res = 'localStorage contains '+localStorage.length + ' items:\n\n'
 
@@ -714,17 +720,6 @@ function feedback(arg){
   function clearFeedback(){
     doneMsg.style.display = 'none'
   }
-
-/*———————————————————————————————————————— lert(msg)
-
-    alerts in ai-land don't exit program space */
-
-function lert(msg){
-  msg = JSON.stringify(String(msg));
-  msg = msg.substr(1, msg.length-2)
-  //alert(msg)
-  jsx.evalScript('alert("' + msg + '")')
-}
 
 
 /*:::::::::::::::::::::::::::::::::::::::: end */
