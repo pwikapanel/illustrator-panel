@@ -129,7 +129,29 @@ indOnline.addEventListener('mouseup', (evn) => {
 // https://community.adobe.com/t5/illustrator-discussions/show-color-picker-dialog-jsx-csaw/td-p/5877341
 
 function setAccent(arg){
-  lert(arg)
+  var parts = arg.split(':')
+
+  var r = parts[0]
+  var g = parts[1]
+  var b = parts[2]
+  
+  var hsl        = rgbToHsl(r, g, b)
+  var hue        = Math.round(hsl[0])
+  var saturation = Math.round(hsl[1])
+  
+  var lightness = 50
+  var dimness   = 30
+  
+  if (hue>190 && hue < 290) lightness += 10
+  
+  var highlight = 'hsl('+hue+', 100%, ' + lightness + '%)'
+  var  dimlight = 'hsl('+hue+',  30%, ' + dimness   + '%)'
+  
+  localStorage.highlight = highlight
+  localStorage.dimlight  = dimlight
+
+  document.documentElement.style.setProperty('--system-highlight', highlight)
+  document.documentElement.style.setProperty('--system-dimlight',   dimlight)
 }
 
 /*———————————————————————————————————————— grid indicator */
@@ -490,7 +512,6 @@ launchSupport.addEventListener('click', (evn) => {
 
 
 /*:::::::::::::::::::::::::::::::::::::::: interface functions */
-
 
 /*———————————————————————————————————————— initializeLabels()
 

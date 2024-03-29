@@ -13,41 +13,91 @@ window.addEventListener('error', (event)=>{ alert(event.message) })
 
 var jsx = new CSInterface();
 
+
+
+/*———————————————————————————————————————— scripts list
+
+    if local storage is populated and version is correct, this is not necessary */
+
+var scriptList = [ 'version'           ,
+                   'preferencesUpdate' ,
+                   'utilities'         ,
+                   'statusUpdate'      ,
+                   'savePage'          ,
+                   'placeImage'        ,
+                   'createGroup'       ,
+                   'changeCase'        ,
+                   'checkRepair'       ,
+                   'newPage'           ]
+
 /*———————————————————————————————————————— load external scripts */
 
+// Uncaught NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load
+// 'file:///Library/Application%20Support/Adobe/CEP/extensions/Svija%C2%A0Tools%20Beta/jsx/clear-cache.jsx'.
+
+var jsxFolder = '../jsx'
+
+for (x=0; x<scriptList.length; x++){
+  readJsx(jsxFolder, scriptList[x], 'jsx');
+}
+
+function readJsx(folderName, fileName, extension){
+
+  file = folderName + '/' + fileName + '.' + extension
+
+// autoedit.gitbook.io/documentation/adobe-panel/autoedit-adobe-cep-panel-dev-setup/manifest.xml
+
+  var rawFile = new XMLHttpRequest();
+  rawFile.open("GET", file, false);
+  rawFile.onreadystatechange = function ()
+  {
+    if(rawFile.readyState === 4)
+      if(rawFile.status === 200 || rawFile.status == 0)
+      {
+//      var allText = rawFile.responseText;
+//      jsx.evalScript(allText);
+        localStorage[fileName] = rawFile.responseText
+      }
+  }
+  rawFile.send(null);
+}
+
+
+
+
+//  var file
+//  
 const env_path = jsx.getSystemPath(SystemPath.EXTENSION) + encodeURI('/jsx/');
-
-var file
-
-file = env_path + 'preferences-update.jsx'
-jsx.evalScript("$.evalFile('" + file + "')")
-  
-file = env_path + 'utilities.jsx'
-jsx.evalScript("$.evalFile('" + file + "')")
-  
-file = env_path + 'status-update.jsx'
-jsx.evalScript("$.evalFile('" + file + "')")
-  
-file = env_path + 'save-page.jsx'
-jsx.evalScript("$.evalFile('" + file + "')")
-
-file = env_path + 'place-image.jsx'
-jsx.evalScript("$.evalFile('" + file + "')")
-
-file = env_path + 'create-group.jsx'
-jsx.evalScript("$.evalFile('" + file + "')")
-  
-file = env_path + 'change-case.jsx'
-jsx.evalScript("$.evalFile('" + file + "')")
-
-file = env_path + 'check-repair.jsx'
-jsx.evalScript("$.evalFile('" + file + "')")
-
-file = env_path + 'new-page.jsx'
-jsx.evalScript("$.evalFile('" + file + "')")
-
-file = env_path + 'clear-cache.jsx'
-jsx.evalScript("$.evalFile('" + file + "')")
+//  
+//  file = env_path + 'preferences-update.jsx'
+//  jsx.evalScript("$.evalFile('" + file + "')")
+//    
+//  file = env_path + 'utilities.jsx'
+//  jsx.evalScript("$.evalFile('" + file + "')")
+//    
+//  file = env_path + 'status-update.jsx'
+//  jsx.evalScript("$.evalFile('" + file + "')")
+//    
+//  file = env_path + 'save-page.jsx'
+//  jsx.evalScript("$.evalFile('" + file + "')")
+//  
+//  file = env_path + 'place-image.jsx'
+//  jsx.evalScript("$.evalFile('" + file + "')")
+//  
+//  file = env_path + 'create-group.jsx'
+//  jsx.evalScript("$.evalFile('" + file + "')")
+//    
+//  file = env_path + 'change-case.jsx'
+//  jsx.evalScript("$.evalFile('" + file + "')")
+//  
+//  file = env_path + 'check-repair.jsx'
+//  jsx.evalScript("$.evalFile('" + file + "')")
+//  
+//  file = env_path + 'new-page.jsx'
+//  jsx.evalScript("$.evalFile('" + file + "')")
+//  
+//  file = env_path + 'clear-cache.jsx'
+//  jsx.evalScript("$.evalFile('" + file + "')")
 
 //———————————————————————————————————————— match highlight color to system
 
@@ -63,7 +113,8 @@ var hue        = Math.round(hsl[0])
 var saturation = Math.round(hsl[1])
 
 if (''+r+g+b == '0120215') hue = 72
-if (saturation < 10) hue = 72
+
+if (saturation < 10) hue = 72   // if system highlight is gray, use official color
 
 var lightness = 50
 var dimness   = 30
@@ -73,7 +124,9 @@ if (hue>190 && hue < 290) lightness += 10
 var highlight = 'hsl('+hue+', 100%, ' + lightness + '%)'
 var  dimlight = 'hsl('+hue+',  30%, ' + dimness   + '%)'
 
-// if system highlight is gray, use official color
+
+if (typeof localStorage.highlight != 'undefined') highlight = localStorage.highlight
+if (typeof localStorage.dimlight  != 'undefined') dimlight  = localStorage.dimlight
 
 document.documentElement.style.setProperty('--system-highlight', highlight);
 document.documentElement.style.setProperty('--system-dimlight',   dimlight);
@@ -104,6 +157,7 @@ function rgbToHsl(r, g, b){
     (100 * (2 * l - s)) / 2,
   ];
 }
+
 
 </script>
 
