@@ -195,6 +195,9 @@ function newAiOptions(){
 
   var options = new IllustratorSaveOptions();
 
+  // fix for 28.4.1 SVG format change
+//options.compatibility = Compatibility['ILLUSTRATOR' + 17];
+
   options.pdfCompatible = false; // much faster
   options.compressed    = false; // a bit faster
 

@@ -8,32 +8,46 @@ window.addEventListener('error', (event)=>{ lert(event.message) })
 
 var jsx = new CSInterface();
 
-localStorage.clear()
+localStorage.clear() // temporary
 
-/*———————————————————————————————————————— loadSetup
+//:::::::::::::::::::::::::::::::::::::::: phase 1
 
-    loads an initial script into local storage */
+/*———————————————————————————————————————— loadPhase2
 
-function loadSetup(){
-  if (typeof localStorage.setupLoadedVal == 'undefined'){
-    readFile( 'js',  'js',       'setup', ''        )
-    readFile('val', 'val', 'setupLoaded', 'runSetup')
-  }
-  else runSetup()
+    run when page is done loading
+    loads phase2 into local storage
+
+    phase 2 may use previously downloaded
+    content if available but will fall back
+    to existing JS files
+
+    this is to ensure that the panel will
+    be immediately usable.
+
+    both phase 1 and phase 2 use localStorage
+    if available. */
+
+function loadPhase2(){
+  if (typeof localStorage.setupLoadedVal == 'undefined')
+    readFile( 'js', 'js', 'phase2', 'runPhase2')
+  else runPhase2()
 }
 
-/*———————————————————————————————————————— runSetup
+/*———————————————————————————————————————— runPhase2
 
     converts localStorage val to actual JS
 
     if panel is already loaded, we don't need to append
     setup script */
 
-function runSetup(){
+function runPhase2(){
   var script = document.createElement('script')
-  script.innerHTML = localStorage['setupJs']
+  script.innerHTML = localStorage['phase2Js']
   document.body.appendChild(script)
 }
+
+
+//:::::::::::::::::::::::::::::::::::::::: functions
 
 /*———————————————————————————————————————— readFile */
 
@@ -78,8 +92,8 @@ function lert(msg){
 }
 
 
-</script></head><body bgcolor='white' oncontextmenu='return false'><a href="javascript:location.reload()">O</a><script>
+</script></head><body bgcolor='white' oncontextmenu='return false'><script>
 
-  loadSetup()
+  loadPhase2()
 
 </script></body></html>

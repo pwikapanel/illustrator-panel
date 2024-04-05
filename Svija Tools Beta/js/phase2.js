@@ -1,5 +1,7 @@
 
-//:::::::::::::::::::::::::::::::::::::::: setup
+//:::::::::::::::::::::::::::::::::::::::: phase 2
+
+//:::::::::::::::::::::::::::::::::::::::: 1. initialization
 
 /*———————————————————————————————————————— 1. initialization */
 
@@ -25,52 +27,49 @@ var  varList = [ 'version'          ,
                  'complete'         ]
 
 
-//:::::::::::::::::::::::::::::::::::::::: functions
-
-/*———————————————————————————————————————— 2. if necessary, load files */
+//:::::::::::::::::::::::::::::::::::::::: 2. load files (if necessary)
 
 if(typeof localStorage.completeVal == 'undefined'){
 
-  // load css ————————————————————————————————————————————————————————————————
+/*———————————————————————————————————————— load css */
 
   var    ext =   'css'
   var folder =   'css'
 
   readFiles(ext, folder, cssList)
 
-  // load html ———————————————————————————————————————————————————————————————
+/*———————————————————————————————————————— load html */
 
   var    ext =   'html'
   var folder =   'html'
 
   readFiles(ext, folder, htmlList)
 
-  // load jsx ————————————————————————————————————————————————————————————————
+/*———————————————————————————————————————— load jsx */
 
   var    ext =   'jsx'
   var folder =   'jsx'
 
   readFiles(ext, folder, jsxList)
 
-  // load js —————————————————————————————————————————————————————————————————
+/*———————————————————————————————————————— load js */
 
   var    ext =   'js'
   var folder =   'js'
 
   readFiles(ext, folder, jsList)
 
-  // load completion —————————————————————————————————————————————————————————
+/*———————————————————————————————————————— load completion */
 
   var    ext =   'val'
   var folder =   'val'
 
   readFiles(ext, folder, varList)
 
+
 }
 
 else lert('already loaded')
-
-setTimeout(build, 500)
 
 /*———————————————————————————————————————— 3. check if more recent on server NOT DONE
     */
@@ -79,9 +78,9 @@ setTimeout(build, 500)
 
 
 
-/*———————————————————————————————————————— 4. build panel from localStorage
 
-    */
+//:::::::::::::::::::::::::::::::::::::::: 4. build panel from localStorage
+
 
 
 /* clear existing content, possibly unnecessary
@@ -90,6 +89,8 @@ document.querySelectorAll('[style]').forEach(el => el.removeAttribute('style'))
 document.body.innerHTML = ''
 
 */
+
+setTimeout(build, 100)
 
 function build(){
   for (var x=0; x<cssList.length; x++){ // CSS ———————————————————————————————
