@@ -125,7 +125,116 @@ function savePage(saveAllDocs){
 }
 
 
-/*———————————————————————————————————————— saveSvgs(doc)
+//:::::::::::::::::::::::::::::::::::::::: main functions
+
+/*———————————————————————————————————————— saveSvgs(doc) NEW DISABLED
+
+  saves file as SVG:
+
+  - saves in sync/SVIJA/SVG Files
+  - removes any existing files that would provoke a confirmation dialog
+  - adds a layer if there's only one layer
+  - deletes non-printing layers
+  - saves the SVG
+  - restores the non-printing layers
+  - deletes any extra added layers
+  - resets the locked/visible status of non-printing layers
+
+  - if artboardName is given, use it as extension & save normally
+  - else save using artboards
+
+  - if only one artboard, don't "save using artboards"
+    because we need to keep artwork that's outside the artbaords
+
+  in testing, saving the illustrator file before saving the SVG's added
+  0.266 seconds to the overall save time, so the effect is negligible
+  compared to the utility of being able to undo to get back to the
+  original state */
+
+function xsaveSvgs(doc){
+
+  var artboards       = doc.artboards
+  var artboardsLength = doc.artboards.length
+  var artboardState   = doc.artboards.getActiveArtboardIndex();
+  var fileSizeArray   = []
+
+  // save AI file ————————————————————————————————————————————————————————————
+
+  // necessary to uncheck PDF compatibility and compression
+  // it's not faster to "save" than to "save as"
+
+  var aiOptions = newAiOptions();
+  var aiFile  = new File(doc.path + '/' + doc.name);
+
+  doc.saveAs(aiFile, aiOptions);
+
+  // add widths to artboard names ————————————————————————————————————————————
+
+  addArtboardWidths(doc)
+
+  // delete unused layers ————————————————————————————————————————————————————
+
+  var layerStates = deleteTemplateLayers(doc); // info about locked & visible
+
+  if (doc.layers.length == 1){   // necessary so that resulting SVG
+     doc.layers.add();           // won't have wrong ID
+     var extraLayer = true;
+  }
+  else var extraLayer = false;
+
+  // create destination file objects —————————————————————————————————————————
+
+  var wholePath  = String(app.activeDocument.path)
+  var syncIndex  = wholePath.indexOf('/sync')
+  var svgFolder  = wholePath.substr(0, syncIndex) + '/sync/SVIJA/SVG%20files'
+ 
+  var folderObj       = Folder(svgFolder)
+  var fileObjSingle   = Folder(svgFolder + '/artboard_' + doc.artboards[0].name)
+  var fileObjMultiple = Folder(svgFolder + '/artboard')
+
+  // save actual SVGs ————————————————————————————————————————————————————————
+
+  clearConflicts(folderObj, artboards) // BROKEN
+
+  var saveOpts= new ExportOptionsWebOptimizedSVG()
+
+  saveOpts.artboardRange = '' // or '1-3'
+  saveOpts.coordinatePrecision = 3
+  saveOpts.fontType = SVGFontType.SVGFONT
+  saveOpts.cssProperties = SVGCSSPropertyLocation.STYLEELEMENTS
+  saveOpts.rasterImageLocation = RasterImageLocation.PRESERVE
+  saveOpts.saveMultipleArtboards = true
+  saveOpts.svgId = SVGIdType.SVGIDREGULAR
+  saveOpts.svgMinify = false // should use in future
+  saveOpts.svgResponsive = true
+
+  app.activeDocument.exportFile(
+    new File(fileObjSingle),
+    ExportType.WOSVG,
+    saveOpts
+  ) 
+
+  // get file sizes ——————————————————————————————————————————————————————————
+
+  fileSizeArray = getFileSizes(svgFolder, doc)
+
+  // undo changes & resave as AI —————————————————————————————————————————————
+
+  // necessary to re-establish as AI file after SVG
+
+  while (!doc.saved) app.undo()
+
+//app.undo() // necessary to remove artboard name changes
+             // while loop stops 1 too soon
+
+//doc.saveAs(aiFile, aiOptions)
+  doc.artboards.setActiveArtboardIndex(artboardState)
+
+  return fileSizeArray
+
+}
+
+/*———————————————————————————————————————— saveSvgs(doc) CURRENT
 
   saves file as SVG:
 
@@ -743,9 +852,6 @@ function fileSizeReport(fileSizeArray){
 
 }
 
-
-//:::::::::::::::::::::::::::::::::::::::: fin
-
 /*———————————————————————————————————————— appendix A — all doc keys
 
   var res = '';
@@ -844,3 +950,6 @@ variablesLocked: undefined
 views: Views
 visibleBounds: undefined
 width: undefined */
+
+//:::::::::::::::::::::::::::::::::::::::: fin
+
