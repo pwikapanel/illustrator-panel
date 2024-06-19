@@ -1,11 +1,19 @@
 
-*Updated 22 May 2023 · Toulouse*
+*Updated 19 June 2024 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
-### Svija Tools 1.0.4
+### Svija Tools 1.0.5 LEGACY
+---
+
+This version is meant as a stop-gap to enable all Svija users to save in the new SVG format that Adobe introduced with Illustrator 28.
+
+Currently we are in a situation where users of older versions save in the older format and users of recent versions save in the new format.
+
+This update will do the minimum to enable users of Illustrator 27 and earler to save in the new format.
+
 ---
 
 note: font locations seem to be relative to stylesheet, not to document using font
