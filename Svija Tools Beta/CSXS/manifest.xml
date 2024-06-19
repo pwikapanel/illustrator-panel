@@ -34,7 +34,7 @@
         </Resources>
 
         <Lifecycle>
-          <AutoVisible>false</AutoVisible>  
+          <AutoVisible>true</AutoVisible>  
           <StartOn>  
             <Event>documentAfterActivate</Event>
           </StartOn>  
