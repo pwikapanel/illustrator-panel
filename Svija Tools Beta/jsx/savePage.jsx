@@ -208,6 +208,8 @@ function xsaveSvgs(doc){
   saveOpts.svgMinify = false // should use in future
   saveOpts.svgResponsive = true
 
+alert(211)
+
   app.activeDocument.exportFile(
     new File(fileObjSingle),
     ExportType.WOSVG,
