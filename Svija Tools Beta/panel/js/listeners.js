@@ -68,6 +68,9 @@ function launchScript(buttonCode){
   file = env_path + encodeURI(script)
 
   csif.evalScript("param = '" + param + "'")
+  csif.evalScript("isMac  = '" + isMac  + "'")
+  csif.evalScript("myDocs = '" + myDocs + "'")
+
   csif.evalScript("$.evalFile('" + file + "')")
 }
 

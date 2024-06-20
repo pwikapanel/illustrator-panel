@@ -25,6 +25,13 @@ var env_verLong = 'v230517'
 var csif          = new CSInterface();
 var env_interface = getInterfaceCode(); // 0-3 dark to light in AI prefs
 
+//———————————————————————————————————————— new
+
+var myDocs = csif.getSystemPath(SystemPath.MY_DOCUMENTS);     // C:Users/andy/Documents
+var isMac  = csif.getOSInformation().substring(0,3) == 'Mac'  // false
+
+//———————————————————————————————————————— const & variable 
+
 const env_sizes={
     'index.html'     : [240,  82],
     'less.html'      : [240,  82],
