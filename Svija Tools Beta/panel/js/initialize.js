@@ -52,7 +52,7 @@ const actions = [
   ['Creating Group…'      , 'Create Group.jsx'    , ''      ], // 2nd
   ['Importing Styles…'    , 'Import Styles.jsx'   , ''      ], // 2nd
 
-  ['Checking Page……'      , 'Check.jsx'           , ''      ], // 3rd
+  ['Checking Page…'       , 'Check.jsx'           , ''      ], // 3rd
 
 //['Saving File…'         , 'Save.jsx'            , 'canvas'], // bot
   ['Saving Files…'        , 'Save.jsx'            , 'all'   ], // bot
