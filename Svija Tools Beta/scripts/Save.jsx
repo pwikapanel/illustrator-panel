@@ -270,17 +270,21 @@ function finalFeedback(fileSizes){
 function isValid(doc){
   var err, warn;
 
+//———————————————————— fatal errors
+
   err = hasPath(doc);           // has file been saved at least once?
   if (err != '')
     return dontSave(err);
 
-  err = isAi(doc);              // has file been saved at least once?
+  err = isAi(doc);              // is it an AI file?
   if (err != '')
     return dontSave(err);
 
   err = hasFolders(doc);        // is file in a /sync/ folder?
   if (err != '')
     return dontSave(err);
+
+//———————————————————— non fatal errors
 
   err = hasLinks(doc);           // is there a Links folder?
   if (err != '')
@@ -298,7 +302,7 @@ function isValid(doc){
   if (err != '')
     env_warn.push(err);
 
-//alert(env_warn.length) // 0
+
   return true;
 }
 
