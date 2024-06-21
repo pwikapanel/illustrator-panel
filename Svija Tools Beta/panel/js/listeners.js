@@ -66,12 +66,14 @@ function launchScript(buttonCode){
 
   changeTitle(title)
   file = env_path + encodeURI(script)
+  utilities = env_path + encodeURI('utilities.jsx')
 
   csif.evalScript("param = '" + param + "'")
   csif.evalScript("isMac  = '" + isMac  + "'")
   csif.evalScript("myDocs = '" + myDocs + "'")
 
-  csif.evalScript("$.evalFile('" + file + "')")
+  csif.evalScript("$.evalFile('" + utilities + "')")
+  csif.evalScript("$.evalFile('" + file      + "')")
 }
 
 //———————————————————————————————————————— mouseEffect(which, buttonCode)

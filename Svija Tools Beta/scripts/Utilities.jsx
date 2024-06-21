@@ -1,0 +1,250 @@
+#target illustrator  
+
+/*:::::::::::::::::::::::::::::::::::::::: Utilities.jsx */
+
+/*———————————————————————————————————————— notes
+
+    Save wCanvas.jsx
+
+    1.0.3
+
+    notes:
+
+    JSR = JavaScript Scripting Reference.pdf
+    ISG = Illustrator Scripting Guide
+    using ampersands in // comments causes crashes
+
+		This same script is used for both Save as Svija
+    and "Save CC (Legacy).jsx" but Version(0) is
+    changed to Version(17) for the latter. */
+
+/*———————————————————————————————————————— EULA
+
+    Copyright (c) Svija SAS
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+    
+    The software is provided "as is", without warranty of any kind, express or
+    implied, including but not limited to the warranties of merchantability,
+    fitness for a particular purpose and noninfringement. In no event shall the
+    authors or copyright holders be liable for any claim, damages or other
+    liability, whether in an action of contract, tort or otherwise, arising from,
+    out of or in connection with the software or the use or other dealings in
+    the software.
+
+    svija.com · hello@svija.com*/
+
+
+//:::::::::::::::::::::::::::::::::::::::: environmental variable
+
+/*———————————————————————————————————————— macOS boolean variable
+
+    is platform is Mac or PC based on  path */
+
+    var pathOrig = app.activeDocument.path.fsName
+
+    var macOS = pathOrig.substr(0,1) == '/'
+
+
+//:::::::::::::::::::::::::::::::::::::::: functions
+
+/*———————————————————————————————————————— aiOptions(version)
+
+  options for Illustrator File
+  ISG409 & JSRp84 */
+
+function aiOptions(version){
+
+  var options = new IllustratorSaveOptions();
+
+  if (version > 0) // JSRp244
+    options.compatibility = Compatibility['ILLUSTRATOR' + version];
+
+  options.pdfCompatible = false; // much faster
+  options.compressed    = false; // a bit faster
+
+  return options;
+}
+
+/*———————————————————————————————————————— concatenatePath(part1, part2)
+
+    given a part1 and part2, returns a correct path */
+
+function concatenatePath(part1, part2){
+  if (macOS) return part1 + '/' + part2
+  else return part1 + '\\' + part2
+}
+
+/*———————————————————————————————————————— fileExists(path)
+
+    https://community.adobe.com/t5/premiere-pro-discussions/cep-engine-extension-api-to-check-for-file-existence/m-p/9042102 */
+
+function fileExists(path){
+  return File(path).exists
+}
+
+/*———————————————————————————————————————— getDocPath(doc)
+
+    returns full path of doc */
+
+function getDocPath(doc){
+  if (macOS) return doc.path.fsName + '/' + doc.name
+  else return doc.path.fsName + '\\' + doc.name
+}
+
+/*———————————————————————————————————————— getLinksPath(doc)
+
+    returns path of links folder */
+
+function getLinksPath(doc){
+  var path = Folder(app.activeDocument.path.fsName)
+
+  if (macOS) path += '/Links'
+  else       path += '\\Links'
+   
+  return path
+}
+
+/*———————————————————————————————————————— getSvgFilesPath(doc)
+
+    returns SVG folder path from sync folder */
+
+function getSvgFilesPath(doc){
+ 
+  var s = getSyncPath(doc)
+  if (s == '') return ''
+
+  if (macOS) return s + '/SVIJA/SVG Files'
+  else return s + '\\SVIJA\\SVG Files'
+}
+
+/*———————————————————————————————————————— getSyncPath(doc)
+
+    gets sync folder path from doc */
+
+function getSyncPath(doc){
+  //var path = String(doc.path.fsName)
+
+  var path = doc.path.fsName
+
+  if (macOS) var index = path.indexOf('/sync')
+  else       var index = path.indexOf('\\sync')
+
+  if (index>0) return path.substr(0,index + 5)
+  else return ''
+}
+
+//———————————————————————————————————————— isInteger(n)
+function isInteger(n){
+  if (n == Math.round(n)) return true;
+  else return false;
+}
+
+/*———————————————————————————————————————— isRoundNumber(n)
+
+    returns true if n is a nice round number:
+
+    30, 120, 168, etc. */
+
+// 6, 24, 336 etc.
+
+function isRoundNumber(n){
+
+  n = n/5;
+
+  if (isInteger(n/3)) return true;
+  if (isInteger(n/4)) return true;
+  if (isInteger(n/5)) return true;
+  if (isInteger(n/6)) return true;
+
+  return false;
+}
+
+/*———————————————————————————————————————— isTwoLetters(n)
+
+    returns true if n is two letters or numbers
+    a-z, A-Z, 0-9 */
+
+function isTwoLetters(n){
+  const regex = /^[a-zA-Z\d][a-zA-Z\d]$/g
+  if(n.match(regex) === null) return false
+  return true;
+}
+
+/*———————————————————————————————————————— makeMb(x)
+
+    givent a number of bytes, returns a value
+    in KB or MB for human consumption */
+
+function makeMb(x){
+
+  var ext = ' MB'
+  var div = 1000
+
+  if (x < 1000000){
+    ext = ' KB'
+    div = 1
+  }
+
+  x = Math.round(x / div / 1000 * 100)/100
+  return x + ext
+}
+
+/*———————————————————————————————————————— makeSvgName(doc, ab)
+
+    creates SVG filename from doc & artboard n° */
+
+function makeSvgName(doc, ab){
+  var name = doc.name.slice(0, -3);  // remove .ai
+  return name + '_' + doc.artboards[ab].name + '.svg' 
+}
+
+/*———————————————————————————————————————— newFile(folder, name)
+
+    returns file to save into
+
+    https://extendscript.docsforadobe.dev */
+
+function newFile(folder, name) {
+
+  var f = new File(folder + '/' + name);
+
+  if (f.open("w")){ f.close(); } // check access rights
+  else alert('File ' + f + ' could not be written');
+
+  return f;
+}
+
+/*———————————————————————————————————————— svgOptions(includeCanvas)
+
+  sets options for SVG file */
+
+function svgOptions(artboards){
+
+  var multipleArtboards = artboards > 1
+  var options= new ExportOptionsWebOptimizedSVG()
+
+  options.artboardRange         = '' // or '1-3'
+  options.coordinatePrecision   = 3
+  options.cssProperties         = SVGCSSPropertyLocation.STYLEELEMENTS
+  options.fontType              = SVGFontType.SVGFONT
+  options.rasterImageLocation   = RasterImageLocation.PRESERVE
+  options.saveMultipleArtboards = multipleArtboards
+  options.svgId                 = SVGIdType.SVGIDREGULAR
+  options.svgMinify             = false // should use in future
+  options.svgResponsive         = true
+
+  return options;
+}
+
+
+//:::::::::::::::::::::::::::::::::::::::: fin
+
