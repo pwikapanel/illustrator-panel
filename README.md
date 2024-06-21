@@ -6,7 +6,6 @@
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
 ### Svija Tools 1.0.5 LEGACY
----
 
 This version is meant as a stop-gap to enable all Svija users to save in the new SVG format that Adobe introduced with Illustrator 28.
 
@@ -19,7 +18,6 @@ This update will do the minimum to enable users of Illustrator 27 and earler to 
 note: font locations seem to be relative to stylesheet, not to document using font
 
 ---
-
 ### dev setup
 
 the "installed" version in /Library/Application Support/Adobe/CEP is just a simlink towards `Svija Tools Beta` in this repo.
