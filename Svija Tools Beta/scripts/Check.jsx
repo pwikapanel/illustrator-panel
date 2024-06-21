@@ -76,6 +76,8 @@ if (app.documents.length < 1){
 
 //———————————————————————————————————————— initialization
 
+var doc            = app.activeDocument
+
 var env_repairs        = []   // repaired messages for user
 var env_warnings       = []   // warnings for user
 var env_errors         = []   // error messages for user
@@ -84,8 +86,7 @@ var env_imagesModified = []   // [name, boolean warning/error, message]
 var env_imagesFixed    = []
 var env_imagesFailed   = []
 
-var doc         = app.activeDocument
-var linksFolder = Folder(doc.path) + '/Links'
+var linksFolderObj = Folder(concatenatePath(doc.path, 'Links'))
 
 var nonNatives = doc.nonNativeItems.length
 var rasters    = doc.rasterItems.length
@@ -96,31 +97,27 @@ else                      var hasImages = false
 
 //———————————————————————————————————————— has not saved then quit
 
-if (!hasPath(doc)) break program;
+var pathErr = hasPath(doc)
+
+if (pathErr != ''){
+  alert(pathErr)
+  break program
+}
 
 //———————————————————————————————————————— if not in sync folder then quit
 
-if (!inSync(doc)) break program;
+var folderErr = hasFolders(doc)
 
-//———————————————————————————————————————— check artboard names
+if (folderErr != ''){
+  alert(pathErr)
+  break program
+}
 
-//  var msg = artboardNames(doc);     // do artboard names seem likely? 
-//  
-//  if (msg != '')
-//    env_errors.push(msg);
-
-//———————————————————————————————————————— check artboard sizes
-
-//  warn = artboardSizes(doc);     // do artboard sizes seem likely?
-//  
-//  if (warn != '')
-//    env_warnings.push(warn);
-
-//———————————————————————————————————————— create Links folder if necessary
+//———————————————————————————————————————— create Links folder if images
 
 if (hasImages)
-  if (!Folder(linksFolder).exists){
-    Folder(linksFolder).create();
+  if (!Folder(linksFolderObj).exists){
+    Folder(linksFolderObj).create();
     env_repairs.push('"Links" folder created for images.');
   }
 
@@ -169,8 +166,6 @@ if (hasImages){
   for (var x=0; x<placed; x++){
     var name_fixed_msg = checkImageExt(doc.placedItems[x]);
 
-//alert(name_fixed_msg.join(' : ');
-    
     if (name_fixed_msg.length > 0) // if something was modified
       env_imagesModified[env_imagesModified.length] = name_fixed_msg;
   }
@@ -215,45 +210,6 @@ alertUser(doc);
 
 //:::::::::::::::::::::::::::::::::::::::: primary functions · called by program
 
-/*———————————————————————————————————————— hasPath(doc) √
-
-    has file been saved at least once?
-    if not, ask user to save
-
-    returns true or false */
-
-function hasPath(doc){
-
-  if (doc.path != '') return true;
-
-  var f = File.saveDialog('Navigate to "sync" folder then save','');
-
-  if (f == null){
-    alert('Operation Canceled');
-    return false;
-  }
-
-  app.activeDocument.saveAs(f, undefined);
-  return true;
-    
-}
-
-/*———————————————————————————————————————— inSync(doc)
-
-    checks if file is inside a sync folder
-    and throws fatal exception if not */
-
-function inSync(doc){
-  var path = String(doc.path)
-  
-  if (path.indexOf('/sync') < 0){
-    alert('Not a Svija Page\nPlease move this file to the folder called "sync" in your Project Folder.');
-    return false;
-  }
-
-  return true;
-}
-
 /*———————————————————————————————————————— artboardNames(sourceDoc)
 
     artboard names have to be two-letter codes
@@ -268,45 +224,6 @@ function artboardNames(doc){
 
   return '';
 
-}
-
-/*———————————————————————————————————————— artboardSizes(doc)
-
-    do artboard sizes seem likely? (round numbers)
-
-    returns '' or warning message */
-
-function artboardSizes(doc){
-
-  for(x=0; x<doc.artboards.length; x++){
-    var w = doc.artboards[x].artboardRect[2]-doc.artboards[x].artboardRect[0];
-
-    if (!isRoundNumber(w))
-      return doc.name + ' has ' + w + 'px wide artboard (must match page or screen settings)';
-  }
-
-  return '';
-}
-
-/*———————————————————————————————————————— hasLinks(sourceDoc) FIX
-
-    has file been saved at least once?
-    returns '' or error message */
-
-function hasLinks(doc){
-
-  var linksFolder = Folder(app.activeDocument.path + '/Links');
-
-  if (Folder(linksFolder).exists)
-    return '';
-
-  var msg = 'No "Links" folder found.\nDo you want to create it?';
-  if (confirm(msg)){
-    Folder(linksFolder).create();
-    return '';
-  }
-  else
-    return "Missing \"Links\" folder for images";
 }
 
 /*———————————————————————————————————————— fixEmbeddedImage(obj)
@@ -422,7 +339,7 @@ function fixPlacedImage(img){
   catch(e){ return []; }                 // just in case
 
   var currentFolder = Folder(app.activeDocument.path);
-  var linksFolder   = currentFolder + '/Links';
+  var linksFolder   = concatenatePath(doc.path, 'Links')
 
   if (thisFolder == linksFolder) // image is already in /Links
     return [];
@@ -430,29 +347,15 @@ function fixPlacedImage(img){
   //———————————————————— need to repair
 
   var neme     = img.file.name;
-  var destPath = linksFolder+'/'+neme;
-
-/*
-
-if (neme != 'Animation%20-%20Button%20Shadow.png')
-  alert(neme + ' : '+destPath)
-
-Animation%20-%20Groups%20and%20Animations%201.jpg    : ~/Desktop/eman-int.svija.site/sync/Links/Animation%20-%20Groups%20and%20Animations%201.jpg
-Animation%20-%20Groups%20and%20Animations%202.jpg    : ~/Desktop/eman-int.svija.site/sync/Links/Animation%20-%20Groups%20and%20Animations%202.jpg
-Animation%20-%20Svija%20Vibe%20Shadow.png            : ~/Desktop/eman-int.svija.site/sync/Links/Animation%20-%20Svija%20Vibe%20Shadow.png
-Animation%20-%20Pointer.ai                           : ~/Desktop/eman-int.svija.site/sync/Links/Animation%20-%20Pointer.ai
-Animation%20-%20Layers%20Panel%20Trigger%20Event.jpg : ~/Desktop/eman-int.svija.site/sync/Links/Animation%20-%20Layers%20Panel%20Trigger%20Event.jpg
-Animation%20-%20Svija%20Vibe%20Shadow.png            : ~/Desktop/eman-int.svija.site/sync/Links/Animation%20-%20Svija%20Vibe%20Shadow.png
-
-*/
+  var destPath = concatenatePath(linksFolder, neme)
 
   //———————————————————— is it a cloud image?
 
-  var isCloud = String(img.file).indexOf('/Creative%20Cloud%20Libraries/');
+  var isCloud = String(img.file).indexOf('Creative%20Cloud%20Libraries');
   if (isCloud > 0){
     var ext = getExtension(img.file);
     neme = img.name + ' Cloud' + ext;
-    destPath = linksFolder + '/' + neme;
+    destPath = concatenatePath(linksFolder, neme)
   }
   
   //———————————————————— continue PROBLEM IS HERE
@@ -461,12 +364,6 @@ Animation%20-%20Svija%20Vibe%20Shadow.png            : ~/Desktop/eman-int.svija.
 
   // we copy file to /Links, then if it was with AI file, we delete original
   // changing the "copy" to a "move"
-
-/*
-if (neme != 'Animation%20-%20Button%20Shadow.png')
-  alert(newFile.exists)
-
-answers are correct */
 
   if(newFile.exists) var msg = 'link updated'; /* seems to work — copies files in finder, but AI file is untouched */
   else{
@@ -675,61 +572,6 @@ function convertArray(arr){
   return result.join('\n');
 }
 
-//———————————————————————————————————————— isTwoLetters(str)
-
-function isTwoLetters(str){
-  if (str.length == 2) return true;
-  return false;
-}
-
-/*———————————————————————————————————————— isRoundNumber(n)
-    returns true if n is a nice round number:
-    30, 120, 168, etc. */
-
-// 6, 24, 336 etc.
-
-function isRoundNumber(n){
-  n = n/5;
-
-  if (isInteger(n/3)) return true;
-  if (isInteger(n/4)) return true;
-  if (isInteger(n/5)) return true;
-  if (isInteger(n/6)) return true;
-
-  return false;
-}
-
-//———————————————————————————————————————— isInteger(n)
-
-function isInteger(n){
-  if (n == Math.round(n)) return true;
-  else return false;
-}
-
-//———————————————————————————————————————— getExtension(path)
-
-function getExtension(path){
-  var ending = String(path).substr(-5);
-  var bits = ending.split('.');
-  return '.' + bits[1];
-}
-
-//———————————————————————————————————————— dumpKeys(obj)
-
-function dumpKeys(obj){
-  var str = '';
-
-  for (var i in obj){
-    try{
-      str += '\n'+i+': '+obj[i]
-    }
-    catch(e){
-      str += '\n'+i+': error';
-    }
-  }
-  alert(str);
-}
-
 /*———————————————————————————————————————— getAlertDepth(img)
     
     This exists so that yellow highlight boxes will be:
@@ -748,116 +590,6 @@ function getAlertDepth(img){
   alert('Group depth: '+obj.absoluteZOrderPosition);
   return obj.absoluteZOrderPosition;
 }
-
-/*———————————————————————————————————————— unlockHierarchy(obj)
-
-    unlocks the hierarchy above an element and returns an array
-
-    each element of the array is a sub array containing
-    [obj, obj.locked, obj.visible] */
-
-function unlockHierarchy(obj){
-
-  var parentLocks = [];
-  var thisParent = obj.parent;
-
-  while (thisParent.typename != 'Document'){
-    parentLocks[parentLocks.length] = [thisParent, thisParent.locked, thisParent.visible];
-    thisParent = thisParent.parent
-  }
-
-  for(var x=parentLocks.length-1; x>-1; x--){
-    try{
-      parentLocks[x][0].visible= true;
-      parentLocks[x][0].locked = false;
-    }
-    catch(e){ alert('Page item couldn\'t be accessed: ' + e+'\n'+parentLocks[x][0].typename + ' inside ' + parentLocks[x][0].parent.name) }
-  }
-
-  return parentLocks;
-}
-
-/*———————————————————————————————————————— relockHierarchy(obj)
-
-    relocks elements unlocked by unlockHierarchy() */
-
-function relockHierarchy(arr){
-  for(var x=0; x<arr.length; x++){
-    arr[x][0].visible = arr[x][2];
-    arr[x][0].locked = arr[x][1];
-  }
-}
-
-/*———————————————————————————————————————— check file size
-
-// page.path = parent folder
-// page.name = filename
-// together is full pagh */
-
-function getFileSize(page){
-  try{
-    var ref = File(page.path+'/'+page.name)
-    var fileSize = Math.round(ref.length / 1000 / 1000 * 100)/100
-    return fileSize
-  }
-  catch(e){ return -1 }
-}
-
-
-//:::::::::::::::::::::::::::::::::::::::: to add later
-
-/*———————————————————————————————————————— nonNative(sourceDoc)
-
-    are there non-native items?
-
-    returns '' or warning message */
-
-//   warn = nonNative(sourceDoc);         // are there non-native items? 
-//   if (warn != '')
-//     env_warnings.push(warn);
-// 
-// function nonNative(doc){
-//   if (doc.nonNativeItems.length == 0) return '';
-//   return doc.name + " may not display correctly; check the \"Links\" panel for non-native items";
-// }
-
-/*———————————————————————————————————————— liveEffects(doc)
-
-    these are technically called "Live Effects"
-
-    https://mark1bean.github.io/live-effect-functions-for-illustrator/
-
-    right now I have no way to find them
-
-    returns '' or warning message */
-
-//   warn = liveEffects(sourceDoc);       // are there unsupported techniques?
-//   if (warn != '')
-//     env_warnings.push(warn);
-// 
-// function liveEffects(doc){
-//   //alert(doc.pageItems.getByName('thisOne'));
-//   return '';
-// }
-
-/*———————————————————————————————————————— missingFonts(doc)
-
-    are there missing fonts?
-    p228
-    https://community.adobe.com/t5/illustrator-discussions/change-a-font-using-extendscript-in-illustrator/td-p/6322550
-
-    returns '' or warning message */
-
-//   warn = missingFonts(sourceDoc);      // are there missing fonts?
-//   if (warn != '')
-//     env_warnings.push(warn);
-// 
-// function missingFonts(doc){
-//   return '';
-// 
-//   var o = doc.pageItems.getByName('thisOne'); 
-//   alert(o.textRange.characterAttributes.textFont); // crashes AI
-// }
 
 
 //:::::::::::::::::::::::::::::::::::::::: fin

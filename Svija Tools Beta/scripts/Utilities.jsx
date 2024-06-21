@@ -83,6 +83,22 @@ function concatenatePath(part1, part2){
   else return part1 + '\\' + part2
 }
 
+//———————————————————————————————————————— dumpKeys(obj)
+
+function dumpKeys(obj){
+  var str = '';
+
+  for (var i in obj){
+    try{
+      str += '\n'+i+': '+obj[i]
+    }
+    catch(e){
+      str += '\n'+i+': error';
+    }
+  }
+  alert(str);
+}
+
 /*———————————————————————————————————————— fileExists(path)
 
     https://community.adobe.com/t5/premiere-pro-discussions/cep-engine-extension-api-to-check-for-file-existence/m-p/9042102 */
@@ -98,6 +114,29 @@ function fileExists(path){
 function getDocPath(doc){
   if (macOS) return doc.path.fsName + '/' + doc.name
   else return doc.path.fsName + '\\' + doc.name
+}
+
+//———————————————————————————————————————— getExtension(path)
+
+function getExtension(path){
+  var ending = String(path).substr(-5);
+  var bits = ending.split('.');
+  return '.' + bits[1];
+}
+
+/*———————————————————————————————————————— getFileSize(page)
+
+// page.path = parent folder
+// page.name = filename
+// together is full pagh */
+
+function getFileSize(page){
+  try{
+    var ref = File(concatenatePath(page.path, page.name))
+    var fileSize = Math.round(ref.length / 1000 / 1000 * 100)/100
+    return fileSize
+  }
+  catch(e){ return -1 }
 }
 
 /*———————————————————————————————————————— getLinksPath(doc)
@@ -140,6 +179,27 @@ function getSyncPath(doc){
 
   if (index>0) return path.substr(0,index + 5)
   else return ''
+}
+
+/*———————————————————————————————————————— hasPath(sourceDoc)
+
+    has file been saved at least once?
+    returns '' or error message */
+
+function hasPath(doc){
+
+  if (doc.path != '') return ''
+
+  var syncPath = syncFromOtherFiles()
+  if (syncPath == '') return 'Please save ' + doc.name + ' normally.'
+
+  var f = new File(syncPath).saveDlg('','')
+
+  if (f == null) return 'Please save ' + doc.name + ' normally.'
+
+  app.activeDocument.saveAs(f, undefined)
+  return ''
+    
 }
 
 //———————————————————————————————————————— isInteger(n)
@@ -223,6 +283,17 @@ function newFile(folder, name) {
   return f;
 }
 
+/*———————————————————————————————————————— relockHierarchy(obj)
+
+    relocks elements unlocked by unlockHierarchy() */
+
+function relockHierarchy(arr){
+  for(var x=0; x<arr.length; x++){
+    arr[x][0].visible = arr[x][2];
+    arr[x][0].locked = arr[x][1];
+  }
+}
+
 /*———————————————————————————————————————— svgOptions(includeCanvas)
 
   sets options for SVG file */
@@ -244,6 +315,34 @@ function svgOptions(artboards){
 
   return options;
 }
+/*———————————————————————————————————————— unlockHierarchy(obj)
+
+    unlocks the hierarchy above an element and returns an array
+
+    each element of the array is a sub array containing
+    [obj, obj.locked, obj.visible] */
+
+function unlockHierarchy(obj){
+
+  var parentLocks = [];
+  var thisParent = obj.parent;
+
+  while (thisParent.typename != 'Document'){
+    parentLocks[parentLocks.length] = [thisParent, thisParent.locked, thisParent.visible];
+    thisParent = thisParent.parent
+  }
+
+  for(var x=parentLocks.length-1; x>-1; x--){
+    try{
+      parentLocks[x][0].visible= true;
+      parentLocks[x][0].locked = false;
+    }
+    catch(e){ alert('Page item couldn\'t be accessed: ' + e+'\n'+parentLocks[x][0].typename + ' inside ' + parentLocks[x][0].parent.name) }
+  }
+
+  return parentLocks;
+}
+
 
 
 //:::::::::::::::::::::::::::::::::::::::: fin

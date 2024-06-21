@@ -62,14 +62,6 @@ if (app.documents.length < 1){
   break program
 }
 
-/*———————————————————————————————————————— macOS boolean variable
-
-    is platform is Mac or PC based on  path */
-
-    var pathOrig = app.activeDocument.path.fsName
-
-    var macOS = pathOrig.substr(0,1) == '/'
-
 /*———————————————————————————————————————— get param if standalone
 
     save or all */
@@ -310,27 +302,6 @@ function isValid(doc){
   return true;
 }
 
-/*———————————————————————————————————————— hasPath(sourceDoc)
-
-    has file been saved at least once?
-    returns '' or error message */
-
-function hasPath(doc){
-
-  if (doc.path != '') return ''
-
-  var syncPath = syncFromOtherFiles()
-  if (syncPath == '') return 'Please ' + doc.name + ' normally before saving with Svija Tools'
-
-  var f = new File(syncPath).saveDlg('','')
-
-  if (f == null) return 'Please ' + doc.name + ' normally before saving with Svija Tools'
-
-  app.activeDocument.saveAs(f, undefined)
-  return ''
-    
-}
-
 /*———————————————————————————————————————— isAi(doc)
 
     just checks if file is a .ai and not a PDF
@@ -355,12 +326,12 @@ function isAi(doc){
 function hasFolders(doc){
 
   if (getSyncPath(doc) == '')
-    return doc.name + ' is not inside a \"sync\" folder and was not saved';
+    return doc.name + ' is not inside a \"sync\" folder'
 
   if (getSvgFilesPath(doc) == '')
-    return doc.name + ' was not saved ("SVIJA/SVG Files" missing)';
+    return '"sync/SVIJA/SVG Files" not found'
 
-  return '';
+  return ''
 }
 
 /*———————————————————————————————————————— hasLinks(sourceDoc)
