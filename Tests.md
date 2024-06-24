@@ -189,59 +189,29 @@ Expected result: alert "Missing image file relinked / [image name] moved to "Lin
 
 #### Import Styles
 
-1. in file "page1.ai" create some area text with at least two paragraphs
+1. in one Illustrator page, create some area text with at least two paragraphs
+
 2. modify the font and the paragraph spacing
+
+3. in the "Paragraph Styles" panel, create a new style called "Para Test"
+
 3. in the "Character Styles" panel, create a new style called "Char Test"
-4. in the "Paragraph Styles" panel, create a new style called "Para Test"
+
 5. save changes and close page1.ai
+
 6. in file "page2.ai" click the "Import Styles" button
+
 7. select "page1.ai" when prompted
+
 8. when asked "Include all styles?" click "Yes"
+
 9. click "OK" in confirmation window
+
 10. create some area text and apply the imported styles  
 
 note: it will be necessary to choose a fill color after applying the styles
 
 ----
-#### Duplicate Layers
-
-----
-#### Create Group
-
-----
-#### Animation Tip
-
-1. click "Animation Tips"
-2. click anywhere to close the tips
-3. click "MORE" to show full button panel
-4. click "Animation Tips"
-5. click anywhere to close the tips
-6. if desired, change Illustrator interface preferences (color & size) to verify that Svija Tools adapts correctly
-
-#### Save All
-
-Save All is the same as Save Page, except that it saves all open documents.
-
-1. make a second Illustrator file using preset "Web › Web-Large" (1920x1080 px)
-2. change the artboard name to "cp"
-2. draw some text and a rectangle
-3. save it as "page2.ai" in folder "sync"
-4. click the "Save All" button    
-5. click "OK" when finished
-6. verify in the Finder that "sync/Svija/SVG Files/page1_cp.svg" and "page2_cp.svg" were created
-7. press the spacebar for Quick Look or open the SVG in Safari to verify that they matches the Illustrator files
-
-#### Create Group
-
-Create Group has the same functionality as the menu item "Object › Group", except that it works when a single item is selected.
-
-It is useful for animation objects, where the inside object and the surrounding group may be animated in different ways.
-
-1. in file "page1.ai" select any single object
-2. open the Layers panel and locate the object
-3. click "Create Group"
-4. verify that that the object is now part of a group in the Layers panel
-
 #### Duplicate Layers
 
 This button will copy any unlocked layers from the frontmost document to any other open documents.
@@ -259,7 +229,27 @@ In the event of a mistake, the user can simply undo any modifications.
 7. click "OK" when the process is complete
 8. in "page2.ai" verify that the layer was copied correctly
 
+----
+#### Create Group
+
+Create Group has the same functionality as the menu item "Object › Group", except that it works when a single item is selected.
+
+It is useful for animation objects, where the inside object and the surrounding group may be animated in different ways.
+
+1. in file "page1.ai" select any single object
+2. open the Layers panel and locate the object
+3. click "Create Group"
+4. verify that that the object is now part of a group in the Layers panel
 
 
-Thank you for your time,
-Andrew Swift, Svija
+----
+#### Animation Tip
+
+1. click "Animation Tips"
+2. click anywhere to close the tips
+3. click "MORE" to show full button panel
+4. click "Animation Tips"
+5. click anywhere to close the tips
+6. if desired, change Illustrator interface preferences (color & size) to verify that Svija Tools adapts correctly
+
+----
