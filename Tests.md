@@ -13,43 +13,6 @@ These tests can be run through quickly on both Mac and PC to validate the six bu
 Need to create two test sites that I can work with locally and copy to PC.
 
 ---
-### Save
-
-- save an AI page
-- save SVG, PDF and EPS pages
-- save new-from-template page with other docs open
-- save new-from-template page with no other docs open
-- save page with missing Links folder
-- save page with embedded image
-- save page with missing linked image
-- save page with nonnative artwork
-- missing SVG Files folder
-
----
-### Save All
-
-- save multiple AI pages
-- save pages from two different sites
-
----
-### Check & Repair
-
-- placed images outside sync
-- placed images inside sync
-- embedded images inside/outside sync
-- file not in sync folder at all
-- missing SVG Files folder
-
----
-### Import Styles
-
----
-### Duplicate Layers
-
----
-### Create Group
-
-
 #### Save Page
 
 ››› create new page from new page.ait and try saving with Svija Tools
@@ -61,6 +24,44 @@ The Illustrator file must already have been saved at least once in the "sync" fo
 3. verify in the Finder that "sync/Svija/SVG Files/page1_cp.svg" was created
 4. press the spacebar to Quick Look, or open the SVG in Safari, to verify that it matches the Illustrator file
 
+----
+#### Save
+
+- save an AI page
+- save SVG, PDF and EPS pages
+- save new-from-template page with other docs open
+- save new-from-template page with no other docs open
+- save page with missing Links folder
+- save page with embedded image
+- save page with missing linked image
+- save page with nonnative artwork
+- missing SVG Files folder
+
+----
+#### Save All
+
+- save multiple AI pages
+- save pages from two different sites
+
+----
+#### Check & Repair
+
+- placed images outside sync
+- placed images inside sync
+- embedded images inside/outside sync
+- file not in sync folder at all
+- missing SVG Files folder
+
+----
+#### Import Styles
+
+----
+#### Duplicate Layers
+
+----
+#### Create Group
+
+----
 #### Check & Repair
 
 with no links folder
