@@ -214,7 +214,7 @@ Expected result: alert "Missing image file relinked / [image name] moved to "Lin
 9. click "OK" in confirmation window
 10. create some area text and apply the imported styles  
 
-note: it will be necessary to choose a fill color after applying the styles
+Note: it will be necessary to choose a fill color after applying the styles
 
 ----
 ### Duplicate Layers
@@ -234,9 +234,9 @@ Expected result: the layer was copied correctly to the second page.
 
 1. in an Illustrator page, select any single object
 2. open the Layers panel and locate the object
-3. click "Create Group"
+3. click "Create Group" three times
 
-Expected result: the object is now part of a group in the Layers panel
+Expected result: the object is now part of a three-level nested group in the Layers panel
 
 ----
 ### Animation Tips
