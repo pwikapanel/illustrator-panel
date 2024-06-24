@@ -12,7 +12,7 @@ These tests can be run through quickly on both Mac and PC to validate the six bu
 Need to create two test sites that I can work with locally and copy to PC.
 
 ---
-#### Save Page
+### Save Page
 
 Saving an unsaved file:
 
@@ -52,41 +52,53 @@ Saving an unsaved file with another page from the same site open:
 Expected result: correct sync folder should be opened.
 
 ----
-#### Saving with Images
+### Saving with Images
+
+Missing `Links` folder:
 
 1. save page with missing Links folder (no placed images)
 
 Expected result: page saved normally
 
-2. place image from elsewhere on HD *without* checking "link"
-3. click "Save Page"
+Saving with an embedded image:
+
+1. place image from elsewhere on HD *without* checking "link"
+2. click "Save Page"
 
 Expected result: page saved normally with alert "Test.ai contains embedded images. Please run "Check & Repair"
 
-4. delete the embedded image
-5. rename or delete `Links` folder so it is not available
-6. place an image from outside the site and check "link"
+Saving with an external image:
+
+1. delete the embedded image
+2. rename or delete `Links` folder so it is not available
+3. place an image from outside the site and check "link"
 
 Expected result: page saved normally with alert "Test.ai contains external image(s) — please run "Check & Repair"
 
-7. rename or delete `SVIJA` folder so it is not available
-8. click "Save Page"
+Missing `SVIJA` folder:
+
+1. rename or delete `SVIJA` folder so it is not available
+2. click "Save Page"
 
 Expected result: alert "File(s) Not Saved / Missing "SVIJA" folder"
 
-9. rename or delete `SVG Files` folder so it is not available
-10. click "Save Page"
+Missing `SVG Files` folder
+
+1. rename or delete `SVG Files` folder so it is not available
+2. click "Save Page"
 
 Expected result: alert "File(s) Not Saved / Missing "SVG Files" folder"
 
-11. close the file, rename `sync` to `syncx`
-12. reopen the file
-13. click "Save Page"
+Missing `sync` folder:
+
+1. close the file, rename `sync` to `syncx`
+2. reopen the file
+3. click "Save Page"
 
 Expected result: alert "File(s) Not Saved / Page not in "sync" folder"
 
 ----
-#### Save All
+### Save All
 
 1. open two different pages from two different sites
 2. click "Save All"
@@ -94,7 +106,7 @@ Expected result: alert "File(s) Not Saved / Page not in "sync" folder"
 Expected result: the appropriate `SVG Files` folders contain updated SVG files
 
 ----
-#### Check & Repair
+### Check & Repair
 
 Page not in `sync` folder:
 
@@ -187,63 +199,47 @@ Expected result: alert "Missing image file relinked / [image name] moved to "Lin
 
 ----
 
-#### Import Styles
+### Import Styles
 
 1. in one Illustrator page, create some area text with at least two paragraphs
-
 2. modify the font and the paragraph spacing
-
 3. in the "Paragraph Styles" panel, create a new style called "Para Test"
-
+4. select a few words, change the style (make it italic, for example)
 3. in the "Character Styles" panel, create a new style called "Char Test"
-
-5. save changes and close page1.ai
-
-6. in file "page2.ai" click the "Import Styles" button
-
-7. select "page1.ai" when prompted
-
+5. save changes and close the page
+6. open or create a second Illustrator page
+7. click the "Import Styles" button
+7. select the first AI page when prompted
 8. when asked "Include all styles?" click "Yes"
-
 9. click "OK" in confirmation window
-
 10. create some area text and apply the imported styles  
 
 note: it will be necessary to choose a fill color after applying the styles
 
 ----
-#### Duplicate Layers
+### Duplicate Layers
 
-This button will copy any unlocked layers from the frontmost document to any other open documents.
-
-Any layers with the same names are replaced, and an effort is made to be intelligent about which order the layers are added.
-
-In the event of a mistake, the user can simply undo any modifications.
-
-1. open files "page1.ai" and "page2.ai"
-2. in file "page1.ai" create a new layer called "test"
+1. open two Illustrator pages
+2. in one, create a new layer called "test"
 3. draw a rectangle on the new layer
 4. lock any other layers
 5. click the "Duplicate Layers" button
 6. click "Yes" when asked if the correct document is active
 7. click "OK" when the process is complete
-8. in "page2.ai" verify that the layer was copied correctly
+
+Expected result: the layer was copied correctly to the second page.
 
 ----
-#### Create Group
+### Create Group
 
-Create Group has the same functionality as the menu item "Object › Group", except that it works when a single item is selected.
-
-It is useful for animation objects, where the inside object and the surrounding group may be animated in different ways.
-
-1. in file "page1.ai" select any single object
+1. in an Illustrator page, select any single object
 2. open the Layers panel and locate the object
 3. click "Create Group"
-4. verify that that the object is now part of a group in the Layers panel
 
+Expected result: the object is now part of a group in the Layers panel
 
 ----
-#### Animation Tip
+### Animation Tips
 
 1. click "Animation Tips"
 2. click anywhere to close the tips
