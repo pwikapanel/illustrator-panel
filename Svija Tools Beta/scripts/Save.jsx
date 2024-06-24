@@ -393,22 +393,22 @@ function hasPlaced(doc){
       var imgPath = String(img.file); // ~/Captures/capture%2029.jpg
     }
     catch(e){
-      return doc.name + ' contains an image with no source — please run "Check & Repair"';
+      return doc.name + ' contains an image with no source. Please run "Check & Repair"';
     }
 
     // if image path is shorter, image can't be in Links folder
     if (imgPath.length < linksPath.length+4) 
-      return doc.name + ' contains external image(s) — please run "Check & Repair"';
+      return doc.name + ' contains external images. Please run "Check & Repair"';
 
     // if image path doesn't match doc path, it can't be in links folder
     var str = imgPath.slice(0, linksPath.length);
     if (str != linksPath)
-      return doc.name + ' contains external image(s) — please run "Check & Repair"';
+      return doc.name + ' contains external images. Please run "Check & Repair"';
 
     // if what's longer than doc path contains a /, it's in some subfolder
     var str = imgPath.slice(linksPath.length, imgPath.length);
     if (str.indexOf('/') > 0)
-      return doc.name + ' contains external image(s) — please run "Check & Repair"';
+      return doc.name + ' contains external images. Please run "Check & Repair"';
   }
 
   return '';

@@ -15,24 +15,50 @@ Need to create two test sites that I can work with locally and copy to PC.
 ---
 #### Save Page
 
-››› create new page from new page.ait and try saving with Svija Tools
-
 The Illustrator file must already have been saved at least once in the "sync" folder.
 
-1. click the "Save" button
-2. click "OK" when finished
-3. verify in the Finder that "sync/Svija/SVG Files/page1_cp.svg" was created
-4. press the spacebar to Quick Look, or open the SVG in Safari, to verify that it matches the Illustrator file
+1. open `new page.ait`
+2. save with Svija Tools
+
+Expected result: alert "File(s) not saved / Please save Untitled-1 normally."
+
+3. draw a shape on the larger of the two artboards (it may be necessary to unlock a layer)
+4. save file as `test.ai` in the `sync` folder
+5. click the "Save Page" button, then click "OK" when finished
+6. verify in the Finder that "sync/Svija/SVG Files/page1_CP.svg" was created
+7. open the SVG in a browser to verify that it matches the Illustrator file
+
+Expected result: the exported SVG matches the contents of the Illustrator page.
+
+8. save the page as `test.pdf`
+9. click "Save Page"
+
+Expected result: an alert "File(s) Not Saved / File Test.pdf is not a .ai file and was not saved"
+
+10. create a new page from template and open another page from the site
+11. click "Save Page" for new template
+
+Expected result: correct sync folder should be opened.
 
 ----
-#### Save
+#### Saving with Images
 
-- save an AI page
-- save SVG, PDF and EPS pages
-- save new-from-template page with other docs open
-- save new-from-template page with no other docs open
-- save page with missing Links folder
-- save page with embedded image
+1. save page with missing Links folder (no placed images)
+
+Expected result: page saved normally
+
+2. place image from elsewhere on HD *without* checking "link"
+3. click "Save Page"
+
+Expected result: page saved normally with alert "Test.ai contains embedded images. Please run "Check & Repair"
+
+4. delete the embedded image
+5. rename or delete `Links` folder so it is not available
+5. place an image from outside the site and check "link"
+
+Expected result: page saved normally with alert "Test.ai contains external image(s) — please run "Check & Repair"
+
+ -save page with embedded image
 - save page with missing linked image
 - save page with nonnative artwork
 - missing SVG Files folder
