@@ -8,6 +8,17 @@
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
+/*———————————————————————————————————————— disable right-click
+
+  https://stackoverflow.com/questions/6789843/disable-right-click-menu-in-chrome */
+
+(function (){
+
+  var blockContextMenu = function (evt) { evt.preventDefault() }
+  document.body.addEventListener('contextmenu', blockContextMenu)
+
+})()
+
 //———————————————————————————————————————— button listeners
 
 // alert(actions.length); // 10
