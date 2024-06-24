@@ -162,19 +162,23 @@ function saveSvg(doc){
 
   var layerInfo = deleteNonPrintingLayers(doc) // info about locked & visible
 
-  //———————————————————————————————— destination folder & file
+  //———————————————————————————————— "sync/SVIJA/SVG Files"
 
-  svgFilesPath = getSvgFilesPath(doc)
-
+  var svgFilesPath = getSvgFilesPath(doc) // string
   var svgFolderObj = Folder(svgFilesPath)
 
   //———————————————————————————————— avoid overwrite confirmations MOVE TO FUNCTION
 
   for (x=0; x<doc.artboards.length; x++){
     var name = makeSvgName(doc, x)
-    var file = newFile(svgFolderObj, name)
+    var file = new File(svgFolderObj, name)
     file.remove()
   }
+
+  /*———————————————————————————————— create different obj if single artboard */
+
+  if (doc.artboards.length == 1)
+    svgFolderObj = File(svgFilesPath + getSvgPath(doc))
 
   /*———————————————————————————————— save svg files */
 

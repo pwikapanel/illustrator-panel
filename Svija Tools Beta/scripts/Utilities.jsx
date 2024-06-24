@@ -116,7 +116,9 @@ function getDocPath(doc){
   else return doc.path.fsName + '\\' + doc.name
 }
 
-//———————————————————————————————————————— getExtension(path)
+/*———————————————————————————————————————— getExtension(path)
+
+    */
 
 function getExtension(path){
   var ending = String(path).substr(-5);
@@ -165,6 +167,14 @@ function getSvgFilesPath(doc){
   else return s + '\\SVIJA\\SVG Files'
 }
 
+/*———————————————————————————————————————— getSvgPath(doc)
+
+    creates SVG name for single-artboard files */
+
+function getSvgPath(doc){
+  return '/' + doc.name.substr(0,doc.name.length-3) + '_' + doc.artboards[0].name + '.svg'
+}
+
 /*———————————————————————————————————————— getSyncPath(doc)
 
     gets sync folder path from doc */
@@ -202,7 +212,10 @@ function hasPath(doc){
     
 }
 
-//———————————————————————————————————————— isInteger(n)
+/*———————————————————————————————————————— isInteger(n)
+
+    */
+
 function isInteger(n){
   if (n == Math.round(n)) return true;
   else return false;
@@ -300,7 +313,7 @@ function relockHierarchy(arr){
 
 function svgOptions(artboards){
 
-  var multipleArtboards = artboards > 1
+  var multipleArtboards = (artboards > 1)
   var options= new ExportOptionsWebOptimizedSVG()
 
   options.artboardRange         = '' // or '1-3'
@@ -315,6 +328,7 @@ function svgOptions(artboards){
 
   return options;
 }
+
 /*———————————————————————————————————————— unlockHierarchy(obj)
 
     unlocks the hierarchy above an element and returns an array
@@ -342,7 +356,6 @@ function unlockHierarchy(obj){
 
   return parentLocks;
 }
-
 
 
 //:::::::::::::::::::::::::::::::::::::::: fin
