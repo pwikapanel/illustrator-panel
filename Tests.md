@@ -1,5 +1,5 @@
 
-*Updated 21 June 2024 · Toulouse*
+*Updated 24 June 2024 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
@@ -8,35 +8,46 @@
 ### Validation Tests
 
 These tests can be run through quickly on both Mac and PC to validate the six buttons.
----
 
 Need to create two test sites that I can work with locally and copy to PC.
 
 ---
 #### Save Page
 
-The Illustrator file must already have been saved at least once in the "sync" folder.
+Saving an unsaved file:
 
 1. open `new page.ait`
 2. save with Svija Tools
 
 Expected result: alert "File(s) not saved / Please save Untitled-1 normally."
 
-3. draw a shape on the larger of the two artboards (it may be necessary to unlock a layer)
-4. save file as `test.ai` in the `sync` folder
-5. click the "Save Page" button, then click "OK" when finished
-6. verify in the Finder that "sync/Svija/SVG Files/page1_CP.svg" was created
-7. open the SVG in a browser to verify that it matches the Illustrator file
+---
+
+Saving normally:
+
+1. draw a shape on the larger of the two artboards (it may be necessary to unlock a layer)
+2. save file as `test.ai` in the `sync` folder
+3. click the "Save Page" button, then click "OK" when finished
+4. verify in the Finder that "sync/Svija/SVG Files/page1_CP.svg" was created
+5. open the SVG in a browser to verify that it matches the Illustrator file
 
 Expected result: the exported SVG matches the contents of the Illustrator page.
 
-8. save the page as `test.pdf`
-9. click "Save Page"
+---
+
+Saving the wrong file type:
+
+1. save the page as `test.pdf`
+2. click "Save Page"
 
 Expected result: an alert "File(s) Not Saved / File Test.pdf is not a .ai file and was not saved"
 
-10. create a new page from template and open another page from the site
-11. click "Save Page" for new template
+---
+
+Saving an unsaved file with another page from the same site open:
+
+1. create a new page from template and open another page from the site
+2. click "Save Page" for new template
 
 Expected result: correct sync folder should be opened.
 
@@ -54,32 +65,142 @@ Expected result: page saved normally with alert "Test.ai contains embedded image
 
 4. delete the embedded image
 5. rename or delete `Links` folder so it is not available
-5. place an image from outside the site and check "link"
+6. place an image from outside the site and check "link"
 
 Expected result: page saved normally with alert "Test.ai contains external image(s) — please run "Check & Repair"
 
- -save page with embedded image
-- save page with missing linked image
-- save page with nonnative artwork
-- missing SVG Files folder
+7. rename or delete `SVIJA` folder so it is not available
+8. click "Save Page"
+
+Expected result: alert "File(s) Not Saved / Missing "SVIJA" folder"
+
+9. rename or delete `SVG Files` folder so it is not available
+10. click "Save Page"
+
+Expected result: alert "File(s) Not Saved / Missing "SVG Files" folder"
+
+11. close the file, rename `sync` to `syncx`
+12. reopen the file
+13. click "Save Page"
+
+Expected result: alert "File(s) Not Saved / Page not in "sync" folder"
 
 ----
 #### Save All
 
-- save multiple AI pages
-- save pages from two different sites
+1. open two different pages from two different sites
+2. click "Save All"
+
+Expected result: the appropriate `SVG Files` folders contain updated SVG files
 
 ----
 #### Check & Repair
 
-- placed images outside sync
-- placed images inside sync
-- embedded images inside/outside sync
-- file not in sync folder at all
-- missing SVG Files folder
+Page not in `sync` folder:
+
+1. close any open files
+2. rename `sync` folder to `xsync`
+3. open test page in Illustrator from within `xsync`
+4. click "Check & Repair"
+
+Expected result: alert "Page is not in a sync folder \ Is it a Svija page?"
+
+Restore name of `sync` folder.
+
+---
+
+Missing `SVIJA` folder
+
+1. close any open files
+2. rename `SVIJA` folder to `xSVIJA`
+3. open test page in Illustrator
+4. click "Check & Repair"
+
+Expected result: alert "Page is not in a sync folder \ Is it a Svija page?"
+
+---
+
+Missing `SVG Files` folder
+
+1. close any open files
+2. rename `sync` folder to `xsync`
+3. open test page in Illustrator from within `xsync`
+4. click "Check & Repair"
+
+Expected result: alert "Page is not in a sync folder \ Is it a Svija page?"
+
+---
+
+With a missing `Links` folder:
+
+1. in file "Home.ai" place a JPG image that is on the local hard drive but NOT in the test folders    
+    — make sure that "Link" is checked in the "Place" dialog box
+2. click the "Check & Repair" button (it is not necessary for the image to be selected)
+3. when asked whether to create a "Links" folder, click "Yes"
+4. when finished, click "Yes" to view the report
+
+Expected result:
+- alert "Links" folder created for images. / [image name] copied to 'Links' folder"
+- the `Links` panel in Illustrator shows that the image is in the `Links` folder with the AI file
+- a `Links` folder was created in the Finder
+- the linked image is in the `Links` folder
+
+---
+
+An embedded image with missing `Links` folder
+
+1. delete the image in Illustrator
+2. delete the image in the Links folder
+3. in file "Home.ai" place a JPG image that is on the local hard drive but NOT in the test folders    
+    — make sure that "Link" is **unchecked** in the "Place" dialog box
+4. click the "Check & Repair" button (it is not necessary for the image to be selected)
+5. when asked whether to create a "Links" folder, click "Yes"
+6. when finished, click "Yes" to view the report
+
+Expected result:
+- alert ""Links" folder created for images. / Missing image file relinked / [image name] copied to "Links" folder"
+- the `Links` panel in Illustrator shows that the image is in the `Links` folder with the AI file
+- a `Links` folder was created in the Finder
+- the linked image is in the `Links` folder
+
+---
+
+A placed image in the same folder as the AI file
+
+1. delete the previous image from the `Links` folder and from the AI page
+2. copy a JPG image to the sync folder
+3. place the image in the AI file (check "Link")
+4. click "Check and Repair"
+
+Expected result: alert "[image name] moved to "Links" folder"
+
+---
+
+An embedded image in the same folder as the AI file:
+
+1. delete the previous image from the `Links` folder and from the AI page
+2. copy a JPG image to the sync folder
+3. place the image in the AI file (DO NOT check "Link")
+4. click "Check and Repair"
+
+Expected result: alert "Missing image file relinked / [image name] moved to "Links" folder"
 
 ----
+
 #### Import Styles
+
+1. in file "page1.ai" create some area text with at least two paragraphs
+2. modify the font and the paragraph spacing
+3. in the "Character Styles" panel, create a new style called "Char Test"
+4. in the "Paragraph Styles" panel, create a new style called "Para Test"
+5. save changes and close page1.ai
+6. in file "page2.ai" click the "Import Styles" button
+7. select "page1.ai" when prompted
+8. when asked "Include all styles?" click "Yes"
+9. click "OK" in confirmation window
+10. create some area text and apply the imported styles  
+
+note: it will be necessary to choose a fill color after applying the styles
 
 ----
 #### Duplicate Layers
@@ -88,22 +209,6 @@ Expected result: page saved normally with alert "Test.ai contains external image
 #### Create Group
 
 ----
-#### Check & Repair
-
-with no links folder
-
-1. in file "page1.ai" place a JPG image that is on the local hard drive but NOT in the test folders    
-    — make sure that "Link" is checked in the "Place" dialog box
-2. click the "Check & Repair" button (it is not necessary for the image to be selected)
-3. when asked whether to create a "Links" folder, click "Yes"
-4. when finished, click "No" to view the report
-
-5. in the Finder, verify that the image has been copied to sync/Links
-6. in Illustrator, verify that "Location" in the Links panel shows the path to the new image in the Links folder
-7. delete the image in Illustrator
-8. delete the image in the Links folder
-9. repeat steps 1-6 but do NOT check "Link" in the "Place" dialog box
-
 #### Animation Tip
 
 1. click "Animation Tips"
@@ -125,21 +230,6 @@ Save All is the same as Save Page, except that it saves all open documents.
 5. click "OK" when finished
 6. verify in the Finder that "sync/Svija/SVG Files/page1_cp.svg" and "page2_cp.svg" were created
 7. press the spacebar for Quick Look or open the SVG in Safari to verify that they matches the Illustrator files
-
-#### Import Styles
-
-1. in file "page1.ai" create some area text with at least two paragraphs
-2. modify the font and the paragraph spacing
-3. in the "Character Styles" panel, create a new style called "Char Test"
-4. in the "Paragraph Styles" panel, create a new style called "Para Test"
-5. save changes and close page1.ai
-6. in file "page2.ai" click the "Import Styles" button
-7. select "page1.ai" when prompted
-8. when asked "Include all styles?" click "Yes"
-9. click "OK" in confirmation window
-10. create some area text and apply the imported styles  
-
-note: it will be necessary to choose a fill color after applying the styles
 
 #### Create Group
 
