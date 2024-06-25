@@ -167,12 +167,15 @@ function getSvgFilesPath(doc){
   else return s + '\\SVIJA\\SVG Files'
 }
 
-/*———————————————————————————————————————— getSvgPath(doc)
+/*———————————————————————————————————————— svgNameSingleArtboard(doc)
 
     creates SVG name for single-artboard files */
 
-function getSvgPath(doc){
-  return '/' + doc.name.substr(0,doc.name.length-3) + '_' + doc.artboards[0].name + '.svg'
+function svgNameSingleArtboard(doc){
+  var radical = doc.name.substr(0,doc.name.length-3)
+  var artboard = doc.artboards[0].name
+  var result = radical + '_' + artboard + '.svg'
+  return result
 }
 
 /*———————————————————————————————————————— getSyncPath(doc)

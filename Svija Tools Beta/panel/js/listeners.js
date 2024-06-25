@@ -8,17 +8,6 @@
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
-/*———————————————————————————————————————— disable right-click
-
-  https://stackoverflow.com/questions/6789843/disable-right-click-menu-in-chrome */
-
-(function (){
-
-  var blockContextMenu = function (evt) { evt.preventDefault() }
-  document.body.addEventListener('contextmenu', blockContextMenu)
-
-})()
-
 //———————————————————————————————————————— button listeners
 
 // alert(actions.length); // 10
@@ -38,21 +27,16 @@ for (var x=0; x<actions.length; x++){ try{
   // expected: 3-10 fail on less panel · 0-2 fail on more panel
 }}
 
-//———————————————————————————————————————— onresize listener
-
-window.onresize = resizeFunc
-
-/*———————————————————————————————————————— right-click listener
+/*———————————————————————————————————————— disable right-click
 
   https://stackoverflow.com/questions/6789843/disable-right-click-menu-in-chrome */
 
-(function (){
+var blockContextMenu = function (evt) { evt.preventDefault() }
+document.body.addEventListener('contextmenu', blockContextMenu)
 
-  var blockContextMenu = function (evt) { evt.preventDefault() }
-  document.body.addEventListener('contextmenu', blockContextMenu)
+//———————————————————————————————————————— onresize listener
 
-})()
-
+window.onresize = resizeFunc
 
 //:::::::::::::::::::::::::::::::::::::::: functions
 
@@ -127,8 +111,16 @@ function changeTitle(newTitle){
 
   csif.setWindowTitle(newTitle)
 
-  setTimeout(function(){ csif.setWindowTitle(staticTitle) }, 500)
+  setTimeout(resetTitle, 500)
 
+}
+
+function resetTitle(){
+  var currentTitle = csif.getWindowTitle()
+  if (currentTitle != staticTitle){
+    csif.setWindowTitle(staticTitle)
+    setTimeout(resetTitle, 500)
+  }
 }
 
 

@@ -145,9 +145,7 @@ finalFeedback(fileSizes);
 //:::::::::::::::::::::::::::::::::::::::: main functions
 
 /*———————————————————————————————————————— saveSvg(doc)
-
   saves file as SVG:
-
   - saves in sync/Svija/SVG Files
   - removes any existing files that would provoke a confirmation dialog
   - deletes non-printing layers
@@ -165,27 +163,28 @@ function saveSvg(doc){
   //———————————————————————————————— "sync/SVIJA/SVG Files"
 
   var svgFilesPath = getSvgFilesPath(doc) // string
-  var svgFolderObj = Folder(svgFilesPath)
+  var diskObject = Folder(svgFilesPath)
 
   //———————————————————————————————— avoid overwrite confirmations MOVE TO FUNCTION
 
   for (x=0; x<doc.artboards.length; x++){
     var path = concatenatePath(svgFilesPath, makeSvgName(doc, x))
     if (File(path).exists){
-      alert('deleted')
       File(path).remove()
     }
   }
 
   //———————————————————————————————— create different obj if single artboard
 
-  if (doc.artboards.length == 1)
-    svgFolderObj = File(concatenatePath(svgFilesPath + getSvgPath(doc)))
+  if (doc.artboards.length == 1){
+    var path = concatenatePath(svgFilesPath, svgNameSingleArtboard(doc))
+    diskObject = new File(path)
+  }
 
   //———————————————————————————————— save svg files */
 
   var svgOpts = svgOptions(doc.artboards.length)
-  doc.exportFile(svgFolderObj, ExportType.WOSVG, svgOpts) 
+  doc.exportFile(diskObject, ExportType.WOSVG, svgOpts) 
 
   //———————————————————————————————— restore to original state
 
@@ -207,7 +206,7 @@ function saveSvg(doc){
 
     var path = concatenatePath(svgFilesPath, makeSvgName(doc, x))
 
-    var path = encodeURI(path)
+    path = encodeURI(path)
     var fileSize = File(path).length
 
     sizes.push(doc.artboards[x].name)
