@@ -4,7 +4,7 @@
 
     Import Styles.jsx
 
-    1.0.3
+    1.0.5
 
     Updates paragraph styles in all open documents from a specified
     source file. The user has a choice of updating styles that are used in

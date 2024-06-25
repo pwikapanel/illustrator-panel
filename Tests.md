@@ -18,6 +18,10 @@ Saving an unsaved file:
 
 1. open `new page.ait`
 2. save with Svija Tools
+3. when asked, navigate to the `sync` folder and save as `test.ai`
+4. click "OK" when finished
+5. verify in the Finder that "sync/Svija/SVG Files/test_CP.svg" was created
+6. open the SVG in a browser to verify that it matches the Illustrator file
 
 Expected result: alert "File(s) not saved / Please save Untitled-1 normally."
 
@@ -26,10 +30,9 @@ Expected result: alert "File(s) not saved / Please save Untitled-1 normally."
 Saving normally:
 
 1. draw a shape on the larger of the two artboards (it may be necessary to unlock a layer)
-2. save file as `test.ai` in the `sync` folder
-3. click the "Save Page" button, then click "OK" when finished
-4. verify in the Finder that "sync/Svija/SVG Files/page1_CP.svg" was created
-5. open the SVG in a browser to verify that it matches the Illustrator file
+2. click the "Save Page" button, then click "OK" when finished
+3. verify in the Finder that "sync/Svija/SVG Files/test2_CP.svg" was updated (modification date) 
+4. open the SVG in a browser to verify that it matches the Illustrator file
 
 Expected result: the exported SVG matches the contents of the Illustrator page.
 

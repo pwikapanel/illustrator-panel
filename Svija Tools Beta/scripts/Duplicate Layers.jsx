@@ -4,7 +4,7 @@
 
     Duplicate Layers.jsx
 
-    1.0.3
+    1.0.5
 
     recursive delete in case multiple layers share same name
 
