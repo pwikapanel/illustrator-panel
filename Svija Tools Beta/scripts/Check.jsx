@@ -58,6 +58,8 @@
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
+var syncErr = ' is not inside a \"sync\" folder'
+
 /*———————————————————————————————————————— ▼ program:{
 
     can use "break program;" to quit at any moment */
@@ -106,10 +108,10 @@ if (pathErr != ''){
 
 //———————————————————————————————————————— if not in sync folder then quit
 
-var folderErr = hasFolders(doc)
+var syncPath = getSyncPath(doc)
 
-if (folderErr != ''){
-  alert(pathErr)
+if (syncPath == ''){
+  alert(doc.name + syncErr + '::'+syncPath)
   break program
 }
 
@@ -415,7 +417,7 @@ function checkImageExt(img){
   return []
 }
 
-/*———————————————————————————————————————— alertUser(count)
+/*———————————————————————————————————————— alertUser(doc)
 
     alert with:
     - elapsed time

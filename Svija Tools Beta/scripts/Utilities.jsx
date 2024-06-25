@@ -83,6 +83,25 @@ function concatenatePath(part1, part2){
   else return part1 + '\\' + part2
 }
 
+/*———————————————————————————————————————— deriveSyncFolder()
+
+    used when saving an unsaved document — tries to
+    find a sync folder from other open documents */
+
+function deriveSyncFolder(){
+  if (isMac == 'true')
+    var comparator = '/sync'
+  else
+    var comparator = '\\sync'
+
+  for(var x=1; x<app.documents.length; x++){
+    var docPath = String(app.documents[x].path.fsName);
+    if (docPath.indexOf(comparator) > 0) return concatenatePath(docPath, '/Page Name.ai')
+  }
+
+  return ''
+}
+
 //———————————————————————————————————————— dumpKeys(obj)
 
 function dumpKeys(obj){
@@ -146,12 +165,9 @@ function getFileSize(page){
     returns path of links folder */
 
 function getLinksPath(doc){
-  var path = Folder(app.activeDocument.path.fsName)
+  var path = doc.path.fsName
 
-  if (macOS) path += '/Links'
-  else       path += '\\Links'
-   
-  return path
+  return concatenatePath(path, 'Links')
 }
 
 /*———————————————————————————————————————— getSvgFilesPath(doc)
@@ -203,7 +219,7 @@ function hasPath(doc){
 
   if (doc.path != '') return ''
 
-  var syncPath = syncFromOtherFiles()
+  var syncPath = deriveSyncFolder()
   if (syncPath == '') return 'Please save ' + doc.name + ' normally.'
 
   var f = new File(syncPath).saveDlg('','')

@@ -395,7 +395,7 @@ function hasPlaced(doc){
     if (!img.layer.printable) continue;
 
     try{
-      var imgPath = String(img.file); // ~/Captures/capture%2029.jpg
+      var imgPath = String(img.file.fsName); // ~/Captures/capture%2029.jpg
     }
     catch(e){
       return doc.name + ' contains an image with no source. Please run "Check & Repair"';
@@ -412,7 +412,7 @@ function hasPlaced(doc){
 
     // if what's longer than doc path contains a /, it's in some subfolder
     var str = imgPath.slice(linksPath.length, imgPath.length);
-    if (str.indexOf('/') > 0)
+    if (str.indexOf('/') > 0 || str.indexOf('\\') > 0)
       return doc.name + ' contains external images. Please run "Check & Repair"';
   }
 
@@ -459,25 +459,6 @@ function deleteNonPrintingLayers(src){
 function dontSave(err){
   env_errs.push(err);
   return false;
-}
-
-/*———————————————————————————————————————— deriveSyncFolder()
-
-    used when saving an unsaved document — tries to
-    find a sync folder from other open documents */
-
-function deriveSyncFolder(){
-  if (isMac == 'true')
-    var comparator = '/sync'
-  else
-    var comparator = '\\sync'
-
-  for(var x=1; x<app.documents.length; x++){
-    var docPath = String(app.documents[x].path.fsName);
-    if (docPath.indexOf(comparator) > 0) return concatenatePath(docPath, '/Page Name.ai')
-  }
-
-  return ''
 }
 
 /*———————————————————————————————————————— fileSizeReport(fileSizes)
