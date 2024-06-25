@@ -170,22 +170,24 @@ function saveSvg(doc){
   //———————————————————————————————— avoid overwrite confirmations MOVE TO FUNCTION
 
   for (x=0; x<doc.artboards.length; x++){
-    var name = makeSvgName(doc, x)
-    var file = new File(svgFolderObj, name)
-    file.remove()
+    var path = concatenatePath(svgFilesPath, makeSvgName(doc, x))
+    if (File(path).exists){
+      alert('deleted')
+      File(path).remove()
+    }
   }
 
-  /*———————————————————————————————— create different obj if single artboard */
+  //———————————————————————————————— create different obj if single artboard
 
   if (doc.artboards.length == 1)
-    svgFolderObj = File(svgFilesPath + getSvgPath(doc))
+    svgFolderObj = File(concatenatePath(svgFilesPath + getSvgPath(doc)))
 
-  /*———————————————————————————————— save svg files */
+  //———————————————————————————————— save svg files */
 
   var svgOpts = svgOptions(doc.artboards.length)
   doc.exportFile(svgFolderObj, ExportType.WOSVG, svgOpts) 
 
-  /*———————————————————————————————— restore to original state */
+  //———————————————————————————————— restore to original state
 
   // restore layers
   while (doc.layers.length<layerInfo.length)
@@ -460,12 +462,12 @@ function dontSave(err){
   return false;
 }
 
-/*———————————————————————————————————————— syncFromOtherFiles()
+/*———————————————————————————————————————— deriveSyncFolder()
 
     used when saving an unsaved document — tries to
     find a sync folder from other open documents */
 
-function syncFromOtherFiles(){
+function deriveSyncFolder(){
   if (isMac == 'true')
     var comparator = '/sync'
   else
