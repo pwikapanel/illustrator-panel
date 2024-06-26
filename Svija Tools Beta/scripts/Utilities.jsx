@@ -338,7 +338,9 @@ function svgOptions(artboards){
   options.artboardRange         = '' // or '1-3'
   options.coordinatePrecision   = 3
   options.cssProperties         = SVGCSSPropertyLocation.STYLEELEMENTS
+  options.fontSubsetting        = SVGFontSubsetting.None                         ///////////////////// probably not supported
   options.fontType              = SVGFontType.SVGFONT
+//options.fontType              = SVGFontType.OUTLINEFONT
   options.rasterImageLocation   = RasterImageLocation.PRESERVE
   options.saveMultipleArtboards = multipleArtboards
   options.svgId                 = SVGIdType.SVGIDREGULAR

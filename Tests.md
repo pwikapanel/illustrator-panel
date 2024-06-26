@@ -25,6 +25,9 @@ Saving an unsaved file:
 
 Expected result: alert "File(s) not saved / Please save Untitled-1 normally."
 
+Note: if there is no other file open, then saving a new-from-template file results in an alert to "please save normally".
+Otherwise it proposes the sync folder from the other open file.
+
 ---
 
 Saving normally:
