@@ -53,6 +53,8 @@ function resizeFunc(){
 
 function launchScript(buttonCode){
 
+  alert(buttonCode)
+
   mouseEffect('mou', buttonCode) 
 
   let [title, script, param] = actions[buttonCode]

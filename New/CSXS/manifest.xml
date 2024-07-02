@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="love.svija.SvijaToolsBeta" ExtensionBundleVersion="1.0.5" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="love.svija.SvijaToolsNew" ExtensionBundleVersion="1.0.6" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <ExtensionList>
-    <Extension Id="love.svija.SvijaToolsBeta.panel" Version="1.0.5" />
-    <Extension Id="love.svija.SvijaLauncherBeta.panel" Version="1.0.5" />
+    <Extension Id="love.svija.SvijaToolsNew.panel" Version="1.0.6" />
+    <Extension Id="love.svija.SvijaLauncherNew.panel" Version="1.0.6" />
   </ExtensionList>
 
   <ExecutionEnvironment>
@@ -19,17 +19,14 @@
   </ExecutionEnvironment>
 
   <DispatchInfoList>
-    
-    <Extension Id="love.svija.SvijaToolsBeta.panel"><!-- ———————————————————— -->
+    <Extension Id="love.svija.SvijaToolsNew.panel"><!-- ———————————————————— -->
       <DispatchInfo>
+
         <Resources>
-
-
-          <MainPath>./panel/index.html</MainPath>
+          <MainPath>./html/index.html</MainPath>
           <CEFCommandLine>
             <Parameter>--allow-file-access-from-files</Parameter>
           </CEFCommandLine>
-
         </Resources>
 
         <Lifecycle>
@@ -41,7 +38,7 @@
 
         <UI>
           <Type>Panel</Type>
-          <Menu>Svija Tools Beta</Menu>
+          <Menu>Svija Tools New</Menu>
           <Geometry>
             <Size>
                 <Width>240</Width>
@@ -57,12 +54,13 @@
             </MaxSize>
           </Geometry>
           <Icons>
-            <Icon Type="Normal">./panel/svg/panelIcons_light.svg</Icon>
-            <Icon Type="DarkNormal">./panel/svg/panelIcons_dark.svg</Icon>
+            <Icon Type="Normal">./svg/panelIcons_light.svg</Icon>
+            <Icon Type="DarkNormal">./svg/panelIcons_dark.svg</Icon>
           </Icons>
         </UI>
+
       </DispatchInfo>
     </Extension>
-
   </DispatchInfoList>
+
 </ExtensionManifest>
