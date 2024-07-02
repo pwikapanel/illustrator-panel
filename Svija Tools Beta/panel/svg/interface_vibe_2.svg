@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 240 671" style="enable-background:new 0 0 240 671;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#323232;}
+	.st1{fill:#535353;}
+	.st2{fill:#B9B9B9;}
+	.st3{fill:#F0F0F0;}
+	.st4{fill:#181818;}
+	.st5{fill:#787878;}
+	.st6{fill:#B4B4B4;}
+	.st7{fill:#252525;}
+	.st8{fill:#464646;}
+	.st9{fill:#AAAAAA;}
+	.st10{fill:#DCDCDC;}
+	.st11{fill:#828282;}
+	.st12{fill:#8C8C8C;}
+	.st13{fill:#5A5A5A;}
+	.st14{fill:none;}
+	.st15{font-family:'SourceSansPro-Regular';}
+	.st16{font-size:12px;}
+	.st17{font-family:'SourceSansPro-SemiBold';}
+	.st18{font-size:8.5px;}
+	.st19{fill:#3C3C3C;}
+	.st20{fill:#646464;}
+	.st21{fill:#969696;}
+	.st22{fill:#C8C8C8;}
+	.st23{fill:#505050;}
+	.st24{fill:#E6E6E6;}
+	.st25{fill:#2D8CEB;}
+	.st26{opacity:0;}
+</style>
+<g id="content__xBB_">
+	<g id="background">
+	</g>
+	<g id="bottom_bar_stroke">
+	</g>
+	<g id="logo_bar_x2C__bar__x26__bottom_bar">
+	</g>
+	<g id="bottom_bar_text">
+	</g>
+	<g id="left_help">
+	</g>
+	<g id="right_help">
+		<g>
+			<rect x="95.527" y="8.76" class="st14" width="142.652" height="148.464"/>
+			<text transform="matrix(1 0 0 1 95.5266 18.7203)"><tspan x="0" y="0" class="st8 st15 st16">mouse/name </tspan><tspan x="0" y="15" class="st8 st15 st16">/n</tspan><tspan x="10.765" y="15" class="st13 st15 st16"> = open in new window </tspan><tspan x="0" y="30" class="st8 st15 st16">/a</tspan><tspan x="10.248" y="30" class="st13 st15 st16"> = arrow cursor </tspan><tspan x="0" y="45" class="st8 st15 st16">/h</tspan><tspan x="10.729" y="45" class="st13 st15 st16"> = hand cursor </tspan><tspan x="0" y="60" class="st8 st15 st16">/i</tspan><tspan x="7.152" y="60" class="st13 st15 st16"> = I-beam cursor</tspan><tspan x="0" y="80" class="st8 st15 st16">/func/arg1/arg2 </tspan><tspan x="0" y="95" class="st13 st15 st16">call function </tspan><tspan x="64.583" y="95" class="st8 st15 st16">func_name()</tspan><tspan x="0" y="115" class="st8 st15 st16">scroll/name</tspan><tspan x="0" y="135" class="st8 st15 st16">time/name/delay </tspan></text>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 95.5268 443.6366)"><tspan x="0" y="0" class="st8 st15 st16">click/name/%50/90&gt;/4/t20</tspan><tspan x="0" y="20" class="st13 st15 st16">3-second duration </tspan><tspan x="0" y="35" class="st13 st15 st16">2-second delay </tspan><tspan x="0" y="50" class="st13 st15 st16">move 20px left or right </tspan><tspan x="0" y="65" class="st13 st15 st16">move 20px up or down </tspan><tspan x="0" y="80" class="st13 st15 st16">20% transparency </tspan><tspan x="0" y="95" class="st13 st15 st16">scale to 50% </tspan><tspan x="0" y="110" class="st13 st15 st16">scale to 50% horiz. / vert. </tspan><tspan x="0" y="125" class="st13 st15 st16">rotate 90° left or right </tspan><tspan x="0" y="140" class="st13 st15 st16">origin of rotation top right </tspan><tspan x="0" y="155" class="st13 st15 st16">soft / gradual start &amp; stop </tspan><tspan x="0" y="170" class="st13 st15 st16">soft start or soft stop</tspan></text>
+		</g>
+		<g>
+			<rect x="95.527" y="180.86" class="st14" width="142.652" height="228.465"/>
+			<text transform="matrix(1 0 0 1 95.5266 190.8198)"><tspan x="0" y="0" class="st8 st15 st16">delay</tspan><tspan x="27.323" y="0" class="st13 st15 st16">/name/[flags]</tspan><tspan x="0" y="20" class="st13 st15 st16">event type/</tspan><tspan x="56.999" y="20" class="st8 st15 st16">name</tspan><tspan x="85.512" y="20" class="st13 st15 st16">/flags</tspan><tspan x="0" y="40" class="st13 st15 st16">trigger becomes visible </tspan><tspan x="0" y="55" class="st13 st15 st16">double: trigger becomes </tspan><tspan x="0" y="70" class="st13 st15 st16">visible / trigger is hidden </tspan><tspan x="0" y="85" class="st13 st15 st16">locked to page scroll</tspan><tspan x="0" y="105" class="st13 st15 st16">event type/</tspan><tspan x="56.999" y="105" class="st8 st15 st16">name</tspan><tspan x="85.512" y="105" class="st13 st15 st16">/flags</tspan><tspan x="0" y="125" class="st13 st15 st16">mouse moves over trigger </tspan><tspan x="0" y="140" class="st13 st15 st16">mouse moves away </tspan><tspan x="0" y="155" class="st13 st15 st16">moves over then away </tspan><tspan x="0" y="170" class="st13 st15 st16">presses down on trigger </tspan><tspan x="0" y="185" class="st13 st15 st16">clicks/taps trigger </tspan><tspan x="0" y="200" class="st13 st15 st16">double: press / release </tspan><tspan x="0" y="215" class="st13 st15 st16">double: click / click </tspan></text>
+		</g>
+		<g>
+			<rect x="0" class="st2" width="240" height="671"/>
+			<rect x="0.096" y="658" class="st5" width="239.904" height="1"/>
+			<rect x="0" y="659" transform="matrix(-1 -4.495927e-11 4.495927e-11 -1 240 1330)" class="st9" width="240" height="12"/>
+			<g>
+				<text transform="matrix(1 0 0 1 24.3986 667.5098)" class="st8 st17 st18">R E T U R N</text>
+			</g>
+			<path class="st8" d="M10.034,664.8l2.692-2.691l0.51,0.51l-2.183,2.182l2.183,2.182l-0.51,0.51L10.034,664.8z M17.266,667.492
+				l0.51-0.51l-2.182-2.182l2.182-2.182l-0.51-0.51l-2.691,2.691L17.266,667.492z"/>
+			<rect x="10" y="167.907" class="st9" width="220" height="1"/>
+			<rect x="10" y="420" class="st9" width="220" height="1"/>
+			<g>
+				<text transform="matrix(1 0 0 1 12.472 18.8193)"><tspan x="0" y="0" class="st8 st17 st16">Mouse Trigger </tspan><tspan x="73.066" y="15" class="st8 st17 st16"> </tspan><tspan x="73.066" y="30" class="st8 st17 st16"> </tspan><tspan x="73.066" y="45" class="st8 st17 st16"> </tspan><tspan x="73.066" y="80" class="st8 st17 st16"> </tspan><tspan x="3.804" y="115" class="st8 st17 st16">Scroll Trigger</tspan><tspan x="7.56" y="135" class="st8 st17 st16">Time Trigger</tspan></text>
+			</g>
+			<g>
+				<rect x="95.527" y="8.759" class="st14" width="142.652" height="148.464"/>
+				<text transform="matrix(1 0 0 1 95.5266 18.7189)"><tspan x="0" y="0" class="st8 st15 st16">mouse/name </tspan><tspan x="0" y="15" class="st8 st15 st16">/n</tspan><tspan x="10.765" y="15" class="st13 st15 st16"> = open in new window </tspan><tspan x="0" y="30" class="st8 st15 st16">/a</tspan><tspan x="10.248" y="30" class="st13 st15 st16"> = arrow cursor </tspan><tspan x="0" y="45" class="st8 st15 st16">/h</tspan><tspan x="10.729" y="45" class="st13 st15 st16"> = hand cursor </tspan><tspan x="0" y="60" class="st8 st15 st16">/i</tspan><tspan x="7.152" y="60" class="st13 st15 st16"> = I-beam cursor</tspan><tspan x="0" y="80" class="st8 st15 st16">/func/1/2</tspan><tspan x="46.596" y="80" class="st13 st15 st16"> call javascript </tspan><tspan x="0" y="95" class="st13 st15 st16">function </tspan><tspan x="44.544" y="95" class="st8 st15 st16">func_name(1, 2)</tspan><tspan x="0" y="115" class="st8 st15 st16">scroll/name</tspan><tspan x="0" y="135" class="st8 st15 st16">time/name/[# of seconds] </tspan></text>
+			</g>
+			<g>
+				<text transform="matrix(1 0 0 1 27.7112 191.0552)"><tspan x="0" y="0" class="st8 st17 st16">Time Event</tspan><tspan x="-8.928" y="20" class="st8 st17 st16">Scroll Events</tspan><tspan x="-1.62" y="40" class="st8 st15 st16">point</tspan><tspan x="25.115" y="40" class="st13 st15 st16">/name </tspan><tspan x="0.996" y="55" class="st8 st15 st16">zone</tspan><tspan x="25.115" y="55" class="st13 st15 st16">/name </tspan><tspan x="57.827" y="70" class="st8 st15 st16"> </tspan><tspan x="-2.712" y="85" class="st8 st15 st16">scrub</tspan><tspan x="25.115" y="85" class="st13 st15 st16">/name</tspan><tspan x="-12.732" y="105" class="st8 st17 st16">Mouse Events</tspan><tspan x="-1.2" y="125" class="st8 st15 st16">away</tspan><tspan x="25.115" y="125" class="st13 st15 st16">/name </tspan><tspan x="2.22" y="140" class="st8 st15 st16">click</tspan><tspan x="25.115" y="140" class="st13 st15 st16">/name </tspan><tspan x="-3.229" y="155" class="st8 st15 st16">down</tspan><tspan x="25.115" y="155" class="st13 st15 st16">/name </tspan><tspan x="2.892" y="170" class="st8 st15 st16">over</tspan><tspan x="25.115" y="170" class="st13 st15 st16">/name </tspan><tspan x="-13.308" y="185" class="st8 st15 st16">ovaway</tspan><tspan x="25.116" y="185" class="st13 st15 st16">/name </tspan><tspan x="-1.716" y="200" class="st8 st15 st16">press</tspan><tspan x="25.115" y="200" class="st13 st15 st16">/name </tspan><tspan x="-6.552" y="215" class="st8 st15 st16">toggle</tspan><tspan x="25.116" y="215" class="st13 st15 st16">/name</tspan></text>
+			</g>
+			<g>
+				<text transform="matrix(1 0 0 1 9.8431 443.6366)"><tspan x="0" y="0" class="st8 st17 st16">Combine Flags</tspan><tspan x="13.452" y="20" class="st8 st15 st16">acceleration </tspan><tspan x="75.695" y="35" class="st8 st15 st16"> </tspan><tspan x="48.372" y="50" class="st8 st15 st16">delay </tspan><tspan x="32.22" y="65" class="st8 st15 st16">duration </tspan><tspan x="30.42" y="80" class="st8 st15 st16">direction </tspan><tspan x="75.695" y="95" class="st8 st15 st16"> </tspan><tspan x="21.168" y="110" class="st8 st15 st16">movement </tspan><tspan x="75.695" y="125" class="st8 st15 st16"> </tspan><tspan x="34.848" y="140" class="st8 st15 st16">rotation </tspan><tspan x="75.695" y="155" class="st8 st15 st16"> </tspan><tspan x="75.695" y="170" class="st8 st15 st16"> </tspan><tspan x="50.136" y="185" class="st8 st15 st16">scale </tspan><tspan x="9.372" y="200" class="st8 st15 st16">transparency</tspan></text>
+			</g>
+			<g>
+				<text transform="matrix(1 0 0 1 95.5268 443.6366)"><tspan x="0" y="0" class="st8 st15 st16">click/name/%50/90&gt;/4/t20</tspan><tspan x="0" y="20" class="st8 st15 st16">hard  soft  softin  softout </tspan><tspan x="0" y="35" class="st13 st15 st16">soft or hard start &amp; stop </tspan><tspan x="0" y="50" class="st8 st15 st16">d3</tspan><tspan x="12.624" y="50" class="st13 st15 st16"> · 3-second delay </tspan><tspan x="0" y="65" class="st8 st15 st16">3</tspan><tspan x="5.964" y="65" class="st13 st15 st16"> · 3-second duration </tspan><tspan x="0" y="80" class="st8 st15 st16">&lt;</tspan><tspan x="5.964" y="80" class="st13 st15 st16"> · from the changed state </tspan><tspan x="0" y="95" class="st8 st15 st16">&gt;</tspan><tspan x="5.964" y="95" class="st13 st15 st16"> · to the changed state </tspan><tspan x="0" y="110" class="st8 st15 st16">-x20  +x20  -y20  +y20 </tspan><tspan x="0" y="125" class="st13 st15 st16">move 20px </tspan><tspan x="0" y="140" class="st8 st15 st16">&lt;90  90&gt;   o100,0 </tspan><tspan x="0" y="155" class="st13 st15 st16">rotate 90° left or right </tspan><tspan x="0" y="170" class="st13 st15 st16">origin top right corner </tspan><tspan x="0" y="185" class="st8 st15 st16">%50  x%50  y%50 </tspan><tspan x="0" y="200" class="st8 st15 st16">t20</tspan><tspan x="15.983" y="200" class="st13 st15 st16"> · 20% transparency</tspan></text>
+			</g>
+			<g>
+				<rect x="95.527" y="180.86" class="st14" width="142.652" height="228.465"/>
+				<text transform="matrix(1 0 0 1 95.5266 190.8198)"><tspan x="0" y="0" class="st8 st15 st16">delay</tspan><tspan x="27.323" y="0" class="st13 st15 st16">/name/flags</tspan><tspan x="0" y="20" class="st8 st15 st16">event type</tspan><tspan x="52.799" y="20" class="st13 st15 st16">/name/flags</tspan><tspan x="0" y="40" class="st13 st15 st16">trigger becomes </tspan><tspan x="83.677" y="40" class="st8 st15 st16">visible </tspan><tspan x="0" y="55" class="st13 st15 st16">trigger becomes </tspan><tspan x="83.677" y="55" class="st8 st15 st16">visible </tspan><tspan x="0" y="70" class="st13 st15 st16">trigger becomes </tspan><tspan x="83.677" y="70" class="st8 st15 st16">hidden </tspan><tspan x="0" y="85" class="st13 st15 st16">locked to </tspan><tspan x="48.948" y="85" class="st8 st15 st16">page scrolling</tspan><tspan x="0" y="105" class="st8 st15 st16">event type</tspan><tspan x="52.799" y="105" class="st13 st15 st16">/name/flags</tspan><tspan x="0" y="125" class="st13 st15 st16">mouse moves </tspan><tspan x="71.798" y="125" class="st8 st15 st16">away </tspan><tspan x="0" y="140" class="st13 st15 st16">mouse </tspan><tspan x="36.361" y="140" class="st8 st15 st16">releases</tspan><tspan x="77.546" y="140" class="st13 st15 st16"> trigger </tspan><tspan x="0" y="155" class="st13 st15 st16">double: </tspan><tspan x="40.729" y="155" class="st8 st15 st16">press &gt; release </tspan><tspan x="0" y="170" class="st13 st15 st16">mouse moves </tspan><tspan x="71.798" y="170" class="st8 st15 st16">over</tspan><tspan x="94.021" y="170" class="st13 st15 st16"> trigger </tspan><tspan x="0" y="185" class="st13 st15 st16">double: moves </tspan><tspan x="76.165" y="185" class="st8 st15 st16">over &gt; away </tspan><tspan x="0" y="200" class="st13 st15 st16">presses </tspan><tspan x="40.214" y="200" class="st8 st15 st16">down</tspan><tspan x="68.558" y="200" class="st13 st15 st16"> on trigger </tspan><tspan x="0" y="215" class="st13 st15 st16">double: </tspan><tspan x="40.729" y="215" class="st8 st15 st16">click &gt; click </tspan></text>
+			</g>
+		</g>
+	</g>
+	<g id="logos">
+	</g>
+</g>
+<g id="buttons__xBB_">
+	<g id="bottom_stroke">
+	</g>
+	<g id="bottom_fill">
+	</g>
+	<g id="bottom_label">
+	</g>
+	<g id="top_stroke">
+	</g>
+	<g id="top_fill">
+	</g>
+	<g id="top_label">
+	</g>
+</g>
+<g id="mouseover__xBB_">
+	<g id="mouseover_3">
+	</g>
+	<g id="mouseover_2">
+	</g>
+	<g id="mouseover_1">
+	</g>
+	<g id="mouseover_0">
+	</g>
+</g>
+<g id="mousedowns__xBB_">
+	<g id="mousedown_3">
+	</g>
+	<g id="mousedown_2">
+	</g>
+	<g id="mousedown_1">
+	</g>
+	<g id="mousedown_0">
+	</g>
+</g>
+<g id="ai_links__xBB_">
+	<g id="history.back_x28__x29__x3B_">
+		<a xlink:href="javascript:openLink(&apos;vibeBack&apos;);" >
+			<rect x="0" class="st26" width="240" height="671"/>
+		</a>
+	</g>
+	<g id="bottom_bar">
+	</g>
+</g>
+<g id="listener_links__xBB_">
+	<g id="links3">
+	</g>
+	<g id="links2">
+	</g>
+	<g id="links1">
+	</g>
+	<g id="links0">
+	</g>
+</g>
+</svg>

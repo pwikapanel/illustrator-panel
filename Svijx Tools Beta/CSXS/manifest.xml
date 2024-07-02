@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ExtensionManifest ExtensionBundleId="com.svija.SvijaToolsBeta" ExtensionBundleVersion="1.0.5" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <ExtensionList>
+    <Extension Id="com.svija.SvijaToolsBeta.panel" Version="1.0.5" />
+  </ExtensionList>
+
+  <ExecutionEnvironment>
+    <HostList>
+      <Host Name="ILST" Version="17" />
+    </HostList>
+    <LocaleList>
+      <Locale Code="All" />
+    </LocaleList>
+    <RequiredRuntimeList>
+      <RequiredRuntime Name="CSXS" Version="8.0" />
+    </RequiredRuntimeList>
+  </ExecutionEnvironment>
+
+  <DispatchInfoList>
+    <Extension Id="com.svija.SvijaToolsBeta.panel">
+      <DispatchInfo>
+
+        <Resources>
+          <MainPath>./tools.html</MainPath>
+          <CEFCommandLine>
+            <Parameter>--allow-file-access-from-files</Parameter>
+          </CEFCommandLine>
+        </Resources>
+
+        <Lifecycle>
+          <AutoVisible>true</AutoVisible>  
+          <StartOn>  
+            <Event>documentAfterActivate</Event>
+          </StartOn>  
+        </Lifecycle>
+
+        <UI>
+          <Type>Panel</Type>
+          <Menu>Svija Tools 2.0 Beta</Menu>
+            <Geometry>
+              <Size>
+                  <Width>454</Width>
+                  <Height>75</Height>
+              </Size>
+              <MinSize>
+                  <Width>454</Width>
+                  <Height>75</Height>
+              </MinSize>
+              <MaxSize>
+                  <Width>454</Width>
+                  <Height>105</Height>
+              </MaxSize>
+            </Geometry>
+          <Icons />
+        </UI>
+
+      </DispatchInfo>
+    </Extension>
+  </DispatchInfoList>
+
+</ExtensionManifest>
