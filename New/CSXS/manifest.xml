@@ -25,7 +25,7 @@
         <Resources>
 
 
-          <MainPath>./panel/more.html</MainPath>
+          <MainPath>./html/index.html</MainPath>
           <CEFCommandLine>
             <Parameter>--allow-file-access-from-files</Parameter>
           </CEFCommandLine>
@@ -57,8 +57,8 @@
             </MaxSize>
           </Geometry>
           <Icons>
-            <Icon Type="Normal">./panel/svg/panelIcons_light.svg</Icon>
-            <Icon Type="DarkNormal">./panel/svg/panelIcons_dark.svg</Icon>
+            <Icon Type="Normal">./svg/panelIcons_light.svg</Icon>
+            <Icon Type="DarkNormal">./svg/panelIcons_dark.svg</Icon>
           </Icons>
         </UI>
       </DispatchInfo>
