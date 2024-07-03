@@ -18,7 +18,7 @@
 
 var env_beta    = ' Beta'
 var env_version = '1.0.6'
-var env_verLong = '|240702'
+var env_verLong = '·240703'
 
 //———————————————————————————————————————— const & variable 
 

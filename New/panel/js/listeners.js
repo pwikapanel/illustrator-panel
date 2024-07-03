@@ -53,8 +53,6 @@ function resizeFunc(){
 
 function launchScript(buttonCode){
 
-  alert(buttonCode)
-
   mouseEffect('mou', buttonCode) 
 
   let [title, script, param] = actions[buttonCode]
@@ -65,9 +63,18 @@ function launchScript(buttonCode){
   file = env_path + encodeURI(script)
   utilities = env_path + encodeURI('utilities.jsx')
 
+// alert(param+'\n'+isMac+'\n'+myDocs)
+// save
+// true
+// /Users/Main/Documents
+
   csif.evalScript("param = '" + param + "'")
   csif.evalScript("isMac  = '" + isMac  + "'")
   csif.evalScript("myDocs = '" + myDocs + "'")
+
+// alert(utilities+'\n'+file)
+// /Library/Application Support/Adobe/CEP/extensions/New/scripts/utilities.jsx
+// /Library/Application Support/Adobe/CEP/extensions/New/scripts/Save.jsx
 
   csif.evalScript("$.evalFile('" + utilities + "')")
   csif.evalScript("$.evalFile('" + file      + "')")
