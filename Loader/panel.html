@@ -5,12 +5,13 @@
 <script>
 
 var version  = '1.0.6'
-var cep      = new CSInterface();
-var myDocs   = cep.getSystemPath(SystemPath.MY_DOCUMENTS);     // C:Users/andy/Documents
+var server   = 'tools.svija.love'
+var cep      = new CSInterface()
+var myDocs   = cep.getSystemPath(SystemPath.MY_DOCUMENTS)     // C:Users/andy/Documents
 var isMac    = cep.getOSInformation().substring(0,3) == 'Mac'  // false
-var env_path = cep.getSystemPath(SystemPath.EXTENSION) + '/scripts/';
+var env_path = cep.getSystemPath(SystemPath.EXTENSION) + '/scripts/'
 
-cep.setWindowTitle('Loader Tests');
+cep.setWindowTitle('Loader Tests')
 
 </script>
 <style>
@@ -49,7 +50,8 @@ cep.setWindowTitle('Loader Tests');
 </head><body>
 
 <a href="javascript:location.reload()">reload</a> · 
-<a href="javascript:      fetchLink()">fetch</a> · 
+<a href="javascript:fetchServerLink()">server</a> · 
+<a href="javascript: fetchLocalLink()">local</a> · 
 <a href="javascript:       savePage()">save</a>
 
 <script> function savePage(){
@@ -74,7 +76,7 @@ cep.setWindowTitle('Loader Tests');
 
 //:::::::::::::::::::::::::::::::::::::::: JSON handlers
 
-/*———————————————————————————————————————— fetchLink()
+/*———————————————————————————————————————— fetchServer()
 
     https://github.com/Adobe-CEP/Getting-Started-guides/blob/master/Network%20requests%20and%20responses%20with%20Fetch/readme.md
 
@@ -86,68 +88,61 @@ cep.setWindowTitle('Loader Tests');
     more alternatives for making network requests. */
 
 
-function fetchLink(){
-  fetchScript('master.json')
-}
+function fetchServerLink(){ fetchServer('master.json') }
 
-function fetchScript(reqUrl) {
+function fetchServer(src) {
 
-  var server = 'https://tools.svija.love'
-  var path   = server +'/'+ version +'/'+ reqUrl
+  var path = 'https://'+ server +'/'+ version +'/'+ src
 
   fetch(path)
-    .then(function(res) {
-      /* 4) If the response is ok, return the Dark Sky JSON response */
-      if (res.ok) return res.text();
+    .then(function(res){
+      if (res.ok) return res.text()
     })
-    .then(function(text) {
-      if (typeof text == 'undefined')
-        lert('404 Error\n/'+version+'/'+reqUrl)
-      else{
-        lert('Server returned:\n'+text)
-      }
+    .then(function(text){
+      if (typeof text != 'undefined') lert('Server returned:\n'+text)
+      else  lert('404 Error\n/'+version+'/'+src)
     })
-    .catch(function(err) {
-      lert('Server '+server+' not found.')
 
-    });
+  .catch( function(err){ lert('Server '+server+' not found.') } )
 }
 
-/*———————————————————————————————————————— fetch json from local file
+/*———————————————————————————————————————— fetchLocal()
 
     https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri */
 
-function readTextFile(file) {
-  return new Promise(function(resolve, reject) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                resolve(rawFile.responseText);
-            }
-        }
-    }
-    rawFile.onerror = reject;
-    rawFile.send(null);
-  })
+function fetchLocalLink(){ fetchLocal('master.json') }
+
+function fetchLocal(src){
+
+  var path = 'json/' + src
+
+  fetchL(path)
+   .then(function(text) {
+     if (text != '') lert('File contains:\n'+text)
+     else lert('Error, no result')
+   })
+
+  .catch( function(err) { lert('JSON read error\n'+path) } )
 }
 
-var testData   = 'json/master.json';
+/*———————————————————————————————————————— fetchL(file)
 
-readTextFile(testData)
-.then(function(text) {
-  // `text` : `rawFile.responseText`
-  var parsedJSON = JSON.parse(text);
-  lert('File contains:\n'+text)
-})
-// handle error
-.catch(function(err) {
-  lert('JSON read error\n'+testData)
-});
+    replaces "fetch" function for server */
+
+function fetchL(file) {
+  return new Promise(function(resolve, reject) {
+    var rawFile = new XMLHttpRequest()
+    rawFile.open("GET", file, false)
+    rawFile.onreadystatechange = function (){
+      if(rawFile.readyState === 4)
+          if(rawFile.status === 200 || rawFile.status == 0)
+              resolve(rawFile.responseText)
+    }
+
+    rawFile.onerror = reject
+    rawFile.send(null)
+  })
+}
 
 
 //:::::::::::::::::::::::::::::::::::::::: utilities
@@ -157,7 +152,7 @@ readTextFile(testData)
     alerts in ai-land don't exit program space */
 
 function lert(msg){
-  msg = JSON.stringify(String(msg));
+  msg = JSON.stringify(String(msg))
   msg = msg.substr(1, msg.length-2)
 
   cep.evalScript('alert("' + msg + '")')
@@ -170,21 +165,21 @@ function lert(msg){
   returns 0-3, corresponding to the 4 shades
   of interface colors availablein Ai prefs */
 
-var env_interface = getInterfaceCode(); // 0-3 dark to light in AI prefs
+var env_interface = getInterfaceCode() // 0-3 dark to light in AI prefs
 
 function getInterfaceCode() { // did have (event) as arg
-  var hostEnv = window.__adobe_cep__.getHostEnvironment();
-  var skinInfo = JSON.parse(hostEnv).appSkinInfo;
-  var color = skinInfo.panelBackgroundColor.color;
+  var hostEnv = window.__adobe_cep__.getHostEnvironment()
+  var skinInfo = JSON.parse(hostEnv).appSkinInfo
+  var color = skinInfo.panelBackgroundColor.color
 
   switch(color.red) {
-  case  50: code = 0; break;
-  case 184: code = 2; break;
-  case 240: code = 3; break;
-   default: code = 1; break; // case 83
+  case  50: code = 0; break
+  case 184: code = 2; break
+  case 240: code = 3; break
+   default: code = 1; break // case 83
   }
 
-  return code;
+  return code
 }
 
 
