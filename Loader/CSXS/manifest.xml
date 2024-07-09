@@ -25,7 +25,7 @@
         <Resources>
 
 
-          <MainPath>./html/index.html</MainPath>
+          <MainPath>./panel.html</MainPath>
           <CEFCommandLine>
             <Parameter>--allow-file-access-from-files</Parameter>
           </CEFCommandLine>
