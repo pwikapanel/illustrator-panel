@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="love.svija.SvijaToolsTech" ExtensionBundleVersion="1.0.5" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="love.svija.SvijaToolsLoader" ExtensionBundleVersion="1.0.5" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <ExtensionList>
-    <Extension Id="love.svija.SvijaToolsTech.panel" Version="1.0.5" />
-    <Extension Id="love.svija.SvijaLauncherTech.panel" Version="1.0.5" />
+    <Extension Id="love.svija.SvijaToolsLoader.panel" Version="1.0.5" />
+    <Extension Id="love.svija.SvijaLauncherLoader.panel" Version="1.0.5" />
   </ExtensionList>
 
   <ExecutionEnvironment>
@@ -20,7 +20,7 @@
 
   <DispatchInfoList>
     
-    <Extension Id="love.svija.SvijaToolsTech.panel"><!-- ———————————————————— -->
+    <Extension Id="love.svija.SvijaToolsLoader.panel"><!-- ———————————————————— -->
       <DispatchInfo>
         <Resources>
 
@@ -41,7 +41,7 @@
 
         <UI>
           <Type>Panel</Type>
-          <Menu>Svija Tools Tech</Menu>
+          <Menu>Svija Tools Loader</Menu>
           <Geometry>
             <Size>
                 <Width>240</Width>
@@ -57,8 +57,8 @@
             </MaxSize>
           </Geometry>
           <Icons>
-            <Icon Type="Normal">./svg/panelIcons_light.svg</Icon>
-            <Icon Type="DarkNormal">./svg/panelIcons_dark.svg</Icon>
+            <Icon Type="Normal">./CSXS/panelIcons_light.svg</Icon>
+            <Icon Type="DarkNormal">./CSXS/panelIcons_dark.svg</Icon>
           </Icons>
         </UI>
       </DispatchInfo>
