@@ -52,6 +52,8 @@ cep.setWindowTitle('Loader Tests')
 <a href="javascript:location.reload()">reload</a> · 
 <a href="javascript:fetchServerLink()">server</a> · 
 <a href="javascript: fetchLocalLink()">local</a> · 
+<a href="javascript:      showPanel()">panel</a><br>
+
 <a href="javascript:       savePage()">save</a>
 
 <script> function savePage(){
@@ -73,6 +75,16 @@ cep.setWindowTitle('Loader Tests')
 </script>
 
 <script>// fetch JSON from server
+
+//:::::::::::::::::::::::::::::::::::::::: main functions
+
+// doesn't work because it's supposed to be in cep, not html
+
+function showPanel(){
+  var file      = '/Library/Application Support/Adobe/CEP/extensions/Loader/scripts/dialog.jsx'
+  cep.evalScript("$.evalFile('" + file      + "')")
+}
+
 
 //:::::::::::::::::::::::::::::::::::::::: JSON handlers
 
