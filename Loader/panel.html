@@ -1,0 +1,192 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+
+<script> window.addEventListener('error', (event)=>{ alert(event.message) }) </script>
+<script type="text/javascript" src="js/CSInterface.js"></script>
+<script>
+
+var cep      = new CSInterface();
+var myDocs   = cep.getSystemPath(SystemPath.MY_DOCUMENTS);     // C:Users/andy/Documents
+var isMac    = cep.getOSInformation().substring(0,3) == 'Mac'  // false
+var env_path = cep.getSystemPath(SystemPath.EXTENSION) + '/scripts/';
+
+cep.setWindowTitle('Loader Tests');
+
+</script>
+<style>
+
+  html, body{
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    cursor:default;
+  }
+  
+  @font-face { font-family:'SourceSansPro-Regular' ; src:url('./fonts/SourceSansPro-Regular.woff' ) format('woff'); }
+  @font-face { font-family:'SourceSansPro-SemiBold'; src:url('./fonts/SourceSansPro-SemiBold.woff') format('woff'); }
+
+  body{
+    background-color:#535353;
+    color:#bbb;
+    margin:0;
+    padding:20px;
+    font-family:'SourceSansPro-SemiBold';
+  }
+
+  a:link, a:visited{
+   
+    font-family: 'SourceSansPro-Regular';
+    color:#bbb;
+    text-decoration:none;
+  }
+
+  a:hover, a:active{
+    border-bottom: dotted 1px #fff;
+  }
+
+</style>
+
+</head><body>
+
+<a href="javascript:location.reload()">reload</a> · 
+<a href="javascript:      fetchLink()">fetch</a> · 
+<a href="javascript:       savePage()">save</a>
+
+<script> function savePage(){
+
+  var isMac     = 'true'
+  var param     = 'save'
+  var myDocs    = '/Users/Main/Documents'
+  var utilities = '/Library/Application Support/Adobe/CEP/extensions/New/scripts/utilities.jsx'
+  var file      = '/Library/Application Support/Adobe/CEP/extensions/New/scripts/Save.jsx'
+
+  cep.evalScript("param = '" + param + "'")
+  cep.evalScript("isMac  = '" + isMac  + "'")
+  cep.evalScript("myDocs = '" + myDocs + "'")
+
+  cep.evalScript("$.evalFile('" + utilities + "')")
+  cep.evalScript("$.evalFile('" + file      + "')")
+}
+
+</script>
+
+<script>// fetch JSON from server
+/*———————————————————————————————————————— fetchLink()
+
+    https://github.com/Adobe-CEP/Getting-Started-guides/blob/master/Network%20requests%20and%20responses%20with%20Fetch/readme.md
+
+    Note that fetch() is not the only way that CEP gives you to make network requests.
+
+    Since Chromium Embedded Framework is essentially a browser, you can use
+    an XMLHttpRequest (or a client-side library that wraps it, such as jQuery)
+    You can also take advantage of Node.js within CEP, which gives you even
+    more alternatives for making network requests. */
+
+
+function fetchLink(){
+  fetchScript()
+}
+
+function fetchScript() {
+
+  let reqUrl = `https://tools.svija.love`;
+
+  fetch(reqUrl)
+    .then(function(res) {
+      /* 4) If the response is ok, return the Dark Sky JSON response */
+      if (res.ok) return res.text();
+    })
+    .then(function(text) {
+      lert(text)
+    })
+    .catch(function(err) {
+      lert('Error 404')
+
+    });
+}
+
+</script>
+
+<script>
+
+//:::::::::::::::::::::::::::::::::::::::: JSON handlers
+
+/*———————————————————————————————————————— with errors
+
+    https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri */
+
+function readTextFile(file) {
+  return new Promise(function(resolve, reject) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                resolve(rawFile.responseText);
+            }
+        }
+    }
+    rawFile.onerror = reject;
+    rawFile.send(null);
+  })
+}
+
+var testData   = 'json/master.json';
+
+readTextFile(testData)
+.then(function(text) {
+  // `text` : `rawFile.responseText`
+  var parsedJSON = JSON.parse(text);
+  for (var i=0;i<parsedJSON.length;i++) {
+     lert(parsedJSON[i].source);
+  }
+})
+// handle error
+.catch(function(err) {
+  lert('JSON read error\n'+testData)
+});
+
+
+//:::::::::::::::::::::::::::::::::::::::: utilities
+
+/*———————————————————————————————————————— lert(msg)
+
+    alerts in ai-land don't exit program space */
+
+function lert(msg){
+  msg = JSON.stringify(String(msg));
+  msg = msg.substr(1, msg.length-2)
+
+  cep.evalScript('alert("' + msg + '")')
+}
+
+/*———————————————————————————————————————— getInterfaceCode()
+
+  https://fenomas.com/2014/09/cep-5-events-en/
+
+  returns 0-3, corresponding to the 4 shades
+  of interface colors availablein Ai prefs */
+
+var env_interface = getInterfaceCode(); // 0-3 dark to light in AI prefs
+
+function getInterfaceCode() { // did have (event) as arg
+  var hostEnv = window.__adobe_cep__.getHostEnvironment();
+  var skinInfo = JSON.parse(hostEnv).appSkinInfo;
+  var color = skinInfo.panelBackgroundColor.color;
+
+  switch(color.red) {
+  case  50: code = 0; break;
+  case 184: code = 2; break;
+  case 240: code = 3; break;
+   default: code = 1; break; // case 83
+  }
+
+  return code;
+}
+
+
+</script>
+
+</body></html>
