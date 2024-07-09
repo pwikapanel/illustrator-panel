@@ -1,3 +1,211 @@
+// dialog display
+show_dialog: {
+  
+  // Export dialog
+  this.dlg = new Window('dialog', 'Résultats de vérification');
+  
+  var row;
+
+  // ARTBOARD TYPE ROW
+  
+  row = this.dlg.add('group', undefined, '')
+  row.oreintation = 'row';
+  row.alignment = [ScriptUI.Alignment.LEFT, ScriptUI.Alignment.TOP]
+
+  var typeSt = row.add('statictext', undefined, 'Export artboards:'); 
+  typeSt.size = [ 100,20 ];  
+  
+  var artboardNames = [];
+  for(var i=0; i<4; ++i){
+    artboardNames.push(i)
+  }
+  for(var i=0; i<3; i++){
+    artboardNames.push(i+1);
+  }
+
+  this.artboardList = row.add('dropdownlist', undefined, artboardNames);
+  this.artboardList.selection = 3;
+//    
+//    this.exportArtboardsCheckBox = row.add('checkbox', undefined, 'Export Artboard Images');
+//    this.exportArtboardsCheckBox.value = this.whole_artboard_mode;
+//  
+
+  // buttons row
+  row = this.dlg.add('group', undefined, ''); 
+  row.orientation = 'row'
+
+  var cancelBtn = row.add('button', undefined, 'Cancel', {name:'cancel'});
+  cancelBtn.onClick = function() { multi_exporter.dlg.close() };
+
+  var saveBtn = row.add('button', undefined, 'Save and Close', {name:'saveClose'});
+  saveBtn.onClick = function() {
+    multi_exporter.saveOptions();
+    multi_exporter.dlg.close()
+  };
+
+  // OK button
+  var okBtn = row.add('button', undefined, 'Export', {name:'ok'});
+  okBtn.onClick = function() { 
+    
+    alert('saved')
+
+  };
+  
+  this.ignoreCheckBox = row.add('checkbox', undefined, 'Ignore Warnings');
+  this.ignoreCheckBox.value = this.ignoreWarnings;
+  
+//    // LAYER TYPE ROW
+//    
+//    row = this.dlg.add('group', undefined, '')
+//    row.oreintation = 'row';
+//    row.alignment = [ScriptUI.Alignment.LEFT, ScriptUI.Alignment.TOP]
+//  
+//    var typeSt = row.add('statictext', undefined, 'Export layers:'); 
+//    typeSt.size = [ 100,20 ];  
+//    
+//    var layerNames = [];
+//    for(var i=0; i<this.layerSelect.length; ++i){
+//      layerNames.push(this.layerSelect[i].name)
+//    }
+//    for(var i=0; i<docRef.layers.length; i++){
+//      var layer = docRef.layers[i];
+//      layerNames.push((i+1)+": "+layer.name);
+//    }
+//  
+//    this.layerList = row.add('dropdownlist', undefined, layerNames);
+//    this.layerList.selection = this.findDataIndex(this.layers, this.layerSelect);
+//  
+  // PREFIX GRP
+  row = this.dlg.add('group', undefined, '')
+  row.oreintation = 'row';
+  row.alignment = [ScriptUI.Alignment.LEFT, ScriptUI.Alignment.TOP]
+
+  var prefixSt = row.add('statictext', undefined, 'File prefix:'); 
+  prefixSt.size = [100,20]
+
+  this.prefixEt = row.add('edittext', undefined, this.prefix); 
+  this.prefixEt.size = [ 300,20 ];
+
+  // suffix row
+  row = this.dlg.add('group', undefined, '')
+  row.oreintation = 'row';
+  row.alignment = [ScriptUI.Alignment.LEFT, ScriptUI.Alignment.TOP]
+
+  row = this.dlg.add('group', undefined, '')
+  row.oreintation = 'row';
+  row.alignment = [ScriptUI.Alignment.LEFT, ScriptUI.Alignment.TOP]
+
+  var suffixSt = row.add('statictext', undefined, 'File suffix:'); 
+  suffixSt.size = [100,20]
+
+  this.suffixEt = row.add('edittext', undefined, this.suffix); 
+  this.suffixEt.size = [ 300,20 ];
+
+  // scaling row
+  row = this.dlg.add('group', undefined, '')
+  row.oreintation = 'row';
+  row.alignment = [ScriptUI.Alignment.LEFT, ScriptUI.Alignment.TOP]
+
+  var scalingLabel = row.add('statictext', undefined, 'Scaling:'); 
+  scalingLabel.size = [100,20]
+
+  this.scalingInput = row.add('edittext', undefined, this.scaling); 
+  this.scalingInput.size = [ 100,20 ];
+
+  var scalingTip = row.add('statictext', undefined, '(Normally 100%; Use 200% for Retina display exports)'); 
+  scalingTip.size = [300,20]
+
+//    // DIR GROUP
+//    row = this.dlg.add( 'group', undefined, '') 
+//    row.orientation = 'row'
+//    row.alignment = [ScriptUI.Alignment.LEFT, ScriptUI.Alignment.TOP]
+//    
+//    var dirSt = row.add('statictext', undefined, 'Output directory:'); 
+//    dirSt.size = [ 100,20 ];
+//  
+//    this.dirEt = row.add('edittext', undefined, this.base_path); 
+//    this.dirEt.size = [ 300,20 ];
+//  
+//    var chooseBtn = row.add('button', undefined, 'Choose ...' );
+//    chooseBtn.onClick = function() { multi_exporter.dirEt.text = Folder.selectDialog(); }
+//  
+//    // FORMAT ROW
+//    row = this.dlg.add('group', undefined, ''); 
+//    row.orientation = 'row'
+//    row.alignment = [ScriptUI.Alignment.LEFT, ScriptUI.Alignment.TOP]
+//    
+//    var formatSt = row.add('statictext', undefined, 'Export format:'); 
+//    formatSt.size = [ 100,20 ];  
+//    
+//    var formatNames = [];
+//    for(var i=0; i<this.formatInfo.length; ++i){
+//      formatNames.push(this.formatInfo[i].name)
+//    }
+//    this.formatList = row.add('dropdownlist', undefined, formatNames);
+//    
+//    this.formatList.selection = 1;
+//    for ( var i=0; i < this.formatList.items.length; i++ ) {
+//      if ( multi_exporter.format == this.formatList.items[i].text ) {
+//        this.formatList.selection = i;
+//      }
+//    }
+//    
+//    this.embedImageCheckBox = row.add('checkbox', undefined, 'Embed Imagery');
+//    this.embedImageCheckBox.value = this.embedImage;
+//    
+//    this.embedFontCheckBox = row.add('checkbox', undefined, 'Embed Fonts');
+//    this.embedFontCheckBox.value = this.embedFont;
+//  
+//    // TRANSPARENCY AND TRIM ROW
+//    row = this.dlg.add('group', undefined, ''); 
+//    row.orientation = 'row'
+//    row.alignment = [ScriptUI.Alignment.CENTER, ScriptUI.Alignment.TOP]
+//    
+//    this.transCheckBox = row.add('checkbox', undefined, 'Transparency');
+//    this.transCheckBox.value = this.transparency;
+//    
+//    this.trimEdgesCheckBox = row.add('checkbox', undefined, 'Trim Edges');
+//    this.trimEdgesCheckBox.value = this.trimEdges;
+//    
+//    this.innerPaddingCheckBox = row.add('checkbox', undefined, 'Inner Padding (to prevent curved edge clipping)');
+//    this.innerPaddingCheckBox.value = this.innerPadding;
+//  
+  // progress bar
+  var progBar = this.dlg.add( 'progressbar', undefined, 30, 100 );
+  progBar.size = [400,10]
+
+  this.progLabel = this.dlg.add('statictext', undefined, '...' ); 
+  this.progLabel.size = [ 400,20 ];
+
+//    // Export type handler
+//    this.artboardList.onChange = function() {
+//      multi_exporter.artboards  = multi_exporter.getListData(multi_exporter.artboardList.selection.index, multi_exporter.artboardSelect);
+//      multi_exporter.update_export_desc(  );
+//    };
+//    this.layerList.onChange = function() {
+//      multi_exporter.layers  = multi_exporter.getListData(multi_exporter.layerList.selection.index, multi_exporter.layerSelect);
+//      multi_exporter.update_export_desc( );
+//    };
+//    this.exportArtboardsCheckBox.onClick = function() {
+//      multi_exporter.whole_artboard_mode  = multi_exporter.exportArtboardsCheckBox.value;
+//      multi_exporter.update_export_desc( );
+//    };
+//  
+//    // Format change handler
+//    this.formatList.onChange = function() {
+//      multi_exporter.checkFormat();
+//    };
+//  
+//    multi_exporter.update_export_desc( );
+  
+  this.dlg.progBar = progBar;
+  
+//    this.checkFormat();
+  this.dlg.show();
+}
+
+//:::::::::::::::::::::::::::::::::::::::: WHOLE ORIGINAL FILE
+
 // MultiExporter.jsx
 // Version 0.1
 // Version 0.2 Adds PNG and EPS exports
@@ -14,11 +222,6 @@
 
 var docRef = app.activeDocument;	
 
-
-
-
-
-	
 // Format specific functionality
 getPng8Options = function ( transparency, scaling, embedImage, embedFont, trimEdges ) {
 	var options = new ExportOptionsPNG8();
@@ -111,7 +314,7 @@ saveFxg = function ( doc, filePath, options, artboardIndex, artboardName ) {
 }
 
 
-
+//:::::::::::::::::::::::::::::::::::::::: main program
 
 var multi_exporter = {
 
@@ -184,9 +387,9 @@ var multi_exporter = {
 		
 		var parse_success = this.load_prefs();	
 		
-		if (parse_success) {
-			this.show_dialog();
-		}
+//		if (parse_success) {
+//			this.show_dialog();
+//		}
 	},
 
 	findExportTypeByCode: function(code){
@@ -287,7 +490,7 @@ var multi_exporter = {
 	show_dialog: function() {
 		
 		// Export dialog
-		this.dlg = new Window('dialog', 'Multi Exporter');
+		this.dlg = new Window('dialog', 'Résultats de vérification');
 		
 		var row;
 
@@ -636,7 +839,6 @@ var multi_exporter = {
 		this.multiExporterPrefs.textFrames[0].contents = this.prefs_xml.toXMLString();
 	},
 
-	
 	// run_export function. does the dirty work
 	run_export: function() {
 		this.failed_artboards = [];
@@ -1148,11 +1350,8 @@ var multi_exporter = {
 			layer.visible = true;
 		}
 	}
+
 };
 
-
-
 multi_exporter.init();
-
-
 
