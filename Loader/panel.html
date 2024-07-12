@@ -14,6 +14,7 @@ var env_path = cep.getSystemPath(SystemPath.EXTENSION) + '/scripts/'
 cep.setWindowTitle('Loader Tests')
 
 var LOCAL    = true
+var SERVER   = 'https://tools.svija.love/1.0.6/'
 
 //jsonInitial = [ {"build":0, "source":"master.json","type":"json"} ]
 
@@ -66,8 +67,11 @@ function showPanel(){
     */
 
 function fetchLink(){
-  if (LOCAL == true) fetchLocal ('json/master.json', parseScriptList)
-                else fetchServer('https://tools.svija.love/1.0.6/master.json', parseScriptList)
+
+  var scrp   = 'json/master.json'                                              
+
+  if (LOCAL == true) fetchLocal (scrp, parseScriptList)
+                else fetchRemote(scrp, parseScriptList)
 }
 
 /*———————————————————————————————————————— localRemote()
@@ -88,7 +92,7 @@ function localRemote(){
 
 //:::::::::::::::::::::::::::::::::::::::: JSON handlers
 
-/*———————————————————————————————————————— fetchServer(path, callback)
+/*———————————————————————————————————————— fetchRemote(path, callback)
 
     https://github.com/Adobe-CEP/Getting-Started-guides/blob/master/Network%20requests%20and%20responses%20with%20Fetch/readme.md
 
@@ -100,8 +104,9 @@ function localRemote(){
     more alternatives for making network requests. */
 
 
-function fetchServer(path, callback) {
+function fetchRemote(path, callback) {
 
+  path = SERVER + path
   var pathRand = path + '?' + Math.random()
 
   fetch(pathRand)
@@ -178,7 +183,31 @@ function parseScriptList(str, path){
     */
 
 function loadJson(bld, src){
-  alcrt('worked: '+bld+', '+src)
+//alcrt('worked: '+bld+', '+src)
+}
+
+/*———————————————————————————————————————— loadJs(bld, src)
+
+    */
+
+function loadJs(bld, src){
+  alcrt(bld + ':' + src)
+  return true
+
+  // if it's the first time, localStorage is not set
+  
+  var ID = stripExtension(src)
+  var lsRef   = 'css' + ID
+  var lsBuild = 'css' + ID + 'build'
+
+  // if it's already up to date
+  if (typeof(localStorage[lsBuild]) != 'undefined')
+    if (bld <= localStorage[lsBuild])
+      return true
+
+  src = 'css/' + src
+//alcrt('Loading '+src)
+  fetchLocal(src, installJs)
 }
 
 /*———————————————————————————————————————— loadCss(bld, src)
@@ -200,7 +229,9 @@ function loadCss(bld, src){
 
   src = 'css/' + src
 //alcrt('Loading '+src)
-  fetchLocal(src, installCss)
+
+  if(LOCAL) fetchLocal(src, installCss)
+       else fetchRemote(src, installCss)
 }
 
 /*———————————————————————————————————————— installCss(scr)
@@ -302,6 +333,8 @@ function getInterfaceCode() { // did have (event) as arg
 
 
 </script>
+
+<script></script>
 
 </body></html><!--
 
