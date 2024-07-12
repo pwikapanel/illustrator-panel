@@ -326,30 +326,6 @@ function relockHierarchy(arr){
   }
 }
 
-/*———————————————————————————————————————— svgOptions(includeCanvas)
-
-  sets options for SVG file */
-
-function svgOptions(artboards){
-
-  var multipleArtboards = (artboards > 1)
-  var options= new ExportOptionsWebOptimizedSVG()
-
-  options.artboardRange         = '' // or '1-3'
-  options.coordinatePrecision   = 3
-  options.cssProperties         = SVGCSSPropertyLocation.STYLEELEMENTS
-  options.fontSubsetting        = SVGFontSubsetting.None                         ///////////////////// probably not supported
-  options.fontType              = SVGFontType.SVGFONT
-//options.fontType              = SVGFontType.OUTLINEFONT
-  options.rasterImageLocation   = RasterImageLocation.PRESERVE
-  options.saveMultipleArtboards = multipleArtboards
-  options.svgId                 = SVGIdType.SVGIDREGULAR
-  options.svgMinify             = false // should use in future
-  options.svgResponsive         = true
-
-  return options;
-}
-
 /*———————————————————————————————————————— unlockHierarchy(obj)
 
     unlocks the hierarchy above an element and returns an array

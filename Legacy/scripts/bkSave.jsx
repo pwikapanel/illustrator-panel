@@ -145,9 +145,7 @@ finalFeedback(fileSizes);
 //:::::::::::::::::::::::::::::::::::::::: main functions
 
 /*———————————————————————————————————————— saveSvg(doc)
-
   saves file as SVG:
-
   - saves in SYNC/Svija/SVG Files
   - removes any existing files that would provoke a confirmation dialog
   - deletes non-printing layers
@@ -186,29 +184,7 @@ function saveSvg(doc){
   //———————————————————————————————— save svg files */
 
   var svgOpts = svgOptions(doc.artboards.length)
-//var svgOpts = svgOptionsOld(doc.artboards.length)
   doc.exportFile(diskObject, ExportType.WOSVG, svgOpts) 
-//doc.exportFile(diskObject, ExportType.SVG, svgOpts) 
-
-  //———————————————————————————————— correct size of single-artboard SVG */
-
-  if (doc.artboards.length == 1){
-
-    if (diskObject.open("r")){
-      var svgStr = diskObject.read();
-      var parts = svgStr.split('viewBox="', 2)
-      var pieces = parts[1].split('"', 2)
-
-      svgStr = parts[0] + 'viewBox="0 0 1200 3000"' + pieces[1] + '"' + pieces[2]
-      diskObject.close();
-
-      diskObject.open("w");
-      diskObject.write(svgStr);
-      diskObject.close();
-    }
-
-  }
-
 
   //———————————————————————————————— restore to original state
 
@@ -240,73 +216,6 @@ function saveSvg(doc){
 
   return sizes
 }
-
-/*———————————————————————————————————————— svgOptions(includeCanvas)
-
-  sets options for SVG file */
-
-function svgOptions(artboards){
-
-  var options= new ExportOptionsWebOptimizedSVG()
-
-  if (artboards == 1)
-    options.saveMultipleArtboards = false;                       // Preserves all artwork outside active artboard
-  else
-    options.saveMultipleArtboards = true;                        // Deletes all artwork outside active artboard
-
-  options.artboardRange         = '' // or '1-3'
-  options.coordinatePrecision   = 3
-  options.cssProperties         = SVGCSSPropertyLocation.STYLEELEMENTS
-  options.fontSubsetting        = SVGFontSubsetting.None                         ///////////////////// probably not supported
-  options.fontType              = SVGFontType.SVGFONT
-//options.fontType              = SVGFontType.OUTLINEFONT
-  options.rasterImageLocation   = RasterImageLocation.PRESERVE
-  options.svgId                 = SVGIdType.SVGIDREGULAR
-  options.svgMinify             = false // should use in future
-  options.svgResponsive         = true
-
-  return options;
-}
-
-/*———————————————————————————————————————— svgOptionsOld(includeCanvas)
-
-  sets options for SVG file */
-
-function svgOptionsOld(includeCanvas){
-
-  var options = new ExportOptionsSVG();
-
-  if (includeCanvas == 1)
-    options.saveMultipleArtboards = false;                       // Preserves all artwork outside active artboard
-  else
-    options.saveMultipleArtboards = true;                        // Deletes all artwork outside active artboard
-
-  // options.artboardRange
-  // options.compressed
-  options.coordinatePrecision = 3;                               // Decimal Places
-  options.cssProperties = SVGCSSPropertyLocation.STYLEELEMENTS;  // CSS Properties: Style Elements
-  options.documentEncoding = SVGDocumentEncoding.UTF8            // Encoding:
-  // options.DTD = SVGDTDVersion.SVGTINY1_1;
-  options.DTD = SVGDTDVersion.SVG1_1;                            // SVG Profiles
-  options.embedRasterImages = false;                             // Image Location Link
-  options.fontSubsetting = SVGFontSubsetting.None;               // Fonts Subsetting
-  options.fontType = SVGFontType.SVGFONT;                        // Fonts Type
-  options.includeFileInfo = false;                               // Include XMP
-  options.includeUnusedStyles = false;                           // Include Unused Graphic Styles
-  // options.includeVariablesAndDatasets
-  // options.optimizeForSVGViewer
-  options.preserveEditability = false;                           // Preserve Illustrator Editing Capabilities
-  options.slices = false;                                        // Include Slicing Data
-  // options.sVGAutoKerning = true/false;
-  options.sVGTextOnPath = false;                                 // Use <textpath> for Text on Path
-  // options.typename
-
-  // not available                                               // Output fewer <tspan> elements
-  // not available                                               // Responsive
-
-  return options;
-}
-
 
 /*———————————————————————————————————————— finalFeedback(fileSizes)
 

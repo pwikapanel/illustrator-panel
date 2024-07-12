@@ -3,6 +3,7 @@
 var imgObj = document.getElementsByTagName('image')[0]
 
 var imgAddr = "http://msg.svija.love/tools/" + env_version + "/logo" + env_interface + ".png"
+    imgAddr = imgAddr + '?' + Math.random()
 
 // https://www.tutorialspoint.com/how-to-check-mentioned-file-exists-or-not-using-javascript-jquery
 
