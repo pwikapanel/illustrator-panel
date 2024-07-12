@@ -18,38 +18,8 @@ var LOCAL    = true
 //jsonInitial = [ {"build":0, "source":"master.json","type":"json"} ]
 
 </script>
-<style>
 
-  html, body{
-    margin: 0;
-    height: 100%;
-    overflow: hidden;
-    cursor:default;
-  }
-  
-  @font-face { font-family:'SourceSansPro-Regular' ; src:url('./fonts/SourceSansPro-Regular.woff' ) format('woff'); }
-  @font-face { font-family:'SourceSansPro-SemiBold'; src:url('./fonts/SourceSansPro-SemiBold.woff') format('woff'); }
-
-  body{
-    background-color:#535353;
-    color:#bbb;
-    margin:0;
-    padding:20px;
-    font-family:'SourceSansPro-SemiBold';
-  }
-
-  a:link, a:visited{
-   
-    font-family: 'SourceSansPro-Regular';
-    color:#bbb;
-    text-decoration:none;
-  }
-
-  a:hover, a:active{
-    border-bottom: dotted 1px #fff;
-  }
-
-</style>
+<style id="headStyles"></style>
 
 </head><body>
 
@@ -229,7 +199,16 @@ function loadCss(bld, src){
       return true
 
   src = 'css/' + src
-  alcrt('Loading '+src)
+//alcrt('Loading '+src)
+  fetchLocal(src, installCss)
+}
+
+/*———————————————————————————————————————— installCss(scr)
+
+    installs a CSS sheet */
+
+function installCss(sheet){
+  document.getElementsByTagName('style')[0].innerHTML = sheet
 }
 
 
@@ -238,6 +217,16 @@ function loadCss(bld, src){
 // install single script
 
 //:::::::::::::::::::::::::::::::::::::::: utilities
+
+/*———————————————————————————————————————— removeStyles()
+
+    removes all declared CSS styles
+    used when loading a new stylesheet */
+
+function removeStyles() {
+  document.querySelectorAll('link[rel="stylesheet"], style')
+    .forEach(elem => elem.parentNode.removeChild(elem));
+}
 
 /*———————————————————————————————————————— stripExtension(str)
 
