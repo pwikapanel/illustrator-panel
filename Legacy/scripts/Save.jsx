@@ -183,32 +183,71 @@ function saveSvg(doc){
     diskObject = new File(path)
   }
 
-  //———————————————————————————————— save svg files */
+  /*———————————————————————————————— add marker rectangle to find artboard */
+
+  if (doc.artboards.length == 1){
+    app.activeDocument.rulerOrigin = [0,doc.height]
+    var rectName = rectAt00()
+  }
+
+  /*———————————————————————————————— save svg files */
 
   var svgOpts = svgOptions(doc.artboards.length)
 //var svgOpts = svgOptionsOld(doc.artboards.length)
   doc.exportFile(diskObject, ExportType.WOSVG, svgOpts) 
 //doc.exportFile(diskObject, ExportType.SVG, svgOpts) 
 
-  //———————————————————————————————— correct size of single-artboard SVG */
+  /*———————————————————————————————— get viewBox size */
 
   if (doc.artboards.length == 1){
+    var abBounds = doc.artboards[0].artboardRect  // left, top, right, bottom
 
-    if (diskObject.open("r")){
-      var svgStr = diskObject.read();
-      var parts = svgStr.split('viewBox="', 2)
-      var pieces = parts[1].split('"', 2)
-
-      svgStr = parts[0] + 'viewBox="0 0 1200 3000"' + pieces[1] + '"' + pieces[2]
-      diskObject.close();
-
-      diskObject.open("w");
-      diskObject.write(svgStr);
-      diskObject.close();
-    }
-
+    var w = abBounds[2] - abBounds [0] // right - left
+    var l = abBounds[1] - abBounds [3] // bottom - top
+    var viewBox =  w + ' ' + l
   }
 
+  /*———————————————————————————————— get SVG contents */
+
+  if (doc.artboards.length == 1){
+    if (diskObject.open("r")){
+      var svgStr = diskObject.read()
+      diskObject.close()
+    }
+    else{
+      alert('Disk Access Error\n222: Could not open ' + path + ' for reading.')
+      svgStr = ''
+    }
+  }
+
+  /*———————————————————————————————— get viewPort correction
+
+  <rect id="COORDS00" class="cls-1" x="63" y="50.431" width="100" height="100"/> */
+
+  if (doc.artboards.length == 1){
+    var parts = svgStr.split(rectName)
+    var pieces = parts[1].split('x="')
+    var bits   = pieces[1].split('"')
+    var x = bits[0]
+    var y = bits[2]
+    viewBox = 'viewBox="' + x + ' ' + y + ' ' + viewBox
+  }
+
+  /*———————————————————————————————— correct size of single-artboard SVG */
+
+  if (doc.artboards.length == 1){
+    var parts = svgStr.split('viewBox="')
+    var dims  = parts[1].split('"', 1)[0]
+
+    parts[1]  = parts[1].substr(dims.length, parts[1].length-1)
+    svgStr    = parts[0] + viewBox + parts[1]
+
+//svgStr = debug
+
+    diskObject.open("w")
+    diskObject.write(svgStr)
+    diskObject.close()
+  }
 
   //———————————————————————————————— restore to original state
 
@@ -267,46 +306,6 @@ function svgOptions(artboards){
 
   return options;
 }
-
-/*———————————————————————————————————————— svgOptionsOld(includeCanvas)
-
-  sets options for SVG file */
-
-function svgOptionsOld(includeCanvas){
-
-  var options = new ExportOptionsSVG();
-
-  if (includeCanvas == 1)
-    options.saveMultipleArtboards = false;                       // Preserves all artwork outside active artboard
-  else
-    options.saveMultipleArtboards = true;                        // Deletes all artwork outside active artboard
-
-  // options.artboardRange
-  // options.compressed
-  options.coordinatePrecision = 3;                               // Decimal Places
-  options.cssProperties = SVGCSSPropertyLocation.STYLEELEMENTS;  // CSS Properties: Style Elements
-  options.documentEncoding = SVGDocumentEncoding.UTF8            // Encoding:
-  // options.DTD = SVGDTDVersion.SVGTINY1_1;
-  options.DTD = SVGDTDVersion.SVG1_1;                            // SVG Profiles
-  options.embedRasterImages = false;                             // Image Location Link
-  options.fontSubsetting = SVGFontSubsetting.None;               // Fonts Subsetting
-  options.fontType = SVGFontType.SVGFONT;                        // Fonts Type
-  options.includeFileInfo = false;                               // Include XMP
-  options.includeUnusedStyles = false;                           // Include Unused Graphic Styles
-  // options.includeVariablesAndDatasets
-  // options.optimizeForSVGViewer
-  options.preserveEditability = false;                           // Preserve Illustrator Editing Capabilities
-  options.slices = false;                                        // Include Slicing Data
-  // options.sVGAutoKerning = true/false;
-  options.sVGTextOnPath = false;                                 // Use <textpath> for Text on Path
-  // options.typename
-
-  // not available                                               // Output fewer <tspan> elements
-  // not available                                               // Responsive
-
-  return options;
-}
-
 
 /*———————————————————————————————————————— finalFeedback(fileSizes)
 
@@ -512,6 +511,34 @@ function hasPlaced(doc){
 
 
 //:::::::::::::::::::::::::::::::::::::::: other functions
+
+/*———————————————————————————————————————— rectAt00(obj)
+
+    create rectangle at 0,0 coords to be able to
+    reset the artboard */ 
+
+function rectAt00(){
+  var alertColor = new RGBColor()
+  alertColor.red = 192; alertColor.green = 255; alertColor.blue = 0
+  
+  var rLeft   = 0
+  var rNegTop = 0
+  var rWidth  = 100
+  var rHeight = 100
+
+  // unlock activeLayer
+
+  // isg81 -top, left, width, height
+  var rec = app.activeDocument.pathItems.rectangle( rNegTop, rLeft, rWidth, rHeight )
+
+  rec.filled = true
+  rec.stroked = false
+  rec.fillColor = alertColor
+  rec.opacity = 50
+  rec.name = 'COORDS00'
+  return rec.name
+
+}
 
 /*———————————————————————————————————————— deleteNonPrintingLayers(src)
 
