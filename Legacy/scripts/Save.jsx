@@ -144,6 +144,8 @@ finalFeedback(fileSizes);
 
 //:::::::::::::::::::::::::::::::::::::::: main functions
 
+// NEED TO UNLOCK CURRENT LAYER
+
 /*———————————————————————————————————————— saveSvg(doc)
 
   saves file as SVG:
@@ -185,38 +187,44 @@ function saveSvg(doc){
 
   /*———————————————————————————————— add marker rectangle to find artboard */
 
+
+  var markerAdded = false
+
   if (doc.artboards.length == 1){
     app.activeDocument.rulerOrigin = [0,doc.height]
-    var rectName = rectAt00()
+    var rectDict = rectAt00()
+//  alert(rectDict.locked+':'+rectDict.visible+':'rectDict.name)
+    var markerAdded = true
   }
 
   /*———————————————————————————————— save svg files */
 
   var svgOpts = svgOptions(doc.artboards.length)
-//var svgOpts = svgOptionsOld(doc.artboards.length)
   doc.exportFile(diskObject, ExportType.WOSVG, svgOpts) 
-//doc.exportFile(diskObject, ExportType.SVG, svgOpts) 
 
   /*———————————————————————————————— get viewBox size */
 
   if (doc.artboards.length == 1){
-    var abBounds = doc.artboards[0].artboardRect  // left, top, right, bottom
+    var ab = doc.artboards[0].artboardRect  // left, top, right, bottom
 
-    var w = abBounds[2] - abBounds [0] // right - left
-    var l = abBounds[1] - abBounds [3] // bottom - top
+    var w = ab[2] - ab [0] // right - left
+    var l = ab[1] - ab [3] // top - bottom
+
     var viewBox =  w + ' ' + l
   }
 
-  /*———————————————————————————————— get SVG contents */
+  /*———————————————————————————————— get SVG contents
+
+  we will need to update the viewBox coordinates after saving */
 
   if (doc.artboards.length == 1){
     if (diskObject.open("r")){
-      var svgStr = diskObject.read()
+      var svgSource = diskObject.read()
       diskObject.close()
     }
     else{
       alert('Disk Access Error\n222: Could not open ' + path + ' for reading.')
-      svgStr = ''
+      svgSource = ''
     }
   }
 
@@ -224,38 +232,37 @@ function saveSvg(doc){
 
   <rect id="COORDS00" class="cls-1" x="63" y="50.431" width="100" height="100"/> */
 
-  if (doc.artboards.length == 1){
-    var parts = svgStr.split(rectName)
+  if (doc.artboards.length == 1 && svgSource != ''){
+    var parts = svgSource.split('COORDS00')
     var pieces = parts[1].split('x="')
     var bits   = pieces[1].split('"')
     var x = bits[0]
     var y = bits[2]
     viewBox = 'viewBox="' + x + ' ' + y + ' ' + viewBox
+alert(246)
   }
 
-  /*———————————————————————————————— correct size of single-artboard SVG */
+  /*———————————————————————————————— replace viewBox in SVG source */
 
-  if (doc.artboards.length == 1){
-    var parts = svgStr.split('viewBox="')
+  if (doc.artboards.length == 1 && svgSource != ''){
+    var parts = svgSource.split('viewBox="')
     var dims  = parts[1].split('"', 1)[0]
 
     parts[1]  = parts[1].substr(dims.length, parts[1].length-1)
-    svgStr    = parts[0] + viewBox + parts[1]
-
-//svgStr = debug
+    svgSource = parts[0] + viewBox + parts[1]
 
     diskObject.open("w")
-    diskObject.write(svgStr)
+    diskObject.write(svgSource)
     diskObject.close()
   }
 
-  //———————————————————————————————— restore to original state
+  //———————————————————————————————— remove coords box
 
-  // restore layers
-  while (doc.layers.length<layerInfo.length)
+  if (markerAdded)
     app.undo()
 
-  // restore layer states
+  //————————————————————————————————  restore non-printing layer states
+
   for (var r=0; r<layerInfo.length; r++){
     if (layerInfo[r] == 1 || layerInfo[r] == 3){doc.layers[r].locked  = true }
     if (layerInfo[r] == 2 || layerInfo[r] == 3){doc.layers[r].visible = false}
@@ -512,12 +519,17 @@ function hasPlaced(doc){
 
 //:::::::::::::::::::::::::::::::::::::::: other functions
 
+//  rec.opacity = 100 returns name not dict
+
 /*———————————————————————————————————————— rectAt00(obj)
 
     create rectangle at 0,0 coords to be able to
     reset the artboard */ 
 
+
+
 function rectAt00(){
+  var recName = 'COORDS00'
   var alertColor = new RGBColor()
   alertColor.red = 192; alertColor.green = 255; alertColor.blue = 0
   
@@ -528,16 +540,20 @@ function rectAt00(){
 
   // unlock activeLayer
 
+  var lock = app.activeDocument.activeLayer.locked
+  var vis  = app.activeDocument.activeLayer.visible
+
   // isg81 -top, left, width, height
   var rec = app.activeDocument.pathItems.rectangle( rNegTop, rLeft, rWidth, rHeight )
 
   rec.filled = true
   rec.stroked = false
   rec.fillColor = alertColor
-  rec.opacity = 50
-  rec.name = 'COORDS00'
+  rec.opacity = 100
+  rec.name = recName
+  
+//var returnDict = {'locked':lock, 'visible':vis, 'name':recName}
   return rec.name
-
 }
 
 /*———————————————————————————————————————— deleteNonPrintingLayers(src)
