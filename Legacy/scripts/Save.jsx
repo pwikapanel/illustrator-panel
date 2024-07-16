@@ -144,8 +144,6 @@ finalFeedback(fileSizes);
 
 //:::::::::::::::::::::::::::::::::::::::: main functions
 
-// NEED TO UNLOCK CURRENT LAYER
-
 /*———————————————————————————————————————— saveSvg(doc)
 
   saves file as SVG:
@@ -169,7 +167,7 @@ function saveSvg(doc){
   var svgFilesPath = getSvgFilesPath(doc) // string
   var diskObject = Folder(svgFilesPath)
 
-  //———————————————————————————————— avoid overwrite confirmations MOVE TO FUNCTION
+  //———————————————————————————————— avoid overwrite confirmations
 
   for (x=0; x<doc.artboards.length; x++){
     var path = concatenatePath(svgFilesPath, makeSvgName(doc, x))
@@ -192,14 +190,14 @@ function saveSvg(doc){
 
   if (doc.artboards.length == 1){
     app.activeDocument.rulerOrigin = [0,doc.height]
+    doc.layers.add()
     var rectDict = rectAt00()
-//  alert(rectDict.locked+':'+rectDict.visible+':'rectDict.name)
     var markerAdded = true
   }
 
-  /*———————————————————————————————— save svg files */
+  /*———————————————————————————————— export SVG files */
 
-  var svgOpts = svgOptions(doc.artboards.length)
+  var svgOpts = svgOptions(doc)
   doc.exportFile(diskObject, ExportType.WOSVG, svgOpts) 
 
   /*———————————————————————————————— get viewBox size */
@@ -291,11 +289,11 @@ alert(246)
 
   sets options for SVG file */
 
-function svgOptions(artboards){
+function svgOptions(doc){
 
   var options= new ExportOptionsWebOptimizedSVG()
 
-  if (artboards == 1)
+  if (doc.artboards.length == 1)
     options.saveMultipleArtboards = false;                       // Preserves all artwork outside active artboard
   else
     options.saveMultipleArtboards = true;                        // Deletes all artwork outside active artboard
@@ -549,7 +547,7 @@ function rectAt00(){
   rec.filled = true
   rec.stroked = false
   rec.fillColor = alertColor
-  rec.opacity = 100
+  rec.opacity = 0
   rec.name = recName
   
 //var returnDict = {'locked':lock, 'visible':vis, 'name':recName}

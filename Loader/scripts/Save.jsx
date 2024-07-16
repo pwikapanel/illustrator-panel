@@ -95,23 +95,23 @@ var single = param == 'all'    ? false : true // save only frontmost doc?
 
 /*———————————————————————————————————————— "for" loop through documents */
 
-// var extraLayer = false;
+// var extraLayer = false
 
 for (var index=0; index<docsOpen; index++){
 
-  app.activeDocument = appDocs[index];
+  app.activeDocument = appDocs[index]
 
-  var doc            = app.activeDocument;
+  var doc            = app.activeDocument
 
   if (isValid(doc)){
 
-    var activeBoard    = doc.artboards.getActiveArtboardIndex();
+    var activeBoard    = doc.artboards.getActiveArtboardIndex()
     var originalPath   = getDocPath(doc)
 
     var theseFileSizes = saveSvg(doc) ///////////////  MAIN SAVE AS SVG FUNCTION  \\\\\\\\\\\\\\\
   
-    var aiFile = new File(originalPath);
-    doc.saveAs(aiFile, aiOpts);
+    var aiFile = new File(originalPath)
+    doc.saveAs(aiFile, aiOpts)
 
     //————————————————————————————————————————
 
@@ -121,11 +121,9 @@ for (var index=0; index<docsOpen; index++){
 
     //————————————————————————————————————————
 
-    doc.artboards.setActiveArtboardIndex(activeBoard);
+    doc.artboards.setActiveArtboardIndex(activeBoard)
 
   }
-
-  if (single) break;
 }
 
 /*———————————————————————————————————————— restore frontmost doc and alert user */
@@ -165,7 +163,7 @@ function saveSvg(doc){
   var svgFilesPath = getSvgFilesPath(doc) // string
   var diskObject = Folder(svgFilesPath)
 
-  //———————————————————————————————— avoid overwrite confirmations MOVE TO FUNCTION
+  //———————————————————————————————— avoid overwrite confirmations
 
   for (x=0; x<doc.artboards.length; x++){
     var path = concatenatePath(svgFilesPath, makeSvgName(doc, x))
@@ -174,7 +172,7 @@ function saveSvg(doc){
     }
   }
 
-  //———————————————————————————————— create different obj if single artboard
+  //———————————————————————————————— single artboard needs file not folder
 
   if (doc.artboards.length == 1){
     var path = concatenatePath(svgFilesPath, svgNameSingleArtboard(doc))
