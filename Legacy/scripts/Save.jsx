@@ -271,6 +271,11 @@ function saveSvg(doc){
 
   if (markerAdded) app.undo()
 
+  //———————————————————————————————— restore to original state
+  
+  while (doc.layers.length<layerInfo.length)
+    app.undo()
+
   //———————————————————————————————— restore non-printing layer states
 
   for (var r=0; r<layerInfo.length; r++){
