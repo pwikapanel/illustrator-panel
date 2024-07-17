@@ -28,10 +28,10 @@
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
-    
+ 
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
-    
+
     The software is provided "as is", without warranty of any kind, express or
     implied, including but not limited to the warranties of merchantability,
     fitness for a particular purpose and noninfringement. In no event shall the
@@ -186,14 +186,11 @@ function saveSvg(doc){
 
   /*———————————————————————————————— add marker rectangle to find artboard */
 
-
-  var markerAdded = false
-
   if (doc.artboards.length == 1){
     app.activeDocument.rulerOrigin = [0,doc.height]
     doc.layers.add()
     var rectDict = rectAt00()
-    var markerAdded = true
+    var replaceVB = true
   }
 
   /*———————————————————————————————— export SVG files */
@@ -203,8 +200,7 @@ function saveSvg(doc){
 
   /*———————————————————————————————— is single artboard: get viewBox size */
 
-  if (doc.artboards.length == 1){
-    replaceVB = true
+  if (replaceVB){
     var ab = doc.artboards[0].artboardRect  // left, top, right, bottom
 
     var w = ab[2] - ab [0] // right - left
@@ -217,9 +213,9 @@ function saveSvg(doc){
 
   we will need to update the viewBox coordinates after saving */
 
-  var tries = 500
-
   if (replaceVB){
+    var tries = 500
+
     while (tries > 0 && !diskObject.open("r"))
       tries -= 1
 
@@ -230,32 +226,40 @@ function saveSvg(doc){
     else{
       alert('Temporary Error\nPlease add a second artboard and re-save.')
       svgSource = ''
+      replaceVB = false
     }
   }
 
-  /*———————————————————————————————— get viewPort correction
+  /*———————————————————————————————— get correct viewBox
 
   <rect id="COORDS00" class="cls-1" x="63" y="50.431" width="100" height="100"/>
 
   if there is nothing above or to the left, there will be no x or y coords */
 
-  if (replaceVB && svgSource != ''){
-    var parts = svgSource.split('COORDS00')
+  if (replaceVB){
 
-    var pieces = parts[1].split('x="')
+    var parts = svgSource.split('COORDS00" ')
+    var piece = parts[1].split(' width=', 1)[0]
 
-    if (pieces.length > 1){ // else no need to modify viewBox
-      var bits   = pieces[1].split('"')
-      var x = bits[0]
-      var y = bits[2]
-      viewBox = 'viewBox="' + x + ' ' + y + ' ' + viewBox
-    }
-    else replaceVB = false
+    var x = 0
+    var y = 0
+
+    var regx = /x="([0-9\.]*)"/g
+    var regy = /y="([0-9\.]*)"/g
+
+    var resx = regx.exec(piece)
+    var resy = regy.exec(piece)
+
+    if (resx != null) x = resx[1]
+    if (resy != null) y = resy[1]
+
+    viewBox = 'viewBox="' + x + ' ' + y + ' ' + viewBox
+
   }
 
   /*———————————————————————————————— replace viewBox in SVG source */
 
-  if (replaceVB && svgSource != ''){
+  if (replaceVB){
     var parts = svgSource.split('viewBox="')
     var dims  = parts[1].split('"', 1)[0]
 
@@ -269,7 +273,7 @@ function saveSvg(doc){
 
   //———————————————————————————————— remove coords box
 
-  if (markerAdded) app.undo()
+  if (replaceVB) app.undo()
 
   //———————————————————————————————— restore to original state
   
