@@ -161,6 +161,7 @@ finalFeedback(fileSizes);
 function saveSvg(doc){
 
   var layerInfo = deleteNonPrintingLayers(doc) // info about locked & visible
+  var replaceVB = false
 
   //———————————————————————————————— "SYNC/SVIJA/SVG Files"
 
@@ -200,9 +201,10 @@ function saveSvg(doc){
   var svgOpts = svgOptions(doc)
   doc.exportFile(diskObject, ExportType.WOSVG, svgOpts) 
 
-  /*———————————————————————————————— get viewBox size */
+  /*———————————————————————————————— is single artboard: get viewBox size */
 
   if (doc.artboards.length == 1){
+    replaceVB = true
     var ab = doc.artboards[0].artboardRect  // left, top, right, bottom
 
     var w = ab[2] - ab [0] // right - left
@@ -215,34 +217,45 @@ function saveSvg(doc){
 
   we will need to update the viewBox coordinates after saving */
 
-  if (doc.artboards.length == 1){
-    if (diskObject.open("r")){
+  var tries = 500
+
+  if (replaceVB){
+    while (tries > 0 && !diskObject.open("r"))
+      tries -= 1
+
+    if (tries > 0){
       var svgSource = diskObject.read()
       diskObject.close()
     }
     else{
-      alert('Disk Access Error\n222: Could not open ' + path + ' for reading.')
+      alert('Temporary Error\nPlease add a second artboard and re-save.')
       svgSource = ''
     }
   }
 
   /*———————————————————————————————— get viewPort correction
 
-  <rect id="COORDS00" class="cls-1" x="63" y="50.431" width="100" height="100"/> */
+  <rect id="COORDS00" class="cls-1" x="63" y="50.431" width="100" height="100"/>
 
-  if (doc.artboards.length == 1 && svgSource != ''){
+  if there is nothing above or to the left, there will be no x or y coords */
+
+  if (replaceVB && svgSource != ''){
     var parts = svgSource.split('COORDS00')
+
     var pieces = parts[1].split('x="')
-    var bits   = pieces[1].split('"')
-    var x = bits[0]
-    var y = bits[2]
-    viewBox = 'viewBox="' + x + ' ' + y + ' ' + viewBox
-alert(246)
+
+    if (pieces.length > 1){ // else no need to modify viewBox
+      var bits   = pieces[1].split('"')
+      var x = bits[0]
+      var y = bits[2]
+      viewBox = 'viewBox="' + x + ' ' + y + ' ' + viewBox
+    }
+    else replaceVB = false
   }
 
   /*———————————————————————————————— replace viewBox in SVG source */
 
-  if (doc.artboards.length == 1 && svgSource != ''){
+  if (replaceVB && svgSource != ''){
     var parts = svgSource.split('viewBox="')
     var dims  = parts[1].split('"', 1)[0]
 
@@ -256,10 +269,9 @@ alert(246)
 
   //———————————————————————————————— remove coords box
 
-  if (markerAdded)
-    app.undo()
+  if (markerAdded) app.undo()
 
-  //————————————————————————————————  restore non-printing layer states
+  //———————————————————————————————— restore non-printing layer states
 
   for (var r=0; r<layerInfo.length; r++){
     if (layerInfo[r] == 1 || layerInfo[r] == 3){doc.layers[r].locked  = true }
@@ -502,6 +514,7 @@ function hasPlaced(doc){
 
     // if image path doesn't match doc path, it can't be in links folder
     var str = imgPath.slice(0, linksPath.length);
+
     if (str != linksPath)
       return doc.name + ' contains external images. Please run "Check & Repair"';
 
