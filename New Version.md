@@ -30,7 +30,7 @@ Create a temporary **master version**:
 - duplicate the **beta version** folder, replacing the folder called **Svija Tools**
 ```
 rm -rf 'Svija Tools'
-cp -r 'Svija Tools Beta' 'Svija Tools'
+cp -r 'Beta' 'Svija Tools'
 ```
 - remove " **Beta**" and "**Beta**" from **manifest.xml** and **initialize.js**:
 ```
