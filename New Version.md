@@ -1,5 +1,5 @@
 
-*Updated 22 May, 2023 · Toulouse*
+*Updated 18 July, 2024 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
@@ -26,6 +26,11 @@ THIS TIME STARTED WITH BETA WITH NO CUSTOM ICON
 ---
 ### 1. New Master Version
 
+Set the repo address:
+```
+repo="Library/Mobile Documents/com~apple~CloudDocs/Repositories"
+cd ~/"$repo/tools/Svija Tools Beta"
+```
 Note: it is important that the beta version folder has never had a custom icon.
 
 Create a temporary **master version**:
@@ -111,7 +116,11 @@ git push -u
 
 Places to update the version number:
 ```
-vi -O README.md Svija\ Tools\ Beta/panel/js/initialize.js Svija\ Tools\ Beta/CSXS/manifest.xml
+vi -O README.md Svija\ Tools\ Beta/js/initialize.js Svija\ Tools\ Beta/CSXS/manifest.xml
+```
+The following file did not need to be updated last time.
+```
+vi Adobe\ Exchange/README.md
 ```
 **Note:** this will break signing for the **Svija Tools Beta** folder, but that folder has no utility until it is updated for other reasons.
 
