@@ -9,19 +9,11 @@
 
 Instructions for releasing a new version of Svija Tools.
 
-**Test the following next time:**
-
-Unfortunately it is not possible to use the same signed version for Adobe Exchange and DMG distribution:
-- the Adobe Exchange version does not have a custom icon
+It is not possible to use the same signed version for Adobe Exchange and DMG distribution:
+- the PC & Adobe Exchange versions do not have a custom icon
 - the DMG version does have a custom icon
 
-This time we will try the signed version *with* the icon to see if it breaks or not (it broke).
-
-Otherwise, once the Exchange version has been created, redo the process with a custom icon.
-
-**So far, it worked without icon and broke with icon. I'll try one more time to be sure**
-
-THIS TIME STARTED WITH BETA WITH NO CUSTOM ICON
+Otherwise, once the Exchange/PC version has been created, redo the process with a custom icon.
 
 ---
 ### 1. New Master Version
