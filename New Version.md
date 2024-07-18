@@ -21,15 +21,14 @@ Otherwise, once the Exchange/PC version has been created, redo the process with 
 Set the repo address:
 ```
 repo="Library/Mobile Documents/com~apple~CloudDocs/Repositories"
-cd ~/"$repo/tools/Svija Tools Beta"
+cd ~/"$repo/tools"
 ```
-Note: it is important that the beta version folder has never had a custom icon.
+Note: it is important that the beta version folder never have had a custom icon.
 
 Create a temporary **master version**:
 
 - duplicate the **beta version** folder, replacing the folder called **Svija Tools**
 ```
-cd ~/Documents/tools
 rm -rf 'Svija Tools'
 cp -r 'Svija Tools Beta' 'Svija Tools'
 ```
