@@ -43,7 +43,7 @@ windo %s/1.0.5/1.0.6/g
 ---
 ### 2. Code Signing
 
-‹— See [Code Signing][cs] at left.
+‹— See [Code Signing][cs] at left. Come back here when done.
 
 [cs]: Code%20Signing
 
