@@ -36,8 +36,10 @@ cp -r 'Beta' 'Svija Tools'
 ```
 vi -O 'Svija Tools/CSXS/manifest.xml' 'Svija Tools/panel/js/initialize.js'
 ```
-Adding a custom icon to Svija Tools, *not* to Svija Tools Beta, made it impossible to install.
-
+If necessary update the verson number:
+```
+windo %s/1.0.5/1.0.6/g
+```
 ---
 ### 2. Code Signing
 
@@ -52,8 +54,11 @@ Adding a custom icon to Svija Tools, *not* to Svija Tools Beta, made it impossib
 
 The last time I did this, iCloud caused duplicates of every single file, with a " 2" added before the extension.
 
-It might be good to temporarily move the directory into Downloads before proceeding.
-
+To delete all uncommitted files:
+```
+git clean -n # test run
+git clean -f # for real
+```
 ---
 
 Check out the **destination branch** and merge ([list of commits](https://github.com/svijalove/Svija-Tools/commits/beta)):
