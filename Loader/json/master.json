@@ -1,5 +1,8 @@
 [
-{"build":1, "source":"master.json","type":"json"},
-{"build":0, "source":"global.css", "type":"css" },
-{"build":0, "source":"body.html",  "type":"html"}
+{"build":1, "source":"master.json"    , "type":"json"},
+{"build":0, "source":"global.css"     , "type":"css" },
+{"build":0, "source":"allContent.html", "type":"html"},
+{"build":0, "source":"newContent.html", "type":"html"},
+{"build":0, "source":"savePage.js"    , "type":"js"  },
+{"build":0, "source":"addListeners.js", "type":"js"  }
 ]

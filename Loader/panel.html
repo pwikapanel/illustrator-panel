@@ -1,7 +1,9 @@
 <!DOCTYPE html><html><head><meta charset="utf-8">
-
-<script> window.addEventListener('error', (event)=>{ alert(event.message) }) </script>
 <script type="text/javascript" src="js/CSInterface.js"></script>
+
+<script> window.addEventListener('error', (event)=>{ alert(event.message) })
+  var blockContextMenu = function (evt) { evt.preventDefault() }
+  document.body.addEventListener('contextmenu', blockContextMenu) </script>
 <script>
 
 var version  = '1.0.7'
@@ -20,13 +22,11 @@ jsonInitial = [ {"build":0, "source":"master.json","type":"json"} ]
 
 </script>
 
-<style id="headStyles"></style>
-
 </head><body id="body1">
-<span style='cursor:pointer;display:block;width:8px;height:8px;position:absolute;top:0;left:0;' onclick='location.reload()'></span>
 
-<div id="allContent"></div>
-<script id="allScripts"></script>
+<div onclick='location.reload()'
+  style='cursor:wait;width:8px;height:8px;position:absolute;top:0;left:0;'>
+</div>
 
 <script>
 
@@ -90,7 +90,126 @@ function savePage(){
 }
 
 
-//:::::::::::::::::::::::::::::::::::::::: JSON handlers
+//:::::::::::::::::::::::::::::::::::::::: script handlers
+
+/*———————————————————————————————————————— parseScriptList(str)
+
+    {"build":0, "source":"master.json","type":"json"} */
+
+function parseScriptList(which, str, path){
+
+
+  if (str == '') return true
+
+  try{
+    var arr = JSON.parse(str)
+  }
+  catch(e){ lert("THIS\n" + e + '\n' + path) }
+ 
+  for (var x=0; x<arr.length; x++){
+    var scriptBuild  =  arr[x]['build']
+    var scriptSource =  arr[x]['source']
+    var which        = stripExtension(scriptSource)
+    var scriptType   =  arr[x]['type']
+
+    var functionName = 'fetchScript'
+
+    window[functionName](scriptBuild, which, scriptSource, scriptType)
+  }
+}
+
+/*———————————————————————————————————————— fetchScript(bld, which, src)
+
+    */
+
+function fetchScript(bld, which, src, scriptType){
+
+  var lsRef  = scriptType + which
+  var lsRef  = scriptType + which + 'build'
+
+  // if it's already up to date
+  if (typeof(localStorage[lsRef]) != 'undefined')
+    if (bld <= localStorage[lsRef])
+      return true
+
+  src = scriptType + '/' + src
+
+  var functionName = 'load' + capitalize(scriptType)
+
+  var thisFun = window[functionName]
+
+  if(LOCAL) fetchLocal(which, src, thisFun)
+      else fetchRemote(which, src, thisFun)
+}
+
+/*———————————————————————————————————————— loadHtml(str)
+
+    installs an HTML block */
+
+function loadHtml(which, str){
+  var obj = document.getElementById(which)
+  if (obj != null) obj.remove()
+
+  var obj = document.createElement('div')
+  document.body.appendChild(obj)
+
+  obj.innerHTML = str 
+}
+
+/*———————————————————————————————————————— loadCss(str)
+
+    installs a CSS sheet */
+
+function loadCss(which, str, arg){
+//  document.getElementsByTagName('style')[0].innerHTML = str 
+
+  var obj = document.getElementById(which)
+  if (obj != null) obj.remove()
+
+  var obj = document.createElement('style')
+  document.head.appendChild(obj)
+
+  obj.innerHTML = str 
+}
+
+/*———————————————————————————————————————— loadJs(str)
+
+    installs a JS block */
+
+function loadJs(which, str, arg){
+  var obj = document.getElementById(which)
+  if (obj != null) obj.remove()
+
+  var obj = document.createElement('script')
+  document.body.appendChild(obj)
+
+  obj.innerHTML = str 
+}
+
+/*———————————————————————————————————————— loadJson(bld, which, src) NOT IMPLEMENTED
+
+    */
+
+function loadJson(which, src){
+  lert(197+' loadJson()')
+}
+
+/*———————————————————————————————————————— set body id to match interface code
+
+    */
+
+var c = getInterfaceCode()
+document.body.setAttribute("id", "body"+c)
+
+// set width & height
+// is it possible to block resizing (do as if manifest had imposed a limit)?
+
+// need a list of current localStorage scripts
+// parse list of scripts, install each
+// install single script
+
+
+//:::::::::::::::::::::::::::::::::::::::: fetch functions
 
 /*———————————————————————————————————————— fetchLocal(path, callback)
 
@@ -108,7 +227,7 @@ function fetchLocal(which, path, callback){
     })
 
   .catch(function(err){
-    lert('Missing File\n/'+path)
+    lert('Fetch Error\n'+err+'\n/'+path)
     callback('', '', path)
   })
 }
@@ -156,158 +275,25 @@ function fetchRemote(which, path, callback) {
    })
 }
 
-/*———————————————————————————————————————— parseScriptList(str)
+/*———————————————————————————————————————— fetchL(file)
 
-    {"build":0, "source":"master.json","type":"json"} */
+    replaces "fetch" function for server */
 
-function parseScriptList(which, str, path){
+function fetchL(file) {
 
+  return new Promise(function(resolve, reject) {
+    var rawFile = new XMLHttpRequest()
+    rawFile.open("GET", file, false)
+    rawFile.onreadystatechange = function (){
+      if(rawFile.readyState === 4)
+          if(rawFile.status === 200 || rawFile.status == 0)
+              resolve(rawFile.responseText)
+    }
 
-  if (str == '') return true
-
-  try{
-    var arr = JSON.parse(str)
-  }
-  catch(e){ lert("THIS\n" + e + '\n' + path) }
- 
-  for (var x=0; x<arr.length; x++){
-    var scriptBuild  =  arr[x]['build']
-    var scriptSource =  arr[x]['source']
-    var which        = stripExtension(scriptSource)
-    var scriptType   =  arr[x]['type']
-
-    var functionName = 'fetch' + capitalize(scriptType)
-
-    window[functionName](scriptBuild, which, scriptSource)
-  }
+    rawFile.onerror = reject
+    rawFile.send(null)
+  })
 }
-
-/*———————————————————————————————————————— fetchJson(bld, src) NOT IMPLEMENTED
-
-    */
-
-function fetchJson(bld, src){
-  lert(189 + ' fetchJson()')
-}
-
-/*———————————————————————————————————————— loadJson(bld, which, src) NOT IMPLEMENTED
-
-    */
-
-function loadJson(which, bld, src){
-  lert(197+' loadJson()')
-}
-
-/*———————————————————————————————————————— fetchJs(bld, src)
-
-    */
-
-function fetchJs(bld, src){
-
-  var scType  = 'js'
-
-  // if it's the first time, localStorage is not set
-  var which = stripExtension(src)
-  var lsRef   = scType + which
-  var lsBuild = scType + which + 'build'
-
-  // if it's already up to date
-  if (typeof(localStorage[lsBuild]) != 'undefined')
-    if (bld <= localStorage[lsBuild])
-      return true
-
-  src = scType + '/' + src
-
-  if(LOCAL) fetchLocal(which, src, loadJs)
-      else fetchRemote(which, src, loadJs)
-}
-
-/*———————————————————————————————————————— loadJs(str)
-
-    installs an JS block */
-
-function loadJs(str){
-  lert(str)
-  allScripts.innerHtml = str 
-}
-
-/*———————————————————————————————————————— fetchHtml(bld, which, src)
-
-    */
-
-function fetchHtml(bld, which, src){
-
-  var scType  = 'html'
-
-  // if it's the first time, localStorage is not set
-  var which = stripExtension(src)
-  var lsRef   = scType + which
-  var lsBuild = scType + which + 'build'
-
-  // if it's already up to date
-  if (typeof(localStorage[lsBuild]) != 'undefined')
-    if (bld <= localStorage[lsBuild])
-      return true
-
-  src = scType + '/' + src
-
-  if(LOCAL) fetchLocal(which, src, loadHtml)
-      else fetchRemote(which, src, loadHtml)
-}
-
-/*———————————————————————————————————————— loadHtml(str)
-
-    installs an HTML block */
-
-function loadHtml(which, str){
-  allContent.innerHTML = str 
-}
-
-/*———————————————————————————————————————— fetchCss(bld, which, src)
-
-    */
-
-function fetchCss(bld, which, src){
-
-  var scType  = 'css'
-
-  // if it's the first time, localStorage is not set
-  var which = stripExtension(src)
-  var lsRef   = scType + which
-  var lsBuild = scType + which + 'build'
-
-  // if it's already up to date
-  if (typeof(localStorage[lsBuild]) != 'undefined')
-    if (bld <= localStorage[lsBuild])
-      return true
-
-  src = scType + '/' + src
-
-  if(LOCAL) fetchLocal(which, src, loadCss)
-      else fetchRemote(which, src, loadCss)
-}
-
-/*———————————————————————————————————————— loadCss(str)
-
-    installs a CSS sheet */
-
-function loadCss(which, str, arg){
-  document.getElementsByTagName('style')[0].innerHTML = str 
-}
-
-/*———————————————————————————————————————— set body id to match interface code
-
-    */
-
-var c = getInterfaceCode()
-document.body.setAttribute("id", "body"+c)
-
-// set width & height
-// is it possible to block resizing (do as if manifest had imposed a limit)?
-
-// need a list of current localStorage scripts
-// parse list of scripts, install each
-// install single script
 
 
 //:::::::::::::::::::::::::::::::::::::::: utilities
@@ -338,26 +324,6 @@ function stripExtension(str){
 
 function capitalize(str){
   return str.charAt(0).toUpperCase()+str.slice(1)
-}
-
-/*———————————————————————————————————————— fetchL(file)
-
-    replaces "fetch" function for server */
-
-function fetchL(file) {
-  lert('fetchL\n' + file)
-  return new Promise(function(resolve, reject) {
-    var rawFile = new XMLHttpRequest()
-    rawFile.open("GET", file, false)
-    rawFile.onreadystatechange = function (){
-      if(rawFile.readyState === 4)
-          if(rawFile.status === 200 || rawFile.status == 0)
-              resolve(rawFile.responseText)
-    }
-
-    rawFile.onerror = reject
-    rawFile.send(null)
-  })
 }
 
 /*———————————————————————————————————————— lert(msg)
@@ -398,3 +364,4 @@ function getInterfaceCode() { // did have (event) as arg
 </script>
 
 <script> var scrp='json/master.json'; fetchLocal('master', scrp, parseScriptList) </script></body></html>
+

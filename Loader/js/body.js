@@ -1,1 +1,0 @@
-alert('body.js loaded')
