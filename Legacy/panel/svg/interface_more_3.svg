@@ -61,7 +61,7 @@
 	</g>
 	<g id="logos">
 		
-			<image style="overflow:visible;" width="525" height="110" xlink:href="../links/svija logo 525x110 787878 4.png"  transform="matrix(0.2 0 0 0.2 125 80)">
+			<image style="overflow:visible;" width="525" height="110" xlink:href="../png/svija logo 525x110 787878 4.png"  transform="matrix(0.2 0 0 0.2 125 80)">
 		</image>
 	</g>
 </g>
@@ -300,7 +300,7 @@
 	<g id="mousedown_0">
 	</g>
 </g>
-<g id="ai_links__xBB_">
+<g id="ai_png__xBB_">
 	<g id="history.back_x28__x29__x3B_">
 	</g>
 	<g id="bottom_bar">
@@ -312,8 +312,8 @@
 		</a>
 	</g>
 </g>
-<g id="listener_links__xBB_">
-	<g id="links3">
+<g id="listener_png__xBB_">
+	<g id="png3">
 		<rect id="link3-09" x="122" y="104.5" class="st24" width="111" height="27.5"/>
 		<rect id="link3-08" x="7" y="104.5" class="st24" width="111" height="27.5"/>
 		<rect id="link3-07" x="7" y="77" class="st24" width="111" height="27.5"/>
@@ -322,11 +322,11 @@
 		<rect id="link3-04" x="122" y="7" class="st24" width="111" height="27.5"/>
 		<rect id="link3-03" x="7" y="7" class="st24" width="111" height="27.5"/>
 	</g>
-	<g id="links2">
+	<g id="png2">
 	</g>
-	<g id="links1">
+	<g id="png1">
 	</g>
-	<g id="links0">
+	<g id="png0">
 	</g>
 </g>
 </svg>

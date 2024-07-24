@@ -1,28 +1,393 @@
+
+/*:::::::::::::::::::::::::::::::::::::::: global.css */
+
+/*———————————————————————————————————————— colors 1
+
+    should be converted to JSON and loaded dynamically */
+
+:root {
+
+  --svija                     : hsl(72 100%  50%);
+  --offline                   : hsl( 0   0%  53%);
+
+  --indicatorText             : hsl( 0 100%  50%); /* show errors */
+  --indicatorOn               : hsl( 0   0%  87%);
+  --indicatorOff              : hsl( 0   0%  60%);
+
+  --highlight-color           : hsl( 0   0% 100%);
+  --highlight-fill            : hsl( 0   0%  27%);
+
+  --tooltipOn                 : hsl( 0   0% 100%);
+  --tooltipOff                : hsl( 0   0%  60%);
+
+  --body-foreground           : hsl( 0   0% 100%);
+  --body-background           : hsl( 0   0%  33%);
+
+  --button-label              : hsl( 0   0%  67%);
+  --button-border             : hsl( 0   0%  22%);
+  --button-background         : hsl( 0   0%  37%);
+
+  --button-background-active  : hsl( 0   0%  13%);
+
+  --button-bottom-label       : hsl( 0   0%  60%);
+  --button-bottom-border      : hsl( 0   0%  13%);
+  --button-bottom-background  : hsl( 0   0%  22%);
+  --button-bottom-label-active: hsl( 0   0%  13%);
+
+  --showMore: #bbb;
+  --bottomSection-background  : hsl( 0   0%  26%);
+  --bottomSection-border-top  : hsl( 0   0%  22%);
+}
+
+/*———————————————————————————————————————— font declaration */
+
+@font-face {
+  font-family:'Source Sans Pro';
+  font-weight:normal;
+/*  src:url('./fonts/Source Sans Pro.woff') format('woff'); */
+  src:url('./fonts/SourceSansPro-Regular.woff') format('woff');
+ 
+}
+
+@font-face {
+  font-family:'Source Sans Pro';
+  font-weight:bold;
+/*  src:url('./fonts/Source Sans Pro Bold.woff') format('woff'); */
+  src:url('./fonts/SourceSansPro-SemiBold.woff') format('woff');
+}
+
+/*———————————————————————————————————————— permanent */
+
+*{
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
 html, body{
   margin: 0;
+  padding:0;
   height: 100%;
   overflow: hidden;
   cursor:default;
 }
 
-@font-face { font-family:'SourceSansPro-Regular' ; src:url('./fonts/SourceSansPro-Regular.woff' ) format('woff'); }
-@font-face { font-family:'SourceSansPro-SemiBold'; src:url('./fonts/SourceSansPro-SemiBold.woff') format('woff'); }
-
 body{
+  padding-top:12px;
   background-color:#535353;
   color:#bbb;
-  margin:0;
-  padding:20px;
-  font-family:'SourceSansPro-SemiBold';
+  font-family:'Source Sans Pro';
 }
+
+input:focus{ /* get rid of blue line when focused */
+  outline: none!important;
+  box-shadow: none!important;
+}
+
+/*———————————————————————————————————————— links */
 
 a:link, a:visited{
  
-  font-family: 'SourceSansPro-Regular';
+  font-family: 'Source Sans Pro';
   color:#bbb;
   text-decoration:none;
 }
 
-a:hover, a:active{
-  border-bottom: dotted 1px #fff;
+/*———————————————————————————————————————— logo */
+
+#svijaLogo{
+  margin:0;
+  padding:0;
+  width:115px;
+  stroke-width:0px;
+  margin-left:10px;
+  margin-bottom:0px;
+  vertical-align:top;
 }
+
+#svijaLogo #logoBar{ fill: #424242; }
+#svijaLogo #logoArt{ fill: #ccff00; }
+
+/*———————————————————————————————————————— buttons & HR */
+
+input[type=button]{
+  border:1px solid #666;
+  width:115px;
+  height:20px;
+  border-radius:5px;
+  margin:0;
+  margin-left:10px;
+  margin-right:-5px;
+  margin-bottom:2px;
+  font-size:11px;
+  letter-spacing:0.01em;
+  font-weight:bold;
+
+  color:#c9c9c9;
+  background-color:#464646;
+}
+
+div#moreDiv input[type=button]{
+  color:#ababab;
+  background-color:#505050;
+}
+
+input[type=button]:hover{
+  border-color:#0088FF;
+}
+
+div#moreDiv input[type=button]:active,
+input[type=button]:active{
+  color:#fff;
+  border-color:#fff;
+}
+
+input.btnMed{
+  width:68px;
+}
+
+input.btnSmall{
+  width:38px;
+}
+
+hr{
+  border:0px;
+  border-top:1px solid #424242;
+  margin:0;
+  padding:0;
+  margin-top:8px;
+  margin-bottom:5px;
+}
+
+
+
+/*———————————————————————————————————————— bottom bar */ 
+
+div#moreLess{
+  background-color:#464646;
+  border-top:1px solid #323232;
+  text-align:right; 
+  padding:0 9px;
+  padding-bottom:3px;
+
+  text-transform:uppercase;
+  letter-spacing:2px;
+
+  font-size:9px;
+  line-height:9px;
+}
+
+div#moreLess span{
+  float:left;
+}
+
+div#moreLess a{
+  color:#858585;
+}
+
+div#moreLess a:hover{
+  color:#fff;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::: tech CSS */
+
+/*———————————————————————————————————————— indicators */
+
+#indicatorRow{
+  margin-top:0px;
+
+  font-family:'Source Sans Pro';
+  font-size:8px;
+  font-weight:bold;
+  letter-spacing:1px;
+  color:var(--indicator-text);
+  user-select: none;
+}
+
+#indOnline{
+  margin-left:12px;
+  margin-right:10px;
+  width: 20px;
+  height: 8px;
+  background-color:var(--offline);
+  border:none;
+  border-radius:2px;
+}
+
+.inpIndicator{
+  border:none;
+  background:none;
+  height:20px;
+
+  padding:4px;
+  margin:0px;
+  margin-left:0px;
+  margin-bottom:2px;
+
+  font-family:'Source Sans Pro';
+  font-weight:bold;
+  font-size:8px;
+  line-height:22px;
+
+  color: var(--indicatorOff);
+  cursor:default;
+  text-transform:uppercase;
+
+}
+
+.inpIndicator:hover{
+  cursor:pointer;
+}
+
+#indReload{
+  margin-left:30px;
+}
+
+/*———————————————————————————————————————— buttons */
+
+input.hubIcon{
+  height:18px;
+  width:64px;
+  border:1px solid var(--button-border);
+  border-radius:3px;
+  margin-left:6px;
+  margin-top:5px;
+  padding-bottom:2.5px;
+  font-family:'Source Sans Pro';
+  font-weight:bold;
+  font-size:10px;
+  letter-spacing:0px;
+  line-height:10px;
+  color:var(--button-label);
+  background-color:var(--button-background);
+  cursor:pointer;
+}
+
+#createGrp, #chkRepair{
+  margin-left:10px;
+}
+
+input.hubIcon:hover{
+  color: var(--highlight-color);
+  background-color: var(--highlight-fill);
+  border:1px solid var(--system-highlight);
+}
+
+input.hubIcon:active{
+  background-color:var(--button-background-active);
+}
+
+div#bottomSection input.hubIcon{
+  color:var(--button-bottom-label);
+  border:1px solid var(--button-bottom-border);
+  background-color:var(--button-bottom-background);
+}
+
+div#bottomSection input.hubIcon:hover{
+  color: var(--highlight-color);
+  background-color: var(--highlight-fill);
+  border:1px solid var(--system-highlight);
+}
+
+div#bottomSection input.hubIcon:active{
+  background-color:var(--button-bottom-label-active);
+}
+
+input.hubIcon#btnSave,
+input.hubIcon#btnOpen{
+  background-color:var(--system-dimlight);
+}
+
+input.hubIcon#btnOpen{
+  display:none;
+}
+
+/*———————————————————————————————————————— disabled buttons */
+
+#impStyles, #expStyles, #clearCache{
+  color:black;
+  text-decoration:line-through;
+}
+
+/*———————————————————————————————————————— indicator spacing */
+
+#indGrid { margin-left:9px; }
+#indPoint{ margin-left:19px; }
+
+/*———————————————————————————————————————— show more & bottom section */
+
+#showMore{
+  color:var(--showMore);
+  background:none;
+  border:none;
+  cursor:pointer;
+
+  font-size:11px;
+  font-weight:bold;
+  position:absolute;
+  right:0;
+  top:0;
+  width:48px;
+  height:22px;
+  rotation:-20deg;
+}
+
+#showMore:hover{
+  color:var(--highlight-color);
+}
+
+#bottomSection{
+  margin-top:6px;
+  background-color:var(--bottomSection-background);
+  height:35px;
+  border-top:1px solid var(--bottomSection-border-top);
+  padding-top:2px;
+  padding-bottom:6px;
+}
+
+/*———————————————————————————————————————— spinner & doneMsg */
+
+#spinner{
+  display:none;
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background-color:var(--body-background);
+  background-image:url(../images/spinner.gif);
+  background-repeat:no-repeat;
+  background-position:50% 50%;
+  background-size:10%;
+}
+
+div#doneMsg{
+  display:none;
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background-color:var(--body-background);
+  color:var(--body-foreground);
+}
+
+.closeX{
+  position:absolute;
+  top:0; right:5px;
+  color:var(--button-backround-active);
+  cursor:pointer;
+}
+
+/*———————————————————————————————————————— mouseover */
+
+div#mouseover{
+  margin-top:5px;
+  margin-left:12px;
+  color:var(--tooltipOff);
+  letter-spacing:0;
+  font-weight:regular;
+  font-size:11px;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
+

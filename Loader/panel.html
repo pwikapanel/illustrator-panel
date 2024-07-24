@@ -4,17 +4,17 @@
 <script type="text/javascript" src="js/CSInterface.js"></script>
 <script>
 
-var version  = '1.0.6'
+var version  = '1.0.7'
 var server   = 'tools.svija.love'
 var cep      = new CSInterface()
-var myDocs   = cep.getSystemPath(SystemPath.MY_DOCUMENTS)     // C:Users/andy/Documents
+var myDocs   = cep.getSystemPath(SystemPath.MY_DOCUMENTS)      // C:Users/andy/Documents
 var isMac    = cep.getOSInformation().substring(0,3) == 'Mac'  // false
 var env_path = cep.getSystemPath(SystemPath.EXTENSION) + '/scripts/'
 
 cep.setWindowTitle('Loader Tests')
 
 var LOCAL    = true
-var SERVER   = 'https://tools.svija.love/1.0.6/'
+var SERVER   = 'https://tools.svija.love/1.0.7/'
 
 jsonInitial = [ {"build":0, "source":"master.json","type":"json"} ]
 
@@ -23,9 +23,11 @@ jsonInitial = [ {"build":0, "source":"master.json","type":"json"} ]
 <style id="headStyles"></style>
 
 </head><body id="body1">
+<span style='cursor:pointer;display:block;width:8px;height:8px;position:absolute;top:0;left:0;' onclick='location.reload()'></span>
 
-<div id="allContent"><a href="javascript:location.reload()">reload</a></div>
+<div id="allContent"></div>
 <script id="allScripts"></script>
+
 <script>
 
 //:::::::::::::::::::::::::::::::::::::::: main functions
@@ -41,14 +43,15 @@ function showPanel(){
 
 /*———————————————————————————————————————— fetchLink()
 
-    */
+    from text link "local" or "remote" */
 
 function fetchLink(){
 
-  var scrp   = 'json/master.json'                                              
+  var which =  'master'
+  var scrpt =  'json/' + which + '.json'                                              
 
-  if (LOCAL == true) fetchLocal (scrp, parseScriptList)
-                else fetchRemote(scrp, parseScriptList)
+  if (LOCAL == true) fetchLocal (which, scrpt, parseScriptList)
+                else fetchRemote(which, scrpt, parseScriptList)
 }
 
 /*———————————————————————————————————————— localRemote()
@@ -89,6 +92,27 @@ function savePage(){
 
 //:::::::::::::::::::::::::::::::::::::::: JSON handlers
 
+/*———————————————————————————————————————— fetchLocal(path, callback)
+
+    https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri */
+
+function fetchLocal(which, path, callback){
+
+  fetchL(path)
+    .then(function(text) {
+      if (text != '') callback(which, text, path)
+      else{
+        lert('Empty File\n/' + path)
+        callback('', '', path)
+      }
+    })
+
+  .catch(function(err){
+    lert('Missing File\n/'+path)
+    callback('', '', path)
+  })
+}
+
 /*———————————————————————————————————————— fetchRemote(path, callback)
 
     https://github.com/Adobe-CEP/Getting-Started-guides/blob/master/Network%20requests%20and%20responses%20with%20Fetch/readme.md
@@ -101,7 +125,7 @@ function savePage(){
     more alternatives for making network requests. */
 
 
-function fetchRemote(path, callback) {
+function fetchRemote(which, path, callback) {
 
   path = SERVER + path
   var pathRand = path + '?' + Math.random()
@@ -114,87 +138,78 @@ function fetchRemote(path, callback) {
     })
     .then(function(text){
       if (typeof text != 'undefined'){
-        if (text != '') callback(text, path)
+        if (text != '') callback(which, text, path)
         else{
-          alcrt('Empty File\n' + path)
-          callback('', path)
+          lert('Empty File\n' + path)
+          callback('', '', path)
         }
       }
       else {
-        alcrt('404 Error\n' + path)
-        callback('', path)
+        lert('404 Error\n' + path)
+        callback('', '', path)
       }
     })
 
   .catch(function(err){
-    alcrt('Server not found\n' + path)
-    callback('', path)
+    lert('Server not found\n' + path)
+    callback('', '', path)
    })
-}
-
-/*———————————————————————————————————————— fetchLocal(path, callback)
-
-    https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri */
-
-function fetchLocal(path, callback){
-
-  fetchL(path)
-    .then(function(text) {
-      if (text != '') callback(text, path)
-      else{
-        alcrt('Empty File\n/' + path)
-        callback('', path)
-      }
-    })
-
-  .catch(function(err){
-    alcrt('Missing File\n/'+path)
-    callback('', path)
-  })
 }
 
 /*———————————————————————————————————————— parseScriptList(str)
 
     {"build":0, "source":"master.json","type":"json"} */
 
-function parseScriptList(str, path){
+function parseScriptList(which, str, path){
+
+
   if (str == '') return true
 
   try{
     var arr = JSON.parse(str)
   }
-  catch(e){ alcrt(e + '\n' + path) }
+  catch(e){ lert("THIS\n" + e + '\n' + path) }
  
   for (var x=0; x<arr.length; x++){
     var scriptBuild  =  arr[x]['build']
     var scriptSource =  arr[x]['source']
+    var which        = stripExtension(scriptSource)
     var scriptType   =  arr[x]['type']
 
-    var functionName = 'load' + capitalize(scriptType)
-    window[functionName](scriptBuild, scriptSource)
+    var functionName = 'fetch' + capitalize(scriptType)
+
+    window[functionName](scriptBuild, which, scriptSource)
   }
 }
 
-/*———————————————————————————————————————— loadJson(bld, src)
+/*———————————————————————————————————————— fetchJson(bld, src) NOT IMPLEMENTED
 
     */
 
-function loadJson(bld, src){
-//alcrt('worked: '+bld+', '+src)
+function fetchJson(bld, src){
+  lert(189 + ' fetchJson()')
 }
 
-/*———————————————————————————————————————— loadJs(bld, src)
+/*———————————————————————————————————————— loadJson(bld, which, src) NOT IMPLEMENTED
 
     */
 
-function loadJs(bld, src){
+function loadJson(which, bld, src){
+  lert(197+' loadJson()')
+}
+
+/*———————————————————————————————————————— fetchJs(bld, src)
+
+    */
+
+function fetchJs(bld, src){
 
   var scType  = 'js'
 
   // if it's the first time, localStorage is not set
-  var ID = stripExtension(src)
-  var lsRef   = scType + ID
-  var lsBuild = scType + ID + 'build'
+  var which = stripExtension(src)
+  var lsRef   = scType + which
+  var lsBuild = scType + which + 'build'
 
   // if it's already up to date
   if (typeof(localStorage[lsBuild]) != 'undefined')
@@ -203,31 +218,31 @@ function loadJs(bld, src){
 
   src = scType + '/' + src
 
-  if(LOCAL) fetchLocal(src, installJs)
-      else fetchRemote(src, installJs)
+  if(LOCAL) fetchLocal(which, src, loadJs)
+      else fetchRemote(which, src, loadJs)
 }
 
-/*———————————————————————————————————————— installJs(str)
+/*———————————————————————————————————————— loadJs(str)
 
     installs an JS block */
 
-function installJs(str){
-  alcrt(str)
+function loadJs(str){
+  lert(str)
   allScripts.innerHtml = str 
 }
 
-/*———————————————————————————————————————— loadHtml(bld, src)
+/*———————————————————————————————————————— fetchHtml(bld, which, src)
 
     */
 
-function loadHtml(bld, src){
+function fetchHtml(bld, which, src){
 
   var scType  = 'html'
 
   // if it's the first time, localStorage is not set
-  var ID = stripExtension(src)
-  var lsRef   = scType + ID
-  var lsBuild = scType + ID + 'build'
+  var which = stripExtension(src)
+  var lsRef   = scType + which
+  var lsBuild = scType + which + 'build'
 
   // if it's already up to date
   if (typeof(localStorage[lsBuild]) != 'undefined')
@@ -236,30 +251,30 @@ function loadHtml(bld, src){
 
   src = scType + '/' + src
 
-  if(LOCAL) fetchLocal(src, installHtml)
-      else fetchRemote(src, installHtml)
+  if(LOCAL) fetchLocal(which, src, loadHtml)
+      else fetchRemote(which, src, loadHtml)
 }
 
-/*———————————————————————————————————————— installHtml(str)
+/*———————————————————————————————————————— loadHtml(str)
 
     installs an HTML block */
 
-function installHtml(str){
+function loadHtml(which, str){
   allContent.innerHTML = str 
 }
 
-/*———————————————————————————————————————— loadCss(bld, src)
+/*———————————————————————————————————————— fetchCss(bld, which, src)
 
     */
 
-function loadCss(bld, src){
+function fetchCss(bld, which, src){
 
   var scType  = 'css'
 
   // if it's the first time, localStorage is not set
-  var ID = stripExtension(src)
-  var lsRef   = scType + ID
-  var lsBuild = scType + ID + 'build'
+  var which = stripExtension(src)
+  var lsRef   = scType + which
+  var lsBuild = scType + which + 'build'
 
   // if it's already up to date
   if (typeof(localStorage[lsBuild]) != 'undefined')
@@ -268,15 +283,15 @@ function loadCss(bld, src){
 
   src = scType + '/' + src
 
-  if(LOCAL) fetchLocal(src, installCss)
-      else fetchRemote(src, installCss)
+  if(LOCAL) fetchLocal(which, src, loadCss)
+      else fetchRemote(which, src, loadCss)
 }
 
-/*———————————————————————————————————————— installCss(str)
+/*———————————————————————————————————————— loadCss(str)
 
     installs a CSS sheet */
 
-function installCss(str){
+function loadCss(which, str, arg){
   document.getElementsByTagName('style')[0].innerHTML = str 
 }
 
@@ -287,13 +302,13 @@ function installCss(str){
 var c = getInterfaceCode()
 document.body.setAttribute("id", "body"+c)
 
-
 // set width & height
 // is it possible to block resizing (do as if manifest had imposed a limit)?
 
 // need a list of current localStorage scripts
 // parse list of scripts, install each
 // install single script
+
 
 //:::::::::::::::::::::::::::::::::::::::: utilities
 
@@ -330,6 +345,7 @@ function capitalize(str){
     replaces "fetch" function for server */
 
 function fetchL(file) {
+  lert('fetchL\n' + file)
   return new Promise(function(resolve, reject) {
     var rawFile = new XMLHttpRequest()
     rawFile.open("GET", file, false)
@@ -344,11 +360,11 @@ function fetchL(file) {
   })
 }
 
-/*———————————————————————————————————————— alcrt(msg)
+/*———————————————————————————————————————— lert(msg)
 
     alerts in ai-land don't exit program space */
 
-function alcrt(msg){
+function lert(msg){
   msg = JSON.stringify(String(msg))
   msg = msg.substr(1, msg.length-2)
 
@@ -381,4 +397,4 @@ function getInterfaceCode() { // did have (event) as arg
 
 </script>
 
-<script> var scrp='json/master.json'; fetchLocal (scrp, parseScriptList) </script></body></html>
+<script> var scrp='json/master.json'; fetchLocal('master', scrp, parseScriptList) </script></body></html>

@@ -1,6 +1,5 @@
 [
 {"build":1, "source":"master.json","type":"json"},
 {"build":0, "source":"global.css", "type":"css" },
-{"build":0, "source":"body.js",    "type":"js"  },
 {"build":0, "source":"body.html",  "type":"html"}
 ]
