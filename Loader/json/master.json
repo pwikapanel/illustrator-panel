@@ -1,8 +1,23 @@
 [
-{"build":1, "source":"master.json"    , "type":"json"},
-{"build":0, "source":"global.css"     , "type":"css" },
-{"build":0, "source":"allContent.html", "type":"html"},
-{"build":0, "source":"newContent.html", "type":"html"},
-{"build":0, "source":"savePage.js"    , "type":"js"  },
-{"build":0, "source":"addListeners.js", "type":"js"  }
+
+{ "build":1, "source":"master.json"      , "type":"json"},
+
+{ "build":0, "source":"global.css"       , "type":"css" },
+
+{ "build":0, "source":"content01.html"   , "type":"html"},
+{ "build":0, "source":"testLinks.html"   , "type":"html"},
+{ "build":0, "source":"bottomBar.html"   , "type":"html"},
+
+{ "build":0, "source":"checkAndRepair.js", "type":"js"  },
+{ "build":0, "source":"createGroup.js"   , "type":"js"  },
+{ "build":0, "source":"launchCloud.js"   , "type":"js"  },
+{ "build":0, "source":"launchSite.js"    , "type":"js"  },
+{ "build":0, "source":"localFolder.js"   , "type":"js"  },
+{ "build":0, "source":"saveAll.js"       , "type":"js"  },
+{ "build":0, "source":"savePage.js"      , "type":"js"  },
+{ "build":0, "source":"showPanel.js"     , "type":"js"  },
+
+{ "build":0, "source":"fetchLink.js"     , "type":"js"  },
+{ "build":0, "source":"localRemote.js"   , "type":"js"  }
+
 ]

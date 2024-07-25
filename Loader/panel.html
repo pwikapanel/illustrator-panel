@@ -1,45 +1,37 @@
 <!DOCTYPE html><html><head><meta charset="utf-8">
-<script type="text/javascript" src="js/CSInterface.js"></script>
+<script type="text/javascript" src="CSXS/CSInterface.js"></script>
 
 <script> window.addEventListener('error', (event)=>{ alert(event.message) })
-  var blockContextMenu = function (evt) { evt.preventDefault() }
-  document.body.addEventListener('contextmenu', blockContextMenu) </script>
-<script>
+         var cep = new CSInterface() </script>
+
+<script>// initial setup
 
 var version  = '1.0.7'
 var server   = 'tools.svija.love'
-var cep      = new CSInterface()
-var myDocs   = cep.getSystemPath(SystemPath.MY_DOCUMENTS)      // C:Users/andy/Documents
-var isMac    = cep.getOSInformation().substring(0,3) == 'Mac'  // false
-var env_path = cep.getSystemPath(SystemPath.EXTENSION) + '/scripts/'
 
 cep.setWindowTitle('Loader Tests')
 
+var MYDOCS   = cep.getSystemPath(SystemPath.MY_DOCUMENTS)      // C:Users/andy/Documents
+var ISMAC    = cep.getOSInformation().substring(0,3) == 'Mac'  // false
+var PATH     = cep.getSystemPath(SystemPath.EXTENSION)
 var LOCAL    = true
 var SERVER   = 'https://tools.svija.love/1.0.7/'
 
 jsonInitial = [ {"build":0, "source":"master.json","type":"json"} ]
 
-</script>
+</script></head>
 
-</head><body id="body1">
+<body id="body1">
+
+<script>  var blockContextMenu = function (evt) { evt.preventDefault() }
+  document.body.addEventListener('contextmenu', blockContextMenu) </script>
 
 <div onclick='location.reload()'
-  style='cursor:wait;width:8px;height:8px;position:absolute;top:0;left:0;'>
-</div>
+  style='cursor:wait;width:30px;height:10px;position:absolute;top:0;left:0;border:1px solid hsl(0 0% 22%);background-color:hsl(0 0% 26%);border-left:none;'></div>
 
 <script>
 
 //:::::::::::::::::::::::::::::::::::::::: main functions
-
-/*———————————————————————————————————————— show dialog panel
-
-    will be utilised for Verify, forms etc. */
-
-function showPanel(){
-  var file      = '/Library/Application Support/Adobe/CEP/extensions/Loader/scripts/dialog.jsx'
-  cep.evalScript("$.evalFile('" + file      + "')")
-}
 
 /*———————————————————————————————————————— fetchLink()
 
@@ -67,26 +59,6 @@ function localRemote(){
     LOCAL = true
     ftch.innerHTML = 'local'
   }
-}
-
-/*———————————————————————————————————————— savePage()
-
-    copied directly from legacy, need to update */
-
-function savePage(){
-
-  var isMac     = 'true'
-  var param     = 'save'
-  var myDocs    = '/Users/Main/Documents'
-  var utilities = '/Library/Application Support/Adobe/CEP/extensions/New/scripts/utilities.jsx'
-  var file      = '/Library/Application Support/Adobe/CEP/extensions/New/scripts/Save.jsx'
-
-  cep.evalScript("param = '" + param + "'")
-  cep.evalScript("isMac  = '" + isMac  + "'")
-  cep.evalScript("myDocs = '" + myDocs + "'")
-
-  cep.evalScript("$.evalFile('" + utilities + "')")
-  cep.evalScript("$.evalFile('" + file      + "')")
 }
 
 
