@@ -1,14 +1,13 @@
 
 //:::::::::::::::::::::::::::::::::::::::: addListeners.js
 
-var objId = 'button4r'
-
+var objId = 'button1r'
 
 var obj = document.getElementById(objId)
 
 if (obj === null) lert(objId + ' is null')
 
-obj.value="save"
+obj.value="launch site"
 
 obj.addEventListener('click', savePage)
 

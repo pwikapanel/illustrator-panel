@@ -1,8 +1,14 @@
+
 //:::::::::::::::::::::::::::::::::::::::: addListeners.js
 
-  var objId = 'allContent'
-  var obj = document.getElementById(objId)
+var objId = 'button4r'
 
-  alert(obj.innerHtml)
+var obj = document.getElementById(objId)
 
-  //obj.value='worked'
+if (obj === null) lert('button4r is null')
+
+obj.addEventListener('click', test)
+
+function test(){
+  lert('function test')
+}

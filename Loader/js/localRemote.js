@@ -1,14 +1,13 @@
 
 //:::::::::::::::::::::::::::::::::::::::: addListeners.js
 
-var objId = 'button4r'
-
+var objId = 'link1r'
 
 var obj = document.getElementById(objId)
 
 if (obj === null) lert(objId + ' is null')
 
-obj.value="save"
+obj.text="l/r"
 
 obj.addEventListener('click', savePage)
 
@@ -32,4 +31,6 @@ function savePage(){
   cep.evalScript("$.evalFile('" + utilities + "')")
   cep.evalScript("$.evalFile('" + file      + "')")
 }
+
+// <a id="link1l" href="javascript:      fetchLink()"></a> • 
 

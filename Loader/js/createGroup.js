@@ -1,14 +1,13 @@
 
 //:::::::::::::::::::::::::::::::::::::::: addListeners.js
 
-var objId = 'button4r'
-
+var objId = 'button3l'
 
 var obj = document.getElementById(objId)
 
 if (obj === null) lert(objId + ' is null')
 
-obj.value="save"
+obj.value="create group"
 
 obj.addEventListener('click', savePage)
 
