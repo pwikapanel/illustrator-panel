@@ -8,12 +8,20 @@
 //:::::::::::::::::::::::::::::::::::::::: initialization
 
   var CEP     = new CSInterface()
+
   var LOCAL   = true
   var VERSION = '1.0.7'
   var SERVER  = 'tools.svija.love'
   var MYDOCS  = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)      // C:Users/andy/Documents
   var ISMAC   = CEP.getOSInformation().substring(0,3) == 'Mac'  // false
   var PATH    = CEP.getSystemPath(SystemPath.EXTENSION)
+
+  CEP.evalScript("LOCAL   = '" + LOCAL   + "'")
+  CEP.evalScript("VERSION = '" + VERSION + "'")
+  CEP.evalScript("SERVER  = '" + SERVER  + "'")
+  CEP.evalScript("MYDOCS  = '" + MYDOCS  + "'")
+  CEP.evalScript("ISMAC   = '" + ISMAC   + "'")
+  CEP.evalScript("PATH    = '" + PATH    + "'")
 
   window.addEventListener('error', (event)=>{ alert(event.message) })
 

@@ -20,9 +20,9 @@ function savePage(){
   var ISMAC     = 'true'
   var param     = 'save'
   var MYDOCS    = '/Users/Main/Documents'
-  var utilities = PATH + '/jsx/Utilities.jsx'
+  var utilities = PATH + '/cep/utilities.jsx'
 
-  var file = PATH + '/jsx/Save.jsx'
+  var file = PATH + '/cep/Save.jsx'
 
   CEP.evalScript("param  = '" + param  + "'")
   CEP.evalScript("ISMAC  = '" + ISMAC  + "'")

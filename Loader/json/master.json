@@ -12,6 +12,7 @@
 
 { "build": 0, "source":  "interfaceCode.js"   },
 { "build": 0, "source":      "logoColor.js"   },
+{ "build": 0, "source":    "projectInfo.js"   },
 
 { "build": 0, "source": "checkAndRepair.js"   },
 { "build": 0, "source":    "createGroup.js"   },
@@ -19,8 +20,8 @@
 { "build": 0, "source":     "launchSite.js"   },
 { "build": 0, "source":    "localFolder.js"   },
 { "build": 0, "source":        "saveAll.js"   },
-{ "build": 0, "source":       "savePage.js"   },
-{ "build": 0, "source":      "showPanel.js"   },
+{ "build": 0, "source":           "save.js"   },
+{ "build": 0, "source":     "showDialog.js"   },
 
 { "build": "——— leftover from first version"  },
 { "build": 0, "source":      "fetchLink.js"   },

@@ -1,34 +1,56 @@
 
-//:::::::::::::::::::::::::::::::::::::::: addListeners.js
+/*:::::::::::::::::::::::::::::::::::::::: localFolder.js */
 
-var objId = 'button1l'
+/*———————————————————————————————————————— parameters */
 
-var obj = document.getElementById(objId)
+var objID    = 'buttFolder'
+var objLabel = 'open folder'
 
-if (obj === null) lert(objId + ' is null')
+const pcOpener  = 'C:\\Windows\\explorer.exe'
+const macOpener = '/usr/bin/open'
 
-obj.value="open folder"
+/*———————————————————————————————————————— configure button */
 
-obj.addEventListener('click', savePage)
+var obj = document.getElementById(objID)
+if (obj === null) lert(objID + ' is null')
 
-/*———————————————————————————————————————— savePage()
+obj.value = objLabel
+obj.style.display = 'inline'
 
-    copied directly from legacy, need to update */
+/*———————————————————————————————————————— listener function
 
-function savePage(){
+  opens folder based on localStorage lastPath */
 
-  var ISMAC     = 'true'
-  var param     = 'save'
-  var MYDOCS    = '/Users/Main/Documents'
-  var utilities = PATH + '/jsx/Utilities.jsx'
+obj.addEventListener('mouseup', (evn) => {
+  var alt = evn.getModifierState('Alt');
 
-  var file = PATH + '/jsx/Save.jsx'
+  if (ISMAC) var opener = macOpener
+  else       var opener = pcOpener
 
-  CEP.evalScript("param  = '" + param  + "'")
-  CEP.evalScript("ISMAC  = '" + ISMAC  + "'")
-  CEP.evalScript("MYDOCS = '" + MYDOCS + "'")
+//  var path  = localStorage.lastPath
+  path = MYDOCS
 
-  CEP.evalScript("$.evalFile('" + utilities + "')")
-  CEP.evalScript("$.evalFile('" + file      + "')")
-}
+  if (path == ''){
+    lert('Pas de projet Svija enregistré')
+    return true
+  }
+
+  if (ISMAC)
+    path = path.substr(0, path.lastIndexOf('/'))
+  else
+    path = path.substr(0, path.lastIndexOf('\\'))
+
+  path = path.replace(/\\\\/g, "\\")
+  window.cep.process.createProcess(opener, path)
+
+  //lert(path)
+  // C:/Users/andy/Desktop/pixside.fr/sync/Example Pages/sync
+
+//path = "C:\\Users\\andy\\Desktop\\pixside.fr\\sync" // worked
+//path = "C:\\Users\\andy\\Desktop\\pixside.fr\\sync\\Example Pages" // worked
+
+})
+
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
 

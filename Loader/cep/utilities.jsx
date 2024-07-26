@@ -1,10 +1,10 @@
 #target illustrator  
 
-/*:::::::::::::::::::::::::::::::::::::::: Utilities.jsx */
+/*:::::::::::::::::::::::::::::::::::::::: utilities.jsx */
 
 /*———————————————————————————————————————— notes
 
-    Utilities.jsx
+    utilities.jsx
 
     1.0.5
 

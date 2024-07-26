@@ -13,19 +13,30 @@
 
 */
 
-/*———————————————————————————————————————— set initial status color
+/*———————————————————————————————————————— get colors from localStorage
+
+    if user already picked a favorite color */
+
+if (typeof localStorage.logoOnline != 'undefined')
+    document.documentElement.style.setProperty('--logoOnline', localStorage.logoOnline)
+
+/*———————————————————————————————————————— online status color
 
     colored if online, red bar if offline */
 
-if (navigator.onLine){
-  logoArt.style.fill = 'var(--logoOnline)'
-  logoBar.style.fill = 'var(--panel-bg-dark)'
-  }
+var ms = 500
 
-else{
-  logoArt.style.fill = 'none'
-  logoBar.style.fill = 'red'
-}
+setInterval(function(){
+  if (navigator.onLine){
+    logoArt.style.fill = 'var(--logoOnline)'
+    logoBar.style.fill = 'var(--panel-bg-dark)'
+    }
+  
+  else{
+    logoArt.style.fill = 'none'
+    logoBar.style.fill = 'red'
+  }
+}, ms)
 
 /*———————————————————————————————————————— svijaLogo.addEventListener('mouseup'
 
@@ -37,7 +48,7 @@ svijaLogo.addEventListener('mouseup', (evn) => {
   var ISMAC     = 'true'
   var MYDOCS    = '/Users/Main/Documents'
 
-  var file = PATH + '/jsx/' + naam
+  var file = PATH + '/cep/' + naam
 
   CEP.evalScript("$.evalFile('" + file + "')")
   CEP.evalScript('colorPicker()', setAccent)
@@ -46,7 +57,7 @@ svijaLogo.addEventListener('mouseup', (evn) => {
 
 /*———————————————————————————————————————— setAccent(arg)
 
-    return argument after CEP script is executed */
+    callback function after CEP script is executed */
 
 function setAccent(arg){
   var parts = arg.split(':')
@@ -60,19 +71,16 @@ function setAccent(arg){
   var saturation = Math.round(hsl[1])
 
   var lightness = 50
-  var dimness   = 30
-
   if (hue>190 && hue < 290) lightness += 10
 
-  var highlight = 'hsl('+hue+', 100%, ' + lightness + '%)'
-  var  dimlight = 'hsl('+hue+',  30%, ' + dimness   + '%)'
+  var color = 'hsl('+hue+', 100%, ' + lightness + '%)'
+  localStorage.logoOnline = color
 
-  localStorage.highlight = highlight
-  localStorage.dimlight  = dimlight
-
-  document.documentElement.style.setProperty('--logoOnline', highlight)
-//  document.documentElement.style.setProperty('--system-dimlight',   dimlight)
+  document.documentElement.style.setProperty('--logoOnline', color)
 }
+
+
+/*:::::::::::::::::::::::::::::::::::::::: utilities */
 
 /*———————————————————————————————————————— rgbToHsl(r, g, b)
 
@@ -100,4 +108,5 @@ function rgbToHsl(r, g, b){
 
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
+
 

@@ -20,21 +20,11 @@ body{
   padding-top:12px;
   background-color:var(--panel-bg);
   color:#bbb;
-  font-family:'Source Sans Pro';
 }
 
 input:focus{ /* get rid of blue line when focused */
   outline: none!important;
   box-shadow: none!important;
-}
-
-/*———————————————————————————————————————— links */
-
-a:link, a:visited{
- 
-  font-family: 'Source Sans Pro';
-  color:#bbb;
-  text-decoration:none;
 }
 
 /*———————————————————————————————————————— logo */
@@ -50,10 +40,14 @@ a:link, a:visited{
   vertical-align:top;
 }
 
-#svijaLogo #logoBar{ fill: #424242; }
-#svijaLogo #logoArt{ fill: #646464; }
+#svijaLogo #logoBar{ fill: none; }
+#svijaLogo #logoArt{ fill: none; }
 
 /*———————————————————————————————————————— buttons & HR */
+
+.btnLarge, .btnMed, .btnSmall{
+  display:none;
+}
 
 input[type=button]{
   border:1px solid #666;
@@ -64,9 +58,6 @@ input[type=button]{
   margin-left:10px;
   margin-right:-5px;
   margin-bottom:2px;
-  font-size:11px;
-  letter-spacing:0.01em;
-  font-weight:bold;
 
   color:#c9c9c9;
   background-color:#464646;
@@ -115,11 +106,6 @@ div#moreLess{
   padding:0 9px;
   padding-bottom:3px;
 
-  text-transform:uppercase;
-  letter-spacing:2px;
-
-  font-size:9px;
-  line-height:9px;
 }
 
 div#moreLess span{
@@ -159,7 +145,7 @@ div#bottomSection input.hubIcon:active{
 #indicatorRow{
   margin-top:0px;
 
-  font-family:'Source Sans Pro';
+  font-family:'Lucida Grande';
   font-size:8px;
   font-weight:bold;
   letter-spacing:1px;
@@ -187,7 +173,7 @@ div#bottomSection input.hubIcon:active{
   margin-left:0px;
   margin-bottom:2px;
 
-  font-family:'Source Sans Pro';
+  font-family:'Lucida Grande';
   font-weight:bold;
   font-size:8px;
   line-height:22px;
@@ -216,7 +202,7 @@ input.hubIcon{
   margin-left:6px;
   margin-top:5px;
   padding-bottom:2.5px;
-  font-family:'Source Sans Pro';
+  font-family:'Lucida Grande';
   font-weight:bold;
   font-size:10px;
   letter-spacing:0px;

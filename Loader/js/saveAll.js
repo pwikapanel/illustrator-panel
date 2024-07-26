@@ -1,28 +1,33 @@
 
-//:::::::::::::::::::::::::::::::::::::::: addListeners.js
+/*:::::::::::::::::::::::::::::::::::::::: saveAll.js */
 
-var objId = 'button4m'
+/*———————————————————————————————————————— parameters */
 
-var obj = document.getElementById(objId)
+var objID    = 'buttAll'
+var objLabel = 'save all'
 
-if (obj === null) lert(objId + ' is null')
+/*———————————————————————————————————————— configure button */
 
-obj.value="save all"
+var obj = document.getElementById(objID)
+if (obj === null) lert(objID + ' is null')
 
-obj.addEventListener('click', savePage)
+obj.value = objLabel
+obj.style.display = 'inline'
 
-/*———————————————————————————————————————— savePage()
+/*———————————————————————————————————————— listener function
 
-    copied directly from legacy, need to update */
+  opens folder based on localStorage lastPath */
 
-function savePage(){
+obj.addEventListener('mouseup', (evn) => {
+  var alt = evn.getModifierState('Alt');
 
+  var naam      = 'save.jsx'
   var ISMAC     = 'true'
-  var param     = 'save'
+  var param     = 'all'
   var MYDOCS    = '/Users/Main/Documents'
-  var utilities = PATH + '/jsx/Utilities.jsx'
+  var utilities = PATH + '/cep/utilities.jsx'
 
-  var file = PATH + '/jsx/Save.jsx'
+  var file = PATH + '/cep/' + naam
 
   CEP.evalScript("param  = '" + param  + "'")
   CEP.evalScript("ISMAC  = '" + ISMAC  + "'")
@@ -30,5 +35,9 @@ function savePage(){
 
   CEP.evalScript("$.evalFile('" + utilities + "')")
   CEP.evalScript("$.evalFile('" + file      + "')")
-}
+
+})
+
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
 

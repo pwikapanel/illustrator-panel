@@ -31,7 +31,6 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: control functions */
 
-
 /*———————————————————————————————————————— statusUpdate(arg)
 
     gets info about ai-land and updates

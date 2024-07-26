@@ -1,10 +1,10 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: localFolder.js */
+/*:::::::::::::::::::::::::::::::::::::::: save.js */
 
 /*———————————————————————————————————————— parameters */
 
-var objID    = 'buttCheck'
-var objLabel = 'check & repair'
+var objID    = 'buttSave'
+var objLabel = 'save'
 
 /*———————————————————————————————————————— configure button */
 
@@ -21,7 +21,7 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
-  var naam      = 'check.jsx'
+  var naam      = 'save.jsx'
   var ISMAC     = 'true'
   var param     = 'save'
   var MYDOCS    = '/Users/Main/Documents'

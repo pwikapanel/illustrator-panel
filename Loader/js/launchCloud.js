@@ -1,34 +1,57 @@
 
-//:::::::::::::::::::::::::::::::::::::::: addListeners.js
+/*:::::::::::::::::::::::::::::::::::::::: launchCloud.js */
 
-var objId = 'button2r'
+/*———————————————————————————————————————— parameters */
 
-var obj = document.getElementById(objId)
+var objID    = 'buttCloud'
+var objLabel = 'svija cloud'
 
-if (obj === null) lert(objId + ' is null')
+/*———————————————————————————————————————— configure button */
 
-obj.value="svija cloud"
+var obj = document.getElementById(objID)
+if (obj === null) lert(objID + ' is null')
 
-obj.addEventListener('click', savePage)
+obj.value = objLabel
+obj.style.display = 'inline'
 
-/*———————————————————————————————————————— savePage()
+/*———————————————————————————————————————— listener function
 
-    copied directly from legacy, need to update */
+  depends on having localStorage URL so not yet */
 
-function savePage(){
+obj.addEventListener('mouseup', (evn) => {
+  var alt = evn.getModifierState('Alt');
 
-  var ISMAC     = 'true'
-  var param     = 'save'
-  var MYDOCS    = '/Users/Main/Documents'
-  var utilities = PATH + '/jsx/Utilities.jsx'
+//if(localStorage.url == ''){
+//  lert('Fichier manquant\nMerci de créer\nsync/SVIJA/System/URL.txt\navec l\'url du site (sans https://)')
+//  return true
+//}
 
-  var file = PATH + '/jsx/Save.jsx'
+//url = 'https://' + localStorage.url
 
-  CEP.evalScript("param  = '" + param  + "'")
-  CEP.evalScript("ISMAC  = '" + ISMAC  + "'")
-  CEP.evalScript("MYDOCS = '" + MYDOCS + "'")
+  url = "https://example.svija.site"
+  url += '/cloud/'
 
-  CEP.evalScript("$.evalFile('" + utilities + "')")
-  CEP.evalScript("$.evalFile('" + file      + "')")
+  CEP.openURLInDefaultBrowser(url)
+})
+
+
+/*:::::::::::::::::::::::::::::::::::::::: interval function */
+
+var ms   = 5000
+var naam = 'getURL.jsx'
+var file = PATH + '/cep/' + naam
+
+CEP.evalScript("$.evalFile('" + file + "')")
+
+setInterval(function(){ CEP.evalScript('getURL()', setURL) }, ms)
+
+/*———————————————————————————————————————— setURL(arg) */
+
+function setURL(arg){
+//lert(arg+' received from function')
+  if (arg != '') localStorage.url = arg
 }
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
+
 
