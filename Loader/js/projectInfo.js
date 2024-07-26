@@ -19,17 +19,20 @@
 //      //setInterval(function(){ CEP.evalScript('getURL()', setURL) }, ms)
 //      z = function(){ CEP.evalScript('getURL()', setURL) }
 
+/*———————————————————————————————————————— setup */
+
+var naam      = 'projectInfo.jsx'
+var ISMAC     = 'true'
+var MYDOCS    = '/Users/Main/Documents'
+
+var file = PATH + '/cep/' + naam
+
+CEP.evalScript("$.evalFile('" + file + "')")
+
+/*———————————————————————————————————————— get info */
+
 function projectInfo(){
-
-  var naam      = 'projectInfo.jsx'
-  var ISMAC     = 'true'
-  var MYDOCS    = '/Users/Main/Documents'
-
-  var file = PATH + '/cep/' + naam
-
-  CEP.evalScript("$.evalFile('" + file + "')")
-  CEP.evalScript('getURL()', setURL)
-
+  CEP.evalScript('getProjectInfo()', setURL)
 }
 
 projectInfo()
@@ -39,7 +42,9 @@ projectInfo()
     */
 
 function setURL(arg){
-  lert('Got :'+arg+': in return')
+
+  var results = JSON.parse(arg)
+  lert('got:\nurl: '+results.url+'\n\n\nsyncFolder: '+results.syncFolder+'\n\n\nrecent: '+results.recent)
   return true
 
 //if (arg != '') localStorage.url = arg
