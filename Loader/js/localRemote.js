@@ -1,5 +1,5 @@
 
-//:::::::::::::::::::::::::::::::::::::::: addListeners.js
+//:::::::::::::::::::::::::::::::::::::::: localRemote.js
 
 var objId = 'link1r'
 
@@ -9,27 +9,25 @@ if (obj === null) lert(objId + ' is null')
 
 obj.text="l/r"
 
-obj.addEventListener('click', savePage)
+obj.addEventListener('click', localRemote)
 
-/*———————————————————————————————————————— savePage()
+/*———————————————————————————————————————— localRemote()
 
     copied directly from legacy, need to update */
 
-function savePage(){
+function localRemote(){
 
-  var ISMAC     = 'true'
-  var param     = 'save'
-  var MYDOCS    = '/Users/Main/Documents'
-  var utilities = PATH + '/jsx/Utilities.jsx'
+  if (LOCAL == true) LOCAL = false
+  else LOCAL = true
 
-  var file = PATH + '/jsx/Save.jsx'
+  // load initial scripts
 
-  cep.evalScript("param  = '" + param  + "'")
-  cep.evalScript("ISMAC  = '" + ISMAC  + "'")
-  cep.evalScript("MYDOCS = '" + MYDOCS + "'")
+  var scriptID =  'master'
+  var path     =  'json/' + scriptID + '.json'                                              
 
-  cep.evalScript("$.evalFile('" + utilities + "')")
-  cep.evalScript("$.evalFile('" + file      + "')")
+  if (LOCAL == true) fetchLocal (scriptID, path, parseScriptList)
+                else fetchRemote(scriptID, path, parseScriptList)
+
 }
 
 // <a id="link1l" href="javascript:      fetchLink()"></a> • 

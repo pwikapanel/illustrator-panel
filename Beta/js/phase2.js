@@ -81,8 +81,6 @@ else lert('already loaded')
 
 //:::::::::::::::::::::::::::::::::::::::: 4. build panel from localStorage
 
-
-
 /* clear existing content, possibly unnecessary
 
 document.querySelectorAll('[style]').forEach(el => el.removeAttribute('style'))

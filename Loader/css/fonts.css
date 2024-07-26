@@ -1,6 +1,23 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: global.css */
 
+/*———————————————————————————————————————— font declaration */
+
+@font-face {
+  font-family:'Source Sans Pro';
+  font-weight:normal;
+/*  src:url('./fonts/Source Sans Pro.woff') format('woff'); */
+  src:url('./fonts/SourceSansPro-Regular.woff') format('woff');
+ 
+}
+
+@font-face {
+  font-family:'Source Sans Pro';
+  font-weight:bold;
+/*  src:url('./fonts/Source Sans Pro Bold.woff') format('woff'); */
+  src:url('./fonts/SourceSansPro-SemiBold.woff') format('woff');
+}
+
 /*———————————————————————————————————————— permanent */
 
 *{
@@ -18,7 +35,7 @@ html, body{
 
 body{
   padding-top:12px;
-  background-color:var(--panel-bg);
+  background-color:#535353;
   color:#bbb;
   font-family:'Source Sans Pro';
 }
@@ -40,7 +57,6 @@ a:link, a:visited{
 /*———————————————————————————————————————— logo */
 
 #svijaLogo{
-  cursor:pointer;
   margin:0;
   padding:0;
   width:115px;
@@ -109,8 +125,8 @@ hr{
 /*———————————————————————————————————————— bottom bar */ 
 
 div#moreLess{
-  background-color:var(--panel-bg-dark);
-  border-top:1px solid var(--panel-border);
+  background-color:#464646;
+  border-top:1px solid #323232;
   text-align:right; 
   padding:0 9px;
   padding-bottom:3px;
@@ -127,28 +143,11 @@ div#moreLess span{
 }
 
 div#moreLess a{
-  --panel-hamburger:hsl(0  0%  65%);
+  color:#858585;
 }
 
 div#moreLess a:hover{
   color:#fff;
-}
-
-
-div#bottomSection input.hubIcon{
-  color:var(--button-bottom-label);
-  border:1px solid var(--button-bottom-border);
-  background-color:var(--button-bottom-background);
-}
-
-div#bottomSection input.hubIcon:hover{
-  color: var(--highlight-color);
-  background-color: var(--highlight-fill);
-  border:1px solid var(--system-highlight);
-}
-
-div#bottomSection input.hubIcon:active{
-  background-color:var(--button-bottom-label-active);
 }
 
 
@@ -240,6 +239,22 @@ input.hubIcon:active{
   background-color:var(--button-background-active);
 }
 
+div#bottomSection input.hubIcon{
+  color:var(--button-bottom-label);
+  border:1px solid var(--button-bottom-border);
+  background-color:var(--button-bottom-background);
+}
+
+div#bottomSection input.hubIcon:hover{
+  color: var(--highlight-color);
+  background-color: var(--highlight-fill);
+  border:1px solid var(--system-highlight);
+}
+
+div#bottomSection input.hubIcon:active{
+  background-color:var(--button-bottom-label-active);
+}
+
 input.hubIcon#btnSave,
 input.hubIcon#btnOpen{
   background-color:var(--system-dimlight);
@@ -281,6 +296,15 @@ input.hubIcon#btnOpen{
 
 #showMore:hover{
   color:var(--highlight-color);
+}
+
+#bottomSection{
+  margin-top:6px;
+  background-color:var(--bottomSection-background);
+  height:35px;
+  border-top:1px solid var(--bottomSection-border-top);
+  padding-top:2px;
+  padding-bottom:6px;
 }
 
 /*———————————————————————————————————————— spinner & doneMsg */

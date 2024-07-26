@@ -1,0 +1,301 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<script type="text/javascript" src="CSXS/CSInterface.js"></script>
+
+<script>
+
+// see js/beta.js
+
+//:::::::::::::::::::::::::::::::::::::::: initialization
+
+  var CEP     = new CSInterface()
+  var LOCAL   = true
+  var VERSION = '1.0.7'
+  var SERVER  = 'tools.svija.love'
+  var MYDOCS  = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)      // C:Users/andy/Documents
+  var ISMAC   = CEP.getOSInformation().substring(0,3) == 'Mac'  // false
+  var PATH    = CEP.getSystemPath(SystemPath.EXTENSION)
+
+  window.addEventListener('error', (event)=>{ alert(event.message) })
+
+//:::::::::::::::::::::::::::::::::::::::: script loaders
+
+/*———————————————————————————————————————— loadHtml(str)
+
+    installs an HTML block */
+
+function loadHtml(scriptID, str){
+  var obj = document.getElementById(scriptID)
+  if (obj != null) obj.remove()
+
+  var obj = document.createElement('div')
+  document.body.appendChild(obj)
+
+  obj.id = scriptID
+  obj.innerHTML = str 
+}
+
+/*———————————————————————————————————————— loadCss(str)
+
+    installs a CSS sheet */
+
+function loadCss(scriptID, str, arg){
+//  document.getElementsByTagName('style')[0].innerHTML = str 
+
+  var obj = document.getElementById(scriptID)
+  if (obj != null) obj.remove()
+
+  var obj = document.createElement('style')
+  document.head.appendChild(obj)
+
+  obj.ID = scriptID
+  obj.innerHTML = str 
+}
+
+/*———————————————————————————————————————— loadJs(str)
+
+    installs a JS block */
+
+function loadJs(scriptID, str, arg){
+  var obj = document.getElementById(scriptID)
+  if (obj != null) obj.remove()
+
+  var obj = document.createElement('script')
+  document.body.appendChild(obj)
+
+  obj.ID = scriptID
+  obj.innerHTML = str 
+}
+
+/*———————————————————————————————————————— loadJson(bld, which, src) NOT IMPLEMENTED
+
+    */
+
+function loadJson(which, src){
+  lert(197+' loadJson()')
+}
+
+
+//:::::::::::::::::::::::::::::::::::::::: fetch functions
+
+/*———————————————————————————————————————— parseScriptList(str)
+
+    {"build":0, "source":"master.json"} */
+
+function parseScriptList(scriptID, str, path){
+  if (str == '') return true
+
+  try{
+    var arr = JSON.parse(str)
+  }
+  catch(e){ lert("JSON Parse Error\n" + e + '\n' + path) }
+ 
+  for (var x=0; x<arr.length; x++){
+
+    var scriptBuild  =  arr[x]['build']
+    if (typeof scriptBuild == "string") continue // commment
+
+    var scriptSource =  arr[x]['source']
+    var parts = scriptSource.split('.')
+    var scriptID     = parts[0] 
+    var scriptType   = parts[1]
+
+    if (scriptBuild < 0){
+      deleteElement(scriptType, scriptID)
+      continue
+    }
+   
+    var functionName = 'fetchScript'
+
+    window[functionName](scriptBuild, scriptID, scriptSource, scriptType)
+  }
+}
+
+/*———————————————————————————————————————— fetchScript(bld, which, src)
+
+    */
+
+function fetchScript(bld, which, src, scriptType){
+
+  var lsRef  = scriptType + which
+  var lsRef  = scriptType + which + 'build'
+
+  // if it's already up to date
+  if (typeof(localStorage[lsRef]) != 'undefined')
+    if (bld <= localStorage[lsRef])
+      return true
+
+  src = scriptType + '/' + src
+
+  var functionName = 'load' + capitalize(scriptType)
+
+  var thisFun = window[functionName]
+
+  if(LOCAL) fetchLocal(which, src, thisFun)
+      else fetchRemote(which, src, thisFun)
+}
+
+/*———————————————————————————————————————— fetchLocal(path, callback)
+
+    https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri
+
+    three params: ID, path, and callback function */
+
+function fetchLocal(which, path, callback){
+
+  fetchL(path)
+    .then(function(text) {
+      if (text != '') callback(which, text, path)
+      else{
+        lert('Empty File\n/' + path)
+        callback('', '', path)
+      }
+    })
+
+  .catch(function(err){
+    lert('Fetch Error\n'+err+'\n/'+path)
+    callback('', '', path)
+  })
+}
+
+/*———————————————————————————————————————— fetchRemote(path, callback)
+
+    https://github.com/Adobe-CEP/Getting-Started-guides/blob/master/Network%20requests%20and%20responses%20with%20Fetch/readme.md
+
+    Note that fetch() is not the only way that CEP gives you to make network requests.
+
+    Since Chromium Embedded Framework is essentially a browser, you can use
+    an XMLHttpRequest (or a client-side library that wraps it, such as jQuery)
+    You can also take advantage of Node.js within CEP, which gives you even
+    more alternatives for making network requests.
+
+    three params: ID, path, and callback function */
+
+function fetchRemote(which, path, callback) {
+
+  path = 'https://' + SERVER + '/' + VERSION +'/'+ path
+  var pathRand = path + '?' + Math.random()
+
+  fetch(pathRand)
+    .then(function(res){
+      if (res.ok){
+        return res.text()
+      }
+    })
+    .then(function(text){
+      if (typeof text != 'undefined'){
+        if (text != '') callback(which, text, path)
+        else{
+          lert('Empty File\n' + path)
+          callback('', '', path)
+        }
+      }
+      else {
+        lert('404 Error\n' + path)
+        callback('', '', path)
+      }
+    })
+
+  .catch(function(err){
+    lert('Server not found\n' + path)
+    callback('', '', path)
+   })
+}
+
+/*———————————————————————————————————————— fetchL(file)
+
+    replaces "fetch" function for server */
+
+function fetchL(file) {
+
+  return new Promise(function(resolve, reject) {
+    var rawFile = new XMLHttpRequest()
+    rawFile.open("GET", file, false)
+    rawFile.onreadystatechange = function (){
+      if(rawFile.readyState === 4)
+          if(rawFile.status === 200 || rawFile.status == 0)
+              resolve(rawFile.responseText)
+    }
+
+    rawFile.onerror = reject
+    rawFile.send(null)
+  })
+}
+
+
+//:::::::::::::::::::::::::::::::::::::::: utilities
+
+/*———————————————————————————————————————— deleteElement(scriptType, scriptID)
+
+    deletes HTML, JS or CSS given an ID */
+
+function deleteElement(scriptType, scriptID){
+
+  lert('ging to Script Deletion\nDeleting object '+scriptID+' of type '+scriptType)
+
+  obj = document.getElementById(scriptID)
+  if (obj == null) return true
+
+  lert('Script Deletion\nDeleting object '+scriptID+' of type '+scriptType)
+
+  if (scriptType == 'css')
+    obj.querySelectorAll('link[rel="stylesheet"], style').forEach(elem => elem.parentNode.removeChild(elem))
+
+  else obj.remove()
+}
+
+/*———————————————————————————————————————— stripExtension(str)
+
+    strips everything after last period */
+
+function stripExtension(str){
+  if (str.indexOf('.') < 0) return str
+
+  var dotIndex = str.lastIndexOf('.')
+  return str.substr(0, dotIndex)
+}
+
+/*———————————————————————————————————————— capitalize first letter
+    */
+
+function capitalize(str){
+  return str.charAt(0).toUpperCase()+str.slice(1)
+}
+
+/*———————————————————————————————————————— lert(msg)
+
+    alerts in ai-land don't exit program space */
+
+function lert(msg){
+  msg = JSON.stringify(String(msg))
+  msg = msg.substr(1, msg.length-2)
+
+  CEP.evalScript('alert("' + msg + '")')
+}
+
+
+</script>
+
+<style>  #reloader{
+  cursor:wait;
+  width:30px;height:10px;
+  position:absolute;top:0;left:0;
+  border:1px solid hsl(0 0% 22%);background-color:hsl(0 0% 26%);
+  border-left:none;
+} </style>
+
+</head><body oncontextmenu='return false'><div id="reloader" onclick='location.reload()'></div>
+
+<script> // initial loading
+
+  // load initial scripts
+
+  var scriptID =  'master'
+  var path     =  'json/' + scriptID + '.json'                                              
+
+  if (LOCAL == true) fetchLocal (scriptID, path, parseScriptList)
+                else fetchRemote(scriptID, path, parseScriptList)
+
+</script>
+
+</body></html>
+

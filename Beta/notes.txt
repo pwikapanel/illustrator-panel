@@ -3,7 +3,6 @@ problems:
    mac: can't open when no file open — dialog is okay, but file never opens
    mac: opening with alt key works
 
-
 next:
 
    environmental variables isMac (boolean) in both js & jsx

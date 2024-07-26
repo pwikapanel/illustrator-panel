@@ -15,6 +15,6 @@ obj.addEventListener('click', showPanel)
 
 function showPanel(){
   var file = PATH + '/jsx/Dialog.jsx'
-  cep.evalScript("$.evalFile('" + file + "')")
+  CEP.evalScript("$.evalFile('" + file + "')")
 }
 

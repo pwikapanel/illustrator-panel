@@ -18,18 +18,19 @@ obj.addEventListener('click', savePage)
 
 function savePage(){
 
+  var naam      = 'Save.jsx'
   var ISMAC     = 'true'
   var param     = 'save'
   var MYDOCS    = '/Users/Main/Documents'
   var utilities = PATH + '/jsx/Utilities.jsx'
 
-  var file = PATH + '/jsx/Save.jsx'
+  var file = PATH + '/jsx/' + naam
 
-  cep.evalScript("param  = '" + param  + "'")
-  cep.evalScript("ISMAC  = '" + ISMAC  + "'")
-  cep.evalScript("MYDOCS = '" + MYDOCS + "'")
+  CEP.evalScript("param  = '" + param  + "'")
+  CEP.evalScript("ISMAC  = '" + ISMAC  + "'")
+  CEP.evalScript("MYDOCS = '" + MYDOCS + "'")
 
-  cep.evalScript("$.evalFile('" + utilities + "')")
-  cep.evalScript("$.evalFile('" + file      + "')")
+  CEP.evalScript("$.evalFile('" + utilities + "')")
+  CEP.evalScript("$.evalFile('" + file      + "')")
 }
 
