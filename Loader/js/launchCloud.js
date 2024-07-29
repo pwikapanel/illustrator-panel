@@ -39,15 +39,15 @@ obj.addEventListener('mouseup', (evn) => {
 
 var ms   = 5000
 var naam = 'getURL.jsx'
-var file = PATH + '/cep/' + naam
+var file = TOOLSPATH + '/cep/' + naam
 
 CEP.evalScript("$.evalFile('" + file + "')")
 
-setInterval(function(){ CEP.evalScript('getURL()', setURL) }, ms)
+setInterval(function(){ CEP.evalScript('getURL()', lc_setURL) }, ms)
 
-/*———————————————————————————————————————— setURL(arg) */
+/*———————————————————————————————————————— lc_setURL(arg) */
 
-function setURL(arg){
+function lc_setURL(arg){
 //lert(arg+' received from function')
   if (arg != '') localStorage.url = arg
 }

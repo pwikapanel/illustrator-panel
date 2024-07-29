@@ -176,7 +176,7 @@ function getLinksPath(doc){
 
 function getSvgFilesPath(doc){
  
-  var s = getSyncPath(doc)
+  var s = xgetSyncPath(doc)
   if (s == '') return ''
 
   if (macOS) return s + '/SVIJA/SVG Files'
@@ -194,11 +194,11 @@ function svgNameSingleArtboard(doc){
   return result
 }
 
-/*———————————————————————————————————————— getSyncPath(doc)
+/*———————————————————————————————————————— xgetSyncPath(doc)
 
     gets SYNC folder path from doc */
 
-function getSyncPath(doc){
+function xgetSyncPath(doc){
   //var path = String(doc.path.fsName)
 
   var path = doc.path.fsName

@@ -1,10 +1,10 @@
 #target illustrator  
 
-/*:::::::::::::::::::::::::::::::::::::::: save.jsx */
+/*:::::::::::::::::::::::::::::::::::::::: Save.jsx */
 
 /*———————————————————————————————————————— notes
 
-    save.jsx
+    Save.jsx
 
     1.0.5
 
@@ -28,10 +28,10 @@
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
-    
+ 
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
-    
+
     The software is provided "as is", without warranty of any kind, express or
     implied, including but not limited to the warranties of merchantability,
     fitness for a particular purpose and noninfringement. In no event shall the
@@ -95,23 +95,23 @@ var single = param == 'all'    ? false : true // save only frontmost doc?
 
 /*———————————————————————————————————————— "for" loop through documents */
 
-// var extraLayer = false
+// var extraLayer = false;
 
 for (var index=0; index<docsOpen; index++){
 
-  app.activeDocument = appDocs[index]
+  app.activeDocument = appDocs[index];
 
-  var doc            = app.activeDocument
+  var doc            = app.activeDocument;
 
   if (isValid(doc)){
 
-    var activeBoard    = doc.artboards.getActiveArtboardIndex()
+    var activeBoard    = doc.artboards.getActiveArtboardIndex();
     var originalPath   = getDocPath(doc)
 
     var theseFileSizes = saveSvg(doc) ///////////////  MAIN SAVE AS SVG FUNCTION  \\\\\\\\\\\\\\\
   
-    var aiFile = new File(originalPath)
-    doc.saveAs(aiFile, aiOpts)
+    var aiFile = new File(originalPath);
+    doc.saveAs(aiFile, aiOpts);
 
     //————————————————————————————————————————
 
@@ -121,9 +121,11 @@ for (var index=0; index<docsOpen; index++){
 
     //————————————————————————————————————————
 
-    doc.artboards.setActiveArtboardIndex(activeBoard)
+    doc.artboards.setActiveArtboardIndex(activeBoard);
 
   }
+
+  if (single) break;
 }
 
 /*———————————————————————————————————————— restore frontmost doc and alert user */
@@ -143,7 +145,9 @@ finalFeedback(fileSizes);
 //:::::::::::::::::::::::::::::::::::::::: main functions
 
 /*———————————————————————————————————————— saveSvg(doc)
+
   saves file as SVG:
+
   - saves in SYNC/Svija/SVG Files
   - removes any existing files that would provoke a confirmation dialog
   - deletes non-printing layers
@@ -157,6 +161,7 @@ finalFeedback(fileSizes);
 function saveSvg(doc){
 
   var layerInfo = deleteNonPrintingLayers(doc) // info about locked & visible
+  var replaceVB = false
 
   //———————————————————————————————— "SYNC/SVIJA/SVG Files"
 
@@ -172,25 +177,111 @@ function saveSvg(doc){
     }
   }
 
-  //———————————————————————————————— single artboard needs file not folder
+  //———————————————————————————————— create different obj if single artboard
 
   if (doc.artboards.length == 1){
     var path = concatenatePath(svgFilesPath, svgNameSingleArtboard(doc))
     diskObject = new File(path)
   }
 
-  //———————————————————————————————— save svg files */
+  /*———————————————————————————————— add marker rectangle to find artboard */
 
-  var svgOpts = svgOptions(doc.artboards.length)
+  if (doc.artboards.length == 1){
+    app.activeDocument.rulerOrigin = [0,doc.height]
+    doc.layers.add()
+    var rectDict = rectAt00()
+    var replaceVB = true
+  }
+
+  /*———————————————————————————————— export SVG files */
+
+  var svgOpts = svgOptions(doc)
   doc.exportFile(diskObject, ExportType.WOSVG, svgOpts) 
 
-  //———————————————————————————————— restore to original state
+  /*———————————————————————————————— is single artboard: get viewBox size */
 
-  // restore layers
+  if (replaceVB){
+    var ab = doc.artboards[0].artboardRect  // left, top, right, bottom
+
+    var w = ab[2] - ab [0] // right - left
+    var l = ab[1] - ab [3] // top - bottom
+
+    var viewBox =  w + ' ' + l
+  }
+
+  /*———————————————————————————————— get SVG contents
+
+  we will need to update the viewBox coordinates after saving */
+
+  if (replaceVB){
+    var tries = 500
+
+    while (tries > 0 && !diskObject.open("r"))
+      tries -= 1
+
+    if (tries > 0){
+      var svgSource = diskObject.read()
+      diskObject.close()
+    }
+    else{
+      alert('Temporary Error\nPlease add a second artboard and re-save.')
+      svgSource = ''
+      replaceVB = false
+    }
+  }
+
+  /*———————————————————————————————— get correct viewBox
+
+  <rect id="COORDS00" class="cls-1" x="63" y="50.431" width="100" height="100"/>
+
+  if there is nothing above or to the left, there will be no x or y coords */
+
+  if (replaceVB){
+
+    var parts = svgSource.split('COORDS00" ')
+    var piece = parts[1].split(' width=', 1)[0]
+
+    var x = 0
+    var y = 0
+
+    var regx = /x="([0-9\.]*)"/g
+    var regy = /y="([0-9\.]*)"/g
+
+    var resx = regx.exec(piece)
+    var resy = regy.exec(piece)
+
+    if (resx != null) x = resx[1]
+    if (resy != null) y = resy[1]
+
+    viewBox = 'viewBox="' + x + ' ' + y + ' ' + viewBox
+
+  }
+
+  /*———————————————————————————————— replace viewBox in SVG source */
+
+  if (replaceVB){
+    var parts = svgSource.split('viewBox="')
+    var dims  = parts[1].split('"', 1)[0]
+
+    parts[1]  = parts[1].substr(dims.length, parts[1].length-1)
+    svgSource = parts[0] + viewBox + parts[1]
+
+    diskObject.open("w")
+    diskObject.write(svgSource)
+    diskObject.close()
+  }
+
+  //———————————————————————————————— remove coords box
+
+  if (replaceVB) app.undo()
+
+  //———————————————————————————————— restore to original state
+  
   while (doc.layers.length<layerInfo.length)
     app.undo()
 
-  // restore layer states
+  //———————————————————————————————— restore non-printing layer states
+
   for (var r=0; r<layerInfo.length; r++){
     if (layerInfo[r] == 1 || layerInfo[r] == 3){doc.layers[r].locked  = true }
     if (layerInfo[r] == 2 || layerInfo[r] == 3){doc.layers[r].visible = false}
@@ -213,6 +304,33 @@ function saveSvg(doc){
 
 
   return sizes
+}
+
+/*———————————————————————————————————————— svgOptions(includeCanvas)
+
+  sets options for SVG file */
+
+function svgOptions(doc){
+
+  var options= new ExportOptionsWebOptimizedSVG()
+
+  if (doc.artboards.length == 1)
+    options.saveMultipleArtboards = false;                       // Preserves all artwork outside active artboard
+  else
+    options.saveMultipleArtboards = true;                        // Deletes all artwork outside active artboard
+
+  options.artboardRange         = '' // or '1-3'
+  options.coordinatePrecision   = 3
+  options.cssProperties         = SVGCSSPropertyLocation.STYLEELEMENTS
+  options.fontSubsetting        = SVGFontSubsetting.None                         ///////////////////// probably not supported
+  options.fontType              = SVGFontType.SVGFONT
+//options.fontType              = SVGFontType.OUTLINEFONT
+  options.rasterImageLocation   = RasterImageLocation.PRESERVE
+  options.svgId                 = SVGIdType.SVGIDREGULAR
+  options.svgMinify             = false // should use in future
+  options.svgResponsive         = true
+
+  return options;
 }
 
 /*———————————————————————————————————————— finalFeedback(fileSizes)
@@ -405,6 +523,7 @@ function hasPlaced(doc){
 
     // if image path doesn't match doc path, it can't be in links folder
     var str = imgPath.slice(0, linksPath.length);
+
     if (str != linksPath)
       return doc.name + ' contains external images. Please run "Check & Repair"';
 
@@ -419,6 +538,43 @@ function hasPlaced(doc){
 
 
 //:::::::::::::::::::::::::::::::::::::::: other functions
+
+//  rec.opacity = 100 returns name not dict
+
+/*———————————————————————————————————————— rectAt00(obj)
+
+    create rectangle at 0,0 coords to be able to
+    reset the artboard */ 
+
+
+
+function rectAt00(){
+  var recName = 'COORDS00'
+  var alertColor = new RGBColor()
+  alertColor.red = 192; alertColor.green = 255; alertColor.blue = 0
+  
+  var rLeft   = 0
+  var rNegTop = 0
+  var rWidth  = 100
+  var rHeight = 100
+
+  // unlock activeLayer
+
+  var lock = app.activeDocument.activeLayer.locked
+  var vis  = app.activeDocument.activeLayer.visible
+
+  // isg81 -top, left, width, height
+  var rec = app.activeDocument.pathItems.rectangle( rNegTop, rLeft, rWidth, rHeight )
+
+  rec.filled = true
+  rec.stroked = false
+  rec.fillColor = alertColor
+  rec.opacity = 0
+  rec.name = recName
+  
+//var returnDict = {'locked':lock, 'visible':vis, 'name':recName}
+  return rec.name
+}
 
 /*———————————————————————————————————————— deleteNonPrintingLayers(src)
 

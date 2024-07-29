@@ -48,7 +48,7 @@ svijaLogo.addEventListener('mouseup', (evn) => {
   var ISMAC     = 'true'
   var MYDOCS    = '/Users/Main/Documents'
 
-  var file = PATH + '/cep/' + naam
+  var file = TOOLSPATH + '/cep/' + naam
 
   CEP.evalScript("$.evalFile('" + file + "')")
   CEP.evalScript('colorPicker()', setAccent)

@@ -17,7 +17,7 @@ obj.style.display = 'inline'
 
   var ISMAC     = 'true'
   var MYDOCS    = '/Users/Main/Documents'
-  var utilities = PATH + '/cep/utilities.jsx'
+  var utilities = TOOLSPATH + '/cep/utilities.jsx'
 
   CEP.evalScript("ISMAC  = '" + ISMAC  + "'")
   CEP.evalScript("MYDOCS = '" + MYDOCS + "'")
@@ -32,7 +32,7 @@ obj.addEventListener('mouseup', (evn) => {
 
   var naam      = 'createGroup.jsx'
 
-  var file = PATH + '/cep/' + naam
+  var file = TOOLSPATH + '/cep/' + naam
 
   CEP.evalScript("$.evalFile('" + file      + "')")
 

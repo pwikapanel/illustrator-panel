@@ -20,7 +20,7 @@ obj.style.display = 'inline'
   var MYDOCS    = '/Users/Main/Documents'
   CEP.evalScript("ISMAC  = '" + ISMAC  + "'")
   CEP.evalScript("MYDOCS = '" + MYDOCS + "'")
-  var utilities = PATH + '/cep/utilities.jsx'
+  var utilities = TOOLSPATH + '/cep/utilities.jsx'
 
   CEP.evalScript("$.evalFile('" + utilities + "')")
 
@@ -32,7 +32,7 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
   var naam      = 'check.jsx'
-  var file = PATH + '/cep/' + naam
+  var file = TOOLSPATH + '/cep/' + naam
 
   CEP.evalScript("$.evalFile('" + file      + "')")
 

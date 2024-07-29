@@ -12,7 +12,7 @@
 
 //      var ms   = 5000
 //      var naam = 'projectInfo.jsx'
-//      var file = PATH + '/cep/' + naam
+//      var file = TOOLSPATH + '/cep/' + naam
 //      
 //      CEP.evalScript("$.evalFile('" + file + "')")
 //      
@@ -25,30 +25,30 @@ var naam      = 'projectInfo.jsx'
 var ISMAC     = 'true'
 var MYDOCS    = '/Users/Main/Documents'
 
-var file = PATH + '/cep/' + naam
+var file = TOOLSPATH + '/cep/' + naam
 
 CEP.evalScript("$.evalFile('" + file + "')")
 
 /*———————————————————————————————————————— get info */
 
-function projectInfo(){
-  CEP.evalScript('getProjectInfo()', setURL)
-}
+var ms = 500
 
-projectInfo()
+setInterval(function(){
+  CEP.evalScript('getProjectInfo()', setURL)
+}, ms)
 
 /*———————————————————————————————————————— setURL(arg)
 
     */
 
 function setURL(arg){
-
   var results = JSON.parse(arg)
-  lert('got:\nurl: '+results.url+'\n\n\nsyncFolder: '+results.syncFolder+'\n\n\nrecent: '+results.recent)
-  return true
 
-//if (arg != '') localStorage.url = arg
-  if (arg != '') lert('set uRL to '+arg)
+  if (results.siteURL     != '') SITEURL     = results.siteURL
+  if (results.syncPath    != '') SYNCPATH    = results.syncPath
+  if (results.currentPath != '') CURRENTPATH = results.currentPath
+
+  CEP.setWindowTitle(SITEURL)
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */

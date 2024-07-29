@@ -21,7 +21,7 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
-  var file = PATH + '/cep/Dialog.jsx'
+  var file = TOOLSPATH + '/cep/Dialog.jsx'
   CEP.evalScript("$.evalFile('" + file + "')")
 })
 

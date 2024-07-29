@@ -1,30 +1,26 @@
 [
 
-{ "build": 1, "source":         "master.json" },
+{ "build": 1, "source":        "master.json" },
 
-{ "build": 0, "source":          "fonts.css"  },
-{ "build": 0, "source":       "colors-1.css"  },
-{ "build": 0, "source":         "global.css"  },
+{ "build": 0, "source":          "fonts.css" },
+{ "build": 0, "source":       "colors-1.css" },
+{ "build": 0, "source":         "global.css" },
 
-{ "build": 0, "source":      "content01.html" },
-{ "build": 0, "source":      "testLinks.html" },
-{ "build": 0, "source":      "bottomBar.html" },
+{ "build": 0, "source":    "topButtons.html" },
+{ "build": 0, "source": "bottomButtons.html" },
+{ "build": 0, "source":     "bottomBar.html" },
 
-{ "build": 0, "source":  "interfaceCode.js"   },
-{ "build": 0, "source":      "logoColor.js"   },
-{ "build": 0, "source":    "projectInfo.js"   },
+{ "build": 0, "source":   "interfaceCode.js" },
+{ "build": 0, "source":       "logoColor.js" },
+{ "build": 0, "source":     "projectInfo.js" },
 
-{ "build": 0, "source": "checkAndRepair.js"   },
-{ "build": 0, "source":    "createGroup.js"   },
-{ "build": 0, "source":    "launchCloud.js"   },
-{ "build": 0, "source":     "launchSite.js"   },
-{ "build": 0, "source":    "localFolder.js"   },
-{ "build": 0, "source":        "saveAll.js"   },
-{ "build": 0, "source":           "save.js"   },
-{ "build": 0, "source":     "showDialog.js"   },
-
-{ "build": "——— leftover from first version"  },
-{ "build": 0, "source":      "fetchLink.js"   },
-{ "build": 0, "source":    "localRemote.js"   },
+{ "build": 0, "source":  "checkAndRepair.js" },
+{ "build": 0, "source":     "createGroup.js" },
+{ "build": 0, "source":     "launchCloud.js" },
+{ "build": 0, "source":      "launchSite.js" },
+{ "build": 0, "source":     "localFolder.js" },
+{ "build": 0, "source":         "saveAll.js" },
+{ "build": 0, "source":            "save.js" },
+{ "build": 0, "source":      "showDialog.js" },
 
 {"build":"fin"}]
