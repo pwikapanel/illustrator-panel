@@ -1,1 +1,46 @@
+/*———————————————————————————————————————— buttons & HR */
 
+.btnLarge, .btnMed, .btnSmall{
+  display:none;
+}
+
+input[type=button]{
+  border:1px solid #666;
+  width:115px;
+  height:20px;
+  border-radius:5px;
+  margin:0;
+  margin-left:10px;
+  margin-right:-5px;
+  margin-bottom:2px;
+
+  color:#c9c9c9;
+  background-color:#464646;
+}
+
+div#moreDiv input[type=button]{
+  color:#ababab;
+  background-color:#505050;
+}
+
+input[type=button]:hover{
+  border-color:var(--accentBright);
+}
+
+div#moreDiv input[type=button]:active,
+input[type=button]:active{
+  color:#fff;
+  border-color:#fff;
+}
+
+input.btnMed{
+  width:68px;
+}
+
+input.btnSmall{
+  width:38px;
+}
+
+#buttSave{
+  background-color:var(--accentDim);
+}

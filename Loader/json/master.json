@@ -5,13 +5,15 @@
 { "build": 0, "source":          "fonts.css" },
 { "build": 0, "source":       "colors-1.css" },
 { "build": 0, "source":         "global.css" },
+{ "build": 0, "source":        "buttons.css" },
+{ "build": 0, "source":      "bottomBar.css" },
 
 { "build": 0, "source":    "topButtons.html" },
 { "build": 0, "source": "bottomButtons.html" },
 { "build": 0, "source":     "bottomBar.html" },
 
 { "build": 0, "source":   "interfaceCode.js" },
-{ "build": 0, "source":       "logoColor.js" },
+{ "build": 0, "source":     "accentColor.js" },
 { "build": 0, "source":     "projectInfo.js" },
 
 { "build": 0, "source":  "checkAndRepair.js" },

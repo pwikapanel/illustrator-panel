@@ -54,7 +54,50 @@ hr{
   margin-bottom:5px;
 }
 
-/*:::::::::::::::::::::::::::::::::::::::: beta CSS */
+
+
+/*———————————————————————————————————————— bottom bar */ 
+
+div#moreLess{
+  background-color:var(--panel-bg-dark);
+  border-top:1px solid var(--panel-border);
+  text-align:right; 
+  padding:0 9px;
+  padding-bottom:3px;
+
+}
+
+div#moreLess span{
+  float:left;
+}
+
+div#moreLess a{
+  --panel-hamburger:hsl(0  0%  65%);
+}
+
+div#moreLess a:hover{
+  color:#fff;
+}
+
+
+div#bottomSection input.hubIcon{
+  color:var(--button-bottom-label);
+  border:1px solid var(--button-bottom-border);
+  background-color:var(--button-bottom-background);
+}
+
+div#bottomSection input.hubIcon:hover{
+  color: var(--highlight-color);
+  background-color: var(--highlight-fill);
+  border:1px solid var(--system-highlight);
+}
+
+div#bottomSection input.hubIcon:active{
+  background-color:var(--button-bottom-label-active);
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::: tech CSS */
 
 /*———————————————————————————————————————— indicators */
 

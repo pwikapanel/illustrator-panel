@@ -37,8 +37,8 @@
 /* other colors */
 
   --chartreuse     :hsl( 72 100%  50%);
-  --logoOnline     :hsl( 72 100%  50%);
-  --logoOffline    :hsl( 72   0%  50%);
+  --accentBright   :hsl( 72 100%  50%);
+  --accentDim      :hsl( 72  20%  25%);
 
 
 /* official illustrator colors */

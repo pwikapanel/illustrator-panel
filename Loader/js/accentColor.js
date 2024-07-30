@@ -13,12 +13,15 @@
 
 */
 
+
 /*———————————————————————————————————————— get colors from localStorage
 
     if user already picked a favorite color */
 
-if (typeof localStorage.logoOnline != 'undefined')
-    document.documentElement.style.setProperty('--logoOnline', localStorage.logoOnline)
+if (typeof localStorage.accentBright != 'undefined'){
+  document.documentElement.style.setProperty('--accentBright', localStorage.accentBright)
+  document.documentElement.style.setProperty('--accentDim',    localStorage.accentDim)
+}
 
 /*———————————————————————————————————————— online status color
 
@@ -28,7 +31,7 @@ var ms = 500
 
 setInterval(function(){
   if (navigator.onLine){
-    logoArt.style.fill = 'var(--logoOnline)'
+    logoArt.style.fill = 'var(--accentBright)'
     logoBar.style.fill = 'var(--panel-bg-dark)'
     }
   
@@ -73,14 +76,29 @@ function setAccent(arg){
   var lightness = 50
   if (hue>190 && hue < 290) lightness += 10
 
-  var color = 'hsl('+hue+', 100%, ' + lightness + '%)'
-  localStorage.logoOnline = color
+  var bright = 'hsl('+hue+', 100%, ' + lightness + '%)'
+  var dim    = dimVersion(hue)
 
-  document.documentElement.style.setProperty('--logoOnline', color)
+  localStorage.accentBright = bright 
+  localStorage.accentDim    = dim
+
+  document.documentElement.style.setProperty('--accentBright', bright)
+  document.documentElement.style.setProperty('--accentDim',    dim)
 }
 
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities */
+
+/*———————————————————————————————————————— dimVersion(hue, lightness)
+
+    returns a dim version of the bright color */
+
+function dimVersion(hue){
+  var lightness = 25                                                             
+  if (hue>190 && hue < 290) lightness += 10                                      
+
+  return 'hsl('+hue+', 20%, ' + lightness + '%)'
+}
 
 /*———————————————————————————————————————— rgbToHsl(r, g, b)
 
@@ -109,4 +127,20 @@ function rgbToHsl(r, g, b){
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
+
+//      var hue = systemHue()                                                          
+//      var lightness = 50                                                             
+//      var dimness = 30                                                               
+//                                                                                     
+//      if (hue>190 && hue < 290) lightness += 10                                      
+//                                                                                     
+//      var highlight = 'hsl('+hue+', 100%, ' + lightness + '%)'                       
+//      var  dimlight = 'hsl('+hue+',  30%, ' + dimness   + '%)'                       
+//                                                                                     
+//      if (typeof localStorage.highlight != 'undefined') highlight = localStorage.highlight
+//      if (typeof localStorage.dimlight  != 'undefined') dimlight  = localStorage.dimlight
+//                                                                                     
+//      document.documentElement.style.setProperty('--system-highlight', highlight);   
+//      document.documentElement.style.setProperty('--system-dimlight',   dimlight);   
+                                                                               
 
