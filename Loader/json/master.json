@@ -3,7 +3,8 @@
 { "build": 1, "source":        "master.json" },
 
 { "build": 0, "source":          "fonts.css" },
-{ "build": 0, "source":       "colors-1.css" },
+{ "build": 0, "source":"interfaceColors.css" },
+{ "build": 0, "source":         "colors.css" },
 { "build": 0, "source":         "global.css" },
 { "build": 0, "source":        "buttons.css" },
 { "build": 0, "source":      "bottomBar.css" },
@@ -13,6 +14,7 @@
 { "build": 0, "source":     "bottomBar.html" },
 
 { "build": 0, "source":   "interfaceCode.js" },
+{ "build": 0, "source":    "panelManager.js" },
 { "build": 0, "source":     "accentColor.js" },
 { "build": 0, "source":     "projectInfo.js" },
 

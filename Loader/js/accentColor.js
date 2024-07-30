@@ -3,13 +3,16 @@
 
 /*———————————————————————————————————————— logo SVG code
 
-  <svg id="svijaLogo" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 115 21">
-    <rect id="logoBar" y="7.34" width="115" height="6.3"/>
-    <path id="logoArt" d="M67.61,4.8h-2.7v11.69h2.7V4.8ZM72.4,,3.02-1.65l6.5-10.04h-3.21Z"/>
-  </svg>
-
-  #svijaLogo #logoBar{ fill: #424242; }
-  #svijaLogo #logoArt{ fill: #ccff00; }
+/><svg id="svijaLogo"
+  onmouseover="logoArt.style.transform='scale(1.1)'"
+  onmouseout ="logoArt.style.transform='scale(1.0)'"
+  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 105 22">
+  <g>
+    <rect id="logoBar" class="cls-1" y="7.85" width="105" height="6.3"/>
+    <path id="logoArt" style="transform-origin: 50% 50%;"
+      d="M62.133,5.571h-2.571v11.143h2.571V5.571ZM66.705,1h-7.143v2.571h7.143V1ZM66.705,5.571h-2.571v15.429h2.571V5.571ZM36.295,16.714h-16.857v-2.571h14.286v-.994l-14.286-1.735v-5.843h16.857v2.571h-14.286v.994l14.286,1.735v5.843ZM85.562,5.571h-16.857v2.571h14.286v.994l-14.286,1.735v5.843h16.857V5.571ZM71.276,13.149l11.714-1.423v2.416h-11.714v-.994ZM55.614,5.571l-5.289,8.178c-.159.246-.43.394-.723.394h-3.38c-.293,0-.564-.147-.723-.394l-5.289-8.178h-3.062l6.192,9.574c.635.982,1.713,1.569,2.882,1.569h3.38c1.17,0,2.247-.586,2.882-1.569l6.192-9.574h-3.062Z"/>
+  </g>
+</svg
 
 */
 
@@ -65,7 +68,8 @@ svijaLogo.addEventListener('mouseup', (evn) => {
 function setAccent(arg){
   var parts = arg.split(':')
 
-  var r = parts[0]
+  ne
+var r = parts[0]
   var g = parts[1]
   var b = parts[2]
 

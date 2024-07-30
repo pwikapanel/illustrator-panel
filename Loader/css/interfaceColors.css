@@ -1,0 +1,82 @@
+/*———————————————————————————————————————— colors
+
+   based on id "if_1" given to body tag
+  
+   see Illustrator panel colors.ai  */
+
+#if_0 {
+
+/* interface 0 */
+
+  --panel-bg       :hsl(0  0%  20%);
+  --panel-bg-dark  :hsl(0  0%  15%);
+  --panel-border   :hsl(0  0%  13%);
+
+  --hamburger      :hsl(0  0%  50%);
+  --input-field    :hsl(0  0%  15%);
+  --pulldown       :hsl(0  0%  16%);
+  --checked-box    :hsl(0  0%  60%);
+  --input-border   :hsl(0  0%  24%);
+  --label-text     :hsl(0  0%  66%);
+  --field-contents :hsl(0  0%  81%);
+  --label-disabled :hsl(0  0%  40%);
+
+}
+
+#if_1 {
+
+/* interface 1 */
+
+  --panel-bg       :hsl(0  0%  33%);
+  --panel-bg-dark  :hsl(0  0%  26%);
+  --panel-border   :hsl(0  0%  22%);
+
+  --hamburger      :hsl(0  0%  65%);
+  --input-field    :hsl(0  0%  27%);
+  --pulldown       :hsl(0  0%  29%);
+  --checked-box    :hsl(0  0%  78%);
+  --input-border   :hsl(0  0%  37%);
+  --label-text     :hsl(0  0%  82%);
+  --field-contents :hsl(0  0% 100%);
+  --label-disabled :hsl(0  0%  54%);
+
+
+
+}
+
+#if_2 {
+
+/* interface 2 */
+
+  --panel-bg       :hsl(0  0%  73%);
+  --panel-bg-dark  :hsl(0  0%  64%);
+  --panel-border   :hsl(0  0%  58%);
+
+  --hamburger      :hsl(0  0%  32%);
+  --input-field    :hsl(0  0%  89%);
+  --pulldown       :hsl(0  0%  77%);
+  --checked-box    :hsl(0  0%  29%);
+  --input-border   :hsl(0  0%  66%);
+  --label-text     :hsl(0  0%  19%);
+  --field-contents :hsl(0  0%  13%);
+  --label-disabled :hsl(0  0%  79%);
+
+}
+
+#if_3 {
+
+/* interface 3 */
+
+  --panel-bg       :hsl(0  0%  94%);
+  --panel-bg-dark  :hsl(0  0%  86%);
+  --panel-border   :hsl(0  0%  80%);
+
+  --hamburger      :hsl(0  0%  47%);
+  --input-field    :hsl(0  0%  98%);
+  --pulldown       :hsl(0  0%  98%);
+  --checked-box    :hsl(0  0%  43%);
+  --input-border   :hsl(0  0%  85%);
+  --label-text     :hsl(0  0%  35%);
+  --field-contents :hsl(0  0%  30%);
+  --label-disabled :hsl(0  0%  80%);
+}

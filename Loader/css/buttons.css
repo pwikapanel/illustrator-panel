@@ -1,46 +1,52 @@
-/*———————————————————————————————————————— buttons & HR */
+/*———————————————————————————————————————— buttons */
+
+/*
+
+// panel width 240px
+// buttons 105px wide x 22px tall
+
+// 10 px marg horizontally
+// 5px marge vertically
+
+//bott bar 12px high
+//bott text 5.71px high:w
+*/
 
 .btnLarge, .btnMed, .btnSmall{
   display:none;
 }
 
 input[type=button]{
-  border:1px solid #666;
-  width:115px;
-  height:20px;
-  border-radius:5px;
-  margin:0;
-  margin-left:10px;
-  margin-right:-5px;
-  margin-bottom:2px;
-
-  color:#c9c9c9;
-  background-color:#464646;
+  width:95px;
+  height:22px;
+  border-style:solid;
+  border-width:1px;
+  border-radius:3px;
+  margin: 0 5px 5px 5px !important;
 }
 
 div#moreDiv input[type=button]{
-  color:#ababab;
-  background-color:#505050;
+  width:105px;
 }
 
-input[type=button]:hover{
-  border-color:var(--accentBright);
-}
-
-div#moreDiv input[type=button]:active,
-input[type=button]:active{
-  color:#fff;
-  border-color:#fff;
-}
+/* med + small = 105 */
 
 input.btnMed{
-  width:68px;
+  width:58px;
 }
 
 input.btnSmall{
-  width:38px;
+  width:47px;
 }
 
-#buttSave{
-  background-color:var(--accentDim);
+/*———————————————————————————————————————— logo */
+
+svg#svijaLogo{
+  cursor:pointer;
+  padding:0 !important;
+  width:115px;
+  height:22px;
+  margin: 0 5px 5px 5px !important;
+  vertical-align:top;
 }
+

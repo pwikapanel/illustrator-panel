@@ -17,9 +17,10 @@ html, body{
 }
 
 body{
-  padding-top:12px;
+  padding-top:10px;
   background-color:var(--panel-bg);
   color:#bbb;
+  text-align: center;
 }
 
 input:focus{ /* get rid of blue line when focused */
@@ -27,207 +28,15 @@ input:focus{ /* get rid of blue line when focused */
   box-shadow: none!important;
 }
 
-/*———————————————————————————————————————— logo */
-
-#svijaLogo{
-  cursor:pointer;
-  margin:0;
-  padding:0;
-  width:115px;
-  stroke-width:0px;
-  margin-left:10px;
-  margin-bottom:0px;
-  vertical-align:top;
-}
-
-#svijaLogo #logoBar{ fill: none; }
-#svijaLogo #logoArt{ fill: none; }
-
-/*———————————————————————————————————————— buttons & HR */
+/*———————————————————————————————————————— HR */
 
 hr{
-  border:0px;
-  border-top:1px solid #424242;
-  margin:0;
-  padding:0;
-  margin-top:8px;
-  margin-bottom:5px;
+  display:block;
+  margin: 5px 10px 9px 10px !important;
+  padding:0 !important;
+  border-width:1px 0 0 0;
+  border-top-style:solid;
 }
-
-/*:::::::::::::::::::::::::::::::::::::::: beta CSS */
-
-/*———————————————————————————————————————— indicators */
-
-#indicatorRow{
-  margin-top:0px;
-
-  font-family:'Lucida Grande';
-  font-size:8px;
-  font-weight:bold;
-  letter-spacing:1px;
-  color:var(--indicator-text);
-  user-select: none;
-}
-
-#indOnline{
-  margin-left:12px;
-  margin-right:10px;
-  width: 20px;
-  height: 8px;
-  background-color:var(--offline);
-  border:none;
-  border-radius:2px;
-}
-
-.inpIndicator{
-  border:none;
-  background:none;
-  height:20px;
-
-  padding:4px;
-  margin:0px;
-  margin-left:0px;
-  margin-bottom:2px;
-
-  font-family:'Lucida Grande';
-  font-weight:bold;
-  font-size:8px;
-  line-height:22px;
-
-  color: var(--indicatorOff);
-  cursor:default;
-  text-transform:uppercase;
-
-}
-
-.inpIndicator:hover{
-  cursor:pointer;
-}
-
-#indReload{
-  margin-left:30px;
-}
-
-/*———————————————————————————————————————— buttons */
-
-input.hubIcon{
-  height:18px;
-  width:64px;
-  border:1px solid var(--button-border);
-  border-radius:3px;
-  margin-left:6px;
-  margin-top:5px;
-  padding-bottom:2.5px;
-  font-family:'Lucida Grande';
-  font-weight:bold;
-  font-size:10px;
-  letter-spacing:0px;
-  line-height:10px;
-  color:var(--button-label);
-  background-color:var(--button-background);
-  cursor:pointer;
-}
-
-#createGrp, #chkRepair{
-  margin-left:10px;
-}
-
-input.hubIcon:hover{
-  color: var(--highlight-color);
-  background-color: var(--highlight-fill);
-  border:1px solid var(--system-highlight);
-}
-
-input.hubIcon:active{
-  background-color:var(--button-background-active);
-}
-
-input.hubIcon#btnSave,
-input.hubIcon#btnOpen{
-  background-color:var(--system-dimlight);
-}
-
-input.hubIcon#btnOpen{
-  display:none;
-}
-
-/*———————————————————————————————————————— disabled buttons */
-
-#impStyles, #expStyles, #clearCache{
-  color:black;
-  text-decoration:line-through;
-}
-
-/*———————————————————————————————————————— indicator spacing */
-
-#indGrid { margin-left:9px; }
-#indPoint{ margin-left:19px; }
-
-/*———————————————————————————————————————— show more & bottom section */
-
-#showMore{
-  color:var(--showMore);
-  background:none;
-  border:none;
-  cursor:pointer;
-
-  font-size:11px;
-  font-weight:bold;
-  position:absolute;
-  right:0;
-  top:0;
-  width:48px;
-  height:22px;
-  rotation:-20deg;
-}
-
-#showMore:hover{
-  color:var(--highlight-color);
-}
-
-/*———————————————————————————————————————— spinner & doneMsg */
-
-#spinner{
-  display:none;
-  position:absolute;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  background-color:var(--body-background);
-  background-image:url(../images/spinner.gif);
-  background-repeat:no-repeat;
-  background-position:50% 50%;
-  background-size:10%;
-}
-
-div#doneMsg{
-  display:none;
-  position:absolute;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  background-color:var(--body-background);
-  color:var(--body-foreground);
-}
-
-.closeX{
-  position:absolute;
-  top:0; right:5px;
-  color:var(--button-backround-active);
-  cursor:pointer;
-}
-
-/*———————————————————————————————————————— mouseover */
-
-div#mouseover{
-  margin-top:5px;
-  margin-left:12px;
-  color:var(--tooltipOff);
-  letter-spacing:0;
-  font-weight:regular;
-  font-size:11px;
-}
-
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

@@ -32,12 +32,12 @@ body{
 }
 
 div#moreLess{
+  font-size:8px;
+  line-height:10px;
+  letter-spacing:1.5px;
 
   text-transform:uppercase;
-  letter-spacing:2px;
-
-  font-size:9px;
-  line-height:9px;
+  font-weight:bold;
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
