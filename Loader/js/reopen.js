@@ -18,7 +18,7 @@ obj.style.display = 'inline'
 
      */
 
-var scr = 'openLast.jsx'
+var scr = 'reopen.jsx'
 var file = TOOLSPATH + '/cep/' + scr
 CEP.evalScript("$.evalFile('" + file + "')")
 
@@ -29,7 +29,7 @@ CEP.evalScript("$.evalFile('" + file + "')")
 obj.addEventListener('mouseup', (evn) => {
 
   var alt = evn.getModifierState('Alt')
-  CEP.evalScript('openLast()')
+  CEP.evalScript('reopen()')
 
 })
 

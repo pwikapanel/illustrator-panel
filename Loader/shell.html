@@ -32,6 +32,68 @@
 
   window.addEventListener('error', (event)=>{ alert(event.message) })
 
+//:::::::::::::::::::::::::::::::::::::::: harmonize variables
+
+/*  function harmonize : three types of variables
+
+    - localStorage
+    - global HTML
+    - global CEP
+
+    to start with, we import HTLM & CEP from localstorage
+    afterwards, we update CEP & localStorage from HTML    */
+
+var allVars = [
+    'ISMAC',
+    'ISSVIJA',
+    'LASTPATH',
+    'LOCAL',
+    'MASTER',
+    'MAXWIDTH',
+    'MYDOCS',
+    'SERVER',
+    'SITEURL',
+    'SYNCPATH',
+    'TOOLSPATH',
+    'VERSION'
+]
+
+// ref = js | ls | cep
+// javascript, localStorage, CEP environment
+
+function harmonize(ref){
+  //for (x=0; x<allVars.length; x++){
+  for (x=0; x<2; x++){
+    var v = allVars[x]
+
+    if (ref == 'js') var val = window[v]
+    if (ref == 'ls') var val = localStorage[v]
+    if (ref == 'cep'){
+    }
+
+// START HERE TOMORROW
+
+      if (typeof window[v] == 'boolean')
+        var str = v + '=' +  window[v]
+      else
+        var str = v + '=' + "'" + window[v] + "'"
+      CEP.evalScript(str)
+    }
+
+    if (ref=='ls'){ //————————————————————————————————————————
+      window[v] localStorage[v]
+      if (typeof window[v] == 'boolean')
+        var str = v + '=' +  window[v]
+      else
+        var str = v + '=' + "'" + window[v] + "'"
+      CEP.evalScript(str)
+    }
+
+  }
+}
+
+harmonize('js')
+
 //:::::::::::::::::::::::::::::::::::::::: script loaders
 
 /*———————————————————————————————————————— loadHtml(str)

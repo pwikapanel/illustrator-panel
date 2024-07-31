@@ -4,7 +4,7 @@
 
     open dialog with folder of most recent document */
 
-function openLast(){
+function reopen(){
 
   if (LASTPATH == ''){
     app.executeMenuCommand("open")

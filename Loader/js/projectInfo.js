@@ -43,30 +43,32 @@ setInterval(function(){
 
 function setURL(arg){
 
-  if (arg != ''){
+  ISSVIJA = false
+  if (arg == '') return true
+    
+  var results = JSON.parse(arg)
+
+  if (results.syncPath  != ''){
+
     ISSVIJA = true
-    var results = JSON.parse(arg)
-    if (results.siteURL  != ''){
-      SYNCPATH = results.syncPath
-      CEP.evalScript("SYNCPATH  = '" + SYNCPATH  + "'")
-    }
+    SYNCPATH = results.syncPath
+    CEP.evalScript("SYNCPATH  = '" + SYNCPATH  + "'")
+
     if (results.siteURL  != ''){
       SITEURL  = results.siteURL 
       CEP.evalScript("SITEURL   = '" + SITEURL   + "'")
     }
+
     if (results.lastPath != ''){
       LASTPATH = results.lastPath
       CEP.evalScript("LASTPATH  = '" + LASTPATH  + "'")
     }
-    CEP.setWindowTitle(SITEURL)
-    // 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋  
-  }
-  else{
-    ISSVIJA = false
-//  CEP.setWindowTitle('Svija Tools')
-  }
 
+    // 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋  
+    if (SITEURL != '') CEP.setWindowTitle(SITEURL)
+  }
 }
+
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
