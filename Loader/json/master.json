@@ -22,7 +22,7 @@
 { "build": 0, "source":     "createGroup.js" },
 { "build": 0, "source":     "launchCloud.js" },
 { "build": 0, "source":      "launchSite.js" },
-{ "build": 0, "source":     "localFolder.js" },
+{ "build": 0, "source":      "openFolder.js" },
 { "build": 0, "source":         "saveAll.js" },
 { "build": 0, "source":            "save.js" },
 { "build": 0, "source":        "openLast.js" },

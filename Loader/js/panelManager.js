@@ -6,23 +6,25 @@
 var ms = 500
 
 setInterval(function(){
-  var f = CEP.getScaleFactor()
-
-  var w = Math.round(MAXWIDTH / f)
-  var h = Math.round(moreLess.getBoundingClientRect().bottom/f) -1
-
 
   if (!ISSVIJA){
     moreDiv.style.display='none'
     mainDiv.style.display='none'
+    moreLess.style.display='none'
     openDiv.style.display='block'
-    h = 42
+    var whichObj = openDiv
   }
   else{
     moreDiv.style.display='block'
     mainDiv.style.display='block'
+    moreLess.style.display='block'
     openDiv.style.display='none'
+    var whichObj = moreLess 
   }
+
+  var f = CEP.getScaleFactor()
+  var w = Math.round(MAXWIDTH / f)
+  var h = Math.round(whichObj.getBoundingClientRect().bottom/f) -1
 
   CEP.resizeContent(w, h)
 }, ms)

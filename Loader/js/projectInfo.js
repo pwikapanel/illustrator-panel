@@ -63,7 +63,7 @@ function setURL(arg){
   }
   else{
     ISSVIJA = false
-    CEP.setWindowTitle('Svija Tools')
+//  CEP.setWindowTitle('Svija Tools')
   }
 
 }

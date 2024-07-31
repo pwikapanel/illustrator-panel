@@ -4,10 +4,11 @@ div#moreLess{
   background-color:var(--panel-bg-dark);
   border-top:1px solid var(--panel-border);
   text-align:right; 
+
+  margin-top:5px;
   padding:0 9px;
   padding-bottom:3px;
   height:13px;
-  margin-top:5px;
 }
 
 div#moreLess span{
