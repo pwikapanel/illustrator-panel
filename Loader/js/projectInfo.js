@@ -59,6 +59,7 @@ function setURL(arg){
       CEP.evalScript("LASTPATH  = '" + LASTPATH  + "'")
     }
     CEP.setWindowTitle(SITEURL)
+    // 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋  
   }
   else{
     ISSVIJA = false

@@ -4,7 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objID    = 'buttLast'
-var objLabel = 'open last'
+var objLabel = 'reopen'
 
 /*———————————————————————————————————————— configure button */
 

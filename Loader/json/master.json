@@ -27,6 +27,6 @@
 { "build": 0, "source":            "save.js" },
 { "build": 0, "source":        "openLast.js" },
 { "build": 0, "source":            "open.js" },
-{ "build": 0, "source":      "showDialog.js" },
+{ "build": 0, "source":      "changeCase.js" },
 
 {"build":"fin"}]

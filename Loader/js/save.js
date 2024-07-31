@@ -15,8 +15,6 @@ obj.value = objLabel
 obj.style.display = 'inline'
 
 
-  var ISMAC     = 'true'
-  var MYDOCS    = '/Users/Main/Documents'
   var utilities = TOOLSPATH + '/cep/utilities.jsx'
   CEP.evalScript("ISMAC  = '" + ISMAC  + "'")
   CEP.evalScript("MYDOCS = '" + MYDOCS + "'")
