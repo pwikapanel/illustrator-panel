@@ -14,30 +14,22 @@ if (obj === null) lert(objID + ' is null')
 obj.value = objLabel
 obj.style.display = 'inline'
 
-/*———————————————————————————————————————— listener function */
+/*———————————————————————————————————————— load scripts
 
-  var ISMAC     = 'true'
-  var MYDOCS    = '/Users/Main/Documents'
-  var utilities = TOOLSPATH + '/cep/utilities.jsx'
-  CEP.evalScript("ISMAC  = '" + ISMAC  + "'")
-  CEP.evalScript("MYDOCS = '" + MYDOCS + "'")
+     */
 
-  CEP.evalScript("$.evalFile('" + utilities + "')")
+var scr = 'openLast.jsx'
+var file = TOOLSPATH + '/cep/' + scr
+CEP.evalScript("$.evalFile('" + file + "')")
 
 /*———————————————————————————————————————— listener function
 
   opens folder based on localStorage lastPath */
 
 obj.addEventListener('mouseup', (evn) => {
-  var alt = evn.getModifierState('Alt');
 
-  var naam      = 'save.jsx'
-  var param     = 'all'
-
-  var file = TOOLSPATH + '/cep/' + naam
-
-  CEP.evalScript("param  = '" + param  + "'")
-  CEP.evalScript("$.evalFile('" + file      + "')")
+  var alt = evn.getModifierState('Alt')
+  CEP.evalScript('openLast()')
 
 })
 

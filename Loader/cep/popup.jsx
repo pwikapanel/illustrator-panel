@@ -1,3 +1,5 @@
+#target illustrator  
+
 // dialog display
 show_dialog: {
   

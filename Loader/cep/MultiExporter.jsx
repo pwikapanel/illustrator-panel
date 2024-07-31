@@ -1,3 +1,5 @@
+#target illustrator  
+
 // MultiExporter.jsx
 // Version 0.1
 // Version 0.2 Adds PNG and EPS exports

@@ -1,4 +1,3 @@
-
 #target illustrator  
 
 /*———————————————————————————————————————— createGroup.jsx
