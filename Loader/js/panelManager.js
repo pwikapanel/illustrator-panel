@@ -11,6 +11,9 @@ setInterval(function(){
   var w = Math.round(MAXWIDTH / f)
   var h = Math.round(moreLess.getBoundingClientRect().bottom/f) -1
 
+
+  if (!ISSVIJA) h = 42
+
   CEP.resizeContent(w, h)
 }, ms)
 

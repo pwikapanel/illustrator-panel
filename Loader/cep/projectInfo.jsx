@@ -76,7 +76,7 @@ function getCurrentPath(){
   return res + app.activeDocument.name
 }
 
-/*——————————————————————————————————————— getSiteURL()
+/*———————————————————————————————————————— getSiteURL()
 
     using the frontmost document's location, returns
     the URL of the website, stored in

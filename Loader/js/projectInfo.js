@@ -42,13 +42,20 @@ setInterval(function(){
     */
 
 function setURL(arg){
-  var results = JSON.parse(arg)
 
-  if (results.siteURL     != '') SITEURL     = results.siteURL
-  if (results.syncPath    != '') SYNCPATH    = results.syncPath
-  if (results.currentPath != '') CURRENTPATH = results.currentPath
+  if (arg != ''){
+    ISSVIJA = true
+    var results = JSON.parse(arg)
+    if (results.siteURL     != '') SYNCPATH    = results.syncPath
+    if (results.siteURL     != '') SITEURL     = results.siteURL
+    if (results.currentPath != '') CURRENTPATH = results.currentPath
+    CEP.setWindowTitle(SITEURL)
+  }
+  else{
+    ISSVIJA = false
+    CEP.setWindowTitle('Svija Tools')
+  }
 
-  CEP.setWindowTitle(SITEURL)
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */

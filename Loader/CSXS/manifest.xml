@@ -49,7 +49,7 @@
             </Size>
             <MinSize>
                 <Width>60</Width>
-                <Height>20</Height>
+                <Height>0</Height>
             </MinSize>
             <MaxSize>
                 <Width>240</Width>
