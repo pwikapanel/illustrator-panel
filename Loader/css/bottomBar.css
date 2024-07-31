@@ -16,6 +16,7 @@ div#moreLess span{
 
 div#moreLess a{
   color:var(--hamburger);
+  transition:0.3s;
 }
 
 div#moreLess a:hover{

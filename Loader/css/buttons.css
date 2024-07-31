@@ -22,7 +22,9 @@ input[type=button]{
   border-style:solid;
   border-width:1px;
   border-radius:3px;
+  padding:0 !important;
   margin: 0 5px 5px 5px !important;
+  transition:0.3s;
 }
 
 div#moreDiv input[type=button]{
@@ -48,5 +50,9 @@ svg#svijaLogo{
   height:22px;
   margin: 0 5px 5px 5px !important;
   vertical-align:top;
+}
+
+#logoArt{
+  transition:0.5s;
 }
 
