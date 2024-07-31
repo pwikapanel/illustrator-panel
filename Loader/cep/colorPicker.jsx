@@ -1,7 +1,5 @@
 #target illustrator  
 
-//:::::::::::::::::::::::::::::::::::::::: utility functions
-
 /*———————————————————————————————————————— color picker
 
     returns hex color */

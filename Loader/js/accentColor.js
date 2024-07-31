@@ -44,32 +44,28 @@ setInterval(function(){
   }
 }, ms)
 
+/*———————————————————————————————————————— load scripts
+
+    user clicks logo to change color */
+
+var scr = 'colorPicker.jsx'
+var file = TOOLSPATH + '/cep/' + scr
+CEP.evalScript("$.evalFile('" + file + "')")
+
 /*———————————————————————————————————————— svijaLogo.addEventListener('mouseup'
 
     user clicks logo to change color */
 
 svijaLogo.addEventListener('mouseup', (evn) => {
 
-  var naam      = 'colorPicker.jsx'
-  var ISMAC     = 'true'
-  var MYDOCS    = '/Users/Main/Documents'
-
-  var file = TOOLSPATH + '/cep/' + naam
-
-  CEP.evalScript("$.evalFile('" + file + "')")
   CEP.evalScript('colorPicker()', setAccent)
 
 })
 
-/*———————————————————————————————————————— setAccent(arg)
-
-    callback function after CEP script is executed */
-
 function setAccent(arg){
   var parts = arg.split(':')
 
-  ne
-var r = parts[0]
+  var r = parts[0]
   var g = parts[1]
   var b = parts[2]
 
@@ -130,21 +126,4 @@ function rgbToHsl(r, g, b){
 
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
-
-
-//      var hue = systemHue()                                                          
-//      var lightness = 50                                                             
-//      var dimness = 30                                                               
-//                                                                                     
-//      if (hue>190 && hue < 290) lightness += 10                                      
-//                                                                                     
-//      var highlight = 'hsl('+hue+', 100%, ' + lightness + '%)'                       
-//      var  dimlight = 'hsl('+hue+',  30%, ' + dimness   + '%)'                       
-//                                                                                     
-//      if (typeof localStorage.highlight != 'undefined') highlight = localStorage.highlight
-//      if (typeof localStorage.dimlight  != 'undefined') dimlight  = localStorage.dimlight
-//                                                                                     
-//      document.documentElement.style.setProperty('--system-highlight', highlight);   
-//      document.documentElement.style.setProperty('--system-dimlight',   dimlight);   
-                                                                               
 
