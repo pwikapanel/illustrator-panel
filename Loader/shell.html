@@ -16,7 +16,9 @@
   var MYDOCS    = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)      // C:Users/andy/Documents
   var ISMAC     = CEP.getOSInformation().substring(0,3) == 'Mac'  // false
   var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION)
+  var SYNCPATH  = ''
   var SITEURL   = ''
+  var LASTPATH  = ''
 
   CEP.evalScript("LOCAL     =  " + LOCAL          )
   CEP.evalScript("VERSION   = '" + VERSION   + "'")
@@ -24,6 +26,9 @@
   CEP.evalScript("MYDOCS    = '" + MYDOCS    + "'")
   CEP.evalScript("ISMAC     = '" + ISMAC     + "'")
   CEP.evalScript("TOOLSPATH = '" + TOOLSPATH + "'")
+  CEP.evalScript("SYNCPATH  = '" + SYNCPATH  + "'")
+  CEP.evalScript("SITEURL   = '" + SITEURL   + "'")
+  CEP.evalScript("LASTPATH  = '" + LASTPATH  + "'")
 
   window.addEventListener('error', (event)=>{ alert(event.message) })
 
@@ -286,12 +291,8 @@ function lert(msg){
 </script>
 
 <style>  #reloader{
-  cursor:wait;
-  width:8px;height:8px;
-  position:absolute;top:2px;right:3px;
-  border-radius:4px;
-  border:1px solid hsl(0 0% 22%);background-color:hsl(0 0% 26%);
-  border-left:none;
+  cursor:wait; width:8px;height:8px;
+  position:absolute;top:0px;right:0px;
 } </style>
 
 </head><body oncontextmenu='return false'><div id="reloader" onclick='location.reload()'></div>

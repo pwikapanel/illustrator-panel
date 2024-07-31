@@ -38,5 +38,11 @@ hr{
   border-top-style:solid;
 }
 
+/*———————————————————————————————————————— save buttons */
+
+div#openDiv{
+  display:none;
+}
+
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

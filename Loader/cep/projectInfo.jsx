@@ -25,7 +25,7 @@ function getProjectInfo(){
 
   resArray.push(   '"syncPath":"' +    gctSyncPath() + '"')
   resArray.push(    '"siteURL":"' +     getSiteURL() + '"')
-  resArray.push('"currentPath":"' + getCurrentPath() + '"')
+  resArray.push('"lastPath":"' + getLastPath() + '"')
 
   return '{' + resArray.join(',') +'}'
 }
@@ -62,11 +62,11 @@ function gctSyncPath(){
   return res
 }
 
-/*———————————————————————————————————————— getCurrentPath()
+/*———————————————————————————————————————— getLastPath()
 
     returns real path of current document */
 
-function getCurrentPath(){
+function getLastPath(){
 
   if (ISMAC)
     res = app.activeDocument.path.fsName + '/'

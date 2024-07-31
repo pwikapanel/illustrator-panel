@@ -12,7 +12,17 @@ setInterval(function(){
   var h = Math.round(moreLess.getBoundingClientRect().bottom/f) -1
 
 
-  if (!ISSVIJA) h = 42
+  if (!ISSVIJA){
+    moreDiv.style.display='none'
+    mainDiv.style.display='none'
+    openDiv.style.display='block'
+    h = 42
+  }
+  else{
+    moreDiv.style.display='block'
+    mainDiv.style.display='block'
+    openDiv.style.display='none'
+  }
 
   CEP.resizeContent(w, h)
 }, ms)

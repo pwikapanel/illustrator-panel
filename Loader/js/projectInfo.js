@@ -46,9 +46,18 @@ function setURL(arg){
   if (arg != ''){
     ISSVIJA = true
     var results = JSON.parse(arg)
-    if (results.siteURL     != '') SYNCPATH    = results.syncPath
-    if (results.siteURL     != '') SITEURL     = results.siteURL
-    if (results.currentPath != '') CURRENTPATH = results.currentPath
+    if (results.siteURL  != ''){
+      SYNCPATH = results.syncPath
+      CEP.evalScript("SYNCPATH  = '" + SYNCPATH  + "'")
+    }
+    if (results.siteURL  != ''){
+      SITEURL  = results.siteURL 
+      CEP.evalScript("SITEURL   = '" + SITEURL   + "'")
+    }
+    if (results.lastPath != ''){
+      LASTPATH = results.lastPath
+      CEP.evalScript("LASTPATH  = '" + LASTPATH  + "'")
+    }
     CEP.setWindowTitle(SITEURL)
   }
   else{

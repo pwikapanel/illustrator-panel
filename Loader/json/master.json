@@ -9,8 +9,8 @@
 { "build": 0, "source":        "buttons.css" },
 { "build": 0, "source":      "bottomBar.css" },
 
-{ "build": 0, "source":    "topButtons.html" },
-{ "build": 0, "source": "bottomButtons.html" },
+{ "build": 0, "source":    "buttonsTop.html" },
+{ "build": 0, "source": "buttonsBottom.html" },
 { "build": 0, "source":     "bottomBar.html" },
 
 { "build": 0, "source":   "interfaceCode.js" },
@@ -25,6 +25,8 @@
 { "build": 0, "source":     "localFolder.js" },
 { "build": 0, "source":         "saveAll.js" },
 { "build": 0, "source":            "save.js" },
+{ "build": 0, "source":        "openLast.js" },
+{ "build": 0, "source":            "open.js" },
 { "build": 0, "source":      "showDialog.js" },
 
 {"build":"fin"}]
