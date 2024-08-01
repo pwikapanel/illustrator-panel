@@ -17,7 +17,6 @@ html, body{
 }
 
 body{
-  padding-top:4px;
   background-color:var(--panel-bg);
   color:#bbb;
   text-align: center;
@@ -32,7 +31,7 @@ input:focus{ /* get rid of blue line when focused */
 
 hr{
   display:block;
-  margin: 5px 10px 0px 10px !important;
+  margin: 7px 10px 0px 10px !important;
   padding:0 !important;
   border-width:1px 0 0 0;
   border-top-style:solid;
@@ -42,30 +41,31 @@ hr{
 
 div#openDiv{
   display:none;
-/*background-color:#440000;*/
+  padding-top:3.5px;
+  padding-bottom:2px;
 }
 
-div#moreDiv{
-  padding-top:5px;
-  padding-bottom:5px;
-  display:block;
-}
-
-div#moreOn{
+div#moreSwitch{ /* container for moreDiv */
   display:none;
 }
 
+div#moreDiv{
+  padding-top:9px;
+  display:block;
+  xbackground-color:#004400;
+}
+
 div#mainDiv{
-  padding-top:5px;
-/*  background-color:#000044; */
+  padding-top:9px;
+  xbackground-color:#000044;
 }
 
 /*———————————————————————————————————————— bottom bar */ 
 
 div#bottomBar{
 
-  margin-top:5px;
-  padding:0 9px;
+  margin-top:6px;
+  padding:3px 9px 0 9px;
   padding-bottom:3px;
   height:14px;
 }

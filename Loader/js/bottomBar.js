@@ -7,21 +7,23 @@
 
     need to restore user's status when they last used Tools */
 
-if (typeof localStorage.less == 'undefined')
-  localStorage.less = 'true'
+var obj = document.getElementById('lessLink')
+obj.style.display='none'
 
-if (localStorage.less == 'true'){
-    moreOn.style.display  = 'none'
-  moreLink.style.display = 'inline'
-  lessLink.style.display = 'none'
+if (typeof localStorage.moreLess == 'undefined')
+  localStorage.moreLess = 'less'
+
+
+if (localStorage.moreLess == 'less'){
+  moreSwitch.style.display = 'none'
+    moreLink.style.display = 'inline'
+    lessLink.style.display = 'none'
 }
 else{
-    moreOn.style.display = 'block'
-  moreLink.style.display = 'none'
-  lessLink.style.display = 'inline'
+  moreSwitch.style.display = 'block'
+    moreLink.style.display = 'none'
+    lessLink.style.display = 'inline'
 }
-
-//else moreLink.style.display = 'inline'
 
 /*———————————————————————————————————————— help */
 
@@ -79,8 +81,8 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
   if (!alt){
-    localStorage.less  = true
-    moreOn.style.display   = 'block'
+    localStorage.moreLess  = 'more'
+    moreSwitch.style.display   = 'block'
     moreLink.style.display = 'none'
     lessLink.style.display = 'inline'
     return true
@@ -111,8 +113,8 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
   if (!alt){
-    localStorage.less  = false
-    moreOn.style.display   = 'none'
+    localStorage.moreLess  = 'less'
+    moreSwitch.style.display   = 'none'
     moreLink.style.display = 'inline'
     lessLink.style.display = 'none'
     return true

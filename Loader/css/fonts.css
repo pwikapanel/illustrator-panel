@@ -22,7 +22,7 @@ body{
   font-family:'SourceSansPro';
 }
 
-.btnLarge, .btnMed, .btnSmall{
+input[type=button]{
   font-family:'SourceSansPro';
   font-size:12px;
   line-height:10px;
@@ -32,8 +32,8 @@ body{
 
 div#bottomBar{
   font-size:8.5px;
-  line-height:12px;
-  letter-spacing:1.5px;
+  line-height:8.5px;
+  letter-spacing:2px;
 
   text-transform:uppercase;
   font-weight:600;

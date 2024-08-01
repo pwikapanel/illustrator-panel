@@ -31,7 +31,7 @@ setInterval(function(){
 
   var f = CEP.getScaleFactor()
   var w = Math.round(MAXWIDTH / f)
-  var h = Math.round(whichObj.getBoundingClientRect().bottom/f) -1
+  var h = Math.round(whichObj.getBoundingClientRect().bottom/f)
 
   CEP.resizeContent(w, h)
 }, ms)

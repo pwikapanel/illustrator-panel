@@ -10,7 +10,8 @@ div#bottomBar span{
   float:left;
 }
 
-div#bottomBar a{
+div#bottomBar span a:link{
+  display:none;
   cursor:pointer;
   color:var(--hamburger);
   transition:0.3s;
