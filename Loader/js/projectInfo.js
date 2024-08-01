@@ -52,17 +52,16 @@ function setURL(arg){
 
     ISSVIJA = true
     SYNCPATH = results.syncPath
-    CEP.evalScript("SYNCPATH  = '" + SYNCPATH  + "'")
 
     if (results.siteURL  != ''){
       SITEURL  = results.siteURL 
-      CEP.evalScript("SITEURL   = '" + SITEURL   + "'")
     }
 
     if (results.lastPath != ''){
       LASTPATH = results.lastPath
-      CEP.evalScript("LASTPATH  = '" + LASTPATH  + "'")
     }
+
+  harmonize('js')
 
     // 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋  
     if (SITEURL != '') CEP.setWindowTitle(SITEURL)

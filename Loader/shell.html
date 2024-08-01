@@ -16,7 +16,10 @@
   var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION)
   var VERSION   = '1.0.7'
 
-  window.addEventListener('error', (event)=>{ alert(event.message) })
+  window.addEventListener('error', (event)=>{
+    var cmd = 'alert("' + event.message + '")'
+    CEP.evalScript(cmd)
+  })
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
@@ -73,6 +76,7 @@ function harmonize(ref){
 
 
 harmonize('js')
+harmonize('ls')
 
 //:::::::::::::::::::::::::::::::::::::::: script loaders
 
