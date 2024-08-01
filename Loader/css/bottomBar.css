@@ -1,6 +1,6 @@
 /*———————————————————————————————————————— bottom bar */ 
 
-div#moreLess{
+div#bottomBar{
   background-color:var(--panel-bg-dark);
   border-top:1px solid var(--panel-border);
   text-align:right; 
@@ -11,16 +11,16 @@ div#moreLess{
   height:13px;
 }
 
-div#moreLess span{
+div#bottomBar span{
   float:left;
 }
 
-div#moreLess a{
+div#bottomBar a{
   color:var(--hamburger);
   transition:0.3s;
 }
 
-div#moreLess a:hover{
+div#bottomBar a:hover{
   color:var(--label-text);
 }
 

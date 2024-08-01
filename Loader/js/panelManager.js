@@ -6,26 +6,27 @@
 var ms = 500
 
 setInterval(function(){
+  bottomBar = document.getElementById('bottomBar')
 
   if (typeof ISSVIJA == 'undefined'){
+    openDiv.style.display='none'
     moreDiv.style.display='block'
     mainDiv.style.display='block'
-    moreLess.style.display='block'
-    openDiv.style.display='none'
-    var whichObj = moreLess 
+    bottomBar.style.display='block'
+    var whichObj = bottomBar 
   }
   else if (ISSVIJA){
+    openDiv.style.display='none'
     moreDiv.style.display='block'
     mainDiv.style.display='block'
-    moreLess.style.display='block'
-    openDiv.style.display='none'
-    var whichObj = moreLess 
+    bottomBar.style.display='block'
+    var whichObj = bottomBar 
   }
   else{
+    openDiv.style.display='block'
     moreDiv.style.display='none'
     mainDiv.style.display='none'
-    moreLess.style.display='none'
-    openDiv.style.display='block'
+    bottomBar.style.display='none'
     var whichObj = openDiv
   }
 

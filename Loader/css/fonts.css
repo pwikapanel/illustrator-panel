@@ -30,7 +30,7 @@ body{
   text-transform:capitalize;
 }
 
-div#moreLess{
+div#bottomBar{
   font-size:8.5px;
   line-height:13px;
   letter-spacing:1.5px;
