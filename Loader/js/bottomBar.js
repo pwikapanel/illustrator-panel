@@ -1,7 +1,29 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: bottomBar.js */
 
-/*:::::::::::::::::::::::::::::::::::::::: help */
+/*:::::::::::::::::::::::::::::::::::::::: startup */ 
+
+/*———————————————————————————————————————— more/less status on load
+
+    need to restore user's status when they last used Tools */
+
+if (typeof localStorage.less == 'undefined')
+  localStorage.less = 'true'
+
+if (localStorage.less == 'true'){
+    moreOn.style.display  = 'none'
+  moreLink.style.display = 'inline'
+  lessLink.style.display = 'none'
+}
+else{
+    moreOn.style.display = 'block'
+  moreLink.style.display = 'none'
+  lessLink.style.display = 'inline'
+}
+
+//else moreLink.style.display = 'inline'
+
+/*———————————————————————————————————————— help */
 
 var helpURL = 'tech.svija.love/fromtools'
 
@@ -33,8 +55,8 @@ obj.addEventListener('mouseup', (evn) => {
 //  clearCache()
 })
 
-/*:::::::::::::::::::::::::::::::::::::::: more */
 
+/*:::::::::::::::::::::::::::::::::::::::: more */
 
 /*———————————————————————————————————————— parameters */
 
@@ -57,7 +79,8 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
   if (!alt){
-    moreOn.style.display = 'block'
+    localStorage.less  = true
+    moreOn.style.display   = 'block'
     moreLink.style.display = 'none'
     lessLink.style.display = 'inline'
     return true
@@ -66,7 +89,6 @@ obj.addEventListener('mouseup', (evn) => {
 
 
 /*:::::::::::::::::::::::::::::::::::::::: less */
-
 
 /*———————————————————————————————————————— parameters */
 
@@ -89,7 +111,8 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
   if (!alt){
-    moreOn.style.display = 'none'
+    localStorage.less  = false
+    moreOn.style.display   = 'none'
     moreLink.style.display = 'inline'
     lessLink.style.display = 'none'
     return true
