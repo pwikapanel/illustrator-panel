@@ -7,41 +7,32 @@
 
   var CEP       = new CSInterface()
 
-  var ISSVIJA   = true
-  var MAXWIDTH  = 240
-  var MASTER    = 'master'
+  var ISMAC     = CEP.getOSInformation().substring(0,3) == 'Mac'
   var LOCAL     = true
-  var VERSION   = '1.0.7'
+  var MASTER    = 'master'
+  var MAXWIDTH  = 240
+  var MYDOCS    = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
   var SERVER    = 'tools.svija.love'
-  var MYDOCS    = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)      // C:Users/andy/Documents
-  var ISMAC     = CEP.getOSInformation().substring(0,3) == 'Mac'  // false
   var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION)
-  var SYNCPATH  = ''
-  var SITEURL   = ''
-  var LASTPATH  = ''
-
-  CEP.evalScript("LOCAL     =  " + LOCAL          )
-  CEP.evalScript("VERSION   = '" + VERSION   + "'")
-  CEP.evalScript("SERVER    = '" + SERVER    + "'")
-  CEP.evalScript("MYDOCS    = '" + MYDOCS    + "'")
-  CEP.evalScript("ISMAC     = '" + ISMAC     + "'")
-  CEP.evalScript("TOOLSPATH = '" + TOOLSPATH + "'")
-  CEP.evalScript("SYNCPATH  = '" + SYNCPATH  + "'")
-  CEP.evalScript("SITEURL   = '" + SITEURL   + "'")
-  CEP.evalScript("LASTPATH  = '" + LASTPATH  + "'")
+  var VERSION   = '1.0.7'
 
   window.addEventListener('error', (event)=>{ alert(event.message) })
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
-/*  function harmonize : three types of variables
+/*———————————————————————————————————————— harmonize(ref)
+
+    function harmonize : three types of variables
 
     - localStorage
     - global HTML
     - global CEP
 
     to start with, we import HTLM & CEP from localstorage
-    afterwards, we update CEP & localStorage from HTML    */
+    afterwards, we update CEP & localStorage from HTML
+
+   ref = js | ls
+   reference value is javascript or localStorage */
 
 var allVars = [
     'ISMAC',
@@ -58,39 +49,28 @@ var allVars = [
     'VERSION'
 ]
 
-// ref = js | ls | cep
-// javascript, localStorage, CEP environment
-
 function harmonize(ref){
-  //for (x=0; x<allVars.length; x++){
+
   for (x=0; x<2; x++){
-    var v = allVars[x]
+  //for (x=0; x<allVars.length; x++){
+    var varName = allVars[x]
 
-    if (ref == 'js') var val = window[v]
-    if (ref == 'ls') var val = localStorage[v]
-    if (ref == 'cep'){
-    }
+    if (ref=='js' && typeof window[      varName] == 'undefined') continue
+    if (ref=='ls' && typeof localStorage[varName] == 'undefined') continue
 
-// START HERE TOMORROW
+         if (ref == 'js') var val = window[      varName]
+    else if (ref == 'ls') var val = localStorage[varName]
+    else return true
 
-      if (typeof window[v] == 'boolean')
-        var str = v + '=' +  window[v]
-      else
-        var str = v + '=' + "'" + window[v] + "'"
-      CEP.evalScript(str)
-    }
+    window[varName] = localStorage[varName] = val
 
-    if (ref=='ls'){ //————————————————————————————————————————
-      window[v] localStorage[v]
-      if (typeof window[v] == 'boolean')
-        var str = v + '=' +  window[v]
-      else
-        var str = v + '=' + "'" + window[v] + "'"
-      CEP.evalScript(str)
-    }
+    if (typeof window[varName] == 'boolean') var str = varName + '=' +       window[varName]
+                                        else var str = varName + '=' + "'" + window[varName] + "'"
+    CEP.evalScript(str)
 
   }
 }
+
 
 harmonize('js')
 

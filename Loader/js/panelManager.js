@@ -7,19 +7,26 @@ var ms = 500
 
 setInterval(function(){
 
-  if (!ISSVIJA){
-    moreDiv.style.display='none'
-    mainDiv.style.display='none'
-    moreLess.style.display='none'
-    openDiv.style.display='block'
-    var whichObj = openDiv
-  }
-  else{
+  if (typeof ISSVIJA == 'undefined'){
     moreDiv.style.display='block'
     mainDiv.style.display='block'
     moreLess.style.display='block'
     openDiv.style.display='none'
     var whichObj = moreLess 
+  }
+  else if (ISSVIJA){
+    moreDiv.style.display='block'
+    mainDiv.style.display='block'
+    moreLess.style.display='block'
+    openDiv.style.display='none'
+    var whichObj = moreLess 
+  }
+  else{
+    moreDiv.style.display='none'
+    mainDiv.style.display='none'
+    moreLess.style.display='none'
+    openDiv.style.display='block'
+    var whichObj = openDiv
   }
 
   var f = CEP.getScaleFactor()
