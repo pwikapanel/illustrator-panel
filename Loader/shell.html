@@ -54,8 +54,7 @@ var allVars = [
 
 function harmonize(ref){
 
-  for (x=0; x<2; x++){
-  //for (x=0; x<allVars.length; x++){
+  for (x=0; x<allVars.length; x++){
     var varName = allVars[x]
 
     if (ref=='js' && typeof window[      varName] == 'undefined') continue
@@ -85,13 +84,15 @@ harmonize('ls')
     installs an HTML block */
 
 function loadHtml(scriptID, str){
+  scriptID += 'html'
+
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
   var obj = document.createElement('div')
   document.body.appendChild(obj)
 
-  obj.id = scriptID
+  obj.id = scriptID 
   obj.innerHTML = str 
 }
 
@@ -100,6 +101,7 @@ function loadHtml(scriptID, str){
     installs a CSS sheet */
 
 function loadCss(scriptID, str, arg){
+  scriptID += 'css'
 //  document.getElementsByTagName('style')[0].innerHTML = str 
 
   var obj = document.getElementById(scriptID)
@@ -117,6 +119,7 @@ function loadCss(scriptID, str, arg){
     installs a JS block */
 
 function loadJs(scriptID, str, arg){
+  scriptID += 'js'
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
@@ -291,7 +294,9 @@ function fetchL(file) {
 
 function deleteElement(scriptType, scriptID){
 
-  lert('ging to Script Deletion\nDeleting object '+scriptID+' of type '+scriptType)
+  scriptID += scriptType
+
+  lert('going to Script Deletion\nDeleting object '+scriptID+' of type '+scriptType)
 
   obj = document.getElementById(scriptID)
   if (obj == null) return true
@@ -345,12 +350,10 @@ function lert(msg){
 
 <script> // initial loading
 
-  // load initial scripts
-
   var path     =  'json/' + MASTER + '.json'                                              
 
-  if (LOCAL == true) fetchLocal (MASTER, path, parseScriptList)
-                else fetchRemote(MASTER, path, parseScriptList)
+  if (LOCAL) fetchLocal (MASTER, path, parseScriptList)
+        else fetchRemote(MASTER, path, parseScriptList)
 
 </script>
 

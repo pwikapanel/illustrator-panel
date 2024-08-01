@@ -6,7 +6,6 @@
 var ms = 500
 
 setInterval(function(){
-  bottomBar = document.getElementById('bottomBar')
 
   if (typeof ISSVIJA == 'undefined'){
     openDiv.style.display='none'

@@ -48,13 +48,26 @@ div#openDiv{
 div#moreDiv{
   padding-top:5px;
   padding-bottom:5px;
+  display:block;
+}
+
+div#moreOn{
   display:none;
-/*  background-color:#004400;*/
 }
 
 div#mainDiv{
   padding-top:5px;
 /*  background-color:#000044; */
+}
+
+/*———————————————————————————————————————— bottom bar */ 
+
+div#bottomBar{
+
+  margin-top:5px;
+  padding:0 9px;
+  padding-bottom:3px;
+  height:14px;
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
