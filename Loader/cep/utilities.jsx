@@ -43,20 +43,9 @@
     svija.com · hello@svija.com*/
 
 
-//:::::::::::::::::::::::::::::::::::::::: environmental variable
-
-/*———————————————————————————————————————— macOS boolean variable
-
-    is platform is Mac or PC based on  path */
-
-    var pathOrig = app.activeDocument.path.fsName
-
-    var macOS = pathOrig.substr(0,1) == '/'
-
-
 //:::::::::::::::::::::::::::::::::::::::: functions
 
-/*———————————————————————————————————————— aiOptions(version)
+/*———————————————————————————————————————— aiOptions(version) CONSTANT !!!!!!!!!!!!!!!
 
   options for Illustrator File
   ISG409 & JSRp84 */
@@ -79,7 +68,7 @@ function aiOptions(version){
     given a part1 and part2, returns a correct path */
 
 function concatenatePath(part1, part2){
-  if (macOS) return part1 + '/' + part2
+  if (ISMAC) return part1 + '/' + part2
   else return part1 + '\\' + part2
 }
 
@@ -131,7 +120,7 @@ function fileExists(path){
     returns full path of doc */
 
 function getDocPath(doc){
-  if (macOS) return doc.path.fsName + '/' + doc.name
+  if (ISMAC) return doc.path.fsName + '/' + doc.name
   else return doc.path.fsName + '\\' + doc.name
 }
 
@@ -176,10 +165,10 @@ function getLinksPath(doc){
 
 function getSvgFilesPath(doc){
  
-  var s = xgetSyncPath(doc)
+  var s = SYNCPATH
   if (s == '') return ''
 
-  if (macOS) return s + '/SVIJA/SVG Files'
+  if (ISMAC) return s + '/SVIJA/SVG Files'
   else return s + '\\SVIJA\\SVG Files'
 }
 
@@ -192,22 +181,6 @@ function svgNameSingleArtboard(doc){
   var artboard = doc.artboards[0].name
   var result = radical + '_' + artboard + '.svg'
   return result
-}
-
-/*———————————————————————————————————————— xgetSyncPath(doc)
-
-    gets SYNC folder path from doc */
-
-function xgetSyncPath(doc){
-  //var path = String(doc.path.fsName)
-
-  var path = doc.path.fsName
-
-  if (macOS) var index = path.indexOf('/SYNC')
-  else       var index = path.indexOf('\\SYNC')
-
-  if (index>0) return path.substr(0,index + 5)
-  else return ''
 }
 
 /*———————————————————————————————————————— hasPath(sourceDoc)
@@ -324,30 +297,6 @@ function relockHierarchy(arr){
     arr[x][0].visible = arr[x][2];
     arr[x][0].locked = arr[x][1];
   }
-}
-
-/*———————————————————————————————————————— svgOptions(includeCanvas)
-
-  sets options for SVG file */
-
-function svgOptions(artboards){
-
-  var multipleArtboards = (artboards > 1)
-  var options= new ExportOptionsWebOptimizedSVG()
-
-  options.artboardRange         = '' // or '1-3'
-  options.coordinatePrecision   = 3
-  options.cssProperties         = SVGCSSPropertyLocation.STYLEELEMENTS
-  options.fontSubsetting        = SVGFontSubsetting.None                         ///////////////////// probably not supported
-  options.fontType              = SVGFontType.SVGFONT
-//options.fontType              = SVGFontType.OUTLINEFONT
-  options.rasterImageLocation   = RasterImageLocation.PRESERVE
-  options.saveMultipleArtboards = multipleArtboards
-  options.svgId                 = SVGIdType.SVGIDREGULAR
-  options.svgMinify             = false // should use in future
-  options.svgResponsive         = true
-
-  return options;
 }
 
 /*———————————————————————————————————————— unlockHierarchy(obj)

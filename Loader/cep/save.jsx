@@ -81,6 +81,9 @@ if (typeof param == 'undefined'){
   }
 }
 
+
+//:::::::::::::::::::::::::::::::::::::::: post-validation
+
 /*———————————————————————————————————————— initialization */
 
 var  env_errs = []                   // error messages for user
@@ -91,11 +94,12 @@ var activeDoc = app.activeDocument   // active document
 var aiVersion = 0                    // 0=default, 17=CC Legacy
 var aiOpts    = aiOptions(aiVersion)
 
-var single = param == 'all'    ? false : true // save only frontmost doc?
+var single = param == 'all' ? false : true // save only frontmost doc?
 
 /*———————————————————————————————————————— "for" loop through documents */
 
 // var extraLayer = false;
+
 
 for (var index=0; index<docsOpen; index++){
 
@@ -111,6 +115,7 @@ for (var index=0; index<docsOpen; index++){
     var theseFileSizes = saveSvg(doc) ///////////////  MAIN SAVE AS SVG FUNCTION  \\\\\\\\\\\\\\\
   
     var aiFile = new File(originalPath);
+
     doc.saveAs(aiFile, aiOpts);
 
     //————————————————————————————————————————
@@ -375,7 +380,7 @@ function finalFeedback(fileSizes){
 
 //:::::::::::::::::::::::::::::::::::::::: validity functions
 
-/*———————————————————————————————————————— isValid(doc) VERIFIED
+/*———————————————————————————————————————— isValid(doc)
 
     three possible results:
     • everything's fine                 return true
@@ -389,6 +394,8 @@ function finalFeedback(fileSizes){
     • file was not yet saved, user refuses to save */
 
 function isValid(doc){
+//const isValid =(doc)=> { // DID NOT WORK
+
   var err, warn;
 
 //———————————————————— fatal errors
@@ -396,12 +403,11 @@ function isValid(doc){
   err = hasPath(doc);           // has file been saved at least once?
   if (err != '')
     return dontSave(err);
-
   err = isAi(doc);              // is it an AI file?
   if (err != '')
     return dontSave(err);
-
   err = hasFolders(doc);        // is file in a /SYNC/ folder?
+
   if (err != '')
     return dontSave(err);
 
@@ -450,7 +456,7 @@ function isAi(doc){
 
 function hasFolders(doc){
 
-  if (getSyncPath(doc) == '')
+  if (SYNCPATH == '')
     return doc.name + ' is not inside a \"SYNC\" folder'
 
   if (getSvgFilesPath(doc) == '')
