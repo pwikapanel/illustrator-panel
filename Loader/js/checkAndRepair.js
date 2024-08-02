@@ -3,8 +3,8 @@
 
 /*———————————————————————————————————————— parameters */
 
-var objID    = 'buttCheck'
 var objLabel = 'check & repair'
+var objID    = 'buttCheck'
 
 /*———————————————————————————————————————— configure button */
 
@@ -14,6 +14,11 @@ if (obj === null) lert(objID + ' is null')
 obj.value = objLabel
 obj.style.display = 'inline'
 
+/*———————————————————————————————————————— load utilities */
+
+     /* loaded by save.js */
+     /* used by checkAndRepair.js & saveAll.js */
+
 /*———————————————————————————————————————— listener function
 
   opens folder based on localStorage lastPath */
@@ -21,8 +26,11 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
-  var naam      = 'check.jsx'
-  var file = TOOLSPATH + '/cep/' + naam
+  // no params
+  // space matched with save & save all
+
+  var script      = 'check.jsx'
+  var file = TOOLSPATH + '/cep/' + script
 
   CEP.evalScript("$.evalFile('" + file      + "')")
 

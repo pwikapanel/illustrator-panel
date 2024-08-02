@@ -58,3 +58,23 @@ input[type=button]:active{
 hr{
   border-top-color: var(--panel-border);
 }
+
+/*———————————————————————————————————————— bottom bar */ 
+
+div#bottomBar{
+  background-color:var(--panel-bg-dark);
+  border-top-color:var(--panel-border);
+}
+
+div#bottomFiller{
+  background-color:var(--panel-bg-dark);
+}
+
+div#bottomBar span a:link{
+  color:var(--hamburger);
+}
+
+div#bottomBar a:hover{
+  color:var(--label-text);
+}
+

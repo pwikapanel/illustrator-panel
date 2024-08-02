@@ -1,8 +1,8 @@
 /*———————————————————————————————————————— bottom bar */ 
 
 div#bottomBar{
-  background-color:var(--panel-bg-dark);
-  border-top:1px solid var(--panel-border);
+  border-top-width:1px;
+  border-top-style:solid;
   text-align:right; 
 }
 
@@ -13,11 +13,10 @@ div#bottomBar span{
 div#bottomBar span a:link{
   display:none;
   cursor:pointer;
-  color:var(--hamburger);
   transition:0.3s;
 }
 
-div#bottomBar a:hover{
-  color:var(--label-text);
+div#bottomFiller{
+ width:100%;
+ height:2px;
 }
-

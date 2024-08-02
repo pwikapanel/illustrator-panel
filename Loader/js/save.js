@@ -3,8 +3,8 @@
 
 /*———————————————————————————————————————— parameters */
 
-var objID    = 'buttSave'
 var objLabel = 'save'
+var objID    = 'buttSave'
 
 /*———————————————————————————————————————— configure button */
 
@@ -26,12 +26,12 @@ CEP.evalScript("$.evalFile('" + utilities + "')")
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
-  var script    = 'save.jsx'
   var param     = 'save'
+  CEP.evalScript("param  = '" + param  + "'")
 
+  var script    = 'save.jsx'
   var file = TOOLSPATH + '/cep/' + script
 
-  CEP.evalScript("param  = '" + param  + "'")
   CEP.evalScript("$.evalFile('" + file      + "')")
 
 })

@@ -3,8 +3,8 @@
 
 /*———————————————————————————————————————— parameters */
 
-var objID    = 'buttAll'
 var objLabel = 'save all'
+var objID    = 'buttAll'
 
 /*———————————————————————————————————————— configure button */
 
@@ -16,11 +16,8 @@ obj.style.display = 'inline'
 
 /*———————————————————————————————————————— load utilities */
 
-
-
-
-
-
+     /* loaded by save.js */
+     /* used by checkAndRepair.js & saveAll.js */
 
 /*———————————————————————————————————————— listener function
 
@@ -29,12 +26,12 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
-  var script    = 'save.jsx'
   var param     = 'all'
+  CEP.evalScript("param  = '" + param  + "'")
 
+  var script    = 'save.jsx'
   var file = TOOLSPATH + '/cep/' + script
 
-  CEP.evalScript("param  = '" + param  + "'")
   CEP.evalScript("$.evalFile('" + file      + "')")
 
 })
