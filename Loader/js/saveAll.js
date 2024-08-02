@@ -17,7 +17,7 @@ obj.style.display = 'inline'
 /*———————————————————————————————————————— load utilities */
 
      /* loaded by save.js */
-     /* used by checkAndRepair.js & saveAll.js */
+     /* used by check.js & saveAll.js */
 
 /*———————————————————————————————————————— listener function
 
