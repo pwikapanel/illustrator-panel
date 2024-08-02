@@ -14,12 +14,10 @@ if (obj === null) lert(objID + ' is null')
 obj.value = objLabel
 obj.style.display = 'inline'
 
+/*———————————————————————————————————————— load utilities */
 
-  var utilities = TOOLSPATH + '/cep/utilities.jsx'
-  CEP.evalScript("ISMAC  = '" + ISMAC  + "'")
-  CEP.evalScript("MYDOCS = '" + MYDOCS + "'")
-
-  CEP.evalScript("$.evalFile('" + utilities + "')")
+var utilities = TOOLSPATH + '/cep/utilities.jsx'
+CEP.evalScript("$.evalFile('" + utilities + "')")
 
 /*———————————————————————————————————————— listener function
 
@@ -28,10 +26,10 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
-  var naam      = 'save.jsx'
+  var script    = 'save.jsx'
   var param     = 'save'
 
-  var file = TOOLSPATH + '/cep/' + naam
+  var file = TOOLSPATH + '/cep/' + script
 
   CEP.evalScript("param  = '" + param  + "'")
   CEP.evalScript("$.evalFile('" + file      + "')")

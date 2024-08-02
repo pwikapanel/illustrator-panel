@@ -1,5 +1,5 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: openFolder.js */
+/*:::::::::::::::::::::::::::::::::::::::: siteFiles.js */
 
 /*———————————————————————————————————————— platform specific */
 
@@ -8,8 +8,8 @@ const macOpener = '/usr/bin/open'
 
 /*———————————————————————————————————————— parameters extra button */
 
-var objID    = 'buttFolder2'
-var objLabel = 'open folder'
+var objID    = 'buttFiles2'
+var objLabel = 'site files'
 
 /*———————————————————————————————————————— configure extra  button */
 
@@ -26,8 +26,8 @@ obj.addEventListener('mouseup', (evn) => {
 
 /*———————————————————————————————————————— parameters */
 
-var objID    = 'buttFolder'
-var objLabel = 'open folder'
+var objID    = 'buttFiles'
+var objLabel = 'site files'
 
 /*———————————————————————————————————————— configure button */
 

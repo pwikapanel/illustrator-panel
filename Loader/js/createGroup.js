@@ -14,14 +14,11 @@ if (obj === null) lert(objID + ' is null')
 obj.value = objLabel
 obj.style.display = 'inline'
 
+/*———————————————————————————————————————— load script */
 
-  var ISMAC     = 'true'
-  var MYDOCS    = '/Users/Main/Documents'
-  var utilities = TOOLSPATH + '/cep/utilities.jsx'
-
-  CEP.evalScript("ISMAC  = '" + ISMAC  + "'")
-  CEP.evalScript("MYDOCS = '" + MYDOCS + "'")
-  CEP.evalScript("$.evalFile('" + utilities + "')")
+var script = 'createGroup.jsx'
+var file   = TOOLSPATH + '/cep/' + script
+CEP.evalScript("$.evalFile('" + file + "')")
 
 /*———————————————————————————————————————— listener function
 
@@ -30,11 +27,7 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
-  var naam      = 'createGroup.jsx'
-
-  var file = TOOLSPATH + '/cep/' + naam
-
-  CEP.evalScript("$.evalFile('" + file      + "')")
+  CEP.evalScript("createGroup()")
 
 })
 

@@ -9,9 +9,10 @@
 { "build": 0, "source":            "buttons.css" },
 { "build": 0, "source":          "bottomBar.css" },
 
-{ "build": 0, "source":        "buttonsTop.html" },
-{ "build": 0, "source":     "buttonsBottom.html" },
-{ "build": 0, "source":         "bottomBar.html" },
+{ "build": 0, "source":              "open.html" },
+{ "build": 0, "source":              "more.html" },
+{ "build": 0, "source":              "main.html" },
+{ "build": 0, "source":              "help.html" },
 
 { "build": 0, "source":       "interfaceCode.js" },
 { "build": 0, "source":        "panelManager.js" },
@@ -22,7 +23,7 @@
 { "build": 0, "source":         "createGroup.js" },
 { "build": 0, "source":         "launchCloud.js" },
 { "build": 0, "source":          "launchSite.js" },
-{ "build": 0, "source":          "openFolder.js" },
+{ "build": 0, "source":           "siteFiles.js" },
 { "build": 0, "source":             "saveAll.js" },
 { "build": 0, "source":                "save.js" },
 { "build": 0, "source":              "reopen.js" },

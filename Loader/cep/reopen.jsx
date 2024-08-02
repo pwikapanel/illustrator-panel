@@ -1,8 +1,8 @@
 #target illustrator  
 
-/*———————————————————————————————————————— openFolder(lastPath)
+/*———————————————————————————————————————— reopen()
 
-    open dialog with folder of most recent document */
+    reopen the most recently closed page */
 
 function reopen(){
 
@@ -12,8 +12,7 @@ function reopen(){
   }
 
   try{
-    myFolder = File(LASTPATH)
-    app.open(myFolder)
+    app.open(File(LASTPATH))
   }
   catch(errMsg){
     alert('error message\n'+errMsg)

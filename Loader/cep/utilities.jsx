@@ -2,6 +2,8 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.jsx */
 
+alert('utilities loaded')
+
 /*———————————————————————————————————————— notes
 
     utilities.jsx
