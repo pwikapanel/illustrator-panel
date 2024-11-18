@@ -1,11 +1,15 @@
 /*———————————————————————————————————————— bottom bar */
 
 div#bottomBar{
-  height:17px;
-  width:85%;
+  height:15px;
+  width:100%;
+  text-align:right;
+
   border-top-width:1px;
   border-top-style:solid;
-  text-align:right;
+  border-right-width:1px;
+  border-right-style:solid;
+  border-radius:0 3px 0 0;
 }
 
 div#bottomBar span#leftLinks{
@@ -16,16 +20,5 @@ div#bottomBar span a:link{
   display:none;
   cursor:pointer;
   transition:0.3s;
-}
-
-span#bottomCorner{
-  padding-right:0;
-  width: 20px;
-  height:20px;
-
-  border-width: 10px;
-  border-style: solid;
-  border-top:none;
-  border-left:none;
 }
 

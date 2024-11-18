@@ -21,7 +21,13 @@
 
     if user already picked a favorite color */
 
-if (typeof localStorage.accentBright != 'undefined'){
+if (typeof localStorage.accentBright == 'undefined'){
+  var style = getComputedStyle(document.body)                  
+  localStorage.accentBright = style.getPropertyValue('--accentBright')
+  localStorage.accentDim    = style.getPropertyValue('--accentDim')
+  
+}
+else{
   document.documentElement.style.setProperty('--accentBright', localStorage.accentBright)
   document.documentElement.style.setProperty('--accentDim',    localStorage.accentDim)
 }
