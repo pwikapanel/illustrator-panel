@@ -1,12 +1,14 @@
-/*———————————————————————————————————————— bottom bar */ 
+/*———————————————————————————————————————— bottom bar */
 
 div#bottomBar{
+  height:17px;
+  width:85%;
   border-top-width:1px;
   border-top-style:solid;
-  text-align:right; 
+  text-align:right;
 }
 
-div#bottomBar span{
+div#bottomBar span#leftLinks{
   float:left;
 }
 
@@ -16,7 +18,14 @@ div#bottomBar span a:link{
   transition:0.3s;
 }
 
-div#bottomFiller{
- width:100%;
- height:2px;
+span#bottomCorner{
+  padding-right:0;
+  width: 20px;
+  height:20px;
+
+  border-width: 10px;
+  border-style: solid;
+  border-top:none;
+  border-left:none;
 }
+

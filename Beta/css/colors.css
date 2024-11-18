@@ -66,8 +66,9 @@ div#bottomBar{
   border-top-color:var(--panel-border);
 }
 
-div#bottomFiller{
-  background-color:var(--panel-bg-dark);
+span#bottomCorner{
+  /* border-color: lime var(--panel-bg) var(--panel-bg-dark) lime; */
+  border-color: lime red black lime;
 }
 
 div#bottomBar span a:link{
