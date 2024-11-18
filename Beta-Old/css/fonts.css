@@ -1,0 +1,16 @@
+/*———————————————————————————————————————— font families */
+
+@font-face {
+  font-family:'Lucida Grande';
+  font-weight:normal;
+  src:url('../fonts/Lucida Grande.woff') format('woff');
+ 
+}
+
+@font-face {
+  font-family:'Lucida Grande';
+  font-weight:bold;
+  src:url('../fonts/Lucida Grande Bold.woff') format('woff');
+}
+
+

@@ -5,7 +5,7 @@
 
   in parent html file:
 
-  var title = 'Svija Tools Loader';
+  var title = 'Svija Tools Beta';
   var svg   = 'interface_less';
   var more  = 0;
 
@@ -16,21 +16,14 @@
 //:::::::::::::::::::::::::::::::::::::::: program
 
 
-var env_beta    = ' Loader'
-var env_version = '1.0.7'
-var env_verLong = '·240724'
+var env_beta    = ' Beta'
+var env_version = '1.0.5'
+var env_verLong = 'v230517'
 
 //———————————————————————————————————————— const & variable 
 
 var csif          = new CSInterface();
 var env_interface = getInterfaceCode(); // 0-3 dark to light in AI prefs
-
-//———————————————————————————————————————— new
-
-var myDocs = csif.getSystemPath(SystemPath.MY_DOCUMENTS);     // C:Users/andy/Documents
-var isMac  = csif.getOSInformation().substring(0,3) == 'Mac'  // false
-
-//———————————————————————————————————————— const & variable 
 
 const env_sizes={
     'index.html'     : [240,  82],
@@ -59,7 +52,7 @@ const actions = [
   ['Creating Group…'      , 'Create Group.jsx'    , ''      ], // 2nd
   ['Importing Styles…'    , 'Import Styles.jsx'   , ''      ], // 2nd
 
-  ['Checking Page…'       , 'Check.jsx'           , ''      ], // 3rd
+  ['Checking Page……'      , 'Check.jsx'           , ''      ], // 3rd
 
 //['Saving File…'         , 'Save.jsx'            , 'canvas'], // bot
   ['Saving Files…'        , 'Save.jsx'            , 'all'   ], // bot

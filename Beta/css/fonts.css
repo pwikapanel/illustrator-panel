@@ -1,16 +1,45 @@
-/*———————————————————————————————————————— font families */
+
+/*:::::::::::::::::::::::::::::::::::::::: fonts.css */
+
+/*———————————————————————————————————————— font declaration */
 
 @font-face {
-  font-family:'Lucida Grande';
-  font-weight:normal;
-  src:url('../fonts/Lucida Grande.woff') format('woff');
- 
+  font-family:'SourceSansPro';
+  font-weight:300;
+  src:url('./fonts/SourceSansPro-Regular.woff') format('woff');
+
 }
 
 @font-face {
-  font-family:'Lucida Grande';
-  font-weight:bold;
-  src:url('../fonts/Lucida Grande Bold.woff') format('woff');
+  font-family:'SourceSansPro';
+  font-weight:600;
+  src:url('./fonts/SourceSansPro-SemiBold.woff') format('woff');
 }
+
+/*———————————————————————————————————————— permanent */
+
+body{
+  font-family:'SourceSansPro';
+}
+
+input[type=button]{
+  font-family:'SourceSansPro';
+  font-size:12px;
+  line-height:10px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+div#bottomBar{
+  font-size:8.5px;
+  line-height:8.5px;
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+  font-weight:600;
+}
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
+
 
 
