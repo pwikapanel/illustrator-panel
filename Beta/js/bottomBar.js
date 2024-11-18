@@ -60,6 +60,36 @@ obj.addEventListener('mouseup', (evn) => {
 })
 
 
+/*:::::::::::::::::::::::::::::::::::::::: prefs */
+
+/*———————————————————————————————————————— parameters */
+
+var objId    = 'prefLink'
+var objLabel = '   ⚙'
+
+/*———————————————————————————————————————— configure button */
+
+var obj = document.getElementById(objId)
+if (obj === null) lert(objId + ' is null')
+
+obj.text = objLabel
+obj.style.display = 'inline'
+
+/*———————————————————————————————————————— mouseup function
+
+    will be utilised for Verify, forms etc. */
+
+obj.addEventListener('mouseup', (evn) => {
+  var alt = evn.getModifierState('Alt');
+
+  if (!alt){
+    lert('show settings')
+    return true
+  }
+//  clearCache()
+})
+
+
 /*:::::::::::::::::::::::::::::::::::::::: more */
 
 /*———————————————————————————————————————— parameters */
@@ -83,10 +113,10 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
   if (!alt){
-    localStorage.moreLess  = 'more'
-    moreSwitch.style.display   = 'block'
-    moreLink.style.display = 'none'
-    lessLink.style.display = 'inline'
+    localStorage.moreLess    = 'more'
+    moreSwitch.style.display = 'block'
+    moreLink.style.display   = 'none'
+    lessLink.style.display   = 'inline'
     return true
   }
 })

@@ -16,9 +16,16 @@ div#bottomBar span#leftLinks{
   float:left;
 }
 
-div#bottomBar span a:link{
+div#bottomBar a{
   display:none;
   cursor:pointer;
   transition:0.3s;
 }
 
+a#prefLink{
+  font-size:15px;
+  line-height:8.5px; /* same as rest of bottom bar */
+  vertical-align:sub;
+  position:relative;
+  top:-1px;
+}
