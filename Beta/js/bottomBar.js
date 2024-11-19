@@ -60,11 +60,11 @@ obj.addEventListener('mouseup', (evn) => {
 })
 
 
-/*:::::::::::::::::::::::::::::::::::::::: prefs */
+/*:::::::::::::::::::::::::::::::::::::::: channel */
 
 /*———————————————————————————————————————— parameters */
 
-var objId    = 'prefLink'
+var objId    = 'channelLink'
 var objLabel = '   ⚙'
 
 /*———————————————————————————————————————— configure button */
@@ -82,11 +82,8 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
-  if (!alt){
-    lert('show settings')
-    return true
-  }
-//  clearCache()
+  var file = TOOLSPATH + '/cep/channel.jsx'
+  CEP.evalScript("$.evalFile('" + file + "')")
 })
 
 
