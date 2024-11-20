@@ -42,9 +42,7 @@ obj.addEventListener('mouseup', (evn) => {
   openLastFolder(alt)
 })
 
-/*———————————————————————————————————————— main function
-
-    */
+/*:::::::::::::::::::::::::::::::::::::::: main function */
 
 function openLastFolder(alt){
 

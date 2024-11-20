@@ -84,7 +84,29 @@ obj.addEventListener('mouseup', (evn) => {
 
   var file = TOOLSPATH + '/cep/channel.jsx'
   CEP.evalScript("$.evalFile('" + file + "')")
+  CEP.evalScript("channelDialog(" + CHANNEL + ")", setChannel)
 })
+
+/*———————————————————————————————————————— setChannel(channel)
+
+    receives a string from channel.jsx */
+
+function setChannel(channel){
+  if (channel == '') return true;
+
+  switch(channel){
+    case '0':
+    case '1':
+    case '2':
+      lert('Changing channel to '+channel)
+      localStorage.clear();
+      localStorage.CHANNEL = channel;
+      location.reload();
+      break
+    default :
+      lert('Invalid channel: ' + channel);
+  }
+}
 
 
 /*:::::::::::::::::::::::::::::::::::::::: more */

@@ -32,6 +32,6 @@ obj.addEventListener('mouseup', (evn) => {
   if (alt) str = 'changeCase(true)'                                            
   else str = 'changeCase(false)'                                               
 
-  CEP.evalScript(str)
+  var zoop = CEP.evalScript(str)
 })
 
