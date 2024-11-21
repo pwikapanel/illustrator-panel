@@ -92,7 +92,11 @@ obj.addEventListener('mouseup', (evn) => {
     receives a string from channel.jsx */
 
 function setChannel(channel){
-  if (channel == '') return true;
+  if (typeof channel == 'undefined') return true
+  if (       channel == ''         ) return true
+
+  lert('got back "'+channel+'"')
+  return true
 
   switch(channel){
     case '0':
