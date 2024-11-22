@@ -25,7 +25,7 @@ var naam      = 'projectInfo.jsx'
 var ISMAC     = 'true'
 var MYDOCS    = '/Users/Main/Documents'
 
-var file = TOOLSPATH + '/stable/cep/' + naam
+var file = TOOLSPATH + '/master/cep/' + naam
 
 CEP.evalScript("$.evalFile('" + file + "')")
 

@@ -10,9 +10,9 @@
 localStorage.clear()
 
   var CHANNEL   = 2
-  var CHNAME0   = 'Alpha'
-  var CHNAME1   = 'Beta'
-  var CHNAME2   = 'Stable'
+  var CHNAME0   = 'alpha'
+  var CHNAME1   = 'beta'
+  var CHNAME2   = 'master'
 
   var CEP       = new CSInterface()
 
@@ -159,7 +159,7 @@ function loadJsx(scriptID, contents, path){
 
 /*———————————————————————————————————————— parseScriptList(str)
 
-    {"build":0, "source":"stable.json"} */
+    {"build":0, "source":"manifest.json"} */
 
 function parseScriptList(scriptID, str, path){
   if (str == '') return true

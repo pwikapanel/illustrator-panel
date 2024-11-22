@@ -59,40 +59,43 @@
 //:::::::::::::::::::::::::::::::::::::::: program
 
 
+var env_start_ms, env_warnings, env_errors, env_repairs, env_imagesModified, env_imagesFixed, env_imageFailed
+
 function checkAndRepair(){
 
   var syncErr = ' is not inside a \"SYNC\" folder'
 
   var d = new Date()
-  var env_start_ms = d.getTime()
+  env_start_ms = d.getTime()
 
-//———————————————————————————————————————— no open docs
 
-if (app.documents.length < 1){
-  alert('No open documents.')
-  return true
-}
-
-//———————————————————————————————————————— initialization
-
-var doc            = app.activeDocument
-
-var env_repairs        = []   // repaired messages for user
-var env_warnings       = []   // warnings for user
-var env_errors         = []   // error messages for user
-var env_imagesModified = []   // [name, boolean warning/error, message]
-
-var env_imagesFixed    = []
-var env_imagesFailed   = []
-
-var linksFolderObj = Folder(concatenatePath(doc.path, 'Links'))
-
-var nonNatives = doc.nonNativeItems.length
-var rasters    = doc.rasterItems.length
-var placed     = doc.placedItems.length
-
-if (rasters + placed > 0) var hasImages = true
-else                      var hasImages = false
+  //———————————————————————————————————————— no open docs
+  
+  if (app.documents.length < 1){
+    alert('No open documents.')
+    return true
+  }
+  
+  //———————————————————————————————————————— initialization
+  
+  var doc            = app.activeDocument
+  
+  env_repairs        = []   // repaired messages for user
+  env_warnings       = []   // warnings for user
+  env_errors         = []   // error messages for user
+  env_imagesModified = []   // [name, boolean warning/error, message]
+  
+  env_imagesFixed    = []
+  env_imagesFailed   = []
+  
+  var linksFolderObj = Folder(concatenatePath(doc.path, 'Links'))
+  
+  var nonNatives = doc.nonNativeItems.length
+  var rasters    = doc.rasterItems.length
+  var placed     = doc.placedItems.length
+  
+  if (rasters + placed > 0) var hasImages = true
+  else                      var hasImages = false
 
   //———————————————————————————————————————— has not saved then quit
   
@@ -128,80 +131,81 @@ if (hasImages)
    there are 51 in Fusion 2018 PDF
    the function fixEmbeddedImage should be copied */
 
-/*———————————————————————————————————————— change embedded images to linked images
+  /*———————————————————————————————————————— change embedded images to linked images
+  
+      these are treated before placed images, because they will be
+      changed to placed in the next step
+  
+      fixEmbeddedImage() returns image filename, succes/failure, message */
+  
+  if (hasImages)
+    for (var x=rasters; x>0; x--){
+      var name_fixed_msg = fixEmbeddedImage(doc, doc.rasterItems[x-1]);
+  
+      if (name_fixed_msg.length > 0){
+        env_imagesModified[env_imagesModified.length] = name_fixed_msg;
+        if(name_fixed_msg[1])
+          placed += 1; // if it succeeded, we add a new placed image
+      }
+    }
+  
+  /*———————————————————————————————————————— copy/move placed images to Links
+  
+      rasterItem() returns image filename, succes/failure, message */
 
-    these are treated before placed images, because they will be
-    changed to placed in the next step
+  if (hasImages)
+    for (var x=placed; x>0; x--){
+      var name_fixed_msg = fixPlacedImage(doc, doc.placedItems[x-1]);
+  
+      if (name_fixed_msg.length > 0) // if something was modified
+        env_imagesModified[env_imagesModified.length] = name_fixed_msg;
+    }
 
-    fixEmbeddedImage() returns image filename, succes/failure, message */
-
-if (hasImages)
-  for (var x=rasters; x>0; x--){
-    var name_fixed_msg = fixEmbeddedImage(doc.rasterItems[x-1]);
-
-    if (name_fixed_msg.length > 0){
-      env_imagesModified[env_imagesModified.length] = name_fixed_msg;
-      if(name_fixed_msg[1])
-        placed += 1; // if it succeeded, we add a new placed image
+  /*———————————————————————————————————————— check for illegal image formats
+  
+      reject anything but .ai, .pdf, .jpg, .png & .gif */
+  
+  if (hasImages){
+    for (var x=0; x<placed; x++){
+      var name_fixed_msg = checkImageExt(doc.placedItems[x]);
+  
+      if (name_fixed_msg.length > 0) // if something was modified
+        env_imagesModified[env_imagesModified.length] = name_fixed_msg;
     }
   }
-
-/*———————————————————————————————————————— copy/move placed images to Links
-
-    rasterItem() returns image filename, succes/failure, message */
-
-if (hasImages)
-  for (var x=placed; x>0; x--){
-    var name_fixed_msg = fixPlacedImage(doc.placedItems[x-1]);
-
-    if (name_fixed_msg.length > 0) // if something was modified
-      env_imagesModified[env_imagesModified.length] = name_fixed_msg;
-}
-
-/*———————————————————————————————————————— check for illegal image formats
-
-    reject anything but .ai, .pdf, .jpg, .png & .gif */
-
-if (hasImages){
-  for (var x=0; x<placed; x++){
-    var name_fixed_msg = checkImageExt(doc.placedItems[x]);
-
-    if (name_fixed_msg.length > 0) // if something was modified
-      env_imagesModified[env_imagesModified.length] = name_fixed_msg;
-  }
-}
-
-/*———————————————————————————————————————— separate image messages into success/failed
-
-    two lists of messages are created:
-    - fixed images
-    - failed repairs
-
-    an image that has two fixes:
-    - embedded › linked
-    - moved to Links
-
-    should show only one message, the second */
-
-if (hasImages){
-  for (var x=0; x<env_imagesModified.length; x++){
-
-    if (!env_imagesModified[x][1])
-      env_imagesFailed.push(env_imagesModified[x]); // repair failed
-    else{
-
-      var nme   = env_imagesModified[x][0];
-      var index = nameExists(nme, env_imagesFixed);
-
-      if (index < 0) env_imagesFixed[env_imagesFixed.length] = env_imagesModified[x];
-      else           env_imagesFixed[index] = env_imagesModified[x];
+  
+  /*———————————————————————————————————————— separate image messages into success/failed
+  
+      two lists of messages are created:
+      - fixed images
+      - failed repairs
+  
+      an image that has two fixes:
+      - embedded › linked
+      - moved to Links
+  
+      should show only one message, the second */
+  
+  if (hasImages){
+    for (var x=0; x<env_imagesModified.length; x++){
+  
+      if (!env_imagesModified[x][1])
+        env_imagesFailed.push(env_imagesModified[x]); // repair failed
+      else{
+  
+        var nme   = env_imagesModified[x][0];
+        var index = nameExists(nme, env_imagesFixed);
+  
+        if (index < 0) env_imagesFixed[env_imagesFixed.length] = env_imagesModified[x];
+        else           env_imagesFixed[index] = env_imagesModified[x];
+      }
     }
   }
-}
+  
+  //———————————————————————————————————————— alert user
+     
+  alertUser(doc)
 
-//———————————————————————————————————————— alert user
-   
-alertUser(doc)
 
 }
 
@@ -233,7 +237,7 @@ function artboardNames(doc){
     returns image filename, succes/failure, message if modification
     returns [] if no change */
 
-function fixEmbeddedImage(img){
+function fixEmbeddedImage(doc, img){
  
   if (!img.layer.printable) return []; // we don't care about non-printing information layers
 
@@ -314,7 +318,7 @@ function fixEmbeddedImage(img){
   return [imgName, success, msg];
 }
 
-/*———————————————————————————————————————— fixPlacedImage(obj)
+/*———————————————————————————————————————— fixPlacedImage(doc, img)
 
     image can't be missing unless it
     was moved after document was opened
@@ -329,13 +333,15 @@ function fixEmbeddedImage(img){
     image is in same folder as Ai doc
     image is in links folder already  */
 
-function fixPlacedImage(img){
+function fixPlacedImage(doc, img){
+
   if (!img.layer.printable) return [];
 
   try{ var thisFolder = img.file.path; } // not sure what would cause this
   catch(e){ return []; }                 // just in case
 
   var currentFolder = Folder(app.activeDocument.path);
+
   var linksFolder   = concatenatePath(doc.path, 'Links')
 
   if (thisFolder == linksFolder) // image is already in /Links
@@ -424,7 +430,9 @@ function checkImageExt(img){
 function alertUser(doc){
 
   var d = new Date();
+
   var ms = (d.getTime()-env_start_ms)
+
   var fileSize = getFileSize(doc)
 
   var title = doc.name;
@@ -438,7 +446,7 @@ function alertUser(doc){
   
   if (env_repairs.length > 0)
     bodyParts.push('— Repairs —\n' + env_repairs.join('\n'));
-  
+
   if (env_imagesFixed.length > 0)
     bodyParts.push('— Fixed images —\n' + convertArray(env_imagesFixed));
 

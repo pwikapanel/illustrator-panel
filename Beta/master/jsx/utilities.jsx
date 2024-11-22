@@ -68,6 +68,7 @@ function aiOptions(version){
     given a part1 and part2, returns a correct path */
 
 function concatenatePath(part1, part2){
+
   if (ISMAC) return part1 + '/' + part2
   else return part1 + '\\' + part2
 }

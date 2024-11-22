@@ -23,8 +23,15 @@
 { "build": 0, "source":           "projectInfo.jsx"  },
 { "build": 0, "source":           "projectInfo.js"   },
 
+{ "build": 0, "source":        "checkAndRepair.jsx"  },
 { "build": 0, "source":        "checkAndRepair.js"   },
+
+{ "build": 0, "source":           "createGroup.jsx"  },
 { "build": 0, "source":           "createGroup.js"   },
+
+{ "build": 0, "source":            "changeCase.jsx"  },
+{ "build": 0, "source":            "changeCase.js"   },
+
 { "build": 0, "source":           "launchCloud.js"   },
 { "build": 0, "source":            "launchSite.js"   },
 { "build": 0, "source":             "siteFiles.js"   },
@@ -32,10 +39,8 @@
 { "build": 0, "source":                  "save.js"   },
 { "build": 0, "source":                "reopen.js"   },
 { "build": 0, "source":                  "open.js"   },
-{ "build": 0, "source":            "changeCase.js"   },
 { "build": 0, "source":             "bottomBar.js"   },
 
-{ "build": 0, "source":        "checkAndRepair.jsx"  },
 { "build": 0, "source":               "channel.jsx"  },
 
 {"build":"fin"}]

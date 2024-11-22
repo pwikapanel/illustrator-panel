@@ -5,6 +5,7 @@
 
 var objId    = 'buttCase'
 var objLabel = 'change case'
+var scr      = 'changeCase.jsx'
 
 /*———————————————————————————————————————— configure button */
 
@@ -18,7 +19,6 @@ obj.style.display = 'inline'
 
      */
 
-var scr = 'changeCase.jsx'
 var file = TOOLSPATH + '/cep/' + scr
 CEP.evalScript("$.evalFile('" + file + "')")
 
@@ -27,11 +27,14 @@ CEP.evalScript("$.evalFile('" + file + "')")
     will be utilised for Verify, forms etc. */
 
 obj.addEventListener('mouseup', (evn) => {
-  var alt = evn.getModifierState('Alt');
+  var alt = evn.altKey
 
   if (alt) str = 'changeCase(true)'                                            
   else str = 'changeCase(false)'                                               
 
-  var zoop = CEP.evalScript(str)
+  CEP.evalScript(str)
 })
+
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
 
