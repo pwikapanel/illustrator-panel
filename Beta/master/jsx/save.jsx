@@ -47,105 +47,84 @@
 
 /*———————————————————————————————————————— ▼ program:{
 
-    can use "break program;" to quit at any moment */
+                                                   */
+function savePages(param){
 
-program:{
+  /*———————————————————————————————————————— initialization */
 
   var d = new Date()
   var env_start_ms = d.getTime()
   var fileSizes = []
 
-/*———————————————————————————————————————— no open docs */
-
-if (app.documents.length < 1){
-  alert('No open documents.')
-  break program
-}
-
-/*———————————————————————————————————————— get param if standalone
-
-    save or all */
-
-if (typeof param == 'undefined'){
-
-  var msg   = 'Please enter param\nsave  all'
-
-  var param = prompt(msg, 'save')
-  if (param == null)
-    param = '' 
-
-  const regex = /save|all/g
-  if(param.match(regex) === null){
-    alert('Invalid Param\nSave operation canceled')
-    break program
-  }
-}
-
-
-//:::::::::::::::::::::::::::::::::::::::: post-validation
-
-/*———————————————————————————————————————— initialization */
-
-var  env_errs = []                   // error messages for user
-var  env_warn = []                   // warnings for user
-var   appDocs = app.documents        // array of open documents
-var  docsOpen = appDocs.length       // number of open documents
-var activeDoc = app.activeDocument   // active document
-var aiVersion = 0                    // 0=default, 17=CC Legacy
-var aiOpts    = aiOptions(aiVersion)
-
-var single = param == 'all' ? false : true // save only frontmost doc?
-
-/*———————————————————————————————————————— "for" loop through documents */
-
-// var extraLayer = false;
-
-
-for (var index=0; index<docsOpen; index++){
-
-  app.activeDocument = appDocs[index];
-
-  var doc            = app.activeDocument;
-
-  if (isValid(doc)){
-
-    var activeBoard    = doc.artboards.getActiveArtboardIndex();
-    var originalPath   = getDocPath(doc)
-
-    var theseFileSizes = saveSvg(doc) ///////////////  MAIN SAVE AS SVG FUNCTION  \\\\\\\\\\\\\\\
+  /*———————————————————————————————————————— no open docs */
   
-    var aiFile = new File(originalPath);
-
-    doc.saveAs(aiFile, aiOpts);
-
-    //————————————————————————————————————————
-
-    theseFileSizes.unshift(aiFile.length)
-    theseFileSizes.unshift(doc.name)
-    fileSizes[fileSizes.length] = (theseFileSizes)
-
-    //————————————————————————————————————————
-
-    doc.artboards.setActiveArtboardIndex(activeBoard);
-
+  if (app.documents.length < 1){
+    alert('No open documents.')
+    return true
   }
 
-  if (single) break;
+
+  //:::::::::::::::::::::::::::::::::::::::: post-validation
+  
+  /*———————————————————————————————————————— initialization */
+
+  var  env_errs = []                   // error messages for user
+  var  env_warn = []                   // warnings for user
+  var   appDocs = app.documents        // array of open documents
+  var  docsOpen = appDocs.length       // number of open documents
+  var activeDoc = app.activeDocument   // active document
+  var aiVersion = 0                    // 0=default, 17=CC Legacy
+  var aiOpts    = aiOptions(aiVersion)
+
+  var single = param == 'all' ? false : true // save only frontmost doc?
+
+  /*———————————————————————————————————————— "for" loop through documents */
+
+  // var extraLayer = false;
+
+
+  for (var index=0; index<docsOpen; index++){
+
+    app.activeDocument = appDocs[index];
+
+    var doc            = app.activeDocument;
+
+    if (isValid(doc)){
+
+      var activeBoard    = doc.artboards.getActiveArtboardIndex();
+      var originalPath   = getDocPath(doc)
+
+      var theseFileSizes = saveSvg(doc) ///////////////  MAIN SAVE AS SVG FUNCTION  \\\\\\\\\\\\\\\
+
+      var aiFile = new File(originalPath);
+
+      doc.saveAs(aiFile, aiOpts);
+
+      //————————————————————————————————————————
+
+      theseFileSizes.unshift(aiFile.length)
+      theseFileSizes.unshift(doc.name)
+      fileSizes[fileSizes.length] = (theseFileSizes)
+
+      //————————————————————————————————————————
+
+      doc.artboards.setActiveArtboardIndex(activeBoard);
+
+    }
+
+    if (single) break;
+  }
+
+  /*———————————————————————————————————————— restore frontmost doc and alert user */
+
+  if (!single)
+    app.activeDocument = activeDoc;
+
+  app.beep()
+  finalFeedback(fileSizes);
+
+
 }
-
-/*———————————————————————————————————————— restore frontmost doc and alert user */
-
-if (!single)
-  app.activeDocument = activeDoc;
-
-app.beep()
-
-finalFeedback(fileSizes);
-
-/*———————————————————————————————————————— ▲ } // program */
-
-} // program 
-
 
 //:::::::::::::::::::::::::::::::::::::::: main functions
 

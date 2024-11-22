@@ -1,5 +1,5 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: open.js */
+/*:::::::::::::::::::::::::::::::::::::::: openFolder.js */
 
 /*———————————————————————————————————————— parameters */
 
@@ -28,7 +28,7 @@ CEP.evalScript("$.evalFile('" + file + "')")
 
 obj.addEventListener('mouseup', (evn) => {
 
-  var alt = evn.getModifierState('Alt')
+  var alt = evn.altKey
   CEP.evalScript('openFolder()')
 
 })

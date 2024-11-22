@@ -15,7 +15,7 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: program */
 
-function channelDialog(channel){
+function channelDialog(extensionPath, channel){
 
   //———————————————————— image scaling function
 
@@ -52,7 +52,7 @@ function channelDialog(channel){
   
   //———————————————————— splash image
 
-  var imgPath = TOOLSPATH + '/png/splash_190x292.png'
+  var imgPath = extensionPath + '/png/splash_190x292.png'
 
   var splash = panel.add ("image", undefined, File (imgPath));
 
@@ -88,7 +88,7 @@ function channelDialog(channel){
   logo.alignment = 'left'
   //go.graphics.backgroundColor = content.graphics.newBrush(content.graphics.BrushType.SOLID_COLOR,[0.7,0.7,0.7], 1)
   
-  var imgPath = TOOLSPATH + '/png/splash_213x61.png'
+  var imgPath = extensionPath + '/png/splash_213x61.png'
   
   var logoImg = logo.add ("image", undefined, File (imgPath));
   
@@ -245,6 +245,3 @@ function channelDialog(channel){
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
-/* altKey
-Type: Boolean
-When true, the ALTkeywas active. Valueis undefinedif the keyIdentifieris for amodifierkey. */
