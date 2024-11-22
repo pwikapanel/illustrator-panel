@@ -36,8 +36,6 @@
 
 function changeCase(alt){
 
-  alert('inside: '+alt)
-
   var textRange // is it the entire path (vs selected with cursor)
 
   if (app.documents.length < 1)  return ''
