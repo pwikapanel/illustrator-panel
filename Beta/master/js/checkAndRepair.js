@@ -1,10 +1,11 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: check.js */
+/*:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js */
 
 /*———————————————————————————————————————— parameters */
 
 var objLabel = 'check & repair'
 var objID    = 'buttCheck'
+var script   = 'checkAndRepair.jsx'
 
 /*———————————————————————————————————————— configure button */
 
@@ -24,15 +25,9 @@ obj.style.display = 'inline'
   opens folder based on localStorage lastPath */
 
 obj.addEventListener('mouseup', (evn) => {
-  var alt = evn.getModifierState('Alt');
+  var alt = evn.altKey
 
-  // no params
-  // space matched with save & save all
-
-  var script      = 'check.jsx'
-  var file = TOOLSPATH + '/cep/' + script
-
-  CEP.evalScript("$.evalFile('" + file      + "')")
+  CEP.evalScript("checkAndRepair()")
 
 })
 

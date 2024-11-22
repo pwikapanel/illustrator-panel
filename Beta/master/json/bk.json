@@ -1,6 +1,6 @@
 [
 
-{ "build": 1, "source":               "master.json" },
+{ "build": 1, "source":             "manifest.json" },
 
 { "build": 0, "source":                 "fonts.css" },
 { "build": 0, "source":  "illustratorColorDefs.css" },
@@ -19,16 +19,5 @@
 { "build": 0, "source":            "accentColor.js" },
 { "build": 0, "source":            "projectInfo.js" },
 
-{ "build": 0, "source":                  "check.js" },
-{ "build": 0, "source":            "createGroup.js" },
-{ "build": 0, "source":            "launchCloud.js" },
-{ "build": 0, "source":             "launchSite.js" },
-{ "build": 0, "source":              "siteFiles.js" },
-{ "build": 0, "source":                "saveAll.js" },
-{ "build": 0, "source":                   "save.js" },
-{ "build": 0, "source":                 "reopen.js" },
-{ "build": 0, "source":                   "open.js" },
-{ "build": 0, "source":             "changeCase.js" },
-{ "build": 0, "source":              "bottomBar.js" },
 
 {"build":"fin"}]

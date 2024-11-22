@@ -1,6 +1,6 @@
 #target illustrator  
 
-//:::::::::::::::::::::::::::::::::::::::: check.jsx
+//:::::::::::::::::::::::::::::::::::::::: checkAndRepair.jsx
 
 /*———————————————————————————————————————— notes
 
@@ -58,13 +58,10 @@
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
-var syncErr = ' is not inside a \"SYNC\" folder'
 
-/*———————————————————————————————————————— ▼ program:{
+function checkAndRepair(){
 
-    can use "break program;" to quit at any moment */
-
-program:{ // can use "return" to quit at any time
+  var syncErr = ' is not inside a \"SYNC\" folder'
 
   var d = new Date()
   var env_start_ms = d.getTime()
@@ -73,7 +70,7 @@ program:{ // can use "return" to quit at any time
 
 if (app.documents.length < 1){
   alert('No open documents.')
-  break program
+  return true
 }
 
 //———————————————————————————————————————— initialization
@@ -97,23 +94,24 @@ var placed     = doc.placedItems.length
 if (rasters + placed > 0) var hasImages = true
 else                      var hasImages = false
 
-//———————————————————————————————————————— has not saved then quit
+  //———————————————————————————————————————— has not saved then quit
+  
+  var pathErr = hasPath(doc)
+  
+  if (pathErr != ''){
+    alert(pathErr)
+    return true
+  }
+  
+  //———————————————————————————————————————— if not in SYNC folder then quit
 
-var pathErr = hasPath(doc)
-
-if (pathErr != ''){
-  alert(pathErr)
-  break program
-}
-
-//———————————————————————————————————————— if not in SYNC folder then quit
-
-var syncPath = getSyncPath(doc)
-
-if (syncPath == ''){
-  alert(doc.name + syncErr + '::'+syncPath)
-  break program
-}
+  
+  var syncPath = SYNCPATH
+  
+  if (syncPath == ''){
+    alert(doc.name + syncErr + '::'+syncPath)
+    return true
+  }
 
 //———————————————————————————————————————— create Links folder if images
 
@@ -203,14 +201,11 @@ if (hasImages){
 
 //———————————————————————————————————————— alert user
    
-alertUser(doc);
+alertUser(doc)
 
-//———————————————————————————————————————— ▲ } // program 
+}
 
-} // program 
-
-
-//:::::::::::::::::::::::::::::::::::::::: primary functions · called by program
+//:::::::::::::::::::::::::::::::::::::::: primary functions
 
 /*———————————————————————————————————————— artboardNames(sourceDoc)
 
@@ -451,7 +446,7 @@ function alertUser(doc){
     bodyParts.push('— Unrepairable images —\n' + convertArray(env_imagesFailed));
 
   if (bodyParts.length == 0){
-    alert('All Good!');
+    alert('All Good!\nline 449: THIS SCRIPT IS BROKEN');
     return;
   }
 
@@ -463,7 +458,7 @@ function alertUser(doc){
   else
     ms = ms + ' ms';
 
-  showResults = confirm(doc.name + ' verified\n' + fileSize + ' MB in ' + ms + ' — show report?');
+  showResults = confirm(doc.name + ' verified\n' + fileSize + ' MB in ' + ms + ' — show report?\n\nline 461: THIS SCRIPT IS BROKEN');
   if (showResults) alert(msg);
 }
 

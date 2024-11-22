@@ -1,6 +1,8 @@
-/*———————————————————————————————————————— bottom bar */
+
+/*:::::::::::::::::::::::::::::::::::::::: bottom bar */
 
 div#bottomBar{
+  user-select: none;
   height:15px;
   width:100%;
   text-align:right;
@@ -29,3 +31,6 @@ a#prefLink{
   position:relative;
   top:-1px;
 }
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
+

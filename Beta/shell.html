@@ -6,22 +6,25 @@
 
 //:::::::::::::::::::::::::::::::::::::::: initialization
 
+  var LOCAL = true
+localStorage.clear()
+
+  var CHANNEL   = 2
+  var CHNAME0   = 'Alpha'
+  var CHNAME1   = 'Beta'
+  var CHNAME2   = 'Stable'
+
   var CEP       = new CSInterface()
 
+  window.addEventListener('error', (event)=>{
+   CEP.evalScript('alert("' + event.message + '")')
+  })
+
   var ISMAC     = CEP.getOSInformation().substring(0,3) == 'Mac'
-  var LOCAL     = true
-  var MASTER    = 'master'
-  var CHANNEL   = 2          // alpha, beta, stable
   var MAXWIDTH  = 240
   var MYDOCS    = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
   var SERVER    = 'tools.svija.love'
-  var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION)
-  var VERSION   = '1.0.7'
-
-  window.addEventListener('error', (event)=>{
-    var cmd = 'alert("' + event.message + '")'
-    CEP.evalScript(cmd)
-  })
+  var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION) + '/' + dirName(CHANNEL)
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
@@ -41,18 +44,19 @@
 
 var allVars = [
     'CHANNEL',
+    'CHNAME0',
+    'CHNAME1',
+    'CHNAME2',
     'ISMAC',
     'ISSVIJA',
     'LASTPATH',
     'LOCAL',
-    'MASTER',
     'MAXWIDTH',
     'MYDOCS',
     'SERVER',
     'SITEURL',
     'SYNCPATH',
-    'TOOLSPATH',
-    'VERSION'
+    'TOOLSPATH'
 ]
 
 function harmonize(ref){
@@ -80,14 +84,14 @@ function harmonize(ref){
 harmonize('js')
 harmonize('ls')
 
-
 //:::::::::::::::::::::::::::::::::::::::: script loaders
 
 /*———————————————————————————————————————— loadHtml(str)
 
     installs an HTML block */
 
-function loadHtml(scriptID, str){
+function loadHtml(scriptID, contents, path){
+
   scriptID += 'html'
 
   var obj = document.getElementById(scriptID)
@@ -97,16 +101,16 @@ function loadHtml(scriptID, str){
   document.body.appendChild(obj)
 
   obj.id = scriptID
-  obj.innerHTML = str
+  obj.innerHTML = contents
 }
 
 /*———————————————————————————————————————— loadCss(str)
 
     installs a CSS sheet */
 
-function loadCss(scriptID, str, arg){
+function loadCss(scriptID, contents, path){
   scriptID += 'css'
-//  document.getElementsByTagName('style')[0].innerHTML = str
+//  document.getElementsByTagName('style')[0].innerHTML = contents
 
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
@@ -115,14 +119,14 @@ function loadCss(scriptID, str, arg){
   document.head.appendChild(obj)
 
   obj.ID = scriptID
-  obj.innerHTML = str
+  obj.innerHTML = contents
 }
 
 /*———————————————————————————————————————— loadJs(str)
 
     installs a JS block */
 
-function loadJs(scriptID, str, arg){
+function loadJs(scriptID, contents, path){
   scriptID += 'js'
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
@@ -131,15 +135,23 @@ function loadJs(scriptID, str, arg){
   document.body.appendChild(obj)
 
   obj.ID = scriptID
-  obj.innerHTML = str
+  obj.innerHTML = contents
 }
 
 /*———————————————————————————————————————— loadJson(bld, which, src) NOT IMPLEMENTED
 
+    called but why? it doesn't do anything */
+
+function loadJson(scriptID, contents, path){
+  // sumpn
+}
+
+/*———————————————————————————————————————— loadJsx(bld, which, src) NOT IMPLEMENTED
+
     */
 
-function loadJson(which, src){
-//  lert(197+' loadJson()')
+function loadJsx(scriptID, contents, path){
+  CEP.evalScript(contents)
 }
 
 
@@ -147,15 +159,13 @@ function loadJson(which, src){
 
 /*———————————————————————————————————————— parseScriptList(str)
 
-    {"build":0, "source":"master.json"} */
+    {"build":0, "source":"stable.json"} */
 
 function parseScriptList(scriptID, str, path){
   if (str == '') return true
 
-  try{
-    var arr = JSON.parse(str)
-  }
-  catch(e){ lert("JSON Parse Error\n" + e + '\n' + path) }
+  try       { var arr = JSON.parse(str) }
+  catch(msg){ lert(  `JSON Parse Error\n${msg}\n${path}`  ) }
 
   for (var x=0; x<arr.length; x++){
 
@@ -163,7 +173,7 @@ function parseScriptList(scriptID, str, path){
     if (typeof scriptBuild == "string") continue // commment
 
     var scriptSource =  arr[x]['source']
-    var parts = scriptSource.split('.')
+    var parts        = scriptSource.split('.')
     var scriptID     = parts[0]
     var scriptType   = parts[1]
 
@@ -210,6 +220,8 @@ function fetchScript(bld, which, src, scriptType){
 
 function fetchLocal(which, path, callback){
 
+  path = dirName(CHANNEL) + '/' + path
+
   fetchL(path)
     .then(function(text) {
       if (text != '') callback(which, text, path)
@@ -219,8 +231,8 @@ function fetchLocal(which, path, callback){
       }
     })
 
-  .catch(function(err){
-    lert('Fetch Error\n'+err+'\n/'+path)
+  .catch(function(msg){
+    lert('404 Error\nLocal file /' + path + '\n\n'+msg)
     callback('', '', path)
   })
 }
@@ -240,7 +252,7 @@ function fetchLocal(which, path, callback){
 
 function fetchRemote(which, path, callback) {
 
-  path = 'https://' + SERVER + '/' + VERSION +'/'+ path
+  path = 'https://' + SERVER + '/' + dirName(CHANNEL) + '/' + path
   var pathRand = path + '?' + Math.random()
 
   fetch(pathRand)
@@ -342,22 +354,41 @@ function lert(msg){
   CEP.evalScript('alert("' + msg + '")')
 }
 
+/*———————————————————————————————————————— channelName()
+
+                                               */
+
+function channelName(c){
+  return window['CHNAME' + c]
+}
+
+/*———————————————————————————————————————— dirName()
+
+                                               */
+
+function dirName(c){
+  return channelName(c).toLowerCase()
+}
+
 
 </script>
 
 <style>  #reloader{
-  cursor:wait; width:8px;height:8px;
-  position:absolute;top:0px;right:0px;
+    cursor:wait;  width:8px;height:8px;
+  position:absolute;top:0px; right:0px;
 } </style>
 
 </head><body oncontextmenu='return false'><div id="reloader" onclick='localStorage.clear();location.reload()'></div>
 
 <script> // initial loading
 
-  var path     =  'json/' + MASTER + '.json'
+  var path = 'json/manifest.json'
+  var cname = channelName(CHANNEL)
 
-  if (LOCAL) fetchLocal (MASTER, path, parseScriptList)
-        else fetchRemote(MASTER, path, parseScriptList)
+
+
+  if (LOCAL) fetchLocal (cname, path, parseScriptList)
+        else fetchRemote(cname, path, parseScriptList)
 
 </script>
 

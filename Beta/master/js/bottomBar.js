@@ -62,11 +62,12 @@ obj.addEventListener('mouseup', (evn) => {
 
 /*:::::::::::::::::::::::::::::::::::::::: channel */
 
-var channelNames = {0:'Alpha', 1:'Beta', 2:'Stable'}
-
 /*———————————————————————————————————————— parameters */
 
 var objId    = 'channelLink'
+
+    // 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋  
+
 var objLabel = '   ⚙'
 
 /*———————————————————————————————————————— configure button */
@@ -99,7 +100,7 @@ function setChannel(channel){
   if ( isNaN(channel)              ) return true // notNumber, notANumber not a number
   if (   0 > channel || 2 < channel) return true
 
-  lert('Switching to '+channelNames[channel] + ' channel.')
+  lert('Switching to '+CHANNELNAMES[channel] + ' channel.')
   return true
 
   switch(channel){
