@@ -62,6 +62,8 @@ obj.addEventListener('mouseup', (evn) => {
 
 /*:::::::::::::::::::::::::::::::::::::::: channel */
 
+var channelNames = {0:'Alpha', 1:'Beta', 2:'Stable'}
+
 /*———————————————————————————————————————— parameters */
 
 var objId    = 'channelLink'
@@ -94,8 +96,10 @@ obj.addEventListener('mouseup', (evn) => {
 function setChannel(channel){
   if (typeof channel == 'undefined') return true
   if (       channel == ''         ) return true
+  if ( isNaN(channel)              ) return true // notNumber, notANumber not a number
+  if (   0 > channel || 2 < channel) return true
 
-  lert('got back "'+channel+'"')
+  lert('Switching to '+channelNames[channel] + ' channel.')
   return true
 
   switch(channel){

@@ -223,12 +223,15 @@ function channelDialog(channel){
   radioButton0.active = true
   radioButton0.onClick = function(e){
     var alt = ScriptUI.environment.keyboardState.altKey
-    alert('one: '+alt)
+    //alert('one: '+alt)
+    channel = 2
   }
 
   radioButton1.onClick = function(e){
     var alt = ScriptUI.environment.keyboardState.altKey
-    alert('two: '+alt)
+    //alert('two: '+alt)
+    channel = 1
+    if (alt) channel = 0
   }
 
   panel.defaultElement = applyButton
