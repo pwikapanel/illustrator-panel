@@ -1,0 +1,31 @@
+/*———————————————————————————————————————— bottom bar */
+
+div#bottomBar{
+  height:15px;
+  width:100%;
+  text-align:right;
+
+  border-top-width:1px;
+  border-top-style:solid;
+  border-right-width:1px;
+  border-right-style:solid;
+  border-radius:0 3px 0 0;
+}
+
+div#bottomBar span#leftLinks{
+  float:left;
+}
+
+div#bottomBar a{
+  display:none;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+a#prefLink{
+  font-size:15px;
+  line-height:8.5px; /* same as rest of bottom bar */
+  vertical-align:sub;
+  position:relative;
+  top:-1px;
+}

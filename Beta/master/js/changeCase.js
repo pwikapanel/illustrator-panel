@@ -3,7 +3,7 @@
 
 /*———————————————————————————————————————— parameters */
 
-var objId    = 'buttCase'
+var objId    = 'butt22'
 var objLabel = 'change case'
 var scr      = 'changeCase.jsx'
 

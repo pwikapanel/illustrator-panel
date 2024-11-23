@@ -11,7 +11,7 @@
 { "build": 0, "source":               "buttons.css"  },
 { "build": 0, "source":             "bottomBar.css"  },
 
-{ "build": 0, "source":                  "open.html" },
+{ "build": 0, "source":               "dormant.html" },
 { "build": 0, "source":                  "more.html" },
 { "build": 0, "source":                  "main.html" },
 { "build": 0, "source":             "bottomBar.html" },
@@ -33,10 +33,10 @@
 { "build": 0, "source":            "changeCase.js"   },
 
 { "build": 0, "source":               "channel.jsx"  },
-{ "build": 0, "source":             "bottomBar.js"   },
+{ "build": 0, "source":               "channel.js"   },
 
-{ "build": 0, "source":            "openFolder.jsx"  },
-{ "build": 0, "source":            "openFolder.js"   },
+{ "build": 0, "source":              "openFile.jsx"  },
+{ "build": 0, "source":              "openFile.js"   },
 
 { "build": 0, "source":           "accentColor.jsx"  },
 { "build": 0, "source":           "accentColor.js"   },
@@ -44,12 +44,14 @@
 { "build": 0, "source":                "reopen.jsx"  },
 { "build": 0, "source":                "reopen.js"   },
 
-{ "build": 0, "source":                "save.jsx"    },
-{ "build": 0, "source":                "save.js"     },
-{ "build": 0, "source":             "saveAll.js"     },
+{ "build": 0, "source":                  "save.jsx"  },
+{ "build": 0, "source":                  "save.js"   },
+{ "build": 0, "source":               "saveAll.js"   },
 
 { "build": 0, "source":           "launchCloud.js"   },
 { "build": 0, "source":            "launchSite.js"   },
-{ "build": 0, "source":             "siteFiles.js"   },
+{ "build": 0, "source":                "folder.js"   },
+{ "build": 0, "source":              "moreLess.js"   },
+{ "build": 0, "source":                  "help.js"   },
 
 {"build":"fin"}]

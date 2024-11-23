@@ -3,7 +3,7 @@
 
 /*———————————————————————————————————————— parameters */
 
-var objID    = 'buttCloud'
+var objID    = 'butt12'
 var objLabel = 'svija cloud'
 
 /*———————————————————————————————————————— configure button */

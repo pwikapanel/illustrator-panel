@@ -3,7 +3,7 @@
 
 /*———————————————————————————————————————— parameters */
 
-var objID    = 'buttGroup'
+var objID    = 'butt21'
 var objLabel = 'create group'
 
 /*———————————————————————————————————————— configure button */

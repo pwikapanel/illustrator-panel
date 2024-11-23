@@ -1,0 +1,49 @@
+/*———————————————————————————————————————— buttons */
+
+/*
+
+// panel width 240px
+// buttons 105px wide x 22px tall
+
+// 10 px marg horizontally
+// 5px marge vertically
+
+//bott bar 12px high
+//bott text 5.71px high:w
+*/
+
+
+input[type=button]{
+  display:none;
+  width:105px;
+  height:22px;
+  border-style:solid;
+  border-width:1px;
+  border-radius:3px;
+  padding:0 !important;
+  margin: 0px 5px 3px 5px !important;
+  transition:0.3s;
+}
+
+/*———————————————————————————————————————— sets of three */
+/* med + small = 105 */
+
+input[type=button].btnLarge{ width:95px; }
+input[type=button].btnMed  { width:58px; }
+input[type=button].btnSmall{ width:47px; }
+
+/*———————————————————————————————————————— logo */
+
+svg#svijaLogo{
+  cursor:pointer;
+  padding:0 !important;
+  width:115px;
+  height:22px;
+  margin: 0 5px 5px 5px !important;
+  vertical-align:top;
+}
+
+#logoArt{
+  transition:0.5s;
+}
+

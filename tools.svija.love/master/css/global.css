@@ -1,0 +1,74 @@
+
+/*:::::::::::::::::::::::::::::::::::::::: global.css */
+
+/*———————————————————————————————————————— permanent */
+
+*{
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+html, body{
+  margin: 0;
+  padding:0;
+  height: 100%;
+  overflow: hidden;
+  cursor:default;
+}
+
+body{
+  background-color:var(--panel-bg);
+  color:#bbb;
+  text-align: center;
+}
+
+input:focus{ /* get rid of blue line when focused */
+  outline: none!important;
+  box-shadow: none!important;
+}
+
+/*———————————————————————————————————————— HR */
+
+hr{
+  display:block;
+  margin: 7px 10px 0px 10px !important;
+  padding:0 !important;
+  border-width:1px 0 0 0;
+  border-top-style:solid;
+}
+
+/*———————————————————————————————————————— button types */
+
+div#openDiv{
+  display:none;
+  padding-top:3.5px;
+  padding-bottom:2px;
+}
+
+div#moreSwitch{ /* container for moreDiv */
+  display:none;
+}
+
+div#moreDiv{
+  padding-top:9px;
+  display:block;
+  xbackground-color:#004400;
+}
+
+div#mainDiv{
+  padding-top:9px;
+  xbackground-color:#000044;
+}
+
+/*———————————————————————————————————————— bottom bar */ 
+
+div#bottomBar{
+
+  margin-top:6px;
+  padding:3px 9px 0 9px;
+  padding-bottom:3px;
+  height:14px;
+}
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
+

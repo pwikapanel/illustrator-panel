@@ -4,7 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objLabel = 'check & repair'
-var objID    = 'buttCheck'
+var objID    = 'butt41'
 var script   = 'checkAndRepair.jsx'
 
 /*———————————————————————————————————————— configure button */

@@ -5,7 +5,6 @@
 
 var helpURL = 'tech.svija.love/fromtools'
 
-
 /*:::::::::::::::::::::::::::::::::::::::: startup */ 
 
 /*———————————————————————————————————————— more/less status on load
@@ -66,9 +65,6 @@ obj.addEventListener('mouseup', (evn) => {
 /*———————————————————————————————————————— parameters */
 
 var objId    = 'channelLink'
-
-    // 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋  
-
 var objLabel = '   ⚙'
 
 /*———————————————————————————————————————— configure button */
@@ -84,10 +80,11 @@ obj.style.display = 'inline'
     will be utilised for Verify, forms etc. */
 
 obj.addEventListener('mouseup', (evn) => {
-  var alt = evn.altKey
-  var extensionPath = CEP.getSystemPath(SystemPath.EXTENSION)
-  var cmd = 'channelDialog("' + extensionPath + '", ' +  CHANNEL + ')'
-  CEP.evalScript(cmd, setChannel)
+  var alt = evn.getModifierState('Alt');
+
+  var file = TOOLSPATH + '/cep/channel.jsx'
+  CEP.evalScript("$.evalFile('" + file + "')")
+  CEP.evalScript("channelDialog(" + CHANNEL + ")", setChannel)
 })
 
 /*———————————————————————————————————————— setChannel(channel)
@@ -100,8 +97,7 @@ function setChannel(channel){
   if ( isNaN(channel)              ) return true // notNumber, notANumber not a number
   if (   0 > channel || 2 < channel) return true
 
-//lert('Switching to '+CHANNELNAMES[channel] + ' channel.')
-  lert('Switching to ' + channelName(channel) + ' channel.')
+  lert('Switching to '+CHANNELNAMES[channel] + ' channel.')
   return true
 
   switch(channel){

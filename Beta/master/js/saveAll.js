@@ -4,7 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objLabel = 'save all'
-var objID    = 'buttAll'
+var objID    = 'butt42'
 
 /*———————————————————————————————————————— configure button */
 

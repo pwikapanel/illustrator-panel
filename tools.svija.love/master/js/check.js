@@ -1,10 +1,10 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: openFolder.js */
+/*:::::::::::::::::::::::::::::::::::::::: check.js */
 
 /*———————————————————————————————————————— parameters */
 
-var objID    = 'buttOpen'
-var objLabel = 'open'
+var objLabel = 'check & repair'
+var objID    = 'buttCheck'
 
 /*———————————————————————————————————————— configure button */
 
@@ -14,22 +14,25 @@ if (obj === null) lert(objID + ' is null')
 obj.value = objLabel
 obj.style.display = 'inline'
 
-/*———————————————————————————————————————— load scripts
+/*———————————————————————————————————————— load utilities */
 
-     */
-
-var scr = 'openFolder.jsx'
-var file = TOOLSPATH + '/cep/' + scr
-CEP.evalScript("$.evalFile('" + file + "')")
+     /* loaded by save.js */
+     /* used by check.js & saveAll.js */
 
 /*———————————————————————————————————————— listener function
 
   opens folder based on localStorage lastPath */
 
 obj.addEventListener('mouseup', (evn) => {
+  var alt = evn.getModifierState('Alt');
 
-  var alt = evn.altKey
-  CEP.evalScript('openFolder()')
+  // no params
+  // space matched with save & save all
+
+  var script      = 'check.jsx'
+  var file = TOOLSPATH + '/cep/' + script
+
+  CEP.evalScript("$.evalFile('" + file      + "')")
 
 })
 

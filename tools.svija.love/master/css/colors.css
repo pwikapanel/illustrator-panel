@@ -1,0 +1,83 @@
+/*———————————————————————————————————————— colors
+
+ see css/interface1.css etc.  */
+
+
+#svijaLogo #logoBar{ fill: none; }
+#svijaLogo #logoArt{ fill: none; }
+
+:root { /* see js/accentColor.js */
+
+  --accentBright :hsl(80 100%  50%);
+  --accentDim    :hsl(80  20%  25%);
+}
+
+/*———————————————————————————————————————— top buttons
+
+ see css/interface1.css etc.  */
+
+div#moreDiv input[type=button]{
+  color:var(--hamburger);
+  background-color:var(--pulldown);
+  border-color:var(--input-border);
+}
+
+div#moreDiv input[type=button]:hover{
+  color:var(--field-contents);
+  border-color:var(--accentBright);
+}
+
+div#moreDiv input[type=button]:active{
+  color:var(--field-contents);
+  border-color:#fff;
+}
+
+/*———————————————————————————————————————— regular buttons
+
+ see css/interface1.css etc.  */
+
+input[type=button]{
+
+  color:var(--checked-box);
+  background-color:var(--input-field);
+  border-color:var(--input-border);
+}
+
+input[type=button]:hover{
+  color:var(--field-contents);
+  border-color:var(--accentBright);
+}
+
+input[type=button]:active{
+  color:var(--field-contents);
+  border-color:#fff;
+}
+
+/*———————————————————————————————————————— save button & HR
+
+ see css/interface1.css etc.  */
+
+#buttSave{
+  background-color:var(--accentDim);
+}
+
+hr{
+  border-top-color: var(--panel-border);
+}
+
+/*———————————————————————————————————————— bottom bar */ 
+
+div#bottomBar{
+  background-color:var(--panel-bg-dark);
+  border-top-color:var(--panel-border);
+  border-right-color:var(--panel-border);
+}
+
+div#bottomBar span a:link{
+  color:var(--hamburger);
+}
+
+div#bottomBar a:hover{
+  color:var(--label-text);
+}
+

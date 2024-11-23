@@ -3,7 +3,7 @@
 
 /*———————————————————————————————————————— parameters */
 
-var objID    = 'buttSite'
+var objID    = 'butt11'
 var objLabel = 'launch site'
 
 /*———————————————————————————————————————— configure button */

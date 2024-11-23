@@ -8,25 +8,25 @@ var ms = 500
 setInterval(function(){
 
   if (typeof ISSVIJA == 'undefined'){
-    openDiv.style.display='none'
+    dormantDiv.style.display='none'
     moreDiv.style.display='block'
     mainDiv.style.display='block'
     bottomBar.style.display='block'
     var whichObj = bottomBar 
   }
   else if (ISSVIJA){
-    openDiv.style.display='none'
+    dormantDiv.style.display='none'
     moreDiv.style.display='block'
     mainDiv.style.display='block'
     bottomBar.style.display='block'
     var whichObj = bottomBar 
   }
   else{
-    openDiv.style.display='block'
+    dormantDiv.style.display='block'
     moreDiv.style.display='none'
     mainDiv.style.display='none'
     bottomBar.style.display='none'
-    var whichObj = openDiv
+    var whichObj = dormantDiv
   }
 
   var f = CEP.getScaleFactor()
