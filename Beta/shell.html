@@ -7,6 +7,9 @@
 //:::::::::::::::::::::::::::::::::::::::: initialization
 
   var LOCAL = true
+  var DEBUG = true
+
+  var MANIFEST // otherwise it's not global
 
   var CHANNEL   = 2
   var CHNAME0   = 'alpha'
@@ -42,6 +45,7 @@
    reference value is javascript or localStorage */
 
 var allVars = [
+    'DEBUG',
     'CHANNEL',
     'CHNAME0',
     'CHNAME1',
@@ -83,7 +87,117 @@ function harmonize(ref){
 harmonize('ls')
 harmonize('js')
 
+//:::::::::::::::::::::::::::::::::::::::: library loaders
+
+//  confusion about when to use local storage & when to use global variable
+//  will try using global variable, update local storage when all done
+//  localStorage.MANIFEST = str
+
+/*———————————————————————————————————————— loadManifest(scriptID, str, path)
+
+    loads the manifest for the active channel into the global variable
+
+        MANIFEST
+
+    it's an object with keys and values. The first line is
+
+    { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
+
+function loadManifest(scriptID, str, path){
+
+  if (str == '') return true
+
+  try{ var MANIFEST = JSON.parse(str)         } catch(msg){ lert(  `JSON Parse Error\n${msg}\n${path}`       ); return true }
+
+  var manifestRef = MANIFEST.filter( element => element.name =="manifest")
+  
+  if ( manifestRef.length < 1                            ){ lert('Manifest Error\nMissing manifest reference'); return true }
+  try{ MANIFESTVERSION = manifestRef[0].build } catch(msg){ lert('Manifest Error\nMissing build number'      ); return true }
+
+  loadLibrary()
+}
+
+/*———————————————————————————————————————— loadLibrary(manifest)
+
+    this will load the relevant files into memory but NOT activate
+    them. they will be activated only when they are all loaded
+    and validated in the MANIFEST json category "loaded" */
+
+
+
+
+
+
+
+
+// TypeError: Cannot read property 'length' of undefined
+
+
+
+
+
+
+
+
+
+
+
+function loadLibrary(){
+  try{
+
+  for (var x=1; x<MANIFEST.length; x++){
+
+    var scriptBuild =  MANIFEST[x]['build']
+
+    // if build is a string it's a commment in the JSON
+    if (typeof scriptBuild == "string") continue 
+
+//  if (scriptBuild < 0){
+//    deleteElement(scriptType, scriptID)
+//    continue
+//  }
+
+    identifier = MANIFEST[x]['name'] +'_'+ MANIFEST[x]['build'] +'_'+ MANIFEST[x]['ext']
+    if (x==1) lert(identifier)
+
+//  var localStorageRef  = scriptType + identifier
+//  var localStorageRef  = scriptType + identifier + 'build'
+//  // if it's already up to date
+//  if (typeof(localStorage[localStorageRef]) != 'undefined')
+//    if (bld <= localStorage[localStorageRef])
+//      return true
+
+    src = MANIFEST[x]['name'] + '.' + MANIFEST[x]['ext']
+
+    if (x==1) lert(src)
+
+//  if(LOCAL) fetchLocal(identifier, src, callback)
+//      else fetchRemote(identifier, src, callback)
+
+  }
+  } catch(msg){lert('loadLibrary error\n'+msg)}
+}
+
+/*———————————————————————————————————————— myCallback(x, y, z)
+
+    will mark each file as loaded, when all are loaded will
+    activate library */
+
+function myCallback(x, y, z){
+  lert(x+'\n'+y+'\n'+z)
+}
+
+/*———————————————————————————————————————— activateLibrary(manifest)
+*/
+
+
 //:::::::::::::::::::::::::::::::::::::::: script loaders
+
+/*———————————————————————————————————————— loadHtml(str)
+   */
+
+function loadLibraryScripts(){
+}
 
 /*———————————————————————————————————————— loadHtml(str)
 
@@ -164,7 +278,7 @@ function parseScriptList(scriptID, str, path){
   if (str == '') return true
 
   try       { var arr = JSON.parse(str) }
-  catch(msg){ lert(  `JSON Parse Error\n${msg}\n${path}`  ) }
+  catch(msg){ lert(  `JXON Parse Error\n${msg}\n${path}`  ) }
 
   for (var x=0; x<arr.length; x++){
 
@@ -183,6 +297,9 @@ function parseScriptList(scriptID, str, path){
     }
 
     var functionName = 'fetchScript'
+
+    reference = arr[x]['name'] +'_'+ arr[x]['build'] +'_'+ arr[x]['ext']
+    if (x==0) lert(reference)
 
     window[functionName](scriptBuild, scriptID, scriptSource, scriptType)
   }
@@ -210,31 +327,6 @@ function fetchScript(bld, identifier, src, scriptType){
 
   if(LOCAL) fetchLocal(identifier, src, callback)
       else fetchRemote(identifier, src, callback)
-}
-
-/*———————————————————————————————————————— fetchLocal(path, callback)
-
-    https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri
-
-    three params: ID, path, and callback function */
-
-function fetchLocal(identifier, path, callback){
-
-  path = dirName(CHANNEL) + '/' + path
-
-  fetchL(path)
-    .then(function(text) {
-      if (text != '') callback(identifier, text, path)
-      else{
-        lert('Empty File\n/' + path)
-        callback('', '', path)
-      }
-    })
-
-  .catch(function(msg){
-    lert('404 Error\nLocal file /' + path + '\n\n'+msg)
-    callback('', '', path)
-  })
 }
 
 /*———————————————————————————————————————— fetchRemote(path, callback)
@@ -279,6 +371,31 @@ function fetchRemote(which, path, callback) {
     lert('Server not found\n' + path)
     callback('', '', path)
    })
+}
+
+/*———————————————————————————————————————— fetchLocal(path, callback)
+
+    https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri
+
+    three params: ID, path, and callback function */
+
+function fetchLocal(identifier, path, callback){
+
+  path = TOOLSPATH + '/' +  path
+
+  fetchL(path)
+    .then(function(text) {
+      if (text != ''){
+         lert(identifier + '\n' + text +'\n\n' + path+'\n\ngoing to callback…')
+         callback(identifier, text, path)
+      }
+      else{ lert('Empty File\n/Local file ' + path) }
+    })
+
+    .catch(function(msg){
+       // attention: this catches errors anywhere in the callback chain
+       lert('404 Error\nLocal file ' + path + '\n\n'+msg)
+    })
 }
 
 /*———————————————————————————————————————— fetchL(file)
@@ -380,15 +497,22 @@ function dirName(c){
 
 </head><body oncontextmenu='return false'><div id="reloader" onclick='localStorage.clear();location.reload()'></div>
 
-<script> // initial loading
+<script> 
+
+/*———————————————————————————————————————— setup */
 
   var path = 'json/manifest.json'
-  var cname = channelName(CHANNEL)
+  var identifier = channelName(CHANNEL) + ' manifest'
 
+  // load JSON file into a variable
+  // convert variable to JSON
+  // stored in localStorage as string, stored in variable as list object
 
+  if (LOCAL) fetchLocal (identifier, path, loadManifest)
+        else lert('Remote not implemented')
 
-  if (LOCAL) fetchLocal (cname, path, parseScriptList)
-        else fetchRemote(cname, path, parseScriptList)
+//if (LOCAL) fetchLocal (identifier, path, parseScriptList)
+//      else fetchRemote(identifier, path, parseScriptList)
 
 </script>
 
