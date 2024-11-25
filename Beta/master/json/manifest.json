@@ -3,6 +3,7 @@
 { "build": 1, "source":              "manifest.json" },
 
 { "build": 0, "source":             "utilities.jsx"  },
+{ "build": 0, "source":             "utilities.js"   },
 
 { "build": 0, "source":                 "fonts.css"  },
 { "build": 0, "source":  "illustratorColorDefs.css"  },
@@ -23,35 +24,37 @@
 { "build": 0, "source":           "projectInfo.jsx"  },
 { "build": 0, "source":           "projectInfo.js"   },
 
-{ "build": 0, "source":        "checkAndRepair.jsx"  },
-{ "build": 0, "source":        "checkAndRepair.js"   },
-
-{ "build": 0, "source":           "createGroup.jsx"  },
-{ "build": 0, "source":           "createGroup.js"   },
-
-{ "build": 0, "source":            "changeCase.jsx"  },
-{ "build": 0, "source":            "changeCase.js"   },
+{ "build": 0, "source":              "moreLess.js"   },
+{ "build": 0, "source":                  "help.js"   },
 
 { "build": 0, "source":               "channel.jsx"  },
 { "build": 0, "source":               "channel.js"   },
 
-{ "build": 0, "source":              "openFile.jsx"  },
-{ "build": 0, "source":              "openFile.js"   },
-
 { "build": 0, "source":           "accentColor.jsx"  },
 { "build": 0, "source":           "accentColor.js"   },
 
-{ "build": 0, "source":                "reopen.jsx"  },
-{ "build": 0, "source":                "reopen.js"   },
+{ "build": 0, "source":         "11-launchSite.js"   },
+{ "build": 0, "source":        "12-launchCloud.js"   },
+
+{ "build": 0, "source":           "createGroup.jsx"  },
+{ "build": 0, "source":        "21-createGroup.js"   },
+
+{ "build": 0, "source":            "changeCase.jsx"  },
+{ "build": 0, "source":         "22-changeCase.js"   },
+
+{ "build": 0, "source":         "31-openFolder.js"   },
+
+{ "build": 0, "source":        "checkAndRepair.jsx"  },
+{ "build": 0, "source":     "41-checkAndRepair.js"   },
 
 { "build": 0, "source":                  "save.jsx"  },
-{ "build": 0, "source":                  "save.js"   },
-{ "build": 0, "source":               "saveAll.js"   },
+{ "build": 0, "source":            "42-saveAll.js"   },
+{ "build": 0, "source":               "43-save.js"   },
 
-{ "build": 0, "source":           "launchCloud.js"   },
-{ "build": 0, "source":            "launchSite.js"   },
-{ "build": 0, "source":                "folder.js"   },
-{ "build": 0, "source":              "moreLess.js"   },
-{ "build": 0, "source":                  "help.js"   },
+{ "build": 0, "source":              "openFile.jsx"  },
+{ "build": 0, "source":              "openFile.js"   },
+
+{ "build": 0, "source":                "reopen.jsx"  },
+{ "build": 0, "source":                "reopen.js"   },
 
 {"build":"fin"}]

@@ -50,14 +50,6 @@ setInterval(function(){
   }
 }, ms)
 
-/*———————————————————————————————————————— load scripts
-
-    user clicks logo to change color */
-
-var scr = 'colorPicker.jsx'
-var file = TOOLSPATH + '/cep/' + scr
-CEP.evalScript("$.evalFile('" + file + "')")
-
 /*———————————————————————————————————————— svijaLogo.addEventListener('mouseup'
 
     user clicks logo to change color */
@@ -104,30 +96,6 @@ function dimVersion(hue){
   if (hue>190 && hue < 290) lightness += 10                                      
 
   return 'hsl('+hue+', 20%, ' + lightness + '%)'
-}
-
-/*———————————————————————————————————————— rgbToHsl(r, g, b)
-
-    https://www.30secondsofcode.org/js/s/rgb-to-hsl/  */
-
-function rgbToHsl(r, g, b){
-  r /= 255;
-  g /= 255;
-  b /= 255;
-  const l = Math.max(r, g, b);
-  const s = l - Math.min(r, g, b);
-  const h = s
-    ? l === r
-      ? (g - b) / s
-      : l === g
-      ? 2 + (b - r) / s
-      : 4 + (r - g) / s
-    : 0;
-  return [
-    60 * h < 0 ? 60 * h + 360 : 60 * h,
-    100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
-    (100 * (2 * l - s)) / 2,
-  ];
 }
 
 

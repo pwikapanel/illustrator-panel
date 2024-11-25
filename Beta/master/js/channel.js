@@ -5,10 +5,9 @@
 
 var objId    = 'linkChannel'
 
-    // 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋  
+    // ⚙ 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋 🔅 ★
 
-//var objLabel = '   ⚙'
-var objLabel = '   ⚙️'
+var objLabel = '   ⚙'
 
 /*———————————————————————————————————————— configure button */
 
@@ -41,8 +40,19 @@ function setChannel(channel){
 
 //lert('Switching to '+CHANNELNAMES[channel] + ' channel.')
   lert('Activating ' + channelName(channel) + ' channel.')
+
+  var ab = localStorage.accentBright
+  var ad = localStorage.accentDim
+
+  localStorage.clear();
+
+  localStorage.accentBright = ab
+  localStorage.accentDim    = ad
+
+  location.reload();
   return true
 
+/*
   switch(channel){
     case '0':
     case '1':
@@ -54,7 +64,7 @@ function setChannel(channel){
       break
     default :
       lert('Invalid channel: ' + channel);
-  }
+  } */
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
