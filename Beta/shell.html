@@ -169,12 +169,13 @@ function parseScriptList(scriptID, str, path){
   for (var x=0; x<arr.length; x++){
 
     var scriptBuild  =  arr[x]['build']
+
     if (typeof scriptBuild == "string") continue // commment
 
-    var scriptSource =  arr[x]['source']
-    var parts        = scriptSource.split('.')
-    var scriptID     = parts[0]
-    var scriptType   = parts[1]
+    var scriptSource = arr[x]['name'] +'.'+ arr[x]['ext']
+//  var parts        = scriptSource.split('.')
+    var scriptID     = arr[x]['name']
+    var scriptType   = arr[x]['ext']
 
     if (scriptBuild < 0){
       deleteElement(scriptType, scriptID)
@@ -187,14 +188,14 @@ function parseScriptList(scriptID, str, path){
   }
 }
 
-/*———————————————————————————————————————— fetchScript(bld, which, src)
+/*———————————————————————————————————————— fetchScript(bld, identifier, src)
 
     */
 
-function fetchScript(bld, which, src, scriptType){
+function fetchScript(bld, identifier, src, scriptType){
 
-  var lsRef  = scriptType + which
-  var lsRef  = scriptType + which + 'build'
+  var lsRef  = scriptType + identifier
+  var lsRef  = scriptType + identifier + 'build'
 
   // if it's already up to date
   if (typeof(localStorage[lsRef]) != 'undefined')
@@ -205,10 +206,10 @@ function fetchScript(bld, which, src, scriptType){
 
   var functionName = 'load' + capitalize(scriptType)
 
-  var thisFun = window[functionName]
+  var callback = window[functionName]
 
-  if(LOCAL) fetchLocal(which, src, thisFun)
-      else fetchRemote(which, src, thisFun)
+  if(LOCAL) fetchLocal(identifier, src, callback)
+      else fetchRemote(identifier, src, callback)
 }
 
 /*———————————————————————————————————————— fetchLocal(path, callback)
@@ -217,13 +218,13 @@ function fetchScript(bld, which, src, scriptType){
 
     three params: ID, path, and callback function */
 
-function fetchLocal(which, path, callback){
+function fetchLocal(identifier, path, callback){
 
   path = dirName(CHANNEL) + '/' + path
 
   fetchL(path)
     .then(function(text) {
-      if (text != '') callback(which, text, path)
+      if (text != '') callback(identifier, text, path)
       else{
         lert('Empty File\n/' + path)
         callback('', '', path)
