@@ -1,6 +1,6 @@
 [
 
-{ "build":   1, "name":              "manifest" ,"ext": "json", "loaded": false  },
+{ "build":   0, "name":              "manifest" ,"ext": "json", "loaded": false  },
 
 { "build":   0, "name":             "utilities" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "name":             "utilities" ,"ext": "js"  , "loaded": false  },
@@ -19,7 +19,6 @@
 
 { "build":   0, "name":         "interfaceCode" ,"ext": "js"  , "loaded": false  },
 { "build":   0, "name":          "panelManager" ,"ext": "js"  , "loaded": false  },
-{ "build":   0, "name":           "accentColor" ,"ext": "js"  , "loaded": false  },
 
 { "build":   0, "name":           "projectInfo" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "name":           "projectInfo" ,"ext": "js"  , "loaded": false  },

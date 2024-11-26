@@ -6,10 +6,9 @@
 
 //:::::::::::::::::::::::::::::::::::::::: initialization
 
-  var LOCAL = true
-  var DEBUG = true
-
-  var MANIFEST // otherwise it's not global
+  var LOCAL    = true
+  var DEBUG    = true
+  var MANIFEST
 
   var CHANNEL   = 2
   var CHNAME0   = 'alpha'
@@ -26,7 +25,7 @@
   var MAXWIDTH  = 240
   var MYDOCS    = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
   var SERVER    = 'tools.svija.love'
-  var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION) + '/' + dirName(CHANNEL)
+  var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION)
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
@@ -84,16 +83,20 @@ function harmonize(ref){
 }
 
 
-harmonize('ls')
-harmonize('js')
+harmonize('ls')  // argument is which values are used as reference
+harmonize('js')  // ls = localStorage, js = JavaScript
 
 //:::::::::::::::::::::::::::::::::::::::: library loaders
 
-//  confusion about when to use local storage & when to use global variable
-//  will try using global variable, update local storage when all done
-//  localStorage.MANIFEST = str
+/*  startup chain
+  
+    shell.html       manifest.json    callback —› loadManifest
+    loadManifest                       direct  —› loadLibrary
+    loadLibrary      each script      callback —› checkinScript
+    checkinScript                      direct  —› activateLibrary (skipped if not last script)
+    activateLibrary                     none   */
 
-/*———————————————————————————————————————— loadManifest(scriptID, str, path)
+/*———————————————————————————————————————— 1. loadManifest(scriptID, str, path)
 
     loads the manifest for the active channel into the global variable
 
@@ -107,43 +110,26 @@ function loadManifest(scriptID, str, path){
 
   if (str == '') return true
 
-  try{ var MANIFEST = JSON.parse(str)         } catch(msg){ lert(  `JSON Parse Error\n${msg}\n${path}`       ); return true }
+  try{ MANIFEST = JSON.parse(str).filter(record => !isNaN(record.build)) }      /* exclude comments */
+  catch(msg){ lert( `JSON Parse Error\n${msg}\n${path}` ); return true   }
 
-  var manifestRef = MANIFEST.filter( element => element.name =="manifest")
+  var manifestRefs = MANIFEST.filter(record => record.name =="manifest")
   
-  if ( manifestRef.length < 1                            ){ lert('Manifest Error\nMissing manifest reference'); return true }
-  try{ MANIFESTVERSION = manifestRef[0].build } catch(msg){ lert('Manifest Error\nMissing build number'      ); return true }
+  if ( manifestRefs.length < 1                            ){ lert('Manifest Error\nMissing manifest reference'); return true }
+  try{ MANIFESTVERSION = manifestRefs[0].build } catch(msg){ lert('Manifest Error\nMissing build number'      ); return true }
 
+  MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
+//lert('Manifest loaded\nLoading library…')
   loadLibrary()
 }
 
-/*———————————————————————————————————————— loadLibrary(manifest)
+/*———————————————————————————————————————— 2. loadLibrary(manifest)
 
     this will load the relevant files into memory but NOT activate
     them. they will be activated only when they are all loaded
     and validated in the MANIFEST json category "loaded" */
 
-
-
-
-
-
-
-
-// TypeError: Cannot read property 'length' of undefined
-
-
-
-
-
-
-
-
-
-
-
 function loadLibrary(){
-  try{
 
   for (var x=1; x<MANIFEST.length; x++){
 
@@ -157,53 +143,87 @@ function loadLibrary(){
 //    continue
 //  }
 
-    identifier = MANIFEST[x]['name'] +'_'+ MANIFEST[x]['build'] +'_'+ MANIFEST[x]['ext']
-    if (x==1) lert(identifier)
+    passthrough = MANIFEST[x]['name'] +'_'+ MANIFEST[x]['build'] +'_'+ MANIFEST[x]['ext']
 
-//  var localStorageRef  = scriptType + identifier
-//  var localStorageRef  = scriptType + identifier + 'build'
+//  var localStorageRef  = scriptType + passthrough
+//  var localStorageRef  = scriptType + passthrough + 'build'
 //  // if it's already up to date
 //  if (typeof(localStorage[localStorageRef]) != 'undefined')
 //    if (bld <= localStorage[localStorageRef])
 //      return true
 
-    src = MANIFEST[x]['name'] + '.' + MANIFEST[x]['ext']
+    path = MANIFEST[x]['ext'] + '/' + MANIFEST[x]['name'] + '.' + MANIFEST[x]['ext']
 
-    if (x==1) lert(src)
+  //if (x==1) lert(passthrough+'\n'+path)
+    // utilities_0_jsx
+    // jsx/utlities.jsx
 
-//  if(LOCAL) fetchLocal(identifier, src, callback)
-//      else fetchRemote(identifier, src, callback)
+    if(LOCAL) fetchLocal(passthrough, path, checkinScript)
+        else fetchRemote(passthrough, path, checkinScript)
 
   }
-  } catch(msg){lert('loadLibrary error\n'+msg)}
+
 }
 
-/*———————————————————————————————————————— myCallback(x, y, z)
+/*———————————————————————————————————————— 3. checkinScript(manifest)
 
-    will mark each file as loaded, when all are loaded will
-    activate library */
+    this will create the localStorage variable for each script
+    then mark the script as loaded in MANIFEST */
 
-function myCallback(x, y, z){
-  lert(x+'\n'+y+'\n'+z)
+function checkinScript(identifier, contents, path){
+  var nameParts = identifier.split('_')
+
+  // users = users.filter(obj => obj.name == filter.name && obj.address == filter.address)
+
+  //lert('checkinScript\n'+path+'\n\nvariable will be called\n'+identifier)
+  var manifestRefs = MANIFEST.filter(record=> record.name==nameParts[0] && record.ext==nameParts[2])
+  
+
+  if (manifestRefs.length>0){
+    //lert('Found: '+nameParts[0])
+    localStorage[identifier] = contents
+    MANIFEST.filter(record=> record.name==nameParts[0] && record.ext==nameParts[2])[0]['loaded'] = true
+//  lert('localStorage & MANIFEST updated\n'+nameParts[0])
+  }
+  else
+    lert('Not found: '+nameParts[0])
+
+  activateLibrary()
+
 }
 
-/*———————————————————————————————————————— activateLibrary(manifest)
-*/
+/*———————————————————————————————————————— 4. activateLibrary()
 
+    loads values from localStorage into actual DOM elements */
+
+function activateLibrary(){
+
+  var notYetLoaded =  MANIFEST.filter(record=> record.loaded==false)
+  if (notYetLoaded.length > 0){ return "not yet loaded" }
+
+  for (var x=1; x<MANIFEST.length; x++){
+
+    var identifier = MANIFEST[x]['name'] +'_'+ MANIFEST[x]['build'] +'_'+ MANIFEST[x]['ext']
+    var functionName = 'load' + capitalize(MANIFEST[x]['ext'])
+
+    window[functionName](MANIFEST[x]['name'], localStorage[identifier])
+  }
+
+  localStorage.MANIFEST = JSON.stringify(MANIFEST)
+  lert('Success\nAll scripts loaded')
+}
+
+
+// need to check for doubles (accentcolor)
+// db functions to handle filters
 
 //:::::::::::::::::::::::::::::::::::::::: script loaders
-
-/*———————————————————————————————————————— loadHtml(str)
-   */
-
-function loadLibraryScripts(){
-}
 
 /*———————————————————————————————————————— loadHtml(str)
 
     installs an HTML block */
 
-function loadHtml(scriptID, contents, path){
+function loadHtml(scriptID, contents){
 
   scriptID += 'html'
 
@@ -221,7 +241,7 @@ function loadHtml(scriptID, contents, path){
 
     installs a CSS sheet */
 
-function loadCss(scriptID, contents, path){
+function loadCss(scriptID, contents){
   scriptID += 'css'
 //  document.getElementsByTagName('style')[0].innerHTML = contents
 
@@ -239,7 +259,7 @@ function loadCss(scriptID, contents, path){
 
     installs a JS block */
 
-function loadJs(scriptID, contents, path){
+function loadJs(scriptID, contents){
   scriptID += 'js'
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
@@ -255,57 +275,57 @@ function loadJs(scriptID, contents, path){
 
     called but why? it doesn't do anything */
 
-function loadJson(scriptID, contents, path){
-  // sumpn
+function loadJson(scriptID, contents){
+  lert('JSON '+scriptID+' not loaded (line 291)')
 }
 
 /*———————————————————————————————————————— loadJsx(bld, which, src) NOT IMPLEMENTED
 
     */
 
-function loadJsx(scriptID, contents, path){
+function loadJsx(scriptID, contents){
   CEP.evalScript(contents)
 }
+
+/*———————————————————————————————————————— parseScriptList(str) DEPRECATED
+
+    {"build":0, "source":"manifest.json"} */
+
+//    function parseScriptList(scriptID, str, path){
+//      if (str == '') return true
+//    
+//      try       { var arr = JSON.parse(str) }
+//      catch(msg){ lert(  `JXON Parse Error\n${msg}\n${path}`  ) }
+//    
+//      for (var x=0; x<arr.length; x++){
+//    
+//        var scriptBuild  =  arr[x]['build']
+//    
+//        if (typeof scriptBuild == "string") continue // commment
+//    
+//        var scriptSource = arr[x]['name'] +'.'+ arr[x]['ext']
+//    //  var parts        = scriptSource.split('.')
+//        var scriptID     = arr[x]['name']
+//        var scriptType   = arr[x]['ext']
+//    
+//        if (scriptBuild < 0){
+//          deleteElement(scriptType, scriptID)
+//          continue
+//        }
+//    
+//        var functionName = 'fetchScript'
+//    
+//        reference = arr[x]['name'] +'_'+ arr[x]['build'] +'_'+ arr[x]['ext']
+//        if (x==0) lert(reference)
+//    
+//        window[functionName](scriptBuild, scriptID, scriptSource, scriptType)
+//      }
+//    }
 
 
 //:::::::::::::::::::::::::::::::::::::::: fetch functions
 
-/*———————————————————————————————————————— parseScriptList(str)
-
-    {"build":0, "source":"manifest.json"} */
-
-function parseScriptList(scriptID, str, path){
-  if (str == '') return true
-
-  try       { var arr = JSON.parse(str) }
-  catch(msg){ lert(  `JXON Parse Error\n${msg}\n${path}`  ) }
-
-  for (var x=0; x<arr.length; x++){
-
-    var scriptBuild  =  arr[x]['build']
-
-    if (typeof scriptBuild == "string") continue // commment
-
-    var scriptSource = arr[x]['name'] +'.'+ arr[x]['ext']
-//  var parts        = scriptSource.split('.')
-    var scriptID     = arr[x]['name']
-    var scriptType   = arr[x]['ext']
-
-    if (scriptBuild < 0){
-      deleteElement(scriptType, scriptID)
-      continue
-    }
-
-    var functionName = 'fetchScript'
-
-    reference = arr[x]['name'] +'_'+ arr[x]['build'] +'_'+ arr[x]['ext']
-    if (x==0) lert(reference)
-
-    window[functionName](scriptBuild, scriptID, scriptSource, scriptType)
-  }
-}
-
-/*———————————————————————————————————————— fetchScript(bld, identifier, src)
+/*———————————————————————————————————————— fetchScript(bld, identifier, src) DEPRECATED
 
     */
 
@@ -345,9 +365,9 @@ function fetchScript(bld, identifier, src, scriptType){
 function fetchRemote(which, path, callback) {
 
   path = 'https://' + SERVER + '/' + dirName(CHANNEL) + '/' + path
-  var pathRand = path + '?' + Math.random()
+  path = path + '?' + Math.random()
 
-  fetch(pathRand)
+  fetch(path)
     .then(function(res){
       if (res.ok){
         return res.text()
@@ -379,22 +399,25 @@ function fetchRemote(which, path, callback) {
 
     three params: ID, path, and callback function */
 
-function fetchLocal(identifier, path, callback){
+function fetchLocal(passthrough, path, callback){
 
-  path = TOOLSPATH + '/' +  path
+  path = TOOLSPATH + '/' + dirName(CHANNEL) + '/' + path
+
+//path = path + '?' + Math.random()
+//lert(path)
 
   fetchL(path)
-    .then(function(text) {
-      if (text != ''){
-         lert(identifier + '\n' + text +'\n\n' + path+'\n\ngoing to callback…')
-         callback(identifier, text, path)
+    .then(function(contents) {
+      if (contents != ''){
+//       lert('fetch succeeded\nproceeding to '+callback.name)
+         callback(passthrough, contents, path)
       }
       else{ lert('Empty File\n/Local file ' + path) }
     })
 
     .catch(function(msg){
        // attention: this catches errors anywhere in the callback chain
-       lert('404 Error\nLocal file ' + path + '\n\n'+msg)
+       lert('Catch Error\nline 384\n\nlocal file ' + path + '\n\n'+msg)
     })
 }
 
@@ -493,6 +516,7 @@ function dirName(c){
 <style>  #reloader{
     cursor:wait;  width:8px;height:8px;
   position:absolute;top:0px; right:0px;
+  background-color:lime;
 } </style>
 
 </head><body oncontextmenu='return false'><div id="reloader" onclick='localStorage.clear();location.reload()'></div>
@@ -502,17 +526,17 @@ function dirName(c){
 /*———————————————————————————————————————— setup */
 
   var path = 'json/manifest.json'
-  var identifier = channelName(CHANNEL) + ' manifest'
+  var passthrough = channelName(CHANNEL) + ' manifest'
 
   // load JSON file into a variable
   // convert variable to JSON
   // stored in localStorage as string, stored in variable as list object
 
-  if (LOCAL) fetchLocal (identifier, path, loadManifest)
+  if (LOCAL) fetchLocal (passthrough, path, loadManifest)
         else lert('Remote not implemented')
 
-//if (LOCAL) fetchLocal (identifier, path, parseScriptList)
-//      else fetchRemote(identifier, path, parseScriptList)
+//if (LOCAL) fetchLocal (passthrough, path, parseScriptList)
+//      else fetchRemote(passthrough, path, parseScriptList)
 
 </script>
 
