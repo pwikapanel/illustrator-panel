@@ -1,9 +1,9 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: saveAll.js */
+/*:::::::::::::::::::::::::::::::::::::::: reopen.js */
 
 /*———————————————————————————————————————— parameters */
 
-var objID    = 'buttLast'
+var objID    = 'buttD2'
 var objLabel = 'reopen'
 
 /*———————————————————————————————————————— configure button */
@@ -14,17 +14,9 @@ if (obj === null) lert(objID + ' is null')
 obj.value = objLabel
 obj.style.display = 'inline'
 
-/*———————————————————————————————————————— load scripts
-
-     */
-
-var scr = 'reopen.jsx'
-var file = TOOLSPATH + '/cep/' + scr
-CEP.evalScript("$.evalFile('" + file + "')")
-
 /*———————————————————————————————————————— listener function
 
-  opens folder based on localStorage lastPath */
+  opens file based on localStorage lastPath */
 
 obj.addEventListener('mouseup', (evn) => {
 

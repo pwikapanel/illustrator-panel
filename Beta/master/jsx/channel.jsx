@@ -216,30 +216,36 @@ function channelDialog(extensionPath, channel){
      element, it looks for a button whose name or text value is "ok"
      (disregarding case). For the cancel element, it looks for a button
      whose name or text value is "cancel" (disregarding case).  */
-
   //———————————————————— button functionality
 
+  var local = true
 
   radioButton0.active = true
   radioButton0.onClick = function(e){
     var alt = ScriptUI.environment.keyboardState.altKey
-    //alert('one: '+alt)
+
+    var shift = ScriptUI.environment.keyboardState.shiftKey
+    if (shift) local = false
+
     channel = 2
   }
 
   radioButton1.onClick = function(e){
     var alt = ScriptUI.environment.keyboardState.altKey
-    //alert('two: '+alt)
-    channel = 1
+
+    var shift = ScriptUI.environment.keyboardState.shiftKey
+    if (shift) local = false
+
     if (alt) channel = 0
+    else channel = 1
   }
 
   panel.defaultElement = applyButton
   panel.cancelElement = cancelButton
 
 
-  if(panel.show() == 1) return channel
-  else return ''
+  if(panel.show() == 1) return channel + '|' + local // clicked apply
+  else return ''                                     // clicked cancel
 
 }
 

@@ -32,39 +32,35 @@ obj.addEventListener('mouseup', (evn) => {
 
     receives a string from channel.jsx */
 
-function setChannel(channel){
+function setChannel(str){
+
+  var bits    = str.split('|')
+  var channel = bits[0]
+  var local   = (bits[1] === 'true')
+
   if (typeof channel == 'undefined') return true
   if (       channel == ''         ) return true
   if ( isNaN(channel)              ) return true // notNumber, notANumber not a number
   if (   0 > channel || 2 < channel) return true
 
-//lert('Switching to '+CHANNELNAMES[channel] + ' channel.')
-  lert('Activating ' + channelName(channel) + ' channel.')
-
-  var ab = localStorage.accentBright
-  var ad = localStorage.accentDim
-
-  localStorage.clear();
-
-  localStorage.accentBright = ab
-  localStorage.accentDim    = ad
-
-  location.reload();
-  return true
-
-/*
   switch(channel){
     case '0':
     case '1':
     case '2':
-      lert('Changing channel to '+channel)
+      var ab = localStorage.accentBright
+      var ad = localStorage.accentDim
+
       localStorage.clear();
-      localStorage.CHANNEL = channel;
-      location.reload();
-      break
+
+      localStorage.CHANNEL      = channel
+      localStorage.LOCAL        = local
+      localStorage.accentBright = ab
+      localStorage.accentDim    = ad
+      location.reload(); break
+
     default :
       lert('Invalid channel: ' + channel);
-  } */
+  }
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */

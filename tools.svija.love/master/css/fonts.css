@@ -32,7 +32,7 @@ input[type=button]{
 
 div#bottomBar{
   font-size:8.5px;
-  line-height:8.5px;
+  line-height:15px;
   letter-spacing:2px;
 
   text-transform:uppercase;

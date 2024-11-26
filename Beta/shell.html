@@ -6,11 +6,11 @@
 
 //:::::::::::::::::::::::::::::::::::::::: initialization
 
-  var LOCAL    = true
   var DEBUG    = true
   var MANIFEST
+  var LOCAL
+  var CHANNEL
 
-  var CHANNEL   = 2
   var CHNAME0   = 'alpha'
   var CHNAME1   = 'beta'
   var CHNAME2   = 'master'
@@ -26,6 +26,14 @@
   var MYDOCS    = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
   var SERVER    = 'tools.svija.love'
   var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION)
+
+//:::::::::::::::::::::::::::::::::::::::: defaults
+
+  if (typeof localStorage.CHANNEL == 'undefined') CHANNEL = 2
+  else CHANNEL = localStorage.CHANNEL
+
+  if (typeof localStorage.LOCAL == 'undefined') LOCAL = true
+  else LOCAL = (localStorage.LOCAL === 'true')
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
@@ -63,15 +71,19 @@ var allVars = [
 
 function harmonize(ref){
 
+  if (ref != 'js' && ref != 'ls') { lert('harmonize(): illegal argument\nref = '+ref); return true }
+
   for (x=0; x<allVars.length; x++){
     var varName = allVars[x]
 
     if (ref=='js' && typeof window[      varName] == 'undefined') continue
     if (ref=='ls' && typeof localStorage[varName] == 'undefined') continue
 
-         if (ref == 'js') var val = window[      varName]
-    else if (ref == 'ls') var val = localStorage[varName]
-    else return true
+    if   (ref == 'js') var val = window[      varName]
+    else               var val = localStorage[varName]
+
+    if (val ==  'true') val = true
+    if (val == 'false') val = false
 
     window[varName] = localStorage[varName] = val
 
@@ -83,8 +95,8 @@ function harmonize(ref){
 }
 
 
-harmonize('ls')  // argument is which values are used as reference
-harmonize('js')  // ls = localStorage, js = JavaScript
+harmonize('ls')  // get any values from localStorage
+harmonize('js')  // and any remaining values from javascript
 
 //:::::::::::::::::::::::::::::::::::::::: library loaders
 
@@ -106,7 +118,9 @@ harmonize('js')  // ls = localStorage, js = JavaScript
 
     { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
 
-function loadManifest(scriptID, str, path){
+function loadManifest(unused, str, path){
+
+  lert('119 LOCAL is '+LOCAL+'\n typeof='+typeof LOCAL)
 
   if (str == '') return true
 
@@ -210,7 +224,7 @@ function activateLibrary(){
   }
 
   localStorage.MANIFEST = JSON.stringify(MANIFEST)
-  lert('Success\nAll scripts loaded')
+  lert(channelName(CHANNEL) + ' channel loaded\nlocal=' + LOCAL)
 }
 
 
@@ -525,18 +539,11 @@ function dirName(c){
 
 /*———————————————————————————————————————— setup */
 
+
   var path = 'json/manifest.json'
-  var passthrough = channelName(CHANNEL) + ' manifest'
 
-  // load JSON file into a variable
-  // convert variable to JSON
-  // stored in localStorage as string, stored in variable as list object
-
-  if (LOCAL) fetchLocal (passthrough, path, loadManifest)
-        else lert('Remote not implemented')
-
-//if (LOCAL) fetchLocal (passthrough, path, parseScriptList)
-//      else fetchRemote(passthrough, path, parseScriptList)
+  if (LOCAL) fetchLocal ('manifest', path, loadManifest)
+  else       fetchRemote('manifest', path, loadManifest)
 
 </script>
 
