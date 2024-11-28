@@ -6,20 +6,39 @@
 
 //:::::::::::::::::::::::::::::::::::::::: initialization
 
+  var CEP     = new CSInterface()
+  VAR HOSTENV = CEP.getHostEnvironment()
+
+  window.addEventListener('error', (event)=>{ CEP.evalScript('alert("' + event.message + '")') })
+
+
+
+
+/*
+var testStr = 'hostEnv\n'
+testStr += HOSTENV.appLocale +'\n'
+testStr += HOSTENV.appUILocale +'\n'
+testStr += HOSTENV.isAppOnline +'\n'
+testStr += HOSTENV.appVersion +'\n'
+
+alert(testStr)
+en_US
+en_US
+true
+29.1.0
+*/
+
+  var AIVERSION = HOSTENV.appVersion
+  var LANGUE
+
   var DEBUG    = true
   var MANIFEST
   var LOCAL
   var CHANNEL
-
+  var LANGUEDEFAULT = 'EN'
   var CHNAME0   = 'alpha'
   var CHNAME1   = 'beta'
   var CHNAME2   = 'master'
-
-  var CEP       = new CSInterface()
-
-  window.addEventListener('error', (event)=>{
-   CEP.evalScript('alert("' + event.message + '")')
-  })
 
   var ISMAC     = CEP.getOSInformation().substring(0,3) == 'Mac'
   var MAXWIDTH  = 240
@@ -52,13 +71,15 @@
    reference value is javascript or localStorage */
 
 var allVars = [
-    'DEBUG',
     'CHANNEL',
     'CHNAME0',
     'CHNAME1',
     'CHNAME2',
+    'DEBUG',
     'ISMAC',
     'ISSVIJA',
+    'LANGUE',
+    'LANGUEDEFAULT',
     'LASTPATH',
     'LOCAL',
     'MAXWIDTH',

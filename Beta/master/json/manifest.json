@@ -12,6 +12,9 @@
 { "build":   0, "name":               "buttons" ,"ext": "css" , "loaded": false  },
 { "build":   0, "name":             "bottomBar" ,"ext": "css" , "loaded": false  },
 
+{ "build":   0, "name":                  "news" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "name":                  "news" ,"ext": "html", "loaded": false  },
+
 { "build":   0, "name":               "dormant" ,"ext": "html", "loaded": false  },
 { "build":   0, "name":                  "more" ,"ext": "html", "loaded": false  },
 { "build":   0, "name":                  "main" ,"ext": "html", "loaded": false  },

@@ -3,7 +3,6 @@
 
   <ExtensionList>
     <Extension Id="love.svija.SvijaToolsBeta.panel" Version="1.0.7" />
-    <Extension Id="love.svija.SvijaLauncherBeta.panel" Version="1.0.7" />
   </ExtensionList>
 
   <ExecutionEnvironment>
