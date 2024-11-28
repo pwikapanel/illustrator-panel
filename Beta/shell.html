@@ -40,19 +40,9 @@
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
-/*———————————————————————————————————————— harmonize(ref)
+/*———————————————————————————————————————— harmonized variables
 
-    function harmonize : three types of variables
-
-    - localStorage
-    - global HTML
-    - global CEP
-
-    to start with, we import HTLM & CEP from localstorage
-    afterwards, we update CEP & localStorage from HTML
-
-   ref = js | ls
-   reference value is javascript or localStorage */
+    kept in sync every 500ms by getProjectInfo() */
 
 var allVars = [
     'CHANNEL',
@@ -60,6 +50,7 @@ var allVars = [
     'CHNAME1',
     'CHNAME2',
     'DEBUG',
+    'DICTIONARY',
     'ISMAC',
     'ISSVIJA',
     'LANG',
@@ -74,9 +65,37 @@ var allVars = [
     'TOOLSPATH'
 ]
 
+// harmonize('ls')  // get any values from localStorage
+// harmonize('js')  // and any remaining values from javascript
+
+/*———————————————————————————————————————— harmonize(ref)
+
+    called every 500ms by getProjectInfo()
+
+    three types of variables
+
+    - localStorage
+    - global HTML
+    - global CEP
+
+    to start with, we import HTML & CEP from localstorage
+    afterwards, we update CEP & localStorage from HTML
+
+   ref = js | ls
+   reference value is javascript or localStorage
+
+   if a string is longer than 99 chars, we assume
+   it's stringified JSON data */
+
+
+var myCounter = 0
+
 function harmonize(ref){
+  return true
 
   if (ref != 'js' && ref != 'ls') { lert('harmonize(): illegal argument\nref = '+ref); return true }
+
+//lert('harmonizing based on '+ref)
 
   for (x=0; x<allVars.length; x++){
     var varName = allVars[x]
@@ -84,24 +103,77 @@ function harmonize(ref){
     if (ref=='js' && typeof window[      varName] == 'undefined') continue
     if (ref=='ls' && typeof localStorage[varName] == 'undefined') continue
 
+    //———————————————————— get the value in question
+
     if   (ref == 'js') var val = window[      varName]
     else               var val = localStorage[varName]
 
-    if (val ==  'true') val = true
-    if (val == 'false') val = false
+    //———————————————————— three kinds of variables: JS, LS & CEP
+    //———————————————————— four kinds of values: boolean, number, JSON, string
 
-    window[varName] = localStorage[varName] = val
+    var jsVal = lsVal = cepVal = ''
 
-    if (typeof window[varName] == 'boolean') var str = varName + '=' +       window[varName]
-                                        else var str = varName + '=' + "'" + window[varName] + "'"
-    CEP.evalScript(str)
+    //———————————————————— JS —› LS & CEP
+
+    if (ref == 'js'){
+      jsVal = val
+      if (typeof val == 'boolean' || !isNan(val)){         // boolean or number
+        lsVal = cepVal = str(val)
+      }
+      else if (typeof val == 'object'){                    // JSON
+        lsVal = JSON.stringify(val)
+        cepVal = '"' + lsVal +'"'
+      }
+      else{                                                // string
+        lsVal  = val
+        cepVal = lsVal
+      }
+      localStorage[varName] = lsVal
+      CEP.evalScript(varName + '=' + CEPval)
+    }
+
+    //———————————————————— LS —› JS & CEP
+
+//  if (ref == 'ls'){
+//    lsVal = val
+
+//    if (val == 'true')                                   // boolean
+//      jsVal = cepVal = true
+//    else if (val == 'false')
+//      jsVal = cepVal = false
+
+
+
+
+
+
+
+
+
+
+
+
+//    else if (!isNaN(val){                                // number
+//      jsVal  = 1 * val
+//      cepVal = val
+      }
+//        else if (val.length > 99){                           // JSON
+//          jsVal  = JSON.parse(val)
+//          cepVal = '"' + val +'"'
+//        }
+//        else{                                                // string
+//          jsVal  = val
+//          cepVal = '"' + val +'"'
+//        }
+
+//        window[varName] = jsVal
+//        CEP.evalScript(varName + '=' + CEPval)
+//  }
+
 
   }
 }
 
-
-harmonize('ls')  // get any values from localStorage
-harmonize('js')  // and any remaining values from javascript
 
 //:::::::::::::::::::::::::::::::::::::::: library loaders
 
@@ -124,6 +196,8 @@ harmonize('js')  // and any remaining values from javascript
     { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
 
 function loadManifest(unused, str, path){
+  lert('load manifest')
+  return true
 
 //lert('129 LOCAL is '+LOCAL+'\n typeof='+typeof LOCAL)
 
@@ -149,6 +223,7 @@ function loadManifest(unused, str, path){
     and validated in the MANIFEST json category "loaded" */
 
 function loadLibrary(){
+  return true
 
   for (var x=1; x<MANIFEST.length; x++){
 
@@ -190,6 +265,7 @@ function loadLibrary(){
     then mark the script as loaded in MANIFEST */
 
 function checkinScript(identifier, contents, path){
+  return true
   var nameParts = identifier.split('_')
 
   // users = users.filter(obj => obj.name == filter.name && obj.address == filter.address)
@@ -216,6 +292,7 @@ function checkinScript(identifier, contents, path){
     loads values from localStorage into actual DOM elements */
 
 function activateLibrary(){
+  return true
 
   var notYetLoaded =  MANIFEST.filter(record=> record.loaded==false)
   if (notYetLoaded.length > 0){ return "not yet loaded" }
@@ -230,7 +307,9 @@ function activateLibrary(){
 
   localStorage.MANIFEST = JSON.stringify(MANIFEST)
 
-  lert(channelName(CHANNEL) + translate('channel loaded') + LOCAL)
+  if (LOCAL) var rep = 'local source'
+  else var rep = 'remote server'
+  lert(channelName(CHANNEL) + translate('channel loaded') + rep)
 }
 
 
@@ -238,24 +317,6 @@ function activateLibrary(){
 // db functions to handle filters
 
 //:::::::::::::::::::::::::::::::::::::::: script loaders
-
-/*———————————————————————————————————————— loadHtml(scriptID, contents)
-
-    installs an HTML block */
-
-function loadHtml(scriptID, contents){
-
-  scriptID += 'html'
-
-  var obj = document.getElementById(scriptID)
-  if (obj != null) obj.remove()
-
-  var obj = document.createElement('div')
-  document.body.appendChild(obj)
-
-  obj.id = scriptID
-  obj.innerHTML = contents
-}
 
 /*———————————————————————————————————————— loadCss(scriptID, contents)
 
@@ -272,6 +333,24 @@ function loadCss(scriptID, contents){
   document.head.appendChild(obj)
 
   obj.ID = scriptID
+  obj.innerHTML = contents
+}
+
+/*———————————————————————————————————————— loadHtml(scriptID, contents)
+
+    installs an HTML block */
+
+function loadHtml(scriptID, contents){
+
+  scriptID += 'html'
+
+  var obj = document.getElementById(scriptID)
+  if (obj != null) obj.remove()
+
+  var obj = document.createElement('div')
+  document.body.appendChild(obj)
+
+  obj.id = scriptID
   obj.innerHTML = contents
 }
 
@@ -302,7 +381,8 @@ function loadJson(scriptID, contents){
 
   try{
     window[varName] = JSON.parse(contents).filter(record => record.build != 'fin' && typeof record.name == 'undefined')
-//  lert('305: '+ DICTIONARY.length)
+    localStorage[varName] = JSON.stringify(window[varName])
+//  if (varName == 'DICTIONARY') lert(localStorage[varName])
   }
 
   catch(e){
@@ -318,41 +398,6 @@ function loadJson(scriptID, contents){
 function loadJsx(scriptID, contents){
   CEP.evalScript(contents)
 }
-
-/*———————————————————————————————————————— parseScriptList(str) DEPRECATED
-
-    {"build":0, "source":"manifest.json"} */
-
-//    function parseScriptList(scriptID, str, path){
-//      if (str == '') return true
-//    
-//      try       { var arr = JSON.parse(str) }
-//      catch(msg){ lert(  `JXON Parse Error\n${msg}\n${path}`  ) }
-//    
-//      for (var x=0; x<arr.length; x++){
-//    
-//        var scriptBuild  =  arr[x]['build']
-//    
-//        if (typeof scriptBuild == "string") continue // commment
-//    
-//        var scriptSource = arr[x]['name'] +'.'+ arr[x]['ext']
-//    //  var parts        = scriptSource.split('.')
-//        var scriptID     = arr[x]['name']
-//        var scriptType   = arr[x]['ext']
-//    
-//        if (scriptBuild < 0){
-//          deleteElement(scriptType, scriptID)
-//          continue
-//        }
-//    
-//        var functionName = 'fetchScript'
-//    
-//        reference = arr[x]['name'] +'_'+ arr[x]['build'] +'_'+ arr[x]['ext']
-//        if (x==0) lert(reference)
-//    
-//        window[functionName](scriptBuild, scriptID, scriptSource, scriptType)
-//      }
-//    }
 
 
 //:::::::::::::::::::::::::::::::::::::::: fetch functions
@@ -566,7 +611,6 @@ function dirName(c){
 <script> 
 
 /*———————————————————————————————————————— setup */
-
 
   var path = 'json/manifest.json'
 

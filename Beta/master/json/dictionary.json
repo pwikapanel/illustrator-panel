@@ -1,7 +1,7 @@
 [
 
 { "name":  "DICTIONARY"                                                       },
-{ "key":   "channel loaded", "lang":"en" ,"text": " channel loaded\nlocal="   },
-{ "key":   "channel loaded", "lang":"fr" ,"text": " canal chargé\nlocal="     },
+{ "key":   "channel loaded", "lang":"en" ,"text": " channel loaded\nfrom "    },
+{ "key":   "channel loaded", "lang":"fr" ,"text": " canal chargé\ndepuis "    },
 
 { "key":   "fin"                                                              }]

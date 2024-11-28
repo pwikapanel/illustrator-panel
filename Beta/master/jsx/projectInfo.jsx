@@ -16,7 +16,12 @@
 
   sync/SVIJA/System/URL.txt */
 
+var myCounter = 0
+
 function getProjectInfo(){
+
+  myCounter += 1
+//if (myCounter < 2) alert(myCounter+'\n'+DICTIONARY)
 
   if (app.documents.length == 0) return ''
   if (!isSvija())                return ''
