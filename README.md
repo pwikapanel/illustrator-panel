@@ -5,6 +5,10 @@
 
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
+[debugging info](https://fenomas.com/2014/08/cep-5-html-debug-en/)
+
+Apparently only works if panel is loaded traditionally
+
 ### Svija Tools 1.0.5
 ---
 

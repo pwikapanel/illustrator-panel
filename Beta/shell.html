@@ -1,58 +1,42 @@
-
-<!DOCTYPE html><html><head><meta charset="utf-8">
-<script type="text/javascript" src="CSXS/CSInterface.js"></script>
+<!DOCTYPE html><html><head><meta charset="utf-8"> <script type="text/javascript" src="CSXS/CSInterface.js"></script>
 
 <script>
 
 //:::::::::::::::::::::::::::::::::::::::: initialization
 
   var CEP     = new CSInterface()
-  VAR HOSTENV = CEP.getHostEnvironment()
+  var HOSTENV = CEP.getHostEnvironment()
 
   window.addEventListener('error', (event)=>{ CEP.evalScript('alert("' + event.message + '")') })
 
-
-
-
-/*
-var testStr = 'hostEnv\n'
-testStr += HOSTENV.appLocale +'\n'
-testStr += HOSTENV.appUILocale +'\n'
-testStr += HOSTENV.isAppOnline +'\n'
-testStr += HOSTENV.appVersion +'\n'
-
-alert(testStr)
-en_US
-en_US
-true
-29.1.0
-*/
-
   var AIVERSION = HOSTENV.appVersion
-  var LANGUE
+  var LANG      = HOSTENV.appUILocale.substr(0,2) // appLocale if this doesn't work
+  var ISMAC     = CEP.getOSInformation().substring(0,3) == 'Mac'
+  var MYDOCS    = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
+  var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION)
 
-  var DEBUG    = true
+  var DEBUG         = true
+  var LANGDEFAULT   = 'en'
+  var CHNAME0       = 'alpha'
+  var CHNAME1       = 'beta'
+  var CHNAME2       = 'master'
+  var MAXWIDTH      = 240
+  var SERVER        = 'tools.svija.love'
+
   var MANIFEST
   var LOCAL
   var CHANNEL
-  var LANGUEDEFAULT = 'EN'
-  var CHNAME0   = 'alpha'
-  var CHNAME1   = 'beta'
-  var CHNAME2   = 'master'
-
-  var ISMAC     = CEP.getOSInformation().substring(0,3) == 'Mac'
-  var MAXWIDTH  = 240
-  var MYDOCS    = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
-  var SERVER    = 'tools.svija.love'
-  var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION)
+  var DICTIONARY
 
 //:::::::::::::::::::::::::::::::::::::::: defaults
 
   if (typeof localStorage.CHANNEL == 'undefined') CHANNEL = 2
-  else CHANNEL = localStorage.CHANNEL
+  else                    CHANNEL  = localStorage.CHANNEL
 
-  if (typeof localStorage.LOCAL == 'undefined') LOCAL = true
-  else LOCAL = (localStorage.LOCAL === 'true')
+  if (typeof localStorage.LOCAL == 'undefined') LOCAL  =   true
+  else                    LOCAL = (localStorage.LOCAL === 'true')
+
+  if (LANG != 'fr') LANG = LANGDEFAULT
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
@@ -78,8 +62,8 @@ var allVars = [
     'DEBUG',
     'ISMAC',
     'ISSVIJA',
-    'LANGUE',
-    'LANGUEDEFAULT',
+    'LANG',
+    'LANGDEFAULT',
     'LASTPATH',
     'LOCAL',
     'MAXWIDTH',
@@ -141,7 +125,7 @@ harmonize('js')  // and any remaining values from javascript
 
 function loadManifest(unused, str, path){
 
-  lert('119 LOCAL is '+LOCAL+'\n typeof='+typeof LOCAL)
+//lert('129 LOCAL is '+LOCAL+'\n typeof='+typeof LOCAL)
 
   if (str == '') return true
 
@@ -245,7 +229,8 @@ function activateLibrary(){
   }
 
   localStorage.MANIFEST = JSON.stringify(MANIFEST)
-  lert(channelName(CHANNEL) + ' channel loaded\nlocal=' + LOCAL)
+
+  lert(channelName(CHANNEL) + translate('channel loaded') + LOCAL)
 }
 
 
@@ -254,7 +239,7 @@ function activateLibrary(){
 
 //:::::::::::::::::::::::::::::::::::::::: script loaders
 
-/*———————————————————————————————————————— loadHtml(str)
+/*———————————————————————————————————————— loadHtml(scriptID, contents)
 
     installs an HTML block */
 
@@ -272,7 +257,7 @@ function loadHtml(scriptID, contents){
   obj.innerHTML = contents
 }
 
-/*———————————————————————————————————————— loadCss(str)
+/*———————————————————————————————————————— loadCss(scriptID, contents)
 
     installs a CSS sheet */
 
@@ -290,7 +275,7 @@ function loadCss(scriptID, contents){
   obj.innerHTML = contents
 }
 
-/*———————————————————————————————————————— loadJs(str)
+/*———————————————————————————————————————— loadJs(scriptID, contents)
 
     installs a JS block */
 
@@ -306,12 +291,24 @@ function loadJs(scriptID, contents){
   obj.innerHTML = contents
 }
 
-/*———————————————————————————————————————— loadJson(bld, which, src) NOT IMPLEMENTED
+/*———————————————————————————————————————— loadJson(scriptID, contents)
 
-    called but why? it doesn't do anything */
+    for translation */
 
 function loadJson(scriptID, contents){
-  lert('JSON '+scriptID+' not loaded (line 291)')
+
+  var varNameArray = JSON.parse(contents).filter(record => typeof record.name != 'undefined')
+  var varName = varNameArray[0].name
+
+  try{
+    window[varName] = JSON.parse(contents).filter(record => record.build != 'fin' && typeof record.name == 'undefined')
+//  lert('305: '+ DICTIONARY.length)
+  }
+
+  catch(e){
+    lert('JSON '+scriptID+' not loaded (line 309)\n'+e)
+  }
+
 }
 
 /*———————————————————————————————————————— loadJsx(bld, which, src) NOT IMPLEMENTED
@@ -479,6 +476,16 @@ function fetchL(file) {
 
 //:::::::::::::::::::::::::::::::::::::::: utilities
 
+/*———————————————————————————————————————— translate(key)
+    */
+
+function translate(key){
+  res = DICTIONARY.filter(record=> record.key==key && record.lang==LANG)
+
+  if (res.length == 0) lert('Missing translation key: "' + key + '"')
+  else return res[0].text
+}
+
 /*———————————————————————————————————————— deleteElement(scriptType, scriptID)
 
     deletes HTML, JS or CSS given an ID */
@@ -565,6 +572,7 @@ function dirName(c){
 
   if (LOCAL) fetchLocal ('manifest', path, loadManifest)
   else       fetchRemote('manifest', path, loadManifest)
+
 
 </script>
 

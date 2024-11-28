@@ -1,7 +1,0 @@
-[
-
-{ "build":   0, "name":              "manifest" ,"ext": "json", "loaded": false  },
-
-{ "build":   0, "name":                  "main" ,"ext": "html", "loaded": false  },
-
-{ "build":   "fin"                                                               }]

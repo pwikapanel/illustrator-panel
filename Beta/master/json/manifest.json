@@ -1,62 +1,63 @@
 [
 
-{ "build":   0, "name":              "manifest" ,"ext": "json", "loaded": false  },
+{ "build":   0, "name":             "manifest" ,"ext": "json", "loaded": false  },
+{ "build":   0, "name":           "dictionary" ,"ext": "json", "loaded": false  },
 
-{ "build":   0, "name":             "utilities" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "name":             "utilities" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":            "utilities" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "name":            "utilities" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":                 "fonts" ,"ext": "css" , "loaded": false  },
-{ "build":   0, "name":  "illustratorColorDefs" ,"ext": "css" , "loaded": false  },
-{ "build":   0, "name":                "colors" ,"ext": "css" , "loaded": false  },
-{ "build":   0, "name":                "global" ,"ext": "css" , "loaded": false  },
-{ "build":   0, "name":               "buttons" ,"ext": "css" , "loaded": false  },
-{ "build":   0, "name":             "bottomBar" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "name":                "fonts" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "name": "illustratorColorDefs" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "name":               "colors" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "name":               "global" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "name":              "buttons" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "name":            "bottomBar" ,"ext": "css" , "loaded": false  },
 
-{ "build":   0, "name":                  "news" ,"ext": "css" , "loaded": false  },
-{ "build":   0, "name":                  "news" ,"ext": "html", "loaded": false  },
+{ "build":   0, "name":                 "news" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "name":                 "news" ,"ext": "html", "loaded": false  },
 
-{ "build":   0, "name":               "dormant" ,"ext": "html", "loaded": false  },
-{ "build":   0, "name":                  "more" ,"ext": "html", "loaded": false  },
-{ "build":   0, "name":                  "main" ,"ext": "html", "loaded": false  },
-{ "build":   0, "name":             "bottomBar" ,"ext": "html", "loaded": false  },
+{ "build":   0, "name":              "dormant" ,"ext": "html", "loaded": false  },
+{ "build":   0, "name":                 "more" ,"ext": "html", "loaded": false  },
+{ "build":   0, "name":                 "main" ,"ext": "html", "loaded": false  },
+{ "build":   0, "name":            "bottomBar" ,"ext": "html", "loaded": false  },
 
-{ "build":   0, "name":         "interfaceCode" ,"ext": "js"  , "loaded": false  },
-{ "build":   0, "name":          "panelManager" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":        "interfaceCode" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":         "panelManager" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":           "projectInfo" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "name":           "projectInfo" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":          "projectInfo" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "name":          "projectInfo" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":              "moreLess" ,"ext": "js"  , "loaded": false  },
-{ "build":   0, "name":                  "help" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":             "moreLess" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":                 "help" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":               "channel" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "name":               "channel" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":              "channel" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "name":              "channel" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":           "accentColor" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "name":           "accentColor" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":          "accentColor" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "name":          "accentColor" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":         "11-launchSite" ,"ext": "js"  , "loaded": false  },
-{ "build":   0, "name":        "12-launchCloud" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":        "11-launchSite" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":       "12-launchCloud" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":           "createGroup" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "name":        "21-createGroup" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":          "createGroup" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "name":       "21-createGroup" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":            "changeCase" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "name":         "22-changeCase" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":           "changeCase" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "name":        "22-changeCase" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":         "31-openFolder" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":        "31-openFolder" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":        "checkAndRepair" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "name":     "41-checkAndRepair" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":       "checkAndRepair" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "name":    "41-checkAndRepair" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":                  "save" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "name":            "42-saveAll" ,"ext": "js"  , "loaded": false  },
-{ "build":   0, "name":               "43-save" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":                 "save" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "name":           "42-saveAll" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":              "43-save" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":              "openFile" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "name":              "openFile" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":             "openFile" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "name":             "openFile" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "name":                "reopen" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "name":                "reopen" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "name":               "reopen" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "name":               "reopen" ,"ext": "js"  , "loaded": false  },
 
 { "build":   "fin"                                                               }]
