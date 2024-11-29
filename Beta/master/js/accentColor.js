@@ -39,6 +39,7 @@ else{
 var ms = 500
 
 setInterval(function(){
+  try{
   if (navigator.onLine){
     logoArt.style.fill = 'var(--accentBright)'
     logoBar.style.fill = 'var(--panel-bg-dark)'
@@ -48,6 +49,7 @@ setInterval(function(){
     logoArt.style.fill = 'none'
     logoBar.style.fill = 'red'
   }
+  } catch(e){alert(e)}
 }, ms)
 
 /*———————————————————————————————————————— svijaLogo.addEventListener('mouseup'

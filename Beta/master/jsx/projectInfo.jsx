@@ -16,12 +16,7 @@
 
   sync/SVIJA/System/URL.txt */
 
-var myCounter = 0
-
 function getProjectInfo(){
-
-  myCounter += 1
-//if (myCounter < 2) alert(myCounter+'\n'+DICTIONARY)
 
   if (app.documents.length == 0) return ''
   if (!isSvija())                return ''
@@ -74,7 +69,14 @@ function gctSyncPath(){
 
     sync/SVIJA/System/URL.txt */
 
+var ghjAlert = true
+
 function getSiteURL(){
+
+  if (typeof ISMAC == 'undefined'){
+    if (ghjAlert) { alert("Cannot read URL\nUndetermined platform\nprojectInfo.jsx#77"); ghjAlert = false }
+    return ''
+  }
 
   if (ISMAC) destPath = gctSyncPath() + '/SVIJA/System/URL.txt';
   else       destPath = gctSyncPath() + '\\SVIJA\\System\\URL.txt';
@@ -99,7 +101,14 @@ function getSiteURL(){
 
     returns real path of current document */
 
+var hijAlert = true
+
 function getLastPath(){
+
+  if (typeof ISMAC == 'undefined'){
+    if (hijAlert) { alert("Cannot read last path\nUndetermined platform\nprojectInfo.jsx#109"); hijAlert = false }
+    return ''
+  }
 
   if (ISMAC)
     res = app.activeDocument.path.fsName + '/'

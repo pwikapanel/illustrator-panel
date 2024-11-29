@@ -7,7 +7,7 @@
 
 [debugging info](https://fenomas.com/2014/08/cep-5-html-debug-en/)
 
-Apparently only works if panel is loaded traditionally
+Open [this link](http://localhost:8080/) in Chrome
 
 ### Svija Tools 1.0.5
 ---

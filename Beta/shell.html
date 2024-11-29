@@ -65,12 +65,11 @@ var allVars = [
     'TOOLSPATH'
 ]
 
-// harmonize('ls')  // get any values from localStorage
+harmonize('ls')  // get any values from localStorage
 // harmonize('js')  // and any remaining values from javascript
 
-/*———————————————————————————————————————— harmonize(ref)
 
-    called every 500ms by getProjectInfo()
+/*———————————————————————————————————————— harmonize(ref)
 
     three types of variables
 
@@ -87,15 +86,11 @@ var allVars = [
    if a string is longer than 99 chars, we assume
    it's stringified JSON data */
 
+// DO NOT ADD ALERTS · called every 500ms by getProjectInfo()
 
-var myCounter = 0
-
-function harmonize(ref){
-  return true
-
+function harmonize(ref){}
+/*
   if (ref != 'js' && ref != 'ls') { lert('harmonize(): illegal argument\nref = '+ref); return true }
-
-//lert('harmonizing based on '+ref)
 
   for (x=0; x<allVars.length; x++){
     var varName = allVars[x]
@@ -117,68 +112,65 @@ function harmonize(ref){
 
     if (ref == 'js'){
       jsVal = val
-      if (typeof val == 'boolean' || !isNan(val)){         // boolean or number
-        lsVal = cepVal = str(val)
+      if (typeof val == 'boolean' || !isNaN(val)){         // boolean or number
+        lsVal = cepVal = toString(val)
       }
       else if (typeof val == 'object'){                    // JSON
         lsVal = JSON.stringify(val)
-        cepVal = '"' + lsVal +'"'
+        cepVal = '"' + lsVal + '"'
       }
       else{                                                // string
         lsVal  = val
         cepVal = lsVal
       }
+
       localStorage[varName] = lsVal
-      CEP.evalScript(varName + '=' + CEPval)
+      concole.log('cepVal='+cepVal)
+//    CEP.evalScript(varName + '=' + cepVal)
     }
 
     //———————————————————— LS —› JS & CEP
 
-//  if (ref == 'ls'){
-//    lsVal = val
+    if (ref == 'ls'){
+      lsVal = val
 
-//    if (val == 'true')                                   // boolean
-//      jsVal = cepVal = true
-//    else if (val == 'false')
-//      jsVal = cepVal = false
+      if (val == 'true')                                   // boolean
+        jsVal = cepVal = true
+      else if (val == 'false')
+        jsVal = cepVal = false
 
-
-
-
-
-
-
-
-
-
-
-
-//    else if (!isNaN(val){                                // number
-//      jsVal  = 1 * val
-//      cepVal = val
+      else if (!isNaN(val){                                // number
+        jsVal  = parseFloat(val)
+        cepVal = val
       }
-//        else if (val.length > 99){                           // JSON
-//          jsVal  = JSON.parse(val)
-//          cepVal = '"' + val +'"'
-//        }
-//        else{                                                // string
-//          jsVal  = val
-//          cepVal = '"' + val +'"'
-//        }
 
-//        window[varName] = jsVal
-//        CEP.evalScript(varName + '=' + CEPval)
-//  }
+      else if (val.length > 99){                           // JSON
+        try{ jsVal=JSON.parse(val) } catch() { jsVal=val }
+        cepVal = '"' + val +'"'
+      }
 
+      else{                                                // string
+        jsVal  = val
+        cepVal = '"' + val +'"'
+      }
+
+      window[varName] = jsVal
+      concole.log('cepVal='+cepVal)
+//    CEP.evalScript(varName + '=' + cepVal)
+    }
 
   }
-}
 
+  return true
+}
+*/
 
 //:::::::::::::::::::::::::::::::::::::::: library loaders
 
-/*  startup chain
-  
+/*———————————————————————————————————————— technical description 
+
+    runs                loads           how       calls
+
     shell.html       manifest.json    callback —› loadManifest
     loadManifest                       direct  —› loadLibrary
     loadLibrary      each script      callback —› checkinScript
@@ -196,10 +188,6 @@ function harmonize(ref){
     { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
 
 function loadManifest(unused, str, path){
-  lert('load manifest')
-  return true
-
-//lert('129 LOCAL is '+LOCAL+'\n typeof='+typeof LOCAL)
 
   if (str == '') return true
 
@@ -212,18 +200,17 @@ function loadManifest(unused, str, path){
   try{ MANIFESTVERSION = manifestRefs[0].build } catch(msg){ lert('Manifest Error\nMissing build number'      ); return true }
 
   MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
-//lert('Manifest loaded\nLoading library…')
+
   loadLibrary()
 }
 
-/*———————————————————————————————————————— 2. loadLibrary(manifest)
+/*———————————————————————————————————————— 2. loadLibrary(manifest) TO COMPLETE, ERROR-CHECKING
 
     this will load the relevant files into memory but NOT activate
     them. they will be activated only when they are all loaded
     and validated in the MANIFEST json category "loaded" */
 
 function loadLibrary(){
-  return true
 
   for (var x=1; x<MANIFEST.length; x++){
 
@@ -265,26 +252,21 @@ function loadLibrary(){
     then mark the script as loaded in MANIFEST */
 
 function checkinScript(identifier, contents, path){
-  return true
+
   var nameParts = identifier.split('_')
 
   // users = users.filter(obj => obj.name == filter.name && obj.address == filter.address)
 
-  //lert('checkinScript\n'+path+'\n\nvariable will be called\n'+identifier)
   var manifestRefs = MANIFEST.filter(record=> record.name==nameParts[0] && record.ext==nameParts[2])
-  
 
   if (manifestRefs.length>0){
-    //lert('Found: '+nameParts[0])
     localStorage[identifier] = contents
     MANIFEST.filter(record=> record.name==nameParts[0] && record.ext==nameParts[2])[0]['loaded'] = true
-//  lert('localStorage & MANIFEST updated\n'+nameParts[0])
   }
   else
     lert('Not found: '+nameParts[0])
 
   activateLibrary()
-
 }
 
 /*———————————————————————————————————————— 4. activateLibrary()
@@ -292,7 +274,6 @@ function checkinScript(identifier, contents, path){
     loads values from localStorage into actual DOM elements */
 
 function activateLibrary(){
-  return true
 
   var notYetLoaded =  MANIFEST.filter(record=> record.loaded==false)
   if (notYetLoaded.length > 0){ return "not yet loaded" }
@@ -601,9 +582,9 @@ function dirName(c){
 </script>
 
 <style>  #reloader{
-    cursor:wait;  width:8px;height:8px;
+    cursor:pointer;  width:10px;height:10px;
   position:absolute;top:0px; right:0px;
-  background-color:lime;
+  background-color:gray;
 } </style>
 
 </head><body oncontextmenu='return false'><div id="reloader" onclick='localStorage.clear();location.reload()'></div>
@@ -614,9 +595,10 @@ function dirName(c){
 
   var path = 'json/manifest.json'
 
+  LOCAL = true // temporary
+
   if (LOCAL) fetchLocal ('manifest', path, loadManifest)
   else       fetchRemote('manifest', path, loadManifest)
-
 
 </script>
 

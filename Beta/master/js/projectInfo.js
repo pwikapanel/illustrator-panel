@@ -31,13 +31,15 @@ CEP.evalScript("$.evalFile('" + file + "')")
 
 /*———————————————————————————————————————— get info */
 
-var ms = 500
+var ms = 5000
 
 setInterval(function(){ CEP.evalScript('getProjectInfo()', setURL) }, ms)
 
 /*———————————————————————————————————————— setURL(arg)
 
     */
+
+var notAlertedPIJ = true
 
 function setURL(arg){
 
@@ -46,13 +48,34 @@ function setURL(arg){
     
   var results = JSON.parse(arg)
 
+  if (typeof results.syncPath == 'undefined'){
+    notALertedPIJ = false
+    if (notALertedPIJ)
+      lert("Script Error\nprojectInfo.js#50") 
+    return true
+  }
+
+  if (typeof results.siteURL == 'undefined'){
+    notALertedPIJ = false
+    if (notALertedPIJ)
+      lert("Script Error\nprojectInfo.js#55") 
+    return true
+  }
+
+  if (typeof results.lastPath == 'undefined'){
+    notALertedPIJ = false
+    if (notALertedPIJ)
+      lert("Script Error\nprojectInfo.js#60") 
+    return true
+  }
+
   if (results.syncPath  != ''){
 
     ISSVIJA = true
     SYNCPATH = results.syncPath
 
     if (results.siteURL  != ''){
-      SITEURL  = results.siteURL 
+      SITEURL = results.siteURL 
     }
 
     if (results.lastPath != ''){
@@ -61,7 +84,7 @@ function setURL(arg){
 
   harmonize('js')
 
-    // 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋  
+  if (typeof SITEURL != 'undefined')
     if (SITEURL != '') CEP.setWindowTitle(SITEURL)
   }
 }
