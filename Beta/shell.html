@@ -7,7 +7,8 @@
   var CEP     = new CSInterface()
   var HOSTENV = CEP.getHostEnvironment()
 
-  window.addEventListener('error', (event)=>{ CEP.evalScript('alert("' + event.message + '")') })
+  window.addEventListener('error', (event)=>{ alert(event.message) })
+//window.addEventListener('error', (event)=>{ CEP.evalScript('alert("' + event.message + '")') })
 
   var AIVERSION = HOSTENV.appVersion
   var LANG      = HOSTENV.appUILocale.substr(0,2) // appLocale if this doesn't work
@@ -88,8 +89,11 @@ harmonize('ls')  // get any values from localStorage
 
 // DO NOT ADD ALERTS · called every 500ms by getProjectInfo()
 
-function harmonize(ref){}
-/*
+
+//NEW THEORY: DO LS & JS, FUNCTION SEND TO CEP AT END
+
+function harmonize(ref){
+
   if (ref != 'js' && ref != 'ls') { lert('harmonize(): illegal argument\nref = '+ref); return true }
 
   for (x=0; x<allVars.length; x++){
@@ -103,67 +107,48 @@ function harmonize(ref){}
     if   (ref == 'js') var val = window[      varName]
     else               var val = localStorage[varName]
 
-    //———————————————————— three kinds of variables: JS, LS & CEP
-    //———————————————————— four kinds of values: boolean, number, JSON, string
-
-    var jsVal = lsVal = cepVal = ''
-
-    //———————————————————— JS —› LS & CEP
+    //———————————————————— JS —› LS
 
     if (ref == 'js'){
-      jsVal = val
-      if (typeof val == 'boolean' || !isNaN(val)){         // boolean or number
-        lsVal = cepVal = toString(val)
-      }
-      else if (typeof val == 'object'){                    // JSON
-        lsVal = JSON.stringify(val)
-        cepVal = '"' + lsVal + '"'
-      }
-      else{                                                // string
-        lsVal  = val
-        cepVal = lsVal
-      }
+
+      var lsVal
+      if (typeof val == 'object') lsVal = JSON.stringify(val)
+      else lsVal = val
 
       localStorage[varName] = lsVal
-      concole.log('cepVal='+cepVal)
-//    CEP.evalScript(varName + '=' + cepVal)
+      transmitToCEP(varName, val)
     }
 
-    //———————————————————— LS —› JS & CEP
+    //———————————————————— LS —› JS MAKE FUNCTION "strToVar(arg)"
 
     if (ref == 'ls'){
-      lsVal = val
+      var jsVal
 
       if (val == 'true')                                   // boolean
-        jsVal = cepVal = true
+        jsVal = true
       else if (val == 'false')
-        jsVal = cepVal = false
+        jsVal = false
 
-      else if (!isNaN(val){                                // number
+      else if (!isNaN(val))                                // number
         jsVal  = parseFloat(val)
-        cepVal = val
-      }
 
       else if (val.length > 99){                           // JSON
-        try{ jsVal=JSON.parse(val) } catch() { jsVal=val }
-        cepVal = '"' + val +'"'
+        try     { jsVal=JSON.parse(val) }
+        catch(e){ jsVal=val             }
       }
 
-      else{                                                // string
+      else                                                 // string
         jsVal  = val
-        cepVal = '"' + val +'"'
-      }
 
       window[varName] = jsVal
-      concole.log('cepVal='+cepVal)
-//    CEP.evalScript(varName + '=' + cepVal)
+      transmitToCEP(jsVal)
     }
 
   }
 
   return true
 }
-*/
+
 
 //:::::::::::::::::::::::::::::::::::::::: library loaders
 
@@ -578,6 +563,49 @@ function dirName(c){
   return channelName(c).toLowerCase()
 }
 
+/*———————————————————————————————————————— transmitToCEP(jsVal)
+
+    transmits a JS variable to CEP, as correct type
+    currently JSON is sent in stringified format */
+
+var ctr = true
+
+function transmitToCEP(varName, val){
+
+  if (typeof val == 'undefined') return true
+
+  var cepVal
+
+  if (typeof val == 'boolean'){                        // boolean
+    if (val==true)   cepVal = 'true'
+    if (val== false) cepVal = 'false'
+  }
+
+  else if (!isNaN(val)){                                // number
+    cepVal = toString(val)
+  }
+
+  else if (typeof val == 'object'){                    // JSON
+    var str = JSON.stringify(val)
+    cepVal = 'decodeURI("' + encodeURI(str) + '")'
+  }
+
+  else{                                                // string
+    cepVal = 'decodeURI("' + encodeURI(val) + '")'
+  }
+
+  if (typeof cepVal == 'undefined') return true
+
+  var scrpt = '"' + varName + '"=' + cepVal
+
+  if (ctr){      // [object Undefined]
+    lert(scrpt)
+    ctr = false
+  }
+
+  //CEP.evalScript(scrpt)
+}
+
 
 </script>
 
@@ -594,8 +622,6 @@ function dirName(c){
 /*———————————————————————————————————————— setup */
 
   var path = 'json/manifest.json'
-
-  LOCAL = true // temporary
 
   if (LOCAL) fetchLocal ('manifest', path, loadManifest)
   else       fetchRemote('manifest', path, loadManifest)
