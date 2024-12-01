@@ -32,7 +32,7 @@
 //:::::::::::::::::::::::::::::::::::::::: defaults
 
   if (typeof localStorage.CHANNEL == 'undefined') CHANNEL = 2
-  else                    CHANNEL  = localStorage.CHANNEL
+  else                    CHANNEL  = parseInt(localStorage.CHANNEL)
 
   if (typeof localStorage.LOCAL == 'undefined') LOCAL  =   true
   else                    LOCAL = (localStorage.LOCAL === 'true')
@@ -67,8 +67,7 @@ var allVars = [
 ]
 
 harmonize('ls')  // get any values from localStorage
-// harmonize('js')  // and any remaining values from javascript
-
+harmonize('js')  // and any remaining values from javascript
 
 /*———————————————————————————————————————— harmonize(ref)
 
@@ -88,9 +87,6 @@ harmonize('ls')  // get any values from localStorage
    it's stringified JSON data */
 
 // DO NOT ADD ALERTS · called every 500ms by getProjectInfo()
-
-
-//NEW THEORY: DO LS & JS, FUNCTION SEND TO CEP AT END
 
 function harmonize(ref){
 
@@ -141,7 +137,7 @@ function harmonize(ref){
         jsVal  = val
 
       window[varName] = jsVal
-      transmitToCEP(jsVal)
+      transmitToCEP(varName, jsVal)
     }
 
   }
@@ -568,7 +564,6 @@ function dirName(c){
     transmits a JS variable to CEP, as correct type
     currently JSON is sent in stringified format */
 
-var ctr = true
 
 function transmitToCEP(varName, val){
 
@@ -581,8 +576,9 @@ function transmitToCEP(varName, val){
     if (val== false) cepVal = 'false'
   }
 
-  else if (!isNaN(val)){                                // number
-    cepVal = toString(val)
+  else if (!isNaN(val)){                               // number
+    console.log(varName +' is a number: '+val.toString())
+    cepVal = val.toString()
   }
 
   else if (typeof val == 'object'){                    // JSON
@@ -596,16 +592,11 @@ function transmitToCEP(varName, val){
 
   if (typeof cepVal == 'undefined') return true
 
-  var scrpt = '"' + varName + '"=' + cepVal
+  var scrpt = varName + '=' + cepVal
 
-  if (ctr){      // [object Undefined]
-    lert(scrpt)
-    ctr = false
-  }
-
-  //CEP.evalScript(scrpt)
+  console.log('605: '+scrpt)
+  CEP.evalScript(scrpt)
 }
-
 
 </script>
 
