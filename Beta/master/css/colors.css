@@ -12,22 +12,29 @@
   --accentDim    :hsl(80  20%  25%);
 }
 
+/*———————————————————————————————————————— panel */
+
+body{
+  background-color:var(--panel-bg);
+  color:#bbb;
+}
+
 /*———————————————————————————————————————— top buttons
 
  see css/interface1.css etc.  */
 
-div#moreDiv input[type=button]{
+div#moreHtml input[type=button]{
   color:var(--hamburger);
   background-color:var(--pulldown);
   border-color:var(--input-border);
 }
 
-div#moreDiv input[type=button]:hover{
+div#moreHtml input[type=button]:hover{
   color:var(--field-contents);
   border-color:var(--accentBright);
 }
 
-div#moreDiv input[type=button]:active{
+div#moreHtml input[type=button]:active{
   color:var(--field-contents);
   border-color:#fff;
 }

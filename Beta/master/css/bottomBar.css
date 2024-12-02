@@ -2,6 +2,14 @@
 /*:::::::::::::::::::::::::::::::::::::::: bottom bar */
 
 div#bottomBar{
+
+  margin-top:6px;
+  padding:0 9px 0 9px;
+  padding-bottom:3px;
+  height:14px;
+}
+
+div#bottomBar{
   user-select: none;
   height:15px;
   width:100%;

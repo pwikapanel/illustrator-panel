@@ -5,22 +5,11 @@
 
     need to restore user's status when they last used Tools */
 
-
 if (typeof localStorage.moreLess == 'undefined')
   localStorage.moreLess = 'less'
 
-if (localStorage.moreLess == 'less'){
-  moreSwitch.style.display = 'none'
-
-    linkMore.style.display = 'inline'
-    linkLess.style.display = 'none'
-}
-else{
-  moreSwitch.style.display = 'block'
-
-    linkMore.style.display = 'none'
-    linkLess.style.display = 'inline'
-}
+if (localStorage.moreLess == 'less') showLess()
+else showMore()
 
 
 /*:::::::::::::::::::::::::::::::::::::::: more link */
@@ -45,10 +34,7 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
   if (!alt){
-    localStorage.moreLess    = 'more'
-    moreSwitch.style.display = 'block'
-    linkMore.style.display   = 'none'
-    linkLess.style.display   = 'inline'
+    showMore()
     return true
   }
 })
@@ -76,14 +62,33 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
 
   if (!alt){
-    localStorage.moreLess  = 'less'
-    moreSwitch.style.display   = 'none'
-    linkMore.style.display = 'inline'
-    linkLess.style.display = 'none'
+    showLess()
     return true
   }
 })
 
+
+/*:::::::::::::::::::::::::::::::::::::::: functions */
+
+function showMore(){
+   moreDiv.style.display   = 'block'
+
+  localStorage.moreLess    = 'more'
+  console.log('user has clicked MORE')
+
+  linkMore.style.display   = 'none'
+  linkLess.style.display   = 'inline'
+}
+
+function showLess(){
+   moreDiv.style.display = 'none'
+
+  localStorage.moreLess  = 'less'
+  console.log('user has clicked LESS')
+
+  linkMore.style.display = 'inline'
+  linkLess.style.display = 'none'
+}
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

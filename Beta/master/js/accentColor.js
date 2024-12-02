@@ -36,8 +36,6 @@ else{
 
     colored if online, red bar if offline */
 
-var ms = 500
-
 setInterval(function(){
   try{
   if (navigator.onLine){
@@ -50,7 +48,7 @@ setInterval(function(){
     logoBar.style.fill = 'red'
   }
   } catch(e){alert(e)}
-}, ms)
+}, INTMS)
 
 /*———————————————————————————————————————— svijaLogo.addEventListener('mouseup'
 

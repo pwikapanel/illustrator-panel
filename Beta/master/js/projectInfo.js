@@ -31,9 +31,9 @@ CEP.evalScript("$.evalFile('" + file + "')")
 
 /*———————————————————————————————————————— get info */
 
-var ms = 500
-
-setInterval(function(){ CEP.evalScript('getProjectInfo()', setURL) }, ms)
+setInterval(function(){
+  CEP.evalScript('getProjectInfo()', setURL)
+}, INTMS)
 
 /*———————————————————————————————————————— setURL(arg)
 

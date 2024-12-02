@@ -1,0 +1,23 @@
+
+/*:::::::::::::::::::::::::::::::::::::::: global.css */
+
+/*———————————————————————————————————————— HR */
+
+hr{
+  display:block;
+  margin: 7px 10px 0px 10px !important;
+  padding:0 !important;
+  border-width:1px 0 0 0;
+  border-top-style:solid;
+}
+
+/*———————————————————————————————————————— permanent */
+
+div#moreHtml{ /* container for moreHtml */
+  display:none;
+  padding-top:5px;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
+

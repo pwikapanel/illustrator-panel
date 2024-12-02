@@ -23,6 +23,7 @@
   var CHNAME2       = 'master'
   var MAXWIDTH      = 240
   var SERVER        = 'tools.svija.love'
+  var INTMS         = 2000 // interval to refresh panel
 
   var MANIFEST
   var LOCAL
@@ -52,6 +53,7 @@ var allVars = [
     'CHNAME2',
     'DEBUG',
     'DICTIONARY',
+    'INTMS',
     'ISMAC',
     'ISSVIJA',
     'LANG',
@@ -262,9 +264,14 @@ function activateLibrary(){
   for (var x=1; x<MANIFEST.length; x++){
 
     var identifier = MANIFEST[x]['name'] +'_'+ MANIFEST[x]['build'] +'_'+ MANIFEST[x]['ext']
-    var functionName = 'load' + capitalize(MANIFEST[x]['ext'])
 
-    window[functionName](MANIFEST[x]['name'], localStorage[identifier])
+    if (MANIFEST[x]['id'] != '')
+      var objID = MANIFEST[x]['id']
+    else
+      var objID = MANIFEST[x]['name'] + capitalize(MANIFEST[x]['ext'])
+
+    var functionName = 'load' + capitalize(MANIFEST[x]['ext'])
+    window[functionName](objID, localStorage[identifier])
   }
 
   localStorage.MANIFEST = JSON.stringify(MANIFEST)
@@ -285,9 +292,6 @@ function activateLibrary(){
     installs a CSS sheet */
 
 function loadCss(scriptID, contents){
-  scriptID += 'css'
-//  document.getElementsByTagName('style')[0].innerHTML = contents
-
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
@@ -303,9 +307,6 @@ function loadCss(scriptID, contents){
     installs an HTML block */
 
 function loadHtml(scriptID, contents){
-
-  scriptID += 'html'
-
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
@@ -314,6 +315,7 @@ function loadHtml(scriptID, contents){
 
   obj.id = scriptID
   obj.innerHTML = contents
+
 }
 
 /*———————————————————————————————————————— loadJs(scriptID, contents)
@@ -321,7 +323,6 @@ function loadHtml(scriptID, contents){
     installs a JS block */
 
 function loadJs(scriptID, contents){
-  scriptID += 'js'
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
@@ -577,7 +578,6 @@ function transmitToCEP(varName, val){
   }
 
   else if (!isNaN(val)){                               // number
-    console.log(varName +' is a number: '+val.toString())
     cepVal = val.toString()
   }
 
@@ -594,9 +594,9 @@ function transmitToCEP(varName, val){
 
   var scrpt = varName + '=' + cepVal
 
-  console.log('605: '+scrpt)
   CEP.evalScript(scrpt)
 }
+
 
 </script>
 

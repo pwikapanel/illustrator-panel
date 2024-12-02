@@ -1,40 +1,40 @@
 
 /*———————————————————————————————————————— panel size
 
-     */
-
-var ms = 500
+     need to integrate status of localStorage.moreLess */
 
 setInterval(function(){
 
-  if (typeof ISSVIJA == 'undefined'){
-    dormantDiv.style.display='none'
-    moreDiv.style.display='block'
-    mainDiv.style.display='block'
-    bottomBar.style.display='block'
-    var whichObj = bottomBar 
+  var showDormant = true
+  if (typeof ISSVIJA == 'undefined') showDormant = false
+  else if (ISSVIJA == true) showDormant = false
+
+  if (showDormant){
+    var bottomEdge = dormantDiv
+    dormantDiv.style.display ='block'
+
+    moreDiv.style.display    ='none'
+    mainHtml.style.display   ='none'
+    bottomBar.style.display  ='none'
   }
-  else if (ISSVIJA){
-    dormantDiv.style.display='none'
-    moreDiv.style.display='block'
-    mainDiv.style.display='block'
-    bottomBar.style.display='block'
-    var whichObj = bottomBar 
-  }
+
   else{
-    dormantDiv.style.display='block'
-    moreDiv.style.display='none'
-    mainDiv.style.display='none'
-    bottomBar.style.display='none'
-    var whichObj = dormantDiv
+    var bottomEdge = bottomBar 
+    dormantDiv.style.display ='none'
+
+    mainHtml.style.display   ='block'
+    bottomBar.style.display  ='block'
+
+    if (localStorage.moreLess = 'more') showMore()
+    else showLess()
   }
 
   var f = CEP.getScaleFactor()
   var w = Math.round(MAXWIDTH / f)
-  var h = Math.round(whichObj.getBoundingClientRect().bottom/f)
+  var h = Math.round(bottomEdge.getBoundingClientRect().bottom/f)
 
   CEP.resizeContent(w, h)
-}, ms)
+}, INTMS)
 
 /*———————————————————————————————————————— setInterface()
 
