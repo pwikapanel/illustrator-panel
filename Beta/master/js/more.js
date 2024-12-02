@@ -74,20 +74,24 @@ function showMore(){
    moreDiv.style.display   = 'block'
 
   localStorage.moreLess    = 'more'
-  console.log('user has clicked MORE')
+  console.log('showing MORE')
 
   linkMore.style.display   = 'none'
   linkLess.style.display   = 'inline'
+
+  setPanelSize('bottomBar')
 }
 
 function showLess(){
    moreDiv.style.display = 'none'
 
   localStorage.moreLess  = 'less'
-  console.log('user has clicked LESS')
+  console.log('showing LESS')
 
   linkMore.style.display = 'inline'
   linkLess.style.display = 'none'
+
+  setPanelSize('bottomBar')
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */

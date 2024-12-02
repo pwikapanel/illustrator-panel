@@ -10,31 +10,43 @@ setInterval(function(){
   else if (ISSVIJA == true) showDormant = false
 
   if (showDormant){
-    var bottomEdge = dormantDiv
+    var bottomEdge = 'dormantDiv'
     dormantDiv.style.display ='block'
 
-    moreDiv.style.display    ='none'
-    mainHtml.style.display   ='none'
+      moreDiv.style.display  ='none'
+     mainHtml.style.display  ='none'
     bottomBar.style.display  ='none'
   }
 
   else{
-    var bottomEdge = bottomBar 
+    console.log('panelManager: moreLess='+localStorage.moreLess)
+    var bottomEdge = 'bottomBar'
     dormantDiv.style.display ='none'
 
     mainHtml.style.display   ='block'
     bottomBar.style.display  ='block'
 
-    if (localStorage.moreLess = 'more') showMore()
+    if (localStorage.moreLess == 'more') showMore()
     else showLess()
+  }
+
+  setPanelSize(bottomEdge)
+}, INTMS)
+
+function setPanelSize(objID){
+
+  var obj = document.getElementById(objID)
+  if (obj === null){
+    console.log(objID + ' not found')
+    return true
   }
 
   var f = CEP.getScaleFactor()
   var w = Math.round(MAXWIDTH / f)
-  var h = Math.round(bottomEdge.getBoundingClientRect().bottom/f)
+  var h = Math.round(obj.getBoundingClientRect().bottom/f)
 
   CEP.resizeContent(w, h)
-}, INTMS)
+}
 
 /*———————————————————————————————————————— setInterface()
 

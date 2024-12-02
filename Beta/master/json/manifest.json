@@ -20,13 +20,9 @@
 
 { "build":   0, "id":           "","name":                 "more" ,"ext": "css",  "loaded": false  },
 { "build":   0, "id":    "moreDiv","name":                 "more" ,"ext": "html", "loaded": false  },
-{ "build":   0, "id":           "","name":                 "more" ,"ext": "js"  , "loaded": false  },
 
 { "build":   0, "id":           "","name":                 "main" ,"ext": "css" , "loaded": false  },
 { "build":   0, "id":   "mainHtml","name":                 "main" ,"ext": "html", "loaded": false  },
-
-{ "build":   0, "id":           "","name":            "bottomBar" ,"ext": "css" , "loaded": false  },
-{ "build":   0, "id":  "bottomBar","name":            "bottomBar" ,"ext": "html", "loaded": false  },
 
 { "build":   0, "id":           "","name":        "interfaceCode" ,"ext": "js"  , "loaded": false  },
 { "build":   0, "id":           "","name":         "panelManager" ,"ext": "js"  , "loaded": false  },
@@ -34,10 +30,7 @@
 { "build":   0, "id":           "","name":          "projectInfo" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "id":           "","name":          "projectInfo" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "id":           "","name":                 "help" ,"ext": "js"  , "loaded": false  },
 
-{ "build":   0, "id":           "","name":              "channel" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "id":           "","name":              "channel" ,"ext": "js"  , "loaded": false  },
 
 { "build":   0, "id":           "","name":          "accentColor" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "id":           "","name":          "accentColor" ,"ext": "js"  , "loaded": false  },
@@ -62,6 +55,12 @@
 
 { "build":   0, "id":           "","name":             "openFile" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "id":           "","name":             "openFile" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "id":           "","name":            "bottomBar" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "id":  "bottomBar","name":            "bottomBar" ,"ext": "html", "loaded": false  },
+{ "build":   0, "id":           "","name":                 "help" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "id":           "","name":              "channel" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "id":           "","name":              "channel" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "id":           "","name":                 "more" ,"ext": "js"  , "loaded": false  },
 
 { "build":   0, "id":           "","name":               "reopen" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "id":   "reopenJS","name":               "reopen" ,"ext": "js"  , "loaded": false  },
