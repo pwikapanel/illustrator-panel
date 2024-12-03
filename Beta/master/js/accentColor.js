@@ -67,7 +67,7 @@ function setAccent(arg){
   var g = parts[1]
   var b = parts[2]
 
-  var hsl        = rgbToHsl(r, g, b)
+  var hsl        = uty_rgbToHsl(r, g, b)
   var hue        = Math.round(hsl[0])
   var saturation = Math.round(hsl[1])
 

@@ -45,12 +45,12 @@
 
 //:::::::::::::::::::::::::::::::::::::::: functions
 
-/*———————————————————————————————————————— aiOptions(version) CONSTANT !!!!!!!!!!!!!!!
+/*———————————————————————————————————————— ut_aiOptions(version)
 
   options for Illustrator File
   ISG409 & JSRp84 */
 
-function aiOptions(version){
+function ut_aiOptions(version){
 
   var options = new IllustratorSaveOptions();
 
@@ -63,38 +63,19 @@ function aiOptions(version){
   return options;
 }
 
-/*———————————————————————————————————————— concatenatePath(part1, part2)
+/*———————————————————————————————————————— ut_concatenatePath(part1, part2)
 
     given a part1 and part2, returns a correct path */
 
-function concatenatePath(part1, part2){
+function ut_concatenatePath(part1, part2){
 
   if (ISMAC) return part1 + '/' + part2
   else return part1 + '\\' + part2
 }
 
-/*———————————————————————————————————————— deriveSyncFolder()
+//———————————————————————————————————————— ut_dumpKeys(obj)
 
-    used when saving an unsaved document — tries to
-    find a SYNC folder from other open documents */
-
-function deriveSyncFolder(){
-  if (isMac == 'true')
-    var comparator = '/SYNC'
-  else
-    var comparator = '\\SYNC'
-
-  for(var x=1; x<app.documents.length; x++){
-    var docPath = String(app.documents[x].path.fsName);
-    if (docPath.indexOf(comparator) > 0) return concatenatePath(docPath, '/Page Name.ai')
-  }
-
-  return ''
-}
-
-//———————————————————————————————————————— dumpKeys(obj)
-
-function dumpKeys(obj){
+function ut_dumpKeys(obj){
   var str = '';
 
   for (var i in obj){
@@ -108,63 +89,63 @@ function dumpKeys(obj){
   alert(str);
 }
 
-/*———————————————————————————————————————— fileExists(path)
+/*———————————————————————————————————————— ut_fileExists(path)
 
     https://community.adobe.com/t5/premiere-pro-discussions/cep-engine-extension-api-to-check-for-file-existence/m-p/9042102 */
 
-function fileExists(path){
+function ut_fileExists(path){
   return File(path).exists
 }
 
-/*———————————————————————————————————————— getDocPath(doc)
+/*———————————————————————————————————————— ut_getDocPath(doc)
 
     returns full path of doc */
 
-function getDocPath(doc){
+function ut_getDocPath(doc){
   if (ISMAC) return doc.path.fsName + '/' + doc.name
   else return doc.path.fsName + '\\' + doc.name
 }
 
-/*———————————————————————————————————————— getExtension(path)
+/*———————————————————————————————————————— ut_getExtension(path)
 
     */
 
-function getExtension(path){
+function ut_getExtension(path){
   var ending = String(path).substr(-5);
   var bits = ending.split('.');
   return '.' + bits[1];
 }
 
-/*———————————————————————————————————————— getFileSize(page)
+/*———————————————————————————————————————— ut_getFileSize(page)
 
 // page.path = parent folder
 // page.name = filename
 // together is full pagh */
 
-function getFileSize(page){
+function ut_getFileSize(page){
   try{
-    var ref = File(concatenatePath(page.path, page.name))
+    var ref = File(ut_concatenatePath(page.path, page.name))
     var fileSize = Math.round(ref.length / 1000 / 1000 * 100)/100
     return fileSize
   }
   catch(e){ return -1 }
 }
 
-/*———————————————————————————————————————— getLinksPath(doc)
+/*———————————————————————————————————————— ut_getLinksPath(doc)
 
     returns path of links folder */
 
-function getLinksPath(doc){
+function ut_getLinksPath(doc){
   var path = doc.path.fsName
 
-  return concatenatePath(path, 'Links')
+  return ut_concatenatePath(path, 'Links')
 }
 
-/*———————————————————————————————————————— getSvgFilesPath(doc)
+/*———————————————————————————————————————— ut_getSvgFilesPath(doc)
 
     returns SVG folder path from SYNC folder */
 
-function getSvgFilesPath(doc){
+function ut_getSvgFilesPath(doc){
  
   var s = SYNCPATH
   if (s == '') return ''
@@ -173,23 +154,23 @@ function getSvgFilesPath(doc){
   else return s + '\\SVIJA\\SVG Files'
 }
 
-/*———————————————————————————————————————— svgNameSingleArtboard(doc)
+/*———————————————————————————————————————— ut_svgNameSingleArtboard(doc)
 
     creates SVG name for single-artboard files */
 
-function svgNameSingleArtboard(doc){
+function ut_svgNameSingleArtboard(doc){
   var radical = doc.name.substr(0,doc.name.length-3)
   var artboard = doc.artboards[0].name
   var result = radical + '_' + artboard + '.svg'
   return result
 }
 
-/*———————————————————————————————————————— hasPath(sourceDoc)
+/*———————————————————————————————————————— ut_hasPath(sourceDoc)
 
     has file been saved at least once?
     returns '' or error message */
 
-function hasPath(doc){
+function ut_hasPath(doc){
 
   if (doc.path != '') return ''
 
@@ -205,16 +186,16 @@ function hasPath(doc){
     
 }
 
-/*———————————————————————————————————————— isInteger(n)
+/*———————————————————————————————————————— ut_isInteger(n)
 
     */
 
-function isInteger(n){
+function ut_isInteger(n){
   if (n == Math.round(n)) return true;
   else return false;
 }
 
-/*———————————————————————————————————————— isRoundNumber(n)
+/*———————————————————————————————————————— ut_isRoundNumber(n)
 
     returns true if n is a nice round number:
 
@@ -222,35 +203,35 @@ function isInteger(n){
 
 // 6, 24, 336 etc.
 
-function isRoundNumber(n){
+function ut_isRoundNumber(n){
 
   n = n/5;
 
-  if (isInteger(n/3)) return true;
-  if (isInteger(n/4)) return true;
-  if (isInteger(n/5)) return true;
-  if (isInteger(n/6)) return true;
+  if (ut_isInteger(n/3)) return true;
+  if (ut_isInteger(n/4)) return true;
+  if (ut_isInteger(n/5)) return true;
+  if (ut_isInteger(n/6)) return true;
 
   return false;
 }
 
-/*———————————————————————————————————————— isTwoLetters(n)
+/*———————————————————————————————————————— ut_isTwoLetters(n)
 
     returns true if n is two letters or numbers
     a-z, A-Z, 0-9 */
 
-function isTwoLetters(n){
+function ut_isTwoLetters(n){
   const regex = /^[a-zA-Z\d][a-zA-Z\d]$/g
   if(n.match(regex) === null) return false
   return true;
 }
 
-/*———————————————————————————————————————— makeMb(x)
+/*———————————————————————————————————————— ut_makeMB(x)
 
     givent a number of bytes, returns a value
     in KB or MB for human consumption */
 
-function makeMb(x){
+function ut_makeMB(x){
 
   var ext = ' MB'
   var div = 1000
@@ -264,22 +245,22 @@ function makeMb(x){
   return x + ext
 }
 
-/*———————————————————————————————————————— makeSvgName(doc, ab)
+/*———————————————————————————————————————— ut_makeSvgName(doc, ab)
 
     creates SVG filename from doc & artboard n° */
 
-function makeSvgName(doc, ab){
+function ut_makeSvgName(doc, ab){
   var name = doc.name.slice(0, -3);  // remove .ai
   return name + '_' + doc.artboards[ab].name + '.svg' 
 }
 
-/*———————————————————————————————————————— newFile(folder, name)
+/*———————————————————————————————————————— ut_newFile(folder, name)
 
     returns file to save into
 
     https://extendscript.docsforadobe.dev */
 
-function newFile(folder, name) {
+function ut_newFile(folder, name) {
 
   var f = new File(folder + '/' + name);
 
@@ -289,25 +270,25 @@ function newFile(folder, name) {
   return f;
 }
 
-/*———————————————————————————————————————— relockHierarchy(obj)
+/*———————————————————————————————————————— ut_relockHierarchy(obj)
 
-    relocks elements unlocked by unlockHierarchy() */
+    relocks elements unlocked by ut_unlockHierarchy() */
 
-function relockHierarchy(arr){
+function ut_relockHierarchy(arr){
   for(var x=0; x<arr.length; x++){
     arr[x][0].visible = arr[x][2];
     arr[x][0].locked = arr[x][1];
   }
 }
 
-/*———————————————————————————————————————— unlockHierarchy(obj)
+/*———————————————————————————————————————— ut_unlockHierarchy(obj)
 
     unlocks the hierarchy above an element and returns an array
 
     each element of the array is a sub array containing
     [obj, obj.locked, obj.visible] */
 
-function unlockHierarchy(obj){
+function ut_unlockHierarchy(obj){
 
   var parentLocks = [];
   var thisParent = obj.parent;

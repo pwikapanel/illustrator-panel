@@ -74,7 +74,7 @@ function savePages(param){
   var  docsOpen = appDocs.length       // number of open documents
   var activeDoc = app.activeDocument   // active document
   var aiVersion = 0                    // 0=default, 17=CC Legacy
-  var aiOpts    = aiOptions(aiVersion)
+  var aiOpts    = ut_aiOptions(aiVersion)
 
   var single = param == 'all' ? false : true // save only frontmost doc?
 
@@ -92,7 +92,7 @@ function savePages(param){
     if (isValid(doc)){
 
       var activeBoard    = doc.artboards.getActiveArtboardIndex();
-      var originalPath   = getDocPath(doc)
+      var originalPath   = ut_getDocPath(doc)
 
       var theseFileSizes = saveSvg(doc) ///////////////  MAIN SAVE AS SVG FUNCTION  \\\\\\\\\\\\\\\
 
@@ -149,13 +149,13 @@ function saveSvg(doc){
 
   //———————————————————————————————— "SYNC/SVIJA/SVG Files"
 
-  var svgFilesPath = getSvgFilesPath(doc) // string
+  var svgFilesPath = ut_getSvgFilesPath(doc) // string
   var diskObject = Folder(svgFilesPath)
 
   //———————————————————————————————— avoid overwrite confirmations
 
   for (x=0; x<doc.artboards.length; x++){
-    var path = concatenatePath(svgFilesPath, makeSvgName(doc, x))
+    var path = ut_concatenatePath(svgFilesPath, ut_makeSvgName(doc, x))
     if (File(path).exists){
       File(path).remove()
     }
@@ -164,7 +164,7 @@ function saveSvg(doc){
   //———————————————————————————————— create different obj if single artboard
 
   if (doc.artboards.length == 1){
-    var path = concatenatePath(svgFilesPath, svgNameSingleArtboard(doc))
+    var path = ut_concatenatePath(svgFilesPath, ut_svgNameSingleArtboard(doc))
     diskObject = new File(path)
   }
 
@@ -277,7 +277,7 @@ function saveSvg(doc){
 
   for (x=0; x<doc.artboards.length; x++){
 
-    var path = concatenatePath(svgFilesPath, makeSvgName(doc, x))
+    var path = ut_concatenatePath(svgFilesPath, ut_makeSvgName(doc, x))
 
     path = encodeURI(path)
     var fileSize = File(path).length
@@ -379,7 +379,7 @@ function isValid(doc){
 
 //———————————————————— fatal errors
 
-  err = hasPath(doc);           // has file been saved at least once?
+  err = ut_hasPath(doc);           // has file been saved at least once?
   if (err != '')
     return dontSave(err);
   err = isAi(doc);              // is it an AI file?
@@ -438,7 +438,7 @@ function hasFolders(doc){
   if (SYNCPATH == '')
     return doc.name + ' is not inside a \"SYNC\" folder'
 
-  if (getSvgFilesPath(doc) == '')
+  if (ut_getSvgFilesPath(doc) == '')
     return '"SYNC/SVIJA/SVG Files" not found'
 
   return ''
@@ -450,7 +450,7 @@ function hasFolders(doc){
 
 function hasLinks(doc){
 
-  var linksFolder = getLinksPath(doc) 
+  var linksFolder = ut_getLinksPath(doc) 
 
   if (!Folder(path).exists) return doc.name + ' has no \"Links\" folder'
   else                      return ''
@@ -488,7 +488,7 @@ function hasEmbedded(doc){
 function hasPlaced(doc){
   if (doc.placedItems.length == 0) return '';
 
-  var linksPath = getLinksPath(doc)  // ~/Desktop/svija.dev/SYNC/Links/
+  var linksPath = ut_getLinksPath(doc)  // ~/Desktop/svija.dev/SYNC/Links/
 
   for (var x=0; x<doc.placedItems.length; x++){
 
@@ -609,14 +609,14 @@ function fileSizeReport(fileSizes){
   var thisFile = fileSizes[0]
 
   var aiName = thisFile[0]
-  var aiSize = makeMb(thisFile[1])
+  var aiSize = ut_makeMB(thisFile[1])
   var report
 
   var svgSizes = []
 
   for (var y=2; y<thisFile.length; y+=2){
     var artbName = thisFile[y]
-    var svgSize = makeMb(thisFile[y+1])
+    var svgSize = ut_makeMB(thisFile[y+1])
     svgSizes.push(artbName+' page '+svgSize)
   }
 

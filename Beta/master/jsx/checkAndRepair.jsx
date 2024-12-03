@@ -88,7 +88,7 @@ function checkAndRepair(){
   env_imagesFixed    = []
   env_imagesFailed   = []
   
-  var linksFolderObj = Folder(concatenatePath(doc.path, 'Links'))
+  var linksFolderObj = Folder(ut_concatenatePath(doc.path, 'Links'))
   
   var nonNatives = doc.nonNativeItems.length
   var rasters    = doc.rasterItems.length
@@ -99,7 +99,7 @@ function checkAndRepair(){
 
   //———————————————————————————————————————— has not saved then quit
   
-  var pathErr = hasPath(doc)
+  var pathErr = ut_hasPath(doc)
   
   if (pathErr != ''){
     alert(pathErr)
@@ -220,7 +220,7 @@ if (hasImages)
 function artboardNames(doc){
 
   for(x=0; x<doc.artboards.length; x++)
-    if (!isTwoLetters(doc.artboards[x].name))
+    if (!ut_isTwoLetters(doc.artboards[x].name))
       return doc.name + " has artboard names that are not screen codes";
 
   return '';
@@ -258,7 +258,7 @@ function fixEmbeddedImage(doc, img){
   else var imgName = img.name;
 
   var imgDepth    = img.absoluteZOrderPosition;
-  var parentLocks = unlockHierarchy(img);
+  var parentLocks = ut_unlockHierarchy(img);
 
   // is original findable?
 
@@ -266,7 +266,7 @@ function fixEmbeddedImage(doc, img){
 
   try{
     var newName = img.file;   // usually contains original file, even if image is embedded
-    var newFile = new File(newName);
+    var ut_newFile = new File(newName);
     fileMissing = false;
   }
   catch(e){ fileMissing = true; }
@@ -283,7 +283,7 @@ function fixEmbeddedImage(doc, img){
 
   else{
     var newImg  = activeParent.placedItems.add();
-    newImg.file = newFile;
+    newImg.file = ut_newFile;
   
     for (var key in img){
       try{ newImg[key] = img[key]; }
@@ -313,7 +313,7 @@ function fixEmbeddedImage(doc, img){
     img.remove();
   }
 
-  relockHierarchy(parentLocks)
+  ut_relockHierarchy(parentLocks)
 
   return [imgName, success, msg];
 }
@@ -342,7 +342,7 @@ function fixPlacedImage(doc, img){
 
   var currentFolder = Folder(app.activeDocument.path);
 
-  var linksFolder   = concatenatePath(doc.path, 'Links')
+  var linksFolder   = ut_concatenatePath(doc.path, 'Links')
 
   if (thisFolder == linksFolder) // image is already in /Links
     return [];
@@ -350,27 +350,27 @@ function fixPlacedImage(doc, img){
   //———————————————————— need to repair
 
   var neme     = img.file.name;
-  var destPath = concatenatePath(linksFolder, neme)
+  var destPath = ut_concatenatePath(linksFolder, neme)
 
   //———————————————————— is it a cloud image?
 
   var isCloud = String(img.file).indexOf('Creative%20Cloud%20Libraries');
   if (isCloud > 0){
-    var ext = getExtension(img.file);
+    var ext = ut_getExtension(img.file);
     neme = img.name + ' Cloud' + ext;
-    destPath = concatenatePath(linksFolder, neme)
+    destPath = ut_concatenatePath(linksFolder, neme)
   }
   
   //———————————————————— continue PROBLEM IS HERE
 
-  var newFile = new File(destPath); // hypothetical until we actually create it
+  var ut_newFile = new File(destPath); // hypothetical until we actually create it
 
   // we copy file to /Links, then if it was with AI file, we delete original
   // changing the "copy" to a "move"
 
-  if(newFile.exists) var msg = 'link updated'; /* seems to work — copies files in finder, but AI file is untouched */
+  if(ut_newFile.exists) var msg = 'link updated'; /* seems to work — copies files in finder, but AI file is untouched */
   else{
-    img.file.copy(newFile);
+    img.file.copy(ut_newFile);
     var msg = 'copied to "Links" folder';
   }
 
@@ -380,11 +380,11 @@ function fixPlacedImage(doc, img){
     var msg = 'moved to "Links" folder';
   }
 
-  var parentLocks = unlockHierarchy(img);
+  var parentLocks = ut_unlockHierarchy(img);
 
-  img.file = newFile;
+  img.file = ut_newFile;
 
-  relockHierarchy(parentLocks)
+  ut_relockHierarchy(parentLocks)
 
   return [neme, true, msg];
 }
@@ -433,7 +433,7 @@ function alertUser(doc){
 
   var ms = (d.getTime()-env_start_ms)
 
-  var fileSize = getFileSize(doc)
+  var fileSize = ut_getFileSize(doc)
 
   var title = doc.name;
   var bodyParts = [];
