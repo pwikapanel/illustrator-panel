@@ -53,9 +53,5 @@ input[type=button]:active{
   background-color:var(--accentDim);
 }
 
-hr{
-  border-top-color: var(--panel-border);
-}
-
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

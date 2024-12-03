@@ -6,9 +6,11 @@
 { "build":   0, "id":           "","name":            "utilities" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "id":           "","name":            "utilities" ,"ext": "js"  , "loaded": false  },
 
+{ "build":   0, "id":           "","name":            "showAlert" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "id":           "","name":            "showAlert" ,"ext": "js"  , "loaded": false  },
+
 { "build":   0, "id":           "","name":                "fonts" ,"ext": "css" , "loaded": false  },
 { "build":   0, "id":           "","name": "illustratorColorDefs" ,"ext": "css" , "loaded": false  },
-{ "build":   0, "id":           "","name":               "colors" ,"ext": "css" , "loaded": false  },
 { "build":   0, "id":           "","name":               "global" ,"ext": "css" , "loaded": false  },
 { "build":   0, "id":           "","name":              "buttons" ,"ext": "css" , "loaded": false  },
 
@@ -21,8 +23,8 @@
 { "build":   0, "id":           "","name":                 "more" ,"ext": "css",  "loaded": false  },
 { "build":   0, "id":    "moreDiv","name":                 "more" ,"ext": "html", "loaded": false  },
 
-{ "build":   0, "id":           "","name":                 "main" ,"ext": "css" , "loaded": false  },
-{ "build":   0, "id":   "mainDiv","name":                 "main" ,"ext": "html", "loaded": false  },
+{ "build":   0, "id":    "mainCss","name":                 "main" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "id":    "mainDiv","name":                 "main" ,"ext": "html", "loaded": false  },
 
 { "build":   0, "id":           "","name":        "interfaceCode" ,"ext": "js"  , "loaded": false  },
 { "build":   0, "id":           "","name":         "panelManager" ,"ext": "js"  , "loaded": false  },

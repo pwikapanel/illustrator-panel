@@ -79,7 +79,7 @@ function channelDialog(extensionPath, channel){
   
   var  versionTxt = version.add ("statictext")
   versionTxt.graphics.foregroundColor = versionTxt.graphics.newPen (versionTxt.graphics.PenType.SOLID_COLOR, [0.67, 1, 0], 1);
-  versionTxt.text = "Version 2.4.2"
+  versionTxt.text = "Svija Tools " + TOOLSVERSION + " · Illustrator " + AIVERSION
   
   //———————————————————— logo
   

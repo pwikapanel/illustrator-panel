@@ -5,6 +5,7 @@ console.log('3: shell.js loaded')
 //:::::::::::::::::::::::::::::::::::::::: environmental variables
 
 var DEBUG         = true
+var TOOLSVERSION  = '1.0.7'
 
 var CEP           = new CSInterface()
 var HOSTENV       = CEP.getHostEnvironment()
@@ -52,12 +53,13 @@ console.log('43: default values set')
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
-/*———————————————————————————————————————— harmonized variables
+/*———————————————————————————————————————— list of harmonized variables
 
     kept in sync every 500ms by getProjectInfo() */
 
 var allVars = [
   'DEBUG',
+  'TOOLSVERSION',
 
   'AIVERSION',
   'LANG',
