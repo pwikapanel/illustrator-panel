@@ -1,17 +1,5 @@
-/*———————————————————————————————————————— buttons */
 
-/*
-
-// panel width 240px
-// buttons 105px wide x 22px tall
-
-// 10 px marg horizontally
-// 5px marge vertically
-
-//bott bar 12px high
-//bott text 5.71px high:w
-*/
-
+/*:::::::::::::::::::::::::::::::::::::::: buttons.css */
 
 input[type=button]{
   display:none;
@@ -32,18 +20,5 @@ input[type=button].btnLarge{ width:95px; }
 input[type=button].btnMed  { width:58px; }
 input[type=button].btnSmall{ width:47px; }
 
-/*———————————————————————————————————————— logo */
-
-svg#svijaLogo{
-  cursor:pointer;
-  padding:0 !important;
-  width:115px;
-  height:22px;
-  margin: 0 5px 5px 5px !important;
-  vertical-align:top;
-}
-
-#logoArt{
-  transition:0.5s;
-}
+/*:::::::::::::::::::::::::::::::::::::::: fin */
 

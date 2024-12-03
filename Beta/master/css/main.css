@@ -1,10 +1,61 @@
-/*———————————————————————————————————————— button types */
 
+/*:::::::::::::::::::::::::::::::::::::::: main.css */
 
-div#mainHtml{
+div#mainDiv{
   padding-top:0;
 }
 
+/*———————————————————————————————————————— logo */
+
+svg#svijaLogo{
+  cursor:pointer;
+  padding:0 !important;
+  width:115px;
+  height:22px;
+  margin: 0 5px 5px 5px !important;
+  vertical-align:top;
+}
+
+#logoArt{
+  transition:0.5s;
+}
+
+
+#svijaLogo #logoBar{ fill: none; }
+#svijaLogo #logoArt{ fill: none; }
+
+/*———————————————————————————————————————— regular buttons
+
+ see css/interface1.css etc.  */
+
+input[type=button]{
+
+  color:var(--checked-box);
+  background-color:var(--input-field);
+  border-color:var(--input-border);
+}
+
+input[type=button]:hover{
+  color:var(--field-contents);
+  border-color:var(--accentBright);
+}
+
+input[type=button]:active{
+  color:var(--field-contents);
+  border-color:#fff;
+}
+
+/*———————————————————————————————————————— save button & HR
+
+ see css/interface1.css etc.  */
+
+#butt43{
+  background-color:var(--accentDim);
+}
+
+hr{
+  border-top-color: var(--panel-border);
+}
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

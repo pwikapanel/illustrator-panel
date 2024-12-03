@@ -1,41 +1,54 @@
 
-//:::::::::::::::::::::::::::::::::::::::: initialization
+var shellLoaded = true
+console.log('3: shell.js loaded')
 
-  var CEP     = new CSInterface()
-  var HOSTENV = CEP.getHostEnvironment()
+//:::::::::::::::::::::::::::::::::::::::: environmental variables
 
-  window.addEventListener('error', (event)=>{ alert(event.message) })
-//window.addEventListener('error', (event)=>{ CEP.evalScript('alert("' + event.message + '")') })
+var DEBUG         = true
 
-  var AIVERSION = HOSTENV.appVersion
-  var LANG      = HOSTENV.appUILocale.substr(0,2) // appLocale if this doesn't work
-  var ISMAC     = CEP.getOSInformation().substring(0,3) == 'Mac'
-  var MYDOCS    = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
-  var TOOLSPATH = CEP.getSystemPath(SystemPath.EXTENSION)
+var CEP           = new CSInterface()
+var HOSTENV       = CEP.getHostEnvironment()
 
-  var DEBUG         = true
-  var LANGDEFAULT   = 'en'
-  var CHNAME0       = 'alpha'
-  var CHNAME1       = 'beta'
-  var CHNAME2       = 'master'
-  var MAXWIDTH      = 240
-  var SERVER        = 'tools.svija.love'
-  var INTMS         = 500 // interval to refresh panel
+window.addEventListener('error', (event)=>{ CEP.evalScript('alert("' + event.message + '")') })
 
-  var MANIFEST
-  var LOCAL
-  var CHANNEL
-  var DICTIONARY
+var AIVERSION     = HOSTENV.appVersion
+var LANG          = HOSTENV.appUILocale.substr(0,2) // appLocale if this doesn't work
+var ISMAC         = CEP.getOSInformation().substring(0,3) == 'Mac'
+var MYDOCS        = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
+var TOOLSPATH     = CEP.getSystemPath(SystemPath.EXTENSION)
 
-//:::::::::::::::::::::::::::::::::::::::: defaults
+var MAXWIDTH      = 240
+var INTMS         = 500 // interval to refresh panel
+var SERVER        = 'tools.svija.love'
 
-  if (typeof localStorage.CHANNEL == 'undefined') CHANNEL = 2
-  else                    CHANNEL  = parseInt(localStorage.CHANNEL)
+var LANGDEFAULT   = 'en'
+var DICTIONARY
 
-  if (typeof localStorage.LOCAL == 'undefined') LOCAL  =   true
-  else                    LOCAL = (localStorage.LOCAL === 'true')
+var CHANNEL
+var CHNAME0       = 'alpha'
+var CHNAME1       = 'beta'
+var CHNAME2       = 'master'
 
-  if (LANG != 'fr') LANG = LANGDEFAULT
+var ISSVIJA
+var LASTPATH
+var LOCAL
+var MANIFEST
+var SITEURL
+var SYNCPATH
+
+console.log('31: environmental variables created')
+
+//:::::::::::::::::::::::::::::::::::::::: set defaults
+
+if (typeof localStorage.CHANNEL == 'undefined') CHANNEL = 2
+else                    CHANNEL  = parseInt(localStorage.CHANNEL)
+
+if (typeof localStorage.LOCAL == 'undefined') LOCAL  =   true
+else                    LOCAL = (localStorage.LOCAL === 'true')
+
+if (LANG != 'fr') LANG = LANGDEFAULT
+
+console.log('43: default values set')
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
@@ -44,29 +57,39 @@
     kept in sync every 500ms by getProjectInfo() */
 
 var allVars = [
-    'CHANNEL',
-    'CHNAME0',
-    'CHNAME1',
-    'CHNAME2',
-    'DEBUG',
-    'DICTIONARY',
-    'INTMS',
-    'ISMAC',
-    'ISSVIJA',
-    'LANG',
-    'LANGDEFAULT',
-    'LASTPATH',
-    'LOCAL',
-    'MAXWIDTH',
-    'MYDOCS',
-    'SERVER',
-    'SITEURL',
-    'SYNCPATH',
-    'TOOLSPATH'
+  'DEBUG',
+
+  'AIVERSION',
+  'LANG',
+  'ISMAC',
+  'MYDOCS',
+  'TOOLSPATH',
+
+  'MAXWIDTH',
+  'INTMS',
+  'SERVER',
+
+  'LANGDEFAULT',
+  'DICTIONARY',
+
+  'CHANNEL',
+  'CHNAME0',
+  'CHNAME1',
+  'CHNAME2',
+
+  'ISSVIJA',
+  'LASTPATH',
+  'MANIFEST',
+  'LOCAL',
+  'SITEURL',
+  'SYNCPATH'
 ]
 
 harmonize('ls')  // get any values from localStorage
+console.log('86: harmonized with localStorage')
+
 harmonize('js')  // and any remaining values from javascript
+console.log('89: harmonized with JS')
 
 /*———————————————————————————————————————— harmonize(ref)
 
@@ -92,52 +115,39 @@ function harmonize(ref){
   if (ref != 'js' && ref != 'ls') { lert('harmonize(): illegal argument\nref = '+ref); return true }
 
   for (x=0; x<allVars.length; x++){
+
     var varName = allVars[x]
-
-    if (ref=='js' && typeof window[      varName] == 'undefined') continue
-    if (ref=='ls' && typeof localStorage[varName] == 'undefined') continue
-
-    //———————————————————— get the value in question
-
-    if   (ref == 'js') var val = window[      varName]
-    else               var val = localStorage[varName]
+    var jsVal
+    var lsVal
 
     //———————————————————— JS —› LS
 
     if (ref == 'js'){
 
-      var lsVal
-      if (typeof val == 'object') lsVal = JSON.stringify(val)
-      else lsVal = val
+      if (typeof window[varName] == 'undefined') continue
+      else jsVal = window[varName]
+
+      if (typeof jsVal == 'object')
+        lsVal = JSON.stringify(jsVal)
+      else lsVal = jsVal
 
       localStorage[varName] = lsVal
-      transmitToCEP(varName, val)
+      transmitToCEP(varName, jsVal)
     }
 
-    //———————————————————— LS —› JS MAKE FUNCTION "strToVar(arg)"
+    //———————————————————— LS —› JS
 
     if (ref == 'ls'){
-      var jsVal
 
-      if (val == 'true')                                   // boolean
-        jsVal = true
-      else if (val == 'false')
-        jsVal = false
+      if (typeof localStorage[varName] == 'undefined') continue
+      else lsVal = localStorage[varName]
 
-      else if (!isNaN(val))                                // number
-        jsVal  = parseFloat(val)
-
-      else if (val.length > 99){                           // JSON
-        try     { jsVal=JSON.parse(val) }
-        catch(e){ jsVal=val             }
-      }
-
-      else                                                 // string
-        jsVal  = val
+      jsVal = lsToJs(lsVal)
 
       window[varName] = jsVal
       transmitToCEP(varName, jsVal)
     }
+
 
   }
 
@@ -145,7 +155,7 @@ function harmonize(ref){
 }
 
 
-//:::::::::::::::::::::::::::::::::::::::: library loaders
+//:::::::::::::::::::::::::::::::::::::::: called by body :::::::::::::::::::::::::::::::::::
 
 /*———————————————————————————————————————— technical description 
 
@@ -181,6 +191,7 @@ function loadManifest(unused, str, path){
 
   MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
 
+  console.log('191: manifest loaded')
   loadLibrary()
 }
 
@@ -223,7 +234,7 @@ function loadLibrary(){
         else fetchRemote(passthrough, path, checkinScript)
 
   }
-
+  console.log('234: library loaded')
 }
 
 /*———————————————————————————————————————— 3. checkinScript(manifest)
@@ -242,6 +253,7 @@ function checkinScript(identifier, contents, path){
   if (manifestRefs.length>0){
     localStorage[identifier] = contents
     MANIFEST.filter(record=> record.name==nameParts[0] && record.ext==nameParts[2])[0]['loaded'] = true
+    console.log('253: '+identifier+' loaded')
   }
   else
     lert('Not found: '+nameParts[0])
@@ -275,12 +287,15 @@ function activateLibrary(){
 
   if (LOCAL) var rep = 'local source'
   else var rep = 'remote server'
-  lert(channelName(CHANNEL) + translate('channel loaded') + rep)
+
+  console.log('287: ' + channelName(CHANNEL) + translate('channel loaded') + rep)
 }
 
 
 // need to check for doubles (accentcolor)
 // db functions to handle filters
+
+//:::::::::::::::::::::::::::::::::::::::: functions ::::::::::::::::::::::::::::::::::::::::
 
 //:::::::::::::::::::::::::::::::::::::::: script loaders
 
@@ -360,7 +375,7 @@ function loadJsx(scriptID, contents){
 }
 
 
-//:::::::::::::::::::::::::::::::::::::::: fetch functions
+//:::::::::::::::::::::::::::::::::::::::: fetch utilities
 
 /*———————————————————————————————————————— fetchScript(bld, identifier, src) DEPRECATED
 
@@ -593,4 +608,38 @@ function transmitToCEP(varName, val){
 
   CEP.evalScript(scrpt)
 }
+
+/*———————————————————————————————————————— technical description 
+
+    converts a string to appropriate javascript type */
+
+function lsToJs(lsVal){
+  if (typeof lsVal == undefined){
+    console.log('610: undefined lsVal')
+    return ''
+  }
+
+  var jsVal
+
+  if (lsVal == 'true')                                   // boolean
+    var jsVal = true
+  else if (lsVal == 'false')
+    var jsVal = false
+
+  else if (!isNaN(lsVal))                                // number
+    var jsVal  = parseFloat(lsVal)
+
+  else if (lsVal.length > 99){                           // JSON
+    try     { var jsVal = JSON.parse(lsVal) }
+    catch(e){ var jsVal = lsVal             }
+  }
+
+  else                                                 // string
+    var jsVal  = lsVal
+
+  return jsVal
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
 

@@ -19,5 +19,25 @@ hr{
 }
 
 
+/*———————————————————————————————————————— top buttons
+
+ see css/interface1.css etc.  */
+
+div#moreHtml input[type=button]{
+  color:var(--hamburger);
+  background-color:var(--pulldown);
+  border-color:var(--input-border);
+}
+
+div#moreHtml input[type=button]:hover{
+  color:var(--field-contents);
+  border-color:var(--accentBright);
+}
+
+div#moreHtml input[type=button]:active{
+  color:var(--field-contents);
+  border-color:#fff;
+}
+
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

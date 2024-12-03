@@ -22,7 +22,7 @@
 { "build":   0, "id":    "moreDiv","name":                 "more" ,"ext": "html", "loaded": false  },
 
 { "build":   0, "id":           "","name":                 "main" ,"ext": "css" , "loaded": false  },
-{ "build":   0, "id":   "mainHtml","name":                 "main" ,"ext": "html", "loaded": false  },
+{ "build":   0, "id":   "mainDiv","name":                 "main" ,"ext": "html", "loaded": false  },
 
 { "build":   0, "id":           "","name":        "interfaceCode" ,"ext": "js"  , "loaded": false  },
 { "build":   0, "id":           "","name":         "panelManager" ,"ext": "js"  , "loaded": false  },

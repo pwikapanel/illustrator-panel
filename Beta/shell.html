@@ -11,12 +11,22 @@
 
 </head><body oncontextmenu='return false'><div id="reloader" onclick='localStorage.clear();location.reload()'></div><script> 
 
-/*———————————————————————————————————————— setup */
 
+console.log('15: in body / loading content...')
+waitForScript()
+
+function waitForScript(){
+  if (typeof shellLoaded == 'undefined')
+    setTimeout(waitForScript, 500)
+  else loadPage()
+}
+
+function loadPage(){
   var path = 'json/manifest.json'
 
   if (LOCAL) fetchLocal ('manifest', path, loadManifest)
   else       fetchRemote('manifest', path, loadManifest)
+}
 
 </script></body></html>
 

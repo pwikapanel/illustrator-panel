@@ -32,5 +32,21 @@ div#bottomBar a{
   transition:0.3s;
 }
 
+/*———————————————————————————————————————— bottom bar */ 
+
+div#bottomBar{
+  background-color:var(--panel-bg-dark);
+  border-top-color:var(--panel-border);
+  border-right-color:var(--panel-border);
+}
+
+div#bottomBar span a:link{
+  color:var(--hamburger);
+}
+
+div#bottomBar a:hover{
+  color:var(--label-text);
+}
+
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

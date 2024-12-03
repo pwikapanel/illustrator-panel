@@ -14,16 +14,16 @@ setInterval(function(){
     dormantDiv.style.display ='block'
 
       moreDiv.style.display  ='none'
-     mainHtml.style.display  ='none'
+     mainDiv.style.display  ='none'
     bottomBar.style.display  ='none'
   }
 
   else{
-    console.log('panelManager: moreLess='+localStorage.moreLess)
+    //console.log('panelManager: moreLess='+localStorage.moreLess)
     var bottomEdge = 'bottomBar'
     dormantDiv.style.display ='none'
 
-    mainHtml.style.display   ='block'
+    mainDiv.style.display   ='block'
     bottomBar.style.display  ='block'
 
     if (localStorage.moreLess == 'more') showMore()

@@ -74,7 +74,6 @@ function showMore(){
    moreDiv.style.display   = 'block'
 
   localStorage.moreLess    = 'more'
-  console.log('showing MORE')
 
   linkMore.style.display   = 'none'
   linkLess.style.display   = 'inline'
@@ -86,7 +85,6 @@ function showLess(){
    moreDiv.style.display = 'none'
 
   localStorage.moreLess  = 'less'
-  console.log('showing LESS')
 
   linkMore.style.display = 'inline'
   linkLess.style.display = 'none'
