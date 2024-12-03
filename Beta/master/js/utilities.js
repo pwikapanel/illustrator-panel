@@ -1,11 +1,11 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.js */
 
-/*———————————————————————————————————————— uty_rgbToHsl(r, g, b)
+/*———————————————————————————————————————— ut_rgbToHsl(r, g, b)
 
     https://www.30secondsofcode.org/js/s/rgb-to-hsl/  */
 
-function uty_rgbToHsl(r, g, b){
+function ut_rgbToHsl(r, g, b){
   r /= 255;
   g /= 255;
   b /= 255;
