@@ -25,6 +25,20 @@ function ut_rgbToHsl(r, g, b){
   ];
 }
 
+//———————————————————————————————————————— ut_startChrono()
+
+function ut_startChrono(){
+  var d = new Date()
+  return d.getTime()
+}
+
+//———————————————————————————————————————— ut_stopChrono(startTime)
+
+function ut_stopChrono(startTime){
+  var d = new Date()
+  return d.getTime()-startTime
+}
+
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

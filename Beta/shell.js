@@ -614,15 +614,15 @@ function transmitToCEP(varName, val){
 
   var scrpt = varName + '=' + cepVal
 
-  CEP.evalScript(scrpt, transmitToCEPError)
+  CEP.evalScript(scrpt, transmitToCEPCallback)
 }
 
-/*———————————————————————————————————————— lsToJs(lsVal)
+/*———————————————————————————————————————— transmitToCEPCallback(err)
 
     error handler for transmitToCEP */
 
-function transmitToCEPError(err){
-//if (err != '') lert(err)
+function transmitToCEPCallback(err){
+  console.log('——————————————————————————— elapsed '+stopChrono(zoop))
 }
 
 /*———————————————————————————————————————— lsToJs(lsVal)
@@ -654,6 +654,20 @@ function lsToJs(lsVal){
     var jsVal  = lsVal
 
   return jsVal
+}
+
+//———————————————————————————————————————— startChrono()
+
+function startChrono(){
+  var d = new Date()
+  return d.getTime()
+}
+
+//———————————————————————————————————————— stopChrono(startTime)
+
+function stopChrono(startTime){
+  var d = new Date()
+  return d.getTime()-startTime
 }
 
 

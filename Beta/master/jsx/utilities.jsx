@@ -80,12 +80,14 @@ function ut_concatenatePath(part1, part2){
 var   maxErrors = 5
 var parseErrors = 0
 
-//  cepVal = 'decodeURI("' + encodeURI(str) + '")'
-
 function ut_decodeJSON(str){
   str = decodeURL(str)
   try{
+    alert('hello')
+    var zoop = ut_startChrono()
     newObj = JSON.parse(str)
+    var elapsed = ut_stopChrono(zoop)
+    alert('elapsed: '+elapsed)
     return newObj
   }
   catch(mst){
@@ -302,6 +304,20 @@ function ut_relockHierarchy(arr){
     arr[x][0].visible = arr[x][2];
     arr[x][0].locked = arr[x][1];
   }
+}
+
+//———————————————————————————————————————— ut_startChrono()
+
+function ut_startChrono(){
+  var d = new Date()
+  return d.getTime()
+}
+
+//———————————————————————————————————————— ut_stopChrono(startTime)
+
+function ut_stopChrono(startTime){
+  var d = new Date()
+  return d.getTime()-startTime
 }
 
 /*———————————————————————————————————————— ut_unlockHierarchy(obj)
