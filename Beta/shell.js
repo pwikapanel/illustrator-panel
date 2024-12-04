@@ -20,6 +20,7 @@ var TOOLSPATH     = CEP.getSystemPath(SystemPath.EXTENSION)
 
 var MAXWIDTH      = 240
 var INTMS         = 5000 // interval to refresh panel
+var JSONCOUNT     = 3600000/INTMS // dictionary updated in CEP after 1 hr
 var SERVER        = 'tools.svija.love'
 
 var LANGDEFAULT   = 'en'
@@ -37,7 +38,6 @@ var MANIFEST
 var SITEURL
 var SYNCPATH
 
-
 //:::::::::::::::::::::::::::::::::::::::: set defaults
 
 if (typeof localStorage.CHANNEL == 'undefined') CHANNEL = 2
@@ -52,9 +52,9 @@ console.log('043 - default values set: ' + stopChrono(globalTimer) + ' ms')
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
-/*———————————————————————————————————————— list of harmonized variables
+/*———————————————————————————————————————— declare harmonized variables
 
-    kept in sync every 500ms by getProjectInfo() */
+    same in JS, localStorage and CEP */
 
 var allVars = [
   'DEBUG',
@@ -86,74 +86,15 @@ var allVars = [
   'SYNCPATH'
 ]
 
+/*———————————————————————————————————————— harmonize variables
+
+    */
+
 harmonize('ls')  // get any values from localStorage
 console.log('086 - harmonized with localStorage: ' + stopChrono(globalTimer) + ' ms')
 
 harmonize('js')  // and any remaining values from javascript
 console.log('089 - harmonized with JS: ' + stopChrono(globalTimer) + ' ms')
-
-/*———————————————————————————————————————— harmonize(ref)
-
-    three types of variables
-
-    - localStorage
-    - global HTML
-    - global CEP
-
-    to start with, we import HTML & CEP from localstorage
-    afterwards, we update CEP & localStorage from HTML
-
-   ref = js | ls
-   reference value is javascript or localStorage
-
-   if a string is longer than 99 chars, we assume
-   it's stringified JSON data */
-
-// DO NOT ADD ALERTS · called every 500ms by getProjectInfo()
-
-function harmonize(ref){
-
-  if (ref != 'js' && ref != 'ls') { lert('harmonize(): illegal argument\nref = '+ref); return true }
-
-  for (x=0; x<allVars.length; x++){
-
-    var varName = allVars[x]
-    var jsVal
-    var lsVal
-
-    //———————————————————— JS —› LS
-
-    if (ref == 'js'){
-
-      if (typeof window[varName] == 'undefined') continue
-      else jsVal = window[varName]
-
-      if (typeof jsVal == 'object')
-        lsVal = JSON.stringify(jsVal)
-      else lsVal = jsVal
-
-      localStorage[varName] = lsVal
-      transmitToCEP(varName, jsVal)
-    }
-
-    //———————————————————— LS —› JS
-
-    if (ref == 'ls'){
-
-      if (typeof localStorage[varName] == 'undefined') continue
-      else lsVal = localStorage[varName]
-
-      jsVal = lsToJs(lsVal)
-
-      window[varName] = jsVal
-      transmitToCEP(varName, jsVal)
-    }
-
-
-  }
-
-  return true
-}
 
 
 //:::::::::::::::::::::::::::::::::::::::: called by body :::::::::::::::::::::::::::::::::::
@@ -254,7 +195,7 @@ function checkinScript(identifier, contents, path){
   if (manifestRefs.length>0){
     localStorage[identifier] = contents
     MANIFEST.filter(record=> record.name==nameParts[0] && record.ext==nameParts[2])[0]['loaded'] = true
-    console.log('253: '+identifier+' loaded')
+//  console.log('253: '+identifier+' loaded')
   }
   else
     lert('Not found: '+nameParts[0])
@@ -499,6 +440,69 @@ function fetchL(file) {
 
 //:::::::::::::::::::::::::::::::::::::::: utilities
 
+/*———————————————————————————————————————— harmonize(ref)
+
+    three types of variables
+
+    - localStorage
+    - global HTML
+    - global CEP
+
+    to start with, we import HTML & CEP from localstorage
+    afterwards, we update CEP & localStorage from HTML
+
+   ref = js | ls
+   reference value is javascript or localStorage
+
+   if a string is longer than 99 chars, we assume
+   it's stringified JSON data */
+
+// DO NOT ADD ALERTS · called every 500ms by getProjectInfo()
+
+function harmonize(ref){
+
+  if (ref != 'js' && ref != 'ls') { lert('harmonize(): illegal argument\nref = '+ref); return true }
+
+  for (x=0; x<allVars.length; x++){
+
+    var varName = allVars[x]
+    var jsVal
+    var lsVal
+
+    //———————————————————— JS —› LS
+
+    if (ref == 'js'){
+
+      if (typeof window[varName] == 'undefined') continue
+      else jsVal = window[varName]
+
+      if (typeof jsVal == 'object')
+        lsVal = JSON.stringify(jsVal)
+      else lsVal = jsVal
+
+      localStorage[varName] = lsVal
+      transmitToCEP(varName, jsVal)
+    }
+
+    //———————————————————— LS —› JS
+
+    if (ref == 'ls'){
+
+      if (typeof localStorage[varName] == 'undefined') continue
+      else lsVal = localStorage[varName]
+
+      jsVal = lsToJs(lsVal)
+
+      window[varName] = jsVal
+      transmitToCEP(varName, jsVal)
+    }
+
+
+  }
+
+  return true
+}
+
 /*———————————————————————————————————————— translate(key)
     */
 
@@ -580,7 +584,8 @@ function dirName(c){
     transmits a JS variable to CEP, as correct type
     currently JSON is sent in stringified format */
 
-var jsonCount = 7200
+
+// make it a function of INTMS
 
 function transmitToCEP(varName, val){
 
@@ -598,13 +603,17 @@ function transmitToCEP(varName, val){
   }
 
   else if (typeof val == 'object'){                    // JSON
-    jsonCount += 1
-    if (jsonCount < 7200) return true
 
-    jsonCount = 0
+//  console.log('589 - JSONCOUNT = ' + JSONCOUNT)
+
+    JSONCOUNT += 1
+    if (JSONCOUNT < 3600000/INTMS) return true // 1 per hour, it's only the dictionary
+
+    JSONCOUNT = 0
     var str = JSON.stringify(val)
-    console.log('605: sending '+varName+' JSON to CEP')
+    console.log('614 - sending '+varName+' JSON to CEP')
     cepVal = 'ut_decodeJSON("' + encodeURI(str) + '")'
+    console.log(cepVal)
   }
 
   else{                                                // string
@@ -623,7 +632,7 @@ function transmitToCEP(varName, val){
     error handler for transmitToCEP */
 
 function transmitToCEPCallback(err){
-//console.log('——————————————————————————— elapsed '+stopChrono(globalTimer))
+  console.log('634 - transmitToCEPCallback: '+stopChrono(globalTimer) + 'ms, returned: '+err)
 }
 
 /*———————————————————————————————————————— lsToJs(lsVal)
@@ -657,8 +666,6 @@ function lsToJs(lsVal){
   return jsVal
 }
 
-
-console.log('661 - shell.js end: ' + stopChrono(globalTimer) + ' ms')
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

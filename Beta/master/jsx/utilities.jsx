@@ -83,11 +83,7 @@ var parseErrors = 0
 function ut_decodeJSON(str){
   str = decodeURL(str)
   try{
-    alert('hello')
-    var zoop = ut_startChrono()
     newObj = JSON.parse(str)
-    var elapsed = ut_stopChrono(zoop)
-    alert('elapsed: '+elapsed)
     return newObj
   }
   catch(mst){
