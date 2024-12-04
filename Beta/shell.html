@@ -1,5 +1,23 @@
-<!DOCTYPE html><html><head><meta charset="utf-8">
+<!DOCTYPE html><html><head><meta charset="utf-8"><script>
 
+var globalTimer = startChrono()
+
+//———————————————————————————————————————— startChrono()
+
+function startChrono(){
+  var d = new Date()
+  return d.getTime()
+}
+
+//———————————————————————————————————————— stopChrono(startTime)
+
+function stopChrono(startTime){
+  var d = new Date()
+  return d.getTime()-startTime
+}
+
+
+</script>
 <script type="text/javascript" src="CSXS/CSInterface.js"></script>
 <script src='shell.js'></script>
 
@@ -11,14 +29,18 @@
 
 </head><body oncontextmenu='return false'><div id="reloader" onclick='localStorage.clear();location.reload()'></div><script> 
 
+console.log('032 body - waiting for script: ' + stopChrono(globalTimer) + ' ms')
 
-console.log('15: in body / loading content...')
-waitForScript()
+loadPage()
+//waitForScript()
 
 function waitForScript(){
   if (typeof shellLoaded == 'undefined')
     setTimeout(waitForScript, 500)
-  else loadPage()
+  else {
+    console.log('040 body - script loaded: ' + stopChrono(globalTimer) + ' ms')
+    loadPage()
+  }
 }
 
 function loadPage(){

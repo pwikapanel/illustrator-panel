@@ -1,6 +1,6 @@
 
+console.log('002 - shell.js start: ' + stopChrono(globalTimer) + ' ms')
 var shellLoaded = true
-console.log('3: shell.js loaded')
 
 //:::::::::::::::::::::::::::::::::::::::: environmental variables
 
@@ -37,7 +37,6 @@ var MANIFEST
 var SITEURL
 var SYNCPATH
 
-console.log('31: environmental variables created')
 
 //:::::::::::::::::::::::::::::::::::::::: set defaults
 
@@ -49,7 +48,7 @@ else                    LOCAL = (localStorage.LOCAL === 'true')
 
 if (LANG != 'fr') LANG = LANGDEFAULT
 
-console.log('43: default values set')
+console.log('043 - default values set: ' + stopChrono(globalTimer) + ' ms')
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
@@ -88,10 +87,10 @@ var allVars = [
 ]
 
 harmonize('ls')  // get any values from localStorage
-console.log('86: harmonized with localStorage')
+console.log('086 - harmonized with localStorage: ' + stopChrono(globalTimer) + ' ms')
 
 harmonize('js')  // and any remaining values from javascript
-console.log('89: harmonized with JS')
+console.log('089 - harmonized with JS: ' + stopChrono(globalTimer) + ' ms')
 
 /*———————————————————————————————————————— harmonize(ref)
 
@@ -193,7 +192,7 @@ function loadManifest(unused, str, path){
 
   MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
 
-  console.log('191: manifest loaded')
+  console.log('198 - manifest loaded: ' + stopChrono(globalTimer) + ' ms')
   loadLibrary()
 }
 
@@ -236,7 +235,7 @@ function loadLibrary(){
         else fetchRemote(passthrough, path, checkinScript)
 
   }
-  console.log('234: library loaded')
+  console.log('243 - library now loading: ' + stopChrono(globalTimer) + ' ms')
 }
 
 /*———————————————————————————————————————— 3. checkinScript(manifest)
@@ -272,6 +271,8 @@ function activateLibrary(){
   var notYetLoaded =  MANIFEST.filter(record=> record.loaded==false)
   if (notYetLoaded.length > 0){ return "not yet loaded" }
 
+  console.log('279 - library now activating: ' + stopChrono(globalTimer) + ' ms')
+
   for (var x=1; x<MANIFEST.length; x++){
 
     var identifier = MANIFEST[x]['name'] +'_'+ MANIFEST[x]['build'] +'_'+ MANIFEST[x]['ext']
@@ -290,7 +291,7 @@ function activateLibrary(){
   if (LOCAL) var rep = 'local source'
   else var rep = 'remote server'
 
-  console.log('287: ' + channelName(CHANNEL) + translate('channel loaded') + rep)
+  console.log('300 - ' + channelName(CHANNEL) + translate('channel loaded') + rep + ': ' + stopChrono(globalTimer) + ' ms')
 }
 
 
@@ -622,7 +623,7 @@ function transmitToCEP(varName, val){
     error handler for transmitToCEP */
 
 function transmitToCEPCallback(err){
-  console.log('——————————————————————————— elapsed '+stopChrono(zoop))
+//console.log('——————————————————————————— elapsed '+stopChrono(globalTimer))
 }
 
 /*———————————————————————————————————————— lsToJs(lsVal)
@@ -656,20 +657,8 @@ function lsToJs(lsVal){
   return jsVal
 }
 
-//———————————————————————————————————————— startChrono()
 
-function startChrono(){
-  var d = new Date()
-  return d.getTime()
-}
-
-//———————————————————————————————————————— stopChrono(startTime)
-
-function stopChrono(startTime){
-  var d = new Date()
-  return d.getTime()-startTime
-}
-
+console.log('661 - shell.js end: ' + stopChrono(globalTimer) + ' ms')
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
