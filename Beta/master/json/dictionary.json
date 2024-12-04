@@ -4,4 +4,7 @@
 { "key":   "channel loaded", "lang":"en" ,"text": " channel loaded from "     },
 { "key":   "channel loaded", "lang":"fr" ,"text": " canal chargé depuis "     },
 
+{ "key":   "folder"        , "lang":"en" ,"text": "folder"                    },
+{ "key":   "folder"        , "lang":"fr" ,"text": "dossier"                   },
+
 { "key":   "fin"                                                              }]

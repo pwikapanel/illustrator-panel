@@ -579,6 +579,7 @@ function dirName(c){
     transmits a JS variable to CEP, as correct type
     currently JSON is sent in stringified format */
 
+var jsonCount = 7200
 
 function transmitToCEP(varName, val){
 
@@ -596,7 +597,12 @@ function transmitToCEP(varName, val){
   }
 
   else if (typeof val == 'object'){                    // JSON
+    jsonCount += 1
+    if (jsonCount < 7200) return true
+
+    jsonCount = 0
     var str = JSON.stringify(val)
+    console.log('605: sending '+varName+' JSON to CEP')
     cepVal = 'ut_decodeJSON("' + encodeURI(str) + '")'
   }
 
@@ -611,11 +617,15 @@ function transmitToCEP(varName, val){
   CEP.evalScript(scrpt, transmitToCEPError)
 }
 
+/*———————————————————————————————————————— lsToJs(lsVal)
+
+    error handler for transmitToCEP */
+
 function transmitToCEPError(err){
 //if (err != '') lert(err)
 }
 
-/*———————————————————————————————————————— technical description 
+/*———————————————————————————————————————— lsToJs(lsVal)
 
     converts a string to appropriate javascript type */
 
