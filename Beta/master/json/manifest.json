@@ -3,6 +3,7 @@
 { "build":   0, "id":           "","name":             "manifest" ,"ext": "json", "loaded": false  },
 { "build":   0, "id":           "","name":           "dictionary" ,"ext": "json", "loaded": false  },
 
+{ "build":   0, "id":           "","name":                 "json" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "id":           "","name":            "utilities" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "id":           "","name":            "utilities" ,"ext": "js"  , "loaded": false  },
 

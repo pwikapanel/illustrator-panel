@@ -73,6 +73,29 @@ function ut_concatenatePath(part1, part2){
   else return part1 + '\\' + part2
 }
 
+/*———————————————————————————————————————— ut_decodeJSON(obj)
+
+    returns a JSON object */
+
+var   maxErrors = 5
+var parseErrors = 0
+
+//  cepVal = 'decodeURI("' + encodeURI(str) + '")'
+
+function ut_decodeJSON(str){
+  str = decodeURL(str)
+  try{
+    newObj = JSON.parse(str)
+    return newObj
+  }
+  catch(mst){
+    parseErrors += 1
+    if (parseErrors < maxErrors)
+      alert( '92: JSON parse error\n'+msg)
+    return '93: JSON parse error'
+  }
+}
+
 //———————————————————————————————————————— ut_dumpKeys(obj)
 
 function ut_dumpKeys(obj){

@@ -19,7 +19,7 @@ var MYDOCS        = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 var TOOLSPATH     = CEP.getSystemPath(SystemPath.EXTENSION)
 
 var MAXWIDTH      = 240
-var INTMS         = 500 // interval to refresh panel
+var INTMS         = 5000 // interval to refresh panel
 var SERVER        = 'tools.svija.love'
 
 var LANGDEFAULT   = 'en'
@@ -597,7 +597,7 @@ function transmitToCEP(varName, val){
 
   else if (typeof val == 'object'){                    // JSON
     var str = JSON.stringify(val)
-    cepVal = 'decodeURI("' + encodeURI(str) + '")'
+    cepVal = 'ut_decodeJSON("' + encodeURI(str) + '")'
   }
 
   else{                                                // string
@@ -608,7 +608,11 @@ function transmitToCEP(varName, val){
 
   var scrpt = varName + '=' + cepVal
 
-  CEP.evalScript(scrpt)
+  CEP.evalScript(scrpt, transmitToCEPError)
+}
+
+function transmitToCEPError(err){
+//if (err != '') lert(err)
 }
 
 /*———————————————————————————————————————— technical description 
