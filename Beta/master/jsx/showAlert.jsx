@@ -1,4 +1,7 @@
-#target illustrator  
+#target illustrator
+
+// alert('engine: ' + $.engineName);
+// #target illustrator  
 
 /*:::::::::::::::::::::::::::::::::::::::: channel.js */
 
@@ -17,57 +20,84 @@
 
 // the goal is to show a minimal alert that will close itself after x seconds, or if the user clicks anywhere
 
+var progBar
+
 function showAlert(arg){
 
   //———————————————————— create palette
 
   palette = new Window ('palette', 'Alert', undefined, {resizeable: false, borderless: true, closeButton: false})
-  palette.graphics.backgroundColor = palette.graphics.newBrush (palette.graphics.BrushType.SOLID_COLOR, [0.2, 0.2, 0.2])
 
-  palette.preferredSize = [400, 60] // +28px where title bar was
-  palette.margins       = [0, 0, 0, 0]
-  palette.orientation   = 'row'
-  palette.alignChildren = ['fill', 'fill']
-  palette.spacing=0
+  palette.margins = [0, 0, 0, 0]
+  palette.spacing = 0
+  palette.graphics.backgroundColor = palette.graphics.newBrush(palette.graphics.BrushType.SOLID_COLOR,[0.3, 0.3, 0.3], 1)
   
-  //———————————————————— alert text
+  //———————————————————— container // necessary for onclick
 
-  var para = palette.add('group')
-  para.margins = [0, 28, 30, 0]
-  para.alignment = 'center'
-  para.orientation = 'column'
-  para.spacing   = 2
-  para.graphics.backgroundColor = para.graphics.newBrush(para.graphics.BrushType.SOLID_COLOR,[0.3, 0.3, 0.3], 1)
+  var div = palette.add('group')
+  div.preferredSize = [300, 30]
+  div.orientation   = 'column'
+  div.spacing   = 2
+  div.alignment = 'center'
+  div.margins = [0, 10, 0, 10]
+//               L      R
+
+  //———————————————————— message
+
+  var  message = div.add('statictext')
+  message.alignment = 'center'
+  message.graphics.foregroundColor = message.graphics.newPen (message.graphics.PenType.SOLID_COLOR, [0.75, 0.75, 0.75], 1);
+
+  message.text = 'yes: '+arg
+
+  //———————————————————— progress bar background
+                                                             
+  progBackground = div.add('group')
+  progBackground.preferredSize.width = 300;
+  progBackground.preferredSize.height= 3;
+
+  progBackground.graphics.backgroundColor = div.graphics.newBrush(div.graphics.BrushType.SOLID_COLOR,[0, 0.3, 1.0], 1)
 
 
-  para.addEventListener('click', function(e){ palette.hide() })
-
-  var  paraLine1 = para.add("statictext")
-
-  paraLine1.graphics.foregroundColor = paraLine1.graphics.newPen (paraLine1.graphics.PenType.SOLID_COLOR, [0.75, 0.75, 0.75], 1);
-
-  paraLine1.text = arg
 
 
-  //———————————————————— cancel & apply buttons
 
-  cancelButton = palette.add("button", undefined, "Close")
-//  applyButton  = palette.add("button", undefined, "Apply")
 
-  cancelButton.alignment = ['', 'fill'] 
-//  applyButton.alignment  = ['', 'fill']  // permits smaller buttons
 
-  //———————————————————— button functionality
 
-  palette.cancelElement = cancelButton
+// need to create group for vertical margins of progress bar
 
-  cancelButton.onClick = function(e){
-    palette.hide()
-  }
 
-  if(palette.show() == 1){} 
-  else return ''                                     // clicked cancel
 
+
+
+
+
+
+
+  //———————————————————— progress bar
+                                                             
+  progBar = progBackground.add( 'progressbar', undefined, 0, 100 ); 
+  progBar.preferredSize.width = 300;
+  progBar.preferredSize.height= 1;
+
+  //———————————————————— close palette
+
+  palette.addEventListener ("keydown", function(k) {
+    if(k.keyName == 'Escape'){ palette.hide() }
+  })
+
+  div.addEventListener('click', function(e){ palette.hide() })
+
+  //———————————————————— show palette
+
+  palette.show()
+  return 'palette'
+
+}
+
+function progBarUpdate(pct){
+  progBar.value = pct
 }
 
 //:::::::::::::::::::::::::::::::::::::::: fin
