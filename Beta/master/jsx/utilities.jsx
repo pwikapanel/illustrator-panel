@@ -81,7 +81,8 @@ var   maxErrors = 5
 var parseErrors = 0
 
 function ut_decodeJSON(str){
-  str = decodeURL(str)
+  str = decodeURI(str)
+
   try{
     newObj = JSON.parse(str)
     return newObj

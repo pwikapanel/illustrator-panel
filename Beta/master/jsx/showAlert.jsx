@@ -15,6 +15,8 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: program */
 
+// the goal is to show a minimal alert that will close itself after x seconds, or if the user clicks anywhere
+
 function showAlert(arg){
 
   //———————————————————— create panel
@@ -27,46 +29,28 @@ function showAlert(arg){
   panel.orientation   = 'row'
   panel.alignChildren = ['fill', 'fill']
   panel.spacing=0
-  
-  //———————————————————— alert text
 
-  // separate lines because only single lines can be centered
+  var content = panel.add ('group');
+  content.spacing=0
+  content.orientation   = 'column'
+  content.preferredSize = [310,292]
+  content.margins = [0, 0, 0, 0]
+  content.graphics.backgroundColor = content.graphics.newBrush(content.graphics.BrushType.SOLID_COLOR,[0.7,0.7,0.7], 1);
+  content.addEventListener("click", function(e){ panel.hide() })
 
-  var para = panel.add('group')
-  para.margins = [0, 28, 30, 0]
-  para.alignment = 'center'
-  para.orientation = 'column'
-  para.spacing   = 2
-  //ra.graphics.backgroundColor = para.graphics.newBrush(para.graphics.BrushType.SOLID_COLOR,[0.3, 0.3, 0.3], 1)
+  //———————————————————— paragraph
 
-  var  paraLine1 = panel.add("statictext")
+  var  paraLine1 = content.add("statictext")
 
   paraLine1.graphics.foregroundColor = paraLine1.graphics.newPen (paraLine1.graphics.PenType.SOLID_COLOR, [0.75, 0.75, 0.75], 1);
 
   paraLine1.text = arg
 
 
-  //———————————————————— cancel & apply buttons
 
-  cancelButton = panel.add("button", undefined, "Close")
-//  applyButton  = panel.add("button", undefined, "Apply")
 
-  cancelButton.alignment = ['', 'fill'] 
-//  applyButton.alignment  = ['', 'fill']  // permits smaller buttons
-
-  //———————————————————— button functionality
-
-  var local = true
-
- // panel.defaultElement = applyButton
-  panel.cancelElement = cancelButton
-
-  cancelButton.onClick = function(e){
-    panel.hide()
-  }
-
-  if(panel.show() == 1) return '|' + local // clicked apply
-  else return ''                                     // clicked cancel
+  if(panel.show() == 1){} 
+  else return ''
 
 }
 

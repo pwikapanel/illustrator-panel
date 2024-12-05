@@ -91,10 +91,10 @@ var allVars = [
     */
 
 harmonize('ls')  // get any values from localStorage
-//console.log('086 - harmonized with localStorage: ' + stopChrono(globalTimer) + ' ms')
+console.log('094 - harmonized with localStorage: ' + stopChrono(globalTimer) + ' ms')
 
 harmonize('js')  // and any remaining values from javascript
-//console.log('089 - harmonized with JS: ' + stopChrono(globalTimer) + ' ms')
+console.log('097 - harmonized with JS: ' + stopChrono(globalTimer) + ' ms')
 
 
 //:::::::::::::::::::::::::::::::::::::::: called by body :::::::::::::::::::::::::::::::::::
@@ -232,6 +232,7 @@ function activateLibrary(){
   if (LOCAL) var rep = 'local source'
   else var rep = 'remote server'
 
+  harmonize('js')
   //console.log('300 - ' + channelName(CHANNEL) + translate('channel loaded') + rep + ': ' + stopChrono(globalTimer) + ' ms')
 }
 
@@ -302,6 +303,7 @@ function loadJson(scriptID, contents){
     window[varName] = JSON.parse(contents).filter(record => record.build != 'fin' && typeof record.name == 'undefined')
     localStorage[varName] = JSON.stringify(window[varName])
 //  if (varName == 'DICTIONARY') lert(localStorage[varName])
+console.log('305 loadJson: '+varName+' time: '+ stopChrono(globalTimer)+ ' ms')
   }
 
   catch(e){
@@ -607,10 +609,15 @@ function transmitToCEP(varName, val){
   else if (typeof val == 'object'){                    // JSON
     if (varName == 'MANIFEST') return true
 
-//  //console.log('589 - JSONCOUNT = ' + JSONCOUNT)
+/// INTMS         = 5000            // interval to refresh panel, change color, get project info
+/// JSONCOUNT     = 3600000/INTMS   // dictionary updated in CEP after 1 hr
 
     JSONCOUNT += 1
-    //if (JSONCOUNT < 3600000/INTMS) return true // 1 per hour, it's only the dictionary
+
+console.log('614 JSONCOUNT: '+JSONCOUNT+' of ' +3600000/INTMS + ' time: '+ stopChrono(globalTimer)+ ' ms')
+
+
+    if (JSONCOUNT < 3600000/INTMS) return true // 1 per hour, it's only the dictionary
 
     JSONCOUNT = 0
     var str = JSON.stringify(val)
