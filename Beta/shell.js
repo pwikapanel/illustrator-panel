@@ -1,5 +1,5 @@
 
-console.log('002 - shell.js start: ' + stopChrono(globalTimer) + ' ms')
+//console.log('002 - shell.js start: ' + stopChrono(globalTimer) + ' ms')
 var shellLoaded = true
 
 //:::::::::::::::::::::::::::::::::::::::: environmental variables
@@ -19,8 +19,8 @@ var MYDOCS        = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 var TOOLSPATH     = CEP.getSystemPath(SystemPath.EXTENSION)
 
 var MAXWIDTH      = 240
-var INTMS         = 5000 // interval to refresh panel
-var JSONCOUNT     = 3600000/INTMS // dictionary updated in CEP after 1 hr
+var INTMS         = 5000            // interval to refresh panel, change color, get project info
+var JSONCOUNT     = 3600000/INTMS   // dictionary updated in CEP after 1 hr
 var SERVER        = 'tools.svija.love'
 
 var LANGDEFAULT   = 'en'
@@ -48,7 +48,7 @@ else                    LOCAL = (localStorage.LOCAL === 'true')
 
 if (LANG != 'fr') LANG = LANGDEFAULT
 
-console.log('043 - default values set: ' + stopChrono(globalTimer) + ' ms')
+//console.log('043 - default values set: ' + stopChrono(globalTimer) + ' ms')
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
@@ -91,10 +91,10 @@ var allVars = [
     */
 
 harmonize('ls')  // get any values from localStorage
-console.log('086 - harmonized with localStorage: ' + stopChrono(globalTimer) + ' ms')
+//console.log('086 - harmonized with localStorage: ' + stopChrono(globalTimer) + ' ms')
 
 harmonize('js')  // and any remaining values from javascript
-console.log('089 - harmonized with JS: ' + stopChrono(globalTimer) + ' ms')
+//console.log('089 - harmonized with JS: ' + stopChrono(globalTimer) + ' ms')
 
 
 //:::::::::::::::::::::::::::::::::::::::: called by body :::::::::::::::::::::::::::::::::::
@@ -133,7 +133,7 @@ function loadManifest(unused, str, path){
 
   MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
 
-  console.log('198 - manifest loaded: ' + stopChrono(globalTimer) + ' ms')
+  //console.log('198 - manifest loaded: ' + stopChrono(globalTimer) + ' ms')
   loadLibrary()
 }
 
@@ -176,7 +176,7 @@ function loadLibrary(){
         else fetchRemote(passthrough, path, checkinScript)
 
   }
-  console.log('243 - library now loading: ' + stopChrono(globalTimer) + ' ms')
+  //console.log('243 - library now loading: ' + stopChrono(globalTimer) + ' ms')
 }
 
 /*———————————————————————————————————————— 3. checkinScript(manifest)
@@ -195,7 +195,7 @@ function checkinScript(identifier, contents, path){
   if (manifestRefs.length>0){
     localStorage[identifier] = contents
     MANIFEST.filter(record=> record.name==nameParts[0] && record.ext==nameParts[2])[0]['loaded'] = true
-//  console.log('253: '+identifier+' loaded')
+//  //console.log('253: '+identifier+' loaded')
   }
   else
     lert('Not found: '+nameParts[0])
@@ -212,7 +212,7 @@ function activateLibrary(){
   var notYetLoaded =  MANIFEST.filter(record=> record.loaded==false)
   if (notYetLoaded.length > 0){ return "not yet loaded" }
 
-  console.log('279 - library now activating: ' + stopChrono(globalTimer) + ' ms')
+  //console.log('279 - library now activating: ' + stopChrono(globalTimer) + ' ms')
 
   for (var x=1; x<MANIFEST.length; x++){
 
@@ -232,7 +232,7 @@ function activateLibrary(){
   if (LOCAL) var rep = 'local source'
   else var rep = 'remote server'
 
-  console.log('300 - ' + channelName(CHANNEL) + translate('channel loaded') + rep + ': ' + stopChrono(globalTimer) + ' ms')
+  //console.log('300 - ' + channelName(CHANNEL) + translate('channel loaded') + rep + ': ' + stopChrono(globalTimer) + ' ms')
 }
 
 
@@ -481,6 +481,7 @@ function harmonize(ref){
       else lsVal = jsVal
 
       localStorage[varName] = lsVal
+      //console.log('484 - ref='+ref+', calling transmitToCEP: '+varName +' - '+stopChrono(globalTimer) + 'ms')
       transmitToCEP(varName, jsVal)
     }
 
@@ -494,6 +495,7 @@ function harmonize(ref){
       jsVal = lsToJs(lsVal)
 
       window[varName] = jsVal
+      //console.log('498 - ref='+ref+', calling transmitToCEP: '+varName +' - '+stopChrono(globalTimer) + 'ms')
       transmitToCEP(varName, jsVal)
     }
 
@@ -603,17 +605,16 @@ function transmitToCEP(varName, val){
   }
 
   else if (typeof val == 'object'){                    // JSON
+    if (varName == 'MANIFEST') return true
 
-//  console.log('589 - JSONCOUNT = ' + JSONCOUNT)
+//  //console.log('589 - JSONCOUNT = ' + JSONCOUNT)
 
     JSONCOUNT += 1
-    if (JSONCOUNT < 3600000/INTMS) return true // 1 per hour, it's only the dictionary
+    //if (JSONCOUNT < 3600000/INTMS) return true // 1 per hour, it's only the dictionary
 
     JSONCOUNT = 0
     var str = JSON.stringify(val)
-    console.log('614 - sending '+varName+' JSON to CEP')
     cepVal = 'ut_decodeJSON("' + encodeURI(str) + '")'
-    console.log(cepVal)
   }
 
   else{                                                // string
@@ -624,6 +625,7 @@ function transmitToCEP(varName, val){
 
   var scrpt = varName + '=' + cepVal
 
+  //console.log('626 - sending '+varName+' to CEP: ' + stopChrono(globalTimer)+ ' ms')
   CEP.evalScript(scrpt, transmitToCEPCallback)
 }
 
@@ -632,7 +634,7 @@ function transmitToCEP(varName, val){
     error handler for transmitToCEP */
 
 function transmitToCEPCallback(err){
-  console.log('634 - transmitToCEPCallback: '+stopChrono(globalTimer) + 'ms, returned: '+err)
+  //console.log('634 - transmitToCEPCallback: '+stopChrono(globalTimer) + 'ms, returned: '+err)
 }
 
 /*———————————————————————————————————————— lsToJs(lsVal)
@@ -641,7 +643,7 @@ function transmitToCEPCallback(err){
 
 function lsToJs(lsVal){
   if (typeof lsVal == undefined){
-    console.log('610: undefined lsVal')
+    //console.log('610: undefined lsVal')
     return ''
   }
 

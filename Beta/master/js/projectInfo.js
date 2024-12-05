@@ -82,6 +82,7 @@ function setURL(arg){
       LASTPATH = results.lastPath
     }
 
+//console.log('85———————————————————————————————————— projectInfo interrupt '+stopChrono(globalTimer) + 'ms')
   harmonize('js')
 
   if (typeof SITEURL != 'undefined')
