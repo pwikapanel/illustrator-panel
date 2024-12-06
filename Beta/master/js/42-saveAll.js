@@ -3,7 +3,7 @@
 
 /*———————————————————————————————————————— parameters */
 
-var objLabel = 'save all'
+var objLabel = translate('save all')
 var objID    = 'butt42'
 
 /*———————————————————————————————————————— configure button */

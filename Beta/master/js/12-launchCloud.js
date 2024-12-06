@@ -4,7 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objID    = 'butt12'
-var objLabel = 'svija cloud'
+var objLabel = translate('svija cloud')
 
 /*———————————————————————————————————————— configure button */
 

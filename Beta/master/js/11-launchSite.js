@@ -4,7 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objID    = 'butt11'
-var objLabel = 'launch site'
+var objLabel = translate('launch site')
 
 /*———————————————————————————————————————— configure button */
 

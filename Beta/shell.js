@@ -16,6 +16,7 @@ window.addEventListener('error', (event)=>{ CEP.evalScript('alert("' + event.mes
 var AIVERSION     = HOSTENV.appVersion
 var AIVERSIONMIN  = 26.0
 var LANG          = HOSTENV.appUILocale.substr(0,2) // appLocale if this doesn't work
+var LANG          = 'fr'
 var ISMAC         = CEP.getOSInformation().substring(0,3) == 'Mac'
 var MYDOCS        = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 var TOOLSPATH     = CEP.getSystemPath(SystemPath.EXTENSION)

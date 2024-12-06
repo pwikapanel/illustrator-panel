@@ -4,7 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objID    = 'butt21'
-var objLabel = 'create group'
+var objLabel = translate('create group')
 
 /*———————————————————————————————————————— configure button */
 

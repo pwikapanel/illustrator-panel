@@ -1,14 +1,35 @@
 [
 
-{ "name":  "DICTIONARY"                                                       },
+{ "name":  "DICTIONARY"                                                                   },
 
-{ "key":   "channel loaded", "lang":"en" ,"text": " channel loaded from "     },
-{ "key":   "channel loaded", "lang":"fr" ,"text": " canal chargé depuis "     },
+{ "key":   "channel loaded"  , "lang":"en" ,"text": " channel loaded from "               },
+{ "key":   "channel loaded"  , "lang":"fr" ,"text": " canal chargé depuis "               },
 
-{ "key":   "folder"        , "lang":"en" ,"text": "folder"                    },
-{ "key":   "folder"        , "lang":"fr" ,"text": "dossier"                   },
+{ "key":   "folder"          , "lang":"en" ,"text": "folder"                              },
+{ "key":   "folder"          , "lang":"fr" ,"text": "dossier local"                       },
 
-{ "key":   "versionAlert"  , "lang":"en" ,"text": "Unsupported Illustrator version"     },
-{ "key":   "versionAlert"  , "lang":"fr" ,"text": "Version d'Illustrator non-supportée" },
+{ "key":   "check & repair"  , "lang":"en" ,"text": "check & repair"                      },
+{ "key":   "check & repair"  , "lang":"fr" ,"text": "vérifier"                            },
 
-{ "key":   "fin"                                                              }]
+{ "key":   "save"            , "lang":"en" ,"text": "save"                                },
+{ "key":   "save"            , "lang":"fr" ,"text": "sauv."                               },
+
+{ "key":   "save all"        , "lang":"en" ,"text": "save all"                            },
+{ "key":   "save all"        , "lang":"fr" ,"text": "tous"                                },
+
+{ "key":   "change case"     , "lang":"en" ,"text": "change case"                         },
+{ "key":   "change case"     , "lang":"fr" ,"text": "changer casse"                       },
+
+{ "key":   "create group"    , "lang":"en" ,"text": "create group"                        },
+{ "key":   "create group"    , "lang":"fr" ,"text": "création groupe"                     },
+
+{ "key":   "launch site"     , "lang":"en" ,"text": "launch site"                         },
+{ "key":   "launch site"     , "lang":"fr" ,"text": "lancer site"                         },
+
+{ "key":   "svija cloud"     , "lang":"en" ,"text": "svija cloud"                         },
+{ "key":   "svija cloud"     , "lang":"fr" ,"text": "svija cloud"                         },
+
+{ "key":   "versionAlert"    , "lang":"en" ,"text": "Unsupported Illustrator version"     },
+{ "key":   "versionAlert"    , "lang":"fr" ,"text": "Version d'Illustrator non-supportée" },
+
+{ "key":   "fin"                                                                          }]
