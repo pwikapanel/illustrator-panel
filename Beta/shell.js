@@ -22,7 +22,7 @@ var MYDOCS        = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 var TOOLSPATH     = CEP.getSystemPath(SystemPath.EXTENSION)
 
 var MAXWIDTH      = 240
-var INTMS         = 5000            // interval to refresh panel, change color, get project info
+var INTMS         = 500            // interval to refresh panel, change color, get project info
 var JSONCOUNT     = 3600000/INTMS   // dictionary updated in CEP after 1 hr
 var SERVER        = 'tools.svija.love'
 
@@ -34,6 +34,7 @@ var CHNAME0       = 'alpha'
 var CHNAME1       = 'beta'
 var CHNAME2       = 'master'
 
+var INTERFACE     // 0-3, set by js/panelManager.js
 var ISSVIJA
 var LASTPATH
 var LOCAL
@@ -82,6 +83,7 @@ var allVars = [
   'CHNAME1',
   'CHNAME2',
 
+  'INTERFACE',
   'ISSVIJA',
   'LASTPATH',
   'MANIFEST',
@@ -321,6 +323,7 @@ console.log('305 loadJson: '+varName+' time: '+ stopChrono(globalTimer)+ ' ms')
     */
 
 function loadJsx(scriptID, contents){
+  console.log('324 shell, loading jsx '+scriptID)
   CEP.evalScript(contents)
 }
 
@@ -618,7 +621,7 @@ function transmitToCEP(varName, val){
 
     JSONCOUNT += 1
 
-console.log('614 JSONCOUNT: '+JSONCOUNT+' of ' +3600000/INTMS + ' time: '+ stopChrono(globalTimer)+ ' ms')
+// console.log('621 JSONCOUNT: '+JSONCOUNT+' of ' +3600000/INTMS + ' time: '+ stopChrono(globalTimer)+ ' ms')
 
 
     if (JSONCOUNT < 3600000/INTMS) return true // 1 per hour, it's only the dictionary

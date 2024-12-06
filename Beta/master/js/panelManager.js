@@ -1,4 +1,6 @@
 
+/*:::::::::::::::::::::::::::::::::::::::: panelManager.js */
+
 /*———————————————————————————————————————— panel size
 
      need to integrate status of localStorage.moreLess */
@@ -56,6 +58,7 @@ function setPanelSize(objID){
   of interface colors availablein Ai prefs */
 
 function setInterface() { // did have (event) as arg
+
   var hostEnv = window.__adobe_cep__.getHostEnvironment()
   var skinInfo = JSON.parse(hostEnv).appSkinInfo
   var color = skinInfo.panelBackgroundColor.color
@@ -67,10 +70,14 @@ function setInterface() { // did have (event) as arg
    default: code = 1; break; // case 83
   }
 
+  INTERFACE = code
   document.body.id = "if_" + code
 }
 
 setInterface()
 
 CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setInterface)
+
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
 

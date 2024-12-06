@@ -2,6 +2,7 @@
 
 { "build":   0, "id":           "","name":             "manifest" ,"ext": "json", "loaded": false  },
 { "build":   0, "id":           "","name":           "dictionary" ,"ext": "json", "loaded": false  },
+{ "build":   0, "id":           "","name":         "panelManager" ,"ext": "js"  , "loaded": false  },
 
 { "build":   0, "id":           "","name":                 "json" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "id":           "","name":            "utilities" ,"ext": "jsx" , "loaded": false  },
@@ -14,6 +15,7 @@
 { "build":   0, "id":           "","name": "illustratorColorDefs" ,"ext": "css" , "loaded": false  },
 { "build":   0, "id":           "","name":               "global" ,"ext": "css" , "loaded": false  },
 { "build":   0, "id":           "","name":              "buttons" ,"ext": "css" , "loaded": false  },
+
 
 { "build":   "::::::::::::::::::::::::::: version checker :::::::::::::::::::::::::::::::::::::::" },
 
@@ -32,9 +34,6 @@
 
 { "build":   0, "id":    "mainCss","name":                 "main" ,"ext": "css" , "loaded": false  },
 { "build":   0, "id":    "mainDiv","name":                 "main" ,"ext": "html", "loaded": false  },
-
-{ "build":   0, "id":           "","name":        "interfaceCode" ,"ext": "js"  , "loaded": false  },
-{ "build":   0, "id":           "","name":         "panelManager" ,"ext": "js"  , "loaded": false  },
 
 { "build":   0, "id":           "","name":          "projectInfo" ,"ext": "jsx" , "loaded": false  },
 { "build":   0, "id":           "","name":          "projectInfo" ,"ext": "js"  , "loaded": false  },

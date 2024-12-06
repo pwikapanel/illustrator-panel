@@ -317,6 +317,20 @@ function ut_stopChrono(startTime){
   return d.getTime()-startTime
 }
 
+/*———————————————————————————————————————— ut_translate(key)
+    */
+
+function ut_translate(key){
+
+  for (x=0; x<DICTIONARY.length; x++)
+    if (typeof DICTIONARY[x]['key'] != 'undefined' && typeof DICTIONARY[x]['lang'] != 'undefined')
+      if (DICTIONARY[x]['key'] == key && DICTIONARY[x]['lang'] == LANG)
+        return DICTIONARY[x]['text']
+
+  return 'missing DICTIONARY key: '+key
+
+}
+
 /*———————————————————————————————————————— ut_unlockHierarchy(obj)
 
     unlocks the hierarchy above an element and returns an array

@@ -32,4 +32,8 @@
 { "key":   "versionAlert"    , "lang":"en" ,"text": "Unsupported Illustrator version"     },
 { "key":   "versionAlert"    , "lang":"fr" ,"text": "Version d'Illustrator non-supportée" },
 
+{ "key":   "versionAlert"    , "lang":"en" ,"text": "Unsupported Illustrator version"     },
+{ "key":   "versionAlert"    , "lang":"fr" ,"text": "Version d'Illustrator non-supportée" },
+
+
 { "key":   "fin"                                                                          }]

@@ -113,6 +113,9 @@ function channelDialog(extensionPath, channel){
 
   paraLine1.text = "The stable release is best for most users. If you"
   paraLine2.text = "use the beta release, let us know how it goes!"
+  try{
+  paraLine2.text = ut_translate('folder') + INTERFACE
+  }catch(e){alert(e)}
 
   //———————————————————— instructions
 
