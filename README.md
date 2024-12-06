@@ -11,6 +11,59 @@ Open [this link](http://localhost:8080/) in Chrome
 
 ---
 
+[localization info](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md)
+
+Related locale codes
+
+fr_BE – French (Belgium)
+fr_BF – French (Burkina Faso)
+fr_BI – French (Burundi)
+fr_BJ – French (Benin)
+fr_BL – French (Saint Barthélemy)
+fr_CA – French (Canada)
+fr_CD – French (Democratic Republic of the Congo)
+fr_CF – French (Central African Republic)
+fr_CG – French (Congo)
+fr_CH – French (Switzerland)
+fr_CI – French (Côte d'Ivoire)
+fr_CM – French (Cameroon)
+fr_DJ – French (Djibouti)
+fr_DZ – French (Algeria)
+fr_FR – French (France)
+fr_GA – French (Gabon)
+fr_GF – French (French Guiana)
+fr_GN – French (Guinea)
+fr_GP – French (Guadeloupe)
+fr_GQ – French (Equatorial Guinea)
+fr_HT – French (Haiti)
+fr_KM – French (Comoros)
+fr_LU – French (Luxembourg)
+fr_MA – French (Morocco)
+fr_MC – French (Monaco)
+fr_MF – French (Saint Martin)
+fr_MG – French (Madagascar)
+fr_ML – French (Mali)
+fr_MQ – French (Martinique)
+fr_MR – French (Mauritania)
+fr_MU – French (Mauritius)
+fr_NC – French (New Caledonia)
+fr_NE – French (Niger)
+fr_PF – French (French Polynesia)
+fr_PM – French (Saint Pierre and Miquelon)
+fr_RE – French (Réunion)
+fr_RW – French (Rwanda)
+fr_SC – French (Seychelles)
+fr_SN – French (Senegal)
+fr_SY – French (Syria)
+fr_TD – French (Chad)
+fr_TG – French (Togo)
+fr_TN – French (Tunisia)
+fr_VU – French (Vanuatu)
+fr_WF – French (Wallis and Futuna)
+fr_YT – French (Mayotte)
+
+---
+
 CEP versions
 
 ---
