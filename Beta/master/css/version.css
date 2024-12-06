@@ -1,0 +1,30 @@
+
+/*:::::::::::::::::::::::::::::::::::::::: news */
+
+div#versionDiv{
+/*  display:none; */
+  margin:5px 10px 0 10px;
+}
+
+div#versionBanner{
+  padding:3px 10px 3px 10px;
+
+  border-style:solid;
+  border-width:1px;
+  border-radius:3px;
+
+  background-color:var(--accentDim);
+  border-color:var(--accentBright);
+         color:var(--accentBright);
+
+  font-family:'SourceSansPro';
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-size:14px;
+  line-height:14px;
+  font-weight:600;
+}
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
+
+

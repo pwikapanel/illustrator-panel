@@ -11,8 +11,6 @@ var CEP           = new CSInterface()
 // resourceBundle = CEP.initResourceBundle();
 var HOSTENV       = CEP.getHostEnvironment()
 
-lert(resourceBundle.key1)
-
 window.addEventListener('error', (event)=>{ CEP.evalScript('alert("' + event.message + '")') })
 
 var AIVERSION     = HOSTENV.appVersion

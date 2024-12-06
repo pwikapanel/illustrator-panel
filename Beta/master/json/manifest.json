@@ -15,6 +15,9 @@
 { "build":   0, "id":           "","name":               "global" ,"ext": "css" , "loaded": false  },
 { "build":   0, "id":           "","name":              "buttons" ,"ext": "css" , "loaded": false  },
 
+{ "build":   0, "id":           "","name":              "version" ,"ext": "css" , "loaded": false  },
+{ "build":   0, "id": "versionDiv","name":              "version" ,"ext": "html", "loaded": false  },
+
 { "build":   0, "id":           "","name":                 "news" ,"ext": "css" , "loaded": false  },
 { "build":   0, "id":   "newsHtml","name":                 "news" ,"ext": "html", "loaded": false  },
 
