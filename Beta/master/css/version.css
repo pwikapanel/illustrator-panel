@@ -2,8 +2,8 @@
 /*:::::::::::::::::::::::::::::::::::::::: news */
 
 div#versionDiv{
-/*  display:none; */
-  margin:5px 10px 0 10px;
+  display:none;
+  margin:0 10px 4px 10px;
 }
 
 div#versionBanner{
@@ -13,9 +13,9 @@ div#versionBanner{
   border-width:1px;
   border-radius:3px;
 
-  background-color:var(--accentDim);
-  border-color:var(--accentBright);
-         color:var(--accentBright);
+  background-color:var(--accentBright);
+  border-color:var(--accentDim);
+         color:var(--accentDim);
 
   font-family:'SourceSansPro';
   text-transform:uppercase;
@@ -23,6 +23,8 @@ div#versionBanner{
   font-size:14px;
   line-height:14px;
   font-weight:600;
+
+  cursor:pointer;
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */

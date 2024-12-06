@@ -1,10 +1,14 @@
 [
 
 { "name":  "DICTIONARY"                                                       },
+
 { "key":   "channel loaded", "lang":"en" ,"text": " channel loaded from "     },
 { "key":   "channel loaded", "lang":"fr" ,"text": " canal chargé depuis "     },
 
 { "key":   "folder"        , "lang":"en" ,"text": "folder"                    },
 { "key":   "folder"        , "lang":"fr" ,"text": "dossier"                   },
+
+{ "key":   "versionAlert"  , "lang":"en" ,"text": "Unsupported Illustrator version"     },
+{ "key":   "versionAlert"  , "lang":"fr" ,"text": "Version d'Illustrator non-supportée" },
 
 { "key":   "fin"                                                              }]
