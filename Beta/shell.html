@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head><meta charset="utf-8">
 
-<script>// startChrono() & stopChrono(t)
+<script>
 
 var globalTimer = startChrono()
 
@@ -9,7 +9,7 @@ function startChrono(){
   return d.getTime()
 }
 
-function stopChrono(t){
+function elapsed(t){
   var d = new Date()
   return d.getTime() - t
 }
@@ -19,16 +19,17 @@ function stopChrono(t){
 <script type="text/javascript" src="CSXS/CSInterface.js"></script>
 <script src='shell.js'></script>
 <style>/* reloader square in body */
- #reloader{
-    cursor:pointer ; width:10px;height:10px;
-  position:absolute;   top: 0px; right: 0px;
-  background-color:gray;
-} </style>
 
+  #reloader{
+      cursor:pointer ; width:10px;height:10px;
+    position:absolute;   top: 0px; right: 0px;
+    background-color:gray;
+  }
 
+</style>
 </head><body oncontextmenu='return false'><div id="reloader" onclick='localStorage.clear();location.reload()'></div><script> 
 
-console.log('032BODY - fetching manifest: ' + stopChrono(globalTimer) + ' ms')
+console.log('032BODY - fetching manifest: ' + elapsed(globalTimer) + ' ms')
 
 var path = 'json/manifest.json'
 

@@ -310,9 +310,9 @@ function ut_startChrono(){
   return d.getTime()
 }
 
-//———————————————————————————————————————— ut_stopChrono(startTime)
+//———————————————————————————————————————— ut_elapsed(startTime)
 
-function ut_stopChrono(startTime){
+function ut_elapsed(startTime){
   var d = new Date()
   return d.getTime()-startTime
 }

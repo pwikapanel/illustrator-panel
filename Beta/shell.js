@@ -1,5 +1,5 @@
 
-//console.log('002 - shell.js start: ' + stopChrono(globalTimer) + ' ms')
+//console.log('002 - shell.js start: ' + elapsed(globalTimer) + ' ms')
 var shellLoaded = true
 
 //:::::::::::::::::::::::::::::::::::::::: environmental variables
@@ -52,7 +52,7 @@ else                    LOCAL = (localStorage.LOCAL === 'true')
 
 if (LANG != 'fr') LANG = LANGDEFAULT
 
-//console.log('043 - default values set: ' + stopChrono(globalTimer) + ' ms')
+//console.log('043 - default values set: ' + elapsed(globalTimer) + ' ms')
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
@@ -97,10 +97,10 @@ var allVars = [
     */
 
 harmonize('ls')  // get any values from localStorage
-console.log('094 - harmonized with localStorage: ' + stopChrono(globalTimer) + ' ms')
+console.log('094 - harmonized with localStorage: ' + elapsed(globalTimer) + ' ms')
 
 harmonize('js')  // and any remaining values from javascript
-console.log('097 - harmonized with JS: ' + stopChrono(globalTimer) + ' ms')
+console.log('097 - harmonized with JS: ' + elapsed(globalTimer) + ' ms')
 
 
 //:::::::::::::::::::::::::::::::::::::::: called by body :::::::::::::::::::::::::::::::::::
@@ -139,7 +139,7 @@ function loadManifest(unused, str, path){
 
   MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
 
-  //console.log('198 - manifest loaded: ' + stopChrono(globalTimer) + ' ms')
+  //console.log('198 - manifest loaded: ' + elapsed(globalTimer) + ' ms')
   loadLibrary()
 }
 
@@ -182,7 +182,7 @@ function loadLibrary(){
         else fetchRemote(passthrough, path, checkinScript)
 
   }
-  //console.log('243 - library now loading: ' + stopChrono(globalTimer) + ' ms')
+  //console.log('243 - library now loading: ' + elapsed(globalTimer) + ' ms')
 }
 
 /*———————————————————————————————————————— 3. checkinScript(manifest)
@@ -218,7 +218,7 @@ function activateLibrary(){
   var notYetLoaded =  MANIFEST.filter(record=> record.loaded==false)
   if (notYetLoaded.length > 0){ return "not yet loaded" }
 
-  //console.log('279 - library now activating: ' + stopChrono(globalTimer) + ' ms')
+  //console.log('279 - library now activating: ' + elapsed(globalTimer) + ' ms')
 
   for (var x=1; x<MANIFEST.length; x++){
 
@@ -239,7 +239,7 @@ function activateLibrary(){
   else var rep = 'remote server'
 
   harmonize('js')
-  //console.log('300 - ' + channelName(CHANNEL) + translate('channel loaded') + rep + ': ' + stopChrono(globalTimer) + ' ms')
+  //console.log('300 - ' + channelName(CHANNEL) + translate('channel loaded') + rep + ': ' + elapsed(globalTimer) + ' ms')
 }
 
 
@@ -309,7 +309,7 @@ function loadJson(scriptID, contents){
     window[varName] = JSON.parse(contents).filter(record => record.build != 'fin' && typeof record.name == 'undefined')
     localStorage[varName] = JSON.stringify(window[varName])
 //  if (varName == 'DICTIONARY') lert(localStorage[varName])
-console.log('305 loadJson: '+varName+' time: '+ stopChrono(globalTimer)+ ' ms')
+console.log('305 loadJson: '+varName+' time: '+ elapsed(globalTimer)+ ' ms')
   }
 
   catch(e){
@@ -490,7 +490,7 @@ function harmonize(ref){
       else lsVal = jsVal
 
       localStorage[varName] = lsVal
-      //console.log('484 - ref='+ref+', calling transmitToCEP: '+varName +' - '+stopChrono(globalTimer) + 'ms')
+      //console.log('484 - ref='+ref+', calling transmitToCEP: '+varName +' - '+elapsed(globalTimer) + 'ms')
       transmitToCEP(varName, jsVal)
     }
 
@@ -504,7 +504,7 @@ function harmonize(ref){
       jsVal = lsToJs(lsVal)
 
       window[varName] = jsVal
-      //console.log('498 - ref='+ref+', calling transmitToCEP: '+varName +' - '+stopChrono(globalTimer) + 'ms')
+      //console.log('498 - ref='+ref+', calling transmitToCEP: '+varName +' - '+elapsed(globalTimer) + 'ms')
       transmitToCEP(varName, jsVal)
     }
 
@@ -621,7 +621,7 @@ function transmitToCEP(varName, val){
 
     JSONCOUNT += 1
 
-// console.log('621 JSONCOUNT: '+JSONCOUNT+' of ' +3600000/INTMS + ' time: '+ stopChrono(globalTimer)+ ' ms')
+// console.log('621 JSONCOUNT: '+JSONCOUNT+' of ' +3600000/INTMS + ' time: '+ elapsed(globalTimer)+ ' ms')
 
 
     if (JSONCOUNT < 3600000/INTMS) return true // 1 per hour, it's only the dictionary
@@ -639,7 +639,7 @@ function transmitToCEP(varName, val){
 
   var scrpt = varName + '=' + cepVal
 
-  //console.log('626 - sending '+varName+' to CEP: ' + stopChrono(globalTimer)+ ' ms')
+  //console.log('626 - sending '+varName+' to CEP: ' + elapsed(globalTimer)+ ' ms')
   CEP.evalScript(scrpt, transmitToCEPCallback)
 }
 
@@ -648,7 +648,7 @@ function transmitToCEP(varName, val){
     error handler for transmitToCEP */
 
 function transmitToCEPCallback(err){
-  //console.log('634 - transmitToCEPCallback: '+stopChrono(globalTimer) + 'ms, returned: '+err)
+  //console.log('634 - transmitToCEPCallback: '+elapsed(globalTimer) + 'ms, returned: '+err)
 }
 
 /*———————————————————————————————————————— lsToJs(lsVal)
