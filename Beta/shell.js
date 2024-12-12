@@ -1,5 +1,7 @@
 
-//:::::::::::::::::::::::::::::::::::::::: start timer
+//:::::::::::::::::::::::::::::::::::::::: setup
+
+//———————————————————————————————————————— start timer
 
 var d = new Date()
 var TIMER = d.getTime()
@@ -13,7 +15,7 @@ function elapse(str){
 
 elapse(`016 - starting Svija Tools`)
 
-//:::::::::::::::::::::::::::::::::::::::: necessary
+//———————————————————————————————————————— necessary
 
 var CEP            = new CSInterface()
 var HOSTENV        = CEP.getHostEnvironment()
@@ -24,7 +26,7 @@ window.addEventListener('error', (event)=>{
       str = `alert("${str}")`
   CEP.evalScript(str) })
 
-//:::::::::::::::::::::::::::::::::::::::: global variables
+//———————————————————————————————————————— global variables
 
 var DEBUG         = true                   // boolean   show alerts as well as console
 
@@ -91,33 +93,34 @@ var allVars = [   // harmonized - same in JS, localStorage and CEP
   'SYNCPATH'
 ]
 
-//:::::::::::::::::::::::::::::::::::::::: development (delete later)
+//———————————————————————————————————————— development (delete later)
 
 var LANG = 'fr'
 
 if (typeof localStorage.LOCAL == 'undefined') LOCAL  =   true
 else                    LOCAL = (localStorage.LOCAL === 'true')
 
-//:::::::::::::::::::::::::::::::::::::::: set defaults
+//———————————————————————————————————————— set defaults
+
+if (typeof localStorage.LSLOADED == 'undefined')
+  localStorage.LSLOADED = 'false'
 
 if (typeof localStorage.BRANCH == 'undefined')
-  BRANCH = BRANCHDEFAULT
+  localStorage.BRANCH = BRANCHDEFAULT
 else
-  BRANCH = parseInt(localStorage.BRANCH)
+  localStorage.BRANCH = parseInt(localStorage.BRANCH)
 
 if (LANG != 'fr') LANG = LANGDEFAULT
 
-elapse(`111 - variables initialized`)
-
-//:::::::::::::::::::::::::::::::::::::::: harmonize variables
+elapse(`115 - variables initialized`)
 
 //———————————————————————————————————————— harmonize variables
 
 harmonize('ls')
-elapse(`115 - harmonized based on localStorage`)
+elapse(`120 - harmonized based on localStorage`)
 
 harmonize('js')
-elapse(`118 - harmonized based on JS`)
+elapse(`123 - harmonized based on JS`)
 
 
 //:::::::::::::::::::::::::::::::::::::::: load panel
@@ -127,9 +130,10 @@ elapse(`118 - harmonized based on JS`)
     loads JSON file with list of dom elements and
     source files used to construct the panel   */
 
-elapse(`127 - fetching manifest`)
+elapse(`133 - loading panel\n————————————————————————————————————————`)
 
-fetchLocal ('manifest', MANIFESTPATH, loadManifest)
+if (!LSLOADED)
+  fetchLocal ('manifest', MANIFESTPATH, loadManifest)
 
 //  if (LOCAL) fetchLocal ('manifest', path, loadManifest)
 //  else       fetchRemote('manifest', path, loadManifest)
@@ -431,19 +435,17 @@ function fetchRemote(which, path, callback) {
 
     https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri
 
-    three params: ID, path, and callback function */
+    takes passthrough identifier, path, and callback function
+
+    no choice of branch — there's only one local branch */
 
 function fetchLocal(passthrough, path, callback){
 
-  path = TOOLSPATH + '/' + dirName(BRANCH) + '/' + path
+  path = TOOLSPATH + '/files/' +  path
 
-//path = path + '?' + Math.random()
-//lert(path)
-
-  fetchL(path)
+  getFile(path)
     .then(function(contents) {
       if (contents != ''){
-//       lert('fetch succeeded\nproceeding to '+callback.name)
          callback(passthrough, contents, path)
       }
       else{ lert('Empty File\n/Local file ' + path) }
@@ -455,11 +457,11 @@ function fetchLocal(passthrough, path, callback){
     })
 }
 
-/*———————————————————————————————————————— fetchL(file)
+/*———————————————————————————————————————— getFile(file)
 
     replaces "fetch" function for server */
 
-function fetchL(file) {
+function getFile(file) {
 
   return new Promise(function(resolve, reject) {
     var rawFile = new XMLHttpRequest()
