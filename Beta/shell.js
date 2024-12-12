@@ -1,6 +1,19 @@
 
-//console.log('002 - shell.js start: ' + elapsed(globalTimer) + ' ms')
-var shellLoaded = true
+//:::::::::::::::::::::::::::::::::::::::: start timer
+
+var TIMER = startTimer()
+
+function startTimer(){
+  var d = new Date()
+  return d.getTime()
+}
+
+function elapsed(t){
+  var d = new Date()
+  return d.getTime() - t
+}
+
+console.log('016: Loading Svija Tools… (shell.js)')
 
 //:::::::::::::::::::::::::::::::::::::::: environmental variables
 
@@ -11,8 +24,10 @@ var CEP           = new CSInterface()
 // resourceBundle = CEP.initResourceBundle();
 var HOSTENV       = CEP.getHostEnvironment()
 
+// error handling
 window.addEventListener('error', (event)=>{ CEP.evalScript('alert("' + event.message + '")') })
 
+// environment
 var AIVERSION     = HOSTENV.appVersion
 var AIVERSIONMIN  = 26.0
 var LANG          = HOSTENV.appUILocale.substr(0,2) // appLocale if this doesn't work
@@ -21,26 +36,28 @@ var ISMAC         = CEP.getOSInformation().substring(0,3) == 'Mac'
 var MYDOCS        = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 var TOOLSPATH     = CEP.getSystemPath(SystemPath.EXTENSION)
 
+// panel control
 var MAXWIDTH      = 240
 var INTMS         = 500            // interval to refresh panel, change color, get project info
 var JSONCOUNT     = 3600000/INTMS   // dictionary updated in CEP after 1 hr
 var SERVER        = 'tools.svija.love'
 
+// values
 var LANGDEFAULT   = 'en'
-var DICTIONARY
-
-var CHANNEL
 var CHNAME0       = 'alpha'
 var CHNAME1       = 'beta'
 var CHNAME2       = 'master'
 
-var INTERFACE     // 0-3, set by js/panelManager.js
-var ISSVIJA
-var LASTPATH
-var LOCAL
-var MANIFEST
-var SITEURL
-var SYNCPATH
+// empty
+var CHANNEL			// integer    0, 1, 2 alpha beta master
+var DICTIONARY    // JSON       english and french traductions
+var INTERFACE     // integer    0-3, set by js/panelManager.js // illustrator color
+var ISSVIJA       // boolean    if fromtmost doc is a svija page (in a SYNC folder)
+var LASTPATH      // string     last file path for a svija page
+var LOCAL         // boolean    are we loading from local or not?
+var MANIFEST      // JSON       with all DOM elements
+var SITEURL       // string     url of most recent svija site
+var SYNCPATH      // string     absolute path to SYNC folder
 
 //:::::::::::::::::::::::::::::::::::::::: set defaults
 
@@ -52,7 +69,7 @@ else                    LOCAL = (localStorage.LOCAL === 'true')
 
 if (LANG != 'fr') LANG = LANGDEFAULT
 
-//console.log('043 - default values set: ' + elapsed(globalTimer) + ' ms')
+//console.log('043 - default values set: ' + elapsed(TIMER) + ' ms')
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
@@ -97,13 +114,20 @@ var allVars = [
     */
 
 harmonize('ls')  // get any values from localStorage
-console.log('094 - harmonized with localStorage: ' + elapsed(globalTimer) + ' ms')
+console.log('094 - harmonized with localStorage: ' + elapsed(TIMER) + ' ms')
 
 harmonize('js')  // and any remaining values from javascript
-console.log('097 - harmonized with JS: ' + elapsed(globalTimer) + ' ms')
+console.log('097 - harmonized with JS: ' + elapsed(TIMER) + ' ms')
 
 
 //:::::::::::::::::::::::::::::::::::::::: called by body :::::::::::::::::::::::::::::::::::
+
+console.log('032BODY - fetching manifest: ' + elapsed(TIMER) + ' ms')
+
+var path = 'json/manifest.json'
+
+if (LOCAL) fetchLocal ('manifest', path, loadManifest)
+else       fetchRemote('manifest', path, loadManifest)
 
 /*———————————————————————————————————————— technical description 
 
@@ -139,7 +163,7 @@ function loadManifest(unused, str, path){
 
   MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
 
-  //console.log('198 - manifest loaded: ' + elapsed(globalTimer) + ' ms')
+  //console.log('198 - manifest loaded: ' + elapsed(TIMER) + ' ms')
   loadLibrary()
 }
 
@@ -182,7 +206,7 @@ function loadLibrary(){
         else fetchRemote(passthrough, path, checkinScript)
 
   }
-  //console.log('243 - library now loading: ' + elapsed(globalTimer) + ' ms')
+  //console.log('243 - library now loading: ' + elapsed(TIMER) + ' ms')
 }
 
 /*———————————————————————————————————————— 3. checkinScript(manifest)
@@ -218,7 +242,7 @@ function activateLibrary(){
   var notYetLoaded =  MANIFEST.filter(record=> record.loaded==false)
   if (notYetLoaded.length > 0){ return "not yet loaded" }
 
-  //console.log('279 - library now activating: ' + elapsed(globalTimer) + ' ms')
+  //console.log('279 - library now activating: ' + elapsed(TIMER) + ' ms')
 
   for (var x=1; x<MANIFEST.length; x++){
 
@@ -239,7 +263,7 @@ function activateLibrary(){
   else var rep = 'remote server'
 
   harmonize('js')
-  //console.log('300 - ' + channelName(CHANNEL) + translate('channel loaded') + rep + ': ' + elapsed(globalTimer) + ' ms')
+  //console.log('300 - ' + channelName(CHANNEL) + translate('channel loaded') + rep + ': ' + elapsed(TIMER) + ' ms')
 }
 
 
@@ -309,7 +333,7 @@ function loadJson(scriptID, contents){
     window[varName] = JSON.parse(contents).filter(record => record.build != 'fin' && typeof record.name == 'undefined')
     localStorage[varName] = JSON.stringify(window[varName])
 //  if (varName == 'DICTIONARY') lert(localStorage[varName])
-console.log('305 loadJson: '+varName+' time: '+ elapsed(globalTimer)+ ' ms')
+console.log('305 loadJson: '+varName+' time: '+ elapsed(TIMER)+ ' ms')
   }
 
   catch(e){
@@ -490,7 +514,7 @@ function harmonize(ref){
       else lsVal = jsVal
 
       localStorage[varName] = lsVal
-      //console.log('484 - ref='+ref+', calling transmitToCEP: '+varName +' - '+elapsed(globalTimer) + 'ms')
+      //console.log('484 - ref='+ref+', calling transmitToCEP: '+varName +' - '+elapsed(TIMER) + 'ms')
       transmitToCEP(varName, jsVal)
     }
 
@@ -504,7 +528,7 @@ function harmonize(ref){
       jsVal = lsToJs(lsVal)
 
       window[varName] = jsVal
-      //console.log('498 - ref='+ref+', calling transmitToCEP: '+varName +' - '+elapsed(globalTimer) + 'ms')
+      //console.log('498 - ref='+ref+', calling transmitToCEP: '+varName +' - '+elapsed(TIMER) + 'ms')
       transmitToCEP(varName, jsVal)
     }
 
@@ -621,7 +645,7 @@ function transmitToCEP(varName, val){
 
     JSONCOUNT += 1
 
-// console.log('621 JSONCOUNT: '+JSONCOUNT+' of ' +3600000/INTMS + ' time: '+ elapsed(globalTimer)+ ' ms')
+// console.log('621 JSONCOUNT: '+JSONCOUNT+' of ' +3600000/INTMS + ' time: '+ elapsed(TIMER)+ ' ms')
 
 
     if (JSONCOUNT < 3600000/INTMS) return true // 1 per hour, it's only the dictionary
@@ -639,7 +663,7 @@ function transmitToCEP(varName, val){
 
   var scrpt = varName + '=' + cepVal
 
-  //console.log('626 - sending '+varName+' to CEP: ' + elapsed(globalTimer)+ ' ms')
+  //console.log('626 - sending '+varName+' to CEP: ' + elapsed(TIMER)+ ' ms')
   CEP.evalScript(scrpt, transmitToCEPCallback)
 }
 
@@ -648,7 +672,7 @@ function transmitToCEP(varName, val){
     error handler for transmitToCEP */
 
 function transmitToCEPCallback(err){
-  //console.log('634 - transmitToCEPCallback: '+elapsed(globalTimer) + 'ms, returned: '+err)
+  //console.log('634 - transmitToCEPCallback: '+elapsed(TIMER) + 'ms, returned: '+err)
 }
 
 /*———————————————————————————————————————— lsToJs(lsVal)

@@ -17,7 +17,7 @@ else showMore()
 /*———————————————————————————————————————— parameters */
 
 var objId    = 'linkMore'
-var objLabel = '＋ more'
+var objLabel = translate('more')
 
 /*———————————————————————————————————————— configure button */
 
@@ -45,7 +45,7 @@ obj.addEventListener('mouseup', (evn) => {
 /*———————————————————————————————————————— parameters */
 
 var objId    = 'linkLess'
-var objLabel = '— less'
+var objLabel = translate('less')
 
 /*———————————————————————————————————————— configure button */
 
