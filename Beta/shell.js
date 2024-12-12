@@ -13,73 +13,55 @@ function elapsed(t){
   return d.getTime() - t
 }
 
-console.log('016: Loading Svija Tools… (shell.js)')
+console.log('016¬ starting Svija Tools (shell.js)')
 
-//:::::::::::::::::::::::::::::::::::::::: environmental variables
+//:::::::::::::::::::::::::::::::::::::::: necessary
 
-var DEBUG         = true
-var TOOLSVERSION  = '1.0.7'
+var CEP            = new CSInterface()
+var HOSTENV        = CEP.getHostEnvironment()
+//r resourceBundle = CEP.initResourceBundle();
 
-var CEP           = new CSInterface()
-// resourceBundle = CEP.initResourceBundle();
-var HOSTENV       = CEP.getHostEnvironment()
+window.addEventListener('error', (event)=>{
+  var str = encodeURI(event.message)
+      str = `alert("${str}")`
+  CEP.evalScript(str) })
 
-// error handling
-window.addEventListener('error', (event)=>{ CEP.evalScript('alert("' + event.message + '")') })
+//:::::::::::::::::::::::::::::::::::::::: global variables
 
-// environment
+var DEBUG         = true                 // boolean   show alerts as well as console
+
+var TOOLSVERSION  = '1.0.7'              // string    shown in branch picker panel
+var AIVERSIONMIN  = 26                   // number    required for xref links
+
+var SERVER        = 'tools.svija.love'   // string    server to get remote code
+var MAXWIDTH      = 240                  // number    width of panel
+var INTMS         = 500                  // number    interrupt interval to refresh panel etc.
+var BRANCHDEFAULT = 2                    // number    default branch (master)
+var LANGDEFAULT   = 'en'                 // string    2-letter abbreviation
+
+var BRANCHNAME0   = 'alpha'              // string    used with BRANCH to derive folder names
+var BRANCHNAME1   = 'beta'
+var BRANCHNAME2   = 'master'
+
 var AIVERSION     = HOSTENV.appVersion
-var AIVERSIONMIN  = 26.0
-var LANG          = HOSTENV.appUILocale.substr(0,2) // appLocale if this doesn't work
-var LANG          = 'fr'
+var LANG          = HOSTENV.appUILocale.substr(0,2) // or appLocale
 var ISMAC         = CEP.getOSInformation().substring(0,3) == 'Mac'
 var MYDOCS        = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 var TOOLSPATH     = CEP.getSystemPath(SystemPath.EXTENSION)
 
-// panel control
-var MAXWIDTH      = 240
-var INTMS         = 500            // interval to refresh panel, change color, get project info
-var JSONCOUNT     = 3600000/INTMS   // dictionary updated in CEP after 1 hr
-var SERVER        = 'tools.svija.love'
-
-// values
-var LANGDEFAULT   = 'en'                 // string   2-letter abbreviation
-
-// which branch is being used?
-var BRANCH			// integer    0, 1, 2 alpha beta master
-var BRANCHNAME0       = 'alpha'              // string   folder names
-var BRANCHNAME1       = 'beta'
-var BRANCHNAME2       = 'master'
-
-// empty
-var DICTIONARY    // JSON       english and french traductions
-var INTERFACE     // integer    0-3, set by js/panelManager.js // illustrator color
+var BRANCH			// number     0, 1, 2 alpha beta master
+var DICTIONARY    // object     JSON english and french traductions
+var INTERFACE     // number     0-3, set by js/panelManager.js // illustrator color
 var ISSVIJA       // boolean    if fromtmost doc is a svija page (in a SYNC folder)
+var JSONCOUNT     // number     counter, augmented by 1 with 
 var LASTPATH      // string     last file path for a svija page
 var LOCAL         // boolean    are we loading from local or not?
-var MANIFEST      // JSON       with all DOM elements
+var LSLOADED      // boolean    localStorage version of panel is available
+var MANIFEST      // object     JSON with all DOM elements
 var SITEURL       // string     url of most recent svija site
 var SYNCPATH      // string     absolute path to SYNC folder
 
-//:::::::::::::::::::::::::::::::::::::::: set defaults
-
-if (typeof localStorage.BRANCH == 'undefined') BRANCH = 2
-else                    BRANCH  = parseInt(localStorage.BRANCH)
-
-if (typeof localStorage.LOCAL == 'undefined') LOCAL  =   true
-else                    LOCAL = (localStorage.LOCAL === 'true')
-
-if (LANG != 'fr') LANG = LANGDEFAULT
-
-//console.log('043 - default values set: ' + elapsed(TIMER) + ' ms')
-
-//:::::::::::::::::::::::::::::::::::::::: harmonize variables
-
-/*———————————————————————————————————————— declare harmonized variables
-
-    same in JS, localStorage and CEP */
-
-var allVars = [
+var allVars = [   // harmonized - same in JS, localStorage and CEP
   'DEBUG',
   'TOOLSVERSION',
 
@@ -94,7 +76,6 @@ var allVars = [
   'INTMS',
   'SERVER',
 
-  'LANGDEFAULT',
   'DICTIONARY',
 
   'BRANCH',
@@ -110,6 +91,26 @@ var allVars = [
   'SITEURL',
   'SYNCPATH'
 ]
+
+//:::::::::::::::::::::::::::::::::::::::: development (delete later)
+
+var LANG = 'fr'
+
+if (typeof localStorage.LOCAL == 'undefined') LOCAL  =   true
+else                    LOCAL = (localStorage.LOCAL === 'true')
+
+//:::::::::::::::::::::::::::::::::::::::: set defaults
+
+if (typeof localStorage.BRANCH == 'undefined')
+  BRANCH = BRANCHDEFAULT
+else
+  BRANCH = parseInt(localStorage.BRANCH)
+
+if (LANG != 'fr') LANG = LANGDEFAULT
+
+console.log('111¬ variables initialized (shell.js)')
+
+//:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
 /*———————————————————————————————————————— harmonize variables
 
@@ -642,13 +643,9 @@ function transmitToCEP(varName, val){
   else if (typeof val == 'object'){                    // JSON
     if (varName == 'MANIFEST') return true
 
-/// INTMS         = 5000            // interval to refresh panel, change color, get project info
-/// JSONCOUNT     = 3600000/INTMS   // dictionary updated in CEP after 1 hr
+    if (typeof JSONCOUNT == 'undefined') JSONCOUNT = 3600000/INTMS
 
     JSONCOUNT += 1
-
-// console.log('621 JSONCOUNT: '+JSONCOUNT+' of ' +3600000/INTMS + ' time: '+ elapsed(TIMER)+ ' ms')
-
 
     if (JSONCOUNT < 3600000/INTMS) return true // 1 per hour, it's only the dictionary
 
