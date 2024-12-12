@@ -1,19 +1,17 @@
 
 //:::::::::::::::::::::::::::::::::::::::: start timer
 
-var TIMER = startTimer()
+var d = new Date()
+var TIMER = d.getTime()
 
-function startTimer(){
+function elapse(str){
   var d = new Date()
-  return d.getTime()
+  var t = d.getTime() - TIMER
+  str = fillDigits(t) + ' μ ' + str
+  console.log(str)
 }
 
-function elapsed(t){
-  var d = new Date()
-  return d.getTime() - t
-}
-
-console.log('016¬ starting Svija Tools (shell.js)')
+elapse(`016 - starting Svija Tools`)
 
 //:::::::::::::::::::::::::::::::::::::::: necessary
 
@@ -28,18 +26,19 @@ window.addEventListener('error', (event)=>{
 
 //:::::::::::::::::::::::::::::::::::::::: global variables
 
-var DEBUG         = true                 // boolean   show alerts as well as console
+var DEBUG         = true                   // boolean   show alerts as well as console
 
-var TOOLSVERSION  = '1.0.7'              // string    shown in branch picker panel
-var AIVERSIONMIN  = 26                   // number    required for xref links
+var TOOLSVERSION  = '1.0.7'                // string    shown in branch picker panel
+var AIVERSIONMIN  = 26                     // number    required for xref links
 
-var SERVER        = 'tools.svija.love'   // string    server to get remote code
-var MAXWIDTH      = 240                  // number    width of panel
-var INTMS         = 500                  // number    interrupt interval to refresh panel etc.
-var BRANCHDEFAULT = 2                    // number    default branch (master)
-var LANGDEFAULT   = 'en'                 // string    2-letter abbreviation
+var SERVER        = 'tools.svija.love'     // string    server to get remote code
+var MAXWIDTH      = 240                    // number    width of panel
+var INTMS         = 500                    // number    interrupt interval to refresh panel etc.
+var BRANCHDEFAULT = 2                      // number    default branch (master)
+var LANGDEFAULT   = 'en'                   // string    2-letter abbreviation
+var MANIFESTPATH  =  'json/manifest.json'  // string  where manifest JSON is stored
 
-var BRANCHNAME0   = 'alpha'              // string    used with BRANCH to derive folder names
+var BRANCHNAME0   = 'alpha'                // string    used with BRANCH to derive folder names
 var BRANCHNAME1   = 'beta'
 var BRANCHNAME2   = 'master'
 
@@ -108,29 +107,32 @@ else
 
 if (LANG != 'fr') LANG = LANGDEFAULT
 
-console.log('111¬ variables initialized (shell.js)')
+elapse(`111 - variables initialized`)
 
 //:::::::::::::::::::::::::::::::::::::::: harmonize variables
 
-/*———————————————————————————————————————— harmonize variables
+//———————————————————————————————————————— harmonize variables
 
-    */
+harmonize('ls')
+elapse(`115 - harmonized based on localStorage`)
 
-harmonize('ls')  // get any values from localStorage
-console.log('094 - harmonized with localStorage: ' + elapsed(TIMER) + ' ms')
-
-harmonize('js')  // and any remaining values from javascript
-console.log('097 - harmonized with JS: ' + elapsed(TIMER) + ' ms')
+harmonize('js')
+elapse(`118 - harmonized based on JS`)
 
 
-//:::::::::::::::::::::::::::::::::::::::: called by body :::::::::::::::::::::::::::::::::::
+//:::::::::::::::::::::::::::::::::::::::: load panel
 
-console.log('032BODY - fetching manifest: ' + elapsed(TIMER) + ' ms')
+/*———————————————————————————————————————— load manifest locally
 
-var path = 'json/manifest.json'
+    loads JSON file with list of dom elements and
+    source files used to construct the panel   */
 
-if (LOCAL) fetchLocal ('manifest', path, loadManifest)
-else       fetchRemote('manifest', path, loadManifest)
+elapse(`127 - fetching manifest`)
+
+fetchLocal ('manifest', MANIFESTPATH, loadManifest)
+
+//  if (LOCAL) fetchLocal ('manifest', path, loadManifest)
+//  else       fetchRemote('manifest', path, loadManifest)
 
 /*———————————————————————————————————————— technical description 
 
@@ -166,7 +168,7 @@ function loadManifest(unused, str, path){
 
   MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
 
-  //console.log('198 - manifest loaded: ' + elapsed(TIMER) + ' ms')
+  //elapse(`198 - manifest loaded')
   loadLibrary()
 }
 
@@ -209,7 +211,7 @@ function loadLibrary(){
         else fetchRemote(passthrough, path, checkinScript)
 
   }
-  //console.log('243 - library now loading: ' + elapsed(TIMER) + ' ms')
+  //elapse(`243 - library now loading: ' + elapse(TIMER) + ' ms')
 }
 
 /*———————————————————————————————————————— 3. checkinScript(manifest)
@@ -228,7 +230,7 @@ function checkinScript(identifier, contents, path){
   if (manifestRefs.length>0){
     localStorage[identifier] = contents
     MANIFEST.filter(record=> record.name==nameParts[0] && record.ext==nameParts[2])[0]['loaded'] = true
-//  //console.log('253: '+identifier+' loaded')
+//  //elapse(`253: '+identifier+' loaded')
   }
   else
     lert('Not found: '+nameParts[0])
@@ -245,7 +247,7 @@ function activateLibrary(){
   var notYetLoaded =  MANIFEST.filter(record=> record.loaded==false)
   if (notYetLoaded.length > 0){ return "not yet loaded" }
 
-  //console.log('279 - library now activating: ' + elapsed(TIMER) + ' ms')
+  //elapse(`279 - library now activating: ' + elapse(TIMER) + ' ms')
 
   for (var x=1; x<MANIFEST.length; x++){
 
@@ -266,7 +268,7 @@ function activateLibrary(){
   else var rep = 'remote server'
 
   harmonize('js')
-  //console.log('300 - ' + branchName(BRANCH) + translate('branch loaded') + rep + ': ' + elapsed(TIMER) + ' ms')
+  //elapse(`300 - ' + branchName(BRANCH) + translate('branch loaded') + rep + ': ' + elapse(TIMER) + ' ms')
 }
 
 
@@ -336,7 +338,7 @@ function loadJson(scriptID, contents){
     window[varName] = JSON.parse(contents).filter(record => record.build != 'fin' && typeof record.name == 'undefined')
     localStorage[varName] = JSON.stringify(window[varName])
 //  if (varName == 'DICTIONARY') lert(localStorage[varName])
-console.log('305 loadJson: '+varName+' time: '+ elapsed(TIMER)+ ' ms')
+  elapse(`305 - loadJson(${varName})`)
   }
 
   catch(e){
@@ -350,7 +352,7 @@ console.log('305 loadJson: '+varName+' time: '+ elapsed(TIMER)+ ' ms')
     */
 
 function loadJsx(scriptID, contents){
-  console.log('324 shell, loading jsx '+scriptID)
+  elapse(`348 - loadJsx(${scriptID})`)
   CEP.evalScript(contents)
 }
 
@@ -517,7 +519,7 @@ function harmonize(ref){
       else lsVal = jsVal
 
       localStorage[varName] = lsVal
-      //console.log('484 - ref='+ref+', calling transmitToCEP: '+varName +' - '+elapsed(TIMER) + 'ms')
+      //elapse(`484 - ref='+ref+', calling transmitToCEP: '+varName +' - '+elapse(TIMER) + 'ms')
       transmitToCEP(varName, jsVal)
     }
 
@@ -531,7 +533,7 @@ function harmonize(ref){
       jsVal = lsToJs(lsVal)
 
       window[varName] = jsVal
-      //console.log('498 - ref='+ref+', calling transmitToCEP: '+varName +' - '+elapsed(TIMER) + 'ms')
+      //elapse(`498 - ref='+ref+', calling transmitToCEP: '+varName +' - '+elapse(TIMER) + 'ms')
       transmitToCEP(varName, jsVal)
     }
 
@@ -662,7 +664,7 @@ function transmitToCEP(varName, val){
 
   var scrpt = varName + '=' + cepVal
 
-  //console.log('626 - sending '+varName+' to CEP: ' + elapsed(TIMER)+ ' ms')
+  //elapse(`626 - sending '+varName+' to CEP: ' + elapse(TIMER)+ ' ms')
   CEP.evalScript(scrpt, transmitToCEPCallback)
 }
 
@@ -671,7 +673,7 @@ function transmitToCEP(varName, val){
     error handler for transmitToCEP */
 
 function transmitToCEPCallback(err){
-  //console.log('634 - transmitToCEPCallback: '+elapsed(TIMER) + 'ms, returned: '+err)
+  //elapse(`634 - transmitToCEPCallback: '+elapse(TIMER) + 'ms, returned: '+err)
 }
 
 /*———————————————————————————————————————— lsToJs(lsVal)
@@ -680,7 +682,7 @@ function transmitToCEPCallback(err){
 
 function lsToJs(lsVal){
   if (typeof lsVal == undefined){
-    //console.log('610: undefined lsVal')
+    //elapse(`610: undefined lsVal')
     return ''
   }
 
@@ -703,6 +705,16 @@ function lsToJs(lsVal){
     var jsVal  = lsVal
 
   return jsVal
+}
+
+/*———————————————————————————————————————— fillDigits(i)
+
+    returns 3-digit number or string */
+
+function fillDigits(i){
+  if (i > 99) return        i
+  if (i > 9 ) return  '0' + i
+              return '00' + i
 }
 
 

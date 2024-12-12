@@ -43,7 +43,7 @@ function progBarUpdate(s){
   s += x
 
   var cmd = 'progBarUpdate(' + s + ')'
-  console.log(cmd + ' ' + elapsed(TIMER)+ ' ms')
+  elapsed(cmd)
   CEP.evalScript(cmd)
   
   if (s<100) setTimeout(function(){
