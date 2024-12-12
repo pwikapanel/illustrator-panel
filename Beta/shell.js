@@ -43,13 +43,15 @@ var JSONCOUNT     = 3600000/INTMS   // dictionary updated in CEP after 1 hr
 var SERVER        = 'tools.svija.love'
 
 // values
-var LANGDEFAULT   = 'en'
-var CHNAME0       = 'alpha'
-var CHNAME1       = 'beta'
-var CHNAME2       = 'master'
+var LANGDEFAULT   = 'en'                 // string   2-letter abbreviation
+
+// which branch is being used?
+var BRANCH			// integer    0, 1, 2 alpha beta master
+var BRANCHNAME0       = 'alpha'              // string   folder names
+var BRANCHNAME1       = 'beta'
+var BRANCHNAME2       = 'master'
 
 // empty
-var CHANNEL			// integer    0, 1, 2 alpha beta master
 var DICTIONARY    // JSON       english and french traductions
 var INTERFACE     // integer    0-3, set by js/panelManager.js // illustrator color
 var ISSVIJA       // boolean    if fromtmost doc is a svija page (in a SYNC folder)
@@ -61,8 +63,8 @@ var SYNCPATH      // string     absolute path to SYNC folder
 
 //:::::::::::::::::::::::::::::::::::::::: set defaults
 
-if (typeof localStorage.CHANNEL == 'undefined') CHANNEL = 2
-else                    CHANNEL  = parseInt(localStorage.CHANNEL)
+if (typeof localStorage.BRANCH == 'undefined') BRANCH = 2
+else                    BRANCH  = parseInt(localStorage.BRANCH)
 
 if (typeof localStorage.LOCAL == 'undefined') LOCAL  =   true
 else                    LOCAL = (localStorage.LOCAL === 'true')
@@ -95,10 +97,10 @@ var allVars = [
   'LANGDEFAULT',
   'DICTIONARY',
 
-  'CHANNEL',
-  'CHNAME0',
-  'CHNAME1',
-  'CHNAME2',
+  'BRANCH',
+  'BRANCHNAME0',
+  'BRANCHNAME1',
+  'BRANCHNAME2',
 
   'INTERFACE',
   'ISSVIJA',
@@ -141,7 +143,7 @@ else       fetchRemote('manifest', path, loadManifest)
 
 /*———————————————————————————————————————— 1. loadManifest(scriptID, str, path)
 
-    loads the manifest for the active channel into the global variable
+    loads the manifest for the active branch into the global variable
 
         MANIFEST
 
@@ -263,7 +265,7 @@ function activateLibrary(){
   else var rep = 'remote server'
 
   harmonize('js')
-  //console.log('300 - ' + channelName(CHANNEL) + translate('channel loaded') + rep + ': ' + elapsed(TIMER) + ' ms')
+  //console.log('300 - ' + branchName(BRANCH) + translate('branch loaded') + rep + ': ' + elapsed(TIMER) + ' ms')
 }
 
 
@@ -393,7 +395,7 @@ function fetchScript(bld, identifier, src, scriptType){
 
 function fetchRemote(which, path, callback) {
 
-  path = 'https://' + SERVER + '/' + dirName(CHANNEL) + '/' + path
+  path = 'https://' + SERVER + '/' + dirName(BRANCH) + '/' + path
   path = path + '?' + Math.random()
 
   fetch(path)
@@ -430,7 +432,7 @@ function fetchRemote(which, path, callback) {
 
 function fetchLocal(passthrough, path, callback){
 
-  path = TOOLSPATH + '/' + dirName(CHANNEL) + '/' + path
+  path = TOOLSPATH + '/' + dirName(BRANCH) + '/' + path
 
 //path = path + '?' + Math.random()
 //lert(path)
@@ -598,12 +600,12 @@ function lert(msg){
   CEP.evalScript('alert("' + msg + '")')
 }
 
-/*———————————————————————————————————————— channelName()
+/*———————————————————————————————————————— branchName()
 
                                                */
 
-function channelName(c){
-  return window['CHNAME' + c]
+function branchName(c){
+  return window['BRANCHNAME' + c]
 }
 
 /*———————————————————————————————————————— dirName()
@@ -611,7 +613,7 @@ function channelName(c){
                                                */
 
 function dirName(c){
-  return channelName(c).toLowerCase()
+  return branchName(c).toLowerCase()
 }
 
 /*———————————————————————————————————————— transmitToCEP(jsVal)

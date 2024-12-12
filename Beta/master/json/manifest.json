@@ -66,8 +66,8 @@
 { "build":   0, "id":           "","name":            "bottomBar" ,"ext": "css" , "loaded": false  },
 { "build":   0, "id":  "bottomBar","name":            "bottomBar" ,"ext": "html", "loaded": false  },
 { "build":   0, "id":           "","name":                 "help" ,"ext": "js"  , "loaded": false  },
-{ "build":   0, "id":           "","name":              "channel" ,"ext": "jsx" , "loaded": false  },
-{ "build":   0, "id":           "","name":              "channel" ,"ext": "js"  , "loaded": false  },
+{ "build":   0, "id":           "","name":              "branch" ,"ext": "jsx" , "loaded": false  },
+{ "build":   0, "id":           "","name":              "branch" ,"ext": "js"  , "loaded": false  },
 { "build":   0, "id":           "","name":                 "more" ,"ext": "js"  , "loaded": false  },
 
 { "build":   0, "id":           "","name":               "reopen" ,"ext": "jsx" , "loaded": false  },

@@ -1,9 +1,9 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: channel.js */
+/*:::::::::::::::::::::::::::::::::::::::: branch.js */
 
 /*———————————————————————————————————————— parameters */
 
-var objId    = 'linkChannel'
+var objId    = 'linkBranch'
 
     // ⚙ 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋 🔅 ★
 
@@ -24,26 +24,26 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
   var extensionPath = CEP.getSystemPath(SystemPath.EXTENSION)
-  var cmd = 'channelDialog("' + extensionPath + '", ' +  CHANNEL + ')'
-  CEP.evalScript(cmd, setChannel)
+  var cmd = 'branchDialog("' + extensionPath + '", ' +  BRANCH + ')'
+  CEP.evalScript(cmd, setBranch)
 })
 
-/*———————————————————————————————————————— setChannel(channel)
+/*———————————————————————————————————————— setBranch(branch)
 
-    receives a string from channel.jsx */
+    receives a string from branch.jsx */
 
-function setChannel(str){
+function setBranch(str){
 
   var bits    = str.split('|')
-  var channel = bits[0]
+  var branch = bits[0]
   var local   = (bits[1] === 'true')
 
-  if (typeof channel == 'undefined') return true
-  if (       channel == ''         ) return true
-  if ( isNaN(channel)              ) return true // notNumber, notANumber not a number
-  if (   0 > channel || 2 < channel) return true
+  if (typeof branch == 'undefined') return true
+  if (       branch == ''         ) return true
+  if ( isNaN(branch)              ) return true // notNumber, notANumber not a number
+  if (   0 > branch || 2 < branch) return true
 
-  switch(channel){
+  switch(branch){
     case '0':
     case '1':
     case '2':
@@ -52,14 +52,14 @@ function setChannel(str){
 
       localStorage.clear();
 
-      localStorage.CHANNEL      = channel
+      localStorage.BRANCH      = branch
       localStorage.LOCAL        = local
       localStorage.accentBright = ab
       localStorage.accentDim    = ad
       location.reload(); break
 
     default :
-      lert('Invalid channel: ' + channel);
+      lert('Invalid branch: ' + branch);
   }
 }
 
