@@ -1,4 +1,42 @@
 
+//:::::::::::::::::::::::::::::::::::::::: shell.js
+
+// license
+// notes
+
+/*
+
+    overall
+
+    the panel is constructed by using the contents of localStorage
+    variables to add elements to the DOM.
+
+    an object called MANIFEST contains a list of all the elements
+    including name, type (ext) and ID
+
+    elements are loaded in the order in which the are present in
+    MANIFEST, and they ARE sensitive to the correct order
+
+    ————————————————————————————————————————
+
+    first run
+
+    if there are no DOM elements in localStorage (first run), then
+    MANIFEST is loaded from a local file.
+
+    using MANIFEST, all other local files are loaded into localStorage
+    variables. When the process is complete, the panel is restarted
+
+    ————————————————————————————————————————
+
+    updating
+
+    after a given delay, the program checks for updates according to
+    the branch chosen by the user (gear icon)
+
+ */
+
+
 //:::::::::::::::::::::::::::::::::::::::: setup
 
 // list of envirlnemtal variables to keep when restarting (accent color, build etc.)
@@ -116,14 +154,6 @@ if (LANG != 'fr') LANG = LANGDEFAULT
 
 elapse(`115 - variables initialized`)
 
-//———————————————————————————————————————— harmonize variables
-
-harmonize('ls')
-elapse(`120 - harmonized based on localStorage`)
-
-harmonize('js')
-elapse(`123 - harmonized based on JS`)
-
 
 //:::::::::::::::::::::::::::::::::::::::: load panel
 
@@ -132,19 +162,15 @@ elapse(`123 - harmonized based on JS`)
     loads JSON file with list of dom elements and
     source files used to construct the panel   */
 
-elapse(`133 - loading panel\n————————————————————————————————————————`)
-
 if (localStorage.LSLOADED != 'true')
-  getFileLocal (true, MANIFESTPATH, loadManifest)
-else
-  lert('localStorage loading not implemented')
+  getLocalFile (true, MANIFESTPATH, loadManifest)
+
+else loadToDom()
 
 
-//:::::::::::::::::::::::::::::::::::::::: loading functions
+//:::::::::::::::::::::::::::::::::::::::: load to localStorage
 
-// delete manifest once loaded
-
-/*———————————————————————————————————————— technical description 
+/*———————————————————————————————————————— logic flow
 
     runs                loads           how       calls
 
@@ -162,6 +188,7 @@ else
     { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
 
 function loadManifest(local, str, path){
+  elapse(`157 - loading localStorage`)
 
   if (str == '') return true
 
@@ -196,13 +223,13 @@ function loadFiles(local){
     var LSref = MANIFEST[x]['name'] + '_' + MANIFEST[x]['build'] + '_' + MANIFEST[x]['ext']
     var  path = MANIFEST[x]['ext' ] + '/' + MANIFEST[x]['name' ] + '.' + MANIFEST[x]['ext']
 
-    if (local) getFileLocal (x, path, fileToManifest)
-    else       getFileRemote(x, path, fileToManifest)
+    if (local) getLocalFile (x, path, fileToManifest)
+    else       getRemoteFile(x, path, fileToManifest)
 
   }
 
-  elapse(`205 - loading source files`)
-  console.groupCollapsed('loaded files')
+  elapse(`193 - loading source files...`)
+  console.groupCollapsed('[source file list]')
 }
 
 /*———————————————————————————————————————— 3. fileToManifest(manifest)
@@ -236,9 +263,9 @@ function manifestToLS(){
     return "not yet loaded"
 
   console.groupEnd()
-  elapse(`239 - source files loaded`)
+  elapse(`239 - source files loaded; add to LS...`)
 
-  console.groupCollapsed(`files added to LS`)
+  console.groupCollapsed(`[LS variable list]`)
   for (var x=1; x<MANIFEST.length; x++){
     var LSref = makeLSref(MANIFEST[x])
     localStorage[LSref] = MANIFEST[x].contents
@@ -250,13 +277,12 @@ function manifestToLS(){
   localStorage.MANIFEST = JSON.stringify(MANIFEST)
   localStorage.LSLOADED = 'true'
 
-  elapse(`253 - localStorage loaded, restarting`)
-
   console.groupEnd()
-  elapse('291 - program ended')
+
+  elapse(`244 - variables added to LS; ready to reload`)
 
   if (DEBUG){
-    elapse(`259 - DEBUG is on`)
+    //elapse(`260 - DEBUG is on`)
     CEP.evalScript('confirm("Reload?\\nlocalStorage loaded", "zoo")', locationReload)
   }
 
@@ -264,59 +290,58 @@ function manifestToLS(){
 }
 
 function locationReload(str){
-  elapse(`270 - value returned: ${str}`)
   
   // return=false, escape=true
   if (str=='false') location.reload()
-  else  elapse(`271 - reload canceled by user`)
+  else  elapse(`258 - reload canceled`)
 }
 
-/*———————————————————————————————————————— 4. manifestToLS() PREVIOUS
 
-    loads values from temp object into localStorage */
+//:::::::::::::::::::::::::::::::::::::::: load to DOM
 
-//  function xilesToLocalStorage(){
-//  
-//    var notYetLoaded =  MANIFEST.filter(record=> record.loaded==false)
-//    if (notYetLoaded.length > 0){ return "not yet loaded" }
-//  
-//    console.groupEnd()
-//    elapse(`243 - loading was successful; activating library`)
-//  
-//    for (var x=1; x<MANIFEST.length; x++){
-//  
-//      var identifier = MANIFEST[x]['name'] +'_'+ MANIFEST[x]['build'] +'_'+ MANIFEST[x]['ext']
-//  
-//      if (MANIFEST[x]['id'] != '')
-//        var objID = MANIFEST[x]['id']
-//      else
-//        var objID = MANIFEST[x]['name'] + capitalize(MANIFEST[x]['ext'])
-//  
-//      var functionName = 'load' + capitalize(MANIFEST[x]['ext'])
-//      window[functionName](objID, localStorage[identifier])
-//    }
-//  
-//    localStorage.MANIFEST = JSON.stringify(MANIFEST)
-//  
-//    if (LOCAL) var rep = 'local source'
-//    else var rep = 'remote server'
-//  
-//    harmonize('js')
-//    //elapse(`300 - ' + branchName(BRANCH) + translate('branch loaded') + rep + ': ' + elapse(TIMER) + ' ms')
-//  }
-//  
+/*———————————————————————————————————————— loadToDom()
 
+   using MANIFEST list of names, extensions and IDs,
+   gets LS values and installs them to the DOM */
 
-// need to check for doubles (accentcolor)
-// db functions to handle filters
+function loadToDom(){
+
+  elapse(`268 - loading to DOM`)
+
+  harmonize('ls')
+  elapse(`268 - harmonized based on localStorage`)
+  
+  harmonize('js')
+  elapse(`271 - harmonized based on JS`)
+
+  elapse(`273 - adding elements to DOM...`)
+  console.groupCollapsed('[element list]')
+
+  for (var x=1; x<MANIFEST.length; x++){
+
+    var LSref = makeLSref(MANIFEST[x])
+
+    if (MANIFEST[x]['id'] != '') var objID = MANIFEST[x]['id']
+    else var objID = MANIFEST[x]['name'] + capitalize(MANIFEST[x]['ext'])
+
+    elapse(`284 - installing localStorage.${LSref} with ID ${objID}`)
+
+    var functionName = MANIFEST[x]['ext'] + 'ToDOM'
+    window[functionName](objID, localStorage[LSref])
+  }
+
+  console.groupEnd()
+  elapse(`296 - elements added; DOM ready`)
+}
+
 
 //:::::::::::::::::::::::::::::::::::::::: script loaders
 
-/*———————————————————————————————————————— loadCss(scriptID, contents)
+/*———————————————————————————————————————— cssToDOM(scriptID, contents)
 
     installs a CSS sheet */
 
-function loadCss(scriptID, contents){
+function cssToDOM(scriptID, contents){
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
@@ -327,11 +352,11 @@ function loadCss(scriptID, contents){
   obj.innerHTML = contents
 }
 
-/*———————————————————————————————————————— loadHtml(scriptID, contents)
+/*———————————————————————————————————————— htmlToDOM(scriptID, contents)
 
     installs an HTML block */
 
-function loadHtml(scriptID, contents){
+function htmlToDOM(scriptID, contents){
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
@@ -343,11 +368,11 @@ function loadHtml(scriptID, contents){
 
 }
 
-/*———————————————————————————————————————— loadJs(scriptID, contents)
+/*———————————————————————————————————————— jsToDOM(scriptID, contents)
 
     installs a JS block */
 
-function loadJs(scriptID, contents){
+function jsToDOM(scriptID, contents){
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
@@ -358,11 +383,11 @@ function loadJs(scriptID, contents){
   obj.innerHTML = contents
 }
 
-/*———————————————————————————————————————— loadJson(scriptID, contents)
+/*———————————————————————————————————————— jsonToDOM(scriptID, contents)
 
     for translation */
 
-function loadJson(scriptID, contents){
+function jsonToDOM(scriptID, contents){
 
   var varNameArray = JSON.parse(contents).filter(record => typeof record.name != 'undefined')
   var varName = varNameArray[0].name
@@ -371,7 +396,7 @@ function loadJson(scriptID, contents){
     window[varName] = JSON.parse(contents).filter(record => record.build != 'fin' && typeof record.name == 'undefined')
     localStorage[varName] = JSON.stringify(window[varName])
 //  if (varName == 'DICTIONARY') lert(localStorage[varName])
-  elapse(`305 - loadJson(${varName})`)
+    elapse(`355 - jsonToDOM(${varName})`)
   }
 
   catch(e){
@@ -380,19 +405,19 @@ function loadJson(scriptID, contents){
 
 }
 
-/*———————————————————————————————————————— loadJsx(bld, which, src) NOT IMPLEMENTED
+/*———————————————————————————————————————— jsxToDOM(scriptID, contents)
 
     */
 
-function loadJsx(scriptID, contents){
-  elapse(`348 - loadJsx(${scriptID})`)
+function jsxToDOM(scriptID, contents){
+  elapse(`369 - jsxToDOM(${scriptID})`)
   CEP.evalScript(contents)
 }
 
 
 //:::::::::::::::::::::::::::::::::::::::: fetch utilities
 
-/*———————————————————————————————————————— getFileRemote(path, callback)
+/*———————————————————————————————————————— getRemoteFile(path, callback)
 
     https://github.com/Adobe-CEP/Getting-Started-guides/blob/master/Network%20requests%20and%20responses%20with%20Fetch/readme.md
 
@@ -405,7 +430,7 @@ function loadJsx(scriptID, contents){
 
     three params: ID, path, and callback function */
 
-function getFileRemote(which, path, callback) {
+function getRemoteFile(which, path, callback) {
 
   path = 'https://' + SERVER + '/' + dirName(BRANCH) + '/' + path
   path = path + '?' + Math.random()
@@ -436,7 +461,7 @@ function getFileRemote(which, path, callback) {
    })
 }
 
-/*———————————————————————————————————————— getFileLocal(path, callback)
+/*———————————————————————————————————————— getLocalFile(path, callback)
 
     https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri
 
@@ -444,7 +469,7 @@ function getFileRemote(which, path, callback) {
 
     no choice of branch — there's only one local branch */
 
-function getFileLocal(passthrough, path, callback){
+function getLocalFile(passthrough, path, callback){
 
   path = TOOLSPATH + '/files/' +  path
 
