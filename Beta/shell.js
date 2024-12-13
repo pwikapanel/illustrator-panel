@@ -1,10 +1,7 @@
 
 //:::::::::::::::::::::::::::::::::::::::: shell.js
 
-// license
-// notes
-
-/*
+/*———————————————————————————————————————— notes
 
     overall
 
@@ -32,9 +29,31 @@
     updating
 
     after a given delay, the program checks for updates according to
-    the branch chosen by the user (gear icon)
+    the branch chosen by the user (gear icon)  */
 
- */
+/*———————————————————————————————————————— EULA
+
+    Copyright (c) Svija SAS
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+ 
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    The software is provided "as is", without warranty of any kind, express or
+    implied, including but not limited to the warranties of merchantability,
+    fitness for a particular purpose and noninfringement. In no event shall the
+    authors or copyright holders be liable for any claim, damages or other
+    liability, whether in an action of contract, tort or otherwise, arising from,
+    out of or in connection with the software or the use or other dealings in
+    the software.
+
+    svija.com · hello@svija.com*/
 
 
 //:::::::::::::::::::::::::::::::::::::::: setup
@@ -55,7 +74,7 @@ function elapse(str){
 
 elapse(`016 - starting Svija Tools`)
 
-//———————————————————————————————————————— necessary
+//———————————————————————————————————————— CEP required
 
 var CEP            = new CSInterface()
 var HOSTENV        = CEP.getHostEnvironment()
@@ -73,12 +92,13 @@ var DEBUG         = true                   // boolean   show alerts as well as c
 var TOOLSVERSION  = '1.0.7'                // string    shown in branch picker panel
 var AIVERSIONMIN  = 26                     // number    required for xref links
 
-var SERVER        = 'tools.svija.love'     // string    server to get remote code
-var MAXWIDTH      = 240                    // number    width of panel
-var INTMS         = 500                    // number    interrupt interval to refresh panel etc.
 var BRANCHDEFAULT = 2                      // number    default branch (master)
+var INTMS         = 500                    // number    interrupt interval to refresh panel etc.
+var READY         = false                  // boolean   is panel loaded, ready to use
 var LANGDEFAULT   = 'en'                   // string    2-letter abbreviation
-var MANIFESTPATH  =  'json/manifest.json'  // string  where manifest JSON is stored
+var MANIFESTPATH  =  'json/manifest.json'  // string    where manifest JSON is stored
+var MAXWIDTH      = 240                    // number    width of panel
+var SERVER        = 'tools.svija.love'     // string    server to get remote code
 
 var BRANCHNAME0   = 'alpha'                // string    used with BRANCH to derive folder names
 var BRANCHNAME1   = 'beta'
@@ -90,7 +110,7 @@ var ISMAC         = CEP.getOSInformation().substring(0,3) == 'Mac'
 var MYDOCS        = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 var TOOLSPATH     = CEP.getSystemPath(SystemPath.EXTENSION)
 
-var BRANCH			// number     0, 1, 2 alpha beta master
+var BRANCH        // number     0, 1, 2 alpha beta master
 var DICTIONARY    // object     JSON english and french traductions
 var INTERFACE     // number     0-3, set by js/panelManager.js // illustrator color
 var ISSVIJA       // boolean    if fromtmost doc is a svija page (in a SYNC folder)
@@ -138,7 +158,9 @@ var allVars = [   // harmonized - same in JS, localStorage and CEP
 var LANG = 'fr'
 
 if (typeof localStorage.LOCAL == 'undefined') LOCAL  =   true
-else                    LOCAL = (localStorage.LOCAL === 'true')
+else                    LOCAL = (localStorage.LOCAL == 'true')
+
+elapse(`163 - LOCAL=${LOCAL}`)
 
 //———————————————————————————————————————— set defaults
 
@@ -157,18 +179,80 @@ elapse(`115 - variables initialized`)
 
 //:::::::::::::::::::::::::::::::::::::::: load panel
 
-/*———————————————————————————————————————— load manifest
+/*———————————————————————————————————————— manifest
 
     loads JSON file with list of dom elements and
     source files used to construct the panel   */
 
-if (localStorage.LSLOADED != 'true')
+if (localStorage.LSLOADED != 'true'){
+
+  if (typeof localStorage.BRANCH != 'undefined')    // make sure reloading doesn't get derailed by a previous attempt
+    delete localStorage.BRANCH
+
   getLocalFile (true, MANIFESTPATH, loadManifest)
+}
 
-else loadToDom()
+else loadDOM()
 
 
-//:::::::::::::::::::::::::::::::::::::::: load to localStorage
+//:::::::::::::::::::::::::::::::::::::::: update panel
+
+var initialDelay = 0.03       // number - minutes before first check for updates
+
+var ms = initialDelay*60*1000
+
+if (READY) setTimeout(launchUpdate, ms)
+
+
+// problem is that when I do it locally, I ignore the first line of manifest
+// when I do it remotely, I don't ignore that first line
+
+////////////////////////////////////////// FUNCTIONS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//:::::::::::::::::::::::::::::::::::::::: remote update
+
+/*———————————————————————————————————————— launchUpdate()
+
+    gets remote manifest depending on branch then
+    sends to compareVersions() */
+
+function launchUpdate(){
+  elapse(`200 launchUpdate() - checking for remote updates from ${branchName(BRANCH)} branch`)
+  var local = false
+  getRemoteFile (local, MANIFESTPATH, compareVersions)
+}
+
+/*———————————————————————————————————————— compareVersions(local, contents, path)
+
+    */
+
+function compareVersions(local, contents, path){
+  elapse(`226 compareVersions - local=${local}`)
+
+  try{ var json = JSON.parse(contents) }
+  catch(msg){
+    elapse(`225 - error getting remote manifest: ${msg}`)
+    return true
+  }
+
+  try{ var newVersion = json[0].build }
+  catch(msg){
+    elapse(`233 - remote manifest corrupt: ${msg}`)
+    return true
+  }
+
+  var currentVersion = MANIFEST[0].build
+
+  elapse(`242 - versions: server=${newVersion}, current=${currentVersion}, branch=${BRANCH}`)
+
+  if (newVersion <= currentVersion) return true
+
+  loadManifest(local, contents, path)
+  
+}
+
+
+//:::::::::::::::::::::::::::::::::::::::: files into localStorage (local & remote)
 
 /*———————————————————————————————————————— logic flow
 
@@ -180,29 +264,44 @@ else loadToDom()
     fileToManifest                        direct  —› manifestToLS (skipped if not last script)
     manifestToLS                     none   */
 
-/*———————————————————————————————————————— 1. loadManifest(scriptID, str, path)
+/*———————————————————————————————————————— 1. loadManifest(local, contents, path)
 
     loads the manifest for the active branch into
     MANIFEST, an object with keys and values:
 
     { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
 
-function loadManifest(local, str, path){
-  elapse(`157 - loading localStorage`)
+function loadManifest(local, contents, path){
+  elapse(`271 loadManifest - local=${local}, path=${path}`)
 
-  if (str == '') return true
+  if (typeof contents == 'undefined'){
+    elapse(`274 - error; contents is undefined`)
+    return true
+  }
 
-  try{ MANIFEST = JSON.parse(str).filter(record => !isNaN(record.build)) }      /* exclude comments */
+  if (contents == ''){
+    elapse(`279 - stopping; remote manifest is empty (path=${path})`)
+    return true
+  }
+
+  try{ MANIFEST = JSON.parse(contents).filter(record => !isNaN(record.build)) }      /* exclude comments */
   catch(msg){ lert( `JSON Parse Error\n${msg}\n${path}` ); return true   }
 
   var manifestRefs = MANIFEST.filter(record => record.name =="manifest")
   
-  if ( manifestRefs.length < 1                            ){ lert('Manifest Error\nMissing manifest reference'); return true }
-  try{ MANIFESTVERSION = manifestRefs[0].build } catch(msg){ lert('Manifest Error\nMissing build number'      ); return true }
+  if ( manifestRefs.length < 1                            ){ lert(`289 - manifest error\nmissing manifest reference`); return true }
+  try{ MANIFESTVERSION = manifestRefs[0].build } catch(msg){ lert(`290 - manifest error\nmissing build number`      ); return true }
 
   MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
 
-  elapse(`179 - manifest loaded (local=${local})`)
+  elapse(`294 - manifest loaded (local=${local})`)
+
+//if (!local){
+//  elapse(`290 - canceling, local=${local}, path=${path}\n\n`)
+//  console.log(contents)
+//  return true
+//}
+
   loadFiles(local)
 }
 
@@ -213,6 +312,12 @@ function loadManifest(local, str, path){
     and validated in the MANIFEST json category "loaded" */
 
 function loadFiles(local){
+  elapse(`311 loadFiles - local=${local}`)
+
+//if (!local){
+//  elapse(`314 - canceling, local=${local}`)
+//  return true
+//}
 
   for (var x=1; x<MANIFEST.length; x++){
 
@@ -228,7 +333,7 @@ function loadFiles(local){
 
   }
 
-  elapse(`193 - loading source files...`)
+  elapse(`332 - loading source files...`)
   console.groupCollapsed('[source file list]')
 }
 
@@ -281,12 +386,12 @@ function manifestToLS(){
 
   elapse(`244 - variables added to LS; ready to reload`)
 
-  if (DEBUG){
-    //elapse(`260 - DEBUG is on`)
-    CEP.evalScript('confirm("Reload?\\nlocalStorage loaded", "zoo")', locationReload)
-  }
+//if (DEBUG){
+//  //elapse(`260 - DEBUG is on`)
+//  CEP.evalScript('confirm("Reload?\\nlocalStorage loaded", "zoo")', locationReload)
+//} else
 
-  else (location.reload())
+  location.reload()
 }
 
 function locationReload(str){
@@ -297,14 +402,14 @@ function locationReload(str){
 }
 
 
-//:::::::::::::::::::::::::::::::::::::::: load to DOM
+//:::::::::::::::::::::::::::::::::::::::: localStorage into DOM
 
-/*———————————————————————————————————————— loadToDom()
+/*———————————————————————————————————————— loadDOM()
 
    using MANIFEST list of names, extensions and IDs,
    gets LS values and installs them to the DOM */
 
-function loadToDom(){
+function loadDOM(){
 
   elapse(`268 - loading to DOM`)
 
@@ -315,23 +420,30 @@ function loadToDom(){
   elapse(`271 - harmonized based on JS`)
 
   elapse(`273 - adding elements to DOM...`)
-  console.groupCollapsed('[element list]')
+  console.groupCollapsed(`[element list] ${MANIFEST.length} elements`)
 
   for (var x=1; x<MANIFEST.length; x++){
 
+    elapse(`410 - treating MANIFEST[${x}]: ${MANIFEST[x].name}`)
+
     var LSref = makeLSref(MANIFEST[x])
 
-    if (MANIFEST[x]['id'] != '') var objID = MANIFEST[x]['id']
-    else var objID = MANIFEST[x]['name'] + capitalize(MANIFEST[x]['ext'])
+    var objID = MANIFEST[x]['name'] + capitalize(MANIFEST[x]['ext'])
 
-    elapse(`284 - installing localStorage.${LSref} with ID ${objID}`)
+    if (typeof MANIFEST[x]['id'] != 'undefined')
+      if (MANIFEST[x]['id'] != '')
+        var objID = MANIFEST[x]['id']
+
+    elapse(`419 - installing localStorage.${LSref} with ID ${objID}`)
 
     var functionName = MANIFEST[x]['ext'] + 'ToDOM'
+
     window[functionName](objID, localStorage[LSref])
   }
 
   console.groupEnd()
-  elapse(`296 - elements added; DOM ready`)
+  READY = true
+  elapse(`428 - elements added; DOM ready`)
 }
 
 
@@ -417,7 +529,7 @@ function jsxToDOM(scriptID, contents){
 
 //:::::::::::::::::::::::::::::::::::::::: fetch utilities
 
-/*———————————————————————————————————————— getRemoteFile(path, callback)
+/*———————————————————————————————————————— getRemoteFile(passthrough, path, callback)
 
     https://github.com/Adobe-CEP/Getting-Started-guides/blob/master/Network%20requests%20and%20responses%20with%20Fetch/readme.md
 
@@ -425,16 +537,22 @@ function jsxToDOM(scriptID, contents){
 
     Since Chromium Embedded Framework is essentially a browser, you can use
     an XMLHttpRequest (or a client-side library that wraps it, such as jQuery)
-    You can also take advantage of Node.js within CEP, which gives you even
+    You can also take advantage of Node.js within CEP, passthrough gives you even
     more alternatives for making network requests.
 
     three params: ID, path, and callback function */
 
-function getRemoteFile(which, path, callback) {
+function getRemoteFile(passthrough, path, callback) {
+  elapse(`543 getRemoteFile - passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
+  if (path != 'json/manifest.json'){
+    window[callback.name]
+    return
+  }
 
   path = 'https://' + SERVER + '/' + dirName(BRANCH) + '/' + path
   path = path + '?' + Math.random()
 
+  elapse(`528 - getting ${path}`)
   fetch(path)
     .then(function(res){
       if (res.ok){
@@ -442,8 +560,9 @@ function getRemoteFile(which, path, callback) {
       }
     })
     .then(function(text){
+      //elapse(`532 - following errors could come from function ${callback.name}`)
       if (typeof text != 'undefined'){
-        if (text != '') callback(which, text, path)
+        if (text != '') callback(passthrough, text, path)
         else{
           lert('Empty File\n' + path)
           callback('', '', path)
@@ -456,7 +575,7 @@ function getRemoteFile(which, path, callback) {
     })
 
   .catch(function(err){
-    lert('Server not found\n' + path)
+    elapse(`564 - error; path=${path}, error message=${err}`)
     callback('', '', path)
    })
 }
@@ -470,6 +589,7 @@ function getRemoteFile(which, path, callback) {
     no choice of branch — there's only one local branch */
 
 function getLocalFile(passthrough, path, callback){
+  elapse(`584 getLocalFile - passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
 
   path = TOOLSPATH + '/files/' +  path
 
@@ -621,6 +741,16 @@ function stripExtension(str){
     */
 
 function capitalize(str){
+  if (typeof str == 'undefined'){
+    elapse(`719 - capitalize() received an undefined string`)
+    return ''
+  }
+
+  if (str.length == 0){
+    elapse(`724 - capitalize() received an empty string`)
+    return ''
+  }
+
   return str.charAt(0).toUpperCase()+str.slice(1)
 }
 
