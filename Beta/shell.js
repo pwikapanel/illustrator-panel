@@ -87,42 +87,43 @@ window.addEventListener('error', (event)=>{
 
 //———————————————————————————————————————— global variables
 
-var DEBUG         = true                   // boolean   show alerts as well as console
+var DEBUG          = true                   // boolean   show alerts as well as console
 
-var TOOLSVERSION  = '1.0.7'                // string    shown in branch picker panel
-var AIVERSIONMIN  = 26                     // number    required for xref links
+var TOOLSVERSION   = '1.0.7'                // string    shown in branch picker panel
+var AIVERSIONMIN   = 26                     // number    required for xref links
 
-var BRANCHDEFAULT = 2                      // number    default branch (master)
-var INTMS         = 500                    // number    interrupt interval to refresh panel etc.
-var READY         = false                  // boolean   is panel loaded, ready to use
-var LANGDEFAULT   = 'en'                   // string    2-letter abbreviation
-var MANIFESTPATH  =  'json/manifest.json'  // string    where manifest JSON is stored
-var MAXWIDTH      = 240                    // number    width of panel
-var SERVER        = 'tools.svija.love'     // string    server to get remote code
+var BRANCHDEFAULT  = 2                      // number    default branch (master)
+var INTMS          = 500                    // number    interrupt interval to refresh panel etc.
+var READY          = false                  // boolean   is panel loaded, ready to use
+var LANGDEFAULT    = 'en'                   // string    2-letter abbreviation
+var MANIFESTPATH   =  'json/manifest.json'  // string    where manifest JSON is stored
+var MAXWIDTH       = 240                    // number    width of panel
+var SERVER         = 'tools.svija.love'     // string    server to get remote code
+var UPDATEINTERVAL = 60                     // number    interval between update checks in minutes
 
-var BRANCHNAME0   = 'alpha'                // string    used with BRANCH to derive folder names
-var BRANCHNAME1   = 'beta'
-var BRANCHNAME2   = 'master'
+var BRANCHNAME0    = 'alpha'                // string    used with BRANCH to derive folder names
+var BRANCHNAME1    = 'beta'
+var BRANCHNAME2    = 'master'
 
-var AIVERSION     = HOSTENV.appVersion
-var LANG          = HOSTENV.appUILocale.substr(0,2) // or appLocale
-var ISMAC         = CEP.getOSInformation().substring(0,3) == 'Mac'
-var MYDOCS        = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
-var TOOLSPATH     = CEP.getSystemPath(SystemPath.EXTENSION)
+var AIVERSION      = HOSTENV.appVersion
+var LANG           = HOSTENV.appUILocale.substr(0,2) // or appLocale
+var ISMAC          = CEP.getOSInformation().substring(0,3) == 'Mac'
+var MYDOCS         = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
+var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
 
-var BRANCH        // number     0, 1, 2 alpha beta master
-var DICTIONARY    // object     JSON english and french traductions
-var INTERFACE     // number     0-3, set by js/panelManager.js // illustrator color
-var ISSVIJA       // boolean    if fromtmost doc is a svija page (in a SYNC folder)
-var JSONCOUNT     // number     counter, augmented by 1 with 
-var LASTPATH      // string     last file path for a svija page
-var LOCAL         // boolean    are we loading from local or not?
-var LSLOADED      // boolean    localStorage version of panel is available
-var MANIFEST      // object     JSON with all DOM elements
-var SITEURL       // string     url of most recent svija site
-var SYNCPATH      // string     absolute path to SYNC folder
+var BRANCH         // number     0, 1, 2 alpha beta master
+var DICTIONARY     // object     JSON english and french traductions
+var INTERFACE      // number     0-3, set by js/panelManager.js // illustrator color
+var ISSVIJA        // boolean    if fromtmost doc is a svija page (in a SYNC folder)
+var JSONCOUNT      // number     counter, augmented by 1 with 
+var LASTPATH       // string     last file path for a svija page
+var LOCAL          // boolean    are we loading from local or not?
+var LSLOADED       // boolean    localStorage version of panel is available
+var MANIFEST       // object     JSON with all DOM elements
+var SITEURL        // string     url of most recent svija site
+var SYNCPATH       // string     absolute path to SYNC folder
 
-var allVars = [   // harmonized - same in JS, localStorage and CEP
+var allVars = [    // harmonized - same in JS, localStorage and CEP
   'DEBUG',
   'TOOLSVERSION',
 
@@ -199,17 +200,17 @@ else{
 }
 
 
-//:::::::::::::::::::::::::::::::::::::::: update panel
+//:::::::::::::::::::::::::::::::::::::::: check for updates
+
+UPDATEINTERVAL = .1  // number    interval between update checks in minutes (0.2 minutes is 12 seconds)
 
 /*———————————————————————————————————————— launchUpdate after timeout TO REFACTOR
 
     */
 
-var initialDelay = 0.03       // number - minutes before first check for updates
+var ms = UPDATEINTERVAL *60*1000
 
-var ms = initialDelay*60*1000
-
-if (READY) setTimeout(launchUpdate, ms)
+if (READY) setInterval(launchUpdate, ms)
 
 
 ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -250,9 +251,12 @@ function compareVersions(local, contents, path){
 
   elapse(`242 - compareVersions() - comparing server:${newVersion}, current:${currentVersion} (n° ${BRANCH} branch)`)
 
-  if (newVersion <= currentVersion) return true
+  if (newVersion <= currentVersion){
+    elapse(`254 - compareVersions() - no update available\n\n————————————————————————————————————————\n\n`)
+    return true
+  }
 
-  elapse(`250 - compareVersions() - transferring to loadManifest()`)
+  elapse(`258 - compareVersions() - transferring to loadManifest()`)
   loadManifest(local, contents, path)
   
 }
@@ -392,10 +396,10 @@ function manifestToLS(){
   elapse(`392 -    manifestToLS() - content saved to LS; setting localStorage.LOCAL to ${LOCAL}; ready to reload`)
   localStorage.LOCAL = LOCAL
 
-  if (DEBUG){
-    //elapse(`260 - DEBUG is on`)
-    CEP.evalScript('confirm("Reload?\\nlocalStorage loaded", "zoo")', locationReload)
-  } else
+//if (DEBUG){
+//  //elapse(`260 - DEBUG is on`)
+//  CEP.evalScript('confirm("Reload?\\nlocalStorage loaded", "zoo")', locationReload)
+//} else
 
     location.reload()
 }
@@ -416,18 +420,13 @@ function locationReload(str){
    gets LS values and installs them to the DOM */
 
 function loadDOM(){
-  elapse(`419 -         loadDOm() - localStorage.MANIFEST=\n\n${localStorage.MANIFEST}`)
-
   elapse(`421 -         loadDOM() - starting`)
 
   harmonize('ls')
   elapse(`424 -         loadDOM() - harmonized based on localStorage`)
 
-  elapse(`426 -         loadDOM() - MANIFEST.length=${MANIFEST.length}`)
-  
   harmonize('js')
   elapse(`429 -         loadDOM() - harmonized based on JS`)
-  elapse(`430 -         loadDOM() - MANIFEST.length=${MANIFEST.length}`)
   elapse(`431 -         loadDOM() - adding elements to DOM...`)
 
   console.groupCollapsed(`[element list] ${MANIFEST.length} elements`)
@@ -448,7 +447,7 @@ function loadDOM(){
 
   console.groupEnd()
   READY = true
-  elapse(`450 -         loadDOM() - elements added; DOM ready\n————————————————————————————————————————`)
+  elapse(`450 -         loadDOM() - elements added; DOM ready\n\n————————————————————————————————————————\n\n`)
 }
 
 
@@ -871,13 +870,13 @@ function lsToJs(lsVal){
   else if (lsVal.length > 90){                           // JSON
     try {
       var jsVal = JSON.parse(lsVal)
-      elapse(`874 -        lsToJs() - converting to JSON: ${lsVal}`)
+//    elapse(`874 -        lsToJs() - converting to JSON: ${lsVal}`)
     }
     catch(e){
       var jsVal = lsVal
-      elapse(`878 -        lsToJs() - failed converting to JSON: ${lsVal}`)
+//    elapse(`878 -        lsToJs() - failed converting to JSON: ${lsVal}`)
     }
-    elapse(`880 -        lsToJs() - jsVal.length=${jsVal.length}`)
+//  elapse(`880 -        lsToJs() - jsVal.length=${jsVal.length}`)
   }
 
   else                                                 // string
