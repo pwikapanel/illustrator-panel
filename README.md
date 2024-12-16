@@ -71,6 +71,8 @@ CEP versions
 ### Svija Tools 1.0.5
 ---
 
+**THIS IS 1/2 OF THE REPO — THE REST IS REPO TOOLS.SVIJA.COM**
+
 note: font locations seem to be relative to stylesheet, not to document using font
 
 ---
