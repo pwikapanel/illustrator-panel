@@ -174,7 +174,7 @@ else
 
 if (LANG != 'fr') LANG = LANGDEFAULT
 
-elapse(`115 - variables initialized`)
+elapse(`177 - variables initialized`)
 
 
 //:::::::::::::::::::::::::::::::::::::::: load panel
@@ -185,6 +185,7 @@ elapse(`115 - variables initialized`)
     source files used to construct the panel   */
 
 if (localStorage.LSLOADED != 'true'){
+  elapse(`188 - localStorage.LSLOADED != 'true' - deleting BRANCH and getting local manifest`)
 
   if (typeof localStorage.BRANCH != 'undefined')    // make sure reloading doesn't get derailed by a previous attempt
     delete localStorage.BRANCH
@@ -192,10 +193,17 @@ if (localStorage.LSLOADED != 'true'){
   getLocalFile (true, MANIFESTPATH, loadManifest)
 }
 
-else loadDOM()
+else{
+  elapse(`197 - localStorage.LSLOADED = 'true' - transferring to loadDOM`)
+  loadDOM()
+}
 
 
 //:::::::::::::::::::::::::::::::::::::::: update panel
+
+/*———————————————————————————————————————— launchUpdate after timeout TO REFACTOR
+
+    */
 
 var initialDelay = 0.03       // number - minutes before first check for updates
 
@@ -204,49 +212,47 @@ var ms = initialDelay*60*1000
 if (READY) setTimeout(launchUpdate, ms)
 
 
-// problem is that when I do it locally, I ignore the first line of manifest
-// when I do it remotely, I don't ignore that first line
-
 ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //:::::::::::::::::::::::::::::::::::::::: remote update
 
-/*———————————————————————————————————————— launchUpdate()
+/*———————————————————————————————————————— 1. launchUpdate()
 
     gets remote manifest depending on branch then
     sends to compareVersions() */
 
 function launchUpdate(){
-  elapse(`200 launchUpdate() - checking for remote updates from ${branchName(BRANCH)} branch`)
+  elapse(`220 -    launchUpdate() - checking for remote updates from branch ${branchName(BRANCH)}`)
   var local = false
   getRemoteFile (local, MANIFESTPATH, compareVersions)
 }
 
-/*———————————————————————————————————————— compareVersions(local, contents, path)
+/*———————————————————————————————————————— 2. compareVersions(local, contents, path)
 
     */
 
 function compareVersions(local, contents, path){
-  elapse(`226 compareVersions - local=${local}`)
+  elapse(`226 - compareVersions() - local=${local}, path=${path}`)
 
   try{ var json = JSON.parse(contents) }
   catch(msg){
-    elapse(`225 - error getting remote manifest: ${msg}`)
+    elapse(`225 - compareVersions() - error getting remote manifest: ${msg}`)
     return true
   }
 
   try{ var newVersion = json[0].build }
   catch(msg){
-    elapse(`233 - remote manifest corrupt: ${msg}`)
+    elapse(`233 - compareVersions() - remote manifest corrupt: ${msg}`)
     return true
   }
 
   var currentVersion = MANIFEST[0].build
 
-  elapse(`242 - versions: server=${newVersion}, current=${currentVersion}, branch=${BRANCH}`)
+  elapse(`242 - compareVersions() - comparing server:${newVersion}, current:${currentVersion} (n° ${BRANCH} branch)`)
 
   if (newVersion <= currentVersion) return true
 
+  elapse(`250 - compareVersions() - transferring to loadManifest()`)
   loadManifest(local, contents, path)
   
 }
@@ -272,15 +278,15 @@ function compareVersions(local, contents, path){
     { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
 
 function loadManifest(local, contents, path){
-  elapse(`271 loadManifest - local=${local}, path=${path}`)
+  elapse(`275 -    loadManifest() - local=${local}, path=${path}`)
 
   if (typeof contents == 'undefined'){
-    elapse(`274 - error; contents is undefined`)
+    elapse(`274 -    loadManifest() - error; contents is undefined`)
     return true
   }
 
   if (contents == ''){
-    elapse(`279 - stopping; remote manifest is empty (path=${path})`)
+    elapse(`279 -    loadManifest() - stopping; remote manifest is empty (path=${path})`)
     return true
   }
 
@@ -289,18 +295,12 @@ function loadManifest(local, contents, path){
 
   var manifestRefs = MANIFEST.filter(record => record.name =="manifest")
   
-  if ( manifestRefs.length < 1                            ){ lert(`289 - manifest error\nmissing manifest reference`); return true }
-  try{ MANIFESTVERSION = manifestRefs[0].build } catch(msg){ lert(`290 - manifest error\nmissing build number`      ); return true }
+  if ( manifestRefs.length < 1                            ){ lert(`289 -    loadManifest() - manifest error\nmissing manifest reference`); return true }
+  try{ MANIFESTVERSION = manifestRefs[0].build } catch(msg){ lert(`290 -    loadManifest() - manifest error\nmissing build number`      ); return true }
 
   MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
 
-  elapse(`294 - manifest loaded (local=${local})`)
-
-//if (!local){
-//  elapse(`290 - canceling, local=${local}, path=${path}\n\n`)
-//  console.log(contents)
-//  return true
-//}
+  elapse(`294 -    loadManifest() - manifest loaded (local=${local}) - transferring to loadFiles()`)
 
   loadFiles(local)
 }
@@ -312,29 +312,33 @@ function loadManifest(local, contents, path){
     and validated in the MANIFEST json category "loaded" */
 
 function loadFiles(local){
-  elapse(`311 loadFiles - local=${local}`)
 
-//if (!local){
-//  elapse(`314 - canceling, local=${local}`)
-//  return true
-//}
+  LOCAL = local
+  elapse(`311 -       loadFiles() - setting LOCAL=${local} - loading source files...`)
 
+  console.groupCollapsed('[source file list]')
   for (var x=1; x<MANIFEST.length; x++){
 
     var scriptBuild =  MANIFEST[x]['build']
 
     if (typeof scriptBuild == "string") continue  // comments are strings
 
-    var LSref = MANIFEST[x]['name'] + '_' + MANIFEST[x]['build'] + '_' + MANIFEST[x]['ext']
-    var  path = MANIFEST[x]['ext' ] + '/' + MANIFEST[x]['name' ] + '.' + MANIFEST[x]['ext']
+    var LSref = makeLSref(MANIFEST[x])
+    var  path =  makePath(MANIFEST[x])
 
-    if (local) getLocalFile (x, path, fileToManifest)
-    else       getRemoteFile(x, path, fileToManifest)
+    elapse(`321 -       loadFiles() - LSref=${LSref}, path=${path}`)
+
+    if (local){
+      elapse(`324 -       loadFiles() - transferring to getLocalFile()`)
+      getLocalFile (x, path, fileToManifest)
+    }
+    else{
+      elapse(`328 -       loadFiles() - transferring to getRemoteFile()`)
+      getRemoteFile(x, path, fileToManifest)
+    }
 
   }
 
-  elapse(`332 - loading source files...`)
-  console.groupCollapsed('[source file list]')
 }
 
 /*———————————————————————————————————————— 3. fileToManifest(manifest)
@@ -345,14 +349,14 @@ function loadFiles(local){
 function fileToManifest(x, contents, path){
 
   if (typeof MANIFEST[x] == 'undefined'){
-    elapsed(`216 — file not found: `)
+    elapsed(`345 —  fileToManifest() - file not found: `)
     manifestToLS()
   }
 
   MANIFEST[x].contents = contents
   MANIFEST[x].loaded   = true
 
-  elapse(`223 - ${path} loaded`)
+  elapse(`354 —  fileToManifest() - ${path} loaded, sending to manifestToLS()`)
   manifestToLS()
 }
 
@@ -363,12 +367,13 @@ function fileToManifest(x, contents, path){
 function manifestToLS(){
 
   var notYetLoaded = MANIFEST.filter(record=> record.loaded==false)
+  if (notYetLoaded.length > 0) return "not yet loaded"
 
-  if (notYetLoaded.length > 0)
-    return "not yet loaded"
+  //————————————————————————————————————————
 
   console.groupEnd()
-  elapse(`239 - source files loaded; add to LS...`)
+
+  elapse(`371 -    manifestToLS() - adding source files to LS...`)
 
   console.groupCollapsed(`[LS variable list]`)
   for (var x=1; x<MANIFEST.length; x++){
@@ -383,22 +388,23 @@ function manifestToLS(){
   localStorage.LSLOADED = 'true'
 
   console.groupEnd()
+  elapse(`391 -    MANIFEST.length=${MANIFEST.length}, adding to localStorage`)
+  elapse(`392 -    manifestToLS() - content saved to LS; setting localStorage.LOCAL to ${LOCAL}; ready to reload`)
+  localStorage.LOCAL = LOCAL
 
-  elapse(`244 - variables added to LS; ready to reload`)
+  if (DEBUG){
+    //elapse(`260 - DEBUG is on`)
+    CEP.evalScript('confirm("Reload?\\nlocalStorage loaded", "zoo")', locationReload)
+  } else
 
-//if (DEBUG){
-//  //elapse(`260 - DEBUG is on`)
-//  CEP.evalScript('confirm("Reload?\\nlocalStorage loaded", "zoo")', locationReload)
-//} else
-
-  location.reload()
+    location.reload()
 }
 
 function locationReload(str){
   
   // return=false, escape=true
   if (str=='false') location.reload()
-  else  elapse(`258 - reload canceled`)
+  else  elapse(`258 -    manifestToLS() - reload canceled`)
 }
 
 
@@ -410,31 +416,30 @@ function locationReload(str){
    gets LS values and installs them to the DOM */
 
 function loadDOM(){
+  elapse(`419 -         loadDOm() - localStorage.MANIFEST=\n\n${localStorage.MANIFEST}`)
 
-  elapse(`268 - loading to DOM`)
+  elapse(`421 -         loadDOM() - starting`)
 
   harmonize('ls')
-  elapse(`268 - harmonized based on localStorage`)
+  elapse(`424 -         loadDOM() - harmonized based on localStorage`)
+
+  elapse(`426 -         loadDOM() - MANIFEST.length=${MANIFEST.length}`)
   
   harmonize('js')
-  elapse(`271 - harmonized based on JS`)
+  elapse(`429 -         loadDOM() - harmonized based on JS`)
+  elapse(`430 -         loadDOM() - MANIFEST.length=${MANIFEST.length}`)
+  elapse(`431 -         loadDOM() - adding elements to DOM...`)
 
-  elapse(`273 - adding elements to DOM...`)
   console.groupCollapsed(`[element list] ${MANIFEST.length} elements`)
 
   for (var x=1; x<MANIFEST.length; x++){
 
-    elapse(`410 - treating MANIFEST[${x}]: ${MANIFEST[x].name}`)
+    elapse(`436 -         loadDOM() - treating MANIFEST[${x}]: ${MANIFEST[x].name}`)
 
     var LSref = makeLSref(MANIFEST[x])
+    var objID = makeObjID(MANIFEST[x])
 
-    var objID = MANIFEST[x]['name'] + capitalize(MANIFEST[x]['ext'])
-
-    if (typeof MANIFEST[x]['id'] != 'undefined')
-      if (MANIFEST[x]['id'] != '')
-        var objID = MANIFEST[x]['id']
-
-    elapse(`419 - installing localStorage.${LSref} with ID ${objID}`)
+    elapse(`441 -         loadDOM() - installing localStorage.${LSref} with ID ${objID}`)
 
     var functionName = MANIFEST[x]['ext'] + 'ToDOM'
 
@@ -443,7 +448,7 @@ function loadDOM(){
 
   console.groupEnd()
   READY = true
-  elapse(`428 - elements added; DOM ready`)
+  elapse(`450 -         loadDOM() - elements added; DOM ready\n————————————————————————————————————————`)
 }
 
 
@@ -512,7 +517,7 @@ function jsonToDOM(scriptID, contents){
   }
 
   catch(e){
-    lert('JSON '+scriptID+' not loaded (line 309)\n'+e)
+    elapse('515 - jsonToDOM() - JSON '+scriptID+' not loaded (line 309)\n'+e)
   }
 
 }
@@ -543,16 +548,18 @@ function jsxToDOM(scriptID, contents){
     three params: ID, path, and callback function */
 
 function getRemoteFile(passthrough, path, callback) {
-  elapse(`543 getRemoteFile - passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
-  if (path != 'json/manifest.json'){
-    window[callback.name]
-    return
-  }
+  elapse(`546 -   getRemoteFile() - passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
+
+//if (path != 'json/manifest.json'){
+//  elapse(`548 -   getRemoteFile()⚠️ CANCELING: passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
+//  window[callback.name]
+//  return
+//}
 
   path = 'https://' + SERVER + '/' + dirName(BRANCH) + '/' + path
   path = path + '?' + Math.random()
 
-  elapse(`528 - getting ${path}`)
+  elapse(`556 -   getRemoteFile() - getting ${path}`)
   fetch(path)
     .then(function(res){
       if (res.ok){
@@ -562,20 +569,23 @@ function getRemoteFile(passthrough, path, callback) {
     .then(function(text){
       //elapse(`532 - following errors could come from function ${callback.name}`)
       if (typeof text != 'undefined'){
-        if (text != '') callback(passthrough, text, path)
+        if (text != ''){
+          elapse(`568 -   getRemoteFile() - transferring to ${callback.name}()`)
+          callback(passthrough, text, path)
+        }
         else{
-          lert('Empty File\n' + path)
+          elapse('568 -   getRemoteFile() - Empty File\n' + path)
           callback('', '', path)
         }
       }
       else {
-        lert('404 Error\n' + path)
+        elapse('573 -   getRemoteFile() - 404 Error\n' + path)
         callback('', '', path)
       }
     })
 
   .catch(function(err){
-    elapse(`564 - error; path=${path}, error message=${err}`)
+    elapse(`579 -   getRemoteFile() - error; path=${path}, error message=${err}`)
     callback('', '', path)
    })
 }
@@ -598,12 +608,12 @@ function getLocalFile(passthrough, path, callback){
       if (contents != ''){
          callback(passthrough, contents, path)
       }
-      else{ lert('Empty File\n/Local file ' + path) }
+      else{ elapse('602 - getLocalFile() - Empty File\n/Local file ' + path) }
     })
 
     .catch(function(msg){
        // attention: this catches errors anywhere in the callback chain
-       lert('Catch Error\nline 384\n\nlocal file ' + path + '\n\n'+msg)
+       elapse('607 - getLocalFile() - Catch Error\nline 384\n\nlocal file ' + path + '\n\n'+msg)
     })
 }
 
@@ -651,7 +661,7 @@ function fetchLocal(file) {
 
 function harmonize(ref){
 
-  if (ref != 'js' && ref != 'ls') { lert('harmonize(): illegal argument\nref = '+ref); return true }
+  if (ref != 'js' && ref != 'ls') { elapse('655 - harmonize() - illegal argument\nref = '+ref); return true }
 
   for (x=0; x<allVars.length; x++){
 
@@ -678,7 +688,6 @@ function harmonize(ref){
     //———————————————————— LS —› JS
 
     if (ref == 'ls'){
-
       if (typeof localStorage[varName] == 'undefined') continue
       else lsVal = localStorage[varName]
 
@@ -701,7 +710,7 @@ function harmonize(ref){
 function translate(key){
   res = DICTIONARY.filter(record=> record.key==key && record.lang==LANG)
 
-  if (res.length == 0) lert('Missing translation key: "' + key + '"')
+  if (res.length == 0) elapse('705 - translate() - Missing translation key: "' + key + '"')
   else return res[0].text
 }
 
@@ -713,12 +722,12 @@ function deleteElement(scriptType, scriptID){
 
   scriptID += scriptType
 
-  lert('going to Script Deletion\nDeleting object '+scriptID+' of type '+scriptType)
+  elapse('717 - deleteElement() - going to Script Deletion\nDeleting object '+scriptID+' of type '+scriptType)
 
   obj = document.getElementById(scriptID)
   if (obj == null) return true
 
-  lert('Script Deletion\nDeleting object '+scriptID+' of type '+scriptType)
+  elapse('722 - deleteElement() - deleting object '+scriptID+' of type '+scriptType)
 
   if (scriptType == 'css')
     obj.querySelectorAll('link[rel="stylesheet"], style').forEach(elem => elem.parentNode.removeChild(elem))
@@ -762,6 +771,7 @@ function lert(msg){
   msg = JSON.stringify(String(msg))
   msg = msg.substr(1, msg.length-2)
 
+  console.log(msg)
   CEP.evalScript('alert("' + msg + '")')
 }
 
@@ -858,9 +868,16 @@ function lsToJs(lsVal){
   else if (!isNaN(lsVal))                                // number
     var jsVal  = parseFloat(lsVal)
 
-  else if (lsVal.length > 99){                           // JSON
-    try     { var jsVal = JSON.parse(lsVal) }
-    catch(e){ var jsVal = lsVal             }
+  else if (lsVal.length > 90){                           // JSON
+    try {
+      var jsVal = JSON.parse(lsVal)
+      elapse(`874 -        lsToJs() - converting to JSON: ${lsVal}`)
+    }
+    catch(e){
+      var jsVal = lsVal
+      elapse(`878 -        lsToJs() - failed converting to JSON: ${lsVal}`)
+    }
+    elapse(`880 -        lsToJs() - jsVal.length=${jsVal.length}`)
   }
 
   else                                                 // string
@@ -887,6 +904,30 @@ function fillDigits(i){
 
 function makeLSref(obj){
   return obj.name +'_'+ obj.build +'_'+ obj.ext
+}
+
+/*———————————————————————————————————————— makeObjID(obj)
+
+    creates the DOM object ID from the manifest info */
+
+function makeObjID(obj){
+    var objID = obj['name'] + capitalize(obj['ext'])
+
+    if (typeof obj['id'] != 'undefined')
+      if (obj['id'] != '')
+        objID = obj['id']
+
+  return objID
+}
+
+/*———————————————————————————————————————— makeObjID(obj)
+
+    creates the file path from the manifest info */
+
+function makePath(obj){
+//elapse(`908 -        makePath() - ${obj['ext' ]} / ${obj['name']} . ${obj['ext']}`)
+  path = obj['ext'] + '/' + obj['name'] + '.' + obj['ext']
+  return path
 }
 
 
