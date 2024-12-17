@@ -202,6 +202,7 @@ else{
 
 //:::::::::::::::::::::::::::::::::::::::: check for updates
 
+// for debugging only
 UPDATEINTERVAL = .1  // number    interval between update checks in minutes (0.2 minutes is 12 seconds)
 
 /*———————————————————————————————————————— launchUpdate after timeout TO REFACTOR
@@ -210,7 +211,7 @@ UPDATEINTERVAL = .1  // number    interval between update checks in minutes (0.2
 
 var ms = UPDATEINTERVAL *60*1000
 
-if (READY) setInterval(launchUpdate, ms)
+if (READY) setInterval(launchUpdate.bind(null,BRANCH), ms)
 
 
 ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -222,8 +223,8 @@ if (READY) setInterval(launchUpdate, ms)
     gets remote manifest depending on branch then
     sends to compareVersions() */
 
-function launchUpdate(){
-  elapse(`220 -    launchUpdate() - checking for remote updates from branch ${branchName(BRANCH)}`)
+function launchUpdate(branch){
+  elapse(`220 -    launchUpdate() - checking for remote updates from "${branchName(branch)}" branch (currently on ${branchName(BRANCH)} branch)`)
   var local = false
   getRemoteFile (local, MANIFESTPATH, compareVersions)
 }
