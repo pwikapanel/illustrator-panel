@@ -15,7 +15,9 @@ var obj = document.getElementById(objId)
 if (obj === null) lert(objId + ' is null')
 
 obj.text = objLabel
-obj.style.display = 'inline'
+
+if (SOURCE != 0)
+  obj.style.display = 'inline'
 
 /*———————————————————————————————————————— mouseup function
 

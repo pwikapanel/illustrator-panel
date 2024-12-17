@@ -87,16 +87,16 @@ window.addEventListener('error', (event)=>{
 
 var DEBUG          = true                   // boolean   show alerts as well as console
 
-var TOOLSVERSION   = '1.0.7'                // string    shown in source picker panel
 var AIVERSIONMIN   = 26                     // number    required for xref links
+var TOOLSVERSION   = '1.0.7'                // string    shown in source picker panel
 
-var SOURCEDEFAULT  = 2                      // number    default source (master)
 var INTMS          = 500                    // number    interrupt interval to refresh panel etc.
-var READY          = false                  // boolean   is panel loaded, ready to use
 var LANGDEFAULT    = 'en'                   // string    2-letter abbreviation
-var MANIFESTPATH   =  'json/manifest.json'  // string    where manifest JSON is stored
+var MANIFESTPATH   = 'json/manifest.json'   // string    where manifest JSON is stored
 var MAXWIDTH       = 240                    // number    width of panel
+var READY          = false                  // boolean   is panel loaded, ready to use
 var SERVER         = 'tools.svija.love'     // string    server to get remote code
+var SOURCEDEFAULT  = 2                      // number    default source (master)
 var UPDATEINTERVAL = 60                     // number    interval between update checks in minutes
 
 var SOURCENAME0    = 'local'                // string    used with SOURCE to derive folder names
@@ -157,11 +157,15 @@ var allVars = [    // harmonized - same in JS, localStorage and CEP
 
 var LANG = 'fr'
 
-if (typeof localStorage.SOURCE != 'undefined')
+if (typeof localStorage.SOURCE != 'undefined'){
   SOURCE = lsToJs(localStorage.SOURCE)
-else SOURCE =   0
+  elapse(`162 - SOURCE=${SOURCE} (from LS)`)
+}
+else{
+  SOURCE =   0
+  elapse(`162 - SOURCE reset to zero (no LS value)`)
+}
 
-elapse(`163 - SOURCE=${SOURCE} (from LS if it was defined)`)
 
 //———————————————————————————————————————— set defaults
 
@@ -408,10 +412,9 @@ function manifestToLS(){
   elapse(`392 -    manifestToLS() - content saved to LS; setting localStorage.SOURCE to ${sourceName(SOURCE)}; ready to reload`)
   localStorage.SOURCE = SOURCE
 
-  if (DEBUG){
-    //elapse(`260 - DEBUG is on`)
+  if (DEBUG)
     CEP.evalScript(`confirm("Reload?\\nlocalStorage loaded from ${sourceName(SOURCE)}", "zoo")`, locationReload)
-  } else
+  else
 
     location.reload()
 }
@@ -436,7 +439,7 @@ function locationReload(str){
     sends to compareVersions() */
 
 function launchUpdate(newSource){
-  if (newSource == 0) newSource = 3 // only update from remote
+  if (newSource<1 || newSource>3) newSource = 3 // only update from remote
 
   elapse(`447 -    launchUpdate() - checking for remote updates from "${sourceName(newSource)}" source (currently on ${sourceName(SOURCE)} source)`)
   getRemoteFile (newSource, newSource, MANIFESTPATH, compareVersions)
@@ -589,10 +592,10 @@ function jsxToDOM(scriptID, contents){
     three params: ID, path, and callback function */
 
 function getRemoteFile(passthrough, source, path, callback) {
-  elapse(`546 -   getRemoteFile() - passthrough=${passthrough}, source=${source}, path=${path}, callback=${callback.name}`)
+  elapse(`592 -   getRemoteFile() - passthrough=${passthrough}, source=${source}, path=${path}, callback=${callback.name}`)
 
   if (source<1 || source>3){
-    elapse(`601 -   getRemoteFile()⚠️ CANCELING: passthrough=${passthrough}, source=${source}, path=${path}, callback=${callback.name}`)
+    elapse(`595 -   getRemoteFile()⚠️ CANCELING: passthrough=${passthrough}, source=${source}, path=${path}, callback=${callback.name}`)
     window[callback.name]
     return
   }
@@ -600,35 +603,28 @@ function getRemoteFile(passthrough, source, path, callback) {
   path = 'https://' + SERVER + '/' + dirName(source) + '/' + path
   path = path + '?' + Math.random()
 
-  elapse(`556 -   getRemoteFile() - getting ${path}`)
+  elapse(`603 -   getRemoteFile() - getting ${path}`)
+
   fetch(path)
-    .then(function(res){
-      if (res.ok){
-        return res.text()
+    .then(
+      function(result){
+        if (!result.ok) throw new Error(`#614 - 404 error: ${path}`)
+        else return result.text()
       }
-    })
-    .then(function(text){
-      //elapse(`532 - following errors could come from function ${callback.name}`)
-      if (typeof text != 'undefined'){
-        if (text != ''){
-          elapse(`568 -   getRemoteFile() - transferring to ${callback.name}()`)
+    ).then(
+      function(text){
+        if (text == '') throw new Error(`#615 - empty file: ${path}`)
+        else{
+          elapse(`611 -   getRemoteFile() - transferring to ${callback.name}()`)
           callback(passthrough, text, path)
         }
-        else{
-          elapse('568 -   getRemoteFile() - Empty File\n' + path)
-          callback('', '', path)
-        }
       }
-      else {
-        elapse('573 -   getRemoteFile() - 404 Error\n' + path)
-        callback('', '', path)
-      }
-    })
-
-  .catch(function(err){
-    elapse(`579 -   getRemoteFile() - error; path=${path}, error message=${err}`)
-    callback('', '', path)
-   })
+   ).catch(
+     function(err){
+       elapse(`640 -   getRemoteFile()⚠️ CANCELING\n     ${err}`)
+       return
+     }
+   )
 }
 
 /*———————————————————————————————————————— getLocalFile(path, callback)

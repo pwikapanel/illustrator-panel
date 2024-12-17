@@ -8,8 +8,8 @@
 { "key":   "folder"          , "lang":"en" ,"text": "folder"                              },
 { "key":   "folder"          , "lang":"fr" ,"text": "dossier local"                       },
 
-{ "key":   "check & repair"  , "lang":"en" ,"text": "check & repair"                      },
-{ "key":   "check & repair"  , "lang":"fr" ,"text": "vérifier"                            },
+{ "key":   "check & repair"  , "lang":"en" ,"text": "local"                               },
+{ "key":   "check & repair"  , "lang":"fr" ,"text": "local"                               },
 
 { "key":   "save"            , "lang":"en" ,"text": "save"                                },
 { "key":   "save"            , "lang":"fr" ,"text": "sauv."                               },
