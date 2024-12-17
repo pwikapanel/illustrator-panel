@@ -389,7 +389,7 @@ function manifestToLS(){
 
   console.groupEnd()
 
-  elapse(`371 -    manifestToLS() - adding source files to LS...`)
+  elapse(`392 -    manifestToLS() - SOURCE=${SOURCE}; adding source files to LS`)
 
   console.groupCollapsed(`[LS variable list]`)
   for (var x=1; x<MANIFEST.length; x++){
@@ -480,14 +480,14 @@ function compareVersions(newSource, contents, path){
 
   var currentVersion = MANIFEST[0].build
 
-  elapse(`242 - compareVersions() - comparing server:${newVersion}, current:${currentVersion} (n° ${SOURCE} source)`)
+  elapse(`483 - compareVersions() - comparing server:${newVersion}, current:${currentVersion} (n° ${SOURCE} source)`)
 
   if (newSource == SOURCE && newVersion <= currentVersion){
-    elapse(`254 - compareVersions() - no update available for source ${sourceName(SOURCE)}\n\n————————————————————————————————————————\n\n`)
+    elapse(`486 - compareVersions() - no update available for source ${sourceName(SOURCE)}\n\n————————————————————————————————————————\n\n`)
     return true
   }
 
-  elapse(`258 - compareVersions() - update available for ${sourceName(newSource)}; transferring to parseManifest()`)
+  elapse(`490 - compareVersions() - update available for ${sourceName(newSource)}; transferring to parseManifest()`)
   parseManifest(newSource, contents, path)
   
 }
