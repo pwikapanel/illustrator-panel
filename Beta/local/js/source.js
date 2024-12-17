@@ -1,9 +1,9 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: branch.js */
+/*:::::::::::::::::::::::::::::::::::::::: source.js */
 
 /*———————————————————————————————————————— parameters */
 
-var objId    = 'linkBranch'
+var objId    = 'linkSource'
 
     // ⚙ 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋 🔅 ★
 
@@ -24,26 +24,26 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
   var extensionPath = CEP.getSystemPath(SystemPath.EXTENSION)
-  var cmd = 'branchDialog("' + extensionPath + '", ' +  BRANCH + ')'
-  CEP.evalScript(cmd, setBranch)
+  var cmd = 'sourceDialog("' + extensionPath + '", ' +  SOURCE + ')'
+  CEP.evalScript(cmd, setSource)
 })
 
-/*———————————————————————————————————————— setBranch(branch)
+/*———————————————————————————————————————— setSource(source)
 
-    receives a string from branch.jsx */
+    receives a string from source.jsx */
 
-function setBranch(str){
+function setSource(str){
 
   var bits    = str.split('|')
-  var branch = bits[0]
+  var source = bits[0]
   var local   = (bits[1] === 'true')
 
-  if (typeof branch == 'undefined') return true
-  if (       branch == ''         ) return true
-  if ( isNaN(branch)              ) return true // notNumber, notANumber not a number
-  if (   0 > branch || 2 < branch) return true
+  if (typeof source == 'undefined') return true
+  if (       source == ''         ) return true
+  if ( isNaN(source)              ) return true // notNumber, notANumber not a number
+  if (   0 > source || 2 < source) return true
 
-  switch(branch){
+  switch(source){
     case '0':
     case '1':
     case '2':
@@ -52,14 +52,14 @@ function setBranch(str){
 
       localStorage.clear();
 
-      localStorage.BRANCH      = branch
+      localStorage.SOURCE      = source
       localStorage.LOCAL        = local
       localStorage.accentBright = ab
       localStorage.accentDim    = ad
       location.reload(); break
 
     default :
-      lert('Invalid branch: ' + branch);
+      lert('Invalid source: ' + source);
   }
 }
 

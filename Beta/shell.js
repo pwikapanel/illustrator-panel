@@ -29,7 +29,7 @@
     updating
 
     after a given delay, the program checks for updates according to
-    the branch chosen by the user (gear icon)  */
+    the source chosen by the user (gear icon)  */
 
 /*———————————————————————————————————————— EULA
 
@@ -56,9 +56,7 @@
     svija.com · hello@svija.com*/
 
 
-//:::::::::::::::::::::::::::::::::::::::: setup
-
-// list of envirlnemtal variables to keep when restarting (accent color, build etc.)
+//:::::::::::::::::::::::::::::::::::::::: program
 
 //———————————————————————————————————————— start timer
 
@@ -89,10 +87,10 @@ window.addEventListener('error', (event)=>{
 
 var DEBUG          = true                   // boolean   show alerts as well as console
 
-var TOOLSVERSION   = '1.0.7'                // string    shown in branch picker panel
+var TOOLSVERSION   = '1.0.7'                // string    shown in source picker panel
 var AIVERSIONMIN   = 26                     // number    required for xref links
 
-var BRANCHDEFAULT  = 2                      // number    default branch (master)
+var SOURCEDEFAULT  = 2                      // number    default source (master)
 var INTMS          = 500                    // number    interrupt interval to refresh panel etc.
 var READY          = false                  // boolean   is panel loaded, ready to use
 var LANGDEFAULT    = 'en'                   // string    2-letter abbreviation
@@ -101,9 +99,10 @@ var MAXWIDTH       = 240                    // number    width of panel
 var SERVER         = 'tools.svija.love'     // string    server to get remote code
 var UPDATEINTERVAL = 60                     // number    interval between update checks in minutes
 
-var BRANCHNAME0    = 'alpha'                // string    used with BRANCH to derive folder names
-var BRANCHNAME1    = 'beta'
-var BRANCHNAME2    = 'master'
+var SOURCENAME0    = 'local'                // string    used with SOURCE to derive folder names
+var SOURCENAME1    = 'alpha'
+var SOURCENAME2    = 'beta'
+var SOURCENAME3    = 'master'
 
 var AIVERSION      = HOSTENV.appVersion
 var LANG           = HOSTENV.appUILocale.substr(0,2) // or appLocale
@@ -111,7 +110,7 @@ var ISMAC          = CEP.getOSInformation().substring(0,3) == 'Mac'
 var MYDOCS         = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
 
-var BRANCH         // number     0, 1, 2 alpha beta master
+var SOURCE         // number     0, 1, 2 alpha beta master
 var DICTIONARY     // object     JSON english and french traductions
 var INTERFACE      // number     0-3, set by js/panelManager.js // illustrator color
 var ISSVIJA        // boolean    if fromtmost doc is a svija page (in a SYNC folder)
@@ -140,10 +139,10 @@ var allVars = [    // harmonized - same in JS, localStorage and CEP
 
   'DICTIONARY',
 
-  'BRANCH',
-  'BRANCHNAME0',
-  'BRANCHNAME1',
-  'BRANCHNAME2',
+  'SOURCE',
+  'SOURCENAME0',
+  'SOURCENAME1',
+  'SOURCENAME2',
 
   'INTERFACE',
   'ISSVIJA',
@@ -158,168 +157,180 @@ var allVars = [    // harmonized - same in JS, localStorage and CEP
 
 var LANG = 'fr'
 
-if (typeof localStorage.LOCAL == 'undefined') LOCAL  =   true
-else                    LOCAL = (localStorage.LOCAL == 'true')
+if (typeof localStorage.SOURCE != 'undefined')
+  SOURCE = lsToJs(localStorage.SOURCE)
+else SOURCE =   0
 
-elapse(`163 - LOCAL=${LOCAL}`)
+elapse(`163 - SOURCE=${SOURCE} (from LS if it was defined)`)
 
 //———————————————————————————————————————— set defaults
 
 if (typeof localStorage.LSLOADED == 'undefined')
   localStorage.LSLOADED = 'false'
 
-if (typeof localStorage.BRANCH == 'undefined')
-  localStorage.BRANCH = BRANCHDEFAULT
+if (typeof localStorage.SOURCE == 'undefined')
+  localStorage.SOURCE = SOURCEDEFAULT
 else
-  localStorage.BRANCH = parseInt(localStorage.BRANCH)
+  localStorage.SOURCE = parseInt(localStorage.SOURCE)
 
 if (LANG != 'fr') LANG = LANGDEFAULT
 
 elapse(`177 - variables initialized`)
 
-
-//:::::::::::::::::::::::::::::::::::::::: load panel
-
-/*———————————————————————————————————————— manifest
+/*———————————————————————————————————————— start loading
 
     loads JSON file with list of dom elements and
-    source files used to construct the panel   */
+    source files used to construct the panel
 
-if (localStorage.LSLOADED != 'true'){
-  elapse(`188 - localStorage.LSLOADED != 'true' - deleting BRANCH and getting local manifest`)
+    at startup, remote updates can only be installed
+    if they're already in localStorage —— otherwise
+    it would take too long or risk an incomplete update
 
-  if (typeof localStorage.BRANCH != 'undefined')    // make sure reloading doesn't get derailed by a previous attempt
-    delete localStorage.BRANCH
+    so if there's no localStorage, it's local files  */
 
-  getLocalFile (true, MANIFESTPATH, loadManifest)
-}
-
-else{
-  elapse(`197 - localStorage.LSLOADED = 'true' - transferring to loadDOM`)
+if (localStorage.LSLOADED == 'true'){
+  elapse(`185 - localStorage.LSLOADED = 'true' - transferring to loadDOM`)
   loadDOM()
 }
 
+else{
+  elapse(`190 - localStorage.LSLOADED != 'true' - deleting SOURCE and getting local manifest`)
 
-//:::::::::::::::::::::::::::::::::::::::: check for updates
+  if (typeof localStorage.SOURCE != 'undefined')    // make sure reloading doesn't get derailed by a previous attempt
+    delete localStorage.SOURCE
+
+  SOURCE = 0
+  getLocalFile (SOURCE, MANIFESTPATH, parseManifest)
+}
+
+
+/*———————————————————————————————————————— check for updates
+
+    if existing version is local, I take any update I can get, doesn't matter
+
+    if existing verfsion is local, I take updates from same branch but higher build */
 
 // for debugging only
 UPDATEINTERVAL = .1  // number    interval between update checks in minutes (0.2 minutes is 12 seconds)
 
-/*———————————————————————————————————————— launchUpdate after timeout TO REFACTOR
-
-    */
-
 var ms = UPDATEINTERVAL *60*1000
 
-if (READY) setInterval(launchUpdate.bind(null,BRANCH), ms)
+if (READY) setInterval(launchUpdate.bind(null, SOURCE), ms)
 
 
-////////////////////////////////////////// FUNCTIONS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//:::::::::::::::::::::::::::::::::::::::: construction functions
 
-//:::::::::::::::::::::::::::::::::::::::: remote update
+/*———————————————————————————————————————— loadDOM() // if LS is loaded
 
-/*———————————————————————————————————————— 1. launchUpdate()
+   using MANIFEST list of names, extensions and IDs,
+   gets LS values and installs them to the DOM */
 
-    gets remote manifest depending on branch then
-    sends to compareVersions() */
+function loadDOM(){
+  elapse(`421 -         loadDOM() - starting`)
 
-function launchUpdate(branch){
-  elapse(`220 -    launchUpdate() - checking for remote updates from "${branchName(branch)}" branch (currently on ${branchName(BRANCH)} branch)`)
-  var local = false
-  getRemoteFile (local, MANIFESTPATH, compareVersions)
+  harmonize('ls')
+  elapse(`424 -         loadDOM() - harmonized based on localStorage`)
+
+  harmonize('js')
+  elapse(`429 -         loadDOM() - harmonized based on JS`)
+  elapse(`431 -         loadDOM() - adding elements to DOM...`)
+
+  console.groupCollapsed(`[element list] ${MANIFEST.length} elements`)
+
+  for (var x=1; x<MANIFEST.length; x++){
+
+//  elapse(`436 -         loadDOM() - treating MANIFEST[${x}]: ${MANIFEST[x].name}`)
+
+    var LSref = makeLSref(MANIFEST[x])
+    var objID = makeObjID(MANIFEST[x])
+
+    elapse(`441 -         loadDOM() - installing localStorage.${LSref} with ID ${objID}`)
+
+    var functionName = MANIFEST[x]['ext'] + 'ToDOM'
+
+    window[functionName](objID, localStorage[LSref])
+  }
+
+  console.groupEnd()
+  READY = true
+  elapse(`450 -         loadDOM() - elements added; DOM ready\n\n————————————————————————————————————————\n\n`)
 }
 
-/*———————————————————————————————————————— 2. compareVersions(local, contents, path)
+//———————————————————————————————————————— notes: files into localStorage (local & remote)
 
-    */
+/*                      loads           how       calls
 
-function compareVersions(local, contents, path){
-  elapse(`226 - compareVersions() - local=${local}, path=${path}`)
-
-  try{ var json = JSON.parse(contents) }
-  catch(msg){
-    elapse(`225 - compareVersions() - error getting remote manifest: ${msg}`)
-    return true
-  }
-
-  try{ var newVersion = json[0].build }
-  catch(msg){
-    elapse(`233 - compareVersions() - remote manifest corrupt: ${msg}`)
-    return true
-  }
-
-  var currentVersion = MANIFEST[0].build
-
-  elapse(`242 - compareVersions() - comparing server:${newVersion}, current:${currentVersion} (n° ${BRANCH} branch)`)
-
-  if (newVersion <= currentVersion){
-    elapse(`254 - compareVersions() - no update available\n\n————————————————————————————————————————\n\n`)
-    return true
-  }
-
-  elapse(`258 - compareVersions() - transferring to loadManifest()`)
-  loadManifest(local, contents, path)
-  
-}
-
-
-//:::::::::::::::::::::::::::::::::::::::: files into localStorage (local & remote)
-
-/*———————————————————————————————————————— logic flow
-
-    runs                loads           how       calls
-
-    shell.html       manifest.json    callback —› loadManifest
-    loadManifest                       direct  —› loadFiles
-    loadFiles        each script      callback —› fileToManifest
-    fileToManifest                        direct  —› manifestToLS (skipped if not last script)
+    shell.html       manifest.json    callback  —› parseManifest
+    parseManifest                       direct  —› loadFiles
+    loadFiles        each script      callback  —› fileToManifest
+    fileToManifest                      direct  —› manifestToLS (skipped if not last script)
     manifestToLS                     none   */
 
-/*———————————————————————————————————————— 1. loadManifest(local, contents, path)
+/*———————————————————————————————————————— 1. parseManifest(source, contents, path)
 
-    loads the manifest for the active branch into
+    loads the manifest for the active source into
     MANIFEST, an object with keys and values:
 
     { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
 
-function loadManifest(local, contents, path){
-  elapse(`275 -    loadManifest() - local=${local}, path=${path}`)
+function parseManifest(source, contents, path){
+  elapse(`239 -   parseManifest() - source=${sourceName(source)}, path=${path}`)
+
+//———————————————————————————————————————— validate text
 
   if (typeof contents == 'undefined'){
-    elapse(`274 -    loadManifest() - error; contents is undefined`)
+    elapse(`244 -   parseManifest() - error; contents is undefined`)
     return true
   }
 
   if (contents == ''){
-    elapse(`279 -    loadManifest() - stopping; remote manifest is empty (path=${path})`)
+    elapse(`249 -   parseManifest() - stopping; remote manifest is empty (path=${path})`)
     return true
   }
 
-  try{ MANIFEST = JSON.parse(contents).filter(record => !isNaN(record.build)) }      /* exclude comments */
-  catch(msg){ lert( `JSON Parse Error\n${msg}\n${path}` ); return true   }
+//———————————————————————————————————————— validate JSON
+
+  try{ MANIFEST = JSON.parse(contents).filter(record => !isNaN(record.build)) }    /* exclude comments */
+  catch(msg){
+    elapse(`257 -   parseManifest() - JSON Parse Error\n${msg}\n${path}` )
+    return true
+  }
+
+//———————————————————————————————————————— validate 1st record (self-reference)
 
   var manifestRefs = MANIFEST.filter(record => record.name =="manifest")
   
-  if ( manifestRefs.length < 1                            ){ lert(`289 -    loadManifest() - manifest error\nmissing manifest reference`); return true }
-  try{ MANIFESTVERSION = manifestRefs[0].build } catch(msg){ lert(`290 -    loadManifest() - manifest error\nmissing build number`      ); return true }
+  if ( manifestRefs.length < 1                            ){
+    elapse(`266 -   parseManifest() - manifest error - missing manifest reference`)
+    return true
+  }
 
-  MANIFEST.filter(record=> record.name=='manifest')[0]['loaded'] = true
+  try{
+    MANIFESTVERSION = manifestRefs[0].build
+  } catch(msg){
+    elapse(`273 -   parseManifest() - manifest error - missing build number`)
+    return true
+  }
 
-  elapse(`294 -    loadManifest() - manifest loaded (local=${local}) - transferring to loadFiles()`)
+//———————————————————————————————————————— mark as loaded and continue
 
-  loadFiles(local)
+  MANIFEST[0]['loaded'] = true
+
+  elapse(`281 -   parseManifest() - manifest loaded (source=${sourceName(source)}) - transferring to loadFiles()`)
+  loadFiles(source)
+
 }
 
-/*———————————————————————————————————————— 2. loadFiles(local)
+/*———————————————————————————————————————— 2. loadFiles(source)
 
     this will load the relevant files into memory but NOT activate
     them. they will be activated only when they are all loaded
     and validated in the MANIFEST json category "loaded" */
 
-function loadFiles(local){
+function loadFiles(source){
 
-  LOCAL = local
-  elapse(`311 -       loadFiles() - setting LOCAL=${local} - loading source files...`)
+  SOURCE = source
+  elapse(`295 -       loadFiles() - setting SOURCE=${source} - loading source files...`)
 
   console.groupCollapsed('[source file list]')
   for (var x=1; x<MANIFEST.length; x++){
@@ -331,15 +342,15 @@ function loadFiles(local){
     var LSref = makeLSref(MANIFEST[x])
     var  path =  makePath(MANIFEST[x])
 
-    elapse(`321 -       loadFiles() - LSref=${LSref}, path=${path}`)
+    elapse(`307 -       loadFiles() - LSref=${LSref}, path=${path}`)
 
-    if (local){
-      elapse(`324 -       loadFiles() - transferring to getLocalFile()`)
+    if (source==0){
+      elapse(`310 -       loadFiles() - transferring to getLocalFile()`)
       getLocalFile (x, path, fileToManifest)
     }
     else{
-      elapse(`328 -       loadFiles() - transferring to getRemoteFile()`)
-      getRemoteFile(x, path, fileToManifest)
+      elapse(`314 -       loadFiles() - transferring to getRemoteFile()`)
+      getRemoteFile(x, SOURCE, path, fileToManifest)
     }
 
   }
@@ -394,13 +405,13 @@ function manifestToLS(){
 
   console.groupEnd()
   elapse(`391 -    MANIFEST.length=${MANIFEST.length}, adding to localStorage`)
-  elapse(`392 -    manifestToLS() - content saved to LS; setting localStorage.LOCAL to ${LOCAL}; ready to reload`)
-  localStorage.LOCAL = LOCAL
+  elapse(`392 -    manifestToLS() - content saved to LS; setting localStorage.SOURCE to ${sourceName(SOURCE)}; ready to reload`)
+  localStorage.SOURCE = SOURCE
 
-//if (DEBUG){
-//  //elapse(`260 - DEBUG is on`)
-//  CEP.evalScript('confirm("Reload?\\nlocalStorage loaded", "zoo")', locationReload)
-//} else
+  if (DEBUG){
+    //elapse(`260 - DEBUG is on`)
+    CEP.evalScript(`confirm("Reload?\\nlocalStorage loaded from ${sourceName(SOURCE)}", "zoo")`, locationReload)
+  } else
 
     location.reload()
 }
@@ -413,46 +424,76 @@ function locationReload(str){
 }
 
 
-//:::::::::::::::::::::::::::::::::::::::: localStorage into DOM
+//:::::::::::::::::::::::::::::::::::::::: updater functions
 
-/*———————————————————————————————————————— loadDOM()
+/*———————————————————————————————————————— 1. launchUpdate()
 
-   using MANIFEST list of names, extensions and IDs,
-   gets LS values and installs them to the DOM */
+    if existing source is local, I take any update I can get, doesn't matter
 
-function loadDOM(){
-  elapse(`421 -         loadDOM() - starting`)
+    if existing verfsion is local, I take updates from same branch but higher build
 
-  harmonize('ls')
-  elapse(`424 -         loadDOM() - harmonized based on localStorage`)
+    gets remote manifest depending on source then
+    sends to compareVersions() */
 
-  harmonize('js')
-  elapse(`429 -         loadDOM() - harmonized based on JS`)
-  elapse(`431 -         loadDOM() - adding elements to DOM...`)
+function launchUpdate(newSource){
+  if (newSource == 0) newSource = 3 // only update from remote
 
-  console.groupCollapsed(`[element list] ${MANIFEST.length} elements`)
+  elapse(`447 -    launchUpdate() - checking for remote updates from "${sourceName(newSource)}" source (currently on ${sourceName(SOURCE)} source)`)
+  getRemoteFile (newSource, newSource, MANIFESTPATH, compareVersions)
+}
 
-  for (var x=1; x<MANIFEST.length; x++){
+/*———————————————————————————————————————— 2. compareVersions(local, contents, path)
 
-    elapse(`436 -         loadDOM() - treating MANIFEST[${x}]: ${MANIFEST[x].name}`)
+    */
 
-    var LSref = makeLSref(MANIFEST[x])
-    var objID = makeObjID(MANIFEST[x])
+function compareVersions(newSource, contents, path){
+  elapse(`456 - compareVersions() - newSource=${newSource}, path=${path}`)
 
-    elapse(`441 -         loadDOM() - installing localStorage.${LSref} with ID ${objID}`)
+//———————————————————————————————————————— error checking
 
-    var functionName = MANIFEST[x]['ext'] + 'ToDOM'
-
-    window[functionName](objID, localStorage[LSref])
+  try{ var json = JSON.parse(contents) }
+  catch(msg){
+    elapse(`462 - compareVersions() - error getting remote manifest: ${msg}`)
+    return true
   }
 
-  console.groupEnd()
-  READY = true
-  elapse(`450 -         loadDOM() - elements added; DOM ready\n\n————————————————————————————————————————\n\n`)
+  try{ var newVersion = json[0].build }
+  catch(msg){
+    elapse(`468 - compareVersions() - remote manifest corrupt: ${msg}`)
+    return true
+  }
+
+//———————————————————————————————————————— have valid manifest
+
+/*  possible conditions:
+
+    √ if current source is local, we take any remote source 
+    if changing source, take remote source
+    if not changing source, new version has to be higher build n°
+
+    need following info:
+
+    - current source & version
+    - new source & version
+
+    but this should have happened earlier -- at launchUpdate(source) */
+
+  var currentVersion = MANIFEST[0].build
+
+  elapse(`242 - compareVersions() - comparing server:${newVersion}, current:${currentVersion} (n° ${SOURCE} source)`)
+
+  if (newSource == SOURCE && newVersion <= currentVersion){
+    elapse(`254 - compareVersions() - no update available for source ${sourceName(SOURCE)}\n\n————————————————————————————————————————\n\n`)
+    return true
+  }
+
+  elapse(`258 - compareVersions() - update available for ${sourceName(newSource)}; transferring to parseManifest()`)
+  parseManifest(newSource, contents, path)
+  
 }
 
 
-//:::::::::::::::::::::::::::::::::::::::: script loaders
+//:::::::::::::::::::::::::::::::::::::::: other functions
 
 /*———————————————————————————————————————— cssToDOM(scriptID, contents)
 
@@ -532,9 +573,9 @@ function jsxToDOM(scriptID, contents){
 }
 
 
-//:::::::::::::::::::::::::::::::::::::::: fetch utilities
+//———————————————————————————————————————— fetch utilities
 
-/*———————————————————————————————————————— getRemoteFile(passthrough, path, callback)
+/*———————————————————————————————————————— getRemoteFile(passthrough, source, path, callback)
 
     https://github.com/Adobe-CEP/Getting-Started-guides/blob/master/Network%20requests%20and%20responses%20with%20Fetch/readme.md
 
@@ -547,16 +588,16 @@ function jsxToDOM(scriptID, contents){
 
     three params: ID, path, and callback function */
 
-function getRemoteFile(passthrough, path, callback) {
-  elapse(`546 -   getRemoteFile() - passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
+function getRemoteFile(passthrough, source, path, callback) {
+  elapse(`546 -   getRemoteFile() - passthrough=${passthrough}, source=${source}, path=${path}, callback=${callback.name}`)
 
-//if (path != 'json/manifest.json'){
-//  elapse(`548 -   getRemoteFile()⚠️ CANCELING: passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
-//  window[callback.name]
-//  return
-//}
+  if (source<1 || source>3){
+    elapse(`601 -   getRemoteFile()⚠️ CANCELING: passthrough=${passthrough}, source=${source}, path=${path}, callback=${callback.name}`)
+    window[callback.name]
+    return
+  }
 
-  path = 'https://' + SERVER + '/' + dirName(BRANCH) + '/' + path
+  path = 'https://' + SERVER + '/' + dirName(source) + '/' + path
   path = path + '?' + Math.random()
 
   elapse(`556 -   getRemoteFile() - getting ${path}`)
@@ -596,24 +637,24 @@ function getRemoteFile(passthrough, path, callback) {
 
     takes passthrough identifier, path, and callback function
 
-    no choice of branch — there's only one local branch */
+    no choice of source — there's only one local source */
 
 function getLocalFile(passthrough, path, callback){
-  elapse(`584 getLocalFile - passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
+  elapse(`622 getLocalFile - passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
 
-  path = TOOLSPATH + '/files/' +  path
+  path = TOOLSPATH +'/'+ sourceName(0) +'/'+  path
 
   fetchLocal(path)
     .then(function(contents) {
       if (contents != ''){
          callback(passthrough, contents, path)
       }
-      else{ elapse('602 - getLocalFile() - Empty File\n/Local file ' + path) }
+      else{ elapse(`631 - getLocalFile() - empty file: ${path}`) }
     })
 
     .catch(function(msg){
        // attention: this catches errors anywhere in the callback chain
-       elapse('607 - getLocalFile() - Catch Error\nline 384\n\nlocal file ' + path + '\n\n'+msg)
+       elapse(`636 - getLocalFile() - file not found: ${path}\n${msg}`)
     })
 }
 
@@ -638,7 +679,7 @@ function fetchLocal(file) {
 }
 
 
-//:::::::::::::::::::::::::::::::::::::::: utilities
+//———————————————————————————————————————— utilities
 
 /*———————————————————————————————————————— harmonize(ref)
 
@@ -775,12 +816,12 @@ function lert(msg){
   CEP.evalScript('alert("' + msg + '")')
 }
 
-/*———————————————————————————————————————— branchName()
+/*———————————————————————————————————————— sourceName()
 
                                                */
 
-function branchName(c){
-  return window['BRANCHNAME' + c]
+function sourceName(c){
+  return window['SOURCENAME' + c]
 }
 
 /*———————————————————————————————————————— dirName()
@@ -788,7 +829,7 @@ function branchName(c){
                                                */
 
 function dirName(c){
-  return branchName(c).toLowerCase()
+  return sourceName(c).toLowerCase()
 }
 
 /*———————————————————————————————————————— transmitToCEP(jsVal)
@@ -932,4 +973,7 @@ function makePath(obj){
 
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
+
+
+//:::::::::::::::::::::::::::::::::::::::: fin
 

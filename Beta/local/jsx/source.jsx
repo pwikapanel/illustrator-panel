@@ -1,6 +1,6 @@
 #target illustrator  
 
-/*:::::::::::::::::::::::::::::::::::::::: branch.js */
+/*:::::::::::::::::::::::::::::::::::::::: source.js */
 
 /*———————————————————————————————————————— notes
 
@@ -15,7 +15,7 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: program */
 
-function branchDialog(extensionPath, branch){
+function sourceDialog(extensionPath, source){
 
   //———————————————————— image scaling function
 
@@ -143,7 +143,7 @@ function branchDialog(extensionPath, branch){
   radioButton0 = radio.add ("radiobutton", undefined, "Stable Release")
   radioButton1 = radio.add ("radiobutton", undefined, "Beta Release")
 
-  if (branch == 2)
+  if (source == 2)
     radioButton0.value = true
   else
     radioButton1.value = true
@@ -230,7 +230,7 @@ function branchDialog(extensionPath, branch){
     var shift = ScriptUI.environment.keyboardState.shiftKey
     if (shift) local = false
 
-    branch = 2
+    source = 2
   }
 
   radioButton1.onClick = function(e){
@@ -239,15 +239,15 @@ function branchDialog(extensionPath, branch){
     var shift = ScriptUI.environment.keyboardState.shiftKey
     if (shift) local = false
 
-    if (alt) branch = 0
-    else branch = 1
+    if (alt) source = 0
+    else source = 1
   }
 
   panel.defaultElement = applyButton
   panel.cancelElement = cancelButton
 
 
-  if(panel.show() == 1) return branch + '|' + local // clicked apply
+  if(panel.show() == 1) return source + '|' + local // clicked apply
   else return ''                                     // clicked cancel
 
 }
