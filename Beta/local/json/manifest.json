@@ -2,6 +2,7 @@
 
 { "build":   0, "id":           "","name":             "manifest" ,"ext": "json", "loaded": false  },
 { "build":   0, "id":           "","name":           "dictionary" ,"ext": "json", "loaded": false  },
+{ "build":   0, "id":           "","name":            "variables" ,"ext": "js"  , "loaded": false  },
 { "build":   0, "id":           "","name":            "utilities" ,"ext": "js"  , "loaded": false  },
 { "build":   0, "id":           "","name":         "panelManager" ,"ext": "js"  , "loaded": false  },
 

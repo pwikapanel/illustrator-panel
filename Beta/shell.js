@@ -92,15 +92,11 @@ window.addEventListener('error', (event)=>{
 
 //———————————————————————————————————————— initialize variables
 
-var DEBUG          = true                   // boolean   show alerts as well as console
 
-var AIVERSIONMIN   = 26                     // number    required for xref links
 var TOOLSVERSION   = '1.0.7'                // string    shown in source picker panel
 
 var INTMS          = 500                    // number    interrupt interval to refresh panel etc.
-var LANGDEFAULT    = 'en'                   // string    2-letter abbreviation
 var MANIFESTPATH   = 'json/manifest.json'   // string    where manifest JSON is stored
-var MAXWIDTH       = 240                    // number    width of panel
 var READY          = false                  // boolean   is panel loaded, ready to use
 var SERVER         = 'tools.svija.love'     // string    server to get remote code
 var SOURCEDEFAULT  = 2                      // number    default source (master)
@@ -111,15 +107,9 @@ var SOURCENAME1    = 'alpha'
 var SOURCENAME2    = 'beta'
 var SOURCENAME3    = 'master'
 
-var AIVERSION      = HOSTENV.appVersion
-var LANG           = HOSTENV.appUILocale.substr(0,2) // or appLocale
-var ISMAC          = CEP.getOSInformation().substring(0,3) == 'Mac'
-var MYDOCS         = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
 
 var SOURCE         // number     0, 1, 2 alpha beta master
-var DICTIONARY     // object     JSON english and french traductions
-var INTERFACE      // number     0-3, set by js/panelManager.js // illustrator color
 var ISSVIJA        // boolean    if fromtmost doc is a svija page (in a SYNC folder)
 var JSONCOUNT      // number     counter, augmented by 1 with 
 var LASTPATH       // string     last file path for a svija page
@@ -129,28 +119,20 @@ var SITEURL        // string     url of most recent svija site
 var SYNCPATH       // string     absolute path to SYNC folder
 
 var ALLVARS = [    // harmonized - same in JS, localStorage and CEP
-  'DEBUG',
   'TOOLSVERSION',
 
-  'AIVERSION',
-  'AIVERSIONMIN',
-  'LANG',
-  'ISMAC',
-  'MYDOCS',
   'TOOLSPATH',
 
   'MAXWIDTH',
   'INTMS',
   'SERVER',
 
-  'DICTIONARY',
 
   'SOURCE',
   'SOURCENAME0',
   'SOURCENAME1',
   'SOURCENAME2',
 
-  'INTERFACE',
   'ISSVIJA',
   'LASTPATH',
   'MANIFEST',
@@ -424,7 +406,7 @@ function manifestToLS(){
   elapse(424, `      manifestToLS() - content saved to LS; setting localStorage.SOURCE to ${sourceName(SOURCE)}; ready to reload`)
   localStorage.SOURCE = SOURCE
 
-  if (DEBUG)
+  if (typeof DEBUG != 'undefined')
     CEP.evalScript(`confirm("Cancel Reload?\\nlocalStorage loaded from ${sourceName(SOURCE)}", "zoo")`, locationReload)
   else
     location.reload()
@@ -751,16 +733,6 @@ function harmonize(ref){
   }
 
   return true
-}
-
-/*———————————————————————————————————————— translate(key)
-    */
-
-function translate(key){
-  res = DICTIONARY.filter(record=> record.key==key && record.lang==LANG)
-
-  if (res.length == 0) elapse(762, ' translate() - Missing translation key: "' + key + '"')
-  else return res[0].text
 }
 
 /*———————————————————————————————————————— deleteElement(scriptType, scriptID)
