@@ -82,7 +82,7 @@ function setURL(arg){
       LASTPATH = results.lastPath
     }
 
-//elapsed('85———————————————————————————————————— projectInfo interrupt ')
+//elapsed(85, '———————————————————————————————————— projectInfo interrupt ')
   harmonize('js')
 
   if (typeof SITEURL != 'undefined')
