@@ -74,7 +74,7 @@ var ghjAlert = true
 function getSiteURL(){
 
   if (typeof ISMAC == 'undefined'){
-    if (ghjAlert) { alert("Cannot read URL\nUndetermined platform\nprojectInfo.jsx#77"); ghjAlert = false }
+    if (ghjAlert) { alert("ISMAC not set\nprojectInfo.jsx#77"); ghjAlert = false }
     return ''
   }
 
@@ -106,7 +106,7 @@ var hijAlert = true
 function getLastPath(){
 
   if (typeof ISMAC == 'undefined'){
-    if (hijAlert) { alert("Cannot read last path\nUndetermined platform\nprojectInfo.jsx#109"); hijAlert = false }
+    if (hijAlert) { alert("ISMAC not set\nprojectInfo.jsx#109"); hijAlert = false }
     return ''
   }
 

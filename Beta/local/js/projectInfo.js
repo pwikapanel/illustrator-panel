@@ -21,9 +21,14 @@
 
 /*———————————————————————————————————————— setup */
 
-var naam      = 'projectInfo.jsx'
-var ISMAC     = 'true'
-var MYDOCS    = '/Users/Main/Documents'
+ISMAC    = CEP.getOSInformation().substring(0,3) == 'Mac'
+transmitToCEP('ISMAC', ISMAC)
+
+var naam = 'projectInfo.jsx'
+
+
+elapse(29, `projectInfo.js - are we here?`)
+
 
 var file = TOOLSPATH + '/master/cep/' + naam
 
@@ -82,7 +87,7 @@ function setURL(arg){
       LASTPATH = results.lastPath
     }
 
-//elapsed(85, '———————————————————————————————————— projectInfo interrupt ')
+//elapse('85———————————————————————————————————— projectInfo interrupt ')
   harmonize('js')
 
   if (typeof SITEURL != 'undefined')

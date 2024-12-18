@@ -143,7 +143,7 @@ function sourceDialog(extensionPath, source){
   radioButton0 = radio.add ("radiobutton", undefined, "Stable Release")
   radioButton1 = radio.add ("radiobutton", undefined, "Beta Release")
 
-  if (source == 2)
+  if (source == 3)
     radioButton0.value = true
   else
     radioButton1.value = true
@@ -219,6 +219,7 @@ function sourceDialog(extensionPath, source){
      element, it looks for a button whose name or text value is "ok"
      (disregarding case). For the cancel element, it looks for a button
      whose name or text value is "cancel" (disregarding case).  */
+
   //———————————————————— button functionality
 
   var local = true
@@ -230,7 +231,7 @@ function sourceDialog(extensionPath, source){
     var shift = ScriptUI.environment.keyboardState.shiftKey
     if (shift) local = false
 
-    source = 2
+    source = 3
   }
 
   radioButton1.onClick = function(e){
@@ -239,8 +240,8 @@ function sourceDialog(extensionPath, source){
     var shift = ScriptUI.environment.keyboardState.shiftKey
     if (shift) local = false
 
-    if (alt) source = 0
-    else source = 1
+    if (alt) source = 1
+    else source = 2
   }
 
   panel.defaultElement = applyButton

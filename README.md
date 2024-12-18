@@ -9,6 +9,12 @@
 
 Open [this link](http://localhost:8080/) in Chrome
 
+Rsync to get remote version for local
+```
+rsync -vaPur --delete -n root@apache.svija.love:/home/tools.svija.love/master/ ./local/
+```
+Remove the `-n` to do it for real.
+
 ---
 
 [localization info](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md)

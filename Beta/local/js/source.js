@@ -43,25 +43,17 @@ function setSource(str){
   if (typeof source == 'undefined') return true
   if (       source == ''         ) return true
   if ( isNaN(source)              ) return true // notNumber, notANumber not a number
-  if (   0 > source || 2 < source) return true
+  if (    0 > source || 2 < source) return true
 
   switch(source){
     case '0':
     case '1':
     case '2':
-      var ab = localStorage.accentBright
-      var ad = localStorage.accentDim
-
-      localStorage.clear();
-
-      localStorage.SOURCE      = source
-      localStorage.LOCAL        = local
-      localStorage.accentBright = ab
-      localStorage.accentDim    = ad
-      location.reload(); break
+      launchUpdate(source)
+      break
 
     default :
-      lert('Invalid source: ' + source);
+      lert('Invalid source: ' + source)
   }
 }
 

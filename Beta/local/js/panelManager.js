@@ -1,6 +1,9 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: panelManager.js */
 
+var INTERFACE      // number     0-3, set by js/panelManager.js // illustrator color
+var MAXWIDTH = 240   // number    width of panel
+
 /*———————————————————————————————————————— panel size
 
      need to integrate status of localStorage.moreLess */

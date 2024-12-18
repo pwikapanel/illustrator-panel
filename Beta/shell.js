@@ -1,6 +1,8 @@
 
 //:::::::::::::::::::::::::::::::::::::::: shell.js
 
+DEBUG = true
+
 /*———————————————————————————————————————— notes
 
     overall
@@ -235,7 +237,7 @@ function loadDOM(){
   harmonize('js')
   elapse(254, `           loadDOM() - harmonized based on JS`)
 
-  elapseGroup(256, `           loadDOM() - adding elements to DOM; ${MANIFEST.length} elements`)
+  elapseGroup(256, `           loadDOM() - adding ${MANIFEST.length} elements to DOM...`)
 
   for (var x=1; x<MANIFEST.length; x++){
 
@@ -253,7 +255,7 @@ function loadDOM(){
 
   console.groupEnd()
   READY = true
-  elapse(274, `           loadDOM() - elements added; DOM ready\n\n————————————————————————————————————————\n\n`)
+  elapse(274, `           loadDOM() - DOM complete\n\n————————————————————————————————————————\n\n`)
 }
 
 //———————————————————————————————————————— notes: files into localStorage (local & remote)
@@ -274,7 +276,7 @@ function loadDOM(){
     { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
 
 function parseManifest(source, contents, path){
-  elapse(295, `     parseManifest() - source=${sourceName(source)}, path=${path}`)
+  elapse(279, `     parseManifest() - checking JSON from ${sourceName(source)} manifest`)
 
 //———————————————————————————————————————— validate text
 
@@ -331,7 +333,7 @@ function loadFiles(source){
 
   SOURCE = source
 
-  elapseGroup(352, `         loadFiles() - setting SOURCE=${source} - loading source files...`)
+  elapseGroup(352, `         loadFiles() - loading ${MANIFEST.length} files from ${sourceName(source)}...`)
   for (var x=1; x<MANIFEST.length; x++){
 
     var scriptBuild =  MANIFEST[x]['build']
@@ -348,7 +350,7 @@ function loadFiles(source){
       getLocalFile (x, path, fileToManifest)
     }
     else{
-      elapse(369, `         loadFiles() - transferring to getRemoteFile()`)
+//    elapse(369, `         loadFiles() - transferring to getRemoteFile()`)
       getRemoteFile(x, SOURCE, path, fileToManifest)
     }
 
@@ -389,7 +391,7 @@ function manifestToLS(){
   console.groupEnd()
   clearLocalStorage()
 
-  elapseGroup(410, `      manifestToLS() - SOURCE=${SOURCE}; adding source files to LS`)
+  elapseGroup(394, `      manifestToLS() - moving ${MANIFEST.length} files to localStorage...`)
   for (var x=1; x<MANIFEST.length; x++){
     var LSref = makeLSref(MANIFEST[x])
     localStorage[LSref] = MANIFEST[x].contents
@@ -402,8 +404,8 @@ function manifestToLS(){
   localStorage.LSLOADED = 'true'
 
   console.groupEnd()
-  elapse(423, `      manifestToLS() - MANIFEST.length=${MANIFEST.length}, adding to localStorage`)
-  elapse(424, `      manifestToLS() - content saved to LS; setting localStorage.SOURCE to ${sourceName(SOURCE)}; ready to reload`)
+//elapse(423, `      manifestToLS() - MANIFEST.length=${MANIFEST.length}, adding to localStorage`)
+  elapse(408, `      manifestToLS() - localStorage loaded; localStorage.SOURCE set to ${sourceName(SOURCE)}; ready to reload`)
   localStorage.SOURCE = SOURCE
 
   if (typeof DEBUG != 'undefined')
@@ -435,7 +437,7 @@ function locationReload(str){
 function launchUpdate(newSource){
   if (newSource<1 || newSource>3) newSource = 3 // only update from remote
 
-  elapse(456, `      launchUpdate() - checking for remote updates from "${sourceName(newSource)}" source (currently on ${sourceName(SOURCE)} source)`)
+  elapse(456, `      launchUpdate() - checking for remote updates from ${sourceName(newSource)} (currently on ${sourceName(SOURCE)})`)
   getRemoteFile (newSource, newSource, MANIFESTPATH, compareVersions)
 }
 
@@ -444,19 +446,18 @@ function launchUpdate(newSource){
     */
 
 function compareVersions(newSource, contents, path){
-  elapse(465, `   compareVersions() - newSource=${newSource}, path=${path}`)
 
 //———————————————————————————————————————— error checking
 
   try{ var json = JSON.parse(contents) }
   catch(msg){
-    elapse(471, `compareVersions() - error getting remote manifest: ${msg}`)
+    elapse(452, `compareVersions() - error getting remote manifest: ${msg}`)
     return true
   }
 
   try{ var newVersion = json[0].build }
   catch(msg){
-    elapse(477, `compareVersions() - remote manifest corrupt: ${msg}`)
+    elapse(458, `compareVersions() - remote manifest corrupt: ${msg}`)
     return true
   }
 
@@ -477,14 +478,14 @@ function compareVersions(newSource, contents, path){
 
   var currentVersion = MANIFEST[0].build
 
-  elapse(498, `   compareVersions() - comparing server:${newVersion}, current:${currentVersion} (n° ${SOURCE} source)`)
+  elapse(481, `   compareVersions() - current/${sourceName(SOURCE)} is v${currentVersion}, server/${sourceName(newSource)} is v${newVersion}`)
 
   if (newSource == SOURCE && newVersion <= currentVersion){
-    elapse(501, `   compareVersions() - no update available for source ${sourceName(SOURCE)}\n\n————————————————————————————————————————\n\n`)
+    elapse(484, `   compareVersions() - no update available for ${sourceName(newSource)}\n\n————————————————————————————————————————\n\n`)
     return true
   }
 
-  elapse(505, `   compareVersions() - update available for ${sourceName(newSource)}; transferring to parseManifest()`)
+  elapse(488, `   compareVersions() - update available for ${sourceName(newSource)}`)
   parseManifest(newSource, contents, path)
   
 }
@@ -586,7 +587,7 @@ function jsxToDOM(scriptID, contents){
     three params: ID, path, and callback function */
 
 function getRemoteFile(passthrough, source, path, callback) {
-  elapse(607, `     getRemoteFile() - passthrough=${passthrough}, source=${source}, path=${path}, callback=${callback.name}`)
+//elapse(607, `     getRemoteFile() - passthrough=${passthrough}, source=${source}, path=${path}, callback=${callback.name}`)
 
   if (source<1 || source>3){
     elapse(610, `     getRemoteFile()⚠️ CANCELING: passthrough=${passthrough}, source=${source}, path=${path}, callback=${callback.name}`)
@@ -609,7 +610,7 @@ function getRemoteFile(passthrough, source, path, callback) {
       function(text){
         if (text == '') throw new Error(`#615 - empty file: ${path}`)
         else{
-          elapse(630, `     getRemoteFile() - transferring to ${callback.name}()`)
+//        elapse(630, `     getRemoteFile() - transferring to ${callback.name}()`)
           callback(passthrough, text, path)
         }
       }
@@ -812,7 +813,7 @@ function dirName(c){
   return sourceName(c).toLowerCase()
 }
 
-/*———————————————————————————————————————— transmitToCEP(jsVal)
+/*———————————————————————————————————————— transmitToCEP(varName, val)
 
     transmits a JS variable to CEP, as correct type
     currently JSON is sent in stringified format */
@@ -956,13 +957,10 @@ function makePath(obj){
 function clearLocalStorage(){
   var temp = {}
 
-
-
-
-  elapseGroup(992, ` clearLocalStorage() - saving localStorage`)
+  elapseGroup(992, ` clearLocalStorage() - resetting localStorage`)
   SAVEDVARS.forEach(function(name){
     if (typeof localStorage[name] == 'undefined')
-      console.log(`localStorage.${name} is undefined`)
+      console.log(`localStorage.${name} not saved (undefined)`)
     else {
       temp[name] = localStorage[name]
       console.log(`saved: ${name} = ${localStorage[name]}`)
