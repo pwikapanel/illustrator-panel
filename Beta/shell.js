@@ -1,7 +1,7 @@
 
 //:::::::::::::::::::::::::::::::::::::::: shell.js
 
-DEBUG = true
+//DEBUG = true
 
 /*———————————————————————————————————————— notes
 
@@ -255,7 +255,7 @@ function loadDOM(){
 
   console.groupEnd()
   READY = true
-  elapse(274, `           loadDOM() - DOM complete\n\n————————————————————————————————————————\n\n`)
+  elapse(274, `           loadDOM() - ${sourceName(SOURCE)} loaded.\n\n————————————————————————————————————————\n\n`)
 }
 
 //———————————————————————————————————————— notes: files into localStorage (local & remote)
