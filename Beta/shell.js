@@ -813,7 +813,7 @@ function dirName(c){
   return sourceName(c).toLowerCase()
 }
 
-/*———————————————————————————————————————— transmitToCEP(varName, val)
+/*———————————————————————————————————————— transmitToCEP(varName, val) DOESN'T HANDLE ARRAYS
 
     transmits a JS variable to CEP, as correct type
     currently JSON is sent in stringified format */
