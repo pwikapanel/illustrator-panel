@@ -81,6 +81,17 @@ function elapseGroup(line, str){
 
 elapse(16, `starting Svija Tools`)
 
+//———————————————————————————————————————— CEP required
+
+var CEP            = new CSInterface()
+var HOSTENV        = CEP.getHostEnvironment()
+//r resourceBundle = CEP.initResourceBundle();
+
+window.addEventListener('error', (event)=>{
+  var str = encodeURI(event.message)
+      str = `alert("${str}")`
+  CEP.evalScript(str) })
+
 /*———————————————————————————————————————— lert(msg)
 
     alerts in ai-land don't exit program space */
@@ -92,17 +103,6 @@ function lert(msg){
   console.log(msg)
   CEP.evalScript('alert("' + msg + '")')
 }
-
-//———————————————————————————————————————— CEP required
-
-var CEP            = new CSInterface()
-var HOSTENV        = CEP.getHostEnvironment()
-//r resourceBundle = CEP.initResourceBundle();
-
-window.addEventListener('error', (event)=>{
-  var str = encodeURI(event.message)
-      str = `alert("${str}")`
-  CEP.evalScript(str) })
 
 //———————————————————————————————————————— initialize variables
 
@@ -174,7 +174,7 @@ if (typeof localStorage.SOURCE != 'undefined'){
 }
 else{
   SOURCE =   0
-  elapse(181, `SOURCE reset to zero (no LS value)`)
+  elapse(181, `SOURCE not in localStorage; reset to "local"`)
 }
 
 
@@ -209,7 +209,7 @@ if (localStorage.LSLOADED == 'true'){
 }
 
 else{
-  elapse(216, `localStorage.LSLOADED != 'true'; deleting SOURCE and getting local manifest`)
+  elapse(216, `localStorage.LSLOADED != 'true'; deleting SOURCE and getting local manifest\n `)
 
   if (typeof localStorage.SOURCE != 'undefined')    // make sure reloading doesn't get derailed by a previous attempt
     delete localStorage.SOURCE
@@ -223,16 +223,12 @@ else{
 
     if existing version is local, I take any update I can get, doesn't matter
 
-    if existing verfsion is local, I take updates from same branch but higher build */
+    if existing verfsion is local, I take updates from same branch but higher id */
 
-// for debugging only
-//UPDATEINTERVAL = .1  // number    interval between update checks in minutes (0.2 minutes is 12 seconds)
-
-var ms = UPDATEINTERVAL *60*1000
+var ms = UPDATEINTERVAL *60*1000   // variable is interval between update checks in minutes
 
 if (READY) setInterval(launchUpdate.bind(null, SOURCE), ms)
-
-if (typeof DEBUG != 'undefined') launchUpdate(SOURCE)
+if (READY && typeof DEBUG != 'undefined') launchUpdate(SOURCE)
 
 
 //:::::::::::::::::::::::::::::::::::::::: construction functions
@@ -243,15 +239,15 @@ if (typeof DEBUG != 'undefined') launchUpdate(SOURCE)
    gets LS values and installs them to the DOM */
 
 function loadDOM(){
-  elapse(248, `           loadDOM() - starting`)
+  elapse(248, `              loadDOM() - starting`)
 
   sh_harmonize('ls')
-  elapse(251, `           loadDOM() - harmonized based on localStorage`)
+  elapse(251, `              loadDOM() - harmonized based on localStorage`)
 
   sh_harmonize('js')
-  elapse(254, `           loadDOM() - harmonized based on JS`)
+  elapse(254, `              loadDOM() - harmonized based on JS`)
 
-  elapseGroup(256, `           loadDOM() - adding ${MANIFEST.length} elements to DOM...`)
+  elapseGroup(256, `              loadDOM() - adding ${MANIFEST.length} elements to DOM...`)
 
   for (var x=1; x<MANIFEST.length; x++){
 
@@ -260,16 +256,16 @@ function loadDOM(){
     var LSref = sh_makeLSref(MANIFEST[x])
     var objID = sh_makeObjID(MANIFEST[x])
 
-    elapse(265, `           loadDOM() - installing localStorage.${LSref} with ID ${objID}`)
-
     var functionName = MANIFEST[x]['ext'] + 'ToDOM'
+
+    elapse(264, `              loadDOM() - installing localStorage.${LSref} with ID ${objID} with function ${functionName}`)
 
     window[functionName](objID, localStorage[LSref])
   }
 
   console.groupEnd()
   READY = true
-  elapse(274, `           loadDOM() - ${sh_sourceName(SOURCE)} loaded.\n\n————————————————————————————————————————\n\n`)
+  elapse(268, `              loadDOM() - "${sh_sourceName(SOURCE)}" ready to use 🙂\n\n————————————————————————————————————————\n\n`)
 }
 
 //———————————————————————————————————————— notes: files into localStorage (local & remote)
@@ -287,28 +283,31 @@ function loadDOM(){
     loads the manifest for the active source into
     MANIFEST, an object with keys and values:
 
-    { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
+    { "id":0, "name":"manifest" ,"ext":"json", "loaded":false } */
 
 function parseManifest(source, contents, path){
-  elapse(279, `     parseManifest() - checking JSON from ${sh_sourceName(source)} manifest`)
+
+  console.log(' ')
+  elapse(292, `        parseManifest() - validating JSON from "${sh_sourceName(source)}" manifest`)
 
 //———————————————————————————————————————— validate text
 
   if (typeof contents == 'undefined'){
-    elapse(300, `     parseManifest() - error; contents is undefined`)
+    elapse(300, `        parseManifest() - error; contents is undefined`)
     return true
   }
 
   if (contents == ''){
-    elapse(305, `     parseManifest() - stopping; remote manifest is empty (path=${path})`)
+    elapse(305, `        parseManifest() - stopping; remote manifest is empty (path=${path})`)
     return true
   }
 
 //———————————————————————————————————————— validate JSON
 
-  try{ MANIFEST = JSON.parse(contents).filter(record => !isNaN(record.build)) }    /* exclude comments */
+  try{ MANIFEST = JSON.parse(contents).filter(record => record.name.slice(0,1) != '#') }
+
   catch(msg){
-    elapse(313, `     parseManifest() - JSON Parse Error\n${msg}\n${path}` )
+    elapse(309, `        parseManifest() - CANCELED ⚠️ missing "name" recod in JSON from ${path}\n\n    ${msg}\n\n` )
     return true
   }
 
@@ -317,14 +316,14 @@ function parseManifest(source, contents, path){
   var manifestRefs = MANIFEST.filter(record => record.name =="manifest")
   
   if ( manifestRefs.length < 1                            ){
-    elapse(322, `     parseManifest() - manifest error - missing manifest reference`)
+    elapse(322, `        parseManifest() - manifest error - missing manifest reference`)
     return true
   }
 
   try{
-    MANIFESTVERSION = manifestRefs[0].build
+    MANIFESTVERSION = manifestRefs[0].id
   } catch(msg){
-    elapse(329, `     parseManifest() - manifest error - missing build number`)
+    elapse(329, `        parseManifest() - manifest error - missing id number`)
     return true
   }
 
@@ -332,7 +331,8 @@ function parseManifest(source, contents, path){
 
   MANIFEST[0]['loaded'] = true
 
-  elapse(337, `     parseManifest() - manifest loaded (source=${sh_sourceName(source)}) - transferring to loadFiles()`)
+
+  elapse(337, `        parseManifest() - "${sh_sourceName(source)}" manifest loaded`)
   loadFiles(source)
 
 }
@@ -347,20 +347,19 @@ function loadFiles(source){
 
   SOURCE = source
 
-  elapseGroup(352, `         loadFiles() - loading ${MANIFEST.length} files from ${sh_sourceName(source)}...`)
+  elapseGroup(352, `            loadFiles() - loading ${MANIFEST.length} files from "${sh_sourceName(source)}" into MANIFEST...`)
   for (var x=1; x<MANIFEST.length; x++){
 
-    var scriptBuild =  MANIFEST[x]['build']
-
-    if (typeof scriptBuild == "string") continue  // comments are strings
+    var comment = MANIFEST[x]['name'].slice(0,1) === '#'
+    if (comment) continue
 
     var LSref = sh_makeLSref(MANIFEST[x])
     var  path =  sh_makePath(MANIFEST[x])
 
-    elapse(362, `         loadFiles() - LSref=${LSref}, path=${path}`)
+    elapse(362, `          loadFiles() - ${path}`)
 
     if (source==0){
-      elapse(365, `         loadFiles() - transferring to getLocalFile()`)
+//    elapse(365, `         loadFiles() - transferring to getLocalFile()`)
       getLocalFile (x, path, fileToManifest)
     }
     else{
@@ -380,14 +379,14 @@ function loadFiles(source){
 function fileToManifest(x, contents, path){
 
   if (typeof MANIFEST[x] == 'undefined'){
-    elapsed(385, `  fileToManifest() - file not found: `)
+    elapsed(385, `     fileToManifest() - file not found: `)
     manifestToLS()
   }
 
   MANIFEST[x].contents = contents
   MANIFEST[x].loaded   = true
 
-  elapse(392, `  fileToManifest() - ${path} loaded, sending to manifestToLS()`)
+  elapse(392, `     fileToManifest() - ${MANIFEST[x].name} added`)
   manifestToLS()
 }
 
@@ -397,7 +396,7 @@ function fileToManifest(x, contents, path){
 
 function manifestToLS(){
 
-  var notYetLoaded = MANIFEST.filter(record=> record.loaded==false)
+  var notYetLoaded = MANIFEST.filter(record=> (typeof record.loaded == 'undefined'))
   if (notYetLoaded.length > 0) return "not yet loaded"
 
   //————————————————————————————————————————
@@ -405,35 +404,36 @@ function manifestToLS(){
   console.groupEnd()
   sh_clearLocalStorage()
 
-  elapseGroup(394, `      manifestToLS() - moving ${MANIFEST.length} files to localStorage...`)
+  elapseGroup(409, `         manifestToLS() - moving ${MANIFEST.length} variables from MANIFEST to localStorage...`)
   for (var x=1; x<MANIFEST.length; x++){
     var LSref = sh_makeLSref(MANIFEST[x])
     localStorage[LSref] = MANIFEST[x].contents
     delete MANIFEST[x].contents
     delete MANIFEST[x].loaded
-    elapse(245, `      manifestToLs() - ${LSref}`)
+    elapse(415, `       manifestToLs() - ${LSref}`)
   }
 
   localStorage.MANIFEST = JSON.stringify(MANIFEST)
   localStorage.LSLOADED = 'true'
 
   console.groupEnd()
-//elapse(423, `      manifestToLS() - MANIFEST.length=${MANIFEST.length}, adding to localStorage`)
-  elapse(408, `      manifestToLS() - localStorage loaded; localStorage.SOURCE set to ${sh_sourceName(SOURCE)}; ready to reload`)
   localStorage.SOURCE = SOURCE
+  elapse(419, `         manifestToLS() - localStorage loaded (${sh_lsStorageUsed()} KB); localStorage.SOURCE set to "${sh_sourceName(SOURCE)}"; 🔥 reload to install DOM`)
 
   if (typeof DEBUG != 'undefined')
     CEP.evalScript(`confirm("Cancel Reload?\\nlocalStorage loaded from ${sh_sourceName(SOURCE)}", "zoo")`, locationReload)
   else
+//  zoop = 'boo'
     location.reload()
 }
 
 function locationReload(str){
+
   // return=false, escape=true
 
   if (str=='false')
     location.reload()
-  else  elapse(438, `      locationReload() - reload canceled`)
+  else  elapse(438, `       locationReload() - canceled`)
 }
 
 
@@ -443,7 +443,7 @@ function locationReload(str){
 
     if existing source is local, I take any update I can get, doesn't matter
 
-    if existing verfsion is local, I take updates from same branch but higher build
+    if existing verfsion is local, I take updates from same branch but higher id
 
     gets remote manifest depending on source then
     sends to compareVersions() */
@@ -451,7 +451,7 @@ function locationReload(str){
 function launchUpdate(newSource){
   if (newSource<1 || newSource>3) newSource = 3 // only update from remote
 
-  elapse(456, `      launchUpdate() - checking for remote updates from ${sh_sourceName(newSource)} (currently on ${sh_sourceName(SOURCE)})`)
+  elapse(453, `         launchUpdate() - checking for remote updates from "${sh_sourceName(newSource)}" (currently on "${sh_sourceName(SOURCE)}")`)
   getRemoteFile (newSource, newSource, MANIFESTPATH, compareVersions)
 }
 
@@ -469,7 +469,7 @@ function compareVersions(newSource, contents, path){
     return true
   }
 
-  try{ var newVersion = json[0].build }
+  try{ var newVersion = json[0].id}
   catch(msg){
     elapse(458, `compareVersions() - remote manifest corrupt: ${msg}`)
     return true
@@ -481,7 +481,7 @@ function compareVersions(newSource, contents, path){
 
     √ if current source is local, we take any remote source 
     if changing source, take remote source
-    if not changing source, new version has to be higher build n°
+    if not changing source, new version has to be higher id n°
 
     need following info:
 
@@ -490,16 +490,16 @@ function compareVersions(newSource, contents, path){
 
     but this should have happened earlier -- at launchUpdate(source) */
 
-  var currentVersion = MANIFEST[0].build
+  var currentVersion = MANIFEST[0].id
 
-  elapse(481, `   compareVersions() - current/${sh_sourceName(SOURCE)} is v${currentVersion}, server/${sh_sourceName(newSource)} is v${newVersion}`)
+  elapse(481, `      compareVersions() - current:${sh_sourceName(SOURCE)} is v${currentVersion}, server:${sh_sourceName(newSource)} is v${newVersion}`)
 
   if (newSource == SOURCE && newVersion <= currentVersion){
-    elapse(484, `   compareVersions() - no update available for ${sh_sourceName(newSource)}\n\n————————————————————————————————————————\n\n`)
+    elapse(484, `      compareVersions() - no update available for "${sh_sourceName(newSource)}"\n\n————————————————————————————————————————\n\n`)
     return true
   }
 
-  elapse(488, `   compareVersions() - update available for ${sh_sourceName(newSource)}`)
+  elapse(488, `      compareVersions() - update available for "${sh_sourceName(newSource)}"`)
   parseManifest(newSource, contents, path)
   
 }
@@ -555,22 +555,20 @@ function jsToDOM(scriptID, contents){
 
 /*———————————————————————————————————————— jsonToDOM(scriptID, contents)
 
-    for translation */
+    accepts a JSON file where valid records have a string "key" and 
+    comments have a key starting with #
+    only used for translation at this time */
 
 function jsonToDOM(scriptID, contents){
 
-  var varNameArray = JSON.parse(contents).filter(record => typeof record.name != 'undefined')
-  var varName = varNameArray[0].name
-
   try{
-    window[varName] = JSON.parse(contents).filter(record => record.build != 'fin' && typeof record.name == 'undefined')
-    localStorage[varName] = JSON.stringify(window[varName])
-//  if (varName == 'DICTIONARY') lert(localStorage[varName])
-    elapse(572, ` jsonToDOM(${varName})`)
+    window[scriptID]       = JSON.parse(contents).filter(record => record.key.slice(0,1) != '#')
+    localStorage[scriptID] = JSON.stringify(window[scriptID])
+    elapse(566, `             jsonToDOM(${scriptID})`)
   }
 
   catch(e){
-    elapse(576, ' jsonToDOM() - JSON '+scriptID+' not loaded (line 309)\n'+e)
+    elapse(570, `             jsonToDOM() ⚠️ JSON error; ${scriptID} not loaded\n`+e)
   }
 
 }
@@ -612,7 +610,7 @@ function getRemoteFile(passthrough, source, path, callback) {
   path = 'https://' + SERVER + '/' + sh_dirName(source) + '/' + path
   path = path + '?' + Math.random()
 
-  elapse(618, `     getRemoteFile() - getting ${path}`)
+  elapse(612, `        getRemoteFile() - ${path}`)
 
   fetch(path)
     .then(
@@ -645,7 +643,7 @@ function getRemoteFile(passthrough, source, path, callback) {
     no choice of source — there's only one local source */
 
 function getLocalFile(passthrough, path, callback){
-  elapse(651, ` getLocalFile() - passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
+//elapse(651, `      getLocalFile() - passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
 
   path = TOOLSPATH +'/'+ sh_sourceName(0) +'/'+  path
 
@@ -915,10 +913,10 @@ function sh_fillDigits(i, n){
 /*———————————————————————————————————————— sh_makeLSref(obj)
 
     creates a reference for a localStorage variable
-    name_build_ext   */
+    name_ext   */
 
 function sh_makeLSref(obj){
-  return obj.name +'_'+ obj.build +'_'+ obj.ext
+  return obj.name +'_'+ obj.ext
 }
 
 /*———————————————————————————————————————— sh_makeObjID(obj)
@@ -952,26 +950,34 @@ function sh_makePath(obj){
 function sh_clearLocalStorage(){
   var temp = {}
 
-  elapseGroup(992, ` sh_clearLocalStorage() - resetting localStorage`)
+  elapseGroup(952, ` sh_clearLocalStorage() - clearing localStorage`)
   SAVEDVARS.forEach(function(name){
     if (typeof localStorage[name] == 'undefined')
-      console.log(`localStorage.${name} not saved (undefined)`)
+      console.log(`    not saved: localStorage.${name} is undefined`)
     else {
       temp[name] = localStorage[name]
-      console.log(`saved: ${name} = ${localStorage[name]}`)
+      console.log(`        saved: localStorage.${name} = ${localStorage[name]}`)
     }
   })
 
   localStorage.clear();
 
   for (const [key, value] of Object.entries(temp)) {
-    console.log(key, value);
-    console.log(`restored: localStorage.${key} = ${value}`)
     localStorage[key] = value
+    console.log(`     restored: localStorage.${key} = ${value}`)
   }
   console.groupEnd()
 }
 
+/*———————————————————————————————————————— sh_lsStorageUsed()
+
+    145985 bytes  */
+
+function sh_lsStorageUsed(){
+  var z = new Blob(Object.values(localStorage)).size
+  var z = Math.round(z / 100)
+  return z/10
+}
 
 
 //:::::::::::::::::::::::::::::::::::::::: fin

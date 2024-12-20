@@ -1,7 +1,5 @@
 [
 
-{ "name":  "DICTIONARY"                                                                   },
-
 { "key":   "channel loaded"  , "lang":"en" ,"text": " channel loaded from "               },
 { "key":   "channel loaded"  , "lang":"fr" ,"text": " canal chargé depuis "               },
 
@@ -35,7 +33,7 @@
 { "key":   "versionAlert"    , "lang":"en" ,"text": "Unsupported Illustrator version"     },
 { "key":   "versionAlert"    , "lang":"fr" ,"text": "Version d'Illustrator non-supportée" },
 
-{ "key":   "help"            , "lang":"en" ,"text": "save all"                            },
+{ "key":   "help"            , "lang":"en" ,"text": "help"                                },
 { "key":   "help"            , "lang":"fr" ,"text": "aide"                                },
 
 { "key":   "more"            , "lang":"en" ,"text": "＋ more"                             },
@@ -44,4 +42,4 @@
 { "key":   "less"            , "lang":"en" ,"text": "— less"                              },
 { "key":   "less"            , "lang":"fr" ,"text": "— moins"                             },
 
-{ "key":   "fin"                                                                          }]
+{ "key":   "#fin"                                                                         }]
