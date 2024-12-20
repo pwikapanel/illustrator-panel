@@ -22,7 +22,7 @@
 /*———————————————————————————————————————— setup */
 
 ISMAC    = CEP.getOSInformation().substring(0,3) == 'Mac'
-transmitToCEP('ISMAC', ISMAC)
+sh_transmitToCEP('ISMAC', ISMAC)
 
 var naam = 'projectInfo.jsx'
 
@@ -88,7 +88,8 @@ function setURL(arg){
     }
 
 //elapse('85———————————————————————————————————— projectInfo interrupt ')
-  harmonize('js')
+
+  sh_harmonize('js')
 
   if (typeof SITEURL != 'undefined')
     if (SITEURL != '') CEP.setWindowTitle(SITEURL)

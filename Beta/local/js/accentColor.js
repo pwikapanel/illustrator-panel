@@ -21,15 +21,15 @@
 
     if user already picked a favorite color */
 
-if (typeof localStorage.accentBright == 'undefined'){
+if (typeof localStorage.ACCENTBRIGHT == 'undefined'){
   var style = getComputedStyle(document.body)                  
-  localStorage.accentBright = style.getPropertyValue('--accentBright')
-  localStorage.accentDim    = style.getPropertyValue('--accentDim')
+  localStorage.ACCENTBRIGHT = style.getPropertyValue('--accentBright')
+  localStorage.ACCENTDIM    = style.getPropertyValue('--accentDim')
   
 }
 else{
-  document.documentElement.style.setProperty('--accentBright', localStorage.accentBright)
-  document.documentElement.style.setProperty('--accentDim',    localStorage.accentDim)
+  document.documentElement.style.setProperty('--accentBright', localStorage.ACCENTBRIGHT)
+  document.documentElement.style.setProperty('--accentDim',    localStorage.ACCENTDIM)
 }
 
 /*———————————————————————————————————————— online status color
@@ -81,8 +81,8 @@ function setAccent(arg){
   var bright = 'hsl('+hue+', 100%, ' + lightness + '%)'
   var dim    = dimVersion(hue)
 
-  localStorage.accentBright = bright 
-  localStorage.accentDim    = dim
+  localStorage.ACCENTBRIGHT = bright 
+  localStorage.ACCENTDIM    = dim
 
   document.documentElement.style.setProperty('--accentBright', bright)
   document.documentElement.style.setProperty('--accentDim',    dim)

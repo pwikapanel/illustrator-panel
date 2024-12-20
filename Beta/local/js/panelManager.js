@@ -1,8 +1,10 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: panelManager.js */
 
-var INTERFACE      // number     0-3, set by js/panelManager.js // illustrator color
 var MAXWIDTH = 240   // number    width of panel
+
+CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setInterface)
+setInterface()
 
 /*———————————————————————————————————————— panel size
 
@@ -37,6 +39,10 @@ setInterval(function(){
 
   setPanelSize(bottomEdge)
 }, INTMS)
+
+/*———————————————————————————————————————— setPanelSize(objID)
+
+    */
 
 function setPanelSize(objID){
 
@@ -74,12 +80,10 @@ function setInterface() { // did have (event) as arg
   }
 
   INTERFACE = code
+  sh_transmitToCEP('INTERFACE', INTERFACE)
+
   document.body.id = "if_" + code
 }
-
-setInterface()
-
-CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setInterface)
 
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */

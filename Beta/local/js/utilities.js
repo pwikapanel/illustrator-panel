@@ -1,46 +1,74 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.js */
 
+/*———————————————————————————————————————— ut_hslToRgbArray(hsl) DOESN'T HANDLE DOUBLE SPACES
 
+    accepts a string of format 'hsl(120, 50%, 50%)'
+    with or without commas
 
+    returns an array of three 0-1 values */
 
+function ut_hslToRgbArray(str){
 
+  str = str.slice(4, -1)             // remove hsl()
+  str = str.replace(/%/g,'')         // remove % signs
+  str = str.trim()                   // remove leading trailing spaces
+  str = str.replace(/ +(?= )/g,'')   // remove multiple spaces
 
+  var hsl = str.split(' ')
 
+  var h = parseFloat(hsl[0])            // 80
+  var s = parseFloat(hsl[1])            // 100
+  var l = parseFloat(hsl[2])            // 50
 
+  return us_hslToRgb(h, s, l)
+}
 
+/*———————————————————————————————————————— us_hslToRgb(h, s, l)
 
+    accepts three values: 0-360, 0-100, 0-100
 
+    returns an array of three 0-1 values */
 
+function us_hslToRgb(h, s, l){
+  // https://stackoverflow.com/a/9493060
 
+  h = h/360
+  s = s/100
+  l = l/100
 
+  var r, g, b
 
+  if (s === 0) {
+    r = g = b = l; // achromatic
+  } else {
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    r = us_hueToRgb(p, q, h + 1/3);
+    g = us_hueToRgb(p, q, h);
+    b = us_hueToRgb(p, q, h - 1/3);
+  }
 
+  return [r, g, b];
+}
 
+/*———————————————————————————————————————— us_hueToRgb(m1, m2, h)
 
+    accepts three 0-1 values
 
-/*———————————————————————————————————————— ut_rgbToHsl(r, g, b)
+    returns a number from 0-1 */
 
-    https://www.30secondsofcode.org/js/s/rgb-to-hsl/  */
+function us_hueToRgb(m1, m2, h){
+  // https://stackoverflow.com/a/9493060
 
-function ut_rgbToHsl(r, g, b){
-  r /= 255;
-  g /= 255;
-  b /= 255;
-  const l = Math.max(r, g, b);
-  const s = l - Math.min(r, g, b);
-  const h = s
-    ? l === r
-      ? (g - b) / s
-      : l === g
-      ? 2 + (b - r) / s
-      : 4 + (r - g) / s
-    : 0;
-  return [
-    60 * h < 0 ? 60 * h + 360 : 60 * h,
-    100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
-    (100 * (2 * l - s)) / 2,
-  ];
+  if (h < 0) h +=  1
+  if (h > 1) h -=  1
+
+  if (h*6 < 1) return m1 + (m2-m1) * h * 6
+  if (h*2 < 1) return m2
+  if (h*3 < 2) return m1 + (m2-m1) * (2/3-h) * 6
+
+  return m1
 }
 
 //———————————————————————————————————————— ut_startTimer()
@@ -55,6 +83,21 @@ function ut_startTimer(){
 function ut_elapsed(startTime){
   var d = new Date()
   return d.getTime()-startTime
+}
+
+/*———————————————————————————————————————— ut_transmitCSStoCEP(varName)
+
+    given a css variable name (without interface code)
+    sends the RGB array equivalent of a HSL color to CEP */
+
+function ut_transmitCSStoCEP(varName){
+
+  var    hsl = style.getPropertyValue(`--${varName}${INTERFACE}`)
+  var rgbStr = ut_hslToRgbArray(hsl).join(',')
+
+  var evalStr = `${varName}=[${rgbStr}]`
+  CEP.evalScript(evalStr)
+
 }
 
 

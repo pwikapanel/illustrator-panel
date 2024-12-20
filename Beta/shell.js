@@ -1,7 +1,7 @@
 
 //:::::::::::::::::::::::::::::::::::::::: shell.js
 
-//DEBUG = true
+DEBUG = true
 
 /*———————————————————————————————————————— notes
 
@@ -68,18 +68,30 @@ var TIMER = d.getTime()
 function elapse(line, str){
   var d = new Date()
   var t = d.getTime() - TIMER
-  str = fillDigits(t, 5) + ' °' + fillDigits(line, 4) + ' ' + str
+  str = sh_fillDigits(t, 5) + ' °' + sh_fillDigits(line, 4) + ' ' + str
   console.log(str)
 }
 
 function elapseGroup(line, str){
   var d = new Date()
   var t = d.getTime() - TIMER
-  str = fillDigits(t, 5) + ' °' + fillDigits(line, 4) + ' ' + str
+  str = sh_fillDigits(t, 5) + ' °' + sh_fillDigits(line, 4) + ' ' + str
   console.groupCollapsed(str)
 }
 
 elapse(16, `starting Svija Tools`)
+
+/*———————————————————————————————————————— lert(msg)
+
+    alerts in ai-land don't exit program space */
+
+function lert(msg){
+  msg = JSON.stringify(String(msg))
+  msg = msg.substr(1, msg.length-2)
+
+  console.log(msg)
+  CEP.evalScript('alert("' + msg + '")')
+}
 
 //———————————————————————————————————————— CEP required
 
@@ -157,7 +169,7 @@ var SAVEDVARS = [  // kept when localStorage is cleared during updates
 var LANG = 'fr'
 
 if (typeof localStorage.SOURCE != 'undefined'){
-  SOURCE = lsToJs(localStorage.SOURCE)
+  SOURCE = sh_lsToJs(localStorage.SOURCE)
   elapse(177, `SOURCE=${SOURCE} (from LS)`)
 }
 else{
@@ -214,11 +226,13 @@ else{
     if existing verfsion is local, I take updates from same branch but higher build */
 
 // for debugging only
-UPDATEINTERVAL = .1  // number    interval between update checks in minutes (0.2 minutes is 12 seconds)
+//UPDATEINTERVAL = .1  // number    interval between update checks in minutes (0.2 minutes is 12 seconds)
 
 var ms = UPDATEINTERVAL *60*1000
 
 if (READY) setInterval(launchUpdate.bind(null, SOURCE), ms)
+
+if (typeof DEBUG != 'undefined') launchUpdate(SOURCE)
 
 
 //:::::::::::::::::::::::::::::::::::::::: construction functions
@@ -231,10 +245,10 @@ if (READY) setInterval(launchUpdate.bind(null, SOURCE), ms)
 function loadDOM(){
   elapse(248, `           loadDOM() - starting`)
 
-  harmonize('ls')
+  sh_harmonize('ls')
   elapse(251, `           loadDOM() - harmonized based on localStorage`)
 
-  harmonize('js')
+  sh_harmonize('js')
   elapse(254, `           loadDOM() - harmonized based on JS`)
 
   elapseGroup(256, `           loadDOM() - adding ${MANIFEST.length} elements to DOM...`)
@@ -243,8 +257,8 @@ function loadDOM(){
 
 //  elapse(260, `         loadDOM() - treating MANIFEST[${x}]: ${MANIFEST[x].name}`)
 
-    var LSref = makeLSref(MANIFEST[x])
-    var objID = makeObjID(MANIFEST[x])
+    var LSref = sh_makeLSref(MANIFEST[x])
+    var objID = sh_makeObjID(MANIFEST[x])
 
     elapse(265, `           loadDOM() - installing localStorage.${LSref} with ID ${objID}`)
 
@@ -255,7 +269,7 @@ function loadDOM(){
 
   console.groupEnd()
   READY = true
-  elapse(274, `           loadDOM() - ${sourceName(SOURCE)} loaded.\n\n————————————————————————————————————————\n\n`)
+  elapse(274, `           loadDOM() - ${sh_sourceName(SOURCE)} loaded.\n\n————————————————————————————————————————\n\n`)
 }
 
 //———————————————————————————————————————— notes: files into localStorage (local & remote)
@@ -276,7 +290,7 @@ function loadDOM(){
     { "build":1, "name":"manifest" ,"ext":"json", "loaded":false } */
 
 function parseManifest(source, contents, path){
-  elapse(279, `     parseManifest() - checking JSON from ${sourceName(source)} manifest`)
+  elapse(279, `     parseManifest() - checking JSON from ${sh_sourceName(source)} manifest`)
 
 //———————————————————————————————————————— validate text
 
@@ -318,7 +332,7 @@ function parseManifest(source, contents, path){
 
   MANIFEST[0]['loaded'] = true
 
-  elapse(337, `     parseManifest() - manifest loaded (source=${sourceName(source)}) - transferring to loadFiles()`)
+  elapse(337, `     parseManifest() - manifest loaded (source=${sh_sourceName(source)}) - transferring to loadFiles()`)
   loadFiles(source)
 
 }
@@ -333,15 +347,15 @@ function loadFiles(source){
 
   SOURCE = source
 
-  elapseGroup(352, `         loadFiles() - loading ${MANIFEST.length} files from ${sourceName(source)}...`)
+  elapseGroup(352, `         loadFiles() - loading ${MANIFEST.length} files from ${sh_sourceName(source)}...`)
   for (var x=1; x<MANIFEST.length; x++){
 
     var scriptBuild =  MANIFEST[x]['build']
 
     if (typeof scriptBuild == "string") continue  // comments are strings
 
-    var LSref = makeLSref(MANIFEST[x])
-    var  path =  makePath(MANIFEST[x])
+    var LSref = sh_makeLSref(MANIFEST[x])
+    var  path =  sh_makePath(MANIFEST[x])
 
     elapse(362, `         loadFiles() - LSref=${LSref}, path=${path}`)
 
@@ -389,11 +403,11 @@ function manifestToLS(){
   //————————————————————————————————————————
 
   console.groupEnd()
-  clearLocalStorage()
+  sh_clearLocalStorage()
 
   elapseGroup(394, `      manifestToLS() - moving ${MANIFEST.length} files to localStorage...`)
   for (var x=1; x<MANIFEST.length; x++){
-    var LSref = makeLSref(MANIFEST[x])
+    var LSref = sh_makeLSref(MANIFEST[x])
     localStorage[LSref] = MANIFEST[x].contents
     delete MANIFEST[x].contents
     delete MANIFEST[x].loaded
@@ -405,11 +419,11 @@ function manifestToLS(){
 
   console.groupEnd()
 //elapse(423, `      manifestToLS() - MANIFEST.length=${MANIFEST.length}, adding to localStorage`)
-  elapse(408, `      manifestToLS() - localStorage loaded; localStorage.SOURCE set to ${sourceName(SOURCE)}; ready to reload`)
+  elapse(408, `      manifestToLS() - localStorage loaded; localStorage.SOURCE set to ${sh_sourceName(SOURCE)}; ready to reload`)
   localStorage.SOURCE = SOURCE
 
   if (typeof DEBUG != 'undefined')
-    CEP.evalScript(`confirm("Cancel Reload?\\nlocalStorage loaded from ${sourceName(SOURCE)}", "zoo")`, locationReload)
+    CEP.evalScript(`confirm("Cancel Reload?\\nlocalStorage loaded from ${sh_sourceName(SOURCE)}", "zoo")`, locationReload)
   else
     location.reload()
 }
@@ -437,7 +451,7 @@ function locationReload(str){
 function launchUpdate(newSource){
   if (newSource<1 || newSource>3) newSource = 3 // only update from remote
 
-  elapse(456, `      launchUpdate() - checking for remote updates from ${sourceName(newSource)} (currently on ${sourceName(SOURCE)})`)
+  elapse(456, `      launchUpdate() - checking for remote updates from ${sh_sourceName(newSource)} (currently on ${sh_sourceName(SOURCE)})`)
   getRemoteFile (newSource, newSource, MANIFESTPATH, compareVersions)
 }
 
@@ -478,20 +492,20 @@ function compareVersions(newSource, contents, path){
 
   var currentVersion = MANIFEST[0].build
 
-  elapse(481, `   compareVersions() - current/${sourceName(SOURCE)} is v${currentVersion}, server/${sourceName(newSource)} is v${newVersion}`)
+  elapse(481, `   compareVersions() - current/${sh_sourceName(SOURCE)} is v${currentVersion}, server/${sh_sourceName(newSource)} is v${newVersion}`)
 
   if (newSource == SOURCE && newVersion <= currentVersion){
-    elapse(484, `   compareVersions() - no update available for ${sourceName(newSource)}\n\n————————————————————————————————————————\n\n`)
+    elapse(484, `   compareVersions() - no update available for ${sh_sourceName(newSource)}\n\n————————————————————————————————————————\n\n`)
     return true
   }
 
-  elapse(488, `   compareVersions() - update available for ${sourceName(newSource)}`)
+  elapse(488, `   compareVersions() - update available for ${sh_sourceName(newSource)}`)
   parseManifest(newSource, contents, path)
   
 }
 
 
-//:::::::::::::::::::::::::::::::::::::::: utility functions
+//:::::::::::::::::::::::::::::::::::::::: sh_ utility functions
 
 /*———————————————————————————————————————— cssToDOM(scriptID, contents)
 
@@ -595,7 +609,7 @@ function getRemoteFile(passthrough, source, path, callback) {
     return
   }
 
-  path = 'https://' + SERVER + '/' + dirName(source) + '/' + path
+  path = 'https://' + SERVER + '/' + sh_dirName(source) + '/' + path
   path = path + '?' + Math.random()
 
   elapse(618, `     getRemoteFile() - getting ${path}`)
@@ -633,7 +647,7 @@ function getRemoteFile(passthrough, source, path, callback) {
 function getLocalFile(passthrough, path, callback){
   elapse(651, ` getLocalFile() - passthrough=${passthrough}, path=${path}, callback=${callback.name}`)
 
-  path = TOOLSPATH +'/'+ sourceName(0) +'/'+  path
+  path = TOOLSPATH +'/'+ sh_sourceName(0) +'/'+  path
 
   fetchLocal(path)
     .then(function(contents) {
@@ -672,7 +686,7 @@ function fetchLocal(file) {
 
 //———————————————————————————————————————— utilities
 
-/*———————————————————————————————————————— harmonize(ref)
+/*———————————————————————————————————————— sh_harmonize(ref)
 
     three types of variables
 
@@ -691,9 +705,9 @@ function fetchLocal(file) {
 
 // DO NOT ADD ALERTS · called every 500ms by getProjectInfo()
 
-function harmonize(ref){
+function sh_harmonize(ref){
 
-  if (ref != 'js' && ref != 'ls') { elapse(713, ' harmonize() - illegal argument\nref = '+ref); return true }
+  if (ref != 'js' && ref != 'ls') { elapse(713, ' sh_harmonize() - illegal argument\nref = '+ref); return true }
 
   for (x=0; x<ALLVARS.length; x++){
 
@@ -713,8 +727,8 @@ function harmonize(ref){
       else lsVal = jsVal
 
       localStorage[varName] = lsVal
-      //elapse(733, ` ref='+ref+', calling transmitToCEP: '+varName +' - '+elapse(TIMER) + 'ms')
-      transmitToCEP(varName, jsVal)
+      //elapse(733, ` ref='+ref+', calling sh_transmitToCEP: '+varName +' - '+elapse(TIMER) + 'ms')
+      sh_transmitToCEP(varName, jsVal)
     }
 
     //———————————————————— LS —› JS
@@ -723,11 +737,11 @@ function harmonize(ref){
       if (typeof localStorage[varName] == 'undefined') continue
       else lsVal = localStorage[varName]
 
-      jsVal = lsToJs(lsVal)
+      jsVal = sh_lsToJs(lsVal)
 
       window[varName] = jsVal
-      //elapse(746, ` ref='+ref+', calling transmitToCEP: '+varName +' - '+elapse(TIMER) + 'ms')
-      transmitToCEP(varName, jsVal)
+      //elapse(746, ` ref='+ref+', calling sh_transmitToCEP: '+varName +' - '+elapse(TIMER) + 'ms')
+      sh_transmitToCEP(varName, jsVal)
     }
 
 
@@ -736,20 +750,20 @@ function harmonize(ref){
   return true
 }
 
-/*———————————————————————————————————————— deleteElement(scriptType, scriptID)
+/*———————————————————————————————————————— sh_deleteElement(scriptType, scriptID)
 
     deletes HTML, JS or CSS given an ID */
 
-function deleteElement(scriptType, scriptID){
+function sh_deleteElement(scriptType, scriptID){
 
   scriptID += scriptType
 
-  elapse(774, ' deleteElement() - going to Script Deletion\nDeleting object '+scriptID+' of type '+scriptType)
+  elapse(774, ' sh_deleteElement() - going to Script Deletion\nDeleting object '+scriptID+' of type '+scriptType)
 
   obj = document.getElementById(scriptID)
   if (obj == null) return true
 
-  elapse(779, ' deleteElement() - deleting object '+scriptID+' of type '+scriptType)
+  elapse(779, ' sh_deleteElement() - deleting object '+scriptID+' of type '+scriptType)
 
   if (scriptType == 'css')
     obj.querySelectorAll('link[rel="stylesheet"], style').forEach(elem => elem.parentNode.removeChild(elem))
@@ -757,63 +771,52 @@ function deleteElement(scriptType, scriptID){
   else obj.remove()
 }
 
-/*———————————————————————————————————————— stripExtension(str)
+/*———————————————————————————————————————— sh_stripExtension(str)
 
     strips everything after last period */
 
-function stripExtension(str){
+function sh_stripExtension(str){
   if (str.indexOf('.') < 0) return str
 
   var dotIndex = str.lastIndexOf('.')
   return str.substr(0, dotIndex)
 }
 
-/*———————————————————————————————————————— capitalize first letter
-    */
+/*———————————————————————————————————————— sh_capitalize(str)
 
-function capitalize(str){
+    capitalize first letter */
+
+function sh_capitalize(str){
   if (typeof str == 'undefined'){
-    elapse(803, ` capitalize() received an undefined string`)
+    elapse(803, ` sh_capitalize() received an undefined string`)
     return ''
   }
 
   if (str.length == 0){
-    elapse(808, ` capitalize() received an empty string`)
+    elapse(808, ` sh_capitalize() received an empty string`)
     return ''
   }
 
   return str.charAt(0).toUpperCase()+str.slice(1)
 }
 
-/*———————————————————————————————————————— lert(msg)
-
-    alerts in ai-land don't exit program space */
-
-function lert(msg){
-  msg = JSON.stringify(String(msg))
-  msg = msg.substr(1, msg.length-2)
-
-  console.log(msg)
-  CEP.evalScript('alert("' + msg + '")')
-}
-
-/*———————————————————————————————————————— sourceName()
+/*———————————————————————————————————————— sh_sourceName()
 
                                                */
 
-function sourceName(c){
+function sh_sourceName(c){
   return window['SOURCENAME' + c]
 }
 
-/*———————————————————————————————————————— dirName()
+/*———————————————————————————————————————— sh_dirName()
 
                                                */
 
-function dirName(c){
-  return sourceName(c).toLowerCase()
+function sh_dirName(c){
+  return sh_sourceName(c).toLowerCase()
 }
 
-/*———————————————————————————————————————— transmitToCEP(varName, val) DOESN'T HANDLE ARRAYS
+/*———————————————————————————————————————— sh_transmitToCEP(varName, val) DOESN'T HANDLE ARRAYS
 
     transmits a JS variable to CEP, as correct type
     currently JSON is sent in stringified format */
@@ -821,7 +824,7 @@ function dirName(c){
 
 // make it a function of INTMS
 
-function transmitToCEP(varName, val){
+function sh_transmitToCEP(varName, val){
 
   if (typeof val == 'undefined') return true
 
@@ -859,22 +862,14 @@ function transmitToCEP(varName, val){
   var scrpt = varName + '=' + cepVal
 
   //elapse(888, ` sending '+varName+' to CEP: ' + elapse(TIMER)+ ' ms')
-  CEP.evalScript(scrpt, transmitToCEPCallback)
+  CEP.evalScript(scrpt)
 }
 
-/*———————————————————————————————————————— transmitToCEPCallback(err)
-
-    error handler for transmitToCEP */
-
-function transmitToCEPCallback(err){
-  //elapse(897, ` transmitToCEPCallback: '+elapse(TIMER) + 'ms, returned: '+err)
-}
-
-/*———————————————————————————————————————— lsToJs(lsVal)
+/*———————————————————————————————————————— sh_lsToJs(lsVal)
 
     converts a string to appropriate javascript type */
 
-function lsToJs(lsVal){
+function sh_lsToJs(lsVal){
   if (typeof lsVal == undefined){
     //elapse(906, ` undefined lsVal')
     return ''
@@ -893,13 +888,13 @@ function lsToJs(lsVal){
   else if (lsVal.length > 90){                           // JSON
     try {
       var jsVal = JSON.parse(lsVal)
-//    elapse(923, `        lsToJs() - converting to JSON: ${lsVal}`)
+//    elapse(923, `        sh_lsToJs() - converting to JSON: ${lsVal}`)
     }
     catch(e){
       var jsVal = lsVal
-//    elapse(927, `        lsToJs() - failed converting to JSON: ${lsVal}`)
+//    elapse(927, `        sh_lsToJs() - failed converting to JSON: ${lsVal}`)
     }
-//  elapse(929, `        lsToJs() - jsVal.length=${jsVal.length}`)
+//  elapse(929, `        sh_lsToJs() - jsVal.length=${jsVal.length}`)
   }
 
   else                                                 // string
@@ -908,30 +903,30 @@ function lsToJs(lsVal){
   return jsVal
 }
 
-/*———————————————————————————————————————— fillDigits(i)
+/*———————————————————————————————————————— sh_fillDigits(i)
 
     returns n-digit number or string */
 
-function fillDigits(i, n){
+function sh_fillDigits(i, n){
   v = '000000' + i
   return v.slice(0-n)
 }
 
-/*———————————————————————————————————————— makeLSref(obj)
+/*———————————————————————————————————————— sh_makeLSref(obj)
 
     creates a reference for a localStorage variable
     name_build_ext   */
 
-function makeLSref(obj){
+function sh_makeLSref(obj){
   return obj.name +'_'+ obj.build +'_'+ obj.ext
 }
 
-/*———————————————————————————————————————— makeObjID(obj)
+/*———————————————————————————————————————— sh_makeObjID(obj)
 
     creates the DOM object ID from the manifest info */
 
-function makeObjID(obj){
-    var objID = obj['name'] + capitalize(obj['ext'])
+function sh_makeObjID(obj){
+    var objID = obj['name'] + sh_capitalize(obj['ext'])
 
     if (typeof obj['id'] != 'undefined')
       if (obj['id'] != '')
@@ -940,24 +935,24 @@ function makeObjID(obj){
   return objID
 }
 
-/*———————————————————————————————————————— makeObjID(obj)
+/*———————————————————————————————————————— sh_makePath(obj)
 
     creates the file path from the manifest info */
 
-function makePath(obj){
-//elapse(977, `        makePath() - ${obj['ext' ]} / ${obj['name']} . ${obj['ext']}`)
+function sh_makePath(obj){
+//elapse(977, `        sh_makePath() - ${obj['ext' ]} / ${obj['name']} . ${obj['ext']}`)
   path = obj['ext'] + '/' + obj['name'] + '.' + obj['ext']
   return path
 }
 
-/*———————————————————————————————————————— clearLocalStorage()
+/*———————————————————————————————————————— sh_clearLocalStorage()
 
     clears localStorage but keeps a few key variables */
 
-function clearLocalStorage(){
+function sh_clearLocalStorage(){
   var temp = {}
 
-  elapseGroup(992, ` clearLocalStorage() - resetting localStorage`)
+  elapseGroup(992, ` sh_clearLocalStorage() - resetting localStorage`)
   SAVEDVARS.forEach(function(name){
     if (typeof localStorage[name] == 'undefined')
       console.log(`localStorage.${name} not saved (undefined)`)

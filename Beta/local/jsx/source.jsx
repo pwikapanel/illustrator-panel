@@ -42,7 +42,6 @@ function sourceDialog(extensionPath, source){
   //———————————————————— create panel
 
   panel = new Window ('dialog', 'Svija Tools Settings', undefined, {resizeable: false, borderless: true, closeButton: false})
-  panel.graphics.backgroundColor = panel.graphics.newBrush (panel.graphics.BrushType.SOLID_COLOR, [0.2, 0.2, 0.2])
 
   panel.preferredSize = [500, 292] // +28px where title bar was
   panel.margins       = [0, 0, 0, 0]
@@ -68,17 +67,13 @@ function sourceDialog(extensionPath, source){
   content.preferredSize = [310,292]
   content.margins = [0, 0, 0, 0]
   
-  //ntent.graphics.backgroundColor = content.graphics.newBrush(content.graphics.BrushType.SOLID_COLOR,[0.7,0.7,0.7], 1);
-  
   //———————————————————— version
   
   var version = content.add('group')
   version.margins = [0, 8, 8, 0]
   version.alignment = 'right'
-  //rsion.graphics.backgroundColor = content.graphics.newBrush(content.graphics.BrushType.SOLID_COLOR,[0.7,0.7,0.7], 1)
   
   var  versionTxt = version.add ("statictext")
-  versionTxt.graphics.foregroundColor = versionTxt.graphics.newPen (versionTxt.graphics.PenType.SOLID_COLOR, [0.67, 1, 0], 1);
   versionTxt.text = "Svija Tools " + TOOLSVERSION + " · Illustrator " + AIVERSION
   
   //———————————————————— logo
@@ -86,12 +81,9 @@ function sourceDialog(extensionPath, source){
   var logo = content.add('group')
   logo.margins = [32, 25, 16, 0]
   logo.alignment = 'left'
-  //go.graphics.backgroundColor = content.graphics.newBrush(content.graphics.BrushType.SOLID_COLOR,[0.7,0.7,0.7], 1)
   
-  var imgPath = extensionPath + '/png/splash_213x61.png'
-  
-  var logoImg = logo.add ("image", undefined, File (imgPath));
-  
+  var imgPath  = extensionPath + '/png/splash_213x61_' + INTERFACE + '.png'
+  var logoImg  = logo.add ("image", undefined, File (imgPath));
   logoImg.size = [213,61]
 
   //———————————————————— paragraph
@@ -103,29 +95,20 @@ function sourceDialog(extensionPath, source){
   para.alignment = 'center'
   para.orientation = 'column'
   para.spacing   = 2
-  //ra.graphics.backgroundColor = para.graphics.newBrush(para.graphics.BrushType.SOLID_COLOR,[0.3, 0.3, 0.3], 1)
 
   var  paraLine1 = para.add ("statictext")
   var  paraLine2 = para.add ("statictext")
 
-  paraLine1.graphics.foregroundColor = paraLine1.graphics.newPen (paraLine1.graphics.PenType.SOLID_COLOR, [0.75, 0.75, 0.75], 1);
-  paraLine2.graphics.foregroundColor = paraLine2.graphics.newPen (paraLine2.graphics.PenType.SOLID_COLOR, [0.75, 0.75, 0.75], 1);
-
   paraLine1.text = "The stable release is best for most users. If you"
   paraLine2.text = "use the beta release, let us know how it goes!"
-  try{
-  paraLine2.text = ut_translate('folder') + INTERFACE
-  }catch(e){alert(e)}
 
   //———————————————————— instructions
 
   var instructions = content.add('group')
   instructions.margins = [0, 18, 33, 0]
   instructions.alignment = 'center'
-  //structions.graphics.backgroundColor = instructions.graphics.newBrush(instructions.graphics.BrushType.SOLID_COLOR,[0.3, 0.3, 0.3], 1)
 
   var  instructionsTxt = instructions.add ("statictext")
-  instructionsTxt.graphics.foregroundColor = instructionsTxt.graphics.newPen (instructionsTxt.graphics.PenType.SOLID_COLOR, [1, 1, 1], 1);
 
   instructionsTxt.text = "Choose the release you would like to use:"
 
@@ -134,11 +117,10 @@ function sourceDialog(extensionPath, source){
   var radio = content.add('group')
   radio.margins = [92, 8, 0, 0]
   radio.alignment = 'left'
-  //dio.graphics.backgroundColor = radio.graphics.newBrush(radio.graphics.BrushType.SOLID_COLOR,[0.3, 0.3, 0.3], 1)
 
   radio.alignChildren = 'left'
-  radio.orientation = 'column'
-    radio.spacing = 2
+  radio.orientation   = 'column'
+  radio.spacing       = 2
 
   radioButton0 = radio.add ("radiobutton", undefined, "Stable Release")
   radioButton1 = radio.add ("radiobutton", undefined, "Beta Release")
@@ -154,19 +136,47 @@ function sourceDialog(extensionPath, source){
 
   buttons.margins = [0, 18, 32, 0]
   buttons.alignment = 'left'
-  //ttons.graphics.backgroundColor = buttons.graphics.newBrush(buttons.graphics.BrushType.SOLID_COLOR,[0.3, 0.3, 0.3], 1)
 
   buttons.orientation = 'row'
-  buttons.spacing = 50 
+  buttons.spacing = 50
 
   cancelButton = buttons.add ("button", undefined, "Cancel")
   applyButton  = buttons.add ("button", undefined, "Apply")
 
-//cancelButton.name = 'cancel'
-//applyButton.name = 'ok'
-
   applyButton.alignment  = ['', 'fill']  // permits smaller buttons
-  cancelButton.alignment = ['', 'fill'] 
+  cancelButton.alignment = ['', 'fill']
+
+  //———————————————————— colors
+
+/* sent from source.js 
+
+        transmitToCEP('AIVERSION'    , AIVERSION )
+        transmitToCEP('LANG'         , LANG      )
+        transmitToCEP('DICTIONARY'   , DICTIONARY)
+        transmitToCEP('INTERFACE'    , INTERFACE )
+        transmitToCEP('ACCENTBRIGHT' , localStorage.ACCENTBRIGHT )
+        transmitToCEP('ACCENTDIM'    , localStorage.ACCENTDIM )
+  ut_transmitCSStoCEP('aboutBG')
+  ut_transmitCSStoCEP('aboutVersion')
+  ut_transmitCSStoCEP('aboutParagraph')
+  ut_transmitCSStoCEP('aboutInstructions')
+  ut_transmitCSStoCEP('aboutButtons') */
+
+  var panelBGcolor    =           panel.graphics.newBrush (        panel.graphics.BrushType.SOLID_COLOR, aboutBG             )
+  var versionTxtColor =      versionTxt.graphics.newPen   (     versionTxt.graphics.PenType.SOLID_COLOR, aboutVersion     , 1)
+  var para1TxtColor   =       paraLine1.graphics.newPen   (      paraLine1.graphics.PenType.SOLID_COLOR, aboutParagraph   , 1)
+  var para2TxtColor   =       paraLine1.graphics.newPen   (      paraLine2.graphics.PenType.SOLID_COLOR, aboutParagraph   , 1)
+  var instrTxtColor   = instructionsTxt.graphics.newPen   (instructionsTxt.graphics.PenType.SOLID_COLOR, aboutInstructions, 1)
+  var radioColor      =           radio.graphics.newPen   (   radio.graphics.PenType.SOLID_COLOR, aboutInstructions, 1)
+  var cancelColor     =    cancelButton.graphics.newPen   (   cancelButton.graphics.PenType.SOLID_COLOR, aboutInstructions, 1)
+
+            panel.graphics.backgroundColor = panelBGcolor
+       versionTxt.graphics.foregroundColor = versionTxtColor
+        paraLine1.graphics.foregroundColor = para1TxtColor
+        paraLine2.graphics.foregroundColor = para2TxtColor
+  instructionsTxt.graphics.foregroundColor = instrTxtColor
+            radio.graphics.foregroundColor = radioColor      // doesn't work
+     cancelButton.graphics.foregroundColor = cancelColor   // doesn't work
 
   /*———————————————————— 2210 Javascript Tools Guide CC (UI).pdf
 
@@ -209,7 +219,7 @@ function sourceDialog(extensionPath, source){
      to be returned by the "show" call that opened the dialog.
 
      For buttons assigned as the cancelElement,if there is no onClick
-     handler associated with the button, clicking the button or typing 
+     handler associated with the button, clicking the button or typing
      ESC calls the parent dialog’s close method, passing a value of 2
      to be returned by the show call that opened the dialog.
 
@@ -248,9 +258,8 @@ function sourceDialog(extensionPath, source){
   panel.cancelElement = cancelButton
 
 
-  if(panel.show() == 1) return source + '|' + local // clicked apply
-  else return ''                                     // clicked cancel
-
+  if(panel.show() == 1) return source + '|' + local   // clicked apply
+  else return ''                                      // clicked cancel
 }
 
 //:::::::::::::::::::::::::::::::::::::::: fin

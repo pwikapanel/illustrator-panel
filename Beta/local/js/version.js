@@ -1,8 +1,8 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: version.js */
 
-var AIVERSIONMIN = 26   // number    required for xref links
-var AIVERSION    = HOSTENV.appVersion
+AIVERSIONMIN = 26   // number    required for xref links
+AIVERSION    = HOSTENV.appVersion
 
 //———————————————————————————————————————— clean up version
 
