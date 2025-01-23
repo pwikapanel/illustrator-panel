@@ -107,16 +107,16 @@ function lert(msg){
 //———————————————————————————————————————— initialize variables
 
 
-var TOOLSVERSION   = '1.0.7'                // string    shown in source picker panel
+var TOOLSVERSION   = '1.0.7'                   // string    shown in source picker panel
 
-var INTMS          = 500                    // number    interrupt interval to refresh panel etc.
-var MANIFESTPATH   = 'json/manifest.json'   // string    where manifest JSON is stored
-var READY          = false                  // boolean   is panel loaded, ready to use
-var SERVER         = 'tools.svija.love'     // string    server to get remote code
-var SOURCEDEFAULT  = 2                      // number    default source (master)
-var UPDATEINTERVAL = 60                     // number    interval between update checks in minutes
+var INTMS          = 500                       // number    interrupt interval to refresh panel etc.
+var MANIFESTPATH   = 'json/manifest.json'      // string    where manifest JSON is stored
+var READY          = false                     // boolean   is panel loaded, ready to use
+var REMOTE         = 'tools.svija.love/tools'  // string    server to get remote code
+var SOURCEDEFAULT  = 2                         // number    default source (master)
+var UPDATEINTERVAL = 60                        // number    interval between update checks in minutes
 
-var SOURCENAME0    = 'local'                // string    used with SOURCE to derive folder names
+var SOURCENAME0    = 'tools'                   // string    used with SOURCE to derive folder names
 var SOURCENAME1    = 'alpha'
 var SOURCENAME2    = 'beta'
 var SOURCENAME3    = 'master'
@@ -139,7 +139,7 @@ var ALLVARS = [    // harmonized - same in JS, localStorage and CEP
 
   'MAXWIDTH',
   'INTMS',
-  'SERVER',
+  'REMOTE',
 
 
   'SOURCE',
@@ -619,7 +619,7 @@ function getRemoteFile(passthrough, source, path, callback) {
     return
   }
 
-  path = 'https://' + SERVER + '/' + sh_dirName(source) + '/' + path
+  path = 'https://' + REMOTE + '/' + sh_dirName(source) + '/' + path
   path = path + '?' + Math.random()
 
   elapse(612, `        getRemoteFile() - ${path}`)
