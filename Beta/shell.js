@@ -112,7 +112,7 @@ var TOOLSVERSION   = '1.0.7'                   // string    shown in source pick
 var INTMS          = 500                       // number    interrupt interval to refresh panel etc.
 var MANIFESTPATH   = 'json/manifest.json'      // string    where manifest JSON is stored
 var READY          = false                     // boolean   is panel loaded, ready to use
-var REMOTE         = 'tools.svija.love/tools'  // string    server to get remote code
+var REMOTE         = 'tools.svija.com/tools'  // string    server to get remote code
 var SOURCEDEFAULT  = 2                         // number    default source (master)
 var UPDATEINTERVAL = 60                        // number    interval between update checks in minutes
 

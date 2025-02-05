@@ -24,7 +24,7 @@ if (vers < AIVERSIONMIN){
   versionBanner.innerHTML = translate('versionAlert')
 
   versionBanner.addEventListener('mouseup', (evn) => {
-    var url = 'https://tech.svija.love/illustrator-version'
+    var url = 'https://tech.svija.com/illustrator-version'
     CEP.openURLInDefaultBrowser(url)
     return true
   })

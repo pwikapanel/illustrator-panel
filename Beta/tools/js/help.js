@@ -3,7 +3,7 @@
 
 /*———————————————————————————————————————— parameters */
 
-var helpURL  = 'tech.svija.love/fromtools'
+var helpURL  = 'tech.svija.com/fromtools'
 var objId    = 'linkHelp'
 var objLabel = translate('help')
 
