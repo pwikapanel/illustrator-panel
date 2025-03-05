@@ -179,6 +179,8 @@ function setSize(url){
 ```
 ---
 
+### debugging in Chrome
+
 https://blog.developer.adobe.com/debugging-your-adobe-panel-cf73f00f6961
 
 ---
@@ -189,7 +191,9 @@ sudo apachectl start
 ```
 and now going to `localhost:8088` in the browser shows "Inspectable WebContents"
 
-I restarted Illustrator, not sure if it's necessary
+Restart Illustrator.
+
+It is necessary that the contents of /.debug match CSXS/manifest.xml
 
 1. click on "more.html" (this is my panel page more)
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <ExtensionList>
-    <Extension Id="love.svija.SvijaToolsBeta.panel">
+    <Extension Id="com.svija.SvijaToolsBeta.panel">
         <HostList>
             <Host Name="ILST" Port="8080"/> 
         </HostList>
