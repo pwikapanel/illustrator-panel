@@ -71,7 +71,7 @@ function setSource(str){
   if ( isNaN(source)              ) return true // notNumber, notANumber not a number
   if (    1 > source || 3 < source) return true
 
-  elapse(50, `source.js - source is now ${sourceName(source)}`)
+  elapse(50, `source.js - source is now ${sh_sourceName(source)}`)
 
   switch(source){
     case '1':

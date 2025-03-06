@@ -174,7 +174,7 @@ if (typeof localStorage.SOURCE != 'undefined'){
 }
 else{
   SOURCE =   0
-  elapse(181, `SOURCE not in localStorage; reset to "local"`)
+  elapse(181, `SOURCE not in localStorage; reset to "/${SOURCENAME0}"`)
 }
 
 
@@ -227,8 +227,8 @@ else{
 
 var ms = UPDATEINTERVAL *60*1000   // variable is interval between update checks in minutes
 
-if (READY) setInterval(launchUpdate.bind(null, SOURCE), ms)
-if (READY && typeof DEBUG != 'undefined') launchUpdate(SOURCE)
+if (READY) setInterval(sh_launchUpdate.bind(null, SOURCE), ms)
+if (READY && typeof DEBUG != 'undefined') sh_launchUpdate(SOURCE)
 
 
 //:::::::::::::::::::::::::::::::::::::::: construction functions
@@ -345,7 +345,7 @@ function loadFiles(source){
 
   SOURCE = source
 
-  elapseGroup(352, `            loadFiles() - loading ${MANIFEST.length} files from "${sh_sourceName(source)}" into MANIFEST...`)
+  elapseGroup(352, `            loadFiles() - loading ${MANIFEST.length} files from "${sh_sourceName(source)}" into variable MANIFEST...`)
   for (var x=1; x<MANIFEST.length; x++){
 
     var comment = MANIFEST[x]['name'].slice(0,1) === '#'
@@ -416,7 +416,7 @@ function manifestToLS(){
   console.groupEnd()
   sh_clearLocalStorage()
 
-  elapseGroup(409, `         manifestToLS() - moving ${MANIFEST.length} variables from MANIFEST to localStorage...`)
+  elapseGroup(409, `         manifestToLS() - moving ${MANIFEST.length} variables from variable MANIFEST to localStorage...`)
   for (var x=1; x<MANIFEST.length; x++){
     var LSref = sh_makeLSref(MANIFEST[x])
     localStorage[LSref] = MANIFEST[x].contents
@@ -430,7 +430,7 @@ function manifestToLS(){
 
   console.groupEnd()
   localStorage.SOURCE = SOURCE
-  elapse(419, `         manifestToLS() - localStorage loaded (${sh_lsStorageUsed()} KB); localStorage.SOURCE set to "${sh_sourceName(SOURCE)}"; 🔥 reload to install DOM`)
+  elapse(419, `         manifestToLS() - localStorage loaded (${sh_lsStorageUsed()} KB); localStorage.SOURCE set to "/${sh_sourceName(SOURCE)}"; 🔥 reload to install DOM`)
 
   if (typeof DEBUG != 'undefined')
     CEP.evalScript(`confirm("Cancel Reload?\\nlocalStorage loaded from ${sh_sourceName(SOURCE)}", "zoo")`, locationReload)
@@ -451,7 +451,7 @@ function locationReload(str){
 
 //:::::::::::::::::::::::::::::::::::::::: updater functions
 
-/*———————————————————————————————————————— 1. launchUpdate()
+/*———————————————————————————————————————— 1. sh_launchUpdate()
 
     if existing source is local, I take any update I can get, doesn't matter
 
@@ -460,10 +460,10 @@ function locationReload(str){
     gets remote manifest depending on source then
     sends to compareVersions() */
 
-function launchUpdate(newSource){
+function sh_launchUpdate(newSource){
   if (newSource<1 || newSource>3) newSource = 3 // only update from remote
 
-  elapse(453, `         launchUpdate() - checking for remote updates from "${sh_sourceName(newSource)}" (currently on "${sh_sourceName(SOURCE)}")`)
+  elapse(453, `      sh_launchUpdate() - checking for remote updates from "${sh_sourceName(newSource)}" (currently on "${sh_sourceName(SOURCE)}")`)
   getRemoteFile (newSource, newSource, MANIFESTPATH, compareVersions)
 }
 
@@ -500,7 +500,7 @@ function compareVersions(newSource, contents, path){
     - current source & version
     - new source & version
 
-    but this should have happened earlier -- at launchUpdate(source) */
+    but this should have happened earlier -- at sh_launchUpdate(source) */
 
   var currentVersion = MANIFEST[0].id
 
