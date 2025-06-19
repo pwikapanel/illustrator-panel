@@ -7,12 +7,10 @@
 
 Working on Svija Tools requires:
 1. enabling `debug mode` for Adobe Illustrator
-2. downloading the repository to your computer
-3. creating a symlink from the repository to the Illustrator extensions folder
+2. clone the repository to your computer
+3. link the repository to the Illustrator extensions folder
 
 ![](images/divider.jpg "————————————————————————————————————————")
-
-
 ### 1. Enable `debug mode`:
 
 Determine which version of CEP is being used:
@@ -23,22 +21,29 @@ This will return:
 ```
 /Users/Main/Library/Preferences/com.adobe.CSXS.11.plist
 ```
-To enable/disable `debug mode` for the correct CEP version:
+To enable/disable `debug mode` for this CEP version:
 ```
 defaults write com.adobe.CSXS.11 PlayerDebugMode 1
 ```
 To see whether `debug mode` is activated:
 ```
-defaults read /Users/Main/Library/Preferences/com.adobe.CSXS.11.plist
+defaults read /Users/Main/Library/Preferences/com.adobe.CSXS.*.plist
 ```
 
->[More info](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).
+>[Adobe Page](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).
 
 
 ![](images/divider.jpg "————————————————————————————————————————")
+### 2. Clone this Repository
+
+You can download this repository by clicking on `Code` › `Download ZIP` from the main page, or you can clone it:
+```
+git clone htts://git@github.com/svijasvg/tools.git
+```
+![](images/shadow.jpg "————————————————————————————————————————")
+### 3. Link the Repository to the Extensions Folder
 
 ![](images/shadow.jpg "————————————————————————————————————————")
-
 <details><summary>previous chaos</summary>
 
 [debugging info](https://fenomas.com/2014/08/cep-5-html-debug-en/)
