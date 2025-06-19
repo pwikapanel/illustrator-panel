@@ -72,6 +72,8 @@ Restart Illustrator; Svija Tools should be available under menu `Window` › `Ex
 
 *Drawn from [Andy Hall's excellent tutorial](https://fenomas.com/2014/08/cep-5-html-debug-en/)*
 
+This should work in any Chrome-based browser (we are using [unGoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)).
+
 Create or edit `Svija Tools/.debug`, containing:
 ```
 <?xml version="1.0" encoding="UTF-8"?> 
@@ -90,7 +92,9 @@ After restarting Illustrator, it should be possible to visit [http://localhost:8
 > Inspectable WebContents  
 > [shell.html]()
 
+Clicking on [shell.html]() will display the Svija Tools panel in the browser
 
+![](images/divider.jpg "————————————————————————————————————————")
 ### Resources
 
 https://fenomas.com/2014/08/cep-mega-guide-en/
