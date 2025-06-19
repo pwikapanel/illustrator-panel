@@ -65,7 +65,7 @@ It should look like this:
 ```
 repo=/Users/XXX/Repositories/tools
 ```
-Create the symlink:
+Create the symlink by pasting:
 ```
 sudo ln -s "$repo/Svija Tools" "/Library/Application Support/Adobe/CEP/extensions/Svija Tools Dev"
 ```
