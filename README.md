@@ -61,7 +61,7 @@ repo="/Users/XXX/Repositories/tools"
 ```
 Create the symlink:
 ```
-sudo ln -s "$repo/Svija Tools" "/Library/Application Support/Adobe/CEP/extensions/Svija Tools Dev"
+sudo ln -s "$repo/Svija Tools" "/Library/Application Support/Adobe/CEP/extensions/Svija Tools Dev"
 ```
 Restart Illustrator; Svija Tools should be available under menu `Window` › `Extensions`
 
