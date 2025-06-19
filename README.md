@@ -85,8 +85,11 @@ Create or edit `Svija Tools/.debug`, containing:
 ```
 The extension ID line should match the line in `CSXS/manifest.xml`.
 
+After restarting Illustrator, it should be possible to visit [http://localhost:8080/](http://localhost:8080/) in the browser and see:
 
-localhost:8088
+> Inspectable WebContents  
+> [shell.html]()
+
 
 ### Resources
 
