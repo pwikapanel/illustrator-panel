@@ -83,13 +83,15 @@ Create or edit `Svija Tools/.debug`, containing:
     </Extension>
 </ExtensionList>
 ```
-Note that the extension ID line should match the line in `CSXS/manifest.xml`.
+The extension ID line should match the line in `CSXS/manifest.xml`.
 
 
+localhost:8088
 
 ### Resources
 
 https://fenomas.com/2014/08/cep-mega-guide-en/
+https://blog.developer.adobe.com/en/publish/2019/06/debugging-your-adobe-panel
 
 ![](images/divider.jpg "————————————————————————————————————————")
 ![](images/shadow.jpg "————————————————————————————————————————")
