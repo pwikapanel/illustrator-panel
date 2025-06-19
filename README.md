@@ -5,6 +5,10 @@
 
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
+![](images/divider.jpg "————————————————————————————————————————")
+
+<details><summary>previous chaos</summary>
+
 [debugging info](https://fenomas.com/2014/08/cep-5-html-debug-en/)
 
 Open [this link](http://localhost:8080/) in Chrome
@@ -288,3 +292,4 @@ in the Finder, type **cmd-shift-G**, then paste:
 ```
 **Note:** the custom icon has to be re-pasted onto the folder after unzipping: open [Svija Tools.png][stp] in **Preview**, copy it, and paste it into the bundle's folder information window.
 
+</details>
