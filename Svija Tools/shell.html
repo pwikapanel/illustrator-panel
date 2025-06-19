@@ -32,73 +32,132 @@
 
   <script type="text/javascript" src="CSXS/CSInterface.js"></script>
 
+  <script>
+
+//———————————————————————————————————————— CEP required
+
+var CEP            = new CSInterface()
+var HOSTENV        = CEP.getHostEnvironment()
+//r resourceBundle = CEP.initResourceBundle();
+
+window.addEventListener('error', (event)=>{
+  var str = encodeURI(event.message)
+      str = `alert("${str}")`
+  CEP.evalScript(str) })
+
+//———————————————————————————————————————— initialize variables
+
+var TOOLSVERSION   = '1.0.7'                   // string    shown in source picker panel
+
+var INTMS          = 10000  // interval for the updating panel
+var ISSVIJA        // boolean    if fromtmost doc is a svija page (in a SYNC folder)
+var LASTPATH       // string     last file path for a svija page
+var SITEURL        // string     url of most recent svija site
+var SYNCPATH       // string     absolute path to SYNC folder
+var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
+var LANG = 'fr'
+
+if (LANG != 'fr') LANG = LANGDEFAULT // dev use only — delete when done
+
+elapse(169, `variables initialized`)
+
+/*———————————————————————————————————————— timer
+
+    used to make sure everything is efficient */
+
+var d = new Date()
+var TIMER = d.getTime()
+
+function elapse(line, str){
+  var d = new Date()
+  var t = d.getTime() - TIMER
+  str = fiveDigits(t, 5) + ' °' + fiveDigits(line, 4) + ' ' + str
+  console.log(str)
+}
+
+function elapseGroup(line, str){
+  var d = new Date()
+  var t = d.getTime() - TIMER
+  str = fiveDigits(t, 5) + ' °' + fiveDigits(line, 4) + ' ' + str
+  console.groupCollapsed(str)
+}
+
+function fiveDigits(i, n){
+  v = '000000' + i
+  return v.slice(0-n)
+}
+
+elapse(91, `starting Svija Tools`)
+
+
+  </script>
+
 </head><body oncontextmenu='return false'>
 
   <div id="reloader" onclick='localStorage.clear();location.reload()'></div>
 
-  <script src='shell.js'></script>
-
+  <script type="text/javascript" src="tools/js/utilities.js"      ></script>
+  <script type="text/javascript" src='tools/js/jsxLoader.js'      ></script>
   <script type="text/javascript" src="tools/js/globalVariables.js"></script>
-  <script type="text/javascript" src="tools/js/utilities.js"></script>
 
-<div id="newsHtml">
-<div id="newsBanner">
+  <div id="newsHtml">
+    <div id="newsBanner">
+    
+    update available
+    
+    </div>
+  </div>
+  
+  <div id="dormantDiv">
+    <input   id='buttD1' class='btnLarge' type=button
+    /><input id='buttD2' class='btnMed' type=button
+    /><input id='buttD3' class='btnSmall' type=button />
+  </div>
+  
+  <div id="moreDiv">
+    <input id='butt11' type=button>
+    <input id='butt12' type=button><br>
+    
+    <input id='butt21' type=button>
+    <input id='butt22' type=button><br>
+    <hr>
+  </div>
 
-update available
-
-</div>
-</div>
-
-<div id="dormantDiv">
-<input   id='buttD1' class='btnLarge' type=button
-/><input id='buttD2' class='btnMed' type=button
-/><input id='buttD3' class='btnSmall' type=button />
-</div>
-
-<div id="moreDiv">
-<input id='butt11' type=button>
-<input id='butt12' type=button><br>
-
-<input id='butt21' type=button>
-<input id='butt22' type=button><br>
-<hr>
-</div>
-
-<div id="mainDiv">
-<!-- <input id='butt30' class='btnLarge' type=button onclick="showAlert('alert text')" style='display:block;'><br> -->
-<input id='butt31' class='btnLarge' type=button
-
-/><svg id="svijaLogo"
-  onmouseover="logoArt.style.transform='scale(1.1)'" 
-  onmouseout ="logoArt.style.transform='scale(1.0)'"
-  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 115 22">
-  <g>
-    <rect id="logoBar" y="7.85" width="115" height="6.3"/>
-    <path id="logoArt" style="transform-origin: 50% 50%;"
-      d="M67.133,5.571h-2.571v11.143h2.571V5.571ZM71.705,1h-7.143v2.571h7.143V1ZM71.705,5.571h-2.571v15.429h2.571V5.571ZM41.295,16.714h-16.857v-2.571h14.286v-.994l-14.286-1.735v-5.843h16.857v2.571h-14.286v.994l14.286,1.735v5.843ZM90.562,5.571h-16.857v2.571h14.286v.994l-14.286,1.735v5.843h16.857V5.571ZM76.276,13.149l11.714-1.423v2.416h-11.714v-.994ZM60.614,5.571l-5.289,8.178c-.159.246-.43.394-.723.394h-3.38c-.293,0-.564-.147-.723-.394l-5.289-8.178h-3.062l6.192,9.574c.635.982,1.713,1.569,2.882,1.569h3.38c1.17,0,2.247-.586,2.882-1.569l6.192-9.574h-3.062Z"/>
-  </g>
-</svg
-
-/><br
-
-/><input id='butt41' class='btnLarge' type=button
-/><input id='butt42' class='btnMed'   type=button
-/><input id='butt43' class='btnSmall' type=button>
-</div>
-
-<div id="versionDiv">
-<div id="versionBanner"></div>
-</div>
-
-<div id="bottomBar">
-<span id='leftLinks' 
-  /><a id='linkHelp'></a
-  /><a id='linkSettings'></a 
-/></span 
-  /><a id='linkMore'></a
-  /><a id='linkLess'></a
-/>
-</div>
+  <div id="mainDiv">
+  <!-- <input id='butt30' class='btnLarge' type=button onclick="showAlert('alert text')" style='display:block;'><br> -->
+  <input id='butt31' class='btnLarge' type=button
+  
+  /><svg id="svijaLogo"
+    onmouseover="logoArt.style.transform='scale(1.1)'" 
+    onmouseout ="logoArt.style.transform='scale(1.0)'"
+    xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 115 22">
+    <g>
+      <rect id="logoBar" y="7.85" width="115" height="6.3"/>
+      <path id="logoArt" style="transform-origin: 50% 50%;"
+        d="M67.133,5.571h-2.571v11.143h2.571V5.571ZM71.705,1h-7.143v2.571h7.143V1ZM71.705,5.571h-2.571v15.429h2.571V5.571ZM41.295,16.714h-16.857v-2.571h14.286v-.994l-14.286-1.735v-5.843h16.857v2.571h-14.286v.994l14.286,1.735v5.843ZM90.562,5.571h-16.857v2.571h14.286v.994l-14.286,1.735v5.843h16.857V5.571ZM76.276,13.149l11.714-1.423v2.416h-11.714v-.994ZM60.614,5.571l-5.289,8.178c-.159.246-.43.394-.723.394h-3.38c-.293,0-.564-.147-.723-.394l-5.289-8.178h-3.062l6.192,9.574c.635.982,1.713,1.569,2.882,1.569h3.38c1.17,0,2.247-.586,2.882-1.569l6.192-9.574h-3.062Z"/>
+    </g>
+  </svg
+  
+  /><br
+  
+  /><input id='butt41' class='btnLarge' type=button
+  /><input id='butt42' class='btnMed'   type=button
+  /><input id='butt43' class='btnSmall' type=button>
+  </div>
+  
+  <div id="versionDiv">
+  <div id="versionBanner"></div>
+  </div>
+  
+  <div id="bottomBar">
+  <span id='leftLinks' 
+    /><a id='linkHelp'></a
+    /><a id='linkSettings'></a 
+  /></span 
+    /><a id='linkMore'></a
+    /><a id='linkLess'></a
+  />
+  </div>
 
   <script type="text/javascript" src="tools/js/panelManager.js"      ></script>
   <script type="text/javascript" src="tools/js/showAlert.js"         ></script>
@@ -120,7 +179,5 @@ update available
   <script type="text/javascript" src="tools/js/settings.js"></script>
   <script type="text/javascript" src="tools/js/more.js"></script>
   <script type="text/javascript" src="tools/js/reopen.js" id="reopenJS"></script>
-
-<!--  <script> console.log('all') </script> -->
 
 </body></html>

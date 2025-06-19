@@ -1,6 +1,66 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.js */
 
+/*———————————————————————————————————————— sh_transmitToCEP(varName, val) DOESN'T HANDLE ARRAYS
+
+    transmits a JS variable to CEP, as correct type
+    currently JSON is sent in stringified format */
+
+
+
+function sh_transmitToCEP(varName, val){
+
+  if (typeof val == 'undefined') return true
+
+  var cepVal
+
+  if (typeof val == 'boolean'){                        // boolean
+    if (val==true)   cepVal = 'true'
+    if (val== false) cepVal = 'false'
+  }
+
+  else if (!isNaN(val)){                               // number
+    cepVal = val.toString()
+  }
+
+  else if (typeof val == 'object'){                    // JSON
+    if (varName == 'MANIFEST') return true
+
+    if (typeof JSONCOUNT == 'undefined') JSONCOUNT = 3600000/500
+
+    JSONCOUNT += 1
+
+    if (JSONCOUNT < 3600000/500) return true // 1 per hour, it's only the dictionary
+
+    JSONCOUNT = 0
+    var str = JSON.stringify(val)
+    cepVal = 'ut_decodeJSON("' + encodeURI(str) + '")'
+  }
+
+  else{                                                // string
+    cepVal = 'decodeURI("' + encodeURI(val) + '")'
+  }
+
+  if (typeof cepVal == 'undefined') return true
+
+  var scrpt = varName + '=' + cepVal
+
+  //elapse(888, ` sending '+varName+' to CEP: ' + elapse(TIMER)+ ' ms')
+  CEP.evalScript(scrpt)
+}
+
+/*———————————————————————————————————————— lert(msg)
+
+    alerts that don't exit Illustrators space */
+
+function lert(msg){
+  msg = JSON.stringify(String(msg))
+  msg = msg.substr(1, msg.length-2)
+
+  console.log(msg)
+  CEP.evalScript('alert("' + msg + '")')
+}
+
 /*———————————————————————————————————————— ut_hslToRgbArray(hsl) DOESN'T HANDLE DOUBLE SPACES
 
     accepts a string of format 'hsl(120, 50%, 50%)'
