@@ -1,4 +1,9 @@
 
+cd "/Users/Main/Library/Mobile Documents/com~apple~CloudDocs/Repositories/tools/Svija Tools/" # worked
+cd "/Users/Main/Library/Mobile\ Documents/com\~apple\~CloudDocs/Repositories/tools/Svija Tools" # failed
+-bash: cd: /Users/Main/Library/Mobile\ Documents/com\~apple\~CloudDocs/Repositories/tools/Svija Tools: No such file or directory
+510  Svija Tools   
+
 *Updated 19 June 2025 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
@@ -49,15 +54,16 @@ On macOS, Illustrator extensions are stored in:
 ```
 To use the `Svija Tools` panel inside the repository, create a symlink:
 
-First, drag the repository Finder window onto Terminal then move the address between the quotes.
 
-From within the repository, at the top level:
+From within the repository, at the top level, paste:
 ```
-repo=""
+repo=
 ```
+Then drag the repository Finder window onto the Terminal window.
+
 It should look like this:
 ```
-repo="/Users/XXX/Repositories/tools"
+repo=/Users/XXX/Repositories/tools
 ```
 Create the symlink:
 ```
