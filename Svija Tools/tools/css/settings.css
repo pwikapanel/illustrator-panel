@@ -1,0 +1,111 @@
+
+/*:::::::::::::::::::::::::::::::::::::::: colors
+
+   colors used in popup "about" panel used
+   to choose branch/source
+
+   these colors are not directly used as
+   css colors, but are stored in CSS to
+   be coherent with other color choices
+
+   they are sent to CEP by js/source.js
+
+   the logos have to be constructed as
+   images with the appropriate colors    */
+  
+:root {
+  --aboutBG0           :hsl(  0   0%  81%);
+  --aboutVersion0      :hsl(  0   0%  81%);
+  --aboutParagraph0    :hsl(  0   0%  81%);
+  --aboutInstructions0 :hsl(  0   0%  81%);
+  --aboutButtons0      :hsl(  0   0%  81%);
+
+  --aboutBG1           :hsl(  0   0%  20%);
+  --aboutVersion1      :hsl( 00 100% 100%);
+  --aboutParagraph1    :hsl(120 100% 100%);
+  --aboutInstructions1 :hsl(300 100% 100%);
+  --aboutButtons1      :hsl(300 100% 100%);
+
+  --aboutBG2           :hsl(0  0%  81%);
+  --aboutVersion2      :hsl(0  0%  81%);
+  --aboutParagraph2    :hsl(0  0%  81%);
+  --aboutInstructions2 :hsl(0  0%  81%);
+  --aboutButtons2      :hsl(0  0%  81%);
+
+  --aboutBG3           :hsl(0  0%  81%);
+  --aboutVersion3      :hsl(0  0%  81%);
+  --aboutParagraph3    :hsl(0  0%  81%);
+  --aboutInstructions3 :hsl(0  0%  81%);
+  --aboutButtons3      :hsl(0  0%  81%);
+
+}
+
+  /*  background color
+      version text
+      svija logo
+      paragraph & text choice
+      buttons */
+
+/*#if_0 {
+
+  --field-contents :hsl(0  0%  81%);
+  --label-text     :hsl(0  0%  66%);
+  --checked-box    :hsl(0  0%  60%);
+  --hamburger      :hsl(0  0%  50%);
+  --label-disabled :hsl(0  0%  40%);
+  --input-border   :hsl(0  0%  24%);
+  --panel-bg       :hsl(0  0%  20%);
+  --pulldown       :hsl(0  0%  16%);
+  --input-field    :hsl(0  0%  15%);
+  --panel-bg-dark  :hsl(0  0%  15%);
+  --panel-border   :hsl(0  0%  13%);
+
+}
+
+#if_1 { 
+
+  --field-contents :hsl(0  0% 100%);
+  --label-text     :hsl(0  0%  82%);
+  --checked-box    :hsl(0  0%  78%);
+  --hamburger      :hsl(0  0%  65%);
+  --label-disabled :hsl(0  0%  54%);
+  --input-border   :hsl(0  0%  37%);
+  --panel-bg       :hsl(0  0%  33%);
+  --pulldown       :hsl(0  0%  29%);
+  --input-field    :hsl(0  0%  27%);
+  --panel-bg-dark  :hsl(0  0%  26%);
+  --panel-border   :hsl(0  0%  22%);
+
+}
+
+#if_2 {
+
+  --field-contents :hsl(0  0%  13%);
+  --label-text     :hsl(0  0%  19%);
+  --checked-box    :hsl(0  0%  29%);
+  --hamburger      :hsl(0  0%  32%);
+  --input-border   :hsl(0  0%  66%);
+  --panel-bg       :hsl(0  0%  73%);
+  --pulldown       :hsl(0  0%  77%);
+  --input-field    :hsl(0  0%  89%);
+  --panel-bg-dark  :hsl(0  0%  64%);
+  --panel-border   :hsl(0  0%  58%);
+
+}
+
+#if_3 {
+
+  --field-contents :hsl(0  0%  30%);
+  --label-text     :hsl(0  0%  35%);
+  --checked-box    :hsl(0  0%  43%);
+  --hamburger      :hsl(0  0%  47%);
+  --label-disabled :hsl(0  0%  80%);
+  --input-border   :hsl(0  0%  85%);
+  --panel-bg       :hsl(0  0%  94%);
+  --pulldown       :hsl(0  0%  98%);
+  --input-field    :hsl(0  0%  98%);
+
+}*/
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
+

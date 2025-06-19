@@ -1,45 +1,56 @@
+
 [
 
-{ "key":   "channel loaded"  , "lang":"en" ,"text": " channel loaded from "               },
-{ "key":   "channel loaded"  , "lang":"fr" ,"text": " canal chargé depuis "               },
+{  "key":   "channel loaded"  , "lang":"en" ,"text": " channel loaded from "               },
+{  "key":   "channel loaded"  , "lang":"fr" ,"text": " canal chargé depuis "               },
 
-{ "key":   "folder"          , "lang":"en" ,"text": "folder"                              },
-{ "key":   "folder"          , "lang":"fr" ,"text": "dossier local"                       },
+{  "key":   "folder"          , "lang":"en" ,"text": "folder"                              },
+{  "key":   "folder"          , "lang":"fr" ,"text": "dossier local"                       },
 
-{ "key":   "check & repair"  , "lang":"en" ,"text": "local"                               },
-{ "key":   "check & repair"  , "lang":"fr" ,"text": "local"                               },
+{  "key":   "check & repair"  , "lang":"en" ,"text": "check & repair"                      },
+{  "key":   "check & repair"  , "lang":"fr" ,"text": "vérifier"                            },
 
-{ "key":   "save"            , "lang":"en" ,"text": "save"                                },
-{ "key":   "save"            , "lang":"fr" ,"text": "sauv."                               },
+{  "key":   "save"            , "lang":"en" ,"text": "save"                                },
+{  "key":   "save"            , "lang":"fr" ,"text": "sauv."                               },
 
-{ "key":   "save all"        , "lang":"en" ,"text": "save all"                            },
-{ "key":   "save all"        , "lang":"fr" ,"text": "tous"                                },
+{  "key":   "save all"        , "lang":"en" ,"text": "save all"                            },
+{  "key":   "save all"        , "lang":"fr" ,"text": "tous"                                },
 
-{ "key":   "change case"     , "lang":"en" ,"text": "change case"                         },
-{ "key":   "change case"     , "lang":"fr" ,"text": "changer casse"                       },
+{  "key":   "change case"     , "lang":"en" ,"text": "change case"                         },
+{  "key":   "change case"     , "lang":"fr" ,"text": "changer casse"                       },
 
-{ "key":   "create group"    , "lang":"en" ,"text": "create group"                        },
-{ "key":   "create group"    , "lang":"fr" ,"text": "création groupe"                     },
+{  "key":   "create group"    , "lang":"en" ,"text": "create group"                        },
+{  "key":   "create group"    , "lang":"fr" ,"text": "création groupe"                     },
 
-{ "key":   "launch site"     , "lang":"en" ,"text": "launch site"                         },
-{ "key":   "launch site"     , "lang":"fr" ,"text": "lancer site"                         },
+{  "key":   "launch site"     , "lang":"en" ,"text": "launch site"                         },
+{  "key":   "launch site"     , "lang":"fr" ,"text": "lancer site"                         },
 
-{ "key":   "svija cloud"     , "lang":"en" ,"text": "svija cloud"                         },
-{ "key":   "svija cloud"     , "lang":"fr" ,"text": "svija cloud"                         },
+{  "key":   "svija cloud"     , "lang":"en" ,"text": "svija cloud"                         },
+{  "key":   "svija cloud"     , "lang":"fr" ,"text": "svija cloud"                         },
 
-{ "key":   "versionAlert"    , "lang":"en" ,"text": "Unsupported Illustrator version"     },
-{ "key":   "versionAlert"    , "lang":"fr" ,"text": "Version d'Illustrator non-supportée" },
+{  "key":   "versionAlert"    , "lang":"en" ,"text": "Unsupported Illustrator version"     },
+{  "key":   "versionAlert"    , "lang":"fr" ,"text": "Version d'Illustrator non-supportée" },
 
-{ "key":   "versionAlert"    , "lang":"en" ,"text": "Unsupported Illustrator version"     },
-{ "key":   "versionAlert"    , "lang":"fr" ,"text": "Version d'Illustrator non-supportée" },
+{  "key":   "versionAlert"    , "lang":"en" ,"text": "Unsupported Illustrator version"     },
+{  "key":   "versionAlert"    , "lang":"fr" ,"text": "Version d'Illustrator non-supportée" },
 
-{ "key":   "help"            , "lang":"en" ,"text": "help"                                },
-{ "key":   "help"            , "lang":"fr" ,"text": "aide"                                },
+{  "key":   "help"            , "lang":"en" ,"text": "help"                                },
+{  "key":   "help"            , "lang":"fr" ,"text": "aide"                                },
 
-{ "key":   "more"            , "lang":"en" ,"text": "＋ more"                             },
-{ "key":   "more"            , "lang":"fr" ,"text": "＋ plus"                             },
+{  "key":   "more"            , "lang":"en" ,"text": "＋ more"                             },
+{  "key":   "more"            , "lang":"fr" ,"text": "＋ plus"                             },
 
-{ "key":   "less"            , "lang":"en" ,"text": "— less"                              },
-{ "key":   "less"            , "lang":"fr" ,"text": "— moins"                             },
+{  "key":   "less"            , "lang":"en" ,"text": "— less"                              },
+{  "key":   "less"            , "lang":"fr" ,"text": "— moins"                             },
 
-{ "key":   "#fin"                                                                         }]
+{  "key":   "sourceName0"     , "lang":"fr" ,"text": "Local"                               },
+{  "key":   "sourceName0"     , "lang":"en" ,"text": "Local"                               },
+{  "key":   "sourceName1"     , "lang":"fr" ,"text": "Alpha"                               },
+{  "key":   "sourceName1"     , "lang":"en" ,"text": "Alpha"                               },
+{  "key":   "sourceName2"     , "lang":"fr" ,"text": "Beta"                                },
+{  "key":   "sourceName2"     , "lang":"en" ,"text": "Beta"                                },
+{  "key":   "sourceName3"     , "lang":"fr" ,"text": "Stable"                              },
+{  "key":   "sourceName3"     , "lang":"en" ,"text": "Stable"                              },
+
+{  "key":   "#fin"                                                                         }]
+

@@ -18,7 +18,6 @@
 { "name":                 "more","ext":"css" },
 { "name":                 "main","ext":"css" , "id": "mainCSS"    },
 { "name":            "bottomBar","ext":"css" },
-{ "name":             "settings","ext":"css" },
 
 { "name":                 "news","ext":"html", "id": "newsHtml"   },
 { "name":              "dormant","ext":"html", "id": "dormantDiv" },
@@ -37,7 +36,7 @@
 { "name":       "checkAndRepair","ext":"jsx" },
 { "name":                 "save","ext":"jsx" },
 { "name":             "openFile","ext":"jsx" },
-{ "name":             "settings","ext":"jsx" },
+{ "name":               "source","ext":"jsx" },
 { "name":               "reopen","ext":"jsx" },
 
 { "name":            "showAlert","ext":"js"  },
@@ -54,9 +53,8 @@
 { "name":              "43-save","ext":"js"  },
 { "name":             "openFile","ext":"js"  },
 { "name":                 "help","ext":"js"  },
-{ "name":             "settings","ext":"js"  },
+{ "name":               "source","ext":"js"  },
 { "name":                 "more","ext":"js"  },
 { "name":               "reopen","ext":"js"  , "id": "reopenJS"   },
 
-{ "name":   "#fin" }]
-
+{ "name": "#fin" }]
