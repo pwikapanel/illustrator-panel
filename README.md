@@ -5,6 +5,29 @@
 
 [logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
+Working on Svija Tools requires:
+1. enabling `debug mode` for Adobe Illustrator
+2. downloading the repository to your computer
+3. creating a symlink from the repository to the Illustrator extensions folder
+
+![](images/divider.jpg "————————————————————————————————————————")
+
+
+### 1. Enable `debug` Mode:**
+
+*To see which version of CEP is being used:*
+```
+ls /Users/Main/Library/Preferences/com.adobe.CSXS*
+```
+
+*To enable/disable debug mode for a given CEP version:*
+```
+defaults read /Users/Main/Library/Preferences/com.adobe.CSXS.11.plist
+defaults write com.adobe.CSXS.11 PlayerDebugMode 1
+```
+More info: [here](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).
+
+
 ![](images/divider.jpg "————————————————————————————————————————")
 
 ![](images/shadow.jpg "————————————————————————————————————————")
@@ -118,20 +141,6 @@ ln -s "$repos/tools/Interface/SVG exports" "$repos/tools/Svija Tools Beta/panel/
 The goal is to avoid having multiple copies of the same files. With this system:
 - all interface & panel dev happens in the **tools** repo
 - all script development happens in the **scripts-presets** repo
-
-**To enable debug mode:**
-
-*To see which version of CEP is being used:*
-```
-ls /Users/Main/Library/Preferences/com.adobe.CSXS*
-```
-
-*To enable/disable debug mode for a given CEP version:*
-```
-defaults read /Users/Main/Library/Preferences/com.adobe.CSXS.11.plist
-defaults write com.adobe.CSXS.11 PlayerDebugMode 1
-```
-More info: [here](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).
 
 ---
 ### add this
