@@ -7,6 +7,8 @@
 
 ![](images/divider.jpg "————————————————————————————————————————")
 
+![](images/shadow.jpg "————————————————————————————————————————")
+
 <details><summary>previous chaos</summary>
 
 [debugging info](https://fenomas.com/2014/08/cep-5-html-debug-en/)
