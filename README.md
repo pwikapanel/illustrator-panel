@@ -48,13 +48,15 @@ On macOS, Illustrator extensions are stored in:
 /Library/Application Support/Adobe/CEP/extensions/
 ```
 To use the `Svija Tools` panel inside the repository, create a symlink:
+Drag the repository window onto Terminal then move the address between the quotes.
 ```
 repo="replace this"
 ```
-Drag the repository window onto Terminal then move the address between the quotes.
+Create the symlink:
 ```
 sudo ln -s "$repo/tools/Svija Tools" "/Library/Application Support/Adobe/CEP/extensions/Svija Tools Dev"
 ```
+Restart Illustrator, and Svija Tools should be available under menu `Window` › `Extensions`
 
 ![](images/divider.jpg "————————————————————————————————————————")
 
