@@ -3,7 +3,7 @@
 
 /*———————————————————————————————————————— parameters */
 
-var objLabel = translate('check & repair')
+var objLabel = 'check & repair'
 var objID    = 'butt41'
 var script   = 'checkAndRepair.jsx'
 

@@ -21,7 +21,7 @@ vers = parseFloat(vers)
 
 if (vers < AIVERSIONMIN){
   versionDiv.style.display = 'block'
-  versionBanner.innerHTML = translate('versionAlert')
+  versionBanner.innerHTML = 'versionAlert'
 
   versionBanner.addEventListener('mouseup', (evn) => {
     var url = 'https://tech.svija.com/illustrator-version'

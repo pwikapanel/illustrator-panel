@@ -4,7 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objId    = 'butt22'
-var objLabel = translate('change case')
+var objLabel = 'change case'
 var scr      = 'changeCase.jsx'
 
 /*———————————————————————————————————————— configure button */

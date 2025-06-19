@@ -5,7 +5,7 @@
 
 var helpURL  = 'tech.svija.com/fromtools'
 var objId    = 'linkHelp'
-var objLabel = translate('help')
+var objLabel = 'help'
 
 /*———————————————————————————————————————— configure button */
 

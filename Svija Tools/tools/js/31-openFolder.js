@@ -11,7 +11,7 @@ const macOpener = '/usr/bin/open'
 /*———————————————————————————————————————— parameters */
 
 var objID    = 'buttD1'
-var objLabel = translate('folder')
+var objLabel = 'folder'
 
 /*———————————————————————————————————————— configure button */
 
@@ -31,7 +31,7 @@ obj.addEventListener('mouseup', (evn) => {
 /*———————————————————————————————————————— parameters */
 
 var objID    = 'butt31'
-var objLabel = translate('folder')
+var objLabel = 'folder'
 
 /*———————————————————————————————————————— configure button */
 
