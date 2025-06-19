@@ -92,26 +92,14 @@ window.addEventListener('error', (event)=>{
       str = `alert("${str}")`
   CEP.evalScript(str) })
 
-/*———————————————————————————————————————— lert(msg)
-
-    alerts that don't exit Illustrators space */
-
-function lert(msg){
-  msg = JSON.stringify(String(msg))
-  msg = msg.substr(1, msg.length-2)
-
-  console.log(msg)
-  CEP.evalScript('alert("' + msg + '")')
-}
-
 //———————————————————————————————————————— initialize variables
 
 var TOOLSVERSION   = '1.0.7'                   // string    shown in source picker panel
 
-var INTMS          = 500                       // number    interrupt interval to refresh panel etc.
+var INTMS          = 10000                     // number    interrupt interval to refresh panel etc.
 var MANIFESTPATH   = 'json/manifest.json'      // string    where manifest JSON is stored
 var READY          = false                     // boolean   is panel loaded, ready to use
-var REMOTE         = 'tools.svija.com/tools'  // string    server to get remote code
+var REMOTE         = 'tools.svija.com/tools'   // string    server to get remote code
 var SOURCEDEFAULT  = 2                         // number    default source (master)
 var UPDATEINTERVAL = 60                        // number    interval between update checks in minutes
 
@@ -225,8 +213,8 @@ else{
 
 var ms = UPDATEINTERVAL *60*1000   // variable is interval between update checks in minutes
 
-if (READY) setInterval(sh_launchUpdate.bind(null, SOURCE), ms)
-if (READY && typeof DEBUG != 'undefined') sh_launchUpdate(SOURCE)
+// if (READY) setInterval(sh_launchUpdate.bind(null, SOURCE), ms)
+// if (READY && typeof DEBUG != 'undefined') sh_launchUpdate(SOURCE)
 
 
 //:::::::::::::::::::::::::::::::::::::::: construction functions
@@ -237,6 +225,7 @@ if (READY && typeof DEBUG != 'undefined') sh_launchUpdate(SOURCE)
    gets LS values and installs them to the DOM */
 
 function loadDOM(){
+  return true
   elapse(248, `              loadDOM() - starting`)
 
   sh_harmonize('ls')
@@ -284,6 +273,7 @@ function loadDOM(){
     { "id":0, "name":"manifest" ,"ext":"json", "loaded":false } */
 
 function parseManifest(source, contents, path){
+  return true
 
   console.log(' ')
   elapse(292, `        parseManifest() - validating JSON from "${sh_sourceName(source)}" manifest`)
@@ -340,6 +330,7 @@ function parseManifest(source, contents, path){
     and validated in the MANIFEST json category "loaded" */
 
 function loadFiles(source){
+  return true
 
   SOURCE = source
 
@@ -433,8 +424,8 @@ function manifestToLS(){
   if (typeof DEBUG != 'undefined')
     CEP.evalScript(`confirm("Cancel Reload?\\nlocalStorage loaded from ${sh_sourceName(SOURCE)}", "zoo")`, locationReload)
   else
-//  zoop = 'boo'
-    location.reload()
+    zoop = 'boo'
+//  location.reload()
 }
 
 function locationReload(str){
@@ -442,7 +433,8 @@ function locationReload(str){
   // return=false, escape=true
 
   if (str=='false')
-    location.reload()
+    zoop = 'boo'
+//  location.reload()
   else  elapse(438, `       locationReload() - canceled`)
 }
 
@@ -517,11 +509,24 @@ function compareVersions(newSource, contents, path){
 
 //:::::::::::::::::::::::::::::::::::::::: sh_ utility functions
 
+/*———————————————————————————————————————— lert(msg)
+
+    alerts that don't exit Illustrators space */
+
+function lert(msg){
+  msg = JSON.stringify(String(msg))
+  msg = msg.substr(1, msg.length-2)
+
+  console.log(msg)
+  CEP.evalScript('alert("' + msg + '")')
+}
+
 /*———————————————————————————————————————— cssToDOM(scriptID, contents)
 
     installs a CSS sheet */
 
 function cssToDOM(scriptID, contents){
+return true
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
@@ -537,6 +542,7 @@ function cssToDOM(scriptID, contents){
     installs an HTML block */
 
 function htmlToDOM(scriptID, contents){
+return true
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
@@ -553,6 +559,7 @@ function htmlToDOM(scriptID, contents){
     installs a JS block */
 
 function jsToDOM(scriptID, contents){
+return true
   var obj = document.getElementById(scriptID)
   if (obj != null) obj.remove()
 
