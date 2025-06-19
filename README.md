@@ -13,19 +13,26 @@ Working on Svija Tools requires:
 ![](images/divider.jpg "————————————————————————————————————————")
 
 
-### 1. Enable `debug` Mode:
+### 1. Enable `debug mode`:
 
 Determine which version of CEP is being used:
 ```
-ls /Users/Main/Library/Preferences/com.adobe.CSXS
+ls /Users/Main/Library/Preferences/com.adobe.CSXS*
 ```
-
-*To enable/disable debug mode for a given CEP version:*
+This will return:
 ```
-defaults read /Users/Main/Library/Preferences/com.adobe.CSXS.11.plist
+/Users/Main/Library/Preferences/com.adobe.CSXS.11.plist
+```
+To enable/disable `debug mode` for the correct CEP version:
+```
 defaults write com.adobe.CSXS.11 PlayerDebugMode 1
 ```
-More info: [here](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).
+To see whether `debug mode` is activated:
+```
+defaults read /Users/Main/Library/Preferences/com.adobe.CSXS.11.plist
+```
+
+>[More info](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).
 
 
 ![](images/divider.jpg "————————————————————————————————————————")
