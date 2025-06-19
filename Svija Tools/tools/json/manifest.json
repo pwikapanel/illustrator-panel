@@ -1,7 +1,6 @@
 [
 
 { "name":             "manifest","ext":"json", "id": 0            },
-{ "name":           "dictionary","ext":"json", "id": "DICTIONARY" },
 
 { "name":                 "json","ext":"jsx" },
 { "name":            "utilities","ext":"jsx" },

@@ -27,7 +27,7 @@ sh_transmitToCEP('ISMAC', ISMAC)
 var naam = 'projectInfo.jsx'
 
 
-elapse(29, `projectInfo.js - are we here?`)
+//elapse(29, `projectInfo.js - are we here?`)
 
 
 var file = TOOLSPATH + '/master/cep/' + naam
@@ -47,6 +47,9 @@ setInterval(function(){
 var notAlertedPIJ = true
 
 function setURL(arg){
+
+  // return function from CEP.evalScript('getProjectInfo()', setURL)
+  return true
 
   ISSVIJA = false
   if (arg == '') return true
