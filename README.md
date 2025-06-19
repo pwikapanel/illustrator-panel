@@ -94,6 +94,8 @@ After restarting Illustrator, it should be possible to visit [http://localhost:8
 
 Clicking on [shell.html]() will display the Svija Tools panel in the browser
 
+The main tool we'll be using is the console.
+
 ![](images/divider.jpg "————————————————————————————————————————")
 ### Resources
 
@@ -101,6 +103,7 @@ https://fenomas.com/2014/08/cep-mega-guide-en/
 https://blog.developer.adobe.com/en/publish/2019/06/debugging-your-adobe-panel
 
 ![](images/divider.jpg "————————————————————————————————————————")
+
 ![](images/shadow.jpg "————————————————————————————————————————")
 <details><summary>previous chaos</summary>
 
