@@ -15,7 +15,7 @@ Working on Svija Tools requires:
 
 ### 1. Enable `debug` Mode:**
 
-*To see which version of CEP is being used:*
+Determine which version of CEP is being used:
 ```
 ls /Users/Main/Library/Preferences/com.adobe.CSXS*
 ```
