@@ -72,6 +72,21 @@ Restart Illustrator; Svija Tools should be available under menu `Window` › `Ex
 
 *Drawn from [Andy Hall's excellent tutorial](https://fenomas.com/2014/08/cep-5-html-debug-en/)*
 
+Create or edit `Svija Tools/.debug`, containing:
+```
+<?xml version="1.0" encoding="UTF-8"?> 
+<ExtensionList>
+    <Extension Id="com.svija.SvijaToolsBeta.panel">
+        <HostList>
+            <Host Name="ILST" Port="8080"/> 
+        </HostList>
+    </Extension>
+</ExtensionList>
+```
+Note that the extension ID line should match the line in `CSXS/manifest.xml`.
+
+
+
 ### Resources
 
 https://fenomas.com/2014/08/cep-mega-guide-en/
