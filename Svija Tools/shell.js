@@ -97,7 +97,7 @@ window.addEventListener('error', (event)=>{
 var TOOLSVERSION   = '1.0.7'                   // string    shown in source picker panel
 
 var INTMS          = 10000                     // number    interrupt interval to refresh panel etc.
-var MANIFESTPATH   = 'json/manifest.json'      // string    where manifest JSON is stored
+var MANIFESTPATH   = 'json/jsxFiles.json'      // string    where manifest JSON is stored
 var READY          = false                     // boolean   is panel loaded, ready to use
 var REMOTE         = 'tools.svija.com/tools'   // string    server to get remote code
 var SOURCEDEFAULT  = 2                         // number    default source (master)
@@ -259,7 +259,7 @@ function loadDOM(){
 
 /*                      loads           how       calls
 
-    shell.html       manifest.json    callback  —› parseManifest
+    shell.html       jsxFiles.json    callback  —› parseManifest
     parseManifest                       direct  —› loadFiles
     loadFiles        each script      callback  —› fileToManifest
     fileToManifest                      direct  —› manifestToLS (skipped if not last script)
