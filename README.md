@@ -1,9 +1,4 @@
 
-cd "/Users/Main/Library/Mobile Documents/com~apple~CloudDocs/Repositories/tools/Svija Tools/" # worked
-cd "/Users/Main/Library/Mobile\ Documents/com\~apple\~CloudDocs/Repositories/tools/Svija Tools" # failed
--bash: cd: /Users/Main/Library/Mobile\ Documents/com\~apple\~CloudDocs/Repositories/tools/Svija Tools: No such file or directory
-510  Svija Tools   
-
 *Updated 19 June 2025 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
@@ -14,6 +9,7 @@ Working on Svija Tools requires:
 1. enabling `debug mode` for Adobe Illustrator
 2. clone the repository to your computer
 3. link the repository to the Illustrator extensions folder
+4. enabling the Chrome debugger
 
 ![](images/divider.jpg "————————————————————————————————————————")
 ### 1. Enable `debug mode`:
@@ -72,7 +68,15 @@ sudo ln -s "$repo/Svija Tools" "/Library/Application Support/Adobe/CEP/extension
 Restart Illustrator; Svija Tools should be available under menu `Window` › `Extensions`
 
 ![](images/divider.jpg "————————————————————————————————————————")
+### 4. Enabling the Chrome debugger
 
+*Drawn from [Andy Hall's excellent tutorial](https://fenomas.com/2014/08/cep-5-html-debug-en/)*
+
+### Resources
+
+https://fenomas.com/2014/08/cep-mega-guide-en/
+
+![](images/divider.jpg "————————————————————————————————————————")
 ![](images/shadow.jpg "————————————————————————————————————————")
 <details><summary>previous chaos</summary>
 
