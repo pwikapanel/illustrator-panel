@@ -40,8 +40,20 @@ You can download this repository by clicking on `Code` › `Download ZIP` from t
 ```
 git clone htts://git@github.com/svijasvg/tools.git
 ```
-![](images/shadow.jpg "————————————————————————————————————————")
+![](images/divider.jpg "————————————————————————————————————————")
 ### 3. Link the Repository to the Extensions Folder
+
+On macOS, Illustrator extensions are stored in:
+```
+/Library/Application Support/Adobe/CEP/extensions/
+```
+To use the `Svija Tools` panel inside the repository, create a symlink:
+```
+repo="" # drag the repository window onto Terminal then move address between quotes
+sudo ln -s "$repo/tools/Svija Tools" "/Library/Application Support/Adobe/CEP/extensions/Svija Tools Dev"
+```
+
+![](images/divider.jpg "————————————————————————————————————————")
 
 ![](images/shadow.jpg "————————————————————————————————————————")
 <details><summary>previous chaos</summary>
