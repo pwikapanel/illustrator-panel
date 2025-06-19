@@ -13,11 +13,11 @@ Working on Svija Tools requires:
 ![](images/divider.jpg "————————————————————————————————————————")
 
 
-### 1. Enable `debug` Mode:**
+### 1. Enable `debug` Mode:
 
 Determine which version of CEP is being used:
 ```
-ls /Users/Main/Library/Preferences/com.adobe.CSXS*
+ls /Users/Main/Library/Preferences/com.adobe.CSXS
 ```
 
 *To enable/disable debug mode for a given CEP version:*
