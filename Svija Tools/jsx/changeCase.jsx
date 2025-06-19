@@ -47,8 +47,6 @@
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
-alert('4 loaded')
-
 function changeCase(alt){
 
   // if no selection, do nothing ———————————————————————————————————————————————

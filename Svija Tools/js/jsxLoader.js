@@ -1,9 +1,10 @@
 
 //:::::::::::::::::::::::::::::::::::::::: jsxLoader.js
-var JSONCOUNT      // number     counter, augmented by 1 with 
-var MANIFEST       // object     JSON with all DOM elements
 
-/*———————————————————————————————————————— start loading
+var JSONCOUNT      // number     counter, augmented by 1 to avoid infinite waitwhen loading files
+var jsxList        // object     JSON with all DOM elements
+
+/*———————————————————————————————————————— get list of JSX files
 
     loads JSON file with list of dom elements and
     source files used to construct the panel
@@ -18,61 +19,29 @@ var JSXFILEPATH   = 'json/jsxFiles.json'      // string    where jsx file list J
 
 elapse(216, `getting JSX file list\n`)
 
-getLocalFile (0, JSXFILEPATH, parseJSXlist)
+getLocalFile (0, JSXFILEPATH, parseJsxList)
 
-//:::::::::::::::::::::::::::::::::::::::: construction functions
-
-/*———————————————————————————————————————— loadDOM() // if LS is loaded
-
-   using MANIFEST list of names, extensions and IDs,
-   gets LS values and installs them to the DOM */
-
-function loadDOM(){
-
-  elapse(248, `              loadDOM() - starting`)
-
-
-  elapseGroup(256, `              loadDOM() - adding ${MANIFEST.length} elements to DOM...`)
-
-  for (var x=1; x<MANIFEST.length; x++){
-
-//  elapse(260, `         loadDOM() - treating MANIFEST[${x}]: ${MANIFEST[x].name}`)
-
-    var LSref = sh_makeLSref(MANIFEST[x])
-    var objID = sh_makeObjID(MANIFEST[x])
-
-    var functionName = MANIFEST[x]['ext'] + 'ToDOM'
-
-    elapse(264, `              loadDOM() - installing localStorage.${LSref} with ID ${objID}`)
-
-    window[functionName](objID, localStorage[LSref])
-  }
-
-  console.groupEnd()
-  elapse(268, `              loadDOM() - "tools" ready to use 🙂\n\n————————————————————————————————————————\n\n`)
-}
-
-/*———————————————————————————————————————— 1. parseJSXlist(source, contents, path)
+/*———————————————————————————————————————— 1. parseJsxList(source, contents, path)
 
     loads the manifest for the active source into
-    MANIFEST, an object with keys and values:
+    jsxList, an object with keys and values:
 
     { "id":0, "name":"manifest" ,"ext":"json", "loaded":false } */
 
-function parseJSXlist(source, contents, path){
+function parseJsxList(source, contents, path){
 
   console.log(' ')
-  elapse(292, `        parseJSXlist() - validating JSON from "tools" jsx file list`)
+  elapse(34, `        parseJsxList() - validating jsx file list JSON`)
 
 //———————————————————————————————————————— validate text
 
   if (typeof contents == 'undefined'){
-    elapse(300, `        parseJSXlist() - error; contents is undefined`)
+    elapse(300, `        parseJsxList() - error; contents is undefined`)
     return true
   }
 
   if (contents == ''){
-    elapse(305, `        parseJSXlist() - stopping; remote jsx file list is empty (path=${path})`)
+    elapse(305, `        parseJsxList() - stopping; remote jsx file list is empty (path=${path})`)
     return true
   }
 
@@ -80,121 +49,85 @@ function parseJSXlist(source, contents, path){
 
   try{ var zoop = JSON.parse(contents) }
   catch(msg){
-    elapse(309, `        parseJSXlist() - CANCELED ⚠️ parse error in ${path}\n\n    ${msg}\n\n` )
+    elapse(309, `        parseJsxList() - CANCELED ⚠️ parse error in ${path}\n\n    ${msg}\n\n` )
     return true
   }
 
-  try{ MANIFEST = zoop.filter(record => record.name.slice(0,1) != '#') }
+  try{ jsxList = zoop.filter(record => record.name.slice(0,1) != '#') }
   catch(msg){
-    elapse(316, `        parseJSXlist() - CANCELED ⚠️ missing "name" record in MANIFEST JSON from ${path}\n\n    ${msg}\n\n` )
+    elapse(316, `        parseJsxList() - CANCELED ⚠️ missing "name" record in jsxList JSON from ${path}\n\n    ${msg}\n\n` )
     return true
   }
 
 //———————————————————————————————————————— validate 1st record (self-reference)
 
-  MANIFESTVERSION = MANIFEST[0].id
+  jsxListVERSION = jsxList[0].id
 
-  if (typeof MANIFESTVERSION == 'undefined'){
-    elapse(330, `        parseJSXlist() - jsx file list error - missing jsx file list id`)
+  if (typeof jsxListVERSION == 'undefined'){
+    elapse(330, `        parseJsxList() - jsx file list error - missing jsx file list id`)
     return true
   }
 
 //———————————————————————————————————————— mark as loaded and continue
 
-  MANIFEST[0]['loaded'] = true
+  jsxList[0]['loaded'] = true
 
 
-  elapse(337, `        parseJSXlist() - "tools" jsx file list loaded`)
-  loadFiles(source)
+  elapse(76, `        parseJsxList() - jsx file list loaded`)
+  loadJsxFiles(source)
 
 }
 
-
-/*———————————————————————————————————————— 2. loadFiles(source)
+/*———————————————————————————————————————— 2. loadJsxFiles(source)
 
     this will load the relevant files into memory but NOT activate
     them. they will be activated only when they are all loaded
-    and validated in the MANIFEST json category "loaded" */
+    and validated in the jsxList json category "loaded" */
 
-function loadFiles(source){
+function loadJsxFiles(source){
 
-  elapseGroup(378, `            loadFiles() - loading ${MANIFEST.length} files from "tools" into variable MANIFEST...`)
-  for (var x=1; x<MANIFEST.length; x++){
+  elapseGroup(89, `        loadJsxFiles() - loading ${jsxList.length} files into variable jsxList...`)
+  for (var x=1; x<jsxList.length; x++){
 
-    var comment = MANIFEST[x]['name'].slice(0,1) === '#'
+    var comment = jsxList[x]['name'].slice(0,1) === '#'
     if (comment) continue
 
-    var LSref = sh_makeLSref(MANIFEST[x])
-    var  path =  sh_makePath(MANIFEST[x])
+    var  path =  makePath(jsxList[x])
 
-    if (LSref == ''){
-      console.groupEnd()
-      elapse(359, `            loadFiles() ⚠️ impossible to construct LSref for MANIFEST[${x}]`)
-      return
-    }
 
     if (path == ''){
       console.groupEnd()
-      elapse(365, `            loadFiles() ⚠️ impossible to construct path for MANIFEST[${x}]`)
+      elapse(365, `            loadJsxFiles() ⚠️ impossible to construct path for jsxList[${x}]`)
       return
     }
 
-    elapse(362, `          loadFiles() - ${path}`)
+    elapse(362, `          loadJsxFiles() - ${path}`)
 
-    getLocalFile (x, path, fileToManifest)
+    getLocalFile (x, path, fileToCEP)
 
   }
-
+  console.groupEnd()
+  elapseGroup(109, `        installing JSX content...`)
 }
 
-/*———————————————————————————————————————— 3. fileToManifest(manifest)
+/*———————————————————————————————————————— 3. fileToCEP(x, contents, path)
 
     this will create the localStorage variable for each script
-    then mark the script as loaded in MANIFEST */
+    then mark the script as loaded in jsxList */
 
-function fileToManifest(x, contents, path){
+function fileToCEP(x, contents, path){
 
-  if (typeof MANIFEST[x] == 'undefined'){
-    elapsed(385, `     fileToManifest() - file not found: `)
+  if (typeof jsxList[x] == 'undefined'){
+    elapsed(385, `     fileToCEP() - file not found: `)
+    return True
   }
 
-  MANIFEST[x].contents = contents
-  MANIFEST[x].loaded   = true
-
-  elapse(392, `     fileToManifest() - ${MANIFEST[x].name} added`)
-}
-
-/*———————————————————————————————————————— jsonToDOM(scriptID, contents)
-
-    accepts a JSON file where valid records have a string "key" and 
-    comments have a key starting with #
-    only used for translation at this time */
-
-function jsonToDOM(scriptID, contents){
-
-  try{
-    window[scriptID]       = JSON.parse(contents).filter(record => record.key.slice(0,1) != '#')
-    localStorage[scriptID] = JSON.stringify(window[scriptID])
-    elapse(579, `             jsonToDOM(${scriptID}) successful`)
-  }
-
-  catch(e){
-    elapse(583, `             jsonToDOM() ⚠️ JSON error; ${scriptID} not loaded\n`+e)
-  }
-
-}
-
-/*———————————————————————————————————————— jsxToDOM(scriptID, contents)
-
-    */
-
-function jsxToDOM(scriptID, contents){
-  elapse(586, `              jsxToDOM(${scriptID})`)
   CEP.evalScript(contents)
+  elapse(392, `     fileToCEP() - ${jsxList[x].name} added`)
 }
 
 
-//———————————————————————————————————————— fetch utilities
+//:::::::::::::::::::::::::::::::::::::::: fetch utilities
 
 /*———————————————————————————————————————— getLocalFile(path, callback)
 
@@ -206,7 +139,7 @@ function jsxToDOM(scriptID, contents){
 
 function getLocalFile(passthrough, path, callback){
 
-  path = `${TOOLSPATH}/tools/${path}`
+  path = `${TOOLSPATH}/${path}`
 
   var myPromise = fetchLocal(path)
   myPromise.then(onFulfilled, onRejected)
@@ -264,22 +197,28 @@ function fetchLocal(file) {
   })
 }
 
-/*———————————————————————————————————————— sh_makeLSref(obj)
 
-    creates a reference for a localStorage variable
-    name_ext   */
+//:::::::::::::::::::::::::::::::::::::::: other functions
 
-function sh_makeLSref(obj){
+/*———————————————————————————————————————— makePath(obj)
+
+    creates the file path from the manifest info */
+
+function makePath(obj){
   if (typeof obj.name == 'undefined'){
-    elapse(941, `object with no name`)
+    elapse(973, `object with no name`)
     return ''
   }
 
   if (typeof obj.ext == 'undefined'){
-    elapse(946, `object with no ext`)
+    elapse(978, `object with no ext`)
     return ''
   }
 
-  return obj.name +'_'+ obj.ext
+  path = obj['ext'] + '/' + obj['name'] + '.' + obj['ext']
+  return path
 }
+
+
+//:::::::::::::::::::::::::::::::::::::::: fin
 
