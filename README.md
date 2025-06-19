@@ -1,5 +1,5 @@
 
-*Updated 22 May 2023 · Toulouse*
+*Updated 19 June 2025 · Toulouse*
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
