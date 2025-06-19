@@ -1,31 +1,7 @@
 [
 
 { "name":             "manifest","ext":"json", "id": 0            },
-
 { "name":           "dictionary","ext":"json", "id": "DICTIONARY" },
-{ "name":      "globalVariables","ext":"js"  },
-{ "name":            "translate","ext":"js"  },
-{ "name":            "utilities","ext":"js"  },
-{ "name":         "panelManager","ext":"js"  },
-
-{ "name":                "fonts","ext":"css" },
-{ "name": "illustratorColorDefs","ext":"css" },
-{ "name":               "global","ext":"css" },
-{ "name":              "buttons","ext":"css" },
-{ "name":              "version","ext":"css" },
-{ "name":                 "news","ext":"css" },
-{ "name":              "dormant","ext":"css" },
-{ "name":                 "more","ext":"css" },
-{ "name":                 "main","ext":"css" , "id": "mainCSS"    },
-{ "name":            "bottomBar","ext":"css" },
-{ "name":             "settings","ext":"css" },
-
-{ "name":                 "news","ext":"html", "id": "newsHtml"   },
-{ "name":              "dormant","ext":"html", "id": "dormantDiv" },
-{ "name":                 "more","ext":"html", "id": "moreDiv"    },
-{ "name":                 "main","ext":"html", "id": "mainDiv"    },
-{ "name":              "version","ext":"html", "id": "versionDiv" },
-{ "name":            "bottomBar","ext":"html", "id": "bottomBar"  },
 
 { "name":                 "json","ext":"jsx" },
 { "name":            "utilities","ext":"jsx" },
@@ -39,24 +15,6 @@
 { "name":             "openFile","ext":"jsx" },
 { "name":             "settings","ext":"jsx" },
 { "name":               "reopen","ext":"jsx" },
-
-{ "name":            "showAlert","ext":"js"  },
-{ "name":              "version","ext":"js"  },
-{ "name":          "projectInfo","ext":"js"  },
-{ "name":          "accentColor","ext":"js"  },
-{ "name":        "11-launchSite","ext":"js"  },
-{ "name":       "12-launchCloud","ext":"js"  },
-{ "name":       "21-createGroup","ext":"js"  },
-{ "name":        "22-changeCase","ext":"js"  },
-{ "name":        "31-openFolder","ext":"js"  },
-{ "name":    "41-checkAndRepair","ext":"js"  },
-{ "name":           "42-saveAll","ext":"js"  },
-{ "name":              "43-save","ext":"js"  },
-{ "name":             "openFile","ext":"js"  },
-{ "name":                 "help","ext":"js"  },
-{ "name":             "settings","ext":"js"  },
-{ "name":                 "more","ext":"js"  },
-{ "name":               "reopen","ext":"js"  , "id": "reopenJS"   },
 
 { "name":   "#fin" }]
 

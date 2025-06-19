@@ -79,7 +79,7 @@ function elapseGroup(line, str){
   console.groupCollapsed(str)
 }
 
-elapse(16, `starting Svija Tools`)
+elapse(82, `starting Svija Tools`)
 
 //———————————————————————————————————————— CEP required
 
@@ -94,7 +94,7 @@ window.addEventListener('error', (event)=>{
 
 /*———————————————————————————————————————— lert(msg)
 
-    alerts in ai-land don't exit program space */
+    alerts that don't exit Illustrators space */
 
 function lert(msg){
   msg = JSON.stringify(String(msg))
@@ -106,10 +106,9 @@ function lert(msg){
 
 //———————————————————————————————————————— initialize variables
 
-
 var TOOLSVERSION   = '1.0.7'                   // string    shown in source picker panel
 
-var INTMS          = 500                       // number    interrupt interval to refresh panel etc.
+var INTMS          = 5000                       // number    interrupt interval to refresh panel etc.
 var MANIFESTPATH   = 'json/manifest.json'      // string    where manifest JSON is stored
 var READY          = false                     // boolean   is panel loaded, ready to use
 var REMOTE         = 'tools.svija.com/tools'  // string    server to get remote code
@@ -170,13 +169,12 @@ var LANG = 'fr'
 
 if (typeof localStorage.SOURCE != 'undefined'){
   SOURCE = sh_lsToJs(localStorage.SOURCE)
-  elapse(177, `SOURCE=${SOURCE} (from LS)`)
+  elapse(172, `SOURCE=${SOURCE} (from LS)`)
 }
 else{
   SOURCE =   0
-  elapse(181, `SOURCE not in localStorage; reset to "/${SOURCENAME0}"`)
+  elapse(176, `SOURCE not in localStorage; reset to "/${SOURCENAME0}"`)
 }
-
 
 //———————————————————————————————————————— set defaults
 
@@ -190,7 +188,7 @@ else
 
 if (LANG != 'fr') LANG = LANGDEFAULT
 
-elapse(197, `variables initialized`)
+elapse(191, `variables initialized`)
 
 /*———————————————————————————————————————— start loading
 
@@ -225,7 +223,7 @@ else{
 
     if existing verfsion is local, I take updates from same branch but higher id */
 
-var ms = UPDATEINTERVAL *60*1000   // variable is interval between update checks in minutes
+var ms = UPDATEINTERVAL *60*100000   // variable is interval between update checks in minutes
 
 if (READY) setInterval(sh_launchUpdate.bind(null, SOURCE), ms)
 if (READY && typeof DEBUG != 'undefined') sh_launchUpdate(SOURCE)
@@ -435,8 +433,8 @@ function manifestToLS(){
   if (typeof DEBUG != 'undefined')
     CEP.evalScript(`confirm("Cancel Reload?\\nlocalStorage loaded from ${sh_sourceName(SOURCE)}", "zoo")`, locationReload)
   else
-//  zoop = 'boo'
-    location.reload()
+    zoop = 'boo'
+//  location.reload()
 }
 
 function locationReload(str){
@@ -444,7 +442,8 @@ function locationReload(str){
   // return=false, escape=true
 
   if (str=='false')
-    location.reload()
+    zoop = 'boo'
+//  location.reload()
   else  elapse(438, `       locationReload() - canceled`)
 }
 

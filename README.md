@@ -70,7 +70,7 @@ Restart Illustrator; Svija Tools should be available under menu `Window` › `Ex
 ![](images/divider.jpg "————————————————————————————————————————")
 ### 4. Enabling the Chrome debugger
 
-*Drawn from [Andy Hall's excellent tutorial](https://fenomas.com/2014/08/cep-5-html-debug-en/)*
+*Drawn from [Andy Hall's tutorial](https://fenomas.com/2014/08/cep-5-html-debug-en/)*
 
 This should work in any Chrome-based browser (we are using [unGoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)).
 
