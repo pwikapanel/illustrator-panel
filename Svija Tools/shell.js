@@ -3,6 +3,16 @@
 
 DEBUG = true
 
+
+
+
+// THIS WHOLE FILE ONLY DOES TWO THINGS:
+
+// 1. LOAD JSX FILES INTO MEMORY FROM A JSON FILE
+// 2. LOAD THE NEWS VIEW HTML INTO THE TOP OF THE PANEL
+
+// IT CAN BE RADICALLY SIMPLFIED
+
 /*———————————————————————————————————————— notes
 
     overall
@@ -60,7 +70,9 @@ DEBUG = true
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
-//———————————————————————————————————————— start timer
+/*———————————————————————————————————————— start timer
+
+    used to make sure everything is efficient */
 
 var d = new Date()
 var TIMER = d.getTime()
@@ -79,7 +91,7 @@ function elapseGroup(line, str){
   console.groupCollapsed(str)
 }
 
-elapse(82, `starting Svija Tools`)
+elapse(84, `starting Svija Tools`)
 
 //———————————————————————————————————————— CEP required
 
@@ -97,24 +109,13 @@ window.addEventListener('error', (event)=>{
 var TOOLSVERSION   = '1.0.7'                   // string    shown in source picker panel
 
 var INTMS          = 10000                     // number    interrupt interval to refresh panel etc.
-var MANIFESTPATH   = 'json/jsxFiles.json'      // string    where manifest JSON is stored
-var READY          = false                     // boolean   is panel loaded, ready to use
-var REMOTE         = 'tools.svija.com/tools'   // string    server to get remote code
-var SOURCEDEFAULT  = 2                         // number    default source (master)
-var UPDATEINTERVAL = 60                        // number    interval between update checks in minutes
 
-var SOURCENAME0    = 'tools'                   // string    used with SOURCE to derive folder names
-var SOURCENAME1    = 'alpha'
-var SOURCENAME2    = 'beta'
-var SOURCENAME3    = 'master'
 
 var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
 
-var SOURCE         // number     0, 1, 2 alpha beta master
 var ISSVIJA        // boolean    if fromtmost doc is a svija page (in a SYNC folder)
 var JSONCOUNT      // number     counter, augmented by 1 with 
 var LASTPATH       // string     last file path for a svija page
-var LSLOADED       // boolean    localStorage version of panel is available
 var MANIFEST       // object     JSON with all DOM elements
 var SITEURL        // string     url of most recent svija site
 var SYNCPATH       // string     absolute path to SYNC folder
@@ -126,13 +127,8 @@ var ALLVARS = [    // harmonized - same in JS, localStorage and CEP
 
   'MAXWIDTH',
   'INTMS',
-  'REMOTE',
 
 
-  'SOURCE',
-  'SOURCENAME0',
-  'SOURCENAME1',
-  'SOURCENAME2',
 
   'ISSVIJA',
   'LASTPATH',
@@ -147,7 +143,6 @@ var SAVEDVARS = [  // kept when localStorage is cleared during updates
   'ISSVIJA',
   'LASTPATH',
   'SITEURL',
-  'SOURCE',
   'SYNCPATH'
 ]
 
@@ -155,28 +150,11 @@ var SAVEDVARS = [  // kept when localStorage is cleared during updates
 
 var LANG = 'fr'
 
-if (typeof localStorage.SOURCE != 'undefined'){
-  SOURCE = sh_lsToJs(localStorage.SOURCE)
-  elapse(172, `SOURCE=${SOURCE} (from LS)`)
-}
-else{
-  SOURCE =   0
-  elapse(176, `SOURCE not in localStorage; reset to "/${SOURCENAME0}"`)
-}
-
 //———————————————————————————————————————— set defaults
-
-if (typeof localStorage.LSLOADED == 'undefined')
-  localStorage.LSLOADED = 'false'
-
-if (typeof localStorage.SOURCE == 'undefined')
-  localStorage.SOURCE = SOURCEDEFAULT
-else
-  localStorage.SOURCE = parseInt(localStorage.SOURCE)
 
 if (LANG != 'fr') LANG = LANGDEFAULT
 
-elapse(191, `variables initialized`)
+elapse(169, `variables initialized`)
 
 /*———————————————————————————————————————— start loading
 
@@ -189,32 +167,11 @@ elapse(191, `variables initialized`)
 
     so if there's no localStorage, it's local files  */
 
-if (localStorage.LSLOADED == 'true'){
-  elapse(211, `localStorage.LSLOADED = 'true'; transferring to loadDOM`)
-  loadDOM()
-}
+var JSXFILEPATH   = 'json/jsxFiles.json'      // string    where jsx file list JSON is stored
 
-else{
-  elapse(216, `localStorage.LSLOADED != 'true'; deleting SOURCE and getting local manifest\n `)
+elapse(216, `getting JSX file list\n`)
 
-  if (typeof localStorage.SOURCE != 'undefined')    // make sure reloading doesn't get derailed by a previous attempt
-    delete localStorage.SOURCE
-
-  SOURCE = 0
-  getLocalFile (SOURCE, MANIFESTPATH, parseManifest)
-}
-
-
-/*———————————————————————————————————————— check for updates
-
-    if existing version is local, I take any update I can get, doesn't matter
-
-    if existing verfsion is local, I take updates from same branch but higher id */
-
-var ms = UPDATEINTERVAL *60*1000   // variable is interval between update checks in minutes
-
-// if (READY) setInterval(sh_launchUpdate.bind(null, SOURCE), ms)
-// if (READY && typeof DEBUG != 'undefined') sh_launchUpdate(SOURCE)
+getLocalFile (0, JSXFILEPATH, parseJSXlist)
 
 
 //:::::::::::::::::::::::::::::::::::::::: construction functions
@@ -251,42 +208,38 @@ function loadDOM(){
   }
 
   console.groupEnd()
-  READY = true
-  elapse(268, `              loadDOM() - "${sh_sourceName(SOURCE)}" ready to use 🙂\n\n————————————————————————————————————————\n\n`)
+  elapse(268, `              loadDOM() - "tools" ready to use 🙂\n\n————————————————————————————————————————\n\n`)
 }
 
 //———————————————————————————————————————— notes: files into localStorage (local & remote)
 
 /*                      loads           how       calls
 
-    shell.html       jsxFiles.json    callback  —› parseManifest
-    parseManifest                       direct  —› loadFiles
-    loadFiles        each script      callback  —› fileToManifest
-    fileToManifest                      direct  —› manifestToLS (skipped if not last script)
-    manifestToLS                     none   */
+    shell.html       jsxFiles.json    callback  —› parseJSXlist
+    parseJSXlist                       direct  —› loadFiles
+    loadFiles        each script      callback  —› fileToManifest */
 
-/*———————————————————————————————————————— 1. parseManifest(source, contents, path)
+/*———————————————————————————————————————— 1. parseJSXlist(source, contents, path)
 
     loads the manifest for the active source into
     MANIFEST, an object with keys and values:
 
     { "id":0, "name":"manifest" ,"ext":"json", "loaded":false } */
 
-function parseManifest(source, contents, path){
-  return true
+function parseJSXlist(source, contents, path){
 
   console.log(' ')
-  elapse(292, `        parseManifest() - validating JSON from "${sh_sourceName(source)}" manifest`)
+  elapse(292, `        parseJSXlist() - validating JSON from "tools" jsx file list`)
 
 //———————————————————————————————————————— validate text
 
   if (typeof contents == 'undefined'){
-    elapse(300, `        parseManifest() - error; contents is undefined`)
+    elapse(300, `        parseJSXlist() - error; contents is undefined`)
     return true
   }
 
   if (contents == ''){
-    elapse(305, `        parseManifest() - stopping; remote manifest is empty (path=${path})`)
+    elapse(305, `        parseJSXlist() - stopping; remote jsx file list is empty (path=${path})`)
     return true
   }
 
@@ -294,13 +247,13 @@ function parseManifest(source, contents, path){
 
   try{ var zoop = JSON.parse(contents) }
   catch(msg){
-    elapse(309, `        parseManifest() - CANCELED ⚠️ parse error in ${path}\n\n    ${msg}\n\n` )
+    elapse(309, `        parseJSXlist() - CANCELED ⚠️ parse error in ${path}\n\n    ${msg}\n\n` )
     return true
   }
 
   try{ MANIFEST = zoop.filter(record => record.name.slice(0,1) != '#') }
   catch(msg){
-    elapse(316, `        parseManifest() - CANCELED ⚠️ missing "name" record in MANIFEST JSON from ${path}\n\n    ${msg}\n\n` )
+    elapse(316, `        parseJSXlist() - CANCELED ⚠️ missing "name" record in MANIFEST JSON from ${path}\n\n    ${msg}\n\n` )
     return true
   }
 
@@ -309,7 +262,7 @@ function parseManifest(source, contents, path){
   MANIFESTVERSION = MANIFEST[0].id
 
   if (typeof MANIFESTVERSION == 'undefined'){
-    elapse(330, `        parseManifest() - manifest error - missing manifest id`)
+    elapse(330, `        parseJSXlist() - jsx file list error - missing jsx file list id`)
     return true
   }
 
@@ -318,10 +271,11 @@ function parseManifest(source, contents, path){
   MANIFEST[0]['loaded'] = true
 
 
-  elapse(337, `        parseManifest() - "${sh_sourceName(source)}" manifest loaded`)
+  elapse(337, `        parseJSXlist() - "tools" jsx file list loaded`)
   loadFiles(source)
 
 }
+
 
 /*———————————————————————————————————————— 2. loadFiles(source)
 
@@ -330,11 +284,8 @@ function parseManifest(source, contents, path){
     and validated in the MANIFEST json category "loaded" */
 
 function loadFiles(source){
-  return true
 
-  SOURCE = source
-
-  elapseGroup(352, `            loadFiles() - loading ${MANIFEST.length} files from "${sh_sourceName(source)}" into variable MANIFEST...`)
+  elapseGroup(378, `            loadFiles() - loading ${MANIFEST.length} files from "tools" into variable MANIFEST...`)
   for (var x=1; x<MANIFEST.length; x++){
 
     var comment = MANIFEST[x]['name'].slice(0,1) === '#'
@@ -363,7 +314,7 @@ function loadFiles(source){
     }
     else{
 //    elapse(369, `         loadFiles() - transferring to getRemoteFile()`)
-      getRemoteFile(x, SOURCE, path, fileToManifest)
+      getRemoteFile(x, 0, path, fileToManifest)
     }
 
   }
@@ -379,131 +330,12 @@ function fileToManifest(x, contents, path){
 
   if (typeof MANIFEST[x] == 'undefined'){
     elapsed(385, `     fileToManifest() - file not found: `)
-    manifestToLS()
   }
 
   MANIFEST[x].contents = contents
   MANIFEST[x].loaded   = true
 
   elapse(392, `     fileToManifest() - ${MANIFEST[x].name} added`)
-  manifestToLS()
-}
-
-/*———————————————————————————————————————— 4. manifestToLS()
-
-    loads values from MANIFEST into localStorage */
-
-function manifestToLS(){
-
-  try{var notYetLoaded = MANIFEST.filter(record=> (typeof record.loaded == 'undefined'))
-  }catch(e){console.log(398, '———————————————————————————'+e)}
-
-  if (notYetLoaded.length > 0) return "not yet loaded"
-
-  //————————————————————————————————————————
-
-  console.groupEnd()
-  sh_clearLocalStorage()
-
-  elapseGroup(409, `         manifestToLS() - moving ${MANIFEST.length} variables from variable MANIFEST to localStorage...`)
-  for (var x=1; x<MANIFEST.length; x++){
-    var LSref = sh_makeLSref(MANIFEST[x])
-    localStorage[LSref] = MANIFEST[x].contents
-    delete MANIFEST[x].contents
-    delete MANIFEST[x].loaded
-    elapse(415, `       manifestToLs() - ${LSref}`)
-  }
-
-  localStorage.MANIFEST = JSON.stringify(MANIFEST)
-  localStorage.LSLOADED = 'true'
-
-  console.groupEnd()
-  localStorage.SOURCE = SOURCE
-  elapse(419, `         manifestToLS() - localStorage loaded (${sh_lsStorageUsed()} KB); localStorage.SOURCE set to "/${sh_sourceName(SOURCE)}"; 🔥 reload to install DOM`)
-
-  if (typeof DEBUG != 'undefined')
-    CEP.evalScript(`confirm("Cancel Reload?\\nlocalStorage loaded from ${sh_sourceName(SOURCE)}", "zoo")`, locationReload)
-  else
-    zoop = 'boo'
-//  location.reload()
-}
-
-function locationReload(str){
-
-  // return=false, escape=true
-
-  if (str=='false')
-    zoop = 'boo'
-//  location.reload()
-  else  elapse(438, `       locationReload() - canceled`)
-}
-
-
-//:::::::::::::::::::::::::::::::::::::::: updater functions
-
-/*———————————————————————————————————————— 1. sh_launchUpdate()
-
-    if existing source is local, I take any update I can get, doesn't matter
-
-    if existing verfsion is local, I take updates from same branch but higher id
-
-    gets remote manifest depending on source then
-    sends to compareVersions() */
-
-function sh_launchUpdate(newSource){
-  if (newSource<1 || newSource>3) newSource = 3 // only update from remote
-
-  elapse(453, `      sh_launchUpdate() - checking for remote updates from "${sh_sourceName(newSource)}" (currently on "${sh_sourceName(SOURCE)}")`)
-  getRemoteFile (newSource, newSource, MANIFESTPATH, compareVersions)
-}
-
-/*———————————————————————————————————————— 2. compareVersions(local, contents, path)
-
-    */
-
-function compareVersions(newSource, contents, path){
-
-//———————————————————————————————————————— error checking
-
-  try{ var json = JSON.parse(contents) }
-  catch(msg){
-    elapse(452, `compareVersions() - error getting remote manifest: ${msg}`)
-    return true
-  }
-
-  try{ var newVersion = json[0].id}
-  catch(msg){
-    elapse(458, `compareVersions() - remote manifest corrupt: ${msg}`)
-    return true
-  }
-
-//———————————————————————————————————————— have valid manifest
-
-/*  possible conditions:
-
-    √ if current source is local, we take any remote source 
-    if changing source, take remote source
-    if not changing source, new version has to be higher id n°
-
-    need following info:
-
-    - current source & version
-    - new source & version
-
-    but this should have happened earlier -- at sh_launchUpdate(source) */
-
-  var currentVersion = MANIFEST[0].id
-
-  elapse(481, `      compareVersions() - current:${sh_sourceName(SOURCE)} is v${currentVersion}, server:${sh_sourceName(newSource)} is v${newVersion}`)
-
-  if (newSource == SOURCE && newVersion <= currentVersion){
-    elapse(484, `      compareVersions() - no update available for "${sh_sourceName(newSource)}"\n\n————————————————————————————————————————\n\n`)
-    return true
-  }
-
-  elapse(488, `      compareVersions() - update available for "${sh_sourceName(newSource)}"`)
-  parseManifest(newSource, contents, path)
-  
 }
 
 
@@ -615,6 +447,8 @@ function jsxToDOM(scriptID, contents){
 
     three params: ID, path, and callback function */
 
+var REMOTE         = 'tools.svija.com/tools'   // string    server to get remote code
+
 function getRemoteFile(passthrough, source, path, callback) {
 //elapse(607, `     getRemoteFile() - passthrough=${passthrough}, source=${source}, path=${path}, callback=${callback.name}`)
 
@@ -624,7 +458,7 @@ function getRemoteFile(passthrough, source, path, callback) {
     return
   }
 
-  path = 'https://' + REMOTE + '/' + sh_dirName(source) + '/' + path
+  path = 'https://' + REMOTE + '/tools/' + path
   path = path + '?' + Math.random()
 
   elapse(612, `        getRemoteFile() - ${path}`)
@@ -661,7 +495,7 @@ function getRemoteFile(passthrough, source, path, callback) {
 
 function getLocalFile(passthrough, path, callback){
 
-  path = `${TOOLSPATH}/${sh_sourceName(0)}/${path}`
+  path = `${TOOLSPATH}/tools/${path}`
 
   var myPromise = fetchLocal(path)
   myPromise.then(onFulfilled, onRejected)
@@ -834,22 +668,6 @@ function sh_capitalize(str){
   }
 
   return str.charAt(0).toUpperCase()+str.slice(1)
-}
-
-/*———————————————————————————————————————— sh_sourceName()
-
-                                               */
-
-function sh_sourceName(c){
-  return window['SOURCENAME' + c]
-}
-
-/*———————————————————————————————————————— sh_dirName()
-
-                                               */
-
-function sh_dirName(c){
-  return sh_sourceName(c).toLowerCase()
 }
 
 /*———————————————————————————————————————— sh_transmitToCEP(varName, val) DOESN'T HANDLE ARRAYS

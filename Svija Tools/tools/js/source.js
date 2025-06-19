@@ -24,8 +24,8 @@ if (obj === null) lert(objId + ' is null')
 
 obj.text = objLabel
 
-if (SOURCE != 0)
-  obj.style.display = 'inline'
+// if (SOURCE != 0)
+//   obj.style.display = 'inline'
 
 /*———————————————————————————————————————— mouseup function
 
@@ -50,7 +50,7 @@ obj.addEventListener('mouseup', (evn) => {
   ut_transmitCSStoCEP('aboutButtons'     )
 
   var extensionPath = CEP.getSystemPath(SystemPath.EXTENSION)
-  var cmd = 'sourceDialog("' + extensionPath + '", ' +  SOURCE + ')'
+  var cmd = 'sourceDialog("' + extensionPath + '", tools)'
   CEP.evalScript(cmd, setSource)
 })
 
