@@ -108,7 +108,7 @@ function lert(msg){
 
 var TOOLSVERSION   = '1.0.7'                   // string    shown in source picker panel
 
-var INTMS          = 5000                       // number    interrupt interval to refresh panel etc.
+var INTMS          = 500                       // number    interrupt interval to refresh panel etc.
 var MANIFESTPATH   = 'json/manifest.json'      // string    where manifest JSON is stored
 var READY          = false                     // boolean   is panel loaded, ready to use
 var REMOTE         = 'tools.svija.com/tools'  // string    server to get remote code
@@ -223,7 +223,7 @@ else{
 
     if existing verfsion is local, I take updates from same branch but higher id */
 
-var ms = UPDATEINTERVAL *60*100000   // variable is interval between update checks in minutes
+var ms = UPDATEINTERVAL *60*1000   // variable is interval between update checks in minutes
 
 if (READY) setInterval(sh_launchUpdate.bind(null, SOURCE), ms)
 if (READY && typeof DEBUG != 'undefined') sh_launchUpdate(SOURCE)
@@ -433,8 +433,8 @@ function manifestToLS(){
   if (typeof DEBUG != 'undefined')
     CEP.evalScript(`confirm("Cancel Reload?\\nlocalStorage loaded from ${sh_sourceName(SOURCE)}", "zoo")`, locationReload)
   else
-    zoop = 'boo'
-//  location.reload()
+//  zoop = 'boo'
+    location.reload()
 }
 
 function locationReload(str){
@@ -442,8 +442,7 @@ function locationReload(str){
   // return=false, escape=true
 
   if (str=='false')
-    zoop = 'boo'
-//  location.reload()
+    location.reload()
   else  elapse(438, `       locationReload() - canceled`)
 }
 
