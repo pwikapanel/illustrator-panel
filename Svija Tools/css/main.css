@@ -24,34 +24,5 @@ svg#svijaLogo{
 #svijaLogo #logoBar{ fill: none; }
 #svijaLogo #logoArt{ fill: none; }
 
-/*———————————————————————————————————————— regular buttons
-
- see css/interface1.css etc.  */
-
-input[type=button]{
-
-  color:var(--checked-box);
-  background-color:var(--input-field);
-  border-color:var(--input-border);
-}
-
-input[type=button]:hover{
-  color:var(--field-contents);
-  border-color:var(--accentBright);
-}
-
-input[type=button]:active{
-  color:var(--field-contents);
-  border-color:#fff;
-}
-
-/*———————————————————————————————————————— save button & HR
-
- see css/interface1.css etc.  */
-
-#butt43{
-  background-color:var(--accentDim);
-}
-
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

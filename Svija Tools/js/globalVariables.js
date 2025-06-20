@@ -27,8 +27,6 @@ var DICTIONARY     // object     JSON english and french traductions
 var AIVERSION = HOSTENV.appVersion // illustrator version
 var ISMAC = CEP.getOSInformation().substring(0,3) == 'Mac' // boolean    macOS boolean · set in projectInfo.js
 var INTERFACE      // number     0-3 dark to light
-var ACCENTBRIGHT   // string     hsl color
-var ACCENTDIM      // string     hsl color
 var MAXWIDTH = 240   // number    width of panel
 
 elapse(28, `        variables initialized`)

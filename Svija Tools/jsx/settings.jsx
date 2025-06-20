@@ -159,7 +159,6 @@ function settingsDialog(extensionPath, source){
         transmitToCEP('LANG'         , LANG      )
         transmitToCEP('DICTIONARY'   , DICTIONARY)
         transmitToCEP('INTERFACE'    , INTERFACE )
-        transmitToCEP('ACCENTBRIGHT' , localStorage.ACCENTBRIGHT )
         transmitToCEP('ACCENTDIM'    , localStorage.ACCENTDIM )
   ut_transmitCSStoCEP('aboutBG')
   ut_transmitCSStoCEP('aboutVersion')

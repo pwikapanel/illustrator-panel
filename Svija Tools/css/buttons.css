@@ -2,7 +2,7 @@
 /*:::::::::::::::::::::::::::::::::::::::: buttons.css */
 
 input[type=button]{
-  display:none;
+/*display:none; */
   width:105px;
   height:22px;
   border-style:solid;
@@ -10,7 +10,7 @@ input[type=button]{
   border-radius:3px;
   padding:0 !important;
   margin: 0px 5px 3px 5px !important;
-  transition:0.3s;
+/*transition:0.3s; */
 }
 
 /*———————————————————————————————————————— sets of three */
@@ -19,6 +19,35 @@ input[type=button]{
 input[type=button].btnLarge{ width:95px; }
 input[type=button].btnMed  { width:58px; }
 input[type=button].btnSmall{ width:47px; }
+
+/*———————————————————————————————————————— regular buttons
+
+ see css/interface1.css etc.  */
+
+input[type=button]{
+
+  color:var(--checked-box);
+  background-color:var(--input-field);
+  border-color:var(--input-border);
+}
+
+input[type=button]:hover{
+  color:var(--field-contents);
+  border-color:var(--accentBright);
+}
+
+input[type=button]:active{
+  color:var(--field-contents);
+  border-color:#fff;
+}
+
+/*———————————————————————————————————————— save button & HR
+
+ see css/interface1.css etc.  */
+
+#butt43{
+  background-color:var(--accentDim);
+}
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
