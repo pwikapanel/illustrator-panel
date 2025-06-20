@@ -48,7 +48,7 @@ function showAlert(arg){
   message.alignment = 'center'
   message.graphics.foregroundColor = message.graphics.newPen (message.graphics.PenType.SOLID_COLOR, [0.75, 0.75, 0.75], 1);
 
-  message.text = 'yes: '+arg
+  message.text = arg
 
   //———————————————————— progress bar background
                                                              

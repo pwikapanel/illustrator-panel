@@ -9,6 +9,8 @@ var alertSeconds =  3   // how long alert will show
 var progInterval = 30   // ms between prog bar updates
 var fudgeFactor  =  1   // <1, to match progBar to window closing
 
+// showAlert('showAlert.js')
+
 /*———————————————————————————————————————— showAlert(val)
 
     */

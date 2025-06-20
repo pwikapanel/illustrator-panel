@@ -1,36 +1,42 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: panelManager.js */
 
-var MAXWIDTH = 240   // number    width of panel
+// manages size, color & content
 
-CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setInterface)
-setInterface()
+//———————————————————————————————————————— match color to Ai interface
 
-/*———————————————————————————————————————— panel size
+setBodyIdColor()
 
-     need to integrate status of localStorage.moreLess */
+CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setBodyIdColor)
+
+//———————————————————————————————————————— choose panel content
 
 setInterval(function(){
 
-  var showDormant = true
-  if (typeof ISSVIJA == 'undefined') showDormant = false
-  else if (ISSVIJA == true) showDormant = false
+  var noSvijaFileOpen = true
+  if (typeof ISSVIJA == 'undefined') noSvijaFileOpen = false
+  else if (ISSVIJA == true) noSvijaFileOpen = false
 
-  if (showDormant){
-    var bottomEdge = 'dormantDiv'
-    dormantDiv.style.display ='block'
+  // no svija file is open so we show reduced content
+  if (noSvijaFileOpen){
+    var bottomEdge           = 'dormantDiv'
 
-      moreDiv.style.display  ='none'
-     mainDiv.style.display  ='none'
-    bottomBar.style.display  ='none'
+    dormantDiv.style.display = 'block'
+      moreDiv.style.display  = 'none'
+      mainDiv.style.display  = 'none'
+    bottomBar.style.display  = 'none'
   }
 
+  // svija file is open so we show Svija Tools
   else{
-    //console.log('panelManager: moreLess='+localStorage.moreLess)
-    var bottomEdge = 'bottomBar'
-    dormantDiv.style.display ='none'
+    if (typeof localStorage.moreLess == 'undefined')
+      localStorage.moreLess = 'less'
 
-    mainDiv.style.display   ='block'
+    //console.log('panelManager: moreLess='+localStorage.moreLess)
+    var bottomEdge           = 'bottomBar'
+
+    dormantDiv.style.display ='none'
+    mainDiv.style.display    ='block'
     bottomBar.style.display  ='block'
 
     if (localStorage.moreLess == 'more') showMore()
@@ -40,33 +46,36 @@ setInterval(function(){
   setPanelSize(bottomEdge)
 }, INTMS)
 
+
+//:::::::::::::::::::::::::::::::::::::::: functions
+
 /*———————————————————————————————————————— setPanelSize(objID)
 
-    */
+    sets bottom edge of panel to match bottom edge
+    of supplied object */
 
-function setPanelSize(objID){
+function setPanelSize(referenceObjId){
 
-  var obj = document.getElementById(objID)
-  if (obj === null){
-    console.log(objID + ' not found')
-    return true
-  }
+  var referenceObject = document.getElementById(referenceObjId)
+
+  // don't log because it happens every 1/2 second
+  if (referenceObject === null) return true
 
   var f = CEP.getScaleFactor()
   var w = Math.round(MAXWIDTH / f)
-  var h = Math.round(obj.getBoundingClientRect().bottom/f)
+  var h = Math.round(referenceObject.getBoundingClientRect().bottom/f)
 
   CEP.resizeContent(w, h)
 }
 
-/*———————————————————————————————————————— setInterface()
+/*———————————————————————————————————————— setBodyIdColor()
 
   https://fenomas.com/2014/09/cep-5-events-en/
 
-  returns 0-3, corresponding to the 4 shades
-  of interface colors availablein Ai prefs */
+  changes body ID to correspond to AI user interface
+  the body ID is keyed to CSS color definitions */
 
-function setInterface() { // did have (event) as arg
+function setBodyIdColor() { // did have (event) as arg
 
   var hostEnv = window.__adobe_cep__.getHostEnvironment()
   var skinInfo = JSON.parse(hostEnv).appSkinInfo
@@ -80,9 +89,40 @@ function setInterface() { // did have (event) as arg
   }
 
   INTERFACE = code
-  sh_transmitToCEP('INTERFACE', INTERFACE)
+  ut_transmitToCEP('INTERFACE', INTERFACE)
 
   document.body.id = "if_" + code
+}
+
+/*———————————————————————————————————————— showMore()
+
+    also used in more.js */
+
+function showMore(){
+  localStorage.moreLess    = 'more'
+
+   moreDiv.style.display   = 'block'
+
+
+  linkMore.style.display   = 'none'
+  linkLess.style.display   = 'inline'
+
+  setPanelSize('bottomBar')
+}
+
+/*———————————————————————————————————————— showLess()
+
+    also used in more.js */
+
+function showLess(){
+  localStorage.moreLess  = 'less'
+
+   moreDiv.style.display = 'none'
+
+  linkMore.style.display = 'inline'
+  linkLess.style.display = 'none'
+
+  setPanelSize('bottomBar')
 }
 
 

@@ -1,38 +1,13 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: projectInfo.js */
 
-/*———————————————————————————————————————— notes
+//———————————————————————————————————————— determine platform
 
-    need
-    - url to launch site
-    - sync folder to open it
-    - most recent file path to reopen it */
+ISMAC = CEP.getOSInformation().substring(0,3) == 'Mac'
 
+ut_transmitToCEP('ISMAC', ISMAC)
 
-
-//      var ms   = 5000
-//      var naam = 'projectInfo.jsx'
-//      var file = TOOLSPATH + '/cep/' + naam
-//      
-//      CEP.evalScript("$.evalFile('" + file + "')")
-//      
-//      //setInterval(function(){ CEP.evalScript('getURL()', setURL) }, ms)
-//      z = function(){ CEP.evalScript('getURL()', setURL) }
-
-/*———————————————————————————————————————— setup */
-
-ISMAC    = CEP.getOSInformation().substring(0,3) == 'Mac'
-sh_transmitToCEP('ISMAC', ISMAC)
-
-var naam = 'projectInfo.jsx'
-
-
-//elapse(29, `projectInfo.js - are we here?`)
-
-
-var file = TOOLSPATH + '/master/cep/' + naam
-
-CEP.evalScript("$.evalFile('" + file + "')")
+elapse(10, `        ISMAC is ` + ISMAC)
 
 /*———————————————————————————————————————— get info */
 

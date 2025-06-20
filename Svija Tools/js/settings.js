@@ -12,9 +12,9 @@ var objLabel = '   ⚙'
 
 /*———————————————————————————————————————— needed in CEP */
 
-sh_transmitToCEP('AIVERSION' , AIVERSION )
-sh_transmitToCEP('LANG'      , LANG      )
-sh_transmitToCEP('DICTIONARY', DICTIONARY)
+ut_transmitToCEP('AIVERSION' , AIVERSION )
+ut_transmitToCEP('LANG'      , LANG      )
+ut_transmitToCEP('DICTIONARY', DICTIONARY)
 
 /*———————————————————————————————————————— configure button */
 
@@ -38,9 +38,9 @@ obj.text = objLabel
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
 
-  sh_transmitToCEP('INTERFACE'   ,              INTERFACE   )
-  sh_transmitToCEP('ACCENTBRIGHT', localStorage.ACCENTBRIGHT)
-  sh_transmitToCEP('ACCENTDIM'   , localStorage.ACCENTDIM   )
+  ut_transmitToCEP('INTERFACE'   ,              INTERFACE   )
+  ut_transmitToCEP('ACCENTBRIGHT', localStorage.ACCENTBRIGHT)
+  ut_transmitToCEP('ACCENTDIM'   , localStorage.ACCENTDIM   )
 
   ut_transmitCSStoCEP('aboutBG'          )
   ut_transmitCSStoCEP('aboutVersion'     )

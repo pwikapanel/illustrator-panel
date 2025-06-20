@@ -1,14 +1,14 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.js */
 
-/*———————————————————————————————————————— sh_transmitToCEP(varName, val) DOESN'T HANDLE ARRAYS
+/*———————————————————————————————————————— ut_transmitToCEP(varName, val) DOESN'T HANDLE ARRAYS
 
     transmits a JS variable to CEP, as correct type
     currently JSON is sent in stringified format */
 
 
 
-function sh_transmitToCEP(varName, val){
+function ut_transmitToCEP(varName, val){
 
   if (typeof val == 'undefined') return true
 

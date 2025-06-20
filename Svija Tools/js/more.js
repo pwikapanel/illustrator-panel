@@ -70,27 +70,5 @@ obj.addEventListener('mouseup', (evn) => {
 
 /*:::::::::::::::::::::::::::::::::::::::: functions */
 
-function showMore(){
-   moreDiv.style.display   = 'block'
-
-  localStorage.moreLess    = 'more'
-
-  linkMore.style.display   = 'none'
-  linkLess.style.display   = 'inline'
-
-  setPanelSize('bottomBar')
-}
-
-function showLess(){
-   moreDiv.style.display = 'none'
-
-  localStorage.moreLess  = 'less'
-
-  linkMore.style.display = 'inline'
-  linkLess.style.display = 'none'
-
-  setPanelSize('bottomBar')
-}
-
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

@@ -38,6 +38,7 @@
 
 var CEP            = new CSInterface()
 var HOSTENV        = CEP.getHostEnvironment()
+var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
 
 //———————————————————————————————————————— catch errors
 
@@ -46,22 +47,6 @@ window.addEventListener('error', (event)=>{
       str = `alert("${event.message}")`
   CEP.evalScript(str)
 })
-
-//———————————————————————————————————————— initialize variables
-
-var TOOLSVERSION   = '1.0.7'                   // string    shown in source picker panel
-
-var INTMS          = 10000  // interval for the updating panel
-var ISSVIJA        // boolean    if fromtmost doc is a svija page (in a SYNC folder)
-var LASTPATH       // string     last file path for a svija page
-var SITEURL        // string     url of most recent svija site
-var SYNCPATH       // string     absolute path to SYNC folder
-var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
-var LANG = 'fr'
-
-if (LANG != 'fr') LANG = LANGDEFAULT // dev use only — delete when done
-
-elapse(169, `variables initialized`)
 
 /*———————————————————————————————————————— timer
 
@@ -98,9 +83,9 @@ elapse(91, `starting Svija Tools`)
 
   <div id="reloader" onclick='location.reload()'></div>
 
-  <script type="text/javascript" src="js/utilities.js"       ></script>
-  <script type="text/javascript" src='js/jsxLoader.js'       ></script>
-  <script type="text/javascript" src="js/globalVariables.js" ></script>
+  <script type="text/javascript" src='js/utilities.js'></script>
+  <script type="text/javascript" src='js/jsxLoader.js'></script>
+  <script type="text/javascript" src="js/globalVariables.js"      ></script>
 
   <div id="newsHtml">
     <div id="newsBanner">
