@@ -1,4 +1,25 @@
 
+
+
+
+
+
+
+
+
+
+
+
+//      var path = CEP.getSystemPath( SystemPath.EXTENSION );
+
+//      // get file list from Node's 'fs' module
+//      var fs = require('fs');
+//      var list = fs.readdirSync(path+'/jsx');
+
+//      alert( list.join("\n") );
+
+
+
 //:::::::::::::::::::::::::::::::::::::::: jsxLoader.js
 
 var JSONCOUNT      // number     counter, augmented by 1 to avoid infinite waitwhen loading files
