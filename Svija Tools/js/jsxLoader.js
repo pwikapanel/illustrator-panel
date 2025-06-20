@@ -9,7 +9,7 @@ var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
 
 elapseGroup(10, `        loading JSX content (${jsxList.length} files)...`)
 
-for (var x=1; x<jsxList.length; x++){
+for (var x=0; x<jsxList.length; x++){
   var  path = `jsx/${jsxList[x]}`
   elapse(33, `          loading jsx file - ${path}`)
   getLocalFile (jsxList[x], path, fileToCEP)

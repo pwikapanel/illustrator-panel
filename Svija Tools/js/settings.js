@@ -38,8 +38,8 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
 
   ut_transmitToCEP('INTERFACE'   ,              INTERFACE   )
-  ut_transmitToCEP('ACCENTBRIGHT', localStorage.ACCENTBRIGHT)
-  ut_transmitToCEP('ACCENTDIM'   , localStorage.ACCENTDIM   )
+//ut_transmitToCEP('ACCENTBRIGHT', localStorage.ACCENTBRIGHT)
+//ut_transmitToCEP('ACCENTDIM'   , localStorage.ACCENTDIM   )
 
   ut_transmitCSStoCEP('aboutBG'          )
   ut_transmitCSStoCEP('aboutVersion'     )

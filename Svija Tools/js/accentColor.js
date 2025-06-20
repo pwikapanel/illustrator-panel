@@ -18,60 +18,76 @@
 
     if user already picked a favorite color */
 
-if (typeof localStorage.ACCENTBRIGHT == 'undefined'){
-
+if (typeof localStorage.accentBright == 'undefined'){
   var style = getComputedStyle(document.body)                  
-  localStorage.ACCENTBRIGHT = style.getPropertyValue('--accentBright')
-  localStorage.ACCENTDIM    = style.getPropertyValue('--accentDim')
-  
+
+  localStorage.accentBright = style.getPropertyValue('--accentBright')
+  localStorage.accentDim    = style.getPropertyValue('--accentDim')
+
 }
+
 else{
-
-  document.documentElement.style.setProperty('--accentBright', localStorage.ACCENTBRIGHT)
-  document.documentElement.style.setProperty('--accentDim',    localStorage.ACCENTDIM)
-
+  document.documentElement.style.setProperty('--accentBright', localStorage.accentBright)
+  document.documentElement.style.setProperty('--accentDim',    localStorage.accentDim)
 }
+
+elapse(27, 'localStorage.accentBright = ' + localStorage.accentBright)
+elapse(28, 'localStorage.accentDim    = ' + localStorage.accentDim)
 
 /*———————————————————————————————————————— online status color
 
     colored if online, red bar if offline */
 
+elapse(41, 'navigator.onLine='+navigator.onLine)
+
 onlineStatus()
 setInterval(onlineStatus, INTMS)
 
 function onlineStatus(){
-  try{
+
   if (navigator.onLine){
+    elapse(49, 'navigator.onLine='+navigator.onLine+', setting normal colors')
     logoArt.style.fill = 'var(--accentBright)'
     logoBar.style.fill = 'var(--panel-bg-dark)'
-    }
+  }
   
   else{
+    elapse(55, 'navigator.onLine='+navigator.onLine+', setting offline colors')
     logoArt.style.fill = 'none'
     logoBar.style.fill = 'red'
   }
-  } catch(e){ lert('accentColor 50: '+e) }
-}
 
+  elapse(57, 'logoArt colors set to '+logoArt.style.fill)
+  elapse(58, 'logoBar colors set to '+logoBar.style.fill)
+}
 
 /*———————————————————————————————————————— svijaLogo.addEventListener('mouseup'
 
     user clicks logo to change color */
 
 svijaLogo.addEventListener('mouseup', (evn) => {
+  var style = getComputedStyle(document.body)                  
+  lert(
+  style.getPropertyValue('--accentBright')
+  +', '+
+  style.getPropertyValue('--accentDim')
+  )
 
-  CEP.evalScript('colorPicker()', setAccent)
+  elapse(67, 'logo clicked')
+  CEP.evalScript('colorPicker()', setAccentColor)
 
 })
 
-function setAccent(arg){
+function setAccentColor(arg){
+
+  elapse(73, 'setAccentColor returned '+arg)
   var parts = arg.split(':')
 
   var r = parts[0]
   var g = parts[1]
   var b = parts[2]
 
-  var hsl        = ut_rgbToHsl(r, g, b)
+  var hsl        = rgbToHsl(r, g, b)
   var hue        = Math.round(hsl[0])
   var saturation = Math.round(hsl[1])
 
@@ -81,8 +97,8 @@ function setAccent(arg){
   var bright = 'hsl('+hue+', 100%, ' + lightness + '%)'
   var dim    = dimVersion(hue)
 
-  localStorage.ACCENTBRIGHT = bright 
-  localStorage.ACCENTDIM    = dim
+  localStorage.accentBright = bright 
+  localStorage.accentDim    = dim
 
   document.documentElement.style.setProperty('--accentBright', bright)
   document.documentElement.style.setProperty('--accentDim',    dim)
@@ -102,11 +118,11 @@ function dimVersion(hue){
   return 'hsl('+hue+', 20%, ' + lightness + '%)'
 }
 
-/*———————————————————————————————————————— ut_rgbToHsl(r, g, b)
+/*———————————————————————————————————————— rgbToHsl(r, g, b)
 
     https://www.30secondsofcode.org/js/s/rgb-to-hsl/  */
 
-function ut_rgbToHsl(r, g, b){
+function rgbToHsl(r, g, b){
   r /= 255;
   g /= 255;
   b /= 255;
