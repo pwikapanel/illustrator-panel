@@ -5,19 +5,7 @@
 
 
 
-
-
-
-
-
-//      var path = CEP.getSystemPath( SystemPath.EXTENSION );
-
-//      // get file list from Node's 'fs' module
-//      var fs = require('fs');
-//      var list = fs.readdirSync(path+'/jsx');
-
-//      alert( list.join("\n") );
-
+var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
 
 
 //:::::::::::::::::::::::::::::::::::::::: jsxLoader.js
@@ -238,6 +226,43 @@ function makePath(obj){
 
   path = obj['ext'] + '/' + obj['name'] + '.' + obj['ext']
   return path
+}
+
+/*———————————————————————————————————————— dirListArray(dir, ext, lsName)
+
+    using node adds approx. 1 second to startup time
+
+    returns a file list from a given directory in the plugin
+    containing files with a given extension
+
+    this can only be done at Illustrator startup, so we
+    stores the result in localStorage
+
+    requires the following in manifest.xml:
+ 
+     <CEFCommandLine>
+       <Parameter>--enable-nodejs</Parameter>
+     </CEFCommandLine>                                       */
+
+function dirListArray(dir, ext, lsName){
+  
+  if (typeof require != 'undefined' && typeof localStorage[lsName] == 'undefined'){
+
+    var path    = CEP.getSystemPath(SystemPath.EXTENSION)
+    var fs      = require('fs')
+    var rawList = fs.readdirSync(path+'/'+dir)
+
+    var tempArray = []
+    for (x=0; x<rawList.length; x++)
+      if (rawList[x].slice(-3) == ext) tempArray.push(rawList[x])
+    
+    localStorage[lsName] = tempArray.join('|')
+  }
+  
+  if (typeof localStorage[lsName] == 'undefined') return []
+  if (     ! localStorage[lsName].includes('|') ) return []
+
+  return localStorage[lsName].split('|')
 }
 
 

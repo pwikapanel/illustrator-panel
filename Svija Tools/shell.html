@@ -38,12 +38,12 @@
 
 var CEP            = new CSInterface()
 var HOSTENV        = CEP.getHostEnvironment()
-//r resourceBundle = CEP.initResourceBundle();
 
 window.addEventListener('error', (event)=>{
   var str = encodeURI(event.message)
       str = `alert("${str}")`
-  CEP.evalScript(str) })
+  CEP.evalScript(str)
+})
 
 //———————————————————————————————————————— initialize variables
 
@@ -94,7 +94,7 @@ elapse(91, `starting Svija Tools`)
 
 </head><body oncontextmenu='return false'>
 
-  <div id="reloader" onclick='localStorage.clear();location.reload()'></div>
+  <div id="reloader" onclick='location.reload()'></div>
 
   <script type="text/javascript" src="js/utilities.js"       ></script>
   <script type="text/javascript" src='js/jsxLoader.js'       ></script>
@@ -103,7 +103,7 @@ elapse(91, `starting Svija Tools`)
   <div id="newsHtml">
     <div id="newsBanner">
     
-    update available
+    french & english news
     
     </div>
   </div>
@@ -146,17 +146,17 @@ elapse(91, `starting Svija Tools`)
   </div>
   
   <div id="versionDiv">
-  <div id="versionBanner"></div>
+    <div id="versionBanner"></div>
   </div>
   
   <div id="bottomBar">
-  <span id='leftLinks' 
-    /><a id='linkHelp'></a
-    /><a id='linkSettings'></a 
-  /></span 
-    /><a id='linkMore'></a
-    /><a id='linkLess'></a
-  />
+    <span id='leftLinks' 
+      /><a id='linkHelp'></a
+      /><a id='linkSettings'></a 
+    /></span 
+      /><a id='linkMore'></a
+      /><a id='linkLess'></a
+    />
   </div>
 
   <script type="text/javascript" src="js/panelManager.js"         ></script>
