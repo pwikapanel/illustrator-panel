@@ -1,77 +1,74 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: projectInfo.js */
 
-//———————————————————————————————————————— determine platform
+//———————————————————————————————————————— transmit platform in CEP
 
-ISMAC = CEP.getOSInformation().substring(0,3) == 'Mac'
 
-ut_transmitToCEP('ISMAC', ISMAC)
-
-elapse(10, `        ISMAC is ` + ISMAC)
-
-/*———————————————————————————————————————— get info */
+//———————————————————————————————————————— request info from CEP
 
 setInterval(function(){
   CEP.evalScript('getProjectInfo()', setURL)
 }, INTMS)
 
+//———————————————————————————————————————— use info from CEP (callback)
+
 /*———————————————————————————————————————— setURL(arg)
 
-    */
+    getProjectInfo() in CEP returns an array
 
-var notAlertedPIJ = true
+    resArray.push('"syncPath":"' + getSyncPath() + '"')
+    resArray.push( '"siteURL":"' +  getSiteURL() + '"')
+    resArray.push('"lastPath":"' + getLastPath() + '"')
+
+    return '{' + resArray.join(',') +'}'
+    */
 
 function setURL(arg){
 
-  // return function from CEP.evalScript('getProjectInfo()', setURL)
-  return true
-
   ISSVIJA = false
-  if (arg == '') return true
+
+  if (arg == ''){
+    elapse(32, 'setURL received empty string from getProjectInfo()')
+    return true
+  }
     
+  elapse(36, 'processing projectInfo')
+
   var results = JSON.parse(arg)
 
+  //—————————————————————————————————————— exit if missing info
+
   if (typeof results.syncPath == 'undefined'){
-    notALertedPIJ = false
-    if (notALertedPIJ)
-      lert("Script Error\nprojectInfo.js#50") 
+    elapse(42, "Script Error\nprojectInfo.js#50") 
     return true
   }
 
   if (typeof results.siteURL == 'undefined'){
-    notALertedPIJ = false
-    if (notALertedPIJ)
-      lert("Script Error\nprojectInfo.js#55") 
+    elapse(47, "Script Error\nprojectInfo.js#55") 
     return true
   }
 
   if (typeof results.lastPath == 'undefined'){
-    notALertedPIJ = false
-    if (notALertedPIJ)
-      lert("Script Error\nprojectInfo.js#60") 
+    elapse(52, "Script Error\nprojectInfo.js#60") 
     return true
   }
 
-  if (results.syncPath  != ''){
+  if (results.syncPath  == '') return true
 
-    ISSVIJA = true
-    SYNCPATH = results.syncPath
 
-    if (results.siteURL  != ''){
-      SITEURL = results.siteURL 
-    }
+  ISSVIJA = true
 
-    if (results.lastPath != ''){
-      LASTPATH = results.lastPath
-    }
+  SYNCPATH = results.syncPath
 
-//elapse('85———————————————————————————————————— projectInfo interrupt ')
-
-  sh_harmonize('js')
-
-  if (typeof SITEURL != 'undefined')
-    if (SITEURL != '') CEP.setWindowTitle(SITEURL)
+  if (results.siteURL  != ''){
+    SITEURL = results.siteURL 
+    CEP.setWindowTitle(SITEURL)
   }
+
+  if (results.lastPath != '')
+    LASTPATH = results.lastPath
+
+//elapse(71, `ISSVIJA: ${ISSVIJA}\nSYNCPATH: ${SYNCPATH}\nSITEURL: ${SITEURL}\nLASTPATH: ${LASTPATH}`)
 }
 
 

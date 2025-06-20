@@ -12,7 +12,6 @@ var objLabel = '   ⚙'
 
 /*———————————————————————————————————————— needed in CEP */
 
-ut_transmitToCEP('AIVERSION' , AIVERSION )
 ut_transmitToCEP('LANG'      , LANG      )
 ut_transmitToCEP('DICTIONARY', DICTIONARY)
 

@@ -23,7 +23,7 @@ function getProjectInfo(){
 
   var resArray = []
 
-  resArray.push('"syncPath":"' + gctSyncPath() + '"')
+  resArray.push('"syncPath":"' + getSyncPath() + '"')
   resArray.push( '"siteURL":"' +  getSiteURL() + '"')
   resArray.push('"lastPath":"' + getLastPath() + '"')
 
@@ -46,12 +46,12 @@ function isSvija(){
   else return false
 }
 
-/*———————————————————————————————————————— gctSyncPath()
+/*———————————————————————————————————————— getSyncPath()
 
     returns real path of current SYNC folder
     if possible or '' */
 
-function gctSyncPath(){
+function getSyncPath(){
 
   var res = app.activeDocument.path.fsName
   var i = res.indexOf('SYNC')
@@ -78,8 +78,8 @@ function getSiteURL(){
     return ''
   }
 
-  if (ISMAC) destPath = gctSyncPath() + '/SVIJA/System/URL.txt';
-  else       destPath = gctSyncPath() + '\\SVIJA\\System\\URL.txt';
+  if (ISMAC) destPath = getSyncPath() + '/SVIJA/System/URL.txt';
+  else       destPath = getSyncPath() + '\\SVIJA\\System\\URL.txt';
 
 // https://community.adobe.com/t5/indesign-discussions/file-read-returns-nothing-for-txt-file/td-p/9335635
 
