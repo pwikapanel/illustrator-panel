@@ -39,9 +39,11 @@
 var CEP            = new CSInterface()
 var HOSTENV        = CEP.getHostEnvironment()
 
+//———————————————————————————————————————— catch errors
+
 window.addEventListener('error', (event)=>{
   var str = encodeURI(event.message)
-      str = `alert("${str}")`
+      str = `alert("${event.message}")`
   CEP.evalScript(str)
 })
 
