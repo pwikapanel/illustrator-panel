@@ -3,7 +3,7 @@
 // alert('engine: ' + $.engineName);
 // #target illustrator  
 
-/*:::::::::::::::::::::::::::::::::::::::: showAlert.js */
+/*:::::::::::::::::::::::::::::::::::::::: paletteAlert.js */
 
 /*———————————————————————————————————————— notes
 
@@ -22,7 +22,7 @@
 
 var progBar
 
-function showAlert(arg){
+function paletteAlert(arg){
 
   //———————————————————— create palette
 

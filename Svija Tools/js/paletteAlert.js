@@ -1,5 +1,5 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: showAlert.js */
+/*:::::::::::::::::::::::::::::::::::::::: paletteAlert.js */
 
 /*———————————————————————————————————————— settings 
 
@@ -9,15 +9,15 @@ var alertSeconds =  3   // how long alert will show
 var progInterval = 30   // ms between prog bar updates
 var fudgeFactor  =  1   // <1, to match progBar to window closing
 
-// showAlert('showAlert.js')
+// paletteAlert('paletteAlert.js')
 
-/*———————————————————————————————————————— showAlert(val)
+/*———————————————————————————————————————— paletteAlert(val)
 
     */
 
-function showAlert(val){
+function paletteAlert(val){
   var extensionPath = CEP.getSystemPath(SystemPath.EXTENSION)
-  var cmd = 'showAlert("' + val + '")'
+  var cmd = 'paletteAlert("' + val + '")'
   CEP.evalScript(cmd, alertCallback)
 }
 
@@ -45,7 +45,7 @@ function progBarUpdate(s){
   s += x
 
   var cmd = 'progBarUpdate(' + s + ')'
-  elapse(46, `showAlert - ${cmd}`)
+  elapse(46, `paletteAlert - ${cmd}`)
   CEP.evalScript(cmd)
   
   if (s<100) setTimeout(function(){
