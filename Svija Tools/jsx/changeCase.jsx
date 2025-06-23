@@ -40,30 +40,23 @@
      • objects with text selected */
 
 
-//:::::::::::::::::::::::::::::::::::::::: program
+//:::::::::::::::::::::::::::::::::::::::: program SHOULD WORK FOR MULTIPLE SELECTION
 
 function changeCase(alt){
 
-  // if no file or selection, do nothing ———————————————————————————————————————————————
+  // guards  ———————————————————————————————————————————————
 
-  if (app.documents.length < 1)  return ''
-  if (app.activeDocument.selection.length < 1) return ''
+  // no open documents
+  if (app.documents.length < 1)  return
 
-  // get selection & type of selection —————————————————————————————————————————————————————————————
+  // no selection
+  if (app.activeDocument.selection.length < 1) return // triggered by 1-element group where only sub-element is selected
+
+  // extract text from selection  ————————————————————————————————————————
 
   var selection = app.activeDocument.selection;
 
-  if (selection instanceof TextRange)
-    selectedChars = true
-  else
-    selectedChars = false
-
-  // get selected text —————————————————————————————————————————————————————————
-
-  if (selectedChars)
-    var allChars = selection.contents
-  else
-    var allChars = getTextMulti(selection) ////////////////////////////////////////////////////////// THIS IS WHERE PROBLEM STARTS
+  allChars = selectionText(selection)
 
   // is first letter upper or lower? ———————————————————————————————————————————
 
@@ -81,7 +74,7 @@ function changeCase(alt){
     }
   }
 
-  if (typeof isLower == 'undefined') return ''
+  if (typeof isLower == 'undefined') return
 
   // execute appropriate menu command ——————————————————————————————————————————
 
@@ -93,64 +86,71 @@ function changeCase(alt){
     app.executeMenuCommand('LowerCase Change Case Item')
 
 
-  return ''
+  return
 }
 
 //:::::::::::::::::::::::::::::::::::::::: functions
 
-/*———————————————————————————————————————— getTextMulti(sel) /////////////////////////////////////// START WORK HERE
+/*———————————————————————————————————————— selectionText(selection)
 
-    need to iterate through every element of selection
-    need all text, because it could be lots of numbers followed by a letter
-    and we need the letter to know how to proceed */
+    app.activeDocument.selection is always an Array, even if one
+    item is selected. If only a character range is selected (i.e. a
+    TextRange), Illustrator actually returns a TextRange object, not
+    an array. That distinction is key.
 
-function getTextMulti(sel){
+    Thanks ChatGPT !*/
 
-  var allText
+function selectionText(selection) {
+  var res = ''
 
-  if (sel.length == 1 && !(selection[0] instanceof GroupItem))
-    return getTextObj(sel)
-
-try{
-
-  alert('144 sel[0].pageItems.length: ' + sel[0].pageItems.length)
-
-  for(x=0; x<sel[0].pageItems.length; x++)
-    allTxt += getTextObj(sel[0].pageItems[x])
-
-} catch(e){alert(e)}
-
-  alert('155 returning '+allTxt)
-  return allTxt
-
-}
-  
-/*———————————————————————————————————————— getTextObj(selection)
-
-    selection has no length
-    selection.textFrames has no length */
-
-function getTextObj(selection){
-  try{
-  alert('166: selection.typeof: '+selection.typename)
-  } catch(e){ alert('167: no typename') }
-
-  var allChars = ''
-
-  alert('164 selection.textFrames.length: '+selection.textFrames.length)
-
-  for (var x=0; x<selection.length; x++){
-    alert('167 typeof '+ selection[x].textFrames.length)
-    // error if simple text selected
-    // one if single-member group
-    // zero if deep group
-    allChars += selection[x].contents
-
+  // selected characters
+  if (selection.typename === 'TextRange') {
+    return selection.contents
   }
-  alert('174 returning text '+allChars)
-  return allChars
+
+  // multiple selected objects
+  else if (selection instanceof Array) {
+    for (var i = 0; i < selection.length; i++) {
+      res += selectionText(selection[i])  // Recursive call
+    }
+  }
+
+  // single object
+  else if (selection.typename === 'TextFrame') {
+    res += selection.contents
+  }
+
+  // group
+  else if (selection.typename === 'GroupItem') {
+    for (var i = 0; i < selection.pageItems.length; i++) {
+      res += selectionText(selection.pageItems[i])  // Dive into group
+    }
+  }
+
+  return res
+}
+
+/*———————————————————————————————————————— isGroup(sel){
+
+    returns true if selection is a group, false otherwise
+    no protection against empty selection */
+
+function isGroup(selection){
+  if (selection[0].typename === "GroupItem") return true
+  return false
+}
+
+/*———————————————————————————————————————— groupLength(sel)
+
+    returns number of items in a group
+    no protection against empty selection */
+
+function groupLength(sel){
+  if (!isGroup(sel)) return 0
+  return  sel[0].pageItems.length
 }
 
 
 //:::::::::::::::::::::::::::::::::::::::: fin
+
 
