@@ -1,23 +1,21 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: paletteAlert.js */
+/*:::::::::::::::::::::::::::::::::::::::: showAlert.js */
 
-/*———————————————————————————————————————— settings 
+//———————————————————————————————————————— settings 
 
-    */
+var alertSeconds =   3   // how long alert will show
+var progInterval =  30   // ms between prog bar updates
+var fudgeFactor  = 0.9   // <1, to match progBar to window closing
 
-var alertSeconds =  3   // how long alert will show
-var progInterval = 30   // ms between prog bar updates
-var fudgeFactor  =  1   // <1, to match progBar to window closing
+showAlert('showAlert.js')
 
-// paletteAlert('paletteAlert.js')
-
-/*———————————————————————————————————————— paletteAlert(val)
+/*———————————————————————————————————————— showAlert(val)
 
     */
 
-function paletteAlert(val){
+function showAlert(val){
   var extensionPath = CEP.getSystemPath(SystemPath.EXTENSION)
-  var cmd = 'paletteAlert("' + val + '")'
+  var cmd = 'showAlert("' + val + '")'
   CEP.evalScript(cmd, alertCallback)
 }
 
@@ -45,7 +43,7 @@ function progBarUpdate(s){
   s += x
 
   var cmd = 'progBarUpdate(' + s + ')'
-  elapse(46, `paletteAlert - ${cmd}`)
+  elapse(46, `showAlert - ${cmd}`)
   CEP.evalScript(cmd)
   
   if (s<100) setTimeout(function(){

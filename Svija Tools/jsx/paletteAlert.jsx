@@ -22,7 +22,7 @@
 
 var progBar
 
-function paletteAlert(arg){
+function showAlert(arg){
 
   //———————————————————— create palette
 
@@ -65,7 +65,9 @@ function paletteAlert(arg){
 
 
 
-// need to create group for vertical margins of progress bar
+/* need to create a container for the progress bar, or for the message, to increase
+the margin between the two of them. I also need to know why the palette
+doesn't work for the save.jsx script */
 
 
 

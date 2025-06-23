@@ -1,6 +1,8 @@
 
 //:::::::::::::::::::::::::::::::::::::::: jsxLoader.js
 
+// localStorage.clear() // necessary if filenames change
+
 /*———————————————————————————————————————— read directory listing */
 
 var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
@@ -125,8 +127,11 @@ function fileToCEP(passthrough, contents, path){
      </CEFCommandLine>                                       */
 
 function dirListArray(dir, ext, lsName){
-  
-  if (typeof require != 'undefined' && typeof localStorage[lsName] == 'undefined'){
+
+  if (typeof localStorage[lsName] == 'undefined') 
+    localStorage[lsName] = ''
+
+  if (typeof require != 'undefined' && localStorage[lsName] == ''){
 
     var path    = CEP.getSystemPath(SystemPath.EXTENSION)
     var fs      = require('fs')

@@ -101,6 +101,7 @@ The main tool we'll be using is the console.
 
 https://fenomas.com/2014/08/cep-mega-guide-en/
 https://blog.developer.adobe.com/en/publish/2019/06/debugging-your-adobe-panel
+https://github.com/docsforadobe/illustrator-scripting-guide/blob/master/docs/jsobjref/GroupItem.md
 
 ![](images/divider.jpg "————————————————————————————————————————")
 
