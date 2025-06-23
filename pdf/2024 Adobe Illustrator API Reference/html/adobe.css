@@ -1,0 +1,119 @@
+
+body,p,blockquote,td,dd,li,tt,dt { font-size: 90%; font-family: Verdana, Arial, sans-serif }
+h1     { font-weight: bold; font-size: 120%; font-family:  Verdana, Arial, sans-serif }
+h2  { font-weight: bold; font-size: 110%; font-family: Verdana, Arial, sans-serif }
+h3,h4,h4,h5,h6  { font-weight: bold; font-size: 105%; font-family: Verdana, Arial, sans-serif }
+code { font-family: monospace, fixed; font-size: 95%; }
+
+<!-- current css info follows -->
+
+a.blkcrumb { color: #cccccc }
+a.crumb { color: #666666; text-decoration: none }
+a { color: #cc0000; }
+a:visited { color: #999999; }
+a:hover { color: black; text-decoration: underline}
+
+<!-- from win_ie.css -->
+<!--
+a.footerlink     { font-size: xx-small; line-height: 135%; font-family: Verdana, Arial, sans-serif; text-decoration: none; }
+.bio  { color: #666666; font-size: xx-small; font-family: Verdana,Arial,sans-serif }
+-->
+<!-- from win_ns.css -->
+a.footerlink  { font-size: x-small; font-family: Verdana, Arial, sans-serif; text-decoration: none; }
+.bio   { font-size: x-small; font-family: Verdana, Arial, sans-serif ; color: #666666 }
+<!-- from mac_ie.css -->
+<!--
+a.footerlink  { font-size: x-small; font-family: Verdana, Geneva, Helvetica, sans-serif; text-decoration: none }
+.bio  { color: #666666; font-size: xx-small; font-family: Verdana, Geneva, Helvetica, sans-serif }
+-->
+<!-- from mac_ie5.css --> 
+<!--
+a.footerlink  { font-size: 60%; font-family: Verdana, Geneva, Helvetica, sans-serif; text-decoration: none }
+.bio   { color: #666666; font-size: 50%; font-family: Verdana, Geneva, Helvetica, sans-serif }
+-->
+<!-- from mac_ns.css -->
+<!--
+a.footerlink  { font-size: 80%; font-family: Verdana, Geneva, Helvetica, sans-serif; text-decoration: none; }
+.bio  { color: #666666; font-size: 80%; font-family: Verdana, Geneva, Helvetica, sans-serif }
+-->
+
+<!-- doxygen css below -->
+DIV.groupHeader {
+       margin-left: 16px;
+       margin-top: 12px;
+       margin-bottom: 6px;
+       font-weight: bold;
+}
+DIV.groupText { margin-left: 16px; font-style: italic; font-size: 90% }
+
+.fragment {
+       font-family: monospace, fixed;
+       font-size: 95%;
+}
+
+/* Style for summary member documentation */
+.mdescLeft {
+    padding: 0px 8px 4px 8px;
+	margin: 0px;
+}
+.mdescRight {
+    padding: 0px 8px 4px 8px;
+	margin: 0px;
+	font-size: 80%;
+}
+.memItemLeft {
+	padding-top: 4px;
+}
+.memItemRight {
+	padding-top: 4px;
+}
+.memTemplItemLeft {
+	padding-top: 4px;
+}
+.memTemplItemRight {
+	padding-top: 4px;
+}
+.memTemplParams {
+	padding: 1px 0px 0px 8px;
+	margin: 4px;
+}
+/* End style for summary member documentation */
+
+/* Style for detailed member documentation */
+.memtemplate 
+{
+} 
+.memnav {
+  margin: 2px;
+  margin-right: 15px;
+  padding: 2px;
+}
+.memitem {
+  padding: 4px;
+  border-top: 1px solid #E0E0E0;
+}
+/* Turn off nowrap in memname and C++ method members will line wrap and look wonky. Compromise between ugly C++ methods 
+wide html pages where the reader has to scroll right to read the docs. Hopefully doxygen will release a new version 
+with CSS tags that give more control. For now, if you change this look at the pages for IAIUnicodeString.h, 
+IAIAutoBuffer.h, AIColorConversion.h */
+.memname {
+  white-space: nowrap;
+}
+.memdoc{
+  padding-left: 10px;
+}
+.memproto 
+{
+  width: 100%;
+}
+.paramkey {
+  text-align: right;
+}
+.paramtype {
+  white-space: nowrap;
+}
+.paramname 
+{
+	  white-space: nowrap;
+}
+/* End Styling for detailed member documentation */

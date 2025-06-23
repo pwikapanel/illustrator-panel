@@ -8,7 +8,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objId    = 'linkSettings'
-var objLabel = '   ⚙'
+var objLabel = 'abt'
 
 /*———————————————————————————————————————— needed in CEP */
 
@@ -21,9 +21,7 @@ var obj = document.getElementById(objId)
 if (obj === null) lert(objId + ' is null')
 
 obj.text = objLabel
-
-//if (SOURCE != 0)
-//  obj.style.display = 'inline'
+obj.style.display = 'inline'
 
 /*———————————————————————————————————————— obj.addEventListener('mouseup', (evn) =>
 

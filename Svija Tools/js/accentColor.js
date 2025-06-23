@@ -45,11 +45,6 @@ function onlineStatus(){
 
 svijaLogo.addEventListener('mouseup', (evn) => {
   var style = getComputedStyle(document.body)                  
-  lert(
-  style.getPropertyValue('--accentBright')
-  +', '+
-  style.getPropertyValue('--accentDim')
-  )
 
   elapse(67, 'logo clicked')
   CEP.evalScript('colorPicker()', setAccentColor)
