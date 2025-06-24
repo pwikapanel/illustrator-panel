@@ -24,7 +24,7 @@
 
 var progBar
 
-function showAlert(arg){
+function paletteAlert(arg){
 
   //———————————————————— create palette
 

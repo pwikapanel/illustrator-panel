@@ -7,14 +7,14 @@
 //———————————————————————————————————————— request info from CEP
 
 setInterval(function(){
-  CEP.evalScript('getProjectInfo()', setURL)
+  CEP.evalScript('projectInfo()', projectInfoCallback)
 }, INTMS)
 
 //———————————————————————————————————————— use info from CEP (callback)
 
 /*———————————————————————————————————————— setURL(arg)
 
-    getProjectInfo() in CEP returns an array
+    projectInfo() in CEP returns an array
 
     resArray.push('"syncPath":"' + getSyncPath() + '"')
     resArray.push( '"siteURL":"' +  getSiteURL() + '"')
@@ -23,37 +23,52 @@ setInterval(function(){
     return '{' + resArray.join(',') +'}'
     */
 
-function setURL(arg){
+function projectInfoCallback(arg){
 
-  ISSVIJA = false
-
-  if (arg == ''){
-    elapse(32, 'setURL received empty string from getProjectInfo()')
+  if (arg == '' || !arg.includes(':')){
+    elapse(29, `projectInfoCallback arg has no : in it`)
     return true
   }
     
-  elapse(36, 'processing projectInfo')
-
+  elapse(33, `projectInfoCallback received JSON`)
   var results = JSON.parse(arg)
 
-  //—————————————————————————————————————— exit if missing info
+  //—————————————————————————————————————— guards
+
+  if (typeof results.isSvija == 'undefined'){
+    elapse(38, "projectInfoCallback did not receive isSvija") 
+    return true
+  }
 
   if (typeof results.syncPath == 'undefined'){
-    elapse(42, "Script Error\nprojectInfo.js#50") 
+    elapse(43, "projectInfoCallback did not receive syncPath") 
     return true
   }
 
   if (typeof results.siteURL == 'undefined'){
-    elapse(47, "Script Error\nprojectInfo.js#55") 
+    elapse(48, "projectInfoCallback did not receive siteURL") 
     return true
   }
 
   if (typeof results.lastPath == 'undefined'){
-    elapse(52, "Script Error\nprojectInfo.js#60") 
+    elapse(53, "projectInfoCallback did not receive lastPath") 
     return true
   }
 
-  if (results.syncPath  == '') return true
+
+
+  if (results.isSvija == 'false'){
+    return true
+
+
+
+
+///////////////////////////////// START HERE
+
+
+
+
+  }
 
 
   ISSVIJA = true

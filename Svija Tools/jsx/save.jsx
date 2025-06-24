@@ -6,10 +6,6 @@
 
 function savePages(param){
 
-  alert('in savePages')
-
-  return "two files saved"
-
   /*———————————————————————————————————————— initialization */
 
   var d = new Date()
@@ -42,7 +38,6 @@ function savePages(param){
 
   // var extraLayer = false;
 
-
   for (var index=0; index<docsOpen; index++){
 
     app.activeDocument = appDocs[index];
@@ -59,6 +54,7 @@ function savePages(param){
       var aiFile = new File(originalPath);
 
       doc.saveAs(aiFile, aiOpts);
+
 
       //————————————————————————————————————————
 
@@ -339,31 +335,39 @@ function isValid(doc){
 
 //———————————————————— fatal errors
 
+
   err = ut_hasPath(doc);           // has file been saved at least once?
   if (err != '')
     return dontSave(err);
   err = isAi(doc);              // is it an AI file?
+
+alert('before')
   if (err != '')
     return dontSave(err);
   err = hasFolders(doc);        // is file in a /SYNC/ folder?
 
+alert('after')
   if (err != '')
     return dontSave(err);
 
 //———————————————————— non fatal errors
+alert(338)
 
   err = hasLinks(doc);           // is there a Links folder?
   if (err != '')
     env_warn.push(err);
 
+alert(338)
   err = hasNonNative(doc);       // are there non-native items?
   if (err != '')
     env_warn.push(err);
 
+alert(338)
   err = hasEmbedded(doc);        // are there embedded images?
   if (err != '')
     env_warn.push(err);
 
+alert(338)
   err = hasPlaced(doc);          // are there placed images not in Links?
   if (err != '')
     env_warn.push(err);
@@ -394,9 +398,10 @@ function isAi(doc){
     returns '' or error message */
 
 function hasFolders(doc){
-
+try{
   if (SYNCPATH == '')
     return doc.name + ' is not inside a \"SYNC\" folder'
+}catch(e){alert(e)}
 
   if (ut_getSvgFilesPath(doc) == '')
     return '"SYNC/SVIJA/SVG Files" not found'

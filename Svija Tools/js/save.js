@@ -19,18 +19,16 @@ obj.style.display = 'inline'
   opens folder based on localStorage lastPath */
 
 obj.addEventListener('mouseup', (evn) => {
-  var alt = evn.altKey
+  var alt   = evn.altKey
+  var param = 'save'
 
-  var param     = 'save'
-  elapse(25, 'calling savePages()')
-  CEP.evalScript('savePages("' + param + '")', 'saveCallback')
-
-
+  elapse(25, `calling savePages("${param}")`)
+  CEP.evalScript('savePages("' + param +'")', saveCallback)
 })
 
-function saveCallback(art){
-  elapse(32, 'in saveCallback')
-//showAlert(arg)
+function saveCallback(arg){
+  elapse(30, `saveCallback(${arg})`)
+  paletteAlert(arg)
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */

@@ -3,9 +3,43 @@
 
 // localStorage.clear() // necessary if filenames change
 
-/*———————————————————————————————————————— read directory listing */
+jsxFileList = [
+  'accentColor.jsx',
+  'changeCase.jsx',
+  'checkAndRepair.jsx',
+  'createGroup.jsx',
+  'json.jsx',
+  'openFile.jsx',
+  'paletteAlert.jsx',
+  'projectInfo.jsx',
+  'reopen.jsx',
+  'save.jsx',
+  'settings.jsx',
+  'source.jsx',
+  'sourcesNew.jsx',
+  'utilities.jsx'
+]
 
-var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
+/*———————————————————————————————————————— read directory listing STATIC WHILE RE-INSTALLING SEQUOIA */
+
+//var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
+
+var jsxList = [
+  'accentColor.jsx',
+  'changeCase.jsx',
+  'checkAndRepair.jsx',
+  'createGroup.jsx',
+  'json.jsx',
+  'openFile.jsx',
+  'paletteAlert.jsx',
+  'projectInfo.jsx',
+  'reopen.jsx',
+  'save.jsx',
+  'settings.jsx',
+  'source.jsx',
+  'sourcesNew.jsx',
+  'utilities.jsx'
+]
 
 // lert(jsxList.join('\n')) // empty
 

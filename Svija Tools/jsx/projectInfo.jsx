@@ -4,41 +4,58 @@
 
 /*———————————————————————————————————————— notes
 
-    need
+    returns
     - URL to launch site
-    - sync folder to open it
+    - SYNC folder to open it
     - most recent file path to reopen it */
 
- /*———————————————————————————————————————— getProjectInfo()
+/*———————————————————————————————————————— global variables
+
+    used to keep system info */
+
+var ISSVIJA  = false // is current file part of a Svija project?
+var SYNCPATH = ''    // path to most recent SYNC folder, if any
+var SITEURL  = ''    // URL of most recent Svija site
+var LASTPATH = ''    // path to most recent svija site page (for reopen button)
+
+/*———————————————————————————————————————— projectInfo()
 
   using the frontmost document's location, returns
   the URL of the website, stored in
 
   sync/SVIJA/System/URL.txt */
 
-function getProjectInfo(){
+function projectInfo(){
 
   if (app.documents.length == 0) return ''
-  if (!isSvija())                return ''
+
+  ISSVIJA  =     isSvija()
+
+  if (ISSVIJA){
+    SYNCPATH = getSyncPath()
+    SITEURL  =  getSiteURL()
+    LASTPATH = getLastPath()
+  }
 
   var resArray = []
 
-  resArray.push('"syncPath":"' + getSyncPath() + '"')
-  resArray.push( '"siteURL":"' +  getSiteURL() + '"')
-  resArray.push('"lastPath":"' + getLastPath() + '"')
+  // `${variable}` is not supported by CEP
+  resArray.push( '"isSvija":"' +ISSVIJA+'"' )
+  resArray.push('"syncPath":"' +SYNCPATH+'"')
+  resArray.push( '"siteURL":"' +SITEURL +'"')
+  resArray.push('"lastPath":"' +LASTPATH+'"')
 
   return '{' + resArray.join(',') +'}'
 }
 
 
-/*:::::::::::::::::::::::::::::::::::::::: utilities */
+/*:::::::::::::::::::::::::::::::::::::::: functions */
 
 /*———————————————————————————————————————— isSvija()
 
     returns true if in a SYNC folder */
 
 function isSvija(){
-  return true
 
   var currPath = String(app.activeDocument.path)
 
@@ -69,12 +86,12 @@ function getSyncPath(){
 
     sync/SVIJA/System/URL.txt */
 
-var ghjAlert = true
+var notYetNotified = true
 
 function getSiteURL(){
 
   if (typeof ISMAC == 'undefined'){
-    if (ghjAlert) { alert("ISMAC not set\nprojectInfo.jsx#77"); ghjAlert = false }
+    if (notYetNotified) { alert("ISMAC not set\nprojectInfo.jsx#77"); notYetNotified = false }
     return ''
   }
 
@@ -82,7 +99,6 @@ function getSiteURL(){
   else       destPath = getSyncPath() + '\\SVIJA\\System\\URL.txt';
 
 // https://community.adobe.com/t5/indesign-discussions/file-read-returns-nothing-for-txt-file/td-p/9335635
-
 
   var fileObj = new File(destPath)
   fileObj.encoding = 'UTF8'; // set to 'UTF8' or 'UTF-8'
@@ -101,12 +117,10 @@ function getSiteURL(){
 
     returns real path of current document */
 
-var hijAlert = true
-
 function getLastPath(){
 
   if (typeof ISMAC == 'undefined'){
-    if (hijAlert) { alert("ISMAC not set\nprojectInfo.jsx#109"); hijAlert = false }
+    if (notYetNotified) { alert("ISMAC not set\nprojectInfo.jsx#109"); notYetNotified = false }
     return ''
   }
 

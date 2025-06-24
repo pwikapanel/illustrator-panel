@@ -30,8 +30,8 @@ var INTERFACE      // number     0-3 dark to light
 var MAXWIDTH = 240   // number    width of panel
 
 elapse(28, `        variables initialized`)
-elapse(29, `        ISMAC is ${ISMAC}`)
-elapse(30, `        AIVERSION is ${AIVERSION}`)
+elapse(29, `        ISMAC=${ISMAC}`)
+elapse(30, `        AIVERSION=${AIVERSION}`)
 
 ut_transmitToCEP(    'ISMAC', ISMAC     )
 ut_transmitToCEP('AIVERSION', AIVERSION )
