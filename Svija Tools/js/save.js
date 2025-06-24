@@ -22,10 +22,16 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
 
   var param     = 'save'
-  CEP.evalScript('savePages("' + param + '")')
+  elapse(25, 'calling savePages()')
+  CEP.evalScript('savePages("' + param + '")', 'saveCallback')
+
 
 })
 
+function saveCallback(art){
+  elapse(32, 'in saveCallback')
+//showAlert(arg)
+}
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

@@ -7,6 +7,8 @@
 
 var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
 
+// lert(jsxList.join('\n')) // empty
+
 /*———————————————————————————————————————— try to load each one */
 
 elapseGroup(10, `        loading JSX content (${jsxList.length} files)...`)
@@ -127,12 +129,17 @@ function fileToCEP(passthrough, contents, path){
      </CEFCommandLine>                                       */
 
 function dirListArray(dir, ext, lsName){
+  lert(typeof require)
 
-  if (typeof localStorage[lsName] == 'undefined') 
+  if (typeof localStorage[lsName] == 'undefined'){
+    elapse(134, `setting localStorage[${lsName}] to ''`)
     localStorage[lsName] = ''
+  }
 
-  if (typeof require != 'undefined' && localStorage[lsName] == ''){
+  elapse(138, `typeof require: ${typeof require}, localStorage[lsName].length: ${localStorage[lsName].length}`)
+  if (typeof require != 'undefined' && localStorage[lsName].length == 0){
 
+    elapse(140, 'getting fresh directory listing')
     var path    = CEP.getSystemPath(SystemPath.EXTENSION)
     var fs      = require('fs')
     var rawList = fs.readdirSync(path+'/'+dir)
@@ -143,10 +150,16 @@ function dirListArray(dir, ext, lsName){
     
     localStorage[lsName] = tempArray.join('|')
   }
-  
-  if (typeof localStorage[lsName] == 'undefined') return []
-  if (     ! localStorage[lsName].includes('|') ) return []
+  else
+    elapse(152, `didn't getting fresh directory listing`)
 
+  
+  if (!localStorage[lsName].includes('|')){
+    elapse(156, `returning empty directory listing`)
+    return []
+  }
+
+  elapse(159, `returning correct directory listing`)
   return localStorage[lsName].split('|')
 }
 

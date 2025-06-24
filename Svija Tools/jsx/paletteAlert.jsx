@@ -1,5 +1,7 @@
 #target illustrator
 
+// see also jsx/settings.jsx
+
 // alert('engine: ' + $.engineName);
 // #target illustrator  
 
@@ -52,11 +54,12 @@ function showAlert(arg){
 
   //———————————————————— progress bar background
                                                              
-  progBackground = div.add('group')
-  progBackground.preferredSize.width = 300;
-  progBackground.preferredSize.height= 3;
+  progBarTrack = div.add('group')
+  progBarTrack.preferredSize.width = 300;
+  progBarTrack.preferredSize.height= 3;
+  progBarTrack.margins = [0, 8, 0, 0] // LTRB
 
-  progBackground.graphics.backgroundColor = div.graphics.newBrush(div.graphics.BrushType.SOLID_COLOR,[0, 0.3, 1.0], 1)
+  //progBarTrack.graphics.backgroundColor = div.graphics.newBrush(div.graphics.BrushType.SOLID_COLOR,[0, 0.3, 1.0], 1)
 
 
 
@@ -79,7 +82,7 @@ doesn't work for the save.jsx script */
 
   //———————————————————— progress bar
                                                              
-  progBar = progBackground.add( 'progressbar', undefined, 0, 100 ); 
+  progBar = progBarTrack.add( 'progressbar', undefined, 0, 100 ); 
   progBar.preferredSize.width = 300;
   progBar.preferredSize.height= 1;
 

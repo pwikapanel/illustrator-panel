@@ -6,9 +6,9 @@
 
 function savePages(param){
 
-  showAlert('boowy')
+  alert('in savePages')
 
-  return true
+  return "two files saved"
 
   /*———————————————————————————————————————— initialization */
 
