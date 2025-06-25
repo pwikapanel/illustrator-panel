@@ -2,7 +2,7 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: save.jsx */
 
-// alert here if errors or warnings, otherwise return "success"
+// provide an alert if errors or warnings, otherwise return "success"
 
 //———————————————————————————————————————— global CEP variables
 
@@ -11,12 +11,12 @@ var  WARNINGS = []   // warnings for user
 
 //———————————————————————————————————————— savePages(single)
 
-function savePages(single){
+function savePages(allPages){
 
   //—————————————————————————————————————— guard for long setInterval times
 
   if (SYNCPATH == ''){
-    alert('Please Retry\nproject info not established')
+    alert('Please Retry\nproject info not available')
     return ''
   }
 
@@ -28,8 +28,10 @@ function savePages(single){
 
   //—————————————————————————————————————— guard
   
-  if (app.documents.length < 1)
-    return 'No open documents.'
+  if (app.documents.length < 1){
+    alert('No open documents.')
+    return ''
+  }
 
   //—————————————————————————————————————— initialization
 
@@ -38,7 +40,6 @@ function savePages(single){
   var   appDocs = app.documents                 // array of open documents
   var  docsOpen = appDocs.length                // number of open documents
   var activeDoc = app.activeDocument            // active document
-  var single    = param == 'all' ? false : true // save only frontmost doc?
   var aiOptions = aiSaveOptions()
 
   /*———————————————————————————————————————— "for" loop through documents */
@@ -48,7 +49,6 @@ function savePages(single){
   for (var index=0; index<docsOpen; index++){
 
     app.activeDocument = appDocs[index]
-
     var doc            = app.activeDocument
 
     if (isValid(doc)){
@@ -56,19 +56,10 @@ function savePages(single){
       var activeBoard    = doc.artboards.getActiveArtboardIndex()
       var originalPath   = ut_getDocPath(doc)
 
-alert(originalPath)
-
       var theseFileSizes = saveSvg(doc) /////////////////////////////////////// MAIN SAVE-AS-SVG FUNCTION
 
       var aiFile = new File(originalPath)
       doc.saveAs(aiFile, aiOptions)
-
-
-      //————————————————————————————————————————
-
-      theseFileSizes.unshift(aiFile.length)
-      theseFileSizes.unshift(doc.name)
-      fileSizes[fileSizes.length] = (theseFileSizes)
 
       //————————————————————————————————————————
 
@@ -76,17 +67,23 @@ alert(originalPath)
 
     }
 
-    if (single) break
+    if (!allPages) break;
   }
 
-  /*———————————————————————————————————————— restore frontmost doc and alert user */
+  //———————————————————————————————————————— restore frontmost doc
 
-  if (!single)
-    app.activeDocument = activeDoc
+  if (allPages) app.activeDocument = activeDoc
 
-  finalFeedback(fileSizes)
+  //———————————————————————————————————————— alert if problems
+
+  if (ERRORS.length > 0 || WARNINGS.length > 0){
+    finalFeedback(fileSizes)
+    return ''
+  }
 
 
+  if (docsOpen > 1) return "files saved"
+  else return 'file saved'
 }
 
 
@@ -372,35 +369,27 @@ function isValid(doc){
   if (err != '')
     return dontSave(err)
   err = hasFolders(doc)        // is file in a /SYNC/ folder?
-alert('before')
 
   if (err != '')
     return dontSave(err)
 
-alert('after')
-
 //———————————————————— non fatal errors
-alert(338)
 
   err = hasLinks(doc)           // is there a Links folder?
   if (err != '')
     WARNINGS.push(err)
 
-alert(338)
   err = hasNonNative(doc)       // are there non-native items?
   if (err != '')
     WARNINGS.push(err)
 
-alert(338)
   err = hasEmbedded(doc)        // are there embedded images?
   if (err != '')
     WARNINGS.push(err)
 
-alert(338)
   err = hasPlaced(doc)          // are there placed images not in Links?
   if (err != '')
     WARNINGS.push(err)
-
 
   return true
 }
@@ -474,7 +463,9 @@ function hasEmbedded(doc){
     return ''
 }
 
+
 // CAUSES ERRORS v
+
 /*———————————————————————————————————————— hasPlaced(sourceDoc)
 
     has file been saved at least once?
@@ -488,31 +479,30 @@ function hasPlaced(doc){
   for (var x=0; x<doc.placedItems.length; x++){
 
     var img = doc.placedItems[0]
-    if (!img.layer.printable) continue
+    if (!img.layer.printable) continue;
 
+    try{
+      var imgPath = String(img.file.fsName) // ~/Captures/capture%2029.jpg  // THIS LINE THROWS UNCATCHABLE ERROR
+    }
+    catch(e){
+      alert(e)
+      return doc.name + ' contains an image with no source. Please run "Check & Repair"'
+    }
 
-//  try{
-//    var imgPath = String(img.file.fsName) // ~/Captures/capture%2029.jpg  // THIS LINE THROWS UNCATCHABLE ERROR
-//  }
-//  catch(e){
-//    alert(e)
-//    return doc.name + ' contains an image with no source. Please run "Check & Repair"'
-//  }
-
-//      // if image path is shorter, image can't be in Links folder
-//      if (imgPath.length < linksPath.length+4) 
-//        return doc.name + ' contains external images. Please run "Check & Repair"'
-//  
-//      // if image path doesn't match doc path, it can't be in links folder
-//      var str = imgPath.slice(0, linksPath.length)
-//  
-//      if (str != linksPath)
-//        return doc.name + ' contains external images. Please run "Check & Repair"'
-//  
-//      // if what's longer than doc path contains a /, it's in some subfolder
-//      var str = imgPath.slice(linksPath.length, imgPath.length)
-//      if (str.indexOf('/') > 0 || str.indexOf('\\') > 0)
-//        return doc.name + ' contains external images. Please run "Check & Repair"'
+        // if image path is shorter, image can't be in Links folder
+        if (imgPath.length < linksPath.length+4) 
+          return doc.name + ' contains external images. Please run "Check & Repair"'
+    
+        // if image path doesn't match doc path, it can't be in links folder
+        var str = imgPath.slice(0, linksPath.length)
+    
+        if (str != linksPath)
+          return doc.name + ' contains external images. Please run "Check & Repair"'
+    
+        // if what's longer than doc path contains a /, it's in some subfolder
+        var str = imgPath.slice(linksPath.length, imgPath.length)
+        if (str.indexOf('/') > 0 || str.indexOf('\\') > 0)
+          return doc.name + ' contains external images. Please run "Check & Repair"'
   }
 
   return ''

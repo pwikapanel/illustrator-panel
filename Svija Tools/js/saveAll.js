@@ -21,10 +21,16 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
 
-  // false = not a single page
-  CEP.evalScript('savePages(false)')
+  // true = save all open pages
+  elapse(25, `calling savePages(false)`)
+  CEP.evalScript('savePages(true)', saveCallback)
 
 })
+
+function saveCallback(arg){
+  elapse(30, `saveCallback() received "${arg}"`)
+  if (arg != '') paletteAlert(arg)
+}
 
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */

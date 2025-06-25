@@ -28,11 +28,11 @@ function paletteAlert(arg){
 
   //———————————————————— create palette
 
-  palette = new Window ('palette', 'Alert', undefined, {resizeable: false, borderless: true, closeButton: false})
+  palette = new Window ('palette', " ", undefined, {resizeable: false, borderless: true, closeButton: false})
 
   palette.margins = [0, 0, 0, 0]
   palette.spacing = 0
-  palette.graphics.backgroundColor = palette.graphics.newBrush(palette.graphics.BrushType.SOLID_COLOR,[0.3, 0.3, 0.3], 1)
+  palette.graphics.backgroundColor = palette.graphics.newBrush(palette.graphics.BrushType.SOLID_COLOR,[0.9, 0.9, 0.9], 1)
   
   //———————————————————— container // necessary for onclick
 
@@ -48,7 +48,7 @@ function paletteAlert(arg){
 
   var  message = div.add('statictext')
   message.alignment = 'center'
-  message.graphics.foregroundColor = message.graphics.newPen (message.graphics.PenType.SOLID_COLOR, [0.75, 0.75, 0.75], 1);
+  message.graphics.foregroundColor = message.graphics.newPen (message.graphics.PenType.SOLID_COLOR, [0.2, 0.2, 0.2], 1);
 
   message.text = arg
 
