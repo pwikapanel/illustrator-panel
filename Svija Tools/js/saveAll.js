@@ -22,7 +22,7 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
 
   // true = save all open pages
-  elapse(25, `calling savePages(false)`)
+  elapse(25, `calling savePages(true)`)
   CEP.evalScript('savePages(true)', saveCallback)
 
 })

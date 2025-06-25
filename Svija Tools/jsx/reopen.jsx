@@ -1,6 +1,6 @@
 #target illustrator  
 
-/*———————————————————————————————————————— reopen()
+//:::::::::::::::::::::::::::::::::::::::: reopen.js / reopen.jsx
 
     reopen the most recently closed page */
 

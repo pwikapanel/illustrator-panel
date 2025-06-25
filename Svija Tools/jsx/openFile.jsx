@@ -1,6 +1,6 @@
 #target illustrator  
 
-/*———————————————————————————————————————— openFile(lastPath)
+//:::::::::::::::::::::::::::::::::::::::: openFile.js / openFile.jsx
 
     open dialog inside folder of most recent document */
 

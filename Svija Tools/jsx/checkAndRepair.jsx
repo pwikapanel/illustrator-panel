@@ -1,6 +1,6 @@
 #target illustrator  
 
-//:::::::::::::::::::::::::::::::::::::::: checkAndRepair.jsx
+//:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js / checkAndRepair.jsx
 
 /*———————————————————————————————————————— notes
 

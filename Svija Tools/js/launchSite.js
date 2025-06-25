@@ -25,6 +25,6 @@ obj.addEventListener('mouseup', (evn) => {
   CEP.openURLInDefaultBrowser(url)
 })
 
-/*:::::::::::::::::::::::::::::::::::::::: fin */
 
+/*:::::::::::::::::::::::::::::::::::::::: fin */
 

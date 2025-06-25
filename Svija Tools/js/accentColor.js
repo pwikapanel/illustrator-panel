@@ -1,5 +1,5 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: accentColor.js */
+//:::::::::::::::::::::::::::::::::::::::: accentColor.js / accentColor.jsx
 
 /*———————————————————————————————————————— store colors in localStorage
 

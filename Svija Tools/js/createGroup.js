@@ -1,5 +1,5 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: launchSite.js */
+//:::::::::::::::::::::::::::::::::::::::: createGroup.js / createGroup.jsx
 
 /*———————————————————————————————————————— parameters */
 
@@ -13,12 +13,6 @@ if (obj === null) lert(objID + ' is null')
 
 obj.value = objLabel
 obj.style.display = 'inline'
-
-/*———————————————————————————————————————— load script */
-
-var script = 'createGroup.jsx'
-var file   = TOOLSPATH + '/cep/' + script
-CEP.evalScript("$.evalFile('" + file + "')")
 
 /*———————————————————————————————————————— listener function
 

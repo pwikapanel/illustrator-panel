@@ -1,6 +1,6 @@
 #target illustrator  
 
-/*———————————————————————————————————————— color picker
+//:::::::::::::::::::::::::::::::::::::::: accentColor.js / accentColor.jsx
 
     returns hex color */
 

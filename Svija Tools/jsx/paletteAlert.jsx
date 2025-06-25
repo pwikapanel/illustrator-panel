@@ -1,11 +1,11 @@
 #target illustrator
 
+//:::::::::::::::::::::::::::::::::::::::: paletteAlert.js / paletteAlert.jsx
+
 // see also jsx/settings.jsx
 
 // alert('engine: ' + $.engineName);
 // #target illustrator  
-
-/*:::::::::::::::::::::::::::::::::::::::: paletteAlert.js */
 
 /*———————————————————————————————————————— notes
 

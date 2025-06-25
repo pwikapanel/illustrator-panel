@@ -1,8 +1,12 @@
 #target illustrator  
 
-/*:::::::::::::::::::::::::::::::::::::::: save.jsx */
+//:::::::::::::::::::::::::::::::::::::::: save.js / save.jsx
 
-// provide an alert if errors or warnings, otherwise return "success"
+/*———————————————————————————————————————— notes
+
+    provides an alert if errors or warnings
+    otherwise returns a success message displayed
+    by paletteAlert */
 
 //———————————————————————————————————————— global CEP variables
 
