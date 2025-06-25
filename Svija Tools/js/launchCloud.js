@@ -3,8 +3,8 @@
 
 /*———————————————————————————————————————— parameters */
 
+var objLabel = TRANSLATE.launchCloudButton
 var objID    = 'butt12'
-var objLabel = 'svija cloud'
 
 /*———————————————————————————————————————— configure button */
 

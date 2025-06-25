@@ -3,8 +3,8 @@
 
 /*———————————————————————————————————————— parameters */
 
+var objLabel = TRANSLATE.createGroupButton
 var objID    = 'butt21'
-var objLabel = 'create group'
 
 /*———————————————————————————————————————— configure button */
 

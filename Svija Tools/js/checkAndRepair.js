@@ -3,9 +3,8 @@
 
 /*———————————————————————————————————————— parameters */
 
-var objLabel = 'check & repair'
+var objLabel = TRANSLATE.checkAndRepairButton
 var objID    = 'butt41'
-var script   = 'checkAndRepair.jsx'
 
 /*———————————————————————————————————————— configure button */
 
@@ -14,11 +13,6 @@ if (obj === null) lert(objID + ' is null')
 
 obj.value = objLabel
 obj.style.display = 'inline'
-
-/*———————————————————————————————————————— load utilities */
-
-     /* loaded by save.js */
-     /* used by check.js & saveAll.js */
 
 /*———————————————————————————————————————— listener function
 

@@ -1,17 +1,13 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: folder.js */
 
-/*———————————————————————————————————————— platform specific */
-
-const pcOpener  = 'C:\\Windows\\explorer.exe'
-const macOpener = '/usr/bin/open'
 
 /*:::::::::::::::::::::::::::::::::::::::: dormant button */
 
 /*———————————————————————————————————————— parameters */
 
+var objLabel = TRANSLATE.openFolderButton
 var objID    = 'buttD1'
-var objLabel = 'folder'
 
 /*———————————————————————————————————————— configure button */
 
@@ -30,8 +26,8 @@ obj.addEventListener('mouseup', (evn) => {
 
 /*———————————————————————————————————————— parameters */
 
+var objLabel = TRANSLATE.openFolderButton
 var objID    = 'butt31'
-var objLabel = 'folder'
 
 /*———————————————————————————————————————— configure button */
 
@@ -47,6 +43,9 @@ obj.addEventListener('mouseup', (evn) => {
 })
 
 /*:::::::::::::::::::::::::::::::::::::::: main function */
+
+const pcOpener  = 'C:\\Windows\\explorer.exe'
+const macOpener = '/usr/bin/open'
 
 function openLastFolder(alt){
 

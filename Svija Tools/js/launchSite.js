@@ -3,8 +3,8 @@
 
 /*———————————————————————————————————————— parameters */
 
+var objLabel = TRANSLATE.launchSiteButton
 var objID    = 'butt11'
-var objLabel = 'launch site'
 
 /*———————————————————————————————————————— configure button */
 

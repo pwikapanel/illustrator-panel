@@ -3,9 +3,8 @@
 
 /*———————————————————————————————————————— parameters */
 
+var objLabel = TRANSLATE.changeCaseButton
 var objId    = 'butt22'
-var objLabel = 'change case'
-var scr      = 'changeCase.jsx'
 
 /*———————————————————————————————————————— configure button */
 
@@ -14,13 +13,6 @@ if (obj === null) lert(objId + ' is null')
 
 obj.value = objLabel
 obj.style.display = 'inline'
-
-/*———————————————————————————————————————— load scripts
-
-     */
-
-var file = TOOLSPATH + '/cep/' + scr
-CEP.evalScript("$.evalFile('" + file + "')")
 
 /*———————————————————————————————————————— mouseup function
 
