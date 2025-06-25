@@ -4,26 +4,24 @@
 
 /*———————————————————————————————————————— notes
 
-    returns
-    - URL to launch site
-    - SYNC folder to open it
-    - most recent file path to reopen it */
+    returns:
 
-/*———————————————————————————————————————— global variables
+     isSvija   boolean is a Svija site
+    syncPath   path to sync folder or ''
+     siteURL   site url or ''
+    lastPath   file path of most recent open page or ''
+    
+    also sets global variables used in CEP
+    with the same names, but ALL CAPS */
 
-    used to keep system info */
+//———————————————————————————————————————— initialization
 
 var ISSVIJA  = false // is current file part of a Svija project?
 var SYNCPATH = ''    // path to most recent SYNC folder, if any
 var SITEURL  = ''    // URL of most recent Svija site
 var LASTPATH = ''    // path to most recent svija site page (for reopen button)
 
-/*———————————————————————————————————————— projectInfo()
-
-  using the frontmost document's location, returns
-  the URL of the website, stored in
-
-  sync/SVIJA/System/URL.txt */
+//———————————————————————————————————————— projectInfo()
 
 function projectInfo(){
 

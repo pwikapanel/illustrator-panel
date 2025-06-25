@@ -20,11 +20,11 @@ ls /Users/Main/Library/Preferences/com.adobe.CSXS*
 ```
 This will return:
 ```
-/Users/Main/Library/Preferences/com.adobe.CSXS.11.plist
+/Users/Main/Library/Preferences/com.adobe.CSXS.12.plist
 ```
 To enable/disable `debug mode` for this CEP version:
 ```
-defaults write com.adobe.CSXS.11 PlayerDebugMode 1
+defaults write com.adobe.CSXS.12 PlayerDebugMode 1
 ```
 To see whether `debug mode` is activated:
 ```

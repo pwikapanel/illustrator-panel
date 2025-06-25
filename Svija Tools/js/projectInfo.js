@@ -1,35 +1,32 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: projectInfo.js */
 
-//———————————————————————————————————————— transmit platform in CEP
-
-
 //———————————————————————————————————————— request info from CEP
 
 setInterval(function(){
   CEP.evalScript('projectInfo()', projectInfoCallback)
 }, INTMS)
 
-//———————————————————————————————————————— use info from CEP (callback)
-
 /*———————————————————————————————————————— setURL(arg)
 
-    projectInfo() in CEP returns an array
+    jsx/projectInfo.jsx:
 
-    resArray.push('"syncPath":"' + getSyncPath() + '"')
-    resArray.push( '"siteURL":"' +  getSiteURL() + '"')
-    resArray.push('"lastPath":"' + getLastPath() + '"')
-
-    return '{' + resArray.join(',') +'}'
-    */
+    resArray.push( '"isSvija":"' +ISSVIJA+'"' )
+    resArray.push('"syncPath":"' +SYNCPATH+'"')
+    resArray.push( '"siteURL":"' +SITEURL +'"')
+    resArray.push('"lastPath":"' +LASTPATH+'"')  */
 
 function projectInfoCallback(arg){
+
+  //—————————————————————————————————————— guard
 
   if (arg == '' || !arg.includes(':')){
     elapse(29, `projectInfoCallback arg has no : in it`)
     return true
   }
     
+  //—————————————————————————————————————— parse JSON
+
   elapse(33, `projectInfoCallback received JSON`)
   var results = JSON.parse(arg)
 
@@ -56,34 +53,24 @@ function projectInfoCallback(arg){
   }
 
 
+  //—————————————————————————————————————— not svija site
 
   if (results.isSvija == 'false'){
-    return true
-
-
-
-
-///////////////////////////////// START HERE
-
-
-
-
+    ISSVIJA = false
+    return
   }
 
+  //—————————————————————————————————————— is svija site
 
   ISSVIJA = true
 
   SYNCPATH = results.syncPath
+  SITEURL = results.siteURL 
+  LASTPATH = results.lastPath
 
-  if (results.siteURL  != ''){
-    SITEURL = results.siteURL 
-    CEP.setWindowTitle(SITEURL)
-  }
+  CEP.setWindowTitle(SITEURL)
 
-  if (results.lastPath != '')
-    LASTPATH = results.lastPath
 
-//elapse(71, `ISSVIJA: ${ISSVIJA}\nSYNCPATH: ${SYNCPATH}\nSITEURL: ${SITEURL}\nLASTPATH: ${LASTPATH}`)
 }
 
 

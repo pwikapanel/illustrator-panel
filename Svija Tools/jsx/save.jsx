@@ -2,58 +2,66 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: save.jsx */
 
-//———————————————————————————————————————— ▼ program:{
+// alert here if errors or warnings, otherwise return "success"
 
-function savePages(param){
+//———————————————————————————————————————— global CEP variables
 
-  /*———————————————————————————————————————— initialization */
+var  ERRORS   = []   // error messages for user
+var  WARNINGS = []   // warnings for user
+
+//———————————————————————————————————————— savePages(single)
+
+function savePages(single){
+
+  //—————————————————————————————————————— guard for long setInterval times
+
+  if (SYNCPATH == ''){
+    alert('Please Retry\nproject info not established')
+    return ''
+  }
+
+  //—————————————————————————————————————— initialization
 
   var d = new Date()
   var env_start_ms = d.getTime()
   var fileSizes = []
 
-  /*———————————————————————————————————————— no open docs */
+  //—————————————————————————————————————— guard
   
-  if (app.documents.length < 1){
-    alert('No open documents.')
-    return true
-  }
+  if (app.documents.length < 1)
+    return 'No open documents.'
 
+  //—————————————————————————————————————— initialization
 
-  //:::::::::::::::::::::::::::::::::::::::: post-validation
-  
-  /*———————————————————————————————————————— initialization */
-
-  var  env_errs = []                   // error messages for user
-  var  env_warn = []                   // warnings for user
-  var   appDocs = app.documents        // array of open documents
-  var  docsOpen = appDocs.length       // number of open documents
-  var activeDoc = app.activeDocument   // active document
-  var aiVersion = 0                    // 0=default, 17=CC Legacy
-  var aiOpts    = ut_aiOptions(aiVersion)
-
-  var single = param == 'all' ? false : true // save only frontmost doc?
+  ERRORS        = []                            // error messages for user
+  WARNINGS      = []                            // warnings for user
+  var   appDocs = app.documents                 // array of open documents
+  var  docsOpen = appDocs.length                // number of open documents
+  var activeDoc = app.activeDocument            // active document
+  var single    = param == 'all' ? false : true // save only frontmost doc?
+  var aiOptions = aiSaveOptions()
 
   /*———————————————————————————————————————— "for" loop through documents */
 
-  // var extraLayer = false;
+  // var extraLayer = false
 
   for (var index=0; index<docsOpen; index++){
 
-    app.activeDocument = appDocs[index];
+    app.activeDocument = appDocs[index]
 
-    var doc            = app.activeDocument;
+    var doc            = app.activeDocument
 
     if (isValid(doc)){
 
-      var activeBoard    = doc.artboards.getActiveArtboardIndex();
+      var activeBoard    = doc.artboards.getActiveArtboardIndex()
       var originalPath   = ut_getDocPath(doc)
 
-      var theseFileSizes = saveSvg(doc) ///////////////  MAIN SAVE AS SVG FUNCTION  \\\\\\\\\\\\\\\
+alert(originalPath)
 
-      var aiFile = new File(originalPath);
+      var theseFileSizes = saveSvg(doc) /////////////////////////////////////// MAIN SAVE-AS-SVG FUNCTION
 
-      doc.saveAs(aiFile, aiOpts);
+      var aiFile = new File(originalPath)
+      doc.saveAs(aiFile, aiOptions)
 
 
       //————————————————————————————————————————
@@ -64,25 +72,25 @@ function savePages(param){
 
       //————————————————————————————————————————
 
-      doc.artboards.setActiveArtboardIndex(activeBoard);
+      doc.artboards.setActiveArtboardIndex(activeBoard)
 
     }
 
-    if (single) break;
+    if (single) break
   }
 
   /*———————————————————————————————————————— restore frontmost doc and alert user */
 
   if (!single)
-    app.activeDocument = activeDoc;
+    app.activeDocument = activeDoc
 
-  app.beep()
-  finalFeedback(fileSizes);
+  finalFeedback(fileSizes)
 
 
 }
 
-//:::::::::::::::::::::::::::::::::::::::: main functions
+
+//:::::::::::::::::::::::::::::::::::::::: complex functions
 
 /*———————————————————————————————————————— saveSvg(doc)
 
@@ -255,9 +263,9 @@ function svgOptions(doc){
   var options= new ExportOptionsWebOptimizedSVG()
 
   if (doc.artboards.length == 1)
-    options.saveMultipleArtboards = false;                       // Preserves all artwork outside active artboard
+    options.saveMultipleArtboards = false                       // Preserves all artwork outside active artboard
   else
-    options.saveMultipleArtboards = true;                        // Deletes all artwork outside active artboard
+    options.saveMultipleArtboards = true                        // Deletes all artwork outside active artboard
 
   options.artboardRange         = '' // or '1-3'
   options.coordinatePrecision   = 3
@@ -270,7 +278,7 @@ function svgOptions(doc){
   options.svgMinify             = false // should use in future
   options.svgResponsive         = true
 
-  return options;
+  return options
 }
 
 /*———————————————————————————————————————— finalFeedback(fileSizes)
@@ -281,15 +289,16 @@ function svgOptions(doc){
     - warnings (files saved) */
 
 function finalFeedback(fileSizes){
+
   count = fileSizes.length
 
-  var d = new Date();
+  var d = new Date()
   var ms = d.getTime() - env_start_ms
 
   if (ms > 1000)
-    ms =' (' + ms/1000 +' sec)';
+    ms =' (' + ms/1000 +' sec)'
   else
-    ms = ' (' + ms + ' ms)';
+    ms = ' (' + ms + ' ms)'
 
   switch(count){
     case  0: var title = 'File(s) Not Saved';  break;
@@ -297,19 +306,38 @@ function finalFeedback(fileSizes){
     default: var title = count + ' Files Saved' + ms;
   }
 
-  var body = '';
+  var body = ''
 
   if (fileSizes.length == 1)
     body += '\n' + fileSizeReport(fileSizes)
 
-  if (env_errs.length > 0)
-    body += '\n' + env_errs.join('\n');
+  if (ERRORS.length > 0)
+    body += '\n' + ERRORS.join('\n')
   
-  if (env_warn.length > 0)
-    body += '\n' + env_warn.join('\n');
+  if (WARNINGS.length > 0)
+    body += '\n' + WARNINGS.join('\n')
 
-  alert(title + body);
-  return true;
+  alert(title + body)
+  return true
+}
+
+/*———————————————————————————————————————— aiSaveOptions()
+
+  options for Illustrator File
+  ISG409 & JSRp84 */
+
+function aiSaveOptions(){
+
+  var aiVersion = 0                    // 0=default, 17=CC Legacy
+  var options = new IllustratorSaveOptions()
+
+  if (aiVersion > 0) // JSRp244
+    options.compatibility = Compatibility['ILLUSTRATOR' + aiVersion]
+
+  options.pdfCompatible = false // much faster
+  options.compressed    = false // a bit faster
+
+  return options
 }
 
 
@@ -322,8 +350,8 @@ function finalFeedback(fileSizes){
     • warning message, proceed anyway   return true
     • error message, skip this file     return false
 
-    env_errs = []                   // error messages for user
-    env_warn = [];                   // warnings for user
+    ERRORS = []                   // error messages for user
+    WARNINGS = []                   // warnings for user
 
     errors:
     • file was not yet saved, user refuses to save */
@@ -331,49 +359,50 @@ function finalFeedback(fileSizes){
 function isValid(doc){
 //const isValid =(doc)=> { // DID NOT WORK
 
-  var err, warn;
+  var err, warn
 
 //———————————————————— fatal errors
 
 
-  err = ut_hasPath(doc);           // has file been saved at least once?
+  err = ut_hasPath(doc)           // has file been saved at least once?
   if (err != '')
-    return dontSave(err);
-  err = isAi(doc);              // is it an AI file?
+    return dontSave(err)
+  err = isAi(doc)              // is it an AI file?
 
-alert('before')
   if (err != '')
-    return dontSave(err);
-  err = hasFolders(doc);        // is file in a /SYNC/ folder?
+    return dontSave(err)
+  err = hasFolders(doc)        // is file in a /SYNC/ folder?
+alert('before')
+
+  if (err != '')
+    return dontSave(err)
 
 alert('after')
-  if (err != '')
-    return dontSave(err);
 
 //———————————————————— non fatal errors
 alert(338)
 
-  err = hasLinks(doc);           // is there a Links folder?
+  err = hasLinks(doc)           // is there a Links folder?
   if (err != '')
-    env_warn.push(err);
+    WARNINGS.push(err)
 
 alert(338)
-  err = hasNonNative(doc);       // are there non-native items?
+  err = hasNonNative(doc)       // are there non-native items?
   if (err != '')
-    env_warn.push(err);
+    WARNINGS.push(err)
 
 alert(338)
-  err = hasEmbedded(doc);        // are there embedded images?
+  err = hasEmbedded(doc)        // are there embedded images?
   if (err != '')
-    env_warn.push(err);
+    WARNINGS.push(err)
 
 alert(338)
-  err = hasPlaced(doc);          // are there placed images not in Links?
+  err = hasPlaced(doc)          // are there placed images not in Links?
   if (err != '')
-    env_warn.push(err);
+    WARNINGS.push(err)
 
 
-  return true;
+  return true
 }
 
 /*———————————————————————————————————————— isAi(doc)
@@ -382,12 +411,12 @@ alert(338)
     or SVG or whatever */
 
 function isAi(doc){
-  var fileExt  = doc.name.slice(-3);
+  var fileExt  = doc.name.slice(-3)
 
   if (fileExt != '.ai')
-    return 'File ' + doc.name + ' is not a .ai file and was not saved';
+    return 'File ' + doc.name + ' is not a .ai file and was not saved'
 
-  return '';
+  return ''
 }
 
 /*———————————————————————————————————————— hasFolders(sourceDoc) VERIFIED
@@ -415,7 +444,7 @@ try{
 
 function hasLinks(doc){
 
-  var linksFolder = ut_getLinksPath(doc) 
+  var linksFolder = getLinksPath(doc) 
 
   if (!Folder(path).exists) return doc.name + ' has no \"Links\" folder'
   else                      return ''
@@ -428,9 +457,9 @@ function hasLinks(doc){
 
 function hasNonNative(doc){
   if (doc.nonNativeItems.length > 0)
-    return doc.name + ' contains non-native items (see "Appearance" panel)';
+    return doc.name + ' contains non-native items (see "Appearance" panel)'
   else
-    return '';
+    return ''
 }
 
 /*———————————————————————————————————————— hasEmbedded(sourceDoc)
@@ -440,50 +469,53 @@ function hasNonNative(doc){
 
 function hasEmbedded(doc){
   if (doc.rasterItems.length > 0)
-    return doc.name + ' contains embedded images. Please run "Check & Repair"';
+    return doc.name + ' contains embedded images. Please run "Check & Repair"'
   else
-    return '';
+    return ''
 }
 
+// CAUSES ERRORS v
 /*———————————————————————————————————————— hasPlaced(sourceDoc)
 
     has file been saved at least once?
     returns '' or error message */
 
 function hasPlaced(doc){
-  if (doc.placedItems.length == 0) return '';
+  if (doc.placedItems.length == 0) return ''
 
-  var linksPath = ut_getLinksPath(doc)  // ~/Desktop/svija.dev/SYNC/Links/
+  var linksPath = getLinksPath(doc)  // ~/Desktop/svija.dev/SYNC/Links/
 
   for (var x=0; x<doc.placedItems.length; x++){
 
-    var img = doc.placedItems[0];
-    if (!img.layer.printable) continue;
+    var img = doc.placedItems[0]
+    if (!img.layer.printable) continue
 
-    try{
-      var imgPath = String(img.file.fsName); // ~/Captures/capture%2029.jpg
-    }
-    catch(e){
-      return doc.name + ' contains an image with no source. Please run "Check & Repair"';
-    }
 
-    // if image path is shorter, image can't be in Links folder
-    if (imgPath.length < linksPath.length+4) 
-      return doc.name + ' contains external images. Please run "Check & Repair"';
+//  try{
+//    var imgPath = String(img.file.fsName) // ~/Captures/capture%2029.jpg  // THIS LINE THROWS UNCATCHABLE ERROR
+//  }
+//  catch(e){
+//    alert(e)
+//    return doc.name + ' contains an image with no source. Please run "Check & Repair"'
+//  }
 
-    // if image path doesn't match doc path, it can't be in links folder
-    var str = imgPath.slice(0, linksPath.length);
-
-    if (str != linksPath)
-      return doc.name + ' contains external images. Please run "Check & Repair"';
-
-    // if what's longer than doc path contains a /, it's in some subfolder
-    var str = imgPath.slice(linksPath.length, imgPath.length);
-    if (str.indexOf('/') > 0 || str.indexOf('\\') > 0)
-      return doc.name + ' contains external images. Please run "Check & Repair"';
+//      // if image path is shorter, image can't be in Links folder
+//      if (imgPath.length < linksPath.length+4) 
+//        return doc.name + ' contains external images. Please run "Check & Repair"'
+//  
+//      // if image path doesn't match doc path, it can't be in links folder
+//      var str = imgPath.slice(0, linksPath.length)
+//  
+//      if (str != linksPath)
+//        return doc.name + ' contains external images. Please run "Check & Repair"'
+//  
+//      // if what's longer than doc path contains a /, it's in some subfolder
+//      var str = imgPath.slice(linksPath.length, imgPath.length)
+//      if (str.indexOf('/') > 0 || str.indexOf('\\') > 0)
+//        return doc.name + ' contains external images. Please run "Check & Repair"'
   }
 
-  return '';
+  return ''
 }
 
 
@@ -532,28 +564,28 @@ function rectAt00(){
   returns array with locked & visible status of deleted layers */
 
 function deleteNonPrintingLayers(src){
-  var layersLen = src.layers.length;
-  var results = new Array(layersLen);
+  var layersLen = src.layers.length
+  var results = new Array(layersLen)
 
   for (z=layersLen-1; z>=0; z--){
-    results[z] = 0;
+    results[z] = 0
     if (!src.layers[z].printable){
 
       if (src.layers[z].locked){
-        results[z] += 1;
-        src.layers[z].locked  = false;
+        results[z] += 1
+        src.layers[z].locked  = false
       }
 
       if (!src.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
-        results[z] += 2;
-        src.layers[z].visible = true;
+        results[z] += 2
+        src.layers[z].visible = true
       }
 
-      src.layers[z].remove();
+      src.layers[z].remove()
     }
   }
 
-  return results;
+  return results
 }
 
 /*———————————————————————————————————————— dontSave(err)
@@ -561,8 +593,8 @@ function deleteNonPrintingLayers(src){
     permits deleting braces in function isValid */
 
 function dontSave(err){
-  env_errs.push(err);
-  return false;
+  ERRORS.push(err)
+  return false
 }
 
 /*———————————————————————————————————————— fileSizeReport(fileSizes)
@@ -590,6 +622,16 @@ function fileSizeReport(fileSizes){
 
   return report
 
+}
+
+/*———————————————————————————————————————— getLinksPath(doc)
+
+    returns path of links folder */
+
+function getLinksPath(doc){
+  var path = doc.path.fsName
+
+  return ut_concatenatePath(path, 'Links')
 }
 
 

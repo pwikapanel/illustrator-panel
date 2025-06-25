@@ -2,24 +2,6 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.jsx */
 
-/*———————————————————————————————————————— ut_aiOptions(version)
-
-  options for Illustrator File
-  ISG409 & JSRp84 */
-
-function ut_aiOptions(version){
-
-  var options = new IllustratorSaveOptions();
-
-  if (version > 0) // JSRp244
-    options.compatibility = Compatibility['ILLUSTRATOR' + version];
-
-  options.pdfCompatible = false; // much faster
-  options.compressed    = false; // a bit faster
-
-  return options;
-}
-
 /*———————————————————————————————————————— ut_concatenatePath(part1, part2)
 
     given a part1 and part2, returns a correct path */
@@ -108,16 +90,6 @@ function ut_getFileSize(page){
     return fileSize
   }
   catch(e){ return -1 }
-}
-
-/*———————————————————————————————————————— ut_getLinksPath(doc)
-
-    returns path of links folder */
-
-function ut_getLinksPath(doc){
-  var path = doc.path.fsName
-
-  return ut_concatenatePath(path, 'Links')
 }
 
 /*———————————————————————————————————————— ut_getSvgFilesPath(doc)

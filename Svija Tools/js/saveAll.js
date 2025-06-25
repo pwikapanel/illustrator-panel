@@ -21,8 +21,8 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
 
-  var param     = 'all'
-  CEP.evalScript('savePages("' + param + '")')
+  // false = not a single page
+  CEP.evalScript('savePages(false)')
 
 })
 
