@@ -22,14 +22,6 @@ body{
   font-family:'SourceSansPro';
 }
 
-input[type=button]{
-  font-family:'SourceSansPro';
-  font-size:12px;
-  line-height:10px;
-  font-weight:600;
-  text-transform:capitalize;
-}
-
 div#bottomBar{
   font-size:8.5px;
   line-height:15px;

@@ -1,6 +1,18 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.js */
 
+/*———————————————————————————————————————— lert(msg)
+
+    alerts that don't exit Illustrators space */
+
+function lert(msg){
+  msg = JSON.stringify(String(msg))
+  msg = msg.substr(1, msg.length-2)
+
+  console.log(msg)
+  CEP.evalScript('alert("' + msg + '")')
+}
+
 /*———————————————————————————————————————— ut_transmitToCEP(varName, val) DOESN'T HANDLE ARRAYS
 
     transmits a JS variable to CEP, as correct type
@@ -47,18 +59,6 @@ function ut_transmitToCEP(varName, val){
 
   //elapse(888, ` sending '+varName+' to CEP: ' + elapse(TIMER)+ ' ms')
   CEP.evalScript(scrpt)
-}
-
-/*———————————————————————————————————————— lert(msg)
-
-    alerts that don't exit Illustrators space */
-
-function lert(msg){
-  msg = JSON.stringify(String(msg))
-  msg = msg.substr(1, msg.length-2)
-
-  console.log(msg)
-  CEP.evalScript('alert("' + msg + '")')
 }
 
 /*———————————————————————————————————————— ut_hslToRgbArray(hsl) DOESN'T HANDLE DOUBLE SPACES

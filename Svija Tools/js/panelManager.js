@@ -13,6 +13,8 @@ CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setBodyIdColor)
 
 setInterval(function(){
 
+  STYLE = getComputedStyle(document.body)                  
+
   var noSvijaFileOpen = true
   if (typeof ISSVIJA == 'undefined') noSvijaFileOpen = false
   else if (ISSVIJA == true) noSvijaFileOpen = false

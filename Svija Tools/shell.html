@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/buttons.css">
   <link rel="stylesheet" href="css/version.css">
+  <link rel="stylesheet" href="css/paletteAlert.css">
   <link rel="stylesheet" href="css/news.css">
   <link rel="stylesheet" href="css/dormant.css">
   <link rel="stylesheet" href="css/more.css">
@@ -39,7 +40,7 @@
 //———————————————————————————————————————— CEP required
 
 var CEP            = new CSInterface()
-var TRANSLATE      = CEP.initResourceBundle();
+var TRANSLATE      = CEP.initResourceBundle(); // https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md
 var HOSTENV        = CEP.getHostEnvironment()
 var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
 
