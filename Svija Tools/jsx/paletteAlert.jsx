@@ -52,21 +52,6 @@ function paletteAlert(arg){
 
   message.text = arg
 
-  //———————————————————— progress bar background
-                                                             
-  progBarTrack = div.add('group')
-  progBarTrack.preferredSize.width = 300;
-  progBarTrack.preferredSize.height= 3;
-  progBarTrack.margins = [0, 8, 0, 0] // LTRB
-
-  //progBarTrack.graphics.backgroundColor = div.graphics.newBrush(div.graphics.BrushType.SOLID_COLOR,[0, 0.3, 1.0], 1)
-
-  //———————————————————— progress bar
-                                                             
-  progBar = progBarTrack.add( 'progressbar', undefined, 0, 100 ); 
-  progBar.preferredSize.width = 300;
-  progBar.preferredSize.height= 3;
-
   //———————————————————— close palette
 
   palette.addEventListener ("keydown", function(k) {

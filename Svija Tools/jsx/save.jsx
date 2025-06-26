@@ -86,8 +86,8 @@ function savePages(allPages){
   }
 
 
-  if (docsOpen > 1) return "files saved"
-  else return 'file saved'
+  if (docsOpen > 1) return "pagesSaved"
+  else return 'pageSaved'
 }
 
 
