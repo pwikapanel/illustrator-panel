@@ -34,9 +34,9 @@ div#bottomBar a{
 /*———————————————————————————————————————— bottom bar */ 
 
 div#bottomBar{
-  background-color:var(--panel-bg-dark);
-  border-top-color:var(--panel-border);
-  border-right-color:var(--panel-border);
+  background-color:var(--panelBgDark);
+  border-top-color:var(--panelBorder);
+  border-right-color:var(--panelBorder);
 }
 
 div#bottomBar span a:link{
@@ -44,7 +44,7 @@ div#bottomBar span a:link{
 }
 
 div#bottomBar a:hover{
-  color:var(--label-text);
+  color:var(--labelText);
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */

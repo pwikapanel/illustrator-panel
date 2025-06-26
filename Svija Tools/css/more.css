@@ -19,7 +19,7 @@ hr{
 }
 
 hr{
-  border-top-color: var(--panel-border);
+  border-top-color: var(--panelBorder);
 }
 
 
@@ -30,16 +30,16 @@ hr{
 div#moreHtml input[type=button]{
   color:var(--hamburger);
   background-color:var(--pulldown);
-  border-color:var(--input-border);
+  border-color:var(--inputBorder);
 }
 
 div#moreHtml input[type=button]:hover{
-  color:var(--field-contents);
+  color:var(--fieldContents);
   border-color:var(--accentBright);
 }
 
 div#moreHtml input[type=button]:active{
-  color:var(--field-contents);
+  color:var(--fieldContents);
   border-color:#fff;
 }
 

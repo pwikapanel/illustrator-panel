@@ -29,7 +29,7 @@ function onlineStatus(){
 
   if (navigator.onLine){
     logoArt.style.fill = 'var(--accentBright)'
-    logoBar.style.fill = 'var(--panel-bg-dark)'
+    logoBar.style.fill = 'var(--panelBgDark)'
   }
   
   else{

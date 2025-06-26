@@ -26,18 +26,18 @@ input[type=button].btnSmall{ width:47px; }
 
 input[type=button]{
 
-  color:var(--checked-box);
-  background-color:var(--input-field);
-  border-color:var(--input-border);
+  color:var(--checkedBox);
+  background-color:var(--inputField);
+  border-color:var(--inputBorder);
 }
 
 input[type=button]:hover{
-  color:var(--field-contents);
+  color:var(--fieldContents);
   border-color:var(--accentBright);
 }
 
 input[type=button]:active{
-  color:var(--field-contents);
+  color:var(--fieldContents);
   border-color:#fff;
 }
 

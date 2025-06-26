@@ -32,7 +32,7 @@ function paletteAlert(arg){
 
   palette.margins = [0, 0, 0, 0]
   palette.spacing = 0
-  palette.graphics.backgroundColor = palette.graphics.newBrush(palette.graphics.BrushType.SOLID_COLOR,[0.9, 0.9, 0.9], 1)
+  palette.graphics.backgroundColor = palette.graphics.newBrush(palette.graphics.BrushType.SOLID_COLOR,labelText, 1)
   
   //———————————————————— container // necessary for onclick
 
@@ -48,7 +48,7 @@ function paletteAlert(arg){
 
   var  message = div.add('statictext')
   message.alignment = 'center'
-  message.graphics.foregroundColor = message.graphics.newPen (message.graphics.PenType.SOLID_COLOR, [0.2, 0.2, 0.2], 1);
+  message.graphics.foregroundColor = message.graphics.newPen (message.graphics.PenType.SOLID_COLOR, panelBg, 1);
 
   message.text = arg
 
@@ -61,30 +61,11 @@ function paletteAlert(arg){
 
   //progBarTrack.graphics.backgroundColor = div.graphics.newBrush(div.graphics.BrushType.SOLID_COLOR,[0, 0.3, 1.0], 1)
 
-
-
-
-
-
-
-
-/* need to create a container for the progress bar, or for the message, to increase
-the margin between the two of them. I also need to know why the palette
-doesn't work for the save.jsx script */
-
-
-
-
-
-
-
-
-
   //———————————————————— progress bar
                                                              
   progBar = progBarTrack.add( 'progressbar', undefined, 0, 100 ); 
   progBar.preferredSize.width = 300;
-  progBar.preferredSize.height= 1;
+  progBar.preferredSize.height= 3;
 
   //———————————————————— close palette
 
