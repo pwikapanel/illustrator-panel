@@ -8,7 +8,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objId    = 'linkSettings'
-var objLabel = 'abt'
+var objLabel = TRANSLATE.about
 
 /*———————————————————————————————————————— needed in CEP */
 

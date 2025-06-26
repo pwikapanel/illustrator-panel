@@ -2,6 +2,8 @@
 
 //:::::::::::::::::::::::::::::::::::::::: accentColor.js / accentColor.jsx
 
+/*———————————————————————————————————————— colorPicker()
+
     returns hex color */
 
 function colorPicker(){

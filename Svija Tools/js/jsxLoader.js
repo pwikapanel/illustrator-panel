@@ -1,9 +1,11 @@
 
 //:::::::::::::::::::::::::::::::::::::::: jsxLoader.js
 
-// localStorage.clear() // necessary if filenames change
+/*———————————————————————————————————————— static directory listing
 
-jsxFileList = [
+   if node.js becomes unavailable */
+
+/* jsxFileList = [
   'accentColor.jsx',
   'changeCase.jsx',
   'checkAndRepair.jsx',
@@ -18,30 +20,13 @@ jsxFileList = [
   'source.jsx',
   'sourcesNew.jsx',
   'utilities.jsx'
-]
+] */
 
-/*———————————————————————————————————————— read directory listing STATIC WHILE RE-INSTALLING SEQUOIA */
+/*———————————————————————————————————————— read directory listing
 
-//var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
+    requires node.js */
 
-var jsxList = [
-  'accentColor.jsx',
-  'changeCase.jsx',
-  'checkAndRepair.jsx',
-  'createGroup.jsx',
-  'json.jsx',
-  'openFile.jsx',
-  'paletteAlert.jsx',
-  'projectInfo.jsx',
-  'reopen.jsx',
-  'save.jsx',
-  'settings.jsx',
-  'source.jsx',
-  'sourcesNew.jsx',
-  'utilities.jsx'
-]
-
-// lert(jsxList.join('\n')) // empty
+var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
 
 /*———————————————————————————————————————— try to load each one */
 
@@ -163,7 +148,6 @@ function fileToCEP(passthrough, contents, path){
      </CEFCommandLine>                                       */
 
 function dirListArray(dir, ext, lsName){
-  lert(typeof require)
 
   if (typeof localStorage[lsName] == 'undefined'){
     elapse(134, `setting localStorage[${lsName}] to ''`)

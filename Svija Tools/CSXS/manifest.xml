@@ -45,7 +45,7 @@
           <Geometry>
             <Size>
                 <Width>240</Width>
-                <Height>82</Height>
+                <Height>0</Height>
             </Size>
             <MinSize>
                 <Width>60</Width>
@@ -57,10 +57,10 @@
             </MaxSize>
           </Geometry>
           <Icons>
-            <Icon Type="Normal">./png/panelicon_light.png</Icon>
-            <Icon Type="DarkNormal">./png/panelicon_dark.png</Icon>
-            <Icon Type="RollOver">./png/panelicon_light.png</Icon>
-            <Icon Type="DarkRollover">./png/panelicon_dark.png</Icon>
+            <Icon Type="Normal">./svg/panelicon_light.svg</Icon>
+            <Icon Type="DarkNormal">./svg/panelicon_dark.svg</Icon>
+            <Icon Type="RollOver">./svg/panelicon_light.svg</Icon>
+            <Icon Type="DarkRollover">./svg/panelicon_dark.svg</Icon>
           </Icons>
         </UI>
       </DispatchInfo>
