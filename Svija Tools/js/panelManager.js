@@ -1,56 +1,104 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: panelManager.js */
 
-// manages size, color & content
+/*———————————————————————————————————————— notes
+
+    manages size, color & content
+
+    the panel has three states:
+
+    - less
+    - more
+    - closed */
+
+//———————————————————————————————————————— initialize more status
+
+if (typeof localStorage.more == 'undefined')
+  localStorage.more = 'false'
 
 //———————————————————————————————————————— match color to Ai interface
 
-setBodyIdColor()
+CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setPanelColor)
 
-CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setBodyIdColor)
+setPanelColor()
 
 //———————————————————————————————————————— choose panel content
 
-setInterval(function(){
+setInterval(chooseContent, INTMS) // commenting this fixes error
 
-  STYLE = getComputedStyle(document.body)                  
+function chooseContent(){
 
-  var noSvijaFileOpen = true
-  if (typeof ISSVIJA == 'undefined') noSvijaFileOpen = false
-  else if (ISSVIJA == true) noSvijaFileOpen = false
+  STYLE = getComputedStyle(document.body) // provokes error
 
-  // no svija file is open so we show reduced content
-  if (noSvijaFileOpen){
-    var bottomEdge           = 'dormantDiv'
-
-    dormantDiv.style.display = 'block'
-      moreDiv.style.display  = 'none'
-      mainDiv.style.display  = 'none'
-    bottomBar.style.display  = 'none'
+  if (!ISSVIJA){
+    showClosed()
+    return
   }
-
-  // svija file is open so we show Svija Tools
-  else{
-    if (typeof localStorage.moreLess == 'undefined')
-      localStorage.moreLess = 'less'
-
-    //console.log('panelManager: moreLess='+localStorage.moreLess)
-    var bottomEdge           = 'bottomBar'
-
-    dormantDiv.style.display ='none'
-    mainDiv.style.display    ='block'
-    bottomBar.style.display  ='block'
-
-    // in moreLess.js
-    if (localStorage.moreLess == 'more') showMore()
-    else showLess()
-  }
-
-  setPanelSize(bottomEdge)
-}, INTMS)
+  
+  if (localStorage.more == 'true')
+    showMore()
+  else
+    showLess()
+}
 
 
-//:::::::::::::::::::::::::::::::::::::::: functions
+//:::::::::::::::::::::::::::::::::::::::: content visibility
+
+/*———————————————————————————————————————— showMore()
+
+    also used in more.js */
+
+function showMore(){
+  localStorage.more       = 'true'
+
+    moreDiv.style.display = 'block'
+   linkLess.style.display = 'inline'
+
+   linkMore.style.display = 'none'
+
+    mainDiv.style.display = 'block'
+  bottomBar.style.display = 'block'
+  closedDiv.style.display = 'none'
+
+  setPanelSize('bottomBar')
+}
+
+/*———————————————————————————————————————— showLess()
+
+    also used in more.js */
+
+function showLess(){
+  localStorage.more         = 'false'
+
+   linkMore.style.display   = 'inline'
+
+    moreDiv.style.display   = 'none'
+   linkLess.style.display   = 'none'
+
+      mainDiv.style.display = 'block'
+    bottomBar.style.display = 'block'
+  closedDiv.style.display   = 'none'
+
+  setPanelSize('bottomBar')
+}
+
+/*———————————————————————————————————————— showClosed()
+
+    */
+
+function showClosed(){
+
+    closedDiv.style.display = 'block'
+
+      moreDiv.style.display = 'none'
+      mainDiv.style.display = 'none'
+    bottomBar.style.display = 'none'
+
+  setPanelSize('closedDiv')
+}
+
+
+//:::::::::::::::::::::::::::::::::::::::: size & color
 
 /*———————————————————————————————————————— setPanelSize(objID)
 
@@ -71,14 +119,14 @@ function setPanelSize(referenceObjId){
   CEP.resizeContent(w, h-1)
 }
 
-/*———————————————————————————————————————— setBodyIdColor()
+/*———————————————————————————————————————— setPanelColor()
 
   https://fenomas.com/2014/09/cep-5-events-en/
 
   changes body ID to correspond to AI user interface
   the body ID is keyed to CSS color definitions */
 
-function setBodyIdColor() { // did have (event) as arg
+function setPanelColor() { // did have (event) as arg
 
   var hostEnv = window.__adobe_cep__.getHostEnvironment()
   var skinInfo = JSON.parse(hostEnv).appSkinInfo
@@ -92,9 +140,8 @@ function setBodyIdColor() { // did have (event) as arg
   }
 
   INTERFACE = code
-  ut_transmitToCEP('INTERFACE', INTERFACE)
 
-  document.body.id = "if_" + code
+  document.body.id = "if_" + INTERFACE
 }
 
 

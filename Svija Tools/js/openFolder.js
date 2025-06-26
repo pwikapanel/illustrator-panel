@@ -2,7 +2,7 @@
 /*:::::::::::::::::::::::::::::::::::::::: folder.js */
 
 
-/*:::::::::::::::::::::::::::::::::::::::: dormant button */
+/*:::::::::::::::::::::::::::::::::::::::: closed button */
 
 /*———————————————————————————————————————— parameters */
 
@@ -21,6 +21,7 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt')
   openLastFolder(alt)
 })
+
 
 /*:::::::::::::::::::::::::::::::::::::::: regular button */
 
@@ -41,6 +42,7 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt')
   openLastFolder(alt)
 })
+
 
 /*:::::::::::::::::::::::::::::::::::::::: main function */
 

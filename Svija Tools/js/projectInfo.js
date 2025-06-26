@@ -18,9 +18,10 @@ setInterval(function(){
 
 function projectInfoCallback(arg){
 
-  //—————————————————————————————————————— guard
+  //—————————————————————————————————————— guard no file open
 
   if (arg == '' || !arg.includes(':')){
+    ISSVIJA = false
     elapse(29, `projectInfoCallback arg has no : in it`)
     return true
   }

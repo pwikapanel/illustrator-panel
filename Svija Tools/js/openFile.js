@@ -4,7 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objID    = 'buttD3'
-var objLabel = 'open'
+var objLabel = TRANSLATE.open
 
 /*———————————————————————————————————————— configure button */
 

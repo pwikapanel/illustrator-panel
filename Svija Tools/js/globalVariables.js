@@ -3,9 +3,8 @@ console.groupEnd()
 
 //———————————————————————————————————————— initialize variables
 
-var TOOLSVERSION   = '1.0.7'                   // string    shown in source picker panel
-
-var INTMS          = 10000  // interval for the updating panel
+var TOOLSVERSION   = '1.0.7'   // string shown in info panel
+var INTMS          = 500       // interval for the updating panel
 
 //———————————————————————————————————————— set in projectInfo.js
 

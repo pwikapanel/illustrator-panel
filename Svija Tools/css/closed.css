@@ -1,7 +1,7 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: global.css */
+/*:::::::::::::::::::::::::::::::::::::::: closed.css */
 
-div#dormantDiv{
+div#closedDiv{
   display:none;
   padding-top:0;
   padding-bottom:5px;

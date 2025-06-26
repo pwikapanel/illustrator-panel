@@ -4,7 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objID    = 'buttD2'
-var objLabel = 'reopen'
+var objLabel = TRANSLATE.reopen
 
 /*———————————————————————————————————————— configure button */
 

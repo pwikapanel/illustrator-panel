@@ -18,7 +18,6 @@ div#newsBanner{
          color:var(--accentBright);
 
   font-family:'SourceSansPro';
-  text-transform:uppercase;
   letter-spacing:1px;
   font-size:14px;
   line-height:14px;
