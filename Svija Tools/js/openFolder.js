@@ -1,13 +1,14 @@
 
-/*:::::::::::::::::::::::::::::::::::::::: folder.js */
+/*:::::::::::::::::::::::::::::::::::::::: openFolder.js
 
+    used both in closed and open states */
 
 /*:::::::::::::::::::::::::::::::::::::::: closed button */
 
-/*———————————————————————————————————————— parameters */
+//———————————————————————————————————————— parameters
 
 var objLabel = TRANSLATE.openFolderButton
-var objID    = 'buttD1'
+var objID    = 'buttC1'
 
 /*———————————————————————————————————————— configure button */
 
@@ -16,6 +17,10 @@ if (obj === null) lert(objID + ' is null')
 
 obj.value = objLabel
 obj.style.display = 'inline'
+
+/*———————————————————————————————————————— listener function
+
+    */
 
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt')
@@ -46,21 +51,18 @@ obj.addEventListener('mouseup', (evn) => {
 
 /*:::::::::::::::::::::::::::::::::::::::: main function */
 
+//———————————————————————————————————————— openLastFolder(alt)
+
 const pcOpener  = 'C:\\Windows\\explorer.exe'
 const macOpener = '/usr/bin/open'
 
 function openLastFolder(alt){
 
-  if (alt){
-    lert('Unimplemented\nOpen Links folder')
-    return true
-  }
-
   if (ISMAC) var opener = macOpener
   else       var opener = pcOpener
 
   if (LASTPATH == ''){
-    lert('Pas de projet Svija enregistré')
+    lert(TRANSLATE.noProject)
     return true
   }
 

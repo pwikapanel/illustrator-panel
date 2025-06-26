@@ -11,7 +11,7 @@
   'checkAndRepair.jsx',
   'createGroup.jsx',
   'json.jsx',
-  'openFile.jsx',
+  'open.jsx',
   'paletteAlert.jsx',
   'projectInfo.jsx',
   'reopen.jsx',

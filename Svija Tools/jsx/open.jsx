@@ -1,6 +1,6 @@
 #target illustrator  
 
-//:::::::::::::::::::::::::::::::::::::::: openFile.js / openFile.jsx
+//:::::::::::::::::::::::::::::::::::::::: open.js / open.jsx
 
     open dialog inside folder of most recent document */
 

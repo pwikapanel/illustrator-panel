@@ -8,11 +8,11 @@ var INTMS          = 500       // interval for the updating panel
 
 //———————————————————————————————————————— set in projectInfo.js
 
-var ISSVIJA        // boolean    if fromtmost doc is a svija page (in a SYNC folder)
-var LASTPATH       // string     last file path for a svija page
-var SITEURL        // string     url of most recent svija site
-var SYNCPATH       // string     absolute path to SYNC folder
-var STYLE          // body CSS, set in panelManager.js
+var ISSVIJA  = false     // boolean    if fromtmost doc is a svija page (in a SYNC folder)
+var LASTPATH = ''    // string     last file path for a svija page
+var SITEURL  = ''     // string     url of most recent svija site
+var SYNCPATH = ''    // string     absolute path to SYNC folder
+var STYLE    = getComputedStyle(document.body) // provokes error
 
 //———————————————————————————————————————— ????
 

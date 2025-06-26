@@ -1,10 +1,10 @@
 
-//:::::::::::::::::::::::::::::::::::::::: openFile.js / openFile.jsx
+//:::::::::::::::::::::::::::::::::::::::: open.js / open.jsx
 
-/*———————————————————————————————————————— parameters */
+//———————————————————————————————————————— parameters
 
-var objID    = 'buttD3'
 var objLabel = TRANSLATE.open
+var objID    = 'buttC3'
 
 /*———————————————————————————————————————— configure button */
 

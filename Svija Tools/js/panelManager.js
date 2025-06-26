@@ -28,7 +28,7 @@ setInterval(chooseContent, INTMS) // commenting this fixes error
 
 function chooseContent(){
 
-  STYLE = getComputedStyle(document.body) // provokes error
+//STYLE = getComputedStyle(document.body) // moved to globalVariables.js
 
   if (!ISSVIJA){
     showClosed()

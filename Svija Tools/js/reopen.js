@@ -1,10 +1,10 @@
 
 //:::::::::::::::::::::::::::::::::::::::: reopen.js / reopen.jsx
 
-/*———————————————————————————————————————— parameters */
+//———————————————————————————————————————— parameters
 
-var objID    = 'buttD2'
 var objLabel = TRANSLATE.reopen
+var objID    = 'buttC2'
 
 /*———————————————————————————————————————— configure button */
 
