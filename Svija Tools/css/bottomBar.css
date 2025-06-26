@@ -10,19 +10,14 @@ div#bottomBar{
 
 div#bottomBar{
   user-select: none;
-  height:15px;
+  height:16px;
   width:207px;
-  text-align:right;
+  text-align:left;
 
   border-top-width:1px;
   border-top-style:solid;
   border-right-width:1px;
   border-right-style:solid;
-  border-radius:0 0 0 0;
-}
-
-div#bottomBar span#leftLinks{
-  float:left;
 }
 
 div#bottomBar a{

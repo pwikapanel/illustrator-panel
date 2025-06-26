@@ -41,6 +41,7 @@ setInterval(function(){
     mainDiv.style.display    ='block'
     bottomBar.style.display  ='block'
 
+    // in moreLess.js
     if (localStorage.moreLess == 'more') showMore()
     else showLess()
   }
@@ -67,7 +68,7 @@ function setPanelSize(referenceObjId){
   var w = Math.round(MAXWIDTH / f)
   var h = Math.round(referenceObject.getBoundingClientRect().bottom/f)
 
-  CEP.resizeContent(w, h)
+  CEP.resizeContent(w, h-1)
 }
 
 /*———————————————————————————————————————— setBodyIdColor()
@@ -94,37 +95,6 @@ function setBodyIdColor() { // did have (event) as arg
   ut_transmitToCEP('INTERFACE', INTERFACE)
 
   document.body.id = "if_" + code
-}
-
-/*———————————————————————————————————————— showMore()
-
-    also used in more.js */
-
-function showMore(){
-  localStorage.moreLess    = 'more'
-
-   moreDiv.style.display   = 'block'
-
-
-  linkMore.style.display   = 'none'
-  linkLess.style.display   = 'inline'
-
-  setPanelSize('bottomBar')
-}
-
-/*———————————————————————————————————————— showLess()
-
-    also used in more.js */
-
-function showLess(){
-  localStorage.moreLess  = 'less'
-
-   moreDiv.style.display = 'none'
-
-  linkMore.style.display = 'inline'
-  linkLess.style.display = 'none'
-
-  setPanelSize('bottomBar')
 }
 
 

@@ -5,11 +5,10 @@
 
     need to restore user's status when they last used Tools */
 
-if (typeof localStorage.moreLess == 'undefined')
-  localStorage.moreLess = 'less'
+if (typeof localStorage.more == 'undefined') localStorage.more = 'false'
 
-if (localStorage.moreLess == 'less') showLess()
-else showMore()
+if (localStorage.more == 'true') showMore()
+                            else showLess()
 
 
 /*:::::::::::::::::::::::::::::::::::::::: more link */
@@ -26,17 +25,11 @@ if (obj === null) lert(objId + ' is null')
 
 obj.text = objLabel
 
-/*———————————————————————————————————————— mouseup function
-
- */
+//———————————————————————————————————————— mouseup function
 
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
-
-  if (!alt){
-    showMore()
-    return true
-  }
+  if (!alt) showMore()
 })
 
 
@@ -54,21 +47,44 @@ if (obj === null) lert(objId + ' is null')
 
 obj.text = objLabel
 
-/*———————————————————————————————————————— mouseup function
-
-                                            */
+//———————————————————————————————————————— mouseup function
 
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
-
-  if (!alt){
-    showLess()
-    return true
-  }
+  if (!alt) showLess()
 })
 
 
-/*:::::::::::::::::::::::::::::::::::::::: functions */
+/*:::::::::::::::::::::::::::::::::::::::: more/less functions */
+
+/*———————————————————————————————————————— showMore()
+
+    also used in more.js */
+
+function showMore(){
+  localStorage.more      = 'true'
+  moreDiv.style.display  = 'block'
+  linkLess.style.display = 'inline'
+
+  linkMore.style.display = 'none'
+
+  setPanelSize('bottomBar')
+}
+
+/*———————————————————————————————————————— showLess()
+
+    also used in more.js */
+
+function showLess(){
+  localStorage.more      = 'false'
+  linkMore.style.display = 'inline'
+
+  moreDiv.style.display  = 'none'
+  linkLess.style.display = 'none'
+
+  setPanelSize('bottomBar')
+}
+
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
