@@ -62,8 +62,8 @@ function openLastFolder(alt){
   else       var opener = pcOpener
 
   if (LASTPATH == ''){
-    lert(TRANSLATE.noProject)
-    return true
+    lert(TRANSLATE.noLastPath)
+    return
   }
 
   if (ISMAC)

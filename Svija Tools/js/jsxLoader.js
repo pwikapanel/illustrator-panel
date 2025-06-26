@@ -1,6 +1,8 @@
 
 //:::::::::::::::::::::::::::::::::::::::: jsxLoader.js
 
+// localStorage.clear()
+
 /*———————————————————————————————————————— static directory listing
 
    if node.js becomes unavailable */

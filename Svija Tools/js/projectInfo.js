@@ -66,8 +66,13 @@ function projectInfoCallback(arg){
   ISSVIJA = true
 
   SYNCPATH = results.syncPath
-  SITEURL = results.siteURL 
+  localStorage.syncPath = SYNCPATH
+
+  SITEURL  = results.siteURL 
+  localStorage.siteUrl = SITEURL
+
   LASTPATH = results.lastPath
+  localStorage.lastPath = LASTPATH
 
   CEP.setWindowTitle(SITEURL)
 

@@ -1,23 +1,24 @@
 #target illustrator  
 
-//:::::::::::::::::::::::::::::::::::::::: reopen.js / reopen.jsx
+/*:::::::::::::::::::::::::::::::::::::::: reopen.js / reopen.jsx
 
     reopen the most recently closed page */
 
-function reopen(){
+//———————————————————————————————————————— reopen(errmsg)
+
+function reopen(errmsg){
 
   if (LASTPATH == ''){
-    app.executeMenuCommand("open")
-    return true
+    alert(errmsg)
+    return
   }
 
   try{
     app.open(File(LASTPATH))
   }
-  catch(errMsg){
-    alert('error message\n'+errMsg)
-    app.executeMenuCommand("open")
-  }
+  catch(e){ alert(e) }
 }
 
+
+//:::::::::::::::::::::::::::::::::::::::: fin
 

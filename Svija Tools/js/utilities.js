@@ -13,29 +13,44 @@ function lert(msg){
   CEP.evalScript('alert("' + msg + '")')
 }
 
-/*———————————————————————————————————————— ut_transmitToCEP(varName, val) DOESN'T HANDLE ARRAYS
+/*———————————————————————————————————————— transmitToCep(varName, val)
+
+    DOESN'T HANDLE ARRAYS
 
     transmits a JS variable to CEP, as correct type
     currently JSON is sent in stringified format */
 
 
+function transmitToCep(varName){
 
-function ut_transmitToCEP(varName, val){
+  //—————————————————————————————————————— varName doesn't exist
 
-  if (typeof val == 'undefined') return true
+  if (typeof window[varName] == 'undefined'){
+    elapse(32, `${varName} is not defined (utilities.js)`)
+    return
+  }
 
+  //—————————————————————————————————————— initialization
+
+  var val = window[varName]
   var cepVal
 
-  if (typeof val == 'boolean'){                        // boolean
+  //—————————————————————————————————————— boolean
+
+  if (typeof val == 'boolean'){
     if (val==true)   cepVal = 'true'
     if (val== false) cepVal = 'false'
   }
 
-  else if (!isNaN(val)){                               // number
+  //—————————————————————————————————————— number
+
+  else if (!isNaN(val)){
     cepVal = val.toString()
   }
 
-  else if (typeof val == 'object'){                    // JSON
+  //—————————————————————————————————————— JSON
+
+  else if (typeof val == 'object'){
     if (varName == 'MANIFEST') return true
 
     if (typeof JSONCOUNT == 'undefined') JSONCOUNT = 3600000/500
@@ -49,16 +64,22 @@ function ut_transmitToCEP(varName, val){
     cepVal = 'ut_decodeJSON("' + encodeURI(str) + '")'
   }
 
-  else{                                                // string
+  //—————————————————————————————————————— string
+
+  else{
     cepVal = 'decodeURI("' + encodeURI(val) + '")'
   }
 
-  if (typeof cepVal == 'undefined') return true
+  //—————————————————————————————————————— impossible to discover
 
-  var scrpt = varName + '=' + cepVal
+  if (typeof cepVal == 'undefined'){
+    elapses(75, `impossible to create value from varName ${varName}`)
+    return true
+  }
 
-  //elapse(888, ` sending '+varName+' to CEP: ' + elapse(TIMER)+ ' ms')
-  CEP.evalScript(scrpt)
+
+  var cepString = varName + '=' + cepVal
+  CEP.evalScript(cepString)
 }
 
 //———————————————————————————————————————— ut_startTimer()
@@ -73,21 +94,6 @@ function ut_startTimer(){
 function ut_elapsed(startTime){
   var d = new Date()
   return d.getTime()-startTime
-}
-
-/*———————————————————————————————————————— ut_transmitCSStoCEP(varName)
-
-    given a css variable name (without interface code)
-    sends the RGB array equivalent of a HSL color to CEP */
-
-function ut_transmitCSStoCEP(varName){
-
-  var    hsl = style.getPropertyValue(`--${varName}${INTERFACE}`)
-  var rgbStr = ut_hslToRgbArray(hsl).join(',')
-
-  var evalStr = `${varName}=[${rgbStr}]`
-  CEP.evalScript(evalStr)
-
 }
 
 

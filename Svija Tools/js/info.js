@@ -12,8 +12,7 @@ var objLabel = TRANSLATE.about
 
 /*———————————————————————————————————————— needed in CEP */
 
-ut_transmitToCEP('LANG'      , LANG      )
-ut_transmitToCEP('DICTIONARY', DICTIONARY)
+transmitToCep('LANG')
 
 /*———————————————————————————————————————— configure button */
 
@@ -35,15 +34,15 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
 
-  ut_transmitToCEP('INTERFACE'   ,              INTERFACE   )
-//ut_transmitToCEP('ACCENTBRIGHT', localStorage.ACCENTBRIGHT)
-//ut_transmitToCEP('ACCENTDIM'   , localStorage.ACCENTDIM   )
+  transmitToCep('INTERFACE')
+//transmitToCep('ACCENTBRIGHT')
+//transmitToCep('ACCENTDIM')
 
-  ut_transmitCSStoCEP('aboutBG'          )
-  ut_transmitCSStoCEP('aboutVersion'     )
-  ut_transmitCSStoCEP('aboutParagraph'   )
-  ut_transmitCSStoCEP('aboutInstructions')
-  ut_transmitCSStoCEP('aboutButtons'     )
+  cssVarToCep('aboutBG'          )
+  cssVarToCep('aboutVersion'     )
+  cssVarToCep('aboutParagraph'   )
+  cssVarToCep('aboutInstructions')
+  cssVarToCep('aboutButtons'     )
 
   var extensionPath = CEP.getSystemPath(SystemPath.EXTENSION)
   var cmd = 'settingsDialog("' + extensionPath + '", tools)'

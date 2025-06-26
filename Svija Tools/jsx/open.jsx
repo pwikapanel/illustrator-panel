@@ -1,25 +1,10 @@
 #target illustrator  
 
-//:::::::::::::::::::::::::::::::::::::::: open.js / open.jsx
+/*:::::::::::::::::::::::::::::::::::::::: open.js / open.jsx
 
     open dialog inside folder of most recent document */
 
-function openFile(){
-
-  if (LASTPATH == ''){
-    app.executeMenuCommand("open")
-    return true
-  }
-
-
-  if (ISMAC) var slashPos = LASTPATH.lastIndexOf('/')
-  else var slashPos = LASTPATH.lastIndexOf('\\')
-
-  var newPath     = LASTPATH.substr(0, slashPos)
-  var localFolder = Folder(newPath)
-  var prpt        = SITEURL
-
-/*
+/*———————————————————————————————————————— notes
 
 2210 Javascript Tools Guide CC (UI).pdf
 
@@ -34,29 +19,45 @@ folder to this File object’s parent folder and the current file to this
 object’s associated file.
 
 If the user clicks OK, returns a File or Folder object for the selected file
-or folder, or an array of objects. If the user cancels, returns null.
+or folder, or an array of objects. If the user cancels, returns null. */
 
-*/
+
+//———————————————————————————————————————— openFile()
+
+function openFile(){
+
+
+  if (LASTPATH == ''){
+    app.executeMenuCommand("open")
+    return 
+  }
+
+  if (ISMAC) var slashPos = LASTPATH.lastIndexOf('/')
+  else var slashPos = LASTPATH.lastIndexOf('\\')
+
+  var newPath     = LASTPATH.substr(0, slashPos)
+  var localFolder = Folder(newPath)
+  var promptTitle = SITEURL
 
   try{
 
     myFolder = File(localFolder)
-    fileRef = myFolder.openDlg(prpt, '', true)
+    fileRef = myFolder.openDlg(promptTitle, '', true)
     if (fileRef == null) return true
 
     if (fileRef.length == 1){
-      var zoopy = File(fileRef)
-      app.open(zoopy)
+      var actualFile = File(fileRef)
+      app.open(actualFile)
     }
     else{
       for (x=0; x<fileRef.length; x++){
-      var zoopy = File(fileRef[x])
-      app.open(zoopy)
+      var actualFile = File(fileRef[x])
+      app.open(actualFile)
       }
     }
   }
-  catch(errMsg){
-    alert('error message\n'+errMsg)
+  catch(e){
+    alert(e)
     app.executeMenuCommand("open")
   }
 }
