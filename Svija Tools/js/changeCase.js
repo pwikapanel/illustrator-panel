@@ -4,6 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objLabel = TRANSLATE.changeCaseButton
+var objWidth = TRANSLATE.changeCaseButtonWidth
 var objId    = 'butt22'
 
 /*———————————————————————————————————————— configure button */
@@ -11,7 +12,8 @@ var objId    = 'butt22'
 var obj = document.getElementById(objId)
 if (obj === null) lert(objId + ' is null')
 
-obj.value = objLabel
+obj.value         = objLabel
+obj.style.width   = objWidth + 'px'
 obj.style.display = 'inline'
 
 /*———————————————————————————————————————— mouseup function

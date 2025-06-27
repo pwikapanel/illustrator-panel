@@ -171,7 +171,7 @@ function dirListArray(dir, ext, lsName){
     localStorage[lsName] = tempArray.join('|')
   }
   else
-    elapse(152, `didn't getting fresh directory listing`)
+    elapse(152, `directory listing in LS — didn't get fresh listing`)
 
   
   if (!localStorage[lsName].includes('|')){

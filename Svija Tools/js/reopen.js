@@ -3,8 +3,9 @@
 
 //———————————————————————————————————————— parameters
 
-var objLabel = TRANSLATE.reopen
-var objID    = 'buttC2'
+var objLabel = TRANSLATE.closedReopenButton
+var objWidth = TRANSLATE.closedReopenButtonWidth
+var objID    = 'buttC3'
 
 /*———————————————————————————————————————— configure button */
 
@@ -12,6 +13,7 @@ var obj = document.getElementById(objID)
 if (obj === null) lert(objID + ' is null')
 
 obj.value = objLabel
+obj.style.width = objWidth+'px'
 obj.style.display = 'inline'
 
 /*———————————————————————————————————————— listener function

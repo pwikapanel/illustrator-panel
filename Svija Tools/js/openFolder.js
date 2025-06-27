@@ -7,7 +7,8 @@
 
 //———————————————————————————————————————— parameters
 
-var objLabel = TRANSLATE.openFolderButton
+var objLabel = TRANSLATE.closedOpenFolderButton
+var objWidth = TRANSLATE.closedOpenFolderButtonWidth
 var objID    = 'buttC1'
 
 /*———————————————————————————————————————— configure button */
@@ -16,6 +17,7 @@ var obj = document.getElementById(objID)
 if (obj === null) lert(objID + ' is null')
 
 obj.value = objLabel
+obj.style.width = objWidth + 'px'
 obj.style.display = 'inline'
 
 /*———————————————————————————————————————— listener function
@@ -33,6 +35,7 @@ obj.addEventListener('mouseup', (evn) => {
 /*———————————————————————————————————————— parameters */
 
 var objLabel = TRANSLATE.openFolderButton
+var objWidth = TRANSLATE.openFolderButtonWidth
 var objID    = 'butt31'
 
 /*———————————————————————————————————————— configure button */
@@ -40,7 +43,8 @@ var objID    = 'butt31'
 var obj = document.getElementById(objID)
 if (obj === null) lert(objID + ' is null')
 
-obj.value = objLabel
+obj.value         = objLabel
+obj.style.width   = objWidth + 'px'
 obj.style.display = 'inline'
 
 obj.addEventListener('mouseup', (evn) => {

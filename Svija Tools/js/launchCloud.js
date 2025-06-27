@@ -4,6 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objLabel = TRANSLATE.launchCloudButton
+var objWidth = TRANSLATE.launchCloudButtonWidth
 var objID    = 'butt12'
 
 /*———————————————————————————————————————— configure button */
@@ -12,6 +13,7 @@ var obj = document.getElementById(objID)
 if (obj === null) lert(objID + ' is null')
 
 obj.value = objLabel
+obj.style.width = objWidth + 'px'
 obj.style.display = 'inline'
 
 /*———————————————————————————————————————— listener function

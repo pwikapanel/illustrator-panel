@@ -15,7 +15,7 @@
 
 var REMOTE         = 'msg.svija.com/tools'   // string    server to get remote code
 
-path = REMOTE+'/1.0.7/com.svija.svijatools-en.txt'
+path = REMOTE+'/1.0.7/en.txt'
 
 getRemoteFile(1, 0, path, fileToManifest)
 

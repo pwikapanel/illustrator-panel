@@ -12,22 +12,6 @@ var INTMS          = 500       // interval for the updating panel
 
 var ISSVIJA  = false     // boolean    if fromtmost doc is a svija page (in a SYNC folder)
 var STYLE    = getComputedStyle(document.body) // provokes error
-var LASTPATH = ''    // string     last file path for a svija page
-var SITEURL  = ''     // string     url of most recent svija site
-var SYNCPATH = ''    // string     absolute path to SYNC folder
-
-/*———————————————————————————————————————— recover localStorage
-
-    get values from LS if possible*/
-
-if (typeof localStorage.lastPath != 'undefined')
-  LASTPATH = localStorage.lastPath
-
-if (typeof localStorage.siteUrl != 'undefined')
-  SITEURL = localStorage.siteUrl
-
-if (typeof localStorage.synchPath != 'undefined')
-  SYNCPATH = localStorage.synchPath
 
 //———————————————————————————————————————— more
 
@@ -52,9 +36,6 @@ elapse(30, `        AIVERSION=${AIVERSION}`)
 
 transmitToCep('ISMAC'    )
 transmitToCep('AIVERSION')
-transmitToCep('LASTPATH' )
-transmitToCep('SITEURL'  )
-transmitToCep('SYNCPATH' )
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

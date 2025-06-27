@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="css/illustratorColorDefs.css">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/buttons.css">
-  <link rel="stylesheet" href="css/news.css">
   <link rel="stylesheet" href="css/closed.css">
   <link rel="stylesheet" href="css/more.css">
   <link rel="stylesheet" href="css/logo.css">
@@ -41,6 +40,8 @@ var CEP            = new CSInterface()
 var TRANSLATE      = CEP.initResourceBundle(); // https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md
 var HOSTENV        = CEP.getHostEnvironment()
 var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
+var d              = new Date()
+var TIMER          = d.getTime()
 
 //———————————————————————————————————————— catch errors
 
@@ -54,8 +55,6 @@ window.addEventListener('error', (event)=>{
 
     used to make sure everything is efficient */
 
-var d = new Date()
-var TIMER = d.getTime()
 
 function elapse(line, str){
   var d = new Date()
@@ -93,25 +92,18 @@ elapse(91, `starting Svija Tools`)
   <div id="newsDiv"></div>
   
   <div id="closedDiv">
-    <input id='buttC1' class='btnLarge' type=button>
-    <input id='buttC2' class='btnMed'   type=button>
-    <input id='buttC3' class='btnSmall' type=button>
+    <input id='buttC1' type=button><input id='buttC2' type=button><input id='buttC3' type=button>
   </div>
   
   <div id="moreDiv">
-    <input id='butt11' type=button>
-    <input id='butt12' type=button><br>
-    
-    <input id='butt21' type=button>
-    <input id='butt22' type=button><br>
+    <input id='butt11' type=button><input id='butt12' type=button><br>
+    <input id='butt21' type=button><input id='butt22' type=button><br>
     <hr>
   </div>
 
   <div id="mainDiv" style="padding-top:0;">
 
-    <input id='butt31' class='btnLarge' type=button>
-
-    <svg id="svijaLogo"
+    <input id='butt31' class='btnLarge' type=button><svg id="svijaLogo"
       onmouseover="logoArt.style.transform='scale(1.1)'" 
       onmouseout ="logoArt.style.transform='scale(1.0)'"
       xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 115 22">
@@ -123,9 +115,7 @@ elapse(91, `starting Svija Tools`)
     </svg>
   
     <br>
-    <input id='butt41' class='btnLarge' type=button>
-    <input id='butt42' class='btnMed'   type=button>
-    <input id='butt43' class='btnSmall' type=button>
+    <input id='butt41' class='btnLarge' type=button><input id='butt42' class='btnMed'   type=button><input id='butt43' class='btnSmall' type=button>
   </div>
   
   <div id="bottomBar">
@@ -155,5 +145,6 @@ elapse(91, `starting Svija Tools`)
   <script type="text/javascript" src="js/moreLess.js"             ></script>
   <script type="text/javascript" src="js/reopen.js"               ></script>
   <script type="text/javascript" src="js/news.js"                 ></script>
+  <script type="text/javascript" src="js/usage.js"                ></script>
 
 </body></html>

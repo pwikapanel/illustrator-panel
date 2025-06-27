@@ -1,6 +1,27 @@
 
 //:::::::::::::::::::::::::::::::::::::::: projectInfo.jsx / projectInfo.js
 
+/*———————————————————————————————————————— recover localStorage
+
+    get values from LS if possible*/
+
+var LASTPATH = ''    // string     last file path for a svija page
+var SITEURL  = ''     // string     url of most recent svija site
+var SYNCPATH = ''    // string     absolute path to SYNC folder
+
+if (typeof localStorage.lastPath != 'undefined')
+  LASTPATH = localStorage.lastPath
+
+if (typeof localStorage.siteUrl != 'undefined')
+  SITEURL = localStorage.siteUrl
+
+if (typeof localStorage.synchPath != 'undefined')
+  SYNCPATH = localStorage.synchPath
+
+transmitToCep('LASTPATH' )
+transmitToCep('SITEURL'  )
+transmitToCep('SYNCPATH' )
+
 //———————————————————————————————————————— request info from CEP
 
 setInterval(function(){
@@ -18,6 +39,11 @@ setInterval(function(){
 
 function projectInfoCallback(arg){
 
+  //—————————————————————————————————————— set panel title
+
+  if (SITEURL != '')
+    CEP.setWindowTitle(SITEURL)
+
   //—————————————————————————————————————— guard no file open
 
   if (arg == '' || !arg.includes(':')){
@@ -28,7 +54,7 @@ function projectInfoCallback(arg){
     
   //—————————————————————————————————————— parse JSON
 
-  elapse(33, `projectInfoCallback received JSON`)
+//elapse(33, `projectInfoCallback received JSON`)
   var results = JSON.parse(arg)
 
   //—————————————————————————————————————— guards
@@ -53,7 +79,6 @@ function projectInfoCallback(arg){
     return true
   }
 
-
   //—————————————————————————————————————— not svija site
 
   if (results.isSvija == 'false'){
@@ -74,7 +99,6 @@ function projectInfoCallback(arg){
   LASTPATH = results.lastPath
   localStorage.lastPath = LASTPATH
 
-  CEP.setWindowTitle(SITEURL)
 
 
 }

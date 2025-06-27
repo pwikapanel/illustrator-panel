@@ -4,6 +4,7 @@
 /*———————————————————————————————————————— parameters */
 
 var objLabel = TRANSLATE.checkAndRepairButton
+var objWidth = TRANSLATE.checkAndRepairButtonWidth
 var objID    = 'butt41'
 
 /*———————————————————————————————————————— configure button */
@@ -11,7 +12,8 @@ var objID    = 'butt41'
 var obj = document.getElementById(objID)
 if (obj === null) lert(objID + ' is null')
 
-obj.value = objLabel
+obj.value         = objLabel
+obj.style.width   = objWidth + 'px'
 obj.style.display = 'inline'
 
 /*———————————————————————————————————————— listener function
