@@ -103,6 +103,16 @@ https://fenomas.com/2014/08/cep-mega-guide-en/
 https://blog.developer.adobe.com/en/publish/2019/06/debugging-your-adobe-panel
 https://github.com/docsforadobe/illustrator-scripting-guide/blob/master/docs/jsobjref/GroupItem.md
 
+---
+
+ keydown: https://github.com/Adobe-CEP/Samples/blob/AE_Key_Events/AfterEffectsPanel/ext.js
+
+found via https://community.adobe.com/t5/premiere-pro-discussions/looking-to-activate-custom-panels-via-keyboard-shortcut-keyboard-listeners-when-panel-is-active/m-p/9257645
+
+---
+
+https://community.adobe.com/t5/illustrator-discussions/set-unit-preferences-javascript/m-p/6369389
+
 ![](images/divider.jpg "————————————————————————————————————————")
 
 ![](images/shadow.jpg "————————————————————————————————————————")
@@ -119,6 +129,20 @@ rsync -vaPur --delete -n root@apache.svija.love:/home/tools.svija.love/master/ .
 Remove the `-n` to do it for real.
 
 ---
+menu commands
+
+https://community.adobe.com/t5/illustrator-discussions/executemenucommand-command-list/td-p/13131490
+https://docs.google.com/spreadsheets/d/1T-pBrLAOL3WuF1K7h6Wo_vIUa0tui9YiX591YqqKMdA/edit?gid=853514391#gid=853514391
+best: https://github.com/joshbduncan/AiCommandPalette/tree/main/data
+https://github.com/joshbduncan/AiCommandPalette/tree/main
+https://ai-scripting.docsforadobe.dev/jsobjref/DocumentPreset/
+
+good one (more modern): https://aiscripts.medium.com/how-to-detect-new-units-if-rulerunits-unknown-38abb5a3de5
+
+https://github.com/ten-A/Extend_Script_experimentals/blob/master/XMPtool.jsx
+https://community.adobe.com/t5/illustrator-discussions/change-xmp-metadata-on-activedocument/m-p/10974107
+https://ai-scripting.docsforadobe.dev/jsobjref/Application/?h=workspace#parameters_5
+
 
 [localization info](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md)
 

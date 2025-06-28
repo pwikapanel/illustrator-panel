@@ -1,6 +1,8 @@
 
 //:::::::::::::::::::::::::::::::::::::::: projectInfo.jsx / projectInfo.js
 
+//———————————————————————————————————————— tests
+
 /*———————————————————————————————————————— recover localStorage
 
     get values from LS if possible*/

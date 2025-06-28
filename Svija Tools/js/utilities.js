@@ -97,5 +97,9 @@ function ut_elapsed(startTime){
 }
 
 
+function enableInput(objId){
+  window[objId].disabled = false
+}
+
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

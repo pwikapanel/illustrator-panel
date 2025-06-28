@@ -5,6 +5,9 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: closed button */
 
+const pcOpener  = 'C:\\Windows\\explorer.exe'
+const macOpener = '/usr/bin/open'
+
 //———————————————————————————————————————— parameters
 
 var objLabel = TRANSLATE.closedOpenFolderButton
@@ -26,7 +29,8 @@ obj.style.display = 'inline'
 
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt')
-  openLastFolder(alt)
+  if (alt) openProjectFolder()
+  else openFolder()
 })
 
 
@@ -49,24 +53,22 @@ obj.style.display = 'inline'
 
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt')
-  openLastFolder(alt)
+  if (alt) openProjectFolder()
+  else openFolder()
 })
 
 
 /*:::::::::::::::::::::::::::::::::::::::: main function */
 
-//———————————————————————————————————————— openLastFolder(alt)
+//———————————————————————————————————————— openFolder(alt)
 
-const pcOpener  = 'C:\\Windows\\explorer.exe'
-const macOpener = '/usr/bin/open'
-
-function openLastFolder(alt){
+function openFolder(){
 
   if (ISMAC) var opener = macOpener
   else       var opener = pcOpener
 
   if (LASTPATH == ''){
-    lert(TRANSLATE.noLastPath)
+    lert(TRANSLATE.noProject)
     return
   }
 
@@ -76,6 +78,27 @@ function openLastFolder(alt){
     path = LASTPATH.substr(0, LASTPATH.lastIndexOf('\\'))
 
   path = path.replace(/\\\\/g, "\\")
+
+  window.cep.process.createProcess(opener, path)
+
+}
+
+//———————————————————————————————————————— openProjectFolder(alt)
+
+function openProjectFolder(alt){
+
+  if (ISMAC) var opener = macOpener
+  else       var opener = pcOpener
+
+  if (SYNCPATH == ''){
+    lert(TRANSLATE.noProject)
+    return
+  }
+
+  var path = SYNCPATH.slice(0,-5)
+  path     = path.replace(/\\\\/g, "\\")
+
+lert(path)
 
   window.cep.process.createProcess(opener, path)
 

@@ -23,7 +23,7 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
 
   var alt = evn.getModifierState('Alt')
-  var errmsg = TRANSLATE.noLastPath
+  var errmsg = TRANSLATE.noProject
   CEP.evalScript(`reopen("${errmsg}")`)
 
 })

@@ -14,6 +14,7 @@
     also sets global variables used in CEP
     with the same names, but ALL CAPS */
 
+
 //———————————————————————————————————————— initialization
 
 var ISSVIJA  = false // is current file part of a Svija project?

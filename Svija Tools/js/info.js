@@ -1,18 +1,10 @@
 
-//:::::::::::::::::::::::::::::::::::::::: settings.js / settings.jsx
-
-/*———————————————————————————————————————— emoji candidates
-
-    ⚙ 🫧 ☁️  ⚙️  🍄 🌕 ✨ 🎛️ 🔋 🔅 ★ */
+//:::::::::::::::::::::::::::::::::::::::: info.js / info.jsx
 
 /*———————————————————————————————————————— parameters */
 
-var objId    = 'linkAbout'
-var objLabel = TRANSLATE.about
-
-/*———————————————————————————————————————— needed in CEP */
-
-transmitToCep('LANG')
+var objId    = 'linkInfo'
+var objLabel = TRANSLATE.infoLink
 
 /*———————————————————————————————————————— configure button */
 
@@ -34,18 +26,20 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
 
-  transmitToCep('INTERFACE')
+
+//transmitToCep('LANG')
+//transmitToCep('INTERFACE')
 //transmitToCep('ACCENTBRIGHT')
 //transmitToCep('ACCENTDIM')
 
-  cssVarToCep('aboutBG'          )
-  cssVarToCep('aboutVersion'     )
-  cssVarToCep('aboutParagraph'   )
-  cssVarToCep('aboutInstructions')
-  cssVarToCep('aboutButtons'     )
+//cssVarToCep('aboutBG'          )
+//cssVarToCep('aboutVersion'     )
+//cssVarToCep('aboutParagraph'   )
+//cssVarToCep('aboutInstructions')
+//cssVarToCep('aboutButtons'     )
 
   var extensionPath = CEP.getSystemPath(SystemPath.EXTENSION)
-  var cmd = 'settingsDialog("' + extensionPath + '", tools)'
+  var cmd = 'infoDialog("' + extensionPath + '")'
   CEP.evalScript(cmd, setSource)
 })
 
@@ -62,6 +56,8 @@ obj.addEventListener('mouseup', (evn) => {
     3 = master   */
 
 function setSource(source){
+  elapse(59, "SUCCESS: info.jsx —› info.js")
+  return
   if (        source == ''          ) return true // user canceled
   if ( typeof source == 'undefined' ) return true // should not happen
 

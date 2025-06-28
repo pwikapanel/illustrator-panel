@@ -21,6 +21,7 @@ obj.style.display = 'inline'
   opens folder based on localStorage lastPath */
 
 obj.addEventListener('mouseup', (evn) => {
+  butt43.disabled = true
   var alt   = evn.altKey
 
   // false = don't save all open files
@@ -28,9 +29,13 @@ obj.addEventListener('mouseup', (evn) => {
   CEP.evalScript('savePages(false)', saveCallback)
 })
 
+var specialObjId = objID
+
 function saveCallback(arg){
   elapse(30, `saveCallback() received "${arg}"`)
   if (arg != '') paletteAlert(arg)
+  setTimeout(enableInput.bind(null, 'butt43'), 1500)
+//setTimeout(functions[name].bind(null, ...args), triggers.delay*1000)
 }
 
 

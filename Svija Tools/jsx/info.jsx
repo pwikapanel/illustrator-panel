@@ -1,6 +1,6 @@
 #target illustrator  
 
-//:::::::::::::::::::::::::::::::::::::::: settings.js / settings.jsx
+//:::::::::::::::::::::::::::::::::::::::: info.js / info.jsx
 
 /*———————————————————————————————————————— notes
 
@@ -8,14 +8,34 @@
     2210 Javascript Tools Guide CC (UI).pdf
 
     each element is in a group because only
-    groups can have margins & spacing */
+    groups can have margins & spacing
 
-//  page 106 default & cancel elements
+    page 106 default & cancel elements */
 
 
 /*:::::::::::::::::::::::::::::::::::::::: program */
 
-function settingsDialog(extensionPath, source){
+function infoDialog(extensionPath){
+
+  var source = 'source'
+  var TOOLSVERSION = 'TOOLSVERSION'
+  var srcLabel = 'srcLabel'
+  var AIVERSION = 'AIVERSION'
+  var INTERFACE = 1
+
+/* sent from source.js 
+
+        transmitToCEP('AIVERSION'    , AIVERSION )
+        transmitToCEP('LANG'         , LANG      )
+        transmitToCEP('DICTIONARY'   , DICTIONARY)
+        transmitToCEP('INTERFACE'    , INTERFACE )
+        transmitToCEP('ACCENTDIM'    , localStorage.ACCENTDIM )
+  ut_transmitCSStoCEP('aboutBG')
+  ut_transmitCSStoCEP('aboutVersion')
+  ut_transmitCSStoCEP('aboutParagraph')
+  ut_transmitCSStoCEP('aboutInstructions')
+  ut_transmitCSStoCEP('aboutButtons') */
+
 
   //———————————————————— image scaling function
 
@@ -47,7 +67,7 @@ function settingsDialog(extensionPath, source){
   panel.margins       = [0, 0, 0, 0]
   panel.orientation   = 'row'
   panel.alignChildren = ['fill', 'fill']
-  panel.spacing=0
+  panel.spacing       = 0
   
   //———————————————————— splash image
 
@@ -72,17 +92,16 @@ function settingsDialog(extensionPath, source){
 
   //———————————————————— version
   
-  var version = content.add('group')
-  version.margins = [0, 8, 8, 0]
-  version.alignment = 'right'
-  
-  var  versionTxt = version.add ("statictext")
-
-  var srcLabel = ut_translate('sourceName' + source)
-  versionTxt.text = "Version " + TOOLSVERSION + " " + srcLabel + " · Illustrator " + AIVERSION
-  
-  //———————————————————— logo
-  
+   var version = content.add('group')
+   version.margins = [0, 8, 8, 0]
+   version.alignment = 'right'
+   
+   var  versionTxt = version.add ("statictext")
+ 
+   versionTxt.text = "Version " + TOOLSVERSION + " " + srcLabel + " · Illustrator " + AIVERSION
+   
+   //———————————————————— logo
+   
   var logo = content.add('group')
   logo.margins = [32, 25, 16, 0]
   logo.alignment = 'left'
@@ -151,32 +170,20 @@ function settingsDialog(extensionPath, source){
   applyButton.alignment  = ['', 'fill']  // permits smaller buttons
   cancelButton.alignment = ['', 'fill']
 
-  //———————————————————— colors
+  //———————————————————— colors NOT IMPLEMENTED
 
-/* sent from source.js 
+//    var panelBGcolor    =           panel.graphics.newBrush (        panel.graphics.BrushType.SOLID_COLOR, aboutBG             )
+//    var versionTxtColor =      versionTxt.graphics.newPen   (     versionTxt.graphics.PenType.SOLID_COLOR, aboutVersion     , 1)
+//    var para1TxtColor   =       paraLine1.graphics.newPen   (      paraLine1.graphics.PenType.SOLID_COLOR, aboutParagraph   , 1)
+//    var para2TxtColor   =       paraLine1.graphics.newPen   (      paraLine2.graphics.PenType.SOLID_COLOR, aboutParagraph   , 1)
+//    var instrTxtColor   = instructionsTxt.graphics.newPen   (instructionsTxt.graphics.PenType.SOLID_COLOR, aboutInstructions, 1)
+//  
+//            panel.graphics.backgroundColor = panelBGcolor
+//       versionTxt.graphics.foregroundColor = versionTxtColor
+//        paraLine1.graphics.foregroundColor = para1TxtColor
+//        paraLine2.graphics.foregroundColor = para2TxtColor
+//  instructionsTxt.graphics.foregroundColor = instrTxtColor
 
-        transmitToCEP('AIVERSION'    , AIVERSION )
-        transmitToCEP('LANG'         , LANG      )
-        transmitToCEP('DICTIONARY'   , DICTIONARY)
-        transmitToCEP('INTERFACE'    , INTERFACE )
-        transmitToCEP('ACCENTDIM'    , localStorage.ACCENTDIM )
-  ut_transmitCSStoCEP('aboutBG')
-  ut_transmitCSStoCEP('aboutVersion')
-  ut_transmitCSStoCEP('aboutParagraph')
-  ut_transmitCSStoCEP('aboutInstructions')
-  ut_transmitCSStoCEP('aboutButtons') */
-
-  var panelBGcolor    =           panel.graphics.newBrush (        panel.graphics.BrushType.SOLID_COLOR, aboutBG             )
-  var versionTxtColor =      versionTxt.graphics.newPen   (     versionTxt.graphics.PenType.SOLID_COLOR, aboutVersion     , 1)
-  var para1TxtColor   =       paraLine1.graphics.newPen   (      paraLine1.graphics.PenType.SOLID_COLOR, aboutParagraph   , 1)
-  var para2TxtColor   =       paraLine1.graphics.newPen   (      paraLine2.graphics.PenType.SOLID_COLOR, aboutParagraph   , 1)
-  var instrTxtColor   = instructionsTxt.graphics.newPen   (instructionsTxt.graphics.PenType.SOLID_COLOR, aboutInstructions, 1)
-
-          panel.graphics.backgroundColor = panelBGcolor
-     versionTxt.graphics.foregroundColor = versionTxtColor
-      paraLine1.graphics.foregroundColor = para1TxtColor
-      paraLine2.graphics.foregroundColor = para2TxtColor
-instructionsTxt.graphics.foregroundColor = instrTxtColor
 /* foregroundColor
 Object
 The foregroundcolorfora container,orthe parent foreground color ofa control element. A ScriptUIPen object.
@@ -186,16 +193,16 @@ backgroundColor
 Object
 The background colorof acontainer,orthe parentbackground colorfor acontrolelement. A ScriptUIBrush object.
 */
-
-  try{
-  
-  var radioBGcolor = radio.graphics.newBrush(radio.graphics.BrushType.SOLID_COLOR, aboutInstructions, 0)
-  var radioColor   = radio.graphics.newPen  (  radio.graphics.PenType.SOLID_COLOR, aboutInstructions, 1)
-
-  //radio.graphics.backgroundColor = radioBGcolor
-  //radio.graphics.foregroundColor = radioColor
-  
-  } catch(msg){alert(msg)}
+//  
+//    try{
+//    
+//    var radioBGcolor = radio.graphics.newBrush(radio.graphics.BrushType.SOLID_COLOR, aboutInstructions, 0)
+//    var radioColor   = radio.graphics.newPen  (  radio.graphics.PenType.SOLID_COLOR, aboutInstructions, 1)
+//  
+//    //radio.graphics.backgroundColor = radioBGcolor
+//    //radio.graphics.foregroundColor = radioColor
+//    
+//    } catch(msg){alert(msg)}
 
   /*———————————————————— 2210 Javascript Tools Guide CC (UI).pdf
 
@@ -249,6 +256,7 @@ The background colorof acontainer,orthe parentbackground colorfor acontrolelemen
      (disregarding case). For the cancel element, it looks for a button
      whose name or text value is "cancel" (disregarding case).  */
 
+
   //———————————————————— button functionality
 
   radioButton0.active = true
@@ -271,8 +279,9 @@ The background colorof acontainer,orthe parentbackground colorfor acontrolelemen
   panel.cancelElement = cancelButton
 
 
-  if(panel.show() == 1) return source   // clicked apply
-  else return ''                        // clicked cancel
+  if(panel.show() == 1) return "source"   // clicked apply
+  else return ''                          // clicked cancel
+
 }
 
 //:::::::::::::::::::::::::::::::::::::::: fin
