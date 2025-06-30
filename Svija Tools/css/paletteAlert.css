@@ -1,0 +1,35 @@
+
+/*:::::::::::::::::::::::::::::::::::::::: paletteAlert .css .js .jsx */
+
+
+:root{
+  --alertBG1           :var(--labelText);
+  --alertText1         :var(--panelBg);
+}
+
+/*:root {
+  --aboutBG0           :hsl(  0   0%  81%);
+  --aboutVersion0      :hsl(  0   0%  81%);
+  --aboutParagraph0    :hsl(  0   0%  81%);
+  --aboutInstructions0 :hsl(  0   0%  81%);
+  --aboutButtons0      :hsl(  0   0%  81%);
+
+  --aboutBG1           :hsl(  0   0%  20%);
+  --aboutVersion1      :hsl( 00 100% 100%);
+  --aboutParagraph1    :hsl(120 100% 100%);
+  --aboutInstructions1 :hsl(300 100% 100%);
+  --aboutButtons1      :hsl(300 100% 100%);
+
+  --aboutBG2           :hsl(0  0%  81%);
+  --aboutVersion2      :hsl(0  0%  81%);
+  --aboutParagraph2    :hsl(0  0%  81%);
+  --aboutInstructions2 :hsl(0  0%  81%);
+  --aboutButtons2      :hsl(0  0%  81%);
+
+  --aboutBG3           :hsl(0  0%  81%);
+  --aboutVersion3      :hsl(0  0%  81%);
+  --aboutParagraph3    :hsl(0  0%  81%);
+  --aboutInstructions3 :hsl(0  0%  81%);
+  --aboutButtons3      :hsl(0  0%  81%);
+
+} */

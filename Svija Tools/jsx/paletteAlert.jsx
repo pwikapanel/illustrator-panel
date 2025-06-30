@@ -1,6 +1,6 @@
 #target illustrator
 
-//:::::::::::::::::::::::::::::::::::::::: paletteAlert.js / paletteAlert.jsx
+//:::::::::::::::::::::::::::::::::::::::: paletteAlert .css .js .jsx
 
 // see also jsx/settings.jsx
 

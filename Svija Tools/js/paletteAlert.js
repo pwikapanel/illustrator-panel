@@ -1,5 +1,5 @@
 
-//:::::::::::::::::::::::::::::::::::::::: paletteAlert.js / paletteAlert.jsx / paletteAlert.css
+//:::::::::::::::::::::::::::::::::::::::: paletteAlert .css .js .jsx
 
 //———————————————————————————————————————— settings 
 
@@ -12,7 +12,6 @@ var fudgeFactor  = 0.9   // <1, to match progBar to window closing
     colors:
     background: labelText
           text: panelBg
-       progbar: accentDim
 
     cssVarToCep isin colorUtilites.js */
 
