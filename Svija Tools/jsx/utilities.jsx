@@ -232,20 +232,6 @@ function ut_relockHierarchy(arr){
   }
 }
 
-//———————————————————————————————————————— ut_startTimer()
-
-function ut_startTimer(){
-  var d = new Date()
-  return d.getTime()
-}
-
-//———————————————————————————————————————— ut_elapsed(startTime)
-
-function ut_elapsed(startTime){
-  var d = new Date()
-  return d.getTime()-startTime
-}
-
 /*———————————————————————————————————————— ut_translate(key)
     */
 
