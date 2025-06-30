@@ -3,27 +3,6 @@
 
 // localStorage.clear()
 
-/*———————————————————————————————————————— static directory listing
-
-   if node.js becomes unavailable */
-
-/* jsxFileList = [
-  'accentColor.jsx',
-  'changeCase.jsx',
-  'checkAndRepair.jsx',
-  'createGroup.jsx',
-  'json.jsx',
-  'open.jsx',
-  'alertPalette.jsx',
-  'projectInfo.jsx',
-  'reopen.jsx',
-  'save.jsx',
-  'settings.jsx',
-  'source.jsx',
-  'sourcesNew.jsx',
-  'utilities.jsx'
-] */
-
 /*———————————————————————————————————————— read directory listing
 
     requires node.js */
@@ -173,6 +152,8 @@ function dirListArray(dir, ext, lsName){
   else
     elapse(152, `directory listing in LS — didn't get fresh listing`)
 
+  if (typeof require == 'undefined' && localStorage[lsName].length == 0)
+    lert('Restart Illustrator\nFresh directory listing needed')
   
   if (!localStorage[lsName].includes('|')){
     elapse(156, `returning empty directory listing`)
