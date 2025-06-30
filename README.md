@@ -97,6 +97,14 @@ Clicking on [shell.html]() will display the Svija Tools panel in the browser
 The main tool we'll be using is the console.
 
 ![](images/divider.jpg "————————————————————————————————————————")
+### 5. Things to Know
+
+These are some gotchas that can make your life complicated:
+
+- if there is a syntax error (missing `}` for example) in a JSX file, Illustrator will revert to the previous known good version rather than throw the error
+- in JSX, `window` is undefined, so you can't access a variable with window[varname]. Instead use `this`.
+
+![](images/divider.jpg "————————————————————————————————————————")
 ### Resources
 
 https://fenomas.com/2014/08/cep-mega-guide-en/

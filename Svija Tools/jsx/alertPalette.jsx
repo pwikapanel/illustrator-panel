@@ -26,13 +26,18 @@ var progBar
 
 function alertPalette(arg){
 
+  //———————————————————— colors
+
+  var paletteBackground=this['alertBg' + INTERFACE]
+  var       paletteText=this['alertText' + INTERFACE]
+
   //———————————————————— create palette
 
   palette = new Window ('palette', " ", undefined, {resizeable: false, borderless: true, closeButton: false})
 
   palette.margins = [0, 0, 0, 0]
   palette.spacing = 0
-  palette.graphics.backgroundColor = palette.graphics.newBrush(palette.graphics.BrushType.SOLID_COLOR,labelText, 1)
+  palette.graphics.backgroundColor = palette.graphics.newBrush(palette.graphics.BrushType.SOLID_COLOR,paletteBackground, 1)
   
   //———————————————————— container // necessary for onclick
 
@@ -48,7 +53,7 @@ function alertPalette(arg){
 
   var  message = div.add('statictext')
   message.alignment = 'center'
-  message.graphics.foregroundColor = message.graphics.newPen (message.graphics.PenType.SOLID_COLOR, panelBg, 1);
+  message.graphics.foregroundColor = message.graphics.newPen (message.graphics.PenType.SOLID_COLOR, paletteText, 1);
 
   message.text = arg
 

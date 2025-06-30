@@ -15,13 +15,13 @@ var fudgeFactor  = 0.9   // <1, to match progBar to window closing
 
     cssVarToCep isin colorUtilites.js */
 
-// lert(STYLE.getPropertyValue(`--fieldContents0`)) // worked
-lert(INTERFACE)
+//lert(STYLE.getPropertyValue(`--alertBg1`)) // worked
+//lert(STYLE.getPropertyValue(`--alertText1`)) // worked
 
 function alertPalette(arg){
 
-  cssVarToCep('alertBG' + INTERFACE)
-  cssVarToCep('panelText' + INTERFACE)
+  cssVarToCep('alertBg'+INTERFACE)
+  cssVarToCep('alertText'+INTERFACE)
 
   var cmd = 'alertPalette("' + TRANSLATE[arg] + '")'
   CEP.evalScript(cmd, alertPaletteCallback)

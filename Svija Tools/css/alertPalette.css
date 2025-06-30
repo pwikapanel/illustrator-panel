@@ -2,16 +2,16 @@
 /*:::::::::::::::::::::::::::::::::::::::: alertPalette .css .js .jsx */
 
 :root{
-  --alertBG0           :var(--labelText0);
+  --alertBg0           :var(--labelText0);
   --alertText0         :var(--panelBg0);
 
-  --alertBG1           :var(--labelText1);
+  --alertBg1           :var(--labelText1);
   --alertText1         :var(--panelBg1);
 
-  --alertBG2           :var(--labelText2);
+  --alertBg2           :var(--labelText2);
   --alertText2         :var(--panelBg2);
 
-  --alertBG3           :var(--labelText3);
+  --alertBg3           :var(--labelText3);
   --alertText3         :var(--panelBg3);
 }
 
