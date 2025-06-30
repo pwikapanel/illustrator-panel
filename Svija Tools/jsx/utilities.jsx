@@ -12,14 +12,14 @@ function ut_concatenatePath(part1, part2){
   else return part1 + '\\' + part2
 }
 
-/*———————————————————————————————————————— ut_decodeJSON(obj)
+/*———————————————————————————————————————— decodeJSON(obj)
 
     returns a JSON object */
 
 var   maxErrors = 5
 var parseErrors = 0
 
-function ut_decodeJSON(str){
+function decodeJSON(str){
   str = decodeURI(str)
 
   try{

@@ -1,5 +1,5 @@
 
-//:::::::::::::::::::::::::::::::::::::::: info.js / info.jsx
+//:::::::::::::::::::::::::::::::::::::::: info.css .js .jsx
 
 /*———————————————————————————————————————— parameters */
 
@@ -14,39 +14,41 @@ if (obj === null) lert(objId + ' is null')
 obj.text = objLabel
 obj.style.display = 'inline'
 
-/*———————————————————————————————————————— obj.addEventListener('mouseup', (evn) =>
+/*———————————————————————————————————————— listener function
 
-  --aboutBG1       :hsl(29 90%  20%);
-  --aboutVersion1  :hsl(0  0%  81%);
-  --aboutPara1     :hsl(0  0%  81%);
-  --aboutButtons1  :hsl(0  0%  81%);
-
-    will be utilised for Verify, forms etc. */
+  opens folder based on localStorage lastPath */
 
 obj.addEventListener('mouseup', (evn) => {
+
+ // CSS
+  cssVarToCep('infoBg'+INTERFACE)
+  cssVarToCep('infoVersion'+INTERFACE)
+  cssVarToCep('infoParagraph'+INTERFACE)
+  cssVarToCep('infoUsage'+INTERFACE)
+  cssVarToCep('infoButtons'+INTERFACE)
+
+  para1line1 = TRANSLATE.startupTime + STARTUPTIME
+  para1line2 = TRANSLATE.memoryUsed + USEDHEAP
+
+  para2line1 = TRANSLATE.infoText1
+  para2line2 = TRANSLATE.infoText2
+
+  varToCep('para1line1', para1line1)
+  varToCep('para1line2', para1line2)
+  varToCep('para2line1', para2line1)
+  varToCep('para2line2', para2line2)
+
   var alt = evn.altKey
-
-
-//varToCep('LANG')
-//varToCep('INTERFACE')
-//varToCep('ACCENTBRIGHT')
-//varToCep('ACCENTDIM')
-
-//cssVarToCep('aboutBG'          )
-//cssVarToCep('aboutVersion'     )
-//cssVarToCep('aboutParagraph'   )
-//cssVarToCep('aboutInstructions')
-//cssVarToCep('aboutButtons'     )
-
   var extensionPath = CEP.getSystemPath(SystemPath.EXTENSION)
   var cmd = 'infoDialog("' + extensionPath + '")'
-  CEP.evalScript(cmd, setSource)
+  elapse(50, `CEP: ${cmd}`)
+  CEP.evalScript(cmd, infoDialogCallback)
 })
 
 
 /*:::::::::::::::::::::::::::::::::::::::: functions */
 
-/*———————————————————————————————————————— setSource(source)
+/*———————————————————————————————————————— infoDialogCallback(source)
 
     receives a string from source.jsx
 
@@ -55,29 +57,9 @@ obj.addEventListener('mouseup', (evn) => {
     2 = beta
     3 = master   */
 
-function setSource(source){
-  elapse(59, "SUCCESS: info.jsx —› info.js")
+function infoDialogCallback(source){
+  elapse(59, `infoDialogCallback received ${source}`)
   return
-  if (        source == ''          ) return true // user canceled
-  if ( typeof source == 'undefined' ) return true // should not happen
-
-  if (isNaN(source) || '1'>source || '3'<source){
-    elapse(73, `            setSource() — invalid source; settings.jsx returned ${source}`)
-    return true
-  }
-
-  elapse(77, `            setSource() — source changed to ${sh_sourceName(source)}`)
-
-  switch(source){
-    case '1':
-    case '2':
-    case '3':
-      sh_launchUpdate(source)
-      break
-
-    default :
-      lert('Invalid Source\nsettings.jsx returned ' + source)
-  }
 }
 
 

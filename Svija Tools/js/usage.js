@@ -4,16 +4,17 @@
 //———————————————————————————————————————— startup time
 
 var d = new Date()
-var t = d.getTime() - TIMER
-str = 'startup took '+t+'ms'
+var STARTUPTIME = d.getTime() - TIMER + ' ms'
+str = 'startup took '+STARTUPTIME
 elapse(8, str)
 
 //———————————————————————————————————————— javascript use
 
+var USEDHEAP = 'n/a'
+
 if (performance && performance.memory) {
-  elapse(14, 'usedJSHeapSize: '+performance.memory.usedJSHeapSize/1000000   +' MB')
-//elapse(15, 'totalJSHeapSize: '+performance.memory.totalJSHeapSize/1000000+' MB')
-//elapse(16, 'jsHeapSizeLimit: '+performance.memory.jsHeapSizeLimit/1000000+' MB')
+  USEDHEAP = performance.memory.usedJSHeapSize/1000000   +' ' + TRANSLATE.mb
+  elapse(14, 'usedJSHeapSize: '+USEDHEAP)
 }
 
 

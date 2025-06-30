@@ -20,9 +20,9 @@ if (typeof localStorage.siteUrl != 'undefined')
 if (typeof localStorage.synchPath != 'undefined')
   SYNCPATH = localStorage.synchPath
 
-varToCep('LASTPATH' )
-varToCep('SITEURL'  )
-varToCep('SYNCPATH' )
+varToCep('LASTPATH', LASTPATH)
+varToCep('SITEURL' , SITEURL )
+varToCep('SYNCPATH', SYNCPATH)
 
 //———————————————————————————————————————— request info from CEP
 
@@ -55,6 +55,8 @@ function projectInfoCallback(arg){
   }
     
   //—————————————————————————————————————— parse JSON
+
+//elapse(59, arg)
 
 //elapse(33, `projectInfoCallback received JSON`)
   var results = JSON.parse(arg)

@@ -121,6 +121,8 @@ found via https://community.adobe.com/t5/premiere-pro-discussions/looking-to-act
 
 https://community.adobe.com/t5/illustrator-discussions/set-unit-preferences-javascript/m-p/6369389
 
+info about SVG icons: https://forums.adobeprerelease.com/illustratorpr/discussion/1610/svg-icon-requirements
+
 ![](images/divider.jpg "————————————————————————————————————————")
 
 ![](images/shadow.jpg "————————————————————————————————————————")

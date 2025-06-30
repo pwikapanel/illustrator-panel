@@ -21,18 +21,10 @@ function lert(msg){
     currently JSON is sent in stringified format */
 
 
-function varToCep(varName){
-
-  //—————————————————————————————————————— varName doesn't exist
-
-  if (typeof window[varName] == 'undefined'){
-    elapse(32, `${varName} is not defined (utilities.js)`)
-    return
-  }
+function varToCep(varName, val){
 
   //—————————————————————————————————————— initialization
 
-  var val = window[varName]
   var cepVal
 
   //—————————————————————————————————————— boolean
@@ -61,7 +53,7 @@ function varToCep(varName){
 
     JSONCOUNT = 0
     var str = JSON.stringify(val)
-    cepVal = 'ut_decodeJSON("' + encodeURI(str) + '")'
+    cepVal = 'decodeJSON("' + encodeURI(str) + '")'
   }
 
   //—————————————————————————————————————— string
@@ -73,13 +65,15 @@ function varToCep(varName){
   //—————————————————————————————————————— impossible to discover
 
   if (typeof cepVal == 'undefined'){
-    elapses(75, `impossible to create value from varName ${varName}`)
+    elapse(75, `impossible to create value from varName ${varName}`)
     return true
   }
 
 
-  var cepString = varName + '=' + cepVal
+  var cepString = 'var ' + varName + '=' + cepVal
   CEP.evalScript(cepString)
+  elapse(83, `CEP: ${cepString}`)
+  
 }
 
 /*———————————————————————————————————————— enableObject(objId)

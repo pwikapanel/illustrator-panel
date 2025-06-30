@@ -1,6 +1,6 @@
 #target illustrator  
 
-//:::::::::::::::::::::::::::::::::::::::: info.js / info.jsx
+//:::::::::::::::::::::::::::::::::::::::: info.css .js .jsx
 
 /*———————————————————————————————————————— notes
 
@@ -15,33 +15,17 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: program */
 
+// it's not clear how panel size affects image size
+
+//alert(27)
+
 function infoDialog(extensionPath){
-
-  var source = 'source'
-  var TOOLSVERSION = 'TOOLSVERSION'
-  var srcLabel = 'srcLabel'
-  var AIVERSION = 'AIVERSION'
-  var INTERFACE = 1
-
-/* sent from source.js 
-
-        transmitToCEP('AIVERSION'    , AIVERSION )
-        transmitToCEP('LANG'         , LANG      )
-        transmitToCEP('DICTIONARY'   , DICTIONARY)
-        transmitToCEP('INTERFACE'    , INTERFACE )
-        transmitToCEP('ACCENTDIM'    , localStorage.ACCENTDIM )
-  ut_transmitCSStoCEP('aboutBG')
-  ut_transmitCSStoCEP('aboutVersion')
-  ut_transmitCSStoCEP('aboutParagraph')
-  ut_transmitCSStoCEP('aboutInstructions')
-  ut_transmitCSStoCEP('aboutButtons') */
-
 
   //———————————————————— image scaling function
 
   Image.prototype.onDraw = function() { // written by Marc Autret · 1906 Beginning ScriptUI.pdf
   
-    // "this" is the container
+    // "this" is the container (it would be "window" in regular JS)
     // "this.image" is the graphic
 
     if( !this.image ) return '';
@@ -63,224 +47,129 @@ function infoDialog(extensionPath){
 
   panel = new Window ('dialog', 'Svija Tools Settings', undefined, {resizeable: false, borderless: true, closeButton: false})
 
-  panel.preferredSize = [500, 292] // +28px where title bar was
-  panel.margins       = [0, 0, 0, 0]
+  panel.preferredSize = [500, 250]    // +28px where title bar was // height is not used because it's forced by contents
+  panel.margins       = [40, 0, 0, 0] // left top right bottom // like padding in CSS — affects contents of shape
   panel.orientation   = 'row'
   panel.alignChildren = ['fill', 'fill']
   panel.spacing       = 0
   
   //———————————————————— splash image
 
-  var imgPath = extensionPath + '/png/splash_190x292.png'
-
-  var splash = panel.add ("image", undefined, File (imgPath));
-
-  splash.size    = [190,292]
-  splash.margins = [0, 0, 0, 0]
-  splash.spacing = 0
+  var imgPath = extensionPath + '/png/vecteezy-374998.png'
+  var splash  = panel.add ("image", undefined, File (imgPath));
+  splash.size = [87,250]      // half of actual resolution for retina
   
   //———————————————————— right content group
   
   var content = panel.add ('group');
-  content.spacing=0
+
+  content.spacing       = 0
   content.orientation   = 'column'
-  content.preferredSize = [310,292]
-  content.margins = [0, 0, 0, 0]
-  
+  content.alignment     = 'center'
+  content.preferredSize = [310,250]
+  content.margins       = [0, 0, 8, 0] // left top right bottom
+
 
   //:::::::::::::::::::: right-side content blocks
 
-  //———————————————————— version
+  //———————————————————— version info
   
    var version = content.add('group')
-   version.margins = [0, 8, 8, 0]
+   version.margins = [0, 8, 0, 0] // left top right bottom
    version.alignment = 'right'
    
    var  versionTxt = version.add ("statictext")
- 
-   versionTxt.text = "Version " + TOOLSVERSION + " " + srcLabel + " · Illustrator " + AIVERSION
+   versionTxt.text = "Svija Tools " + TOOLSVERSION + " · Illustrator " + AIVERSION
    
    //———————————————————— logo
    
   var logo = content.add('group')
-  logo.margins = [32, 25, 16, 0]
-  logo.alignment = 'left'
+  logo.margins = [0, 40, 0, 0] // left top right bottom
   
   var imgPath  = extensionPath + '/png/splash_213x61_' + INTERFACE + '.png'
   var logoImg  = logo.add ("image", undefined, File (imgPath));
   logoImg.size = [213,61]
 
-  //———————————————————— paragraph
+  //———————————————————— paragraph 1
 
   // separate lines because only single lines can be centered
 
   var para = content.add('group')
-  para.margins = [0, 28, 30, 0]
+  para.margins = [0, 20, 0, 0] // left top right bottom
   para.alignment = 'center'
   para.orientation = 'column'
-  para.spacing   = 2
+  para.spacing   = 5 // line height
 
   var  paraLine1 = para.add ("statictext")
   var  paraLine2 = para.add ("statictext")
 
-  paraLine1.text = "The stable release is best for most users. If you"
-  paraLine2.text = "use the beta release, let us know how it goes!"
+  paraLine1.text = para1line1
+  paraLine2.text = para1line2
 
-  //———————————————————— instructions
+  //———————————————————— paragraph 2
 
-  var instructions = content.add('group')
-  instructions.margins = [0, 18, 33, 0]
-  instructions.alignment = 'center'
+  // separate lines because only single lines can be centered
 
-  var  instructionsTxt = instructions.add ("statictext")
+  var usage = content.add('group')
+  usage.margins = [0, 10, 0, 0] // left top right bottom
+  usage.alignment = 'center'
+  usage.orientation = 'column'
+  usage.spacing   = 5 // line height
 
-  instructionsTxt.text = "Choose the release you would like to use:"
+  var  usageLine1 = usage.add ("statictext")
+  var  usageLine2 = usage.add ("statictext")
 
-  //———————————————————— radio buttons
+  usageLine1.text = para2line1
+  usageLine2.text = para2line2
 
-  var radio = content.add('group')
-  radio.margins = [92, 8, 0, 0]
-  radio.alignment = 'left'
+  //———————————————————— OK button
 
-  radio.alignChildren = 'left'
-  radio.orientation   = 'column'
-  radio.spacing       = 2
+  //var buttons = content.add('group', [0,0,310, 38])
+  var buttons = content.add('group')
 
-  radioButton0 = radio.add ("radiobutton", undefined, "Stable Release")
-  radioButton1 = radio.add ("radiobutton", undefined, "Beta Release")
-
-  if (source == 3)
-    radioButton0.value = true
-  else
-    radioButton1.value = true
-
-  //———————————————————— cancel & apply buttons
-
-  var buttons = content.add('group', [0,0,310, 38])
-
-  buttons.margins = [0, 18, 32, 0]
-  buttons.alignment = 'left'
+  buttons.margins = [0, 10, 0, 0] // left top right bottom
+  buttons.alignment = 'right'
 
   buttons.orientation = 'row'
-  buttons.spacing = 50
+//buttons.spacing = 50
 
-  cancelButton = buttons.add ("button", undefined, "Cancel")
-  applyButton  = buttons.add ("button", undefined, "Apply")
+  applyButton  = buttons.add ("button", undefined, "OK")
+//cancelButton = buttons.add ("button", undefined, "Cancel")
 
   applyButton.alignment  = ['', 'fill']  // permits smaller buttons
-  cancelButton.alignment = ['', 'fill']
 
-  //———————————————————— colors NOT IMPLEMENTED
+  //———————————————————— imported colors
 
-//    var panelBGcolor    =           panel.graphics.newBrush (        panel.graphics.BrushType.SOLID_COLOR, aboutBG             )
-//    var versionTxtColor =      versionTxt.graphics.newPen   (     versionTxt.graphics.PenType.SOLID_COLOR, aboutVersion     , 1)
-//    var para1TxtColor   =       paraLine1.graphics.newPen   (      paraLine1.graphics.PenType.SOLID_COLOR, aboutParagraph   , 1)
-//    var para2TxtColor   =       paraLine1.graphics.newPen   (      paraLine2.graphics.PenType.SOLID_COLOR, aboutParagraph   , 1)
-//    var instrTxtColor   = instructionsTxt.graphics.newPen   (instructionsTxt.graphics.PenType.SOLID_COLOR, aboutInstructions, 1)
-//  
-//            panel.graphics.backgroundColor = panelBGcolor
-//       versionTxt.graphics.foregroundColor = versionTxtColor
-//        paraLine1.graphics.foregroundColor = para1TxtColor
-//        paraLine2.graphics.foregroundColor = para2TxtColor
-//  instructionsTxt.graphics.foregroundColor = instrTxtColor
+  var infoBg           = this['infoBg'+INTERFACE]
+  var infoVersion      = this['infoVersion'+INTERFACE]
+  var infoParagraph    = this['infoParagraph'+INTERFACE]
+  var infoUsage        = this['infoUsage'+INTERFACE]
+  var infoButtons      = this['infoButtons'+INTERFACE]
 
-/* foregroundColor
-Object
-The foregroundcolorfora container,orthe parent foreground color ofa control element. A ScriptUIPen object.
+  //———————————————————— colors
+  // it's not possible to style buttons
 
+  var panelBGcolor = panel.graphics.newBrush(panel.graphics.BrushType.SOLID_COLOR, infoBg, 1)
+  panel.graphics.backgroundColor = panelBGcolor
 
-backgroundColor
-Object
-The background colorof acontainer,orthe parentbackground colorfor acontrolelement. A ScriptUIBrush object.
-*/
-//  
-//    try{
-//    
-//    var radioBGcolor = radio.graphics.newBrush(radio.graphics.BrushType.SOLID_COLOR, aboutInstructions, 0)
-//    var radioColor   = radio.graphics.newPen  (  radio.graphics.PenType.SOLID_COLOR, aboutInstructions, 1)
-//  
-//    //radio.graphics.backgroundColor = radioBGcolor
-//    //radio.graphics.foregroundColor = radioColor
-//    
-//    } catch(msg){alert(msg)}
+  var versionTxtColor =      versionTxt.graphics.newPen   (     versionTxt.graphics.PenType.SOLID_COLOR, infoVersion,       1)
+  var paraTxtColor    =       paraLine1.graphics.newPen   (      paraLine1.graphics.PenType.SOLID_COLOR, infoParagraph,     1)
+  var usageTxtColor   =      usageLine1.graphics.newPen   (     usageLine1.graphics.PenType.SOLID_COLOR, infoUsage,         1)
 
-  /*———————————————————— 2210 Javascript Tools Guide CC (UI).pdf
-
-     if the user changes the state of a Checkbox or Radio Button,
-     the new state is found in the control’s value property
-
-     if you need to respond to a user action while the dialog is still
-     active, you must assign the control a callback function for the
-     interaction event, either onClick or onChange. The callback function
-     is the value of the onClick or onChange property of the control.
-
-     Sometimes, a modal dialog presents choices to the user that must be
-     correct before your script allows the dialog to be dismissed. If your
-     script needs to validate the state of a dialog after the user clicks
-     OK, you can define an onClose event handler for the dialog. This
-     callback function is invoked whenever a window is closed. If the
-     function returns true,the window is closed, but if it returns false,
-     the close operation is cancelled and the window remains open.
-
-     You can define onClick callbacks for the buttons that close the
-     parent dialog by calling its close method. You have the option of
-     sending a value to the close method, which is in turn passed on to
-     and returned from the show method that invoked the dialog. This
-     return value allows your script to distinguish different closing
-     events; for example, clicking OK can return 1, clicking Cancel can
-     return 2.
-
-     ——————————————————————————————————————————————————————————————————
-
-     defaults
-
-     To determine which control is notified by which keyboard shortcut,
-     set the Dialog object’s defaultElement and cancelElement properties.
-     The value is the control object that should be notified when the user
-     types the associated keyboard shortcut.
-
-     For buttons assigned as the defaultElement,if there is no onClick
-     handler associated with the button, clicking the button or typing
-     ENTER calls the parent dialog’s close method, passing a value of 1
-     to be returned by the "show" call that opened the dialog.
-
-     For buttons assigned as the cancelElement,if there is no onClick
-     handler associated with the button, clicking the button or typing
-     ESC calls the parent dialog’s close method, passing a value of 2
-     to be returned by the show call that opened the dialog.
-
-     If you do not set the defaultElement and cancelElement properties
-     explicitly,ScriptUI tries to choose reasonable defaults when the
-     dialog is about to be shown for the first time. For the default
-     element, it looks for a button whose name or text value is "ok"
-     (disregarding case). For the cancel element, it looks for a button
-     whose name or text value is "cancel" (disregarding case).  */
-
+  versionTxt.graphics.foregroundColor = versionTxtColor
+   paraLine1.graphics.foregroundColor = paraTxtColor
+   paraLine2.graphics.foregroundColor = paraTxtColor
+  usageLine1.graphics.foregroundColor = usageTxtColor
+  usageLine2.graphics.foregroundColor = usageTxtColor
 
   //———————————————————— button functionality
 
-  radioButton0.active = true
-  radioButton0.onClick = function(e){
-    var alt   = ScriptUI.environment.keyboardState.altKey
-    var shift = ScriptUI.environment.keyboardState.shiftKey
-
-    source = 3
-  }
-
-  radioButton1.onClick = function(e){
-    var alt   = ScriptUI.environment.keyboardState.altKey
-    var shift = ScriptUI.environment.keyboardState.shiftKey
-
-    if (alt) source = 1
-    else source = 2
-  }
-
   panel.defaultElement = applyButton
-  panel.cancelElement = cancelButton
+  //panel.cancelElement = cancelButton
 
 
-  if(panel.show() == 1) return "source"   // clicked apply
-  else return ''                          // clicked cancel
+  if(panel.show() == 1) return 'true'   // clicked apply
+  else return 'false'                   // clicked cancel
 
 }
 

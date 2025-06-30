@@ -151,7 +151,7 @@ function setPanelColor() { // did have (event) as arg
   }
 
   INTERFACE = code
-  varToCep('INTERFACE')
+  varToCep('INTERFACE', INTERFACE)
 
   document.body.id = "if_" + INTERFACE
 }
