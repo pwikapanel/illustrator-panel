@@ -110,7 +110,7 @@ function fetchFile(passthrough, path, callback) {
       function(text){
         if (text == '') throw new Error(`#615 - empty file: ${path}`)
         else{
-          elapse(185, `     successfully loaded ${passthrough}`)
+//        elapse(185, `     successfully loaded ${passthrough}`)
           callback(passthrough, text, path)
         }
       }
@@ -120,22 +120,6 @@ function fetchFile(passthrough, path, callback) {
        return
      }
    )
-}
-
-/*———————————————————————————————————————— fileToCep(passthrough, contents, path)
-
-     evaluates the contents of a file so that it will
-     be available in CEP */
-
-function fileToCep(passthrough, contents, path){
-
-  if (contents == ''){
-     elapse(108, `     ${passthrough} returned empty file`)
-     return
-  }
-
-  CEP.evalScript(contents)
-  elapse(111, `     ${passthrough} successfully evaluated in CEP`)
 }
 
 /*———————————————————————————————————————— dirListArray(dir, ext, lsName)

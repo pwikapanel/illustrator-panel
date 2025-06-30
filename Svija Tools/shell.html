@@ -56,19 +56,30 @@ window.addEventListener('error', (event)=>{
 
     used to make sure everything is efficient */
 
+console.log('msec  line#   comments...\n———————————————————————————————')
+
+var ELAPSEDEPTH = 0
 
 function elapse(line, str){
   var d = new Date()
   var t = d.getTime() - TIMER
-  str = fiveDigits(t, 5) + ' °' + fiveDigits(line, 4) + ' ' + str
+  str = fiveDigits(t, 5) + ' #' + fiveDigits(line, 4) + '   ' + str
   console.log(str)
 }
 
 function elapseGroup(line, str){
   var d = new Date()
   var t = d.getTime() - TIMER
-  str = fiveDigits(t, 5) + ' °' + fiveDigits(line, 4) + ' ' + str
+  str = fiveDigits(t, 5) + ' #' + fiveDigits(line, 4) + '   ' + str
   console.groupCollapsed(str)
+  ELAPSEDEPTH += 1
+}
+
+function elapseGroupEnd(line, str){
+  if (ELAPSEDEPTH == 0) return
+
+  console.groupEnd()
+  ELAPSEDEPTH -= 1
 }
 
 function fiveDigits(i, n){
@@ -76,7 +87,7 @@ function fiveDigits(i, n){
   return v.slice(0-n)
 }
 
-elapse(91, `starting Svija Tools`)
+elapse(88, `starting Svija Tools`)
 
 
   </script>

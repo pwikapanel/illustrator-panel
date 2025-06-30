@@ -1,8 +1,6 @@
 
 //:::::::::::::::::::::::::::::::::::::::: globalVariables.js
 
-console.groupEnd()
-
 //———————————————————————————————————————— initialize variables
 
 var TOOLSVERSION   = '1.0.7'   // string shown in info panel
@@ -28,9 +26,9 @@ var MAXWIDTH = 240   // number    width of panel
 var AIVERSION = HOSTENV.appVersion // illustrator version
 var ISMAC = CEP.getOSInformation().substring(0,3) == 'Mac' // boolean    macOS boolean · set in projectInfo.js
 
-elapse(28, `        variables initialized`)
-elapse(29, `        ISMAC=${ISMAC}`)
-elapse(30, `        AIVERSION=${AIVERSION}`)
+elapse(31, `variables initialized`)
+elapse(32, `ISMAC=${ISMAC}`)
+elapse(33, `AIVERSION=${AIVERSION}`)
 
 //———————————————————————————————————————— transmit valued to CEP
 
