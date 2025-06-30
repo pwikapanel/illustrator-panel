@@ -27,10 +27,10 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
 
 
-//transmitToCep('LANG')
-//transmitToCep('INTERFACE')
-//transmitToCep('ACCENTBRIGHT')
-//transmitToCep('ACCENTDIM')
+//varToCep('LANG')
+//varToCep('INTERFACE')
+//varToCep('ACCENTBRIGHT')
+//varToCep('ACCENTDIM')
 
 //cssVarToCep('aboutBG'          )
 //cssVarToCep('aboutVersion'     )

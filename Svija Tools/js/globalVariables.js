@@ -34,8 +34,8 @@ elapse(30, `        AIVERSION=${AIVERSION}`)
 
 //———————————————————————————————————————— transmit valued to CEP
 
-transmitToCep('ISMAC'    )
-transmitToCep('AIVERSION')
+varToCep('ISMAC'    )
+varToCep('AIVERSION')
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

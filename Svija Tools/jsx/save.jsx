@@ -6,7 +6,7 @@
 
     provides an alert if errors or warnings
     otherwise returns a success message displayed
-    by paletteAlert */
+    by alertPalette */
 
 //———————————————————————————————————————— global CEP variables
 

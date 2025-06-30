@@ -1,23 +1,9 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: panelManager.js */
 
-// https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_10.x/Documentation/CEP%2010.0%20HTML%20Extension%20Cookbook.md
-
-// disable context menu
-
-var menuXML = '<Menu> \
-  <MenuItem Id="reloadPanel" Label="Svija Tools" Enabled="false" Checked="false"/> \
-</Menu>';
-
-CEP.setContextMenu(menuXML, flyoutMenuCallback)
-
-function flyoutMenuCallback(event){
-
-lert(event)
-}
-
-
 /*———————————————————————————————————————— notes
+
+    https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_10.x/Documentation/CEP%2010.0%20HTML%20Extension%20Cookbook.md
 
     manages size, color & content
 
@@ -26,6 +12,15 @@ lert(event)
     - less
     - more
     - closed */
+
+//———————————————————————————————————————— disable context menu
+
+var menuXML = '<Menu> \
+  <MenuItem Id="reloadPanel" Label="Svija Tools" Enabled="false" Checked="false"/> \
+</Menu>';
+
+CEP.setContextMenu(menuXML, flyoutMenuCallback)
+function flyoutMenuCallback(event){ lert(event) }
 
 //———————————————————————————————————————— initialize more status
 
@@ -156,6 +151,7 @@ function setPanelColor() { // did have (event) as arg
   }
 
   INTERFACE = code
+  varToCep('INTERFACE')
 
   document.body.id = "if_" + INTERFACE
 }

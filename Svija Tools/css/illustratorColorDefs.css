@@ -1,77 +1,64 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: colors
 
-   based on id "if_1" given to body tag
-  
    see Illustrator panel colors.ai
 
-   these fields are not in a consistant order:
+   these fields are not in a consistant order
+   from dark to light:
 
      --labelDisabled
      --panelBgDark 
      --panelBorder   */
 
-#if_0 { /* interface 0 */
+:root {
 
-  --fieldContents :hsl(0  0%  81%);
-  --labelText     :hsl(0  0%  66%);
-  --checkedBox    :hsl(0  0%  60%);
-  --hamburger     :hsl(0  0%  50%);
-  --labelDisabled :hsl(0  0%  40%);
-  --inputBorder   :hsl(0  0%  24%);
-  --panelBg       :hsl(0  0%  20%);
-  --pulldown      :hsl(0  0%  16%);
-  --inputField    :hsl(0  0%  15%);
-  --panelBgDark   :hsl(0  0%  15%);
-  --panelBorder   :hsl(0  0%  13%);
+  --fieldContents0 :hsl(0  0%  81%);
+  --labelText0     :hsl(0  0%  66%);
+  --checkedBox0    :hsl(0  0%  60%);
+  --hamburger0     :hsl(0  0%  50%);
+  --labelDisabled0 :hsl(0  0%  40%);
+  --inputBorder0   :hsl(0  0%  24%);
+  --panelBg0       :hsl(0  0%  20%);
+  --pulldown0      :hsl(0  0%  16%);
+  --inputField0    :hsl(0  0%  15%);
+  --panelBgDark0   :hsl(0  0%  15%);
+  --panelBorder0   :hsl(0  0%  13%);
 
-}
+  --fieldContents1 :hsl(0  0% 100%);
+  --labelText1     :hsl(0  0%  82%);
+  --checkedBox1    :hsl(0  0%  78%);
+  --hamburger1     :hsl(0  0%  65%);
+  --labelDisabled1 :hsl(0  0%  54%);
+  --inputBorder1   :hsl(0  0%  37%);
+  --panelBg1       :hsl(0  0%  33%);
+  --pulldown1      :hsl(0  0%  29%);
+  --inputField1    :hsl(0  0%  27%);
+  --panelBgDark1   :hsl(0  0%  26%);
+  --panelBorder1   :hsl(0  0%  22%);
 
-#if_1 { /* interface 1 */
+  --fieldContents2 :hsl(0  0%  13%);
+  --labelText2     :hsl(0  0%  19%);
+  --checkedBox2    :hsl(0  0%  29%);
+  --hamburger2     :hsl(0  0%  32%);
+  --labelDisabled2 :hsl(0  0%  79%); /* inconsistant */
+  --inputBorder2   :hsl(0  0%  66%);
+  --panelBg2       :hsl(0  0%  73%);
+  --pulldown2      :hsl(0  0%  77%);
+  --inputField2    :hsl(0  0%  89%);
+  --panelBgDark2   :hsl(0  0%  64%);
+  --panelBorder2   :hsl(0  0%  58%);
 
-  --fieldContents :hsl(0  0% 100%);
-  --labelText     :hsl(0  0%  82%);
-  --checkedBox    :hsl(0  0%  78%);
-  --hamburger     :hsl(0  0%  65%);
-  --labelDisabled :hsl(0  0%  54%);
-  --inputBorder   :hsl(0  0%  37%);
-  --panelBg       :hsl(0  0%  33%);
-  --pulldown      :hsl(0  0%  29%);
-  --inputField    :hsl(0  0%  27%);
-  --panelBgDark   :hsl(0  0%  26%);
-  --panelBorder   :hsl(0  0%  22%);
-
-}
-
-#if_2 { /* interface 2 */
-
-  --fieldContents :hsl(0  0%  13%);
-  --labelText     :hsl(0  0%  19%);
-  --checkedBox    :hsl(0  0%  29%);
-  --hamburger     :hsl(0  0%  32%);
-  --labelDisabled :hsl(0  0%  79%); /* inconsistant */
-  --inputBorder   :hsl(0  0%  66%);
-  --panelBg       :hsl(0  0%  73%);
-  --pulldown      :hsl(0  0%  77%);
-  --inputField    :hsl(0  0%  89%);
-  --panelBgDark   :hsl(0  0%  64%);
-  --panelBorder   :hsl(0  0%  58%);
-
-}
-
-#if_3 { /* interface 3 */
-
-  --fieldContents :hsl(0  0%  30%);
-  --labelText     :hsl(0  0%  35%);
-  --checkedBox    :hsl(0  0%  43%);
-  --hamburger     :hsl(0  0%  47%);
-  --labelDisabled :hsl(0  0%  80%);
-  --inputBorder   :hsl(0  0%  85%);
-  --panelBg       :hsl(0  0%  94%);
-  --pulldown      :hsl(0  0%  98%);
-  --inputField    :hsl(0  0%  98%);
-  --panelBgDark   :hsl(0  0%  86%); /* inconsistant */
-  --panelBorder   :hsl(0  0%  80%); /* inconsistant */
+  --fieldContents3 :hsl(0  0%  30%);
+  --labelText3     :hsl(0  0%  35%);
+  --checkedBox3    :hsl(0  0%  43%);
+  --hamburger3     :hsl(0  0%  47%);
+  --labelDisabled3 :hsl(0  0%  80%);
+  --inputBorder3   :hsl(0  0%  85%);
+  --panelBg3       :hsl(0  0%  94%);
+  --pulldown3      :hsl(0  0%  98%);
+  --inputField3    :hsl(0  0%  98%);
+  --panelBgDark3   :hsl(0  0%  86%); /* inconsistant */
+  --panelBorder3   :hsl(0  0%  80%); /* inconsistant */
 
 }
 

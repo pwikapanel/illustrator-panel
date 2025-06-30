@@ -51,8 +51,6 @@ body{
   color:#bbb;
 }
 
-/*:::::::::::::::::::::::::::::::::::::::: fin */
-
 /*:::::::::::::::::::::::::::::::::::::::: news */
 
     /* <div id="newsBanner">
@@ -63,5 +61,72 @@ div#newsDiv{
 }
 
 
+/*:::::::::::::::::::::::::::::::::::::::: body colors */
+
+#if_0 { /* interface 0 */
+
+  --fieldContents :var(--fiendContents0);
+  --labelText     :var(--labelText0);
+  --checkedBox    :var(--checkedBox0);
+  --hamburger     :var(--hamburger0);
+  --labelDisabled :var(--labelDisabled0);
+  --inputBorder   :var(--inputBorder0);
+  --panelBg       :var(--panelBg0);
+  --pulldown      :var(--pulldown0);
+  --inputField    :var(--inputField0);
+  --panelBgDark   :var(--panelBgDark0);
+  --panelBorder   :var(--panelBorder0);
+
+}
+
+#if_1 { /* interface 1 */
+
+  --fieldContents :var(--fiendContents1);
+  --labelText     :var(--labelText1);
+  --checkedBox    :var(--checkedBox1);
+  --hamburger     :var(--hamburger1);
+  --labelDisabled :var(--labelDisabled1);
+  --inputBorder   :var(--inputBorder1);
+  --panelBg       :var(--panelBg1);
+  --pulldown      :var(--pulldown1);
+  --inputField    :var(--inputField1);
+  --panelBgDark   :var(--panelBgDark1);
+  --panelBorder   :var(--panelBorder1);
+
+}
+
+#if_2 { /* interface 2 */
+
+  --fieldContents :var(--fiendContents2);
+  --labelText     :var(--labelText2);
+  --checkedBox    :var(--checkedBox2);
+  --hamburger     :var(--hamburger2);
+  --labelDisabled :var(--labelDisabled2); /* inconsistant */
+  --inputBorder   :var(--inputBorder2);
+  --panelBg       :var(--panelBg2);
+  --pulldown      :var(--pulldown2);
+  --inputField    :var(--inputField2);
+  --panelBgDark   :var(--panelBgDark2);
+  --panelBorder   :var(--panelBorder2);
+
+}
+
+#if_3 { /* interface 3 */
+
+  --fieldContents :var(--fiendContents3);
+  --labelText     :var(--labelText3);
+  --checkedBox    :var(--checkedBox3);
+  --hamburger     :var(--hamburger3);
+  --labelDisabled :var(--labelDisabled3);
+  --inputBorder   :var(--inputBorder3);
+  --panelBg       :var(--panelBg3);
+  --pulldown      :var(--pulldown3);
+  --inputField    :var(--inputField3);
+  --panelBgDark   :var(--panelBgDark3); /* inconsistant */
+  --panelBorder   :var(--panelBorder3); /* inconsistant */
+
+}
+
 /*:::::::::::::::::::::::::::::::::::::::: fin */
+
 

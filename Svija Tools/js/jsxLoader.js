@@ -14,7 +14,7 @@
   'createGroup.jsx',
   'json.jsx',
   'open.jsx',
-  'paletteAlert.jsx',
+  'alertPalette.jsx',
   'projectInfo.jsx',
   'reopen.jsx',
   'save.jsx',

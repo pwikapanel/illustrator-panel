@@ -31,7 +31,7 @@ obj.addEventListener('mouseup', (evn) => {
 
 function saveCallback(arg){
   elapse(30, `saveCallback() received "${arg}"`)
-  if (arg != '') paletteAlert(arg)
+  if (arg != '') alertPalette(arg)
 }
 
 

@@ -1,6 +1,6 @@
 #target illustrator
 
-//:::::::::::::::::::::::::::::::::::::::: paletteAlert .css .js .jsx
+//:::::::::::::::::::::::::::::::::::::::: alertPalette .css .js .jsx
 
 // see also jsx/settings.jsx
 
@@ -24,7 +24,7 @@
 
 var progBar
 
-function paletteAlert(arg){
+function alertPalette(arg){
 
   //———————————————————— create palette
 

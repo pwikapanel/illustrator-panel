@@ -13,7 +13,7 @@ function lert(msg){
   CEP.evalScript('alert("' + msg + '")')
 }
 
-/*———————————————————————————————————————— transmitToCep(varName, val)
+/*———————————————————————————————————————— varToCep(varName, val)
 
     DOESN'T HANDLE ARRAYS
 
@@ -21,7 +21,7 @@ function lert(msg){
     currently JSON is sent in stringified format */
 
 
-function transmitToCep(varName){
+function varToCep(varName){
 
   //—————————————————————————————————————— varName doesn't exist
 

@@ -20,9 +20,9 @@ if (typeof localStorage.siteUrl != 'undefined')
 if (typeof localStorage.synchPath != 'undefined')
   SYNCPATH = localStorage.synchPath
 
-transmitToCep('LASTPATH' )
-transmitToCep('SITEURL'  )
-transmitToCep('SYNCPATH' )
+varToCep('LASTPATH' )
+varToCep('SITEURL'  )
+varToCep('SYNCPATH' )
 
 //———————————————————————————————————————— request info from CEP
 

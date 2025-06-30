@@ -33,7 +33,7 @@ var specialObjId = objID
 
 function saveCallback(arg){
   elapse(30, `saveCallback() received "${arg}"`)
-  if (arg != '') paletteAlert(arg)
+  if (arg != '') alertPalette(arg)
   setTimeout(enableInput.bind(null, 'butt43'), 1500)
 //setTimeout(functions[name].bind(null, ...args), triggers.delay*1000)
 }
