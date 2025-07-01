@@ -68,10 +68,10 @@ function showMore(){
    linkMore.style.display = 'none'
 
     mainDiv.style.display = 'block'
-  bottomBar.style.display = 'block'
+  bottomDiv.style.display = 'block'
   closedDiv.style.display = 'none'
 
-  setPanelSize('bottomBar')
+  setPanelSize('bottomDiv')
 }
 
 /*———————————————————————————————————————— showLess()
@@ -87,10 +87,10 @@ function showLess(){
    linkLess.style.display   = 'none'
 
       mainDiv.style.display = 'block'
-    bottomBar.style.display = 'block'
+    bottomDiv.style.display = 'block'
   closedDiv.style.display   = 'none'
 
-  setPanelSize('bottomBar')
+  setPanelSize('bottomDiv')
 }
 
 /*———————————————————————————————————————— showClosed()
@@ -103,7 +103,7 @@ function showClosed(){
 
       moreDiv.style.display = 'none'
       mainDiv.style.display = 'none'
-    bottomBar.style.display = 'none'
+    bottomDiv.style.display = 'none'
 
   setPanelSize('closedDiv')
 }

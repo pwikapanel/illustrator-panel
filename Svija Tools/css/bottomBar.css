@@ -1,14 +1,14 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: bottom bar */
 
-div#bottomBar{
+div#bottomDiv{
   margin-top:6px;
   padding:0 9px 0 9px;
   padding-bottom:3px;
   height:14px;
 }
 
-div#bottomBar{
+div#bottomDiv{
   user-select: none;
   height:16px;
   width:207px;
@@ -20,25 +20,23 @@ div#bottomBar{
   border-right-style:solid;
 }
 
-div#bottomBar a{
+div#bottomDiv a{
   display:none;
   cursor:pointer;
   transition:0.3s;
 }
 
-/*———————————————————————————————————————— bottom bar */ 
-
-div#bottomBar{
+div#bottomDiv{
   background-color:var(--panelBgDark);
   border-top-color:var(--panelBorder);
   border-right-color:var(--panelBorder);
 }
 
-div#bottomBar span a:link{
+div#bottomDiv span a:link{
   color:var(--hamburger);
 }
 
-div#bottomBar a:hover{
+div#bottomDiv a:hover{
   color:var(--labelText);
 }
 
