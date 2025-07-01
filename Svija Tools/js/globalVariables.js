@@ -36,5 +36,35 @@ varToCep('ISMAC'       , ISMAC       )
 varToCep('TOOLSVERSION', TOOLSVERSION)
 varToCep('AIVERSION'   , AIVERSION   )
 
+/*———————————————————————————————————————— load & transmit AI CSS // TRANSMIT PART NOT IMPLEMENTED
+
+    load Illustrator CSS colors
+    see Illustrator panel colors.ai
+ 
+    these fields are not in a consistant order
+    from dark to light:
+
+    --labelDisabled
+    --panelBgDark 
+    --panelBorder   */
+
+
+var colorDefsJson = 'json/illustratorColorDefs.json'
+fetchFile ('illustratorColorDefs.json', colorDefsJson, installColors)
+elapse(17, `  requested ${colorDefsJson}`)
+
+function installColors(name, contents, path){
+
+  var cssVars = JSON.parse(contents)
+  const root = document.documentElement
+
+  cssVars.forEach(({ name, hsl }) => {
+    root.style.setProperty(`--${name}`, `hsl(${hsl})`)
+    cssVarToCep(name)
+    elapse(26, `--${name} set to hsl(${hsl})`)
+  })
+}
+
+
 //:::::::::::::::::::::::::::::::::::::::: fin
 

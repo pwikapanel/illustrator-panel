@@ -31,7 +31,6 @@ elapseGroupEnd()
 
 function fileToCep(passthrough, contents, path){
 
-
   if (ELAPSEDEPTH == 0){
     elapseGroup(37, 'importing JSX into CEP')
   }
