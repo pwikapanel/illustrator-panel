@@ -1,17 +1,19 @@
 
+/* vim: set foldmethod=marker fmr=/*—,;: */
+
 //:::::::::::::::::::::::::::::::::::::::: globalVariables.js
 
-//———————————————————————————————————————— initialize variables
+/*———————————————————————————————————————— initialize variables */
 
 var TOOLSVERSION   = '1.0.7'   // string shown in info panel
 var INTMS          = 500       // interval for the updating panel
-
-//———————————————————————————————————————— set in projectInfo.js
+;
+/*———————————————————————————————————————— set in projectInfo.js */
 
 var ISSVIJA  = false     // boolean    if fromtmost doc is a svija page (in a SYNC folder)
 var STYLE    = getComputedStyle(document.body) // provokes error
-
-//———————————————————————————————————————— more
+;
+/*———————————————————————————————————————— more */
 
 var LANG = 'fr'
 
@@ -29,14 +31,14 @@ var ISMAC = CEP.getOSInformation().substring(0,3) == 'Mac' // boolean    macOS b
 elapse(31, `variables initialized`)
 elapse(32, `ISMAC=${ISMAC}`)
 elapse(33, `AIVERSION=${AIVERSION}`)
-
-//———————————————————————————————————————— transmit valued to CEP
+;
+/*———————————————————————————————————————— transmit valued to CEP */
 
 varToCep('ISMAC'       , ISMAC       )
 varToCep('TOOLSVERSION', TOOLSVERSION)
 varToCep('AIVERSION'   , AIVERSION   )
-
-/*———————————————————————————————————————— load & transmit AI CSS // TRANSMIT PART NOT IMPLEMENTED
+;
+/*———————————————————————————————————————— load & transmit AI CSS
 
     load Illustrator CSS colors
     see Illustrator panel colors.ai
@@ -47,7 +49,6 @@ varToCep('AIVERSION'   , AIVERSION   )
     --labelDisabled
     --panelBgDark 
     --panelBorder   */
-
 
 var colorDefsJson = 'json/illustratorColorDefs.json'
 fetchFile ('illustratorColorDefs.json', colorDefsJson, installColors)
@@ -64,7 +65,7 @@ function installColors(name, contents, path){
     elapse(26, `--${name} set to hsl(${hsl})`)
   })
 }
-
+;
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

@@ -1,4 +1,6 @@
 
+/* vim: set foldmethod=marker fmr=/*\—,///: */
+
 /*:::::::::::::::::::::::::::::::::::::::: utilities.js */
 
 /*———————————————————————————————————————— lert(msg)
@@ -12,7 +14,7 @@ function lert(msg){
   console.log(msg)
   CEP.evalScript('alert("' + msg + '")')
 }
-
+///
 /*———————————————————————————————————————— varToCep(varName, val)
 
     DOESN'T HANDLE ARRAYS
@@ -114,58 +116,6 @@ function fetchFile(passthrough, path, callback) {
        return
      }
    )
-}
-
-/*———————————————————————————————————————— dirListArray(dir, ext, lsName)
-
-    using node adds approx. 1 second to startup time
-
-    returns a file list from a given local directory in
-    the plugin, containing files with a given extension
-
-    this can only be done at Illustrator startup, so we
-    store the result in localStorage
-
-    requires the following in manifest.xml:
- 
-     <CEFCommandLine>
-       <Parameter>--enable-nodejs</Parameter>
-     </CEFCommandLine>    */
-
-function dirListArray(dir, ext, lsName){
-
-  if (typeof localStorage[lsName] == 'undefined'){
-    elapse(134, `setting localStorage[${lsName}] to ''`)
-    localStorage[lsName] = ''
-  }
-
-  elapse(138, `typeof require: ${typeof require}, localStorage[lsName].length: ${localStorage[lsName].length}`)
-  if (typeof require != 'undefined' && localStorage[lsName].length == 0){
-
-    elapse(140, 'getting fresh directory listing')
-    var path    = CEP.getSystemPath(SystemPath.EXTENSION)
-    var fs      = require('fs')
-    var rawList = fs.readdirSync(path+'/'+dir)
-
-    var tempArray = []
-    for (x=0; x<rawList.length; x++)
-      if (rawList[x].slice(-3) == ext) tempArray.push(rawList[x])
-    
-    localStorage[lsName] = tempArray.join('|')
-  }
-  else
-    elapse(152, `directory listing in LS — didn't get fresh listing`)
-
-  if (typeof require == 'undefined' && localStorage[lsName].length == 0)
-    lert('Restart Illustrator\nFresh directory listing needed')
-  
-  if (!localStorage[lsName].includes('|')){
-    elapse(156, `returning empty directory listing`)
-    return []
-  }
-
-  elapse(159, `returning correct directory listing`)
-  return localStorage[lsName].split('|')
 }
 
 

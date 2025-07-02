@@ -1,5 +1,7 @@
 #target illustrator
 
+/* vim: set foldmethod=marker fmr=/*—,;: */
+
 //:::::::::::::::::::::::::::::::::::::::: alertPalette .css .js .jsx
 
 // see also jsx/settings.jsx
@@ -16,7 +18,7 @@
     groups can have margins & spacing */
 
 //  page 106 default & cancel elements
-
+;
 
 /*:::::::::::::::::::::::::::::::::::::::: program */
 
@@ -26,14 +28,17 @@ var progBar
 
 function alertPalette(arg){
 
-  //———————————————————— colors
+  /*———————————————————— colors */
 
-  var paletteBackground=this['alertBg' + INTERFACE]
-  var       paletteText=this['alertText' + INTERFACE]
-
+  var paletteBackground=this['labelText' + INTERFACE]
+  var       paletteText=this['panelBg' + INTERFACE]
+  ;
   //———————————————————— create palette
 
-  palette = new Window ('palette', " ", undefined, {resizeable: false, borderless: true, closeButton: false})
+//palette = new Window ('palette', " ", undefined, {resizeable: false, borderless: true, closeButton: false})
+
+  // to avoid title bar
+  palette = new Window ( 'dialog', ' ', undefined, {resizeable: false, borderless: true, closeButton: false})
 
   palette.margins = [0, 0, 0, 0]
   palette.spacing = 0
@@ -42,7 +47,7 @@ function alertPalette(arg){
   //———————————————————— container // necessary for onclick
 
   var div = palette.add('group')
-  div.preferredSize = [300, 30]
+  div.preferredSize = [300, 20]
   div.orientation   = 'column'
   div.spacing   = 2
   div.alignment = 'center'

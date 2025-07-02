@@ -1,7 +1,7 @@
 
-//:::::::::::::::::::::::::::::::::::::::: projectInfo.jsx / projectInfo.js
+/* vim: set foldmethod=marker fmr=/*—,;: */
 
-//———————————————————————————————————————— tests
+//:::::::::::::::::::::::::::::::::::::::: projectInfo.jsx / projectInfo.js
 
 /*———————————————————————————————————————— recover localStorage
 
@@ -23,13 +23,13 @@ if (typeof localStorage.synchPath != 'undefined')
 varToCep('LASTPATH', LASTPATH)
 varToCep('SITEURL' , SITEURL )
 varToCep('SYNCPATH', SYNCPATH)
-
-//———————————————————————————————————————— request info from CEP
+;
+/*———————————————————————————————————————— request info from CEP */
 
 setInterval(function(){
   CEP.evalScript('projectInfo()', projectInfoCallback)
 }, INTMS)
-
+;
 /*———————————————————————————————————————— setURL(arg)
 
     jsx/projectInfo.jsx:
@@ -41,27 +41,29 @@ setInterval(function(){
 
 function projectInfoCallback(arg){
 
-  //—————————————————————————————————————— set panel title
+  /*—————————————————————————————————————— set panel title */
 
   if (SITEURL != '')
     CEP.setWindowTitle(SITEURL)
-
-  //—————————————————————————————————————— guard no file open
+  ;
+  /*—————————————————————————————————————— guard no file open */
 
   if (arg == '' || !arg.includes(':')){
     ISSVIJA = false
     elapse(29, `projectInfoCallback arg has no : in it`)
     return true
   }
-    
-  //—————————————————————————————————————— parse JSON
+  ;
+  /*—————————————————————————————————————— parse JSON */
 
-//elapse(59, arg)
-
-//elapse(33, `projectInfoCallback received JSON`)
-  var results = JSON.parse(arg)
-
-  //—————————————————————————————————————— guards
+  try{
+    var results = JSON.parse(arg)
+  } catch(e){
+    elapse(65, `              projectInfoCallback received unparsable JSON:\n${arg}`) 
+    return true
+  }
+  ;
+  /*—————————————————————————————————————— guards */
 
   if (typeof results.isSvija == 'undefined'){
     elapse(38, "projectInfoCallback did not receive isSvija") 
@@ -82,15 +84,15 @@ function projectInfoCallback(arg){
     elapse(53, "projectInfoCallback did not receive lastPath") 
     return true
   }
-
-  //—————————————————————————————————————— not svija site
+  ;
+  /*—————————————————————————————————————— not svija site */
 
   if (results.isSvija == 'false'){
     ISSVIJA = false
     return
   }
-
-  //—————————————————————————————————————— is svija site
+  ;
+  /*—————————————————————————————————————— is svija site */
 
   ISSVIJA = true
 
@@ -102,11 +104,11 @@ function projectInfoCallback(arg){
 
   LASTPATH = results.lastPath
   localStorage.lastPath = LASTPATH
-
+  ;
 
 
 }
-
+;
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
