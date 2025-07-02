@@ -1,5 +1,5 @@
 
-/* vim: set foldmethod=marker fmr=/*—,;: */
+/* vim: set foldmethod=marker fmr=/*\—,///: */
 
 //:::::::::::::::::::::::::::::::::::::::: projectInfo.jsx / projectInfo.js
 
@@ -23,14 +23,14 @@ if (typeof localStorage.synchPath != 'undefined')
 varToCep('LASTPATH', LASTPATH)
 varToCep('SITEURL' , SITEURL )
 varToCep('SYNCPATH', SYNCPATH)
-;
+///
 /*———————————————————————————————————————— request info from CEP */
 
 setInterval(function(){
   CEP.evalScript('projectInfo()', projectInfoCallback)
 }, INTMS)
-;
-/*———————————————————————————————————————— setURL(arg)
+///
+/*———————————————————————————————————————— projectInfoCallback(arg)
 
     jsx/projectInfo.jsx:
 
@@ -44,8 +44,14 @@ function projectInfoCallback(arg){
   /*—————————————————————————————————————— set panel title */
 
   if (SITEURL != '')
-    CEP.setWindowTitle(SITEURL)
-  ;
+    var panelTitle = SITEURL
+
+    if (panelTitle.length > 22)
+      panelTitle=SITEURL.slice(0, 20)+'...'
+
+    elapse(52, `setting title to ${panelTitle}`)
+    CEP.setWindowTitle(panelTitle)
+  ///
   /*—————————————————————————————————————— guard no file open */
 
   if (arg == '' || !arg.includes(':')){
@@ -53,7 +59,7 @@ function projectInfoCallback(arg){
     elapse(29, `projectInfoCallback arg has no : in it`)
     return true
   }
-  ;
+  ///
   /*—————————————————————————————————————— parse JSON */
 
   try{
@@ -62,7 +68,7 @@ function projectInfoCallback(arg){
     elapse(65, `              projectInfoCallback received unparsable JSON:\n${arg}`) 
     return true
   }
-  ;
+  ///
   /*—————————————————————————————————————— guards */
 
   if (typeof results.isSvija == 'undefined'){
@@ -84,14 +90,14 @@ function projectInfoCallback(arg){
     elapse(53, "projectInfoCallback did not receive lastPath") 
     return true
   }
-  ;
+  ///
   /*—————————————————————————————————————— not svija site */
 
   if (results.isSvija == 'false'){
     ISSVIJA = false
     return
   }
-  ;
+  ///
   /*—————————————————————————————————————— is svija site */
 
   ISSVIJA = true
@@ -104,11 +110,11 @@ function projectInfoCallback(arg){
 
   LASTPATH = results.lastPath
   localStorage.lastPath = LASTPATH
-  ;
+  ///
 
 
 }
-;
+///
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

@@ -1,6 +1,6 @@
 #target illustrator  
 
-/* vim: set foldmethod=marker fmr=/*—,;: */
+/* vim: set foldmethod=marker fmr=/*\—,///: */
 
 /*:::::::::::::::::::::::::::::::::::::::: projectInfo.jsx / projectInfo.js */
 
@@ -15,14 +15,14 @@
     
     also sets global variables used in CEP
     with the same names, but ALL CAPS */
-;
+///
 /*———————————————————————————————————————— initialization */
 
 var ISSVIJA  = false // is current file part of a Svija project?
 var SYNCPATH = ''    // path to most recent SYNC folder, if any
 var SITEURL  = ''    // URL of most recent Svija site
 var LASTPATH = ''    // path to most recent svija site page (for reopen button)
-;
+///
 /*———————————————————————————————————————— projectInfo() */
 
 function projectInfo(){
@@ -47,7 +47,7 @@ function projectInfo(){
 
   return '{' + resArray.join(',') +'}'
 }
-;
+///
 
 /*:::::::::::::::::::::::::::::::::::::::: functions */
 
@@ -62,7 +62,7 @@ function isSvija(){
   if (currPath.indexOf('SYNC') > 0) return true
   else return false
 }
-;
+///
 /*———————————————————————————————————————— getSyncPath()
 
     returns real path of current SYNC folder
@@ -78,7 +78,7 @@ function getSyncPath(){
   res = res.substr(0, i) + 'SYNC'
   return res
 }
-;
+///
 /*———————————————————————————————————————— getSiteURL()
 
     using the frontmost document's location, returns
@@ -113,9 +113,13 @@ function getSiteURL(){
 
   fileObj.close()
 
+  // get rid of invisible line feed at end
+  if (res.charCodeAt(res.length-1) == 10)
+    res = res.slice(0,-1)
+
   return res
 }
-;
+///
 /*———————————————————————————————————————— getLastPath()
 
     returns real path of current document */
@@ -137,7 +141,7 @@ function getLastPath(){
 
   return res + app.activeDocument.name
 }
-;
+///
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
