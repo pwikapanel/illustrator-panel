@@ -123,9 +123,6 @@ function fetchFile(passthrough, path, callback) {
    )
 }
 ///
-
-/*:::::::::::::::::::::::::::::::::::::::: fin */
-
 /*———————————————————————————————————————— getLocalFile(passthrough, path, callback)
 
     https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri
@@ -194,7 +191,6 @@ function fetchLocal(file) {
   })
 }
 ///
-
 /*———————————————————————————————————————— alertPalette(arg)
 
     colors:
@@ -223,3 +219,27 @@ function alertPaletteCallback(arg){
   setTimeout(function(){ CEP.evalScript(cmd) }, alertSeconds * 1000)
 }
 ///
+/*———————————————————————————————————————— setDimAccentColor()
+
+    defines a dim version of the bright accent color */
+
+function setDimAccentColor(){
+
+  var hslString = STYLE.getPropertyValue(`--accentBright`)
+
+  var h = hslString.replace('hsl(', '').trim().split(',', 2)[0]
+  elapse(230, `h=${h}`) // WRONG BECAUSE THERE WAS NO COMMA IN THE STRING SO SPLIT DIDN'T WORK
+  var s = 20
+
+  var interfaceLuminosityl = [10, 25, 80, 90]
+  var l = interfaceLuminosityl[INTERFACE]
+
+  hslString = `hsl(${h}, ${s}%, ${l}%)`
+  elapse (237, `setting accentDim to ${hslString}`)
+  document.documentElement.style.setProperty('--accentDim',    hslString)
+  localStorage.accentDim = hslString
+}
+//////
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
+

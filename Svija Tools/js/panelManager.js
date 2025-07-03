@@ -55,21 +55,21 @@ function setPanelContent(){
 
 function setPanelColor() { // did have (event) as arg
 
-  var hostEnv = window.__adobe_cep__.getHostEnvironment()
+  var hostEnv  = window.__adobe_cep__.getHostEnvironment()
   var skinInfo = JSON.parse(hostEnv).appSkinInfo
-  var color = skinInfo.panelBackgroundColor.color
+  var color    = skinInfo.panelBackgroundColor.color
 
   switch(color.red) {
-  case  50: code = 0; break;
-  case 184: code = 2; break;
-  case 240: code = 3; break;
-   default: code = 1; break; // case 83
+  case  50: INTERFACE = 0; break;
+  case 184: INTERFACE = 2; break;
+  case 240: INTERFACE = 3; break;
+   default: INTERFACE = 1; break; // case 83
   }
 
-  INTERFACE = code
-  varToCep('INTERFACE', INTERFACE)
+  document.body.id = `if_${INTERFACE}`
 
-  document.body.id = "if_" + INTERFACE
+  varToCep('INTERFACE', INTERFACE)
+  setDimAccentColor() // because dim color depends on interface color
 }
 ///
 
@@ -145,6 +145,28 @@ function setPanelSize(referenceObj){
   var h = Math.round(referenceObject.getBoundingClientRect().bottom/f)
 
   CEP.resizeContent(w, h-1)
+}
+///
+/*———————————————————————————————————————— getInterface()
+
+  https://fenomas.com/2014/09/cep-5-events-en/
+
+  changes body ID to correspond to AI user interface
+  the body ID is keyed to CSS color definitions */
+
+function getInterface() { // did have (event) as arg
+
+  var hostEnv  = window.__adobe_cep__.getHostEnvironment()
+  var skinInfo = JSON.parse(hostEnv).appSkinInfo
+  var color    = skinInfo.panelBackgroundColor.color
+
+  switch(color.red) {
+  case  50: return 0
+  case 184: return 2
+  case 240: return 3
+   default: return 1
+  }
+
 }
 ///
 

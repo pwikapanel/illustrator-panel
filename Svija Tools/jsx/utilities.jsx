@@ -14,6 +14,20 @@ function ut_concatenatePath(part1, part2){
   else return part1 + '\\' + part2
 }
 ///
+/*———————————————————————————————————————— colorPicker()
+
+    returns hex color */
+
+function colorPicker(){
+  var color = $.colorPicker()
+
+  var r = Math.floor(color/65536); color -= r*65536
+  var g = Math.floor(color/256  ); color -= g*256
+  var b = color
+
+  return  r+':'+g+':'+b
+}
+///
 /*———————————————————————————————————————— decodeJSON(obj)
 
     returns a JSON object */

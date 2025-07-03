@@ -3,7 +3,7 @@
 
 //:::::::::::::::::::::::::::::::::::::::: jsxLoader.js
 
-// localStorage.clear()
+//localStorage.clear()
 
 /*———————————————————————————————————————— read directory listing
 

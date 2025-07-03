@@ -1,22 +1,26 @@
 
-//:::::::::::::::::::::::::::::::::::::::: svijaLogo.js / svijaLogo.jsx
+/* vim: set foldmethod=marker fmr=/*\—,///: */
 
-/*———————————————————————————————————————— store colors in localStorage
+//:::::::::::::::::::::::::::::::::::::::: svijaLogo.js
+
+/*———————————————————————————————————————— startup
 
     if user already picked a favorite color */
 
+elapse(10, `localStorage.accentDim = ${localStorage.accentDim}`)
+
 if (typeof localStorage.accentBright == 'undefined'){
-  var style = getComputedStyle(document.body)                  
-
-  localStorage.accentBright = style.getPropertyValue('--accentBright')
-  localStorage.accentDim    = style.getPropertyValue('--accentDim')
-
+  localStorage.accentBright = STYLE.getPropertyValue('--accentBright')
+  localStorage.accentDim    = STYLE.getPropertyValue('--accentDim')
 }
 
 else{
   document.documentElement.style.setProperty('--accentBright', localStorage.accentBright)
   document.documentElement.style.setProperty('--accentDim',    localStorage.accentDim)
 }
+///
+
+//:::::::::::::::::::::::::::::::::::::::: setInterval online status
 
 /*———————————————————————————————————————— online status color
 
@@ -38,58 +42,47 @@ function onlineStatus(){
   }
 
 }
+///
 
-/*———————————————————————————————————————— svijaLogo.addEventListener('mouseup'
+//:::::::::::::::::::::::::::::::::::::::: user changes color
+
+/*———————————————————————————————————————— CEP.evalScript('colorPicker()')
 
     user clicks logo to change color */
 
 svijaLogo.addEventListener('mouseup', (evn) => {
-  var style = getComputedStyle(document.body)                  
-
   elapse(67, 'logo clicked')
-  CEP.evalScript('colorPicker()', setAccentColor)
-
+  CEP.evalScript('colorPicker()', colorPickerCallback)
 })
+///
+/*———————————————————————————————————————— colorPickerCallback(arg)
 
-function setAccentColor(arg){
+    */
 
-  elapse(73, 'setAccentColor returned '+arg)
+function colorPickerCallback(arg){
+
+  elapse(73, 'colorPickerCallback returned '+arg)
   var parts = arg.split(':')
 
   var r = parts[0]
   var g = parts[1]
   var b = parts[2]
 
-  var hsl        = rgbToHsl(r, g, b)
-  var hue        = Math.round(hsl[0])
-  var saturation = Math.round(hsl[1])
+  var hsl = rgbToHsl(r, g, b)
+  var   h = Math.round(hsl[0])
+  var   s = Math.round(hsl[1])
+  var   l = Math.round(hsl[2])
 
-  var lightness = 50
-  if (hue>190 && hue < 290) lightness += 10
+  var hslString = `hsl(${h}, ${s}% , ${l}%)`
+  document.documentElement.style.setProperty('--accentBright', hslString)
+  localStorage.accentBright = hslString 
 
-  var bright = 'hsl('+hue+', 100%, ' + lightness + '%)'
-  var dim    = dimVersion(hue)
-
-  localStorage.accentBright = bright 
-  localStorage.accentDim    = dim
-
-  document.documentElement.style.setProperty('--accentBright', bright)
-  document.documentElement.style.setProperty('--accentDim',    dim)
+  STYLE = getComputedStyle(document.body)                  
+  setDimAccentColor()
 }
-
+///
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities */
-
-/*———————————————————————————————————————— dimVersion(hue, lightness)
-
-    returns a dim version of the bright color */
-
-function dimVersion(hue){
-  var lightness = 25                                                             
-  if (hue>190 && hue < 290) lightness += 10                                      
-
-  return 'hsl('+hue+', 20%, ' + lightness + '%)'
-}
 
 /*———————————————————————————————————————— rgbToHsl(r, g, b)
 
@@ -114,7 +107,7 @@ function rgbToHsl(r, g, b){
     (100 * (2 * l - s)) / 2,
   ];
 }
-
+///
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
