@@ -77,7 +77,7 @@ function varToCep(varName, val){
   elapse(83, `CEP: ${cepString}`)
   
 }
-
+///
 /*———————————————————————————————————————— enableObject(objId)
 
     used to renable buttons after they are disabled
@@ -86,13 +86,18 @@ function varToCep(varName, val){
 function enableObject(objId){
   window[objId].disabled = false
 }
-
+///
 /*———————————————————————————————————————— fetchFile(passthrough, path, callback)
 
     used for news & loading JSX files
     passthrough is usually the name of the requested file */
 
 function fetchFile(passthrough, path, callback) {
+  if (path.slice(0,4) != 'http'){
+    elapse(97, `     fetch file got local path: ${path}`)
+    return
+  }
+
 
   path = path + '?' + Math.random()
 
@@ -112,12 +117,81 @@ function fetchFile(passthrough, path, callback) {
       }
    ).catch(
      function(err){
-       elapse(636, `     fetchFile()⚠️ CANCELING\n     ${err}`)
+       elapse(636, `     fetchFile() ⚠️: ${err}`)
        return
      }
    )
 }
-
+///
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
+
+/*———————————————————————————————————————— getLocalFile(passthrough, path, callback)
+
+    https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri
+
+    takes passthrough variable, path, and callback function
+
+    no choice of source — there's only one local source */
+
+function getLocalFile(passthrough, path, callback){
+
+  path = path + '?' + Math.random()
+
+  var myPromise = fetchLocal(path)
+
+  myPromise.then(onFulfilled, onRejected)
+
+  function onFulfilled (contents){
+    if (contents != '') callback(passthrough, contents, path)
+    else elapse(42, `getLocalFile() - empty file: ${path}`)
+  }
+
+  // attention: this catches errors anywhere in the previous callback chain
+  function onRejected(txt){
+    elapse(47, `getLocalFile() - file not found: ${path}\n\n    ${txt}\n `)
+  }
+
+}
+///
+/*———————————————————————————————————————— fetchLocal(file)
+
+    developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject
+
+    replaces "fetch" function in remote version
+    returns a promise object (see link above)
+
+    the Promise contains a fetch request that has 4 parts:
+
+    1. creation of request with new
+
+    2. add listener to request to send ("resolve" from promise) contents
+
+    3. add listener for error to send ("reject" from promise) error
+
+    4. request submission, "send"
+
+    resolve and reject are here because here is where I decide
+    what counts as a resolution or a rejection, but they are
+    HANDLED in the calling function, getLocalFile()  */
+
+function fetchLocal(file) {
+
+  return new Promise(function(resolve, reject) {
+
+    var localRequest = new XMLHttpRequest()
+
+    localRequest.open("GET", file, false)
+    localRequest.onerror = reject
+
+    localRequest.onreadystatechange = function (){
+      if(localRequest.readyState != 4                              ) reject
+      if(localRequest.status     != 200 && localRequest.status != 0) reject
+      resolve(localRequest.responseText)
+    }
+
+    localRequest.send()
+  })
+}
+///
 

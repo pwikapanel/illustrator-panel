@@ -51,7 +51,7 @@ varToCep('AIVERSION'   , AIVERSION   )
     --panelBorder   */
 
 var colorDefsJson = 'json/illustratorColorDefs.json'
-fetchFile ('illustratorColorDefs.json', colorDefsJson, installColors)
+getLocalFile ('illustratorColorDefs.json', colorDefsJson, installColors)
 elapse(17, `  requested ${colorDefsJson}`)
 
 function installColors(name, contents, path){

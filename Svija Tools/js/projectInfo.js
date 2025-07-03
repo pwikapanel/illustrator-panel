@@ -43,14 +43,16 @@ function projectInfoCallback(arg){
 
   /*—————————————————————————————————————— set panel title */
 
-  if (SITEURL != '')
+if (typeof SITEURL != 'undefined')
+  if (SITEURL != ''){
     var panelTitle = SITEURL
-
+  
     if (panelTitle.length > 22)
       panelTitle=SITEURL.slice(0, 20)+'...'
-
-    elapse(52, `setting title to ${panelTitle}`)
+  
+//  elapse(52, `setting title to ${panelTitle}`)
     CEP.setWindowTitle(panelTitle)
+  }
   ///
   /*—————————————————————————————————————— guard no file open */
 

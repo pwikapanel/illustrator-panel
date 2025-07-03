@@ -18,7 +18,7 @@ elapseGroup(10, `requesting JSX content (${jsxList.length} files)...`)
 for (var x=0; x<jsxList.length; x++){
   var  path = `jsx/${jsxList[x]}`
   elapse(18, `   requested ${path}`)
-  fetchFile (jsxList[x], path, fileToCep)
+  getLocalFile(jsxList[x], path, fileToCep)
 }
 
 elapseGroupEnd()

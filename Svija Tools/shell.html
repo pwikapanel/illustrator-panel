@@ -36,8 +36,6 @@ var CEP            = new CSInterface()
 var TRANSLATE      = CEP.initResourceBundle(); // https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md
 var HOSTENV        = CEP.getHostEnvironment()
 var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
-var d              = new Date()
-var TIMER          = d.getTime()
 
 //———————————————————————————————————————— catch errors
 
@@ -50,6 +48,9 @@ window.addEventListener('error', (event)=>{
 /*———————————————————————————————————————— timer
 
     used to make sure everything is efficient */
+
+var d              = new Date()
+var TIMER          = d.getTime()
 
 console.log('msec  line#   comments...\n———————————————————————————————')
 
