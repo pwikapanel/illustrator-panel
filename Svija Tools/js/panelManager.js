@@ -1,4 +1,6 @@
 
+/* vim: set foldmethod=marker fmr=/*\—,///: */
+
 /*:::::::::::::::::::::::::::::::::::::::: panelManager.js */
 
 /*———————————————————————————————————————— notes
@@ -12,124 +14,38 @@
     - less
     - more
     - closed */
+///
 
-//———————————————————————————————————————— disable context menu
+//:::::::::::::::::::::::::::::::::::::::: make panel small until ready to display
 
-var menuXML = '<Menu> \
-  <MenuItem Id="reloadPanel" Label="Svija Tools" Enabled="false" Checked="false"/> \
-</Menu>';
-
-CEP.setContextMenu(menuXML, flyoutMenuCallback)
-function flyoutMenuCallback(event){ lert(event) }
-
-//———————————————————————————————————————— initialize more status
-
-if (typeof localStorage.more == 'undefined')
-  localStorage.more = 'false'
-
-//———————————————————————————————————————— match color to Ai interface
-
-CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setPanelColor)
+setInterval(setPanelContent, INTMS)
 
 setPanelColor()
+CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setPanelColor)
 
-//———————————————————————————————————————— choose panel content
+/*———————————————————————————————————————— setPanelContent()
 
-setInterval(chooseContent, INTMS) // commenting this fixes error
+    three possibilities :
+    - closed view
+    - less view
+    - more view */
 
-function chooseContent(){
 
-//STYLE = getComputedStyle(document.body) // moved to globalVariables.js
+function setPanelContent(){
 
   if (!ISSVIJA){
     showClosed()
     return
   }
   
-  if (localStorage.more == 'true')
-    showMore()
-  else
+  if (typeof localStorage.more == 'undefined')
     showLess()
+  else if (localStorage.more == 'false')
+    showLess()
+  else
+    showMore()
 }
-
-
-//:::::::::::::::::::::::::::::::::::::::: content visibility
-
-/*———————————————————————————————————————— showMore()
-
-    also used in more.js */
-
-function showMore(){
-  localStorage.more       = 'true'
-
-    moreDiv.style.display = 'block'
-   linkLess.style.display = 'inline'
-
-   linkMore.style.display = 'none'
-
-    mainDiv.style.display = 'block'
-  bottomDiv.style.display = 'block'
-  closedDiv.style.display = 'none'
-
-  setPanelSize('bottomDiv')
-}
-
-/*———————————————————————————————————————— showLess()
-
-    also used in more.js */
-
-function showLess(){
-  localStorage.more         = 'false'
-
-   linkMore.style.display   = 'inline'
-
-    moreDiv.style.display   = 'none'
-   linkLess.style.display   = 'none'
-
-      mainDiv.style.display = 'block'
-    bottomDiv.style.display = 'block'
-  closedDiv.style.display   = 'none'
-
-  setPanelSize('bottomDiv')
-}
-
-/*———————————————————————————————————————— showClosed()
-
-    */
-
-function showClosed(){
-
-    closedDiv.style.display = 'block'
-
-      moreDiv.style.display = 'none'
-      mainDiv.style.display = 'none'
-    bottomDiv.style.display = 'none'
-
-  setPanelSize('closedDiv')
-}
-
-
-//:::::::::::::::::::::::::::::::::::::::: size & color
-
-/*———————————————————————————————————————— setPanelSize(objID)
-
-    sets bottom edge of panel to match bottom edge
-    of supplied object */
-
-function setPanelSize(referenceObjId){
-
-  var referenceObject = document.getElementById(referenceObjId)
-
-  // don't log because it happens every 1/2 second
-  if (referenceObject === null) return true
-
-  var f = CEP.getScaleFactor()
-  var w = Math.round(MAXWIDTH / f)
-  var h = Math.round(referenceObject.getBoundingClientRect().bottom/f)
-
-  CEP.resizeContent(w, h-1)
-}
-
+///
 /*———————————————————————————————————————— setPanelColor()
 
   https://fenomas.com/2014/09/cep-5-events-en/
@@ -155,7 +71,82 @@ function setPanelColor() { // did have (event) as arg
 
   document.body.id = "if_" + INTERFACE
 }
+///
 
+/*:::::::::::::::::::::::::::::::::::::::: functions */
+
+/*———————————————————————————————————————— showMore()
+
+    also used in more.js */
+
+function showMore(){
+  localStorage.more       = 'true'
+
+    moreDiv.style.display = 'block'
+   linkLess.style.display = 'inline'
+
+   linkMore.style.display = 'none'
+
+    mainDiv.style.display = 'block'
+  bottomDiv.style.display = 'block'
+  closedDiv.style.display = 'none'
+
+  setPanelSize('bottomDiv')
+}
+///
+/*———————————————————————————————————————— showLess()
+
+    also used in more.js */
+
+function showLess(){
+  localStorage.more         = 'false'
+
+   linkMore.style.display   = 'inline'
+
+    moreDiv.style.display   = 'none'
+   linkLess.style.display   = 'none'
+
+      mainDiv.style.display = 'block'
+    bottomDiv.style.display = 'block'
+  closedDiv.style.display   = 'none'
+
+  setPanelSize('bottomDiv')
+}
+///
+/*———————————————————————————————————————— showClosed()
+
+    */
+
+function showClosed(){
+
+    closedDiv.style.display = 'block'
+
+      moreDiv.style.display = 'none'
+      mainDiv.style.display = 'none'
+    bottomDiv.style.display = 'none'
+
+  setPanelSize('closedDiv')
+}
+///
+/*———————————————————————————————————————— setPanelSize(referenceObj)
+
+    sets bottom edge of panel to match bottom edge
+    of supplied object */
+
+function setPanelSize(referenceObj){
+
+  var referenceObject = document.getElementById(referenceObj)
+
+  // don't log because it happens every 1/2 second
+  if (referenceObject === null) return true
+
+  var f = CEP.getScaleFactor()
+  var w = Math.round(MAXWIDTH / f)
+  var h = Math.round(referenceObject.getBoundingClientRect().bottom/f)
+
+  CEP.resizeContent(w, h-1)
+}
+///
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

@@ -1,5 +1,7 @@
 <!DOCTYPE html><html><head><meta charset="utf-8">
 
+<!-- vim: set foldmethod=manual -->
+
   <style>
   
     *{
@@ -10,10 +12,9 @@
     body{ background-color:hsl(0  0%  33%); }
 
     div#reloader{
-        cursor:pointer ; width:13px;height:13px;
-      position:absolute;   top: 0px; right: 1px;
-        border:4px solid #555;
-        background-color:lime;
+      position:absolute; background-color:#FFF5;
+        top:0px; right:1px; /* top is 1px down by default */
+      width:8px;height:8px;
     }
   
   </style>
@@ -36,6 +37,9 @@ var CEP            = new CSInterface()
 var TRANSLATE      = CEP.initResourceBundle(); // https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md
 var HOSTENV        = CEP.getHostEnvironment()
 var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
+var menuXML        = '<Menu></Menu>'
+
+CEP.setContextMenu(menuXML, function(){})
 
 //———————————————————————————————————————— catch errors
 
@@ -95,7 +99,7 @@ elapse(88, `starting Svija Tools`)
   <script type="text/javascript" src='js/utilities.js'       ></script>
   <script type="text/javascript" src='js/colorUtilities.js'  ></script>
   <script type="text/javascript" src='js/jsxLoader.js'       ></script>
-  <script type="text/javascript" src="js/globalVariables.js" ></script>
+  <script type="text/javascript" src="js/initialization.js" ></script>
 
   <div id="newsDiv"></div>
   

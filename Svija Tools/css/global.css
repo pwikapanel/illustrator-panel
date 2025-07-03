@@ -37,15 +37,6 @@ input:focus{ /* get rid of blue line when focused */
 
 /*———————————————————————————————————————— panel */
 
-div#reloader{                               
-    cursor:pointer ; width:13px;height:13px;
-  position:absolute;   top: 0px; right: 1px;
-    border:4px solid var(--panelBg);       
-    background-color:var(--accentBright);   
-}                                           
-
-/*———————————————————————————————————————— panel */
-
 body{
   background-color:var(--panelBg);
   color:#bbb;

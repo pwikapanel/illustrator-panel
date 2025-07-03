@@ -1,7 +1,7 @@
 
 /* vim: set foldmethod=marker fmr=/*—,///: */
 
-//:::::::::::::::::::::::::::::::::::::::: globalVariables.js
+//:::::::::::::::::::::::::::::::::::::::: initialization.js
 
 /*———————————————————————————————————————— initialize variables */
 
