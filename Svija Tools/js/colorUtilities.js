@@ -1,4 +1,6 @@
 
+/* vim: set foldmethod=marker fmr=/*—,///: */
+
 //:::::::::::::::::::::::::::::::::::::::: colorUtilities.js
 
 /*———————————————————————————————————————— cssVarToCep(varName)
@@ -23,7 +25,7 @@ function cssVarToCep(varName){
   //lert(cepString)
   CEP.evalScript(cepString)
 }
-
+///
 
 //:::::::::::::::::::::::::::::::::::::::: utility functions
 
@@ -52,7 +54,7 @@ function strToHslArray(str){
 
   return [h, s, l]
 }
-
+///
 /*———————————————————————————————————————— hslToRgbArray(hslArr)
 
     accepts three values: 0-360, 0-100, 0-100
@@ -83,7 +85,7 @@ function hslToRgbArray(hslArr){
 
   return [r, g, b];
 }
-
+///
 /*———————————————————————————————————————— mysteryFunction(m1, m2, h)
 
     accepts three 0-1 values
@@ -101,7 +103,7 @@ function mysteryFunction(m1, m2, h){
 
   return m1
 }
-
+///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

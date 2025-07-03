@@ -2,7 +2,7 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
-/*:::::::::::::::::::::::::::::::::::::::: projectInfo.jsx / projectInfo.js */
+/*:::::::::::::::::::::::::::::::::::::::: projectManager.jsx / projectManager.js */
 
 /*———————————————————————————————————————— notes
 
@@ -23,9 +23,9 @@ var SYNCPATH = ''    // path to most recent SYNC folder, if any
 var SITEURL  = ''    // URL of most recent Svija site
 var LASTPATH = ''    // path to most recent svija site page (for reopen button)
 ///
-/*———————————————————————————————————————— projectInfo() */
+/*———————————————————————————————————————— projectManager() */
 
-function projectInfo(){
+function projectManager(){
 
   if (app.documents.length == 0) return ''
 
@@ -92,7 +92,7 @@ function getSiteURL(){
 
   if (typeof ISMAC == 'undefined'){
     if (notYetNotified) {
-      alert("ISMAC not set\nprojectInfo.jsx#77")
+      alert("ISMAC not set\nprojectManager.jsx#77")
       notYetNotified = false
     }
     return ''
@@ -128,7 +128,7 @@ function getLastPath(){
 
   if (typeof ISMAC == 'undefined'){
     if (notYetNotified) {
-      alert("ISMAC not set\nprojectInfo.jsx#109")
+      alert("ISMAC not set\nprojectManager.jsx#109")
       notYetNotified = false
     }
     return ''

@@ -1,5 +1,5 @@
 
-//:::::::::::::::::::::::::::::::::::::::: accentColor.js / accentColor.jsx
+//:::::::::::::::::::::::::::::::::::::::: svijaLogo.js / svijaLogo.jsx
 
 /*———————————————————————————————————————— store colors in localStorage
 

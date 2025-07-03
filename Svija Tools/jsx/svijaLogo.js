@@ -1,6 +1,6 @@
 #target illustrator  
 
-//:::::::::::::::::::::::::::::::::::::::: accentColor.js / accentColor.jsx
+//:::::::::::::::::::::::::::::::::::::::: svijaLogo.js / svijaLogo.jsx
 
 /*———————————————————————————————————————— colorPicker()
 

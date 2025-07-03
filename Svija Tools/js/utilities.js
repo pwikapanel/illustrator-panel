@@ -195,3 +195,31 @@ function fetchLocal(file) {
 }
 ///
 
+/*———————————————————————————————————————— alertPalette(arg)
+
+    colors:
+    background: labelText
+          text: panelBg
+
+    cssVarToCep isin colorUtilites.js */
+
+//lert(STYLE.getPropertyValue(`--alertBg1`)) // worked
+//lert(STYLE.getPropertyValue(`--alertText1`)) // worked
+
+function alertPalette(arg){
+  var cmd = 'alertPalette("' + TRANSLATE[arg] + '")'
+  CEP.evalScript(cmd, alertPaletteCallback)
+}
+///
+/*———————————————————————————————————————— alertPaletteCallback(arg)
+
+    */
+
+function alertPaletteCallback(arg){
+
+  var alertSeconds = 1.5   // how long alert will show
+
+  var cmd = arg+'.hide()'
+  setTimeout(function(){ CEP.evalScript(cmd) }, alertSeconds * 1000)
+}
+///

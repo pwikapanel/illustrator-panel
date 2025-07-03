@@ -1,5 +1,5 @@
 
-/* vim: set foldmethod=marker fmr=/*\—,//: */
+/* vim: set foldmethod=marker fmr=/*—,///: */
 
 //:::::::::::::::::::::::::::::::::::::::: jsxLoader.js
 
@@ -10,7 +10,7 @@
     requires node.js */
 
 var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
-//
+///
 /*———————————————————————————————————————— try to load each one */
 
 elapseGroup(10, `requesting JSX content (${jsxList.length} files)...`)
@@ -22,7 +22,7 @@ for (var x=0; x<jsxList.length; x++){
 }
 
 elapseGroupEnd()
-//
+///
 
 //:::::::::::::::::::::::::::::::::::::::: calback function
 
@@ -47,7 +47,7 @@ function fileToCep(passthrough, contents, path){
 
   setTimeout(elapseGroupEnd, 1000)
 }
-//
+///
 /*———————————————————————————————————————— dirListArray(dir, ext, lsName)
 
     using node adds approx. 1 second to startup time
@@ -99,7 +99,7 @@ function dirListArray(dir, ext, lsName){
   elapse(159, `returning correct directory listing`)
   return localStorage[lsName].split('|')
 }
-//
+///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
