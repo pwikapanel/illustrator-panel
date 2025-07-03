@@ -3,6 +3,8 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: panelManager.js */
 
+// background-color:var(--panelBg);
+
 /*———————————————————————————————————————— notes
 
     https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_10.x/Documentation/CEP%2010.0%20HTML%20Extension%20Cookbook.md
@@ -37,11 +39,16 @@ CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setPanelColor)
 
 
 function setPanelContent(){
+  elapse(40, `ISSVIJA=${ISSVIJA}`)
+
+  document.body.style.backgroundImage = 'none';
 
   if (!ISSVIJA){
     showClosed()
     return
   }
+  elapse(46, `typeof=${typeof localStorage.more}`)
+  elapse(46, `value=${localStorage.more}`)
   
   if (typeof localStorage.more == 'undefined')
     showLess()
@@ -85,18 +92,16 @@ function setPanelColor(){
     also used in more.js */
 
 function showMore(){
-  localStorage.more       = 'true'
-
-    moreDiv.style.display = 'block'
-   linkLess.style.display = 'inline'
-
+  closedDiv.style.display = 'none'
    linkMore.style.display = 'none'
 
+    moreDiv.style.display = 'block'
     mainDiv.style.display = 'block'
   bottomDiv.style.display = 'block'
-  closedDiv.style.display = 'none'
 
+   linkLess.style.display = 'inline'
   setPanelSize('bottomDiv')
+  localStorage.more       = 'true'
 }
 ///
 /*———————————————————————————————————————— showLess()
@@ -104,18 +109,16 @@ function showMore(){
     also used in more.js */
 
 function showLess(){
-  localStorage.more         = 'false'
-
-   linkMore.style.display   = 'inline'
-
+  closedDiv.style.display   = 'none'
     moreDiv.style.display   = 'none'
    linkLess.style.display   = 'none'
 
       mainDiv.style.display = 'block'
     bottomDiv.style.display = 'block'
-  closedDiv.style.display   = 'none'
 
+   linkMore.style.display   = 'inline'
   setPanelSize('bottomDiv')
+  localStorage.more         = 'false'
 }
 ///
 /*———————————————————————————————————————— showClosed()
@@ -124,11 +127,11 @@ function showLess(){
 
 function showClosed(){
 
-    closedDiv.style.display = 'block'
-
       moreDiv.style.display = 'none'
       mainDiv.style.display = 'none'
     bottomDiv.style.display = 'none'
+
+    closedDiv.style.display = 'block'
 
   setPanelSize('closedDiv')
 }

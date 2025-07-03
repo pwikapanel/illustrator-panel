@@ -38,7 +38,9 @@ input:focus{ /* get rid of blue line when focused */
 /*———————————————————————————————————————— panel */
 
 body{
-  background-color:var(--panelBg);
+  background-color: var(--panelBg);
+  background-image: url(../png/splash.png);
+  background-size: contain;
   color:#bbb;
 }
 

@@ -14,12 +14,11 @@ This is meant to go through the process by which the panel starts up.
 7. `jsxLoader.js` loads JSX files into CEP (no effect)
 8. `globalVariables.js` initializes program
 
-Following the loading of HTML, two management scripts are loaded.
+Following the loading of HTML, the management script is loaded, run on interrupts (the delay is set in `globalVariables.js`):
 
-Both run on interrupts (the delay is set in `globalVariables.js`):
+- `projectManager.js` which keeps track of the Svija project
 
-1. `panelManager.js` which manages panel display
-2. `projectManager.js` which keeps track of the Svija project
+`projectManager.js` must be first so the panel can display the correct content on startup (not show the closed buttons when it's a Svija page).
 
 Next, scripts are loaded for each element of the panel, 
 beginning with buttons shown when the panel is "closed" (no Svija
@@ -41,7 +40,9 @@ page is open):
 14. help link
 15. info link
 
-Lastly, `usage.js` is loaded which reports on startup time and memor usage.
+Lastly:
+1. `panelManager.js` which manages panel display
+2. `usage.js` which reports on startup time and memor usage
 
 Theoretically, these scripts are independent; each script is unaffected by modifications to other scripts.
 

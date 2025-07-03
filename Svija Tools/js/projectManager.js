@@ -4,7 +4,7 @@
 //:::::::::::::::::::::::::::::::::::::::: projectManager.jsx / projectManager.js
 
 /*———————————————————————————————————————— recover localStorage
-
+///
     get values from LS if possible*/
 
 var LASTPATH = ''    // string     last file path for a svija page
@@ -17,13 +17,13 @@ if (typeof localStorage.lastPath != 'undefined')
 if (typeof localStorage.siteUrl != 'undefined')
   SITEURL = localStorage.siteUrl
 
-if (typeof localStorage.synchPath != 'undefined')
-  SYNCPATH = localStorage.synchPath
+if (typeof localStorage.syncPath != 'undefined')
+  SYNCPATH = localStorage.syncPath
 
 varToCep('LASTPATH', LASTPATH)
 varToCep('SITEURL' , SITEURL )
 varToCep('SYNCPATH', SYNCPATH)
-///
+
 /*———————————————————————————————————————— request info from CEP */
 
 setInterval(function(){
@@ -106,12 +106,15 @@ if (typeof SITEURL != 'undefined')
 
   SYNCPATH = results.syncPath
   localStorage.syncPath = SYNCPATH
+  elapse(109, `SYNCPATH=${SYNCPATH}`)
 
   SITEURL  = results.siteURL 
   localStorage.siteUrl = SITEURL
+  elapse(113, `SITEURL=${SITEURL}`)
 
   LASTPATH = results.lastPath
   localStorage.lastPath = LASTPATH
+  elapse(117, `LASTPATH=${LASTPATH}`)
   ///
 
 

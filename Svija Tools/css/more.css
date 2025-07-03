@@ -3,7 +3,11 @@
 
 /*———————————————————————————————————————— permanent */
 
-div#moreHtml{ /* container for moreHtml */
+div#mainDiv{
+  display:none;
+}
+
+div#moreDiv{ /* container for moreDiv */
   display:none;
   padding-top:5px;
 }
@@ -27,18 +31,18 @@ hr{
 
  see css/interface1.css etc.  */
 
-div#moreHtml input[type=button]{
+div#moreDiv input[type=button]{
   color:var(--hamburger);
   background-color:var(--pulldown);
   border-color:var(--inputBorder);
 }
 
-div#moreHtml input[type=button]:hover{
+div#moreDiv input[type=button]:hover{
   color:var(--fieldContents);
   border-color:var(--accentBright);
 }
 
-div#moreHtml input[type=button]:active{
+div#moreDiv input[type=button]:active{
   color:var(--fieldContents);
   border-color:#fff;
 }
