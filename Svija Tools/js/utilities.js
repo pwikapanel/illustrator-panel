@@ -199,9 +199,6 @@ function fetchLocal(file) {
 
     cssVarToCep isin colorUtilites.js */
 
-//lert(STYLE.getPropertyValue(`--alertBg1`)) // worked
-//lert(STYLE.getPropertyValue(`--alertText1`)) // worked
-
 function alertPalette(arg){
   var cmd = 'alertPalette("' + TRANSLATE[arg] + '")'
   CEP.evalScript(cmd, alertPaletteCallback)
@@ -219,27 +216,6 @@ function alertPaletteCallback(arg){
   setTimeout(function(){ CEP.evalScript(cmd) }, alertSeconds * 1000)
 }
 ///
-/*———————————————————————————————————————— setDimAccentColor()
-
-    defines a dim version of the bright accent color */
-
-function setDimAccentColor(){
-
-  var hslString = STYLE.getPropertyValue(`--accentBright`)
-
-  var h = hslString.replace('hsl(', '').trim().split(',', 2)[0]
-  elapse(230, `h=${h}`) // WRONG BECAUSE THERE WAS NO COMMA IN THE STRING SO SPLIT DIDN'T WORK
-  var s = 20
-
-  var interfaceLuminosityl = [10, 25, 80, 90]
-  var l = interfaceLuminosityl[INTERFACE]
-
-  hslString = `hsl(${h}, ${s}%, ${l}%)`
-  elapse (237, `setting accentDim to ${hslString}`)
-  document.documentElement.style.setProperty('--accentDim',    hslString)
-  localStorage.accentDim = hslString
-}
-//////
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

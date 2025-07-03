@@ -104,6 +104,44 @@ function mysteryFunction(m1, m2, h){
   return m1
 }
 ///
+/*———————————————————————————————————————— setDimAccentColor()
+
+    defines a dim version of the bright accent color */
+
+function setDimAccentColor(){
+
+  var hslString = localStorage.accentBright
+  
+  elapse (115, `hslString=${hslString}`)
+  var hslArray  = strToHslArray(hslString)
+  elapse (115, `hslArray=${hslArray.join(':')}`)
+
+  var h = hslArray[0]
+  var s = hslArray[1]
+  var l = hslArray[2]
+
+  elapse(230, `h=${h}, s=${s}`)
+
+  if (s<5 || l<5 || l>95) s =  0
+  else                    s = 20
+
+  var interfaceLuminosityl = [10, 25, 80, 90]
+  var l = interfaceLuminosityl[INTERFACE]
+
+  hslString = `hsl(${h}, ${s}%, ${l}%)`
+  elapse (237, `setting accentDim to ${hslString}`)
+
+  // if no color, match other buttons
+  if (s<5)
+    hslString = STYLE.getPropertyValue(`--inputField`)
+  
+  document.documentElement.style.setProperty('--accentDim', hslString)
+  STYLE = getComputedStyle(document.body)                  
+
+  localStorage.accentDim = hslString
+  elapse(142, `wrote to LS: accentDim=${hslString}`)
+}
+///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

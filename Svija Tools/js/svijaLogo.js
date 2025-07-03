@@ -3,22 +3,19 @@
 
 //:::::::::::::::::::::::::::::::::::::::: svijaLogo.js
 
-/*———————————————————————————————————————— startup
-
-    if user already picked a favorite color */
-
-elapse(10, `localStorage.accentDim = ${localStorage.accentDim}`)
+elapse(6, `on load, localStorage.accentBright=${localStorage.accentBright}, localStorage.accentDim=${localStorage.accentDim}`)
 
 if (typeof localStorage.accentBright == 'undefined'){
   localStorage.accentBright = STYLE.getPropertyValue('--accentBright')
   localStorage.accentDim    = STYLE.getPropertyValue('--accentDim')
+  elapse(11, `wrote to LS: accentDim=${STYLE.getPropertyValue('--accentDim')}`)
 }
 
 else{
   document.documentElement.style.setProperty('--accentBright', localStorage.accentBright)
   document.documentElement.style.setProperty('--accentDim',    localStorage.accentDim)
+  STYLE = getComputedStyle(document.body)                  
 }
-///
 
 //:::::::::::::::::::::::::::::::::::::::: setInterval online status
 
@@ -74,10 +71,11 @@ function colorPickerCallback(arg){
   var   l = Math.round(hsl[2])
 
   var hslString = `hsl(${h}, ${s}% , ${l}%)`
-  document.documentElement.style.setProperty('--accentBright', hslString)
-  localStorage.accentBright = hslString 
 
+  document.documentElement.style.setProperty('--accentBright', hslString)
   STYLE = getComputedStyle(document.body)                  
+
+  localStorage.accentBright = hslString 
   setDimAccentColor()
 }
 ///

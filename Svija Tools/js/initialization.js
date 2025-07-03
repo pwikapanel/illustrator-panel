@@ -11,7 +11,7 @@ var INTMS          = 500       // interval for the updating panel
 /*———————————————————————————————————————— set in projectManager.js */
 
 var ISSVIJA  = false     // boolean    if fromtmost doc is a svija page (in a SYNC folder)
-var STYLE    = getComputedStyle(document.body) // provokes error
+var STYLE = getComputedStyle(document.body)    // managed in svijaLogo.js
 ///
 /*———————————————————————————————————————— more */
 

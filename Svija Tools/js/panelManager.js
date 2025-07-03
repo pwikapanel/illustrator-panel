@@ -16,12 +16,17 @@
     - closed */
 ///
 
-//:::::::::::::::::::::::::::::::::::::::: make panel small until ready to display
+/*———————————————————————————————————————— startup */
 
 setInterval(setPanelContent, INTMS)
 
 setPanelColor()
+
 CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setPanelColor)
+
+///
+
+/*:::::::::::::::::::::::::::::::::::::::: interrupt functions */
 
 /*———————————————————————————————————————— setPanelContent()
 
@@ -53,7 +58,7 @@ function setPanelContent(){
   changes body ID to correspond to AI user interface
   the body ID is keyed to CSS color definitions */
 
-function setPanelColor() { // did have (event) as arg
+function setPanelColor(){
 
   var hostEnv  = window.__adobe_cep__.getHostEnvironment()
   var skinInfo = JSON.parse(hostEnv).appSkinInfo
@@ -67,9 +72,9 @@ function setPanelColor() { // did have (event) as arg
   }
 
   document.body.id = `if_${INTERFACE}`
-
   varToCep('INTERFACE', INTERFACE)
-  setDimAccentColor() // because dim color depends on interface color
+
+  setDimAccentColor() // because dark accent depends on panel background
 }
 ///
 
