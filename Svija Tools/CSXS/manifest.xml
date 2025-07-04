@@ -41,7 +41,7 @@
 
         <UI>
           <Type>Panel</Type>
-          <Menu>Svija Tools Beta</Menu>
+          <Menu>Svija Tools</Menu>
           <Geometry>
             <Size>
                 <Width>240</Width>

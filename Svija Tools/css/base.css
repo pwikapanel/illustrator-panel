@@ -1,0 +1,59 @@
+
+/*:::::::::::::::::::::::::::::::::::::::: base.css */
+
+/*———————————————————————————————————————— colors
+
+ see css/interface1.css etc.  */
+
+:root { /* see js/svijaLogo.js */
+
+  --accentBright :hsl(80 100%  50%);
+  --accentDim    :hsl(80  20%  25%);
+}
+
+/*———————————————————————————————————————— permanent */
+
+*{
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+html, body{
+  margin: 0;
+  padding:4px 0 0 0;
+  height: 100%;
+  overflow: hidden;
+  cursor:default;
+}
+
+body{
+  text-align: center;
+}
+
+input:focus{ /* get rid of blue line when focused */
+  outline: none!important;
+  box-shadow: none!important;
+}
+
+/*———————————————————————————————————————— panel */
+
+body{
+  background-color: var(--panelBg);
+  background-image: url(../svg/splash_logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color:#bbb;
+}
+
+/*:::::::::::::::::::::::::::::::::::::::: news */
+
+    /* <div id="newsBanner">
+    </div> */
+
+div#newsDiv{
+  display:none;
+}
+
+/*:::::::::::::::::::::::::::::::::::::::: fin */
+
