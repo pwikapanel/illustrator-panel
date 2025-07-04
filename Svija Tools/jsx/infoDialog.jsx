@@ -22,46 +22,89 @@ LC = 'en'
 
 // it's not clear how panel size affects image size
 
+/////////////////////////////////////////////////// try not using different objects Ypfor each color
+
+var debugSiteName = SITEURL
+
+var colorWindow0 = panelBg0
+var colorUrl0    = checkedBox0
+var colorText0   = fieldContents0
+
+var colorWindow1 = panelBorder1
+var colorUrl1    = checkedBox1
+var colorText1   = labelText1
+
+var colorWindow2 = inputField2
+var colorUrl2    = hamburger2
+var colorText2   = checkedBox2
+
+var colorWindow3 = inputField3
+var colorUrl3    = hamburger3
+var colorText3   = checkedBox3
+
 function infoDialog(extensionPath){
 
   /*———————————————————— image scaling function */
 
-  Image.prototype.onDraw = function() { // written by Marc Autret · 1906 Beginning ScriptUI.pdf
-  
+  Image.prototype.onDraw = function() {
+
+    //2019 Beginning ScriptUI.pdf, p. 63
     // "this" is the container ("window" in regular JS)
     // "this.image" is the graphic
 
     if( !this.image ) return ''
-    var WH = this.size,
-      wh = this.image.size,
-      k = Math.min(WH[0]/wh[0], WH[1]/wh[1]), xy
+
+    var scale = 0.5
   
     // resize proportionally
-    wh = [k*wh[0],k*wh[1]]
+    var imageSize = this.image.size
+    imageSize = [scale*imageSize[0],scale*imageSize[1]]
   
-    // center
-    xy = [ (WH[0]-wh[0])/2, (WH[1]-wh[1])/2 ]
-    this.graphics.drawImage(this.image,xy[0],xy[1],wh[0],wh[1])
-    WH = wh = xy = null
+//  // center
+//  var dialogSize = this.size
+//  var xy = [ (dialogSize[0]-imageSize[0])/2, (dialogSize[1]-imageSize[1])/2 ]
+
+    xy = [0, 0]
+
+    this.graphics.drawImage(this.image,xy[0],xy[1],imageSize[0],imageSize[1])
+
+    // save memory
+    dialogSize = imageSize = xy = null
 
   }
 /// 
+
+  var colorWindow = this['colorWindow' + INTERFACE]
+  var colorUrl    = this[   'colorUrl' + INTERFACE]
+  var colorText   = this[  'colorText' + INTERFACE]
+
+  //:::::::::::::::::::: create panel
+
   /*———————————————————— create panel */
+
+ // currently 500x278, want 500x250
 
   panel = new Window ('dialog', 'Svija Tools Settings', undefined, {resizeable: false, borderless: true, closeButton: false})
 
-  panel.preferredSize = [500, 250]      // window will be 28px higher than this, to commpensate for where title bar was // height is not used because it's forced by contents
-  panel.margins       = [40, 0, 0, 0]   // left top right bottom // like padding in CSS — affects contents of shape
+  panel.preferredSize = [500, 222]      // window will be 250px
+  panel.margins       = [53, 0, 0, 0]   // left top right bottom // enforced 28px bottom margin when no title bar
   panel.orientation   = 'row'
   panel.alignChildren = ['fill', 'fill']
   panel.spacing       = 0
+
+  var panelBGcolor = panel.graphics.newBrush(panel.graphics.BrushType.SOLID_COLOR, colorWindow, 1)
+  panel.graphics.backgroundColor = panelBGcolor
   /// 
+
+  //:::::::::::::::::::: main content blocks
+
   /*———————————————————— splash image */
 
   var imgPath = extensionPath + '/png/vecteezy-374998.png'
   var splash  = panel.add ("image", undefined, File (imgPath))
-  splash.size = [87,250]      // half of actual resolution for retina
- ///
+  splash.size = [90,222]      // does not affect image size; affects panel size
+                              // if I use a smaller size, things can be drawn on top of image
+  ///
   /*———————————————————— right content group */
   
   var content = panel.add ('group')
@@ -69,119 +112,90 @@ function infoDialog(extensionPath){
   content.spacing       = 0
   content.orientation   = 'column'
   content.alignment     = 'center'
-  content.preferredSize = [310,250]
-  content.margins       = [0, 0, 8, 0] // left top right bottom
+  content.preferredSize = [357,222]
+  content.margins       = [0, 0, 0, 0] // left top right bottom
+
+//var testBg = content.graphics.newBrush(content.graphics.BrushType.SOLID_COLOR, [0.5, 0, 0.5], 1)
+//content.graphics.backgroundColor = testBg 
+
   ///
 
   //:::::::::::::::::::: right-side content blocks
 
-  /*———————————————————— version info */
+  /*———————————————————— site url */
   
-   var version = content.add('group')
-   version.margins = [0, 8, 0, 0] // left top right bottom
-   version.alignment = 'right'
-   
-   var  versionTxt = version.add ("statictext")
-   versionTxt.text = "Svija Tools " + TOOLSVERSION + " · Illustrator " + AIVERSION
+  var siteUrl = content.add('group')
+  siteUrl.margins = [0, 9, 13, 0] // left top right bottom
+  siteUrl.alignment = 'right'
+  
+  var  siteUrlTxt = siteUrl.add ("statictext")
+  siteUrlTxt.text = debugSiteName
+
+  var siteUrlTxtColor = siteUrlTxt.graphics.newPen(siteUrlTxt.graphics.PenType.SOLID_COLOR, colorUrl, 1)
+  siteUrlTxt.graphics.foregroundColor = siteUrlTxtColor
+
+//var testBg2 = siteUrl.graphics.newBrush(siteUrl.graphics.BrushType.SOLID_COLOR, [0.5, 0.5, 0], 1)
+//siteUrl.graphics.backgroundColor = testBg2 
+
    ///
    /*———————————————————— logo */
    
   var logo = content.add('group')
-  logo.margins = [0, 40, 0, 0] // left top right bottom
+  logo.margins = [52, 35, 0, 0] // left top right bottom
+  logo.alignment = 'left'
   
-  var imgPath  = extensionPath + '/png/splash_213x61_' + INTERFACE + '.png'
+  var imgPath  = extensionPath + '/png/infoDialogSvija_' + INTERFACE + '.png'
   var logoImg  = logo.add ("image", undefined, File (imgPath))
-  logoImg.size = [213,61]
+  logoImg.size = [230,69]
+
+//var testBg3 = logo.graphics.newBrush(logo.graphics.BrushType.SOLID_COLOR, [0, 0.5, 0.5], 1)
+//logo.graphics.backgroundColor = testBg3 
+
   ///
-  /*———————————————————— paragraph 1 */
+  /*———————————————————— paragraph */
 
   // separate lines because only single lines can be centered
 
   var para = content.add('group')
-  para.margins = [0, 20, 0, 0] // left top right bottom
+  para.margins = [0, 19, 22, 0] // left top right bottom
   para.alignment = 'center'
   para.orientation = 'column'
-  para.spacing   = 5 // line height
+  para.spacing   = 3 // line height
 
-  var  paraLine1 = para.add ("statictext")
-  var  paraLine2 = para.add ("statictext")
+  var  paraLine1  = para.add ("statictext")
+  var  paraLine2  = para.add ("statictext")
 
-  paraLine1.text = TRANSLATE[LC].startupTime +' '+  STARTUPTIME
-  paraLine1.text+= ' · '+TRANSLATE[LC].memoryUsed +' '+ USEDHEAP
-  paraLine2.text = SITEURL.slice(0, 5)
+  paraLine1.text  = "Svija Tools " + TOOLSVERSION + " · Illustrator " + AIVERSION
+  paraLine2.text  = TRANSLATE[LC].startupTime +' '+  STARTUPTIME
+  paraLine2.text += ' · '+TRANSLATE[LC].memoryUsed +' '+ USEDHEAP
+
+
+  var paraTxtColor = paraLine1.graphics.newPen(paraLine1.graphics.PenType.SOLID_COLOR, colorText, 1)
+  paraLine1.graphics.foregroundColor = paraTxtColor
+  paraLine2.graphics.foregroundColor = paraTxtColor
+
+//var testBg4 = para.graphics.newBrush(para.graphics.BrushType.SOLID_COLOR, [0, 0.5, 0], 1)
+//para.graphics.backgroundColor = testBg4 
+
   ///
-  /*———————————————————— paragraph 2 */
-
-  // separate lines because only single lines can be centered
-
-  var usage = content.add('group')
-  usage.margins = [0, 10, 0, 0] // left top right bottom
-  usage.alignment = 'center'
-  usage.orientation = 'column'
-  usage.spacing   = 5 // line height
-
-  var  usageLine1 = usage.add ("statictext")
-  var  usageLine2 = usage.add ("statictext")
-
-  usageLine1.text = TRANSLATE[LC].infoText1
-  usageLine2.text = TRANSLATE[LC].infoText2
-  ///
-  /*———————————————————— imported colors */
-
-  var infoBg           = this['infoBg'+INTERFACE]
-  var infoVersion      = this['infoVersion'+INTERFACE]
-  var infoParagraph    = this['infoParagraph'+INTERFACE]
-  var infoUsage        = this['infoUsage'+INTERFACE]
-  var infoButtons      = this['infoButtons'+INTERFACE]
-  ///
-  /*———————————————————— color definitions
-                         see illustratorColorDefs.json */
-
-// infoDialogCallback received Error 20: Bad argument list.
-// Line: 162
-// ->    var panelBGcolor = panel.graphics.newBrush(panel.graphics.BrushType.SOLID_COLOR, infoBg, 1)
-
-// infoDialogCallback received Error 20: Bad argument list.
-// Line: 170
-// ->    var versionTxtColor =      versionTxt.graphics.newPen   (     versionTxt.graphics.PenType.SOLID_COLOR, infoVersion,       1)
-
-  var infoBg        = this['panelBgDark'+INTERFACE]
-  var infoVersion   = this[  'labelText'+INTERFACE]
-  var infoParagraph = this[  'labelText'+INTERFACE]
-  var infoUsage     = this[  'hamburger'+INTERFACE]
-  ///
-  /*———————————————————— colors */
-  // it's not possible to style buttons
-
-  var panelBGcolor = panel.graphics.newBrush(panel.graphics.BrushType.SOLID_COLOR, infoBg, 1)
-  panel.graphics.backgroundColor = panelBGcolor
-
-  var versionTxtColor =      versionTxt.graphics.newPen   (     versionTxt.graphics.PenType.SOLID_COLOR, infoVersion,       1)
-  var paraTxtColor    =       paraLine1.graphics.newPen   (      paraLine1.graphics.PenType.SOLID_COLOR, infoParagraph,     1)
-  var usageTxtColor   =      usageLine1.graphics.newPen   (     usageLine1.graphics.PenType.SOLID_COLOR, infoUsage,         1)
-
-  versionTxt.graphics.foregroundColor = versionTxtColor
-   paraLine1.graphics.foregroundColor = paraTxtColor
-   paraLine2.graphics.foregroundColor = paraTxtColor
-  usageLine1.graphics.foregroundColor = usageTxtColor
-  usageLine2.graphics.foregroundColor = usageTxtColor
-  ///
-  /*——————————————————— OK button */
+  /*———————————————————— OK button */
 
   //var buttons = content.add('group', [0,0,310, 38])
   var buttons = content.add('group')
+  //buttons.preferredSize = [357, 10]      // window will be 250px
 
-  buttons.margins = [0, 20, 40, 0] // left top right bottom
-  buttons.alignment   = 'right'
+  buttons.margins = [131, 17, 0, 0] // left top right bottom
+  buttons.alignment   = 'left'
   buttons.orientation = 'row'
 
   applyButton  = buttons.add ("button", undefined, "OK")
-  panel.defaultElement = applyButton
+  applyButton.preferredSize = [70, 20]
 
-//applyButton.alignment  = ['', 'fill']  // permits smaller buttons
+  // buttons cannot be colored
 
 ///
-  
+
+  panel.defaultElement = applyButton
 
   if(panel.show() == 1) return 'true'   // clicked apply
   else return 'false'                   // clicked cancel
