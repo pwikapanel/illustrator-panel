@@ -47,8 +47,8 @@ function setPanelContent(){
     showClosed()
     return
   }
-  elapse(46, `typeof=${typeof localStorage.more}`)
-  elapse(46, `value=${localStorage.more}`)
+//elapse(46, `typeof=${typeof localStorage.more}`)
+//elapse(46, `value=${localStorage.more}`)
   
   if (typeof localStorage.more == 'undefined')
     showLess()

@@ -4,7 +4,6 @@
 
 //:::::::::::::::::::::::::::::::::::::::: infoDialog.css .js .jsx
 
-LC = 'en'
 // switch version & website name
 
 /*———————————————————————————————————————— notes
@@ -24,25 +23,30 @@ LC = 'en'
 
 /////////////////////////////////////////////////// try not using different objects Ypfor each color
 
-var debugSiteName = SITEURL
+alert(29)
 
-var colorWindow0 = panelBg0
-var colorUrl0    = checkedBox0
-var colorText0   = fieldContents0
+var colorWindow0  = panelBg0
+var colorUrl0     = checkedBox0
+var colorText0    = fieldContents0
 
-var colorWindow1 = panelBorder1
-var colorUrl1    = checkedBox1
-var colorText1   = labelText1
+var colorWindow1  = panelBorder1
+var colorUrl1     = checkedBox1
+var colorText1    = labelText1
 
-var colorWindow2 = inputField2
-var colorUrl2    = hamburger2
-var colorText2   = checkedBox2
+var colorWindow2  = inputField2
+var colorUrl2     = hamburger2
+var colorText2    = checkedBox2
 
-var colorWindow3 = inputField3
-var colorUrl3    = hamburger3
-var colorText3   = checkedBox3
+var colorWindow3  = inputField3
+var colorUrl3     = hamburger3
+var colorText3    = checkedBox3
+
+/* requires the following global variables:
+
+    LC set in shell.html  */
 
 function infoDialog(extensionPath){
+  alert(LC)
 
   /*———————————————————— image scaling function */
 
@@ -129,7 +133,7 @@ function infoDialog(extensionPath){
   siteUrl.alignment = 'right'
   
   var  siteUrlTxt = siteUrl.add ("statictext")
-  siteUrlTxt.text = debugSiteName
+  siteUrlTxt.text = SITEURL
 
   var siteUrlTxtColor = siteUrlTxt.graphics.newPen(siteUrlTxt.graphics.PenType.SOLID_COLOR, colorUrl, 1)
   siteUrlTxt.graphics.foregroundColor = siteUrlTxtColor

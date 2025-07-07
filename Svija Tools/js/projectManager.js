@@ -4,12 +4,8 @@
 //:::::::::::::::::::::::::::::::::::::::: projectManager.jsx / projectManager.js
 
 /*———————————————————————————————————————— recover localStorage
-///
-    get values from LS if possible*/
 
-var LASTPATH = ''    // string     last file path for a svija page
-var SITEURL  = ''     // string     url of most recent svija site
-var SYNCPATH = ''    // string     absolute path to SYNC folder
+    get values from LS if possible*/
 
 if (typeof localStorage.lastPath != 'undefined')
   LASTPATH = localStorage.lastPath
@@ -23,8 +19,8 @@ if (typeof localStorage.syncPath != 'undefined')
 varToCep('LASTPATH', LASTPATH)
 varToCep('SITEURL' , SITEURL )
 varToCep('SYNCPATH', SYNCPATH)
-
-/*———————————————————————————————————————— request info from CEP */
+///
+/*———————————————————————————————————————— CEP.evalScript('projectManager()') */
 
 setInterval(function(){
   CEP.evalScript('projectManager()', projectManagerCallback)

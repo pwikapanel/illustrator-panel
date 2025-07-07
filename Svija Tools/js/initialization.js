@@ -10,17 +10,12 @@ var INTMS          = 500       // interval for the updating panel
 ///
 /*———————————————————————————————————————— set in projectManager.js */
 
-var ISSVIJA  = false     // boolean    if fromtmost doc is a svija page (in a SYNC folder)
 var STYLE = getComputedStyle(document.body)    // managed in svijaLogo.js
 ///
+
 /*———————————————————————————————————————— more */
 
-var LANG = 'fr'
-
-if (LANG != 'fr') LANG = LANGDEFAULT // dev use only — delete when done
-
-var LANGDEFAULT      // string     two letter language code
-var LANG             // string     two letter language code
+var LCDEFAULT = 'en'       // string     two letter language code
 var DICTIONARY       // object     JSON english and french traductions
 var INTERFACE        // number     0-3 dark to light
 var MAXWIDTH = 240   // number    width of panel
@@ -32,8 +27,13 @@ elapse(31, `variables initialized`)
 elapse(32, `ISMAC=${ISMAC}`)
 elapse(33, `AIVERSION=${AIVERSION}`)
 ///
+
+// was set in shell.thml
+if (LC != 'fr') LC = LCDEFAULT // dev use only — delete when done
+
 /*———————————————————————————————————————— transmit valued to CEP */
 
+varToCep('LC'          , LC          )
 varToCep('ISMAC'       , ISMAC       )
 varToCep('TOOLSVERSION', TOOLSVERSION)
 varToCep('AIVERSION'   , AIVERSION   )
@@ -65,6 +65,13 @@ function installColors(name, contents, path){
     elapse(26, `--${name} set to hsl(${hsl})`)
   })
 }
+///
+/*———————————————————————————————————————— set in projectManager */
+
+var ISSVIJA  = false // boolean    if fromtmost doc is a svija page (in a SYNC folder)
+var LASTPATH = ''    // string     last file path for a svija page
+var SITEURL  = ''    // string     url of most recent svija site
+var SYNCPATH = ''    // string     absolute path to SYNC folder
 ///
 
 //:::::::::::::::::::::::::::::::::::::::: fin

@@ -1,7 +1,8 @@
 <!DOCTYPE html><html><head><meta charset="utf-8">
 
-<!-- vim: set foldmethod=manual -->
+<!-- vim: set foldmethod=marker fmr=<\!--—,<\/>: -->
 
+  <!--———————————————————— CSS -->
   <style>
   
     *{
@@ -17,8 +18,9 @@
       width:8px;height:8px;
     }
   
-  </style>
+  </style></>
 
+  <!--———————————————————— external stylesheets -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/illustratorColorDefs.css">
   <link rel="stylesheet" href="css/fonts.css">
@@ -26,10 +28,11 @@
   <link rel="stylesheet" href="css/closed.css">
   <link rel="stylesheet" href="css/more.css">
   <link rel="stylesheet" href="css/logo.css">
-  <link rel="stylesheet" href="css/bottomBar.css">
+  <link rel="stylesheet" href="css/bottomBar.css"></>
 
   <script type="text/javascript" src="CSXS/CSInterface.js"></script>
 
+  <!--———————————————————— javascript -->
   <script>
 
 //———————————————————————————————————————— CEP required
@@ -39,6 +42,8 @@ var TRANSLATE      = CEP.initResourceBundle(); // https://github.com/Adobe-CEP/C
 var HOSTENV        = CEP.getHostEnvironment()
 var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
 var menuXML        = '<Menu></Menu>'
+var LC             = HOSTENV.appUILocale.substr(0,2) // en_US
+var LC             = 'fr' // was set automatically in shell.html
 
 CEP.setContextMenu(menuXML, function(){})
 
@@ -91,16 +96,17 @@ function fiveDigits(i, n){
 elapse(88, `starting Svija Tools`)
 
 
-  </script>
+  </script></>
 
 </head><body>
 
   <div id="reloader" onclick='location.reload()'></div>
 
+  <!--———————————————————— setup scripts -->
   <script type="text/javascript" src='js/utilities.js'       ></script>
   <script type="text/javascript" src='js/colorUtilities.js'  ></script>
   <script type="text/javascript" src='js/jsxLoader.js'       ></script>
-  <script type="text/javascript" src="js/initialization.js" ></script>
+  <script type="text/javascript" src="js/initialization.js" ></script></>
 
   <div id="newsDiv"></div>
   
@@ -114,6 +120,7 @@ elapse(88, `starting Svija Tools`)
     <hr>
   </div>
 
+  <!--———————————————————— main div -->
   <div id="mainDiv" style="padding-top:0;">
 
     <input id='butt31' class='btnLarge' type=button><svg id="svijaLogo"
@@ -129,17 +136,19 @@ elapse(88, `starting Svija Tools`)
   
     <br>
     <input id='butt41' class='btnLarge' type=button><input id='butt42' class='btnMed'   type=button><input id='butt43' class='btnSmall' type=button>
-  </div>
+  </div></>
   
+  <!--———————————————————— bottom div -->
   <div id="bottomDiv">
     <a id='linkMore' ></a>
     <a id='linkLess' ></a> &nbsp;&nbsp;
     <a id='linkHelp' ></a> &nbsp;&nbsp;
     <a id='linkInfo'></a> 
-  </div>
+  </div></>
 
   <script type="text/javascript" src="js/projectManager.js"       ></script>
 
+  <!--———————————————————— button scripts -->
   <script type="text/javascript" src="js/news.js"                 ></script>
   <script type="text/javascript" src="js/openFolder.js"           ></script>
   <script type="text/javascript" src="js/open.js"                 ></script>
@@ -154,7 +163,7 @@ elapse(88, `starting Svija Tools`)
   <script type="text/javascript" src="js/save.js"                 ></script>
   <script type="text/javascript" src="js/moreLess.js"             ></script>
   <script type="text/javascript" src="js/help.js"                 ></script>
-  <script type="text/javascript" src="js/infoDialog.js"           ></script>
+  <script type="text/javascript" src="js/infoDialog.js"           ></script></>
 
   <script type="text/javascript" src="js/panelManager.js"         ></script>
   <script type="text/javascript" src="js/usage.js"                ></script>

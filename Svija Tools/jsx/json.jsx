@@ -1,3 +1,7 @@
+#target illustrator  
+
+/* vim: set foldmethod=marker fmr=/*\—,///: */
+
 //  json2.js
 //  https://raw.githubusercontent.com/douglascrockford/JSON-js/master/json2.js
 //  https://stackoverflow.com/questions/56375138/need-to-json-stringify-an-object-in-extendscript
