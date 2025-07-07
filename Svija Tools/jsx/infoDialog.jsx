@@ -23,7 +23,7 @@
 
 /////////////////////////////////////////////////// try not using different objects Ypfor each color
 
-alert(29)
+/*———————————————————————————————————————— colors/interfaces */
 
 var colorWindow0  = panelBg0
 var colorUrl0     = checkedBox0
@@ -40,13 +40,9 @@ var colorText2    = checkedBox2
 var colorWindow3  = inputField3
 var colorUrl3     = hamburger3
 var colorText3    = checkedBox3
-
-/* requires the following global variables:
-
-    LC set in shell.html  */
+///
 
 function infoDialog(extensionPath){
-  alert(LC)
 
   /*———————————————————— image scaling function */
 
@@ -170,9 +166,10 @@ function infoDialog(extensionPath){
   var  paraLine2  = para.add ("statictext")
 
   paraLine1.text  = "Svija Tools " + TOOLSVERSION + " · Illustrator " + AIVERSION
-  paraLine2.text  = TRANSLATE[LC].startupTime +' '+  STARTUPTIME
-  paraLine2.text += ' · '+TRANSLATE[LC].memoryUsed +' '+ USEDHEAP
+  paraLine2.text  = "error"
 
+  paraLine2.text  = TRANSLATE[LC].startupTime +' '+ STARTUPTIME + ' MS · '
+  paraLine2.text += TRANSLATE[LC].memoryUsed  +' '+ USEDHEAP    + ' ' + TRANSLATE[LC].mb
 
   var paraTxtColor = paraLine1.graphics.newPen(paraLine1.graphics.PenType.SOLID_COLOR, colorText, 1)
   paraLine1.graphics.foregroundColor = paraTxtColor

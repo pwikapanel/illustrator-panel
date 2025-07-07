@@ -1,7 +1,7 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
-//:::::::::::::::::::::::::::::::::::::::: svijaLogo.js
+//:::::::::::::::::::::::::::::::::::::::: svijaLogo.jsx .js
 
 elapse(6, `on load, localStorage.accentBright=${localStorage.accentBright}, localStorage.accentDim=${localStorage.accentDim}`)
 

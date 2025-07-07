@@ -4,18 +4,20 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: locale.jsx */
 
-/*———————————————————————————————————————— */
-
 var TRANSLATE = {
   en: {
-    startupTime: "Démarrage en",
+    startupTime: "Startup:",
+     memoryUsed: "Memory:",
+             mb: "MB",
+        noComma: "———"
+  },
+  fr: {
+    startupTime: "Démarrage :",
      memoryUsed: "Mémoire :",
-      infoText1: "Svija Tools requiert un compte Svija gratuit",
-      infoText2: "Visitez svija.com pour plus d'information",
-           last: "———"
+             mb: "MO",
+        noComma: "———"
   }
 }
-///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

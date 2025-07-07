@@ -18,6 +18,8 @@ function cssVarToCep(varName){
   }
 
   var hslArray  = strToHslArray(hslString)
+  elapse(21, `${hslString} converted to ${hslArray.join(',')}`)
+
   var rgbArray  = hslToRgbArray(hslArray)
   var rgbString = '[' + rgbArray.join(',') + ']'
   var cepString = `${varName}=${rgbString}`

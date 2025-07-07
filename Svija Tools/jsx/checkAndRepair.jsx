@@ -88,7 +88,7 @@ function checkAndRepair(){
   env_imagesFixed    = []
   env_imagesFailed   = []
   
-  var linksFolderObj = Folder(ut_concatenatePath(doc.path, 'Links'))
+  var linksFolderObj = Folder(CONCATENATEPATH(doc.path, 'Links'))
   
   var nonNatives = doc.nonNativeItems.length
   var rasters    = doc.rasterItems.length
@@ -99,7 +99,7 @@ function checkAndRepair(){
 
   //———————————————————————————————————————— has not saved then quit
   
-  var pathErr = ut_hasPath(doc)
+  var pathErr = HASPATH(doc)
   
   if (pathErr != ''){
     alert(pathErr)
@@ -342,7 +342,7 @@ function fixPlacedImage(doc, img){
 
   var currentFolder = Folder(app.activeDocument.path);
 
-  var linksFolder   = ut_concatenatePath(doc.path, 'Links')
+  var linksFolder   = CONCATENATEPATH(doc.path, 'Links')
 
   if (thisFolder == linksFolder) // image is already in /Links
     return [];
@@ -350,7 +350,7 @@ function fixPlacedImage(doc, img){
   //———————————————————— need to repair
 
   var neme     = img.file.name;
-  var destPath = ut_concatenatePath(linksFolder, neme)
+  var destPath = CONCATENATEPATH(linksFolder, neme)
 
   //———————————————————— is it a cloud image?
 
@@ -358,7 +358,7 @@ function fixPlacedImage(doc, img){
   if (isCloud > 0){
     var ext = ut_getExtension(img.file);
     neme = img.name + ' Cloud' + ext;
-    destPath = ut_concatenatePath(linksFolder, neme)
+    destPath = CONCATENATEPATH(linksFolder, neme)
   }
   
   //———————————————————— continue PROBLEM IS HERE
@@ -599,3 +599,94 @@ function getAlertDepth(img){
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
+/*———————————————————————————————————————— ut_getExtension(path)
+
+    */
+
+function ut_getExtension(path){
+  var ending = String(path).substr(-5)
+  var bits = ending.split('.')
+  return '.' + bits[1]
+}
+///
+/*———————————————————————————————————————— ut_getFileSize(page)
+
+// page.path = parent folder
+// page.name = filename
+// together is full pagh */
+
+function ut_getFileSize(page){
+  try{
+    var ref = File(CONCATENATEPATH(page.path, page.name))
+    var fileSize = Math.round(ref.length / 1000 / 1000 * 100)/100
+    return fileSize
+  }
+  catch(e){ return -1 }
+}
+///
+/*———————————————————————————————————————— ut_isTwoLetters(n)
+
+    returns true if n is two letters or numbers
+    a-z, A-Z, 0-9 */
+
+function ut_isTwoLetters(n){
+  const regex = /^[a-zA-Z\d][a-zA-Z\d]$/g
+  if(n.match(regex) === null) return false
+  return true;
+}
+///
+/*———————————————————————————————————————— ut_newFile(folder, name)
+
+    returns file to save into
+
+    https://extendscript.docsforadobe.dev */
+
+function ut_newFile(folder, name) {
+
+  var f = new File(folder + '/' + name)
+
+  if (f.open("w")){ f.close() } // check access rights
+  else alert('File ' + f + ' could not be written')
+
+  return f
+}
+///
+/*———————————————————————————————————————— ut_relockHierarchy(obj)
+
+    relocks elements unlocked by ut_unlockHierarchy() */
+
+function ut_relockHierarchy(arr){
+  for(var x=0; x<arr.length; x++){
+    arr[x][0].visible = arr[x][2]
+    arr[x][0].locked = arr[x][1]
+  }
+}
+///
+/*———————————————————————————————————————— ut_unlockHierarchy(obj)
+
+    unlocks the hierarchy above an element and returns an array
+
+    each element of the array is a sub array containing
+    [obj, obj.locked, obj.visible] */
+
+function ut_unlockHierarchy(obj){
+
+  var parentLocks = []
+  var thisParent = obj.parent
+
+  while (thisParent.typename != 'Document'){
+    parentLocks[parentLocks.length] = [thisParent, thisParent.locked, thisParent.visible]
+    thisParent = thisParent.parent
+  }
+
+  for(var x=parentLocks.length-1; x>-1; x--){
+    try{
+      parentLocks[x][0].visible= true
+      parentLocks[x][0].locked = false
+    }
+    catch(e){ alert('Page item couldn\'t be accessed: ' + e+'\n'+parentLocks[x][0].typename + ' inside ' + parentLocks[x][0].parent.name) }
+  }
+
+  return parentLocks
+}
+///

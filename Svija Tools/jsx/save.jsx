@@ -1,5 +1,7 @@
 #target illustrator  
 
+/* vim: set foldmethod=marker fmr=/*\—,///: */
+
 //:::::::::::::::::::::::::::::::::::::::: save.js / save.jsx
 
 /*———————————————————————————————————————— notes
@@ -7,12 +9,12 @@
     provides an alert if errors or warnings
     otherwise returns a success message displayed
     by alertPalette */
-
-//———————————————————————————————————————— global CEP variables
+///
+/*———————————————————————————————————————— global CEP variables */
 
 var  ERRORS   = []   // error messages for user
 var  WARNINGS = []   // warnings for user
-
+///
 //———————————————————————————————————————— savePages(single)
 
 function savePages(allPages){
@@ -46,7 +48,7 @@ function savePages(allPages){
   var activeDoc = app.activeDocument            // active document
   var aiOptions = aiSaveOptions()
 
-  /*———————————————————————————————————————— "for" loop through documents */
+  //———————————————————————————————————————— "for" loop through documents */
 
   // var extraLayer = false
 
@@ -60,7 +62,7 @@ function savePages(allPages){
       var activeBoard    = doc.artboards.getActiveArtboardIndex()
       var originalPath   = ut_getDocPath(doc)
 
-      var theseFileSizes = saveSvg(doc) /////////////////////////////////////// MAIN SAVE-AS-SVG FUNCTION
+      var theseFileSizes = saveSvg(doc) //::::::::::::::::::::::::::::::::::::: MAIN SAVE-AS-SVG FUNCTION
 
       var aiFile = new File(originalPath)
       doc.saveAs(aiFile, aiOptions)
@@ -89,7 +91,7 @@ function savePages(allPages){
   if (docsOpen > 1) return "pagesSaved"
   else return 'pageSaved'
 }
-
+///
 
 //:::::::::::::::::::::::::::::::::::::::: complex functions
 
@@ -120,20 +122,20 @@ function saveSvg(doc){
   //———————————————————————————————— avoid overwrite confirmations
 
   for (x=0; x<doc.artboards.length; x++){
-    var path = ut_concatenatePath(svgFilesPath, ut_makeSvgName(doc, x))
+    var path = CONCATENATEPATH(svgFilesPath, ut_makeSvgName(doc, x))
     if (File(path).exists){
       File(path).remove()
     }
   }
-
+ 
   //———————————————————————————————— create different obj if single artboard
 
   if (doc.artboards.length == 1){
-    var path = ut_concatenatePath(svgFilesPath, ut_svgNameSingleArtboard(doc))
+    var path = CONCATENATEPATH(svgFilesPath, ut_svgNameSingleArtboard(doc))
     diskObject = new File(path)
   }
 
-  /*———————————————————————————————— add marker rectangle to find artboard */
+  //———————————————————————————————— add marker rectangle to find artboard
 
   if (doc.artboards.length == 1){
     app.activeDocument.rulerOrigin = [0,doc.height]
@@ -142,12 +144,12 @@ function saveSvg(doc){
     var replaceVB = true
   }
 
-  /*———————————————————————————————— export SVG files */
+  //———————————————————————————————— export SVG files
 
   var svgOpts = svgOptions(doc)
   doc.exportFile(diskObject, ExportType.WOSVG, svgOpts) 
 
-  /*———————————————————————————————— is single artboard: get viewBox size */
+  //———————————————————————————————— is single artboard: get viewBox size
 
   if (replaceVB){
     var ab = doc.artboards[0].artboardRect  // left, top, right, bottom
@@ -158,9 +160,9 @@ function saveSvg(doc){
     var viewBox =  w + ' ' + l
   }
 
-  /*———————————————————————————————— get SVG contents
+  //———————————————————————————————— get SVG contents
 
-  we will need to update the viewBox coordinates after saving */
+  // we will need to update the viewBox coordinates after saving */
 
   if (replaceVB){
     var tries = 500
@@ -179,11 +181,11 @@ function saveSvg(doc){
     }
   }
 
-  /*———————————————————————————————— get correct viewBox
+  //———————————————————————————————— get correct viewBox
 
-  <rect id="COORDS00" class="cls-1" x="63" y="50.431" width="100" height="100"/>
+  //<rect id="COORDS00" class="cls-1" x="63" y="50.431" width="100" height="100"/>
 
-  if there is nothing above or to the left, there will be no x or y coords */
+  //if there is nothing above or to the left, there will be no x or y coords */
 
   if (replaceVB){
 
@@ -206,7 +208,7 @@ function saveSvg(doc){
 
   }
 
-  /*———————————————————————————————— replace viewBox in SVG source */
+  //———————————————————————————————— replace viewBox in SVG source */
 
   if (replaceVB){
     var parts = svgSource.split('viewBox="')
@@ -236,13 +238,13 @@ function saveSvg(doc){
     if (layerInfo[r] == 2 || layerInfo[r] == 3){doc.layers[r].visible = false}
   }
 
-  /*———————————————————————————————— get file sizes */
+  //———————————————————————————————— get file sizes */
 
   var sizes = []
 
   for (x=0; x<doc.artboards.length; x++){
 
-    var path = ut_concatenatePath(svgFilesPath, ut_makeSvgName(doc, x))
+    var path = CONCATENATEPATH(svgFilesPath, ut_makeSvgName(doc, x))
 
     path = encodeURI(path)
     var fileSize = File(path).length
@@ -254,7 +256,7 @@ function saveSvg(doc){
 
   return sizes
 }
-
+///
 /*———————————————————————————————————————— svgOptions(includeCanvas)
 
   sets options for SVG file */
@@ -271,7 +273,7 @@ function svgOptions(doc){
   options.artboardRange         = '' // or '1-3'
   options.coordinatePrecision   = 3
   options.cssProperties         = SVGCSSPropertyLocation.STYLEELEMENTS
-  options.fontSubsetting        = SVGFontSubsetting.None                         ///////////////////// probably not supported
+  options.fontSubsetting        = SVGFontSubsetting.None                         //::::::::::::::::::: probably not supported
   options.fontType              = SVGFontType.SVGFONT
 //options.fontType              = SVGFontType.OUTLINEFONT
   options.rasterImageLocation   = RasterImageLocation.PRESERVE
@@ -281,7 +283,7 @@ function svgOptions(doc){
 
   return options
 }
-
+///
 /*———————————————————————————————————————— finalFeedback(fileSizes)
 
     alert with:
@@ -321,7 +323,7 @@ function finalFeedback(fileSizes){
   alert(title + body)
   return true
 }
-
+///
 /*———————————————————————————————————————— aiSaveOptions()
 
   options for Illustrator File
@@ -340,7 +342,7 @@ function aiSaveOptions(){
 
   return options
 }
-
+///
 
 //:::::::::::::::::::::::::::::::::::::::: validity functions
 
@@ -365,7 +367,7 @@ function isValid(doc){
 //———————————————————— fatal errors
 
 
-  err = ut_hasPath(doc)           // has file been saved at least once?
+  err = HASPATH(doc)           // has file been saved at least once?
   if (err != '')
     return dontSave(err)
   err = isAi(doc)              // is it an AI file?
@@ -397,7 +399,7 @@ function isValid(doc){
 
   return true
 }
-
+///
 /*———————————————————————————————————————— isAi(doc)
 
     just checks if file is a .ai and not a PDF
@@ -411,7 +413,7 @@ function isAi(doc){
 
   return ''
 }
-
+///
 /*———————————————————————————————————————— hasFolders(sourceDoc) VERIFIED
 
     checks for a SYNC folder first
@@ -430,7 +432,7 @@ try{
 
   return ''
 }
-
+///
 /*———————————————————————————————————————— hasLinks(sourceDoc)
 
     tests for existence of /Links folder */
@@ -442,7 +444,7 @@ function hasLinks(doc){
   if (!Folder(path).exists) return doc.name + ' has no \"Links\" folder'
   else                      return ''
 }
-
+///
 /*———————————————————————————————————————— hasNonNative(sourceDoc)
 
     has file been saved at least once?
@@ -454,7 +456,7 @@ function hasNonNative(doc){
   else
     return ''
 }
-
+///
 /*———————————————————————————————————————— hasEmbedded(sourceDoc)
 
     has file been saved at least once?
@@ -466,7 +468,7 @@ function hasEmbedded(doc){
   else
     return ''
 }
-
+///
 
 // CAUSES ERRORS v
 
@@ -511,7 +513,7 @@ function hasPlaced(doc){
 
   return ''
 }
-
+///
 
 //:::::::::::::::::::::::::::::::::::::::: other functions
 
@@ -521,8 +523,6 @@ function hasPlaced(doc){
 
     create rectangle at 0,0 coords to be able to
     reset the artboard */ 
-
-
 
 function rectAt00(){
   var recName = 'COORDS00'
@@ -551,7 +551,7 @@ function rectAt00(){
 //var returnDict = {'locked':lock, 'visible':vis, 'name':recName}
   return rec.name
 }
-
+///
 /*———————————————————————————————————————— deleteNonPrintingLayers(src)
 
   delete any layers that are not printable
@@ -581,7 +581,7 @@ function deleteNonPrintingLayers(src){
 
   return results
 }
-
+///
 /*———————————————————————————————————————— dontSave(err)
 
     permits deleting braces in function isValid */
@@ -590,7 +590,7 @@ function dontSave(err){
   ERRORS.push(err)
   return false
 }
-
+///
 /*———————————————————————————————————————— fileSizeReport(fileSizes)
 
     returns a text snippet with file sizes */
@@ -617,7 +617,7 @@ function fileSizeReport(fileSizes){
   return report
 
 }
-
+///
 /*———————————————————————————————————————— getLinksPath(doc)
 
     returns path of links folder */
@@ -625,9 +625,73 @@ function fileSizeReport(fileSizes){
 function getLinksPath(doc){
   var path = doc.path.fsName
 
-  return ut_concatenatePath(path, 'Links')
+  return CONCATENATEPATH(path, 'Links')
 }
+///
 
+//:::::::::::::::::::::::::::::::::::::::: moved from utilities.jsx
+
+/*———————————————————————————————————————— ut_getDocPath(doc)
+
+    returns full path of doc */
+
+function ut_getDocPath(doc){
+  if (ISMAC) return doc.path.fsName + '/' + doc.name
+  else return doc.path.fsName + '\\' + doc.name
+}
+///
+/*———————————————————————————————————————— ut_getSvgFilesPath(doc)
+
+    returns SVG folder path from SYNC folder */
+
+function ut_getSvgFilesPath(doc){
+ 
+  var s = SYNCPATH
+  if (s == '') return ''
+
+  if (ISMAC) return s + '/SVIJA/SVG Files'
+  else return s + '\\SVIJA\\SVG Files'
+}
+///
+/*———————————————————————————————————————— ut_svgNameSingleArtboard(doc)
+
+    creates SVG name for single-artboard files */
+
+function ut_svgNameSingleArtboard(doc){
+  var radical = doc.name.substr(0,doc.name.length-3)
+  var artboard = doc.artboards[0].name
+  var result = radical + '_' + artboard + '.svg'
+  return result
+}
+///
+/*———————————————————————————————————————— ut_makeMB(x)
+
+    givent a number of bytes, returns a value
+    in KB or MB for human consumption */
+
+function ut_makeMB(x){
+
+  var ext = ' MB'
+  var div = 1000
+
+  if (x < 1000000){
+    ext = ' KB'
+    div = 1
+  }
+
+  x = Math.round(x / div / 1000 * 100)/100
+  return x + ext
+}
+///
+/*———————————————————————————————————————— ut_makeSvgName(doc, ab)
+
+    creates SVG filename from doc & artboard n° */
+
+function ut_makeSvgName(doc, ab){
+  var name = doc.name.slice(0, -3)  // remove .ai
+  return name + '_' + doc.artboards[ab].name + '.svg' 
+}
+///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

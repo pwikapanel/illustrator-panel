@@ -25,16 +25,13 @@ div#bottomDiv a{
   display:none;
   cursor:pointer;
   transition:0.3s;
+  color:var(--hamburger);
 }
 
 div#bottomDiv{
   background-color:var(--panelBgDark);
   border-top-color:var(--panelBorder);
   border-right-color:var(--panelBorder);
-}
-
-div#bottomDiv span a:link{
-  color:var(--hamburger);
 }
 
 div#bottomDiv a:hover{

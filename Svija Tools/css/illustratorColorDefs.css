@@ -1,9 +1,11 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: illustratorColorDefs.css */
 
+/* see json/illustratorColorDefs for actual values */
+
 #if_0 { /* interface 0 */
 
-  --fieldContents :var(--fiendContents0);
+  --fieldContents :var(--fieldContents0);
   --labelText     :var(--labelText0);
   --checkedBox    :var(--checkedBox0);
   --hamburger     :var(--hamburger0);
@@ -19,7 +21,7 @@
 
 #if_1 { /* interface 1 */
 
-  --fieldContents :var(--fiendContents1);
+  --fieldContents :var(--fieldContents1);
   --labelText     :var(--labelText1);
   --checkedBox    :var(--checkedBox1);
   --hamburger     :var(--hamburger1);
@@ -35,7 +37,7 @@
 
 #if_2 { /* interface 2 */
 
-  --fieldContents :var(--fiendContents2);
+  --fieldContents :var(--fieldContents2);
   --labelText     :var(--labelText2);
   --checkedBox    :var(--checkedBox2);
   --hamburger     :var(--hamburger2);
@@ -51,7 +53,7 @@
 
 #if_3 { /* interface 3 */
 
-  --fieldContents :var(--fiendContents3);
+  --fieldContents :var(--fieldContents3);
   --labelText     :var(--labelText3);
   --checkedBox    :var(--checkedBox3);
   --hamburger     :var(--hamburger3);
