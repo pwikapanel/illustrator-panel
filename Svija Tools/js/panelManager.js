@@ -81,7 +81,7 @@ function setPanelColor(){
   document.body.id = `if_${INTERFACE}`
   VARTOCEP('INTERFACE', INTERFACE)
 
-  setDimAccentColor() // because dark accent depends on panel background
+  SETDIMACCENT() // because dark accent depends on panel background
 }
 ///
 

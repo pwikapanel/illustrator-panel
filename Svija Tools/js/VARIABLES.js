@@ -40,7 +40,7 @@ var SYNCPATH         // string     absolute path to SYNC folder
 
 var STYLE = getComputedStyle(document.body) // object, managed in svijaLogo.js
 ///
-/*———————————————————————————————————————— load JSON colors & transmit to CEP
+/*———————————————————————————————————————— load JSON colors
 
     load Illustrator CSS colors
     see Illustrator panel colors.ai
@@ -52,18 +52,43 @@ var STYLE = getComputedStyle(document.body) // object, managed in svijaLogo.js
     --panelBgDark 
     --panelBorder   */
 
-var colorDefsJson = 'json/illustratorColorDefs.json'
-GETLOCALFILE ('illustratorColorDefs.json', colorDefsJson, installColors)
-elapse(17, `  requested ${colorDefsJson}`)
+if (typeof localStorage.cssVarJson != 'undefined'){
+  installColors(localStorage.cssVarJson)
+  elapse(60, `  CSS JSON installed from localStorage`)
+  }
+else{
+  var filePath = 'json/illustratorColorDefs.json'
+  GETLOCALFILE ('illustratorColorDefs.json', filePath, retrieveColors)
+  elapse(60, `  requested ${filePath}`)
+}
 
-function installColors(name, contents, path){
+///
+/*———————————————————————————————————————— load JSON colors callback */
 
-  var cssVars = JSON.parse(contents)
+function retrieveColors(name, cssVarJson, path){
+  if (cssVarJson == '' || !cssVarJson.includes(':')){
+    elapse(63, `⚠️ cssVarJson is empty or contains no colons`)
+    return
+  }
+
+  localStorage.cssVarJson = cssVarJson
+  installColors(cssVarJson)
+}
+///
+/*———————————————————————————————————————— transmit colors to CEP */
+
+function installColors(cssVarJson){
+  if (cssVarJson == '' || !cssVarJson.includes(':')){
+    elapse(77, `⚠️ cssVarJson is empty or contains no colons`)
+    return
+  }
+
+  var cssVars = JSON.parse(cssVarJson)
   const root = document.documentElement
 
   cssVars.forEach(({ name, hsl }) => {
     root.style.setProperty(`--${name}`, `hsl(${hsl})`)
-    cssVarToCep(name)
+    CSSVARTOCEP(name)
     elapse(26, `--${name} set to hsl(${hsl})`)
   })
 }

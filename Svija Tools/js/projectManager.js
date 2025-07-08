@@ -1,5 +1,5 @@
 
-* vim: set foldmethod=marker fmr=/*\—,///: */
+/* vim: set foldmethod=marker fmr=/*\—,///: */
 
 //:::::::::::::::::::::::::::::::::::::::: projectManager.jsx / projectManager.js
 

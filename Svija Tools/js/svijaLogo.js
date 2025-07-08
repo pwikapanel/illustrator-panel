@@ -81,7 +81,7 @@ function svijaLogoCallback(arg){
   STYLE = getComputedStyle(document.body)                  
 
   localStorage.accentBright = hslString 
-  setDimAccentColor()
+  SETDIMACCENT()
 }
 ///
 
