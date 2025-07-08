@@ -3,64 +3,10 @@
 
 //:::::::::::::::::::::::::::::::::::::::: jsxLoader.js
 
-/*———————————————————————————————————————— read directory listing
+/*———————————————————————————————————————— CEP command string
 
-    requires node.js */
-
-//var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
-///
-/*———————————————————————————————————————— try to load each one */
-
-// elapseGroup(10, `requesting JSX content (${jsxList.length} files)...`)
-// 
-// for (var x=0; x<jsxList.length; x++){
-//   var  path = `jsx/${jsxList[x]}`
-//   elapse(18, `   requested ${path}`)
-//   GETLOCALFILE(jsxList[x], path, fileToCep)
-// }
-// 
-// elapseGroupEnd()
-///
-
-//:::::::::::::::::::::::::::::::::::::::: calback function
-
-/*———————————————————————————————————————— fileToCep(passthrough, contents, path)
-
-     evaluates the contents of a file so that it will
-     be available in CEP */
-
-function fileToCep(passthrough, contents, path){
-
-  if (ELAPSEDEPTH == 0){
-    elapseGroup(37, 'importing JSX into CEP')
-  }
-
-  if (contents == ''){
-     elapse(108, `   ${passthrough} returned empty file`)
-     return
-  }
-
-  CEP.evalScript(contents)
-  elapse(111, `   ${passthrough} imported`)
-
-  setTimeout(elapseGroupEnd, 1000)
-}
-///
-/*———————————————————————————————————————— dirListArray(dir, ext, lsName)
-
-    using node adds approx. 1 second to startup time
-
-    returns a file list from a given local directory in
-    the plugin, containing files with a given extension
-
-    this can only be done at Illustrator startup, so we
-    store the result in localStorage
-
-    requires the following in manifest.xml:
- 
-     <CEFCommandLine>
-       <Parameter>--enable-nodejs</Parameter>
-     </CEFCommandLine>    */
+     returns a directory listing of the jsx subdirectory
+     based on a function written by ChatGPT */
 
 var dirPath = `${TOOLSPATH}/jsx`
 
@@ -79,10 +25,58 @@ var cmd = `(function(){
 
   return fileNames.join('|')
 })()`
+///
 
-CEP.evalScript(cmd, myFuncCallback)
+/*:::::::::::::::::::::::::::::::::::::::: program
 
-function myFuncCallback(result){
+    this is a chain:
+ 
+    get from LS if possible, otherwise...
+ 
+    CEP command:
+    1. send directory request to CEP with callback directoryListFilter
+ 
+    directoryListFilter:
+    2A. remove any non-jsx files
+    2B. request actual file, with callback jsxToCep
+ 
+    jsxToCep:
+    3. send file contents to CEP */
+
+/*———————————————————————————————————————— get from LS if possible */
+
+if (typeof localStorage.jsxList != 'undefined'){
+
+  var jsxList = localStorage.jsxList.split('|')
+  elapse(50, `loading JSX from localStorage (${jsxList.length} files)`)
+
+  for (var x=0; x<jsxList.length-1; x++){
+    CEP.evalScript(localStorage[jsxList[x]])
+    elapse(53, `${jsxList[x]} loaded from localStorage`)
+  }
+
+}
+else
+  CEP.evalScript(cmd, directoryListFilter)
+
+///
+/*———————————————————————————————————————— directoryListFilter(result)
+
+    using node adds approx. 1 second to startup time
+
+    returns a file list from a given local directory in
+    the plugin, containing files with a given extension
+
+    this can only be done at Illustrator startup, so we
+    store the result in localStorage
+
+    requires the following in manifest.xml:
+ 
+     <CEFCommandLine>
+       <Parameter>--enable-nodejs</Parameter>
+     </CEFCommandLine>    */
+
+function directoryListFilter(result){
   elapseGroup(10, `received jsx directory listing from CEP`)
 
   var jsxList = result.split('|')
@@ -95,12 +89,20 @@ function myFuncCallback(result){
     }
   }
 
-  elapseGroup(10, `requesting JSX content (${jsxList.length} files)...`)
+  if (jsxList.length == 0){
+    elapseGroup(80, `⚠️ jsxList.length is zero, aborting`)
+    return
+  }
+
+  localStorage.jsxList = jsxList.join('|')
+  elapseGroup(85, `jsxList stored in localStorage.jsxList`)
+    
+  elapseGroup(87, `requesting JSX content (${jsxList.length} files)...`)
   
   for (var x=0; x<jsxList.length; x++){
     var  path = `jsx/${jsxList[x]}`
     elapse(18, `   requested ${path}`)
-    GETLOCALFILE(jsxList[x], path, fileToCep)
+    GETLOCALFILE(jsxList[x], path, jsxToCep)
   }
   
   elapseGroupEnd()
@@ -108,46 +110,29 @@ function myFuncCallback(result){
 
 
 ///
-/*——— */
+/*———————————————————————————————————————— jsxToCep(fileName, contents, path)
 
-function dirListArray(dir, ext, lsName){
+     evaluates the contents of a file so that it will
+     be available in CEP */
 
-  if (typeof localStorage[lsName] == 'undefined'){
-    elapse(134, `setting localStorage[${lsName}] to ''`)
-    localStorage[lsName] = ''
+function jsxToCep(fileName, contents, path){
+
+  if (ELAPSEDEPTH == 0){
+    elapseGroup(37, 'importing JSX into CEP')
   }
 
-  elapse(138, `typeof require: ${typeof require}, localStorage[lsName].length: ${localStorage[lsName].length}`)
-  if (typeof require != 'undefined' && localStorage[lsName].length == 0){
-
-    elapse(140, 'getting fresh directory listing')
-    var path    = CEP.getSystemPath(SystemPath.EXTENSION)
-    var fs      = require('fs')
-    var rawList = fs.readdirSync(path+'/'+dir)
-
-    var tempArray = []
-    for (x=0; x<rawList.length; x++)
-      if (rawList[x].slice(-3) == ext) tempArray.push(rawList[x])
-    
-    localStorage[lsName] = tempArray.join('|')
-  }
-  else
-    elapse(152, `directory listing in LS — didn't get fresh listing`)
-
-  if (typeof require == 'undefined' && localStorage[lsName].length == 0)
-    LERT(`Restart Illustrator\nFresh directory listing needed\n(node.js unavailable)`)
-  
-  if (!localStorage[lsName].includes('|')){
-    elapse(156, `⚠️ LS does not contain directory listing`)
-    return []
+  if (contents == ''){
+     elapse(108, `   ${fileName} returned empty file`)
+     return
   }
 
-  elapse(159, `directory listing retreived from localStorage`)
-  return localStorage[lsName].split('|')
+  localStorage[fileName] = contents
+  CEP.evalScript(contents)
+  elapse(111, `   ${fileName} imported`)
+
+  setTimeout(elapseGroupEnd, 1000)
 }
 ///
-
-//'alertPalette.jsx', 'changeCase.jsx', 'checkAndRepair.jsx', 'createGroup.jsx', 'infoDialog.jsx', 'json.jsx', 'locale.jsx', 'open.jsx', 'projectManager.jsx', 'reopen.jsx', 'save.jsx', 'svijaLogo.jsx', 'utilities.jsx'
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

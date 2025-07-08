@@ -89,7 +89,7 @@ function installColors(cssVarJson){
   cssVars.forEach(({ name, hsl }) => {
     root.style.setProperty(`--${name}`, `hsl(${hsl})`)
     CSSVARTOCEP(name)
-    elapse(26, `--${name} set to hsl(${hsl})`)
+//  elapse(26, `--${name} set to hsl(${hsl})`)
   })
 }
 ///

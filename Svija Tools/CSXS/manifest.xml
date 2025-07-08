@@ -27,7 +27,6 @@
           <MainPath>./shell.html</MainPath>
           <CEFCommandLine>
             <Parameter>--allow-file-access-from-files</Parameter>
-            <Parameter>--enable-nodejs</Parameter>
           </CEFCommandLine>
 
         </Resources>

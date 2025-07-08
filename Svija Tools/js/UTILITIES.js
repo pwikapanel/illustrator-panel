@@ -225,7 +225,7 @@ function CSSVARTOCEP(varName){
   }
 
   var hslArray  = STRTOHSLARRAY(hslString)
-  elapse(21, `${hslString} converted to ${hslArray.join(',')}`)
+//elapse(228, `${hslString} converted to ${hslArray.join(',')}`)
 
   var rgbArray  = HSLTORGBARRAY(hslArray)
   var rgbString = '[' + rgbArray.join(',') + ']'
