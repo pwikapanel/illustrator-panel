@@ -102,15 +102,15 @@ if (typeof SITEURL != 'undefined')
 
   SYNCPATH = results.syncPath
   localStorage.syncPath = SYNCPATH
-  elapse(109, `SYNCPATH=${SYNCPATH}`)
+//elapse(109, `SYNCPATH=${SYNCPATH}`)
 
   SITEURL  = results.siteURL 
   localStorage.siteUrl = SITEURL
-  elapse(113, `SITEURL=${SITEURL}`)
+//elapse(113, `SITEURL=${SITEURL}`)
 
   LASTPATH = results.lastPath
   localStorage.lastPath = LASTPATH
-  elapse(117, `LASTPATH=${LASTPATH}`)
+//elapse(117, `LASTPATH=${LASTPATH}`)
   ///
 
 

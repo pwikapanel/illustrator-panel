@@ -43,22 +43,22 @@ function onlineStatus(){
 
 //:::::::::::::::::::::::::::::::::::::::: user changes color
 
-/*———————————————————————————————————————— CEP.evalScript('colorPicker()')
+/*———————————————————————————————————————— CEP.evalScript('svijaLogo()')
 
     user clicks logo to change color */
 
 svijaLogo.addEventListener('mouseup', (evn) => {
   elapse(67, 'logo clicked')
-  CEP.evalScript('colorPicker()', colorPickerCallback)
+  CEP.evalScript('svijaLogo()', svijaLogoCallback)
 })
 ///
-/*———————————————————————————————————————— colorPickerCallback(arg)
+/*———————————————————————————————————————— svijaLogoCallback(arg)
 
     */
 
-function colorPickerCallback(arg){
+function svijaLogoCallback(arg){
 
-  elapse(73, 'colorPickerCallback returned '+arg)
+  elapse(73, 'svijaLogoCallback returned '+arg)
   var parts = arg.split(':')
 
   var r = parts[0]

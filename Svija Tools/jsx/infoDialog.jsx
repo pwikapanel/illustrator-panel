@@ -19,11 +19,7 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: program */
 
-// it's not clear how panel size affects image size
-
-/////////////////////////////////////////////////// try not using different objects Ypfor each color
-
-/*———————————————————————————————————————— colors/interfaces */
+// must be outside of function to be accessible with this['varname']
 
 var colorWindow0  = panelBg0
 var colorUrl0     = checkedBox0
@@ -40,7 +36,8 @@ var colorText2    = checkedBox2
 var colorWindow3  = inputField3
 var colorUrl3     = hamburger3
 var colorText3    = checkedBox3
-///
+
+/*:::::::::::::::::::::::::::::::::::::::: program */
 
 function infoDialog(extensionPath){
 
@@ -73,6 +70,8 @@ function infoDialog(extensionPath){
 
   }
 /// 
+
+
 
   var colorWindow = this['colorWindow' + INTERFACE]
   var colorUrl    = this[   'colorUrl' + INTERFACE]

@@ -92,11 +92,11 @@ function dirListArray(dir, ext, lsName){
     lert('Restart Illustrator\nFresh directory listing needed')
   
   if (!localStorage[lsName].includes('|')){
-    elapse(156, `returning empty directory listing`)
+    elapse(156, `⚠️ LS does not contain directory listing`)
     return []
   }
 
-  elapse(159, `returning correct directory listing`)
+  elapse(159, `directory listing retreived from localStorage`)
   return localStorage[lsName].split('|')
 }
 ///

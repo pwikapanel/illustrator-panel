@@ -4,11 +4,11 @@
 
 //:::::::::::::::::::::::::::::::::::::::: svijaLogo.jsx .js
 
-/*———————————————————————————————————————— colorPicker()
+/*———————————————————————————————————————— svijaLogo()
 
     returns hex color */
 
-function colorPicker(){
+function svijaLogo(){
   var color = $.colorPicker()
 
   var r = Math.floor(color/65536); color -= r*65536

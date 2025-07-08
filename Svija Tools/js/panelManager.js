@@ -39,7 +39,7 @@ CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setPanelColor)
 
 
 function setPanelContent(){
-  elapse(40, `ISSVIJA=${ISSVIJA}`)
+//elapse(40, `ISSVIJA=${ISSVIJA}`)
 
   document.body.style.backgroundImage = 'none';
 

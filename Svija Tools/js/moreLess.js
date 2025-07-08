@@ -3,21 +3,23 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: moreLess.js */
 
-/*———————————————————————————————————————— more link */
+// functions showMore() and showLess() are in panelManager
 
-//———————————————————————————————————————— parameters */
+/*:::::::::::::::::::::::::::::::::::::::: more link */
+
+/*———————————————————————————————————————— parameters */
 
 var objId    = 'linkMore'
 var objLabel = TRANSLATE.more
-
-//———————————————————————————————————————— configure button */
+///
+/*———————————————————————————————————————— configure button */
 
 var obj = document.getElementById(objId)
 if (obj === null) lert(objId + ' is null')
 
 obj.text = objLabel
-
-//———————————————————————————————————————— mouseup function
+///
+/*———————————————————————————————————————— mouseup function */
 
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
@@ -25,21 +27,21 @@ obj.addEventListener('mouseup', (evn) => {
 })
 ///
 
-/*———————————————————————————————————————— less link */
+/*:::::::::::::::::::::::::::::::::::::::: less link */
 
-//———————————————————————————————————————— parameters */
+/*———————————————————————————————————————— parameters */
 
 var objId    = 'linkLess'
 var objLabel = TRANSLATE.less
-
-//———————————————————————————————————————— configure button */
+///
+/*———————————————————————————————————————— configure button */
 
 var obj = document.getElementById(objId)
 if (obj === null) lert(objId + ' is null')
 
 obj.text = objLabel
-
-//———————————————————————————————————————— mouseup function
+///
+/*———————————————————————————————————————— mouseup function */
 
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt');
