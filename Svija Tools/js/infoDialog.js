@@ -37,7 +37,10 @@ obj.addEventListener('mouseup', (evn) => {
     */
 
 function infoDialogCallback(source){
-  elapse(59, `infoDialogCallback received ${source}`)
+  if (source == 'true')
+    elapse(41, `infoDialogCallback:user clicked "OK"`)
+  else
+    elapse(43, `infoDialogCallback:user typed escape`)
   return
 }
 ///

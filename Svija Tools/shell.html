@@ -102,6 +102,15 @@ elapse(88, `starting Svija Tools`)
 </head><body>
 
   <div id="reloader" onclick='location.reload()'></div>
+  <script>
+    document.getElementById('reloader').onclick = function(event) {
+      if (event.altKey) {
+        localStorage.clear()
+        LERT('⚠️\nlocal storage cleared')
+      } else
+        location.reload()
+    }
+  </script>
 
   <!--———————————————————— setup scripts -->
   <script type="text/javascript" src='js/UTILITIES.js'       ></script>

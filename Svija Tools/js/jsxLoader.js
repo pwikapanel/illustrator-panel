@@ -3,25 +3,23 @@
 
 //:::::::::::::::::::::::::::::::::::::::: jsxLoader.js
 
-//localStorage.clear()
-
 /*———————————————————————————————————————— read directory listing
 
     requires node.js */
 
-var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
+//var jsxList = dirListArray('jsx', 'jsx', 'jsxList')
 ///
 /*———————————————————————————————————————— try to load each one */
 
-elapseGroup(10, `requesting JSX content (${jsxList.length} files)...`)
-
-for (var x=0; x<jsxList.length; x++){
-  var  path = `jsx/${jsxList[x]}`
-  elapse(18, `   requested ${path}`)
-  GETLOCALFILE(jsxList[x], path, fileToCep)
-}
-
-elapseGroupEnd()
+// elapseGroup(10, `requesting JSX content (${jsxList.length} files)...`)
+// 
+// for (var x=0; x<jsxList.length; x++){
+//   var  path = `jsx/${jsxList[x]}`
+//   elapse(18, `   requested ${path}`)
+//   GETLOCALFILE(jsxList[x], path, fileToCep)
+// }
+// 
+// elapseGroupEnd()
 ///
 
 //:::::::::::::::::::::::::::::::::::::::: calback function
@@ -64,6 +62,54 @@ function fileToCep(passthrough, contents, path){
        <Parameter>--enable-nodejs</Parameter>
      </CEFCommandLine>    */
 
+var dirPath = `${TOOLSPATH}/jsx`
+
+var cmd = `(function(){
+  var folder = new Folder("${dirPath}")
+
+  if (!folder.exists)
+    return "⚠️ JSX folder doesn't exist"
+
+  var files = folder.getFiles()
+  var fileNames = []
+
+  for (var i = 0; i < files.length; i++)
+    if (files[i] instanceof File)
+      fileNames.push(decodeURI(files[i].name))
+
+  return fileNames.join('|')
+})()`
+
+CEP.evalScript(cmd, myFuncCallback)
+
+function myFuncCallback(result){
+  elapseGroup(10, `received jsx directory listing from CEP`)
+
+  var jsxList = result.split('|')
+
+  for (x=0; x<jsxList.length; x++){
+    if (jsxList[x].slice(-4) != '.jsx'){
+      jsxList.splice(x, 1)
+      x -= 1
+      if (x > jsxList.length-1) break
+    }
+  }
+
+  elapseGroup(10, `requesting JSX content (${jsxList.length} files)...`)
+  
+  for (var x=0; x<jsxList.length; x++){
+    var  path = `jsx/${jsxList[x]}`
+    elapse(18, `   requested ${path}`)
+    GETLOCALFILE(jsxList[x], path, fileToCep)
+  }
+  
+  elapseGroupEnd()
+}
+
+
+///
+/*——— */
+
 function dirListArray(dir, ext, lsName){
 
   if (typeof localStorage[lsName] == 'undefined'){
@@ -89,7 +135,7 @@ function dirListArray(dir, ext, lsName){
     elapse(152, `directory listing in LS — didn't get fresh listing`)
 
   if (typeof require == 'undefined' && localStorage[lsName].length == 0)
-    LERT('Restart Illustrator\nFresh directory listing needed')
+    LERT(`Restart Illustrator\nFresh directory listing needed\n(node.js unavailable)`)
   
   if (!localStorage[lsName].includes('|')){
     elapse(156, `⚠️ LS does not contain directory listing`)
@@ -100,6 +146,8 @@ function dirListArray(dir, ext, lsName){
   return localStorage[lsName].split('|')
 }
 ///
+
+//'alertPalette.jsx', 'changeCase.jsx', 'checkAndRepair.jsx', 'createGroup.jsx', 'infoDialog.jsx', 'json.jsx', 'locale.jsx', 'open.jsx', 'projectManager.jsx', 'reopen.jsx', 'save.jsx', 'svijaLogo.jsx', 'utilities.jsx'
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
