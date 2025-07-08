@@ -11,7 +11,7 @@ var objLabel = TRANSLATE.infoLink
 /*———————————————————————————————————————— configure button */
 
 var obj = document.getElementById(objId)
-if (obj === null) lert(objId + ' is null')
+if (obj === null) LERT(objId + ' is null')
 
 obj.text = objLabel
 obj.style.display = 'inline'
@@ -25,7 +25,7 @@ obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
   var extensionPath = CEP.getSystemPath(SystemPath.EXTENSION)
   var cmd = 'infoDialog("' + extensionPath + '")'
-  elapse(50, `CEP: ${cmd}`)
+  elapse(50, `calling ${cmd}`)
   CEP.evalScript(cmd, infoDialogCallback)
 })
 ///

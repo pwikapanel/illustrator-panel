@@ -38,12 +38,13 @@
 //———————————————————————————————————————— CEP required
 
 var CEP            = new CSInterface()
-var TRANSLATE      = CEP.initResourceBundle(); // https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md
+var TRANSLATE      = CEP.initResourceBundle() // https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md
 var HOSTENV        = CEP.getHostEnvironment()
 var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
-var menuXML        = '<Menu></Menu>'
 var LC             = HOSTENV.appUILocale.substr(0,2) // en_US
-var LC             = 'fr' // was set automatically in shell.html
+var AIVERSION      = HOSTENV.appVersion // illustrator version
+var ISMAC          = CEP.getOSInformation().substring(0,3) == 'Mac' // boolean    macOS boolean · set in projectManager.js
+var menuXML        = '<Menu></Menu>'
 
 CEP.setContextMenu(menuXML, function(){})
 
@@ -106,7 +107,7 @@ elapse(88, `starting Svija Tools`)
   <script type="text/javascript" src='js/utilities.js'       ></script>
   <script type="text/javascript" src='js/colorUtilities.js'  ></script>
   <script type="text/javascript" src='js/jsxLoader.js'       ></script>
-  <script type="text/javascript" src="js/initialization.js" ></script></>
+  <script type="text/javascript" src="js/variables.js"       ></script></>
 
   <div id="newsDiv"></div>
   

@@ -18,7 +18,7 @@ elapseGroup(10, `requesting JSX content (${jsxList.length} files)...`)
 for (var x=0; x<jsxList.length; x++){
   var  path = `jsx/${jsxList[x]}`
   elapse(18, `   requested ${path}`)
-  getLocalFile(jsxList[x], path, fileToCep)
+  GETLOCALFILE(jsxList[x], path, fileToCep)
 }
 
 elapseGroupEnd()
@@ -89,7 +89,7 @@ function dirListArray(dir, ext, lsName){
     elapse(152, `directory listing in LS — didn't get fresh listing`)
 
   if (typeof require == 'undefined' && localStorage[lsName].length == 0)
-    lert('Restart Illustrator\nFresh directory listing needed')
+    LERT('Restart Illustrator\nFresh directory listing needed')
   
   if (!localStorage[lsName].includes('|')){
     elapse(156, `⚠️ LS does not contain directory listing`)

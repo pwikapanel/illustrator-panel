@@ -17,25 +17,25 @@
     page 106 default & cancel elements */
 ///
 
-/*:::::::::::::::::::::::::::::::::::::::: program */
+/*:::::::::::::::::::::::::::::::::::::::: load colors */
 
 // must be outside of function to be accessible with this['varname']
 
-var colorWindow0  = panelBg0
-var colorUrl0     = checkedBox0
-var colorText0    = fieldContents0
+var colorWindow0
+var colorUrl0
+var colorText0
 
-var colorWindow1  = panelBorder1
-var colorUrl1     = checkedBox1
-var colorText1    = labelText1
+var colorWindow1
+var colorUrl1
+var colorText1
 
-var colorWindow2  = inputField2
-var colorUrl2     = hamburger2
-var colorText2    = checkedBox2
+var colorWindow2
+var colorUrl2
+var colorText2
 
-var colorWindow3  = inputField3
-var colorUrl3     = hamburger3
-var colorText3    = checkedBox3
+var colorWindow3
+var colorUrl3
+var colorText3
 
 /*:::::::::::::::::::::::::::::::::::::::: program */
 
@@ -72,6 +72,21 @@ function infoDialog(extensionPath){
 /// 
 
 
+  colorWindow0  = panelBg0
+  colorUrl0     = checkedBox0
+  colorText0    = fieldContents0
+  
+  colorWindow1  = panelBorder1
+  colorUrl1     = checkedBox1
+  colorText1    = labelText1
+  
+  colorWindow2  = inputField2
+  colorUrl2     = hamburger2
+  colorText2    = checkedBox2
+  
+  colorWindow3  = inputField3
+  colorUrl3     = hamburger3
+  colorText3    = checkedBox3
 
   var colorWindow = this['colorWindow' + INTERFACE]
   var colorUrl    = this[   'colorUrl' + INTERFACE]

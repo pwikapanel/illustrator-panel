@@ -1,7 +1,7 @@
 
 //:::::::::::::::::::::::::::::::::::::::: news.js
 
-/*———————————————————————————————————————— fetchFile(passthrough, source, path, callback)
+/*———————————————————————————————————————— GETREMOTEFILE(passthrough, source, path, callback)
 
     https://github.com/Adobe-CEP/Getting-Started-guides/blob/master/Network%20requests%20and%20responses%20with%20Fetch/readme.md
 
@@ -16,7 +16,7 @@
 var REMOTE = 'https://msg.svija.com/tools' 
 var path   = REMOTE+'/1.0.7/en.txt'
 
-fetchFile(1, path, updateNews)
+GETREMOTEFILE(1, path, updateNews)
 
 function updateNews(rien, arg, path){ newsDiv.innerHTML = arg }
 

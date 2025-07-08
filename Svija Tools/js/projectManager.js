@@ -1,7 +1,12 @@
 
-/* vim: set foldmethod=marker fmr=/*\—,///: */
+* vim: set foldmethod=marker fmr=/*\—,///: */
 
 //:::::::::::::::::::::::::::::::::::::::: projectManager.jsx / projectManager.js
+
+var ISSVIJA  = false // boolean    if fromtmost doc is a svija page (in a SYNC folder)
+var LASTPATH = ''    // string     last file path for a svija page
+var SITEURL  = ''    // string     url of most recent svija site
+var SYNCPATH = ''    // string     absolute path to SYNC folder
 
 /*———————————————————————————————————————— recover localStorage
 
@@ -16,9 +21,9 @@ if (typeof localStorage.siteUrl != 'undefined')
 if (typeof localStorage.syncPath != 'undefined')
   SYNCPATH = localStorage.syncPath
 
-varToCep('LASTPATH', LASTPATH)
-varToCep('SITEURL' , SITEURL )
-varToCep('SYNCPATH', SYNCPATH)
+VARTOCEP('LASTPATH', LASTPATH)
+VARTOCEP('SITEURL' , SITEURL )
+VARTOCEP('SYNCPATH', SYNCPATH)
 ///
 /*———————————————————————————————————————— CEP.evalScript('projectManager()') */
 

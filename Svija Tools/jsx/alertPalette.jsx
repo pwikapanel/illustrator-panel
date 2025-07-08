@@ -2,7 +2,7 @@
 
 /* vim: set foldmethod=marker fmr=/*—,;: */
 
-//:::::::::::::::::::::::::::::::::::::::: alertPalette .css .js .jsx
+//:::::::::::::::::::::::::::::::::::::::: ALERTPALETTE .css .js .jsx
 
 // see also jsx/settings.jsx
 
@@ -26,7 +26,7 @@
 
 var progBar
 
-function alertPalette(arg){
+function ALERTPALETTE(arg){
 
   /*———————————————————— colors */
 

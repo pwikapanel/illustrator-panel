@@ -17,7 +17,7 @@ var objID    = 'buttC1'
 /*———————————————————————————————————————— configure button */
 
 var obj = document.getElementById(objID)
-if (obj === null) lert(objID + ' is null')
+if (obj === null) LERT(objID + ' is null')
 
 obj.value = objLabel
 obj.style.width = objWidth + 'px'
@@ -45,7 +45,7 @@ var objID    = 'butt31'
 /*———————————————————————————————————————— configure button */
 
 var obj = document.getElementById(objID)
-if (obj === null) lert(objID + ' is null')
+if (obj === null) LERT(objID + ' is null')
 
 obj.value         = objLabel
 obj.style.width   = objWidth + 'px'
@@ -68,7 +68,7 @@ function openFolder(){
   else       var opener = pcOpener
 
   if (LASTPATH == ''){
-    lert(TRANSLATE.noProject)
+    LERT(TRANSLATE.noProject)
     return
   }
 
@@ -91,14 +91,14 @@ function openProjectFolder(alt){
   else       var opener = pcOpener
 
   if (SYNCPATH == ''){
-    lert(TRANSLATE.noProject)
+    LERT(TRANSLATE.noProject)
     return
   }
 
   var path = SYNCPATH.slice(0,-5)
   path     = path.replace(/\\\\/g, "\\")
 
-lert(path)
+LERT(path)
 
   window.cep.process.createProcess(opener, path)
 

@@ -30,7 +30,7 @@ function DUMPKEYS(obj){
   alert(str)
 }
 ///
-/*———————————————————————————————————————— HASPATH(sourceDoc)
+/*———————————————————————————————————————— HASPATH(doc)
 
     has file been saved at least once?
     returns '' or error message */
@@ -39,7 +39,7 @@ function HASPATH(doc){
 
   if (doc.path != '') return ''
 
-  var syncPath = deriveSyncFolder()
+  var syncPath = DERIVESYNCFOLDER()
   if (syncPath == '') return 'Please save ' + doc.name + ' normally.'
 
   var f = new File(syncPath).saveDlg('','')
@@ -51,6 +51,24 @@ function HASPATH(doc){
     
 }
 ///
+/*———————————————————————————————————————— DERIVESYNCFOLDER()
+
+    used when saving an unsaved document — tries to
+    find a sync folder from other open documents */
+
+function DERIVESYNCFOLDER(){
+  if (ISMAC)
+    var comparator = '/sync'
+  else
+    var comparator = '\\sync'
+
+  for(var x=1; x<app.documents.length; x++){
+    var docPath = String(app.documents[x].path.fsName);
+    if (docPath.indexOf(comparator) > 0) return concatenatePath(docPath, '/Page Name.ai')
+  }
+
+  return ''
+}
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

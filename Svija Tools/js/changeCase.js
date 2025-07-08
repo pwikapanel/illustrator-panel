@@ -10,7 +10,7 @@ var objId    = 'butt22'
 /*———————————————————————————————————————— configure button */
 
 var obj = document.getElementById(objId)
-if (obj === null) lert(objId + ' is null')
+if (obj === null) LERT(objId + ' is null')
 
 obj.value         = objLabel
 obj.style.width   = objWidth + 'px'

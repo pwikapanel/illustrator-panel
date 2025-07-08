@@ -24,7 +24,7 @@ function cssVarToCep(varName){
   var rgbString = '[' + rgbArray.join(',') + ']'
   var cepString = `${varName}=${rgbString}`
 
-  //lert(cepString)
+  //LERT(cepString)
   CEP.evalScript(cepString)
 }
 ///

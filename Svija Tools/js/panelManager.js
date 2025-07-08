@@ -79,7 +79,7 @@ function setPanelColor(){
   }
 
   document.body.id = `if_${INTERFACE}`
-  varToCep('INTERFACE', INTERFACE)
+  VARTOCEP('INTERFACE', INTERFACE)
 
   setDimAccentColor() // because dark accent depends on panel background
 }
@@ -149,7 +149,7 @@ function setPanelSize(referenceObj){
   if (referenceObject === null) return true
 
   var f = CEP.getScaleFactor()
-  var w = Math.round(MAXWIDTH / f)
+  var w = Math.round(240 / f) // max width in manifest.csxs
   var h = Math.round(referenceObject.getBoundingClientRect().bottom/f)
 
   CEP.resizeContent(w, h-1)

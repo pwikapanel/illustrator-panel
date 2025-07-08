@@ -10,7 +10,7 @@ var objID    = 'butt42'
 /*———————————————————————————————————————— configure button */
 
 var obj = document.getElementById(objID)
-if (obj === null) lert(objID + ' is null')
+if (obj === null) LERT(objID + ' is null')
 
 obj.value         = objLabel
 obj.style.width   = objWidth + 'px'
@@ -31,7 +31,7 @@ obj.addEventListener('mouseup', (evn) => {
 
 function saveCallback(arg){
   elapse(30, `saveCallback() received "${arg}"`)
-  if (arg != '') alertPalette(arg)
+  if (arg != '') ALERTPALETTE(arg)
 }
 
 

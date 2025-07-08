@@ -20,8 +20,8 @@ if (performance && performance.memory) {
 ///
 /*———————————————————————————————————————— send to CEP */
 
-varToCep('STARTUPTIME', STARTUPTIME)
-varToCep('USEDHEAP'   , USEDHEAP   )
+VARTOCEP('STARTUPTIME', STARTUPTIME)
+VARTOCEP('USEDHEAP'   , USEDHEAP   )
 ///
 
 //:::::::::::::::::::::::::::::::::::::::: fin

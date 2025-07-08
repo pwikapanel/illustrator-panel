@@ -3,11 +3,11 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.js */
 
-/*———————————————————————————————————————— lert(msg)
+/*———————————————————————————————————————— LERT(msg)
 
     alerts that don't exit Illustrators space */
 
-function lert(msg){
+function LERT(msg){
   msg = JSON.stringify(String(msg))
   msg = msg.substr(1, msg.length-2)
 
@@ -15,7 +15,7 @@ function lert(msg){
   CEP.evalScript('alert("' + msg + '")')
 }
 ///
-/*———————————————————————————————————————— varToCep(varName, val)
+/*———————————————————————————————————————— VARTOCEP(varName, val)
 
     DOESN'T HANDLE ARRAYS
 
@@ -23,7 +23,7 @@ function lert(msg){
     currently JSON is sent in stringified format */
 
 
-function varToCep(varName, val){
+function VARTOCEP(varName, val){
 
   //—————————————————————————————————————— initialization
 
@@ -78,21 +78,12 @@ function varToCep(varName, val){
   
 }
 ///
-/*———————————————————————————————————————— enableObject(objId)
-
-    used to renable buttons after they are disabled
-    while saving, for example */
-
-function enableObject(objId){
-  window[objId].disabled = false
-}
-///
-/*———————————————————————————————————————— fetchFile(passthrough, path, callback)
+/*———————————————————————————————————————— GETREMOTEFILE(passthrough, path, callback)
 
     used for news & loading JSX files
     passthrough is usually the name of the requested file */
 
-function fetchFile(passthrough, path, callback) {
+function GETREMOTEFILE(passthrough, path, callback) {
   if (path.slice(0,4) != 'http'){
     elapse(97, `     fetch file got local path: ${path}`)
     return
@@ -117,13 +108,13 @@ function fetchFile(passthrough, path, callback) {
       }
    ).catch(
      function(err){
-       elapse(636, `     fetchFile() ⚠️: ${err}`)
+       elapse(636, `     GETREMOTEFILE() ⚠️: ${err}`)
        return
      }
    )
 }
 ///
-/*———————————————————————————————————————— getLocalFile(passthrough, path, callback)
+/*———————————————————————————————————————— GETLOCALFILE(passthrough, path, callback)
 
     https://stackoverflow.com/questions/39989756/how-do-i-make-a-function-that-returns-the-value-of-a-local-text-file-in-javascri
 
@@ -131,27 +122,27 @@ function fetchFile(passthrough, path, callback) {
 
     no choice of source — there's only one local source */
 
-function getLocalFile(passthrough, path, callback){
+function GETLOCALFILE(passthrough, path, callback){
 
   path = path + '?' + Math.random()
 
-  var myPromise = fetchLocal(path)
+  var myPromise = FETCHLOCAL(path)
 
   myPromise.then(onFulfilled, onRejected)
 
   function onFulfilled (contents){
     if (contents != '') callback(passthrough, contents, path)
-    else elapse(42, `getLocalFile() - empty file: ${path}`)
+    else elapse(42, `GETLOCALFILE() - empty file: ${path}`)
   }
 
   // attention: this catches errors anywhere in the previous callback chain
   function onRejected(txt){
-    elapse(47, `getLocalFile() - file not found: ${path}\n\n    ${txt}\n `)
+    elapse(47, `GETLOCALFILE() - file not found: ${path}\n\n    ${txt}\n `)
   }
 
 }
 ///
-/*———————————————————————————————————————— fetchLocal(file)
+/*———————————————————————————————————————— FETCHLOCAL(file)
 
     developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject
 
@@ -170,9 +161,9 @@ function getLocalFile(passthrough, path, callback){
 
     resolve and reject are here because here is where I decide
     what counts as a resolution or a rejection, but they are
-    HANDLED in the calling function, getLocalFile()  */
+    HANDLED in the calling function, GETLOCALFILE()  */
 
-function fetchLocal(file) {
+function FETCHLOCAL(file) {
 
   return new Promise(function(resolve, reject) {
 
@@ -191,7 +182,7 @@ function fetchLocal(file) {
   })
 }
 ///
-/*———————————————————————————————————————— alertPalette(arg)
+/*———————————————————————————————————————— ALERTPALETTE(arg)
 
     colors:
     background: labelText
@@ -199,16 +190,16 @@ function fetchLocal(file) {
 
     cssVarToCep isin colorUtilites.js */
 
-function alertPalette(arg){
-  var cmd = 'alertPalette("' + TRANSLATE[arg] + '")'
-  CEP.evalScript(cmd, alertPaletteCallback)
+function ALERTPALETTE(arg){
+  var cmd = 'ALERTPALETTE("' + TRANSLATE[arg] + '")'
+  CEP.evalScript(cmd, ALERTPALETTECALLBACK)
 }
 ///
-/*———————————————————————————————————————— alertPaletteCallback(arg)
+/*———————————————————————————————————————— ALERTPALETTECALLBACK(arg)
 
     */
 
-function alertPaletteCallback(arg){
+function ALERTPALETTECALLBACK(arg){
 
   var alertSeconds = 1.5   // how long alert will show
 

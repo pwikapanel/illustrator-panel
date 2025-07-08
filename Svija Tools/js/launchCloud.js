@@ -10,7 +10,7 @@ var objID    = 'butt12'
 /*———————————————————————————————————————— configure button */
 
 var obj = document.getElementById(objID)
-if (obj === null) lert(objID + ' is null')
+if (obj === null) LERT(objID + ' is null')
 
 obj.value = objLabel
 obj.style.width = objWidth + 'px'
@@ -63,11 +63,11 @@ function clearCache() {
 function clearCacheCallback(arg){
 
   switch(arg){
-    case '1': lert(cacheSuccess); break    // success
-    case '2': lert(cacheFailure); break    // empty file
-    case '3': lert(cacheFailure); break    // 404 error (server found)
-    case '4': lert(cacheFailure); break    // server not found
-    default : lert(cacheFailure)           // server returned 200 but not 1
+    case '1': LERT(cacheSuccess); break    // success
+    case '2': LERT(cacheFailure); break    // empty file
+    case '3': LERT(cacheFailure); break    // 404 error (server found)
+    case '4': LERT(cacheFailure); break    // server not found
+    default : LERT(cacheFailure)           // server returned 200 but not 1
   }
 
 }

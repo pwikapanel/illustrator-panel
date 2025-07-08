@@ -10,7 +10,7 @@ var objLabel = TRANSLATE.help
 /*———————————————————————————————————————— configure button */
 
 var obj = document.getElementById(objId)
-if (obj === null) lert(objId + ' is null')
+if (obj === null) LERT(objId + ' is null')
 
 obj.text = objLabel
 obj.style.display = 'inline'
