@@ -3,11 +3,13 @@
 
 //:::::::::::::::::::::::::::::::::::::::: projectManager.jsx / projectManager.js
 
-var ISSVIJA  = false // boolean    if fromtmost doc is a svija page (in a SYNC folder)
+/*———————————————————————————————————————— initialization */
+
+var ISSVIJA  = false // boolean    if frontmost doc is a svija page (in a SYNC folder)
 var LASTPATH = ''    // string     last file path for a svija page
 var SITEURL  = ''    // string     url of most recent svija site
 var SYNCPATH = ''    // string     absolute path to SYNC folder
-
+///
 /*———————————————————————————————————————— recover localStorage
 
     get values from LS if possible*/
@@ -54,6 +56,8 @@ if (typeof SITEURL != 'undefined')
 //  elapse(52, `setting title to ${panelTitle}`)
     CEP.setWindowTitle(panelTitle)
   }
+  else
+    CEP.setWindowTitle('Svija Tools')
   ///
   /*—————————————————————————————————————— guard no file open */
 
@@ -103,7 +107,6 @@ if (typeof SITEURL != 'undefined')
   ///
   /*—————————————————————————————————————— is svija site */
 
-  ISSVIJA = true
 
   SYNCPATH = results.syncPath
   localStorage.syncPath = SYNCPATH
@@ -118,6 +121,10 @@ if (typeof SITEURL != 'undefined')
 //elapse(117, `LASTPATH=${LASTPATH}`)
   ///
 
+  if (!ISSVIJA && SITEURL=='')
+    LERT(TRANSLATE.missingUrlTxt)
+
+  ISSVIJA = true
 
 }
 ///

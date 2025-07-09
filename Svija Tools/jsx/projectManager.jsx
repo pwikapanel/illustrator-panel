@@ -23,6 +23,9 @@ var SYNCPATH = ''    // path to most recent SYNC folder, if any
 var SITEURL  = ''    // URL of most recent Svija site
 var LASTPATH = ''    // path to most recent svija site page (for reopen button)
 ///
+
+/*:::::::::::::::::::::::::::::::::::::::: main function */
+
 /*———————————————————————————————————————— projectManager() */
 
 function projectManager(){
@@ -86,17 +89,7 @@ function getSyncPath(){
 
     sync/SVIJA/System/URL.txt */
 
-var notYetNotified = true
-
 function getSiteURL(){
-
-  if (typeof ISMAC == 'undefined'){
-    if (notYetNotified) {
-      alert("ISMAC not set\nprojectManager.jsx#77")
-      notYetNotified = false
-    }
-    return ''
-  }
 
   if (ISMAC) destPath = getSyncPath() + '/SVIJA/System/URL.txt'
   else       destPath = getSyncPath() + '\\SVIJA\\System\\URL.txt'
@@ -109,7 +102,7 @@ function getSiteURL(){
   if (!fileObj.open('r')) return ''
 
   var res = fileObj.read()
-  if (res.length == 0) return ''
+  if (res.length < 5) return ''
 
   fileObj.close()
 

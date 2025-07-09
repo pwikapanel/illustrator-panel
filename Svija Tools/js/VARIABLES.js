@@ -22,6 +22,7 @@ VARTOCEP('AIVERSION'   , AIVERSION   )
 
 var TOOLSVERSION   = '1.0.7'   // string shown in info panel
 var INTMS          = 500       // interval for the updating panel
+var INTMSCLOSED    = 5000      // interval for the updating panel when not a Svija project
 var LCDEFAULT      = 'en'      // string     two letter language code
 if (LC != 'fr') LC = LCDEFAULT // dev use only — delete when done
 ///
