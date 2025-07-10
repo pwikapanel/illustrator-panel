@@ -14,14 +14,14 @@ var SYNCPATH = ''    // string     absolute path to SYNC folder
 
     get values from LS if possible*/
 
-if (typeof localStorage.lastPath != 'undefined')
-  LASTPATH = localStorage.lastPath
+if (typeof localStorage.LASTPATH != 'undefined')
+  LASTPATH = localStorage.LASTPATH
 
-if (typeof localStorage.siteUrl != 'undefined')
-  SITEURL = localStorage.siteUrl
+if (typeof localStorage.SITEURL != 'undefined')
+  SITEURL = localStorage.SITEURL
 
-if (typeof localStorage.syncPath != 'undefined')
-  SYNCPATH = localStorage.syncPath
+if (typeof localStorage.SYNCPATH != 'undefined')
+  SYNCPATH = localStorage.SYNCPATH
 
 VARTOCEP('LASTPATH', LASTPATH)
 VARTOCEP('SITEURL' , SITEURL )
