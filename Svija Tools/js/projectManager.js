@@ -27,9 +27,9 @@ VARTOCEP('LASTPATH', LASTPATH)
 VARTOCEP('SITEURL' , SITEURL )
 VARTOCEP('SYNCPATH', SYNCPATH)
 ///
-/*———————————————————————————————————————— CEP.evalScript('projectManager()') */
+/*———————————————————————————————————————— setInterval CEP.evalScript('projectManager()') */
 
-setInterval(function(){
+var projectManagerInterval = setInterval(function(){
   CEP.evalScript('projectManager()', projectManagerCallback)
 }, INTMS)
 ///
@@ -63,7 +63,8 @@ if (typeof SITEURL != 'undefined')
 
   if (arg == '' || !arg.includes(':')){
     ISSVIJA = false
-    elapse(29, `projectManagerCallback arg has no : in it`)
+    elapse(66, `⚠️ projectManagerCallback received "${arg}"\n             stopping projectManager`)
+    clearInterval(projectManagerInterval)
     return true
   }
   ///

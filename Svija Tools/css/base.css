@@ -46,6 +46,22 @@ body{
   color:#bbb;
 }
 
+/*:::::::::::::::::::::::::::::::::::::::: standby */
+
+div#standbyDiv{
+  position:absolute;
+   left:0   ;    top:0   ;
+  width:100%; height:100%;
+  display:none;
+
+  background-color: var(--panelBg);
+  background-image: url(../svg/splash_logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color:#bbb;
+}
+
 /*:::::::::::::::::::::::::::::::::::::::: news */
 
     /* <div id="newsBanner">

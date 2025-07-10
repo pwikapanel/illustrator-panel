@@ -24,8 +24,6 @@
 
 // the goal is to show a minimal alert that will close itself after x seconds, or if the user clicks anywhere
 
-var progBar
-
 function ALERTPALETTE(arg){
 
   /*———————————————————— colors */
@@ -75,10 +73,6 @@ function ALERTPALETTE(arg){
   palette.show()
   return 'palette'
 
-}
-
-function progBarUpdate(pct){
-  progBar.value = pct
 }
 
 //:::::::::::::::::::::::::::::::::::::::: fin

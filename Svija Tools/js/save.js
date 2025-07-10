@@ -34,19 +34,10 @@ var specialObjId = objID
 function saveCallback(arg){
   elapse(30, `saveCallback() received "${arg}"`)
   if (arg != '') ALERTPALETTE(arg)
-  setTimeout(enableObject.bind(null, 'butt43'), 1500)
+  setTimeout(ENABLEOBJECT.bind(null, 'butt43'), 1500)
 //setTimeout(functions[name].bind(null, ...args), triggers.delay*1000)
 }
 
-/*———————————————————————————————————————— enableObject(objId)
-
-    used to renable buttons after they are disabled
-    while saving, for example */
-
-function enableObject(objId){
-  window[objId].disabled = false
-}
-///
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

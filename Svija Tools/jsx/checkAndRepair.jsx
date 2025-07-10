@@ -1,5 +1,7 @@
 #target illustrator  
 
+/* vim: set foldmethod=marker fmr=/*\—,///: */
+
 //:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js / checkAndRepair.jsx
 
 /*———————————————————————————————————————— notes
@@ -30,7 +32,7 @@
     • gradient midpoints
     • cloud images
     • TT automatic uppercase see JavaScript Scripting Reference p24 */
-
+///
 /*———————————————————————————————————————— (c) & EULA
 
     Copyright (c) Svija
@@ -54,14 +56,19 @@
     the software.
 
     svija.com · hello@svija.com*/
-
+///
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
 
 var env_start_ms, env_warnings, env_errors, env_repairs, env_imagesModified, env_imagesFixed, env_imageFailed
 
+/*———————————————————————————————————————— main function */
+
 function checkAndRepair(){
+
+  for (x=0; x<100000000; x++)
+    zoopy = 1/2
 
   var syncErr = ' is not inside a \"SYNC\" folder'
 
@@ -69,14 +76,14 @@ function checkAndRepair(){
   env_start_ms = d.getTime()
 
 
-  //———————————————————————————————————————— no open docs
+  //—————————————————————————————————————— no open docs
   
   if (app.documents.length < 1){
     alert('No open documents.')
     return true
   }
   
-  //———————————————————————————————————————— initialization
+  //—————————————————————————————————————— initialization
   
   var doc            = app.activeDocument
   
@@ -97,7 +104,7 @@ function checkAndRepair(){
   if (rasters + placed > 0) var hasImages = true
   else                      var hasImages = false
 
-  //———————————————————————————————————————— has not saved then quit
+  //—————————————————————————————————————— has not saved then quit
   
   var pathErr = HASPATH(doc)
   
@@ -106,7 +113,7 @@ function checkAndRepair(){
     return true
   }
   
-  //———————————————————————————————————————— if not in SYNC folder then quit
+  //—————————————————————————————————————— if not in SYNC folder then quit
 
   
   var syncPath = SYNCPATH
@@ -116,21 +123,21 @@ function checkAndRepair(){
     return true
   }
 
-//———————————————————————————————————————— create Links folder if images
+  //—————————————————————————————————————— create Links folder if images
 
-if (hasImages)
-  if (!Folder(linksFolderObj).exists){
-    Folder(linksFolderObj).create();
-    env_repairs.push('"Links" folder created for images.');
-  }
+  if (hasImages)
+    if (!Folder(linksFolderObj).exists){
+      Folder(linksFolderObj).create();
+      env_repairs.push('"Links" folder created for images.');
+    }
 
-/*———————————————————————————————————————— check for non-native items NOT IMPLEMENTED
+  /*—————————————————————————————————————— check for non-native items NOT IMPLEMENTED
 
    alert(nonNatives);
 
    there are 51 in Fusion 2018 PDF
    the function fixEmbeddedImage should be copied */
-
+   ///
   /*———————————————————————————————————————— change embedded images to linked images
   
       these are treated before placed images, because they will be
@@ -148,7 +155,7 @@ if (hasImages)
           placed += 1; // if it succeeded, we add a new placed image
       }
     }
-  
+  /// 
   /*———————————————————————————————————————— copy/move placed images to Links
   
       rasterItem() returns image filename, succes/failure, message */
@@ -160,7 +167,7 @@ if (hasImages)
       if (name_fixed_msg.length > 0) // if something was modified
         env_imagesModified[env_imagesModified.length] = name_fixed_msg;
     }
-
+  ///
   /*———————————————————————————————————————— check for illegal image formats
   
       reject anything but .ai, .pdf, .jpg, .png & .gif */
@@ -173,7 +180,7 @@ if (hasImages)
         env_imagesModified[env_imagesModified.length] = name_fixed_msg;
     }
   }
-  
+  ///
   /*———————————————————————————————————————— separate image messages into success/failed
   
       two lists of messages are created:
@@ -201,13 +208,15 @@ if (hasImages)
       }
     }
   }
-  
+  ///
   //———————————————————————————————————————— alert user
-     
+
+
   alertUser(doc)
 
 
 }
+///
 
 //:::::::::::::::::::::::::::::::::::::::: primary functions
 
@@ -226,7 +235,7 @@ function artboardNames(doc){
   return '';
 
 }
-
+///
 /*———————————————————————————————————————— fixEmbeddedImage(obj)
 
     takes an embedded image and tries to change it to
@@ -317,7 +326,7 @@ function fixEmbeddedImage(doc, img){
 
   return [imgName, success, msg];
 }
-
+///
 /*———————————————————————————————————————— fixPlacedImage(doc, img)
 
     image can't be missing unless it
@@ -388,7 +397,7 @@ function fixPlacedImage(doc, img){
 
   return [neme, true, msg];
 }
-
+///
 /*———————————————————————————————————————— checkImageExt(img)
 
     exclude all but the most common image formats:
@@ -417,7 +426,7 @@ function checkImageExt(img){
 
   return []
 }
-
+///
 /*———————————————————————————————————————— alertUser(doc)
 
     alert with:
@@ -466,10 +475,11 @@ function alertUser(doc){
   else
     ms = ms + ' ms';
 
+
   showResults = confirm(doc.name + ' verified\n' + fileSize + ' MB in ' + ms + ' — show report?\n\nline 461: THIS SCRIPT IS BROKEN');
   if (showResults) alert(msg);
 }
-
+///
 
 //:::::::::::::::::::::::::::::::::::::::: utility functions
 
@@ -502,7 +512,7 @@ function drawYellowRectangle(obj){
 
   return rec;
 }
-
+///
 /*———————————————————————————————————————— hasEmbeds(doc)
 
     embedded images will be re-linked, converting
@@ -535,7 +545,7 @@ function hasEmbeds(doc){
   }
  
 }
-
+///
 /*———————————————————————————————————————— nameExists(list)
       
     var index = nameExists(name, env_imagesFixed);
@@ -556,7 +566,7 @@ function nameExists(neme, arrayList){
 
   return -1;
 }
-
+///
 /*———————————————————————————————————————— convertArray(envArray)
 
     accepts an array of three-element arrays:
@@ -576,7 +586,7 @@ function convertArray(arr){
 
   return result.join('\n');
 }
-
+///
 /*———————————————————————————————————————— getAlertDepth(img)
     
     This exists so that yellow highlight boxes will be:
@@ -595,7 +605,7 @@ function getAlertDepth(img){
   alert('Group depth: '+obj.absoluteZOrderPosition);
   return obj.absoluteZOrderPosition;
 }
-
+///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
@@ -690,3 +700,84 @@ function ut_unlockHierarchy(obj){
   return parentLocks
 }
 ///
+
+//:::::::::::::::::::::::::::::::::::::::: alert palette
+
+//:::::::::::::::::::::::::::::::::::::::: PROGRESSDIALOG .css .js .jsx
+
+// see also jsx/settings.jsx
+
+// alert('engine: ' + $.engineName);
+// #target illustrator  
+
+/*———————————————————————————————————————— notes
+
+    1906 Beginning ScriptUI.pdf
+    2210 Javascript Tools Guide CC (UI).pdf
+
+    each element is in a group because only
+    groups can have margins & spacing */
+
+//  page 106 default & cancel elements
+///
+
+/*:::::::::::::::::::::::::::::::::::::::: alert palette */
+
+// the goal is to show a minimal alert that will close itself after x seconds, or if the user clicks anywhere
+
+/*———————————————————————————————————————— PROGRESSDIALOG(arg) */
+
+function PROGRESSDIALOG(arg){
+
+  /*———————————————————— colors */
+
+  var paletteBackground=this['labelText' + INTERFACE]
+  var       paletteText=this['panelBg' + INTERFACE]
+  ///
+  //———————————————————— create palette
+
+//palette = new Window ('palette', " ", undefined, {resizeable: false, borderless: true, closeButton: false})
+
+  // to avoid title bar
+  palette = new Window ( 'palette', ' ', undefined, {resizeable: false, borderless: true, closeButton: false})
+
+  palette.margins = [0, 0, 0, 0]
+  palette.spacing = 0
+  palette.graphics.backgroundColor = palette.graphics.newBrush(palette.graphics.BrushType.SOLID_COLOR,paletteBackground, 1)
+  
+  //———————————————————— container // necessary for onclick
+
+  var div = palette.add('group')
+  div.preferredSize = [300, 20]
+  div.orientation   = 'column'
+  div.spacing   = 2
+  div.alignment = 'center'
+  div.margins = [0, 10, 0, 10]
+//               L      R
+
+  //———————————————————— message
+
+  var  message = div.add('statictext')
+  message.alignment = 'center'
+  message.graphics.foregroundColor = message.graphics.newPen (message.graphics.PenType.SOLID_COLOR, paletteText, 1);
+
+  message.text = arg
+
+  //———————————————————— close palette
+
+  palette.addEventListener ("keydown", function(k) {
+    if(k.keyName == 'Escape'){ palette.hide() }
+  })
+
+  div.addEventListener('click', function(e){ palette.hide() })
+
+  //———————————————————— show palette
+
+  palette.show()
+  return 'palette'
+
+}
+///
+
+//:::::::::::::::::::::::::::::::::::::::: fin
+

@@ -29,7 +29,7 @@ else{
     colored if online, red bar if offline */
 
 onlineStatus()
-svijaLogoInterval = setInterval(onlineStatus, INTMS)
+var svijaLogoInterval = setInterval(onlineStatus, INTMS)
 
 function onlineStatus(){
 

@@ -20,7 +20,7 @@
 
 /*———————————————————————————————————————— startup */
 
-setInterval(setPanelContent, INTMS)
+var panelContentInterval = setInterval(setPanelContent, INTMS)
 
 setPanelColor()
 

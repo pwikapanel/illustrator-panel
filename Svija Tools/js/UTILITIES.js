@@ -207,6 +207,15 @@ function ALERTPALETTECALLBACK(arg){
   setTimeout(function(){ CEP.evalScript(cmd) }, alertSeconds * 1000)
 }
 ///
+/*———————————————————————————————————————— ENABLEOBJECT(objId)
+
+    used to renable buttons after they are disabled
+    while saving, for example */
+
+function ENABLEOBJECT(objId){
+  window[objId].disabled = false
+}
+///
 
 //:::::::::::::::::::::::::::::::::::::::: color utilities
 
