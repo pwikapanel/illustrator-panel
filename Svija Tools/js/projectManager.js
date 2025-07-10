@@ -43,6 +43,7 @@ var projectManagerInterval = setInterval(function(){
     resArray.push('"lastPath":"' +LASTPATH+'"')  */
 
 function projectManagerCallback(arg){
+  elapse(46, `ISSVIJA=${ISSVIJA} SITEURL=${SITEURL}\nSYNCPATH=${SYNCPATH}\nLASTPATH=${LASTPATH}`)
 
   /*—————————————————————————————————————— set panel title */
 
@@ -63,8 +64,6 @@ if (typeof SITEURL != 'undefined')
 
   if (arg == '' || !arg.includes(':')){
     ISSVIJA = false
-    elapse(66, `⚠️ projectManagerCallback received "${arg}"\n             stopping projectManager`)
-    clearInterval(projectManagerInterval)
     return true
   }
   ///
@@ -73,29 +72,31 @@ if (typeof SITEURL != 'undefined')
   try{
     var results = JSON.parse(arg)
   } catch(e){
-    elapse(65, `              projectManagerCallback received unparsable JSON:\n${arg}`) 
+    elapse(74, `              projectManagerCallback received unparsable JSON:\n${arg}`) 
+    elapse(75, `⚠️ projectManagerCallback received "${arg}"\n             stopping projectManager`)
+    clearInterval(projectManagerInterval)
     return true
   }
   ///
   /*—————————————————————————————————————— guards */
 
   if (typeof results.isSvija == 'undefined'){
-    elapse(38, "projectManagerCallback did not receive isSvija") 
+    elapse(38, "⚠️ projectManagerCallback did not receive isSvija") 
     return true
   }
 
   if (typeof results.syncPath == 'undefined'){
-    elapse(43, "projectManagerCallback did not receive syncPath") 
+    elapse(43, "⚠️ projectManagerCallback did not receive syncPath") 
     return true
   }
 
   if (typeof results.siteURL == 'undefined'){
-    elapse(48, "projectManagerCallback did not receive siteURL") 
+    elapse(48, "⚠️ projectManagerCallback did not receive siteURL") 
     return true
   }
 
   if (typeof results.lastPath == 'undefined'){
-    elapse(53, "projectManagerCallback did not receive lastPath") 
+    elapse(53, "⚠️ projectManagerCallback did not receive lastPath") 
     return true
   }
   ///

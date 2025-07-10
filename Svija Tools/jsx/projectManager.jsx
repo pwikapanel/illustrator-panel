@@ -19,9 +19,23 @@
 /*———————————————————————————————————————— initialization */
 
 var ISSVIJA  = false // is current file part of a Svija project?
-var SYNCPATH = ''    // path to most recent SYNC folder, if any
-var SITEURL  = ''    // URL of most recent Svija site
-var LASTPATH = ''    // path to most recent svija site page (for reopen button)
+///
+/*———————————————————————————————————————— recover from localStorage */
+
+// path to most recent SYNC folder, if any
+if (typeof localStorage.ISSVIJA != 'undefined')
+     var SYNCHPATH = localStorage.ISSVIJA
+else var SYNCHPATH = false
+
+// URL of most recent Svija site
+if (typeof localStorage.SITEURL != 'undefined')
+     var SITEURL = localStorage.SITEURL
+else var SITEURL = false
+
+// path to most recent svija site page (for reopen button)
+if (typeof localStorage.LASTPATH != 'undefined')
+     var LASTPATH = localStorage.LASTPATH
+else var LASTPATH = false
 ///
 
 /*:::::::::::::::::::::::::::::::::::::::: main function */
@@ -30,7 +44,7 @@ var LASTPATH = ''    // path to most recent svija site page (for reopen button)
 
 function projectManager(){
 
-  if (app.documents.length == 0) return ''
+  if (app.documents.length == 0) return 'app.documents.length=0'
 
   ISSVIJA  =     isSvija()
 
