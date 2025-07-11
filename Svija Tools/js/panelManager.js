@@ -18,7 +18,7 @@
     - closed */
 ///
 
-/*———————————————————————————————————————— startup */
+/*———————————————————————————————————————— startup & addListener */
 
 var panelContentInterval = setInterval(setPanelContent, INTMS)
 

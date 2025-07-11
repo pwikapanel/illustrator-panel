@@ -26,12 +26,6 @@ or folder, or an array of objects. If the user cancels, returns null. */
 
 function openFile(){
 
-
-  if (LASTPATH == ''){
-    app.executeMenuCommand("open")
-    return 
-  }
-
   if (ISMAC) var slashPos = LASTPATH.lastIndexOf('/')
   else var slashPos = LASTPATH.lastIndexOf('\\')
 

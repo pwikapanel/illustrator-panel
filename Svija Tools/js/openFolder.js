@@ -1,12 +1,12 @@
 
+/* vim: set foldmethod=marker fmr=/*\—,///: */
+
 /*:::::::::::::::::::::::::::::::::::::::: openFolder.js
 
-    used both in closed and open states */
+    two buttons: closed and open states */
 
-/*:::::::::::::::::::::::::::::::::::::::: closed button */
+/*———————————————————————————————————————— closed button */
 
-const pcOpener  = 'C:\\Windows\\explorer.exe'
-const macOpener = '/usr/bin/open'
 
 //———————————————————————————————————————— parameters
 
@@ -14,7 +14,7 @@ var objLabel = TRANSLATE.closedOpenFolderButton
 var objWidth = TRANSLATE.closedOpenFolderButtonWidth
 var objID    = 'buttC1'
 
-/*———————————————————————————————————————— configure button */
+//———————————————————————————————————————— configure button
 
 var obj = document.getElementById(objID)
 if (obj === null) LERT(objID + ' is null')
@@ -23,26 +23,21 @@ obj.value = objLabel
 obj.style.width = objWidth + 'px'
 obj.style.display = 'inline'
 
-/*———————————————————————————————————————— listener function
-
-    */
+//———————————————————————————————————————— listener function
 
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt')
   if (alt) openProjectFolder()
   else openFolder()
 })
-
-
-/*:::::::::::::::::::::::::::::::::::::::: regular button */
-
-/*———————————————————————————————————————— parameters */
+///
+/*———————————————————————————————————————— regular button */
 
 var objLabel = TRANSLATE.openFolderButton
 var objWidth = TRANSLATE.openFolderButtonWidth
 var objID    = 'butt31'
 
-/*———————————————————————————————————————— configure button */
+//———————————————————————————————————————— configure button
 
 var obj = document.getElementById(objID)
 if (obj === null) LERT(objID + ' is null')
@@ -56,39 +51,37 @@ obj.addEventListener('mouseup', (evn) => {
   if (alt) openProjectFolder()
   else openFolder()
 })
-
+///
 
 /*:::::::::::::::::::::::::::::::::::::::: main function */
 
-//———————————————————————————————————————— openFolder(alt)
+/*———————————————————————————————————————— openFolder(alt) */
 
 function openFolder(){
 
-  if (ISMAC) var opener = macOpener
-  else       var opener = pcOpener
+  let path
 
-  if (LASTPATH == ''){
-    LERT(TRANSLATE.noProject)
-    return
-  }
+  if (LASTPATH == '')
+    path = MYDOCS
 
-  if (ISMAC)
+  else if (ISMAC)
     path = LASTPATH.substr(0, LASTPATH.lastIndexOf('/'))
+
   else
     path = LASTPATH.substr(0, LASTPATH.lastIndexOf('\\'))
 
   path = path.replace(/\\\\/g, "\\")
 
-  window.cep.process.createProcess(opener, path)
+  window.cep.process.createProcess(OPENER, path)
 
 }
-
-//———————————————————————————————————————— openProjectFolder(alt)
+///
+/*———————————————————————————————————————— openProjectFolder(alt) */
 
 function openProjectFolder(alt){
 
-  if (ISMAC) var opener = macOpener
-  else       var opener = pcOpener
+  if (ISMAC) var OPENER = MACOPEN
+  else       var OPENER = PCOPEN
 
   if (SYNCPATH == ''){
     LERT(TRANSLATE.noProject)
@@ -98,12 +91,12 @@ function openProjectFolder(alt){
   var path = SYNCPATH.slice(0,-5)
   path     = path.replace(/\\\\/g, "\\")
 
-LERT(path)
-
-  window.cep.process.createProcess(opener, path)
+  window.cep.process.createProcess(OPENER, path)
 
 }
-
+///
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
+
+
 

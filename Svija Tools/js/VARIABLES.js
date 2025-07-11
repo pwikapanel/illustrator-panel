@@ -3,43 +3,53 @@
 
 //:::::::::::::::::::::::::::::::::::::::: variables.js
 
-/*———————————————————————————————————————— set in shell */
+/*———————————————————————————————————————— in shell.html
 
- // AIVERSION        // string     illustrator version
- // CEP              // object     new CSInterface()
- // HOSTENV          // object     CEP.getHostEnvironment()
- // ISMAC            // boolean
- // LC               // string     two-letters: en_US fr_FR etc.
- // TOOLSPATH        // string     CEP.getSystemPath(SystemPath.EXTENSION)
- // TRANSLATE        // object     CEP.initResourceBundle()  https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md
+var CEP            = new CSInterface()
+CEP.setContextMenu('<Menu></Menu>', function(){})
+
+var TRANSLATE      = CEP.initResourceBundle() 
+var ISMAC          = CEP.getOSInformation().substring(0,3) == 'Mac' // boolean    macOS boolean · set in projectManager.js
+var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
+var MYDOCS         = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
+
+var HOSTENV        = CEP.getHostEnvironment()
+var LC             = HOSTENV.appUILocale.substr(0,2) // en_US
+var AIVERSION      = HOSTENV.appVersion // illustrator version */
+
+///
+/*———————————————————————————————————————— set here */
+
+const TOOLSVERSION   = '1.0.7'   // string shown in info panel
+const INTMS          =  500      // interval for the updating panel
+const STANDBYMS      = 1500      // how long is standby message shown
+
+let OPENER
+if (ISMAC) OPENER = '/usr/bin/open'
+else       OPENER = 'C:\\Windows\\explorer.exe'
+
+const LCDEFAULT      = 'en'      // string     two letter language code
+if (LC != 'fr') LC = LCDEFAULT // dev use only — delete when done
 
 VARTOCEP('LC'          , LC          )
 VARTOCEP('ISMAC'       , ISMAC       )
 VARTOCEP('TOOLSVERSION', TOOLSVERSION)
 VARTOCEP('AIVERSION'   , AIVERSION   )
 ///
-/*———————————————————————————————————————— set here */
-
-var TOOLSVERSION   = '1.0.7'   // string shown in info panel
-var INTMS          = 500       // interval for the updating panel
-var INTMSCLOSED    = 5000      // interval for the updating panel when not a Svija project
-var LCDEFAULT      = 'en'      // string     two letter language code
-if (LC != 'fr') LC = LCDEFAULT // dev use only — delete when done
-///
 /*———————————————————————————————————————— set in panelManager */
 
-var INTERFACE        // number     0-3 dark to light
+let INTERFACE        // number     0-3 dark to light
 ///
 /*———————————————————————————————————————— set in projectManager */
 
-var ISSVIJA          // boolean    if fromtmost doc is a svija page (in a SYNC folder)
-var LASTPATH         // string     last file path for a svija page
-var SITEURL          // string     url of most recent svija site
-var SYNCPATH         // string     absolute path to SYNC folder
+let ISSVIJA          // boolean    if fromtmost doc is a svija page (in a SYNC folder)
+let LASTPATH         // string     last file path for a svija page
+let SITEURL          // string     url of most recent svija site
+let SYNCPATH         // string     absolute path to SYNC folder
 ///
 /*———————————————————————————————————————— set in svijaLogo */
 
-var STYLE = getComputedStyle(document.body) // object, managed in svijaLogo.js
+let STYLE = getComputedStyle(document.body) // object, managed in svijaLogo.js
 ///
 /*———————————————————————————————————————— load JSON colors
 

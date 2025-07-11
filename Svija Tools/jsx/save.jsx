@@ -6,40 +6,42 @@
 
 /*———————————————————————————————————————— notes
 
-    provides an alert if errors or warnings
-    otherwise returns a success message displayed
-    by alertPalette */
+    if errors or warnings provides an alert 
+    and returns ''
+
+    otherwise returns a success message */
 ///
-/*———————————————————————————————————————— global CEP variables */
+
+//:::::::::::::::::::::::::::::::::::::::: program
 
 var  ERRORS   = []   // error messages for user
 var  WARNINGS = []   // warnings for user
-///
-//———————————————————————————————————————— savePages(single)
+
+/*———————————————————————————————————————— program function */
 
 function savePages(allPages){
 
-  //—————————————————————————————————————— guard for long setInterval times
+  /*—————————————————————————————————————— guard for long setInterval times */
 
   if (SYNCPATH == ''){
     alert('Please Retry\nproject info not available')
     return ''
   }
-
-  //—————————————————————————————————————— initialization
+  ///
+  /*—————————————————————————————————————— initialization */
 
   var d = new Date()
   var env_start_ms = d.getTime()
   var fileSizes = []
-
-  //—————————————————————————————————————— guard
+  ///
+  /*—————————————————————————————————————— guard */
   
   if (app.documents.length < 1){
     alert('No open documents.')
     return ''
   }
-
-  //—————————————————————————————————————— initialization
+  ///
+  /*—————————————————————————————————————— initialization */
 
   ERRORS        = []                            // error messages for user
   WARNINGS      = []                            // warnings for user
@@ -47,8 +49,8 @@ function savePages(allPages){
   var  docsOpen = appDocs.length                // number of open documents
   var activeDoc = app.activeDocument            // active document
   var aiOptions = aiSaveOptions()
-
-  //———————————————————————————————————————— "for" loop through documents */
+  ///
+  /*———————————————————————————————————————— "for" loop through documents */
 
   // var extraLayer = false
 
@@ -75,19 +77,20 @@ function savePages(allPages){
 
     if (!allPages) break;
   }
-
-  //———————————————————————————————————————— restore frontmost doc
+  ///
+  /*———————————————————————————————————————— restore frontmost doc */
 
   if (allPages) app.activeDocument = activeDoc
-
-  //———————————————————————————————————————— alert if problems
+  ///
+  /*———————————————————————————————————————— alert if problems */
 
   if (ERRORS.length > 0 || WARNINGS.length > 0){
     finalFeedback(fileSizes)
     return ''
   }
+  ///
 
-
+  // must be in locale/messages.properties
   if (docsOpen > 1) return "pagesSaved"
   else return 'pageSaved'
 }

@@ -1,16 +1,16 @@
 
+/* vim: set foldmethod=marker fmr=/*\—,/**\/: */
+
 /*:::::::::::::::::::::::::::::::::::::::: base.css */
 
-/*———————————————————————————————————————— colors
-
- see css/interface1.css etc.  */
+/*———————————————————————————————————————— fallback accent colors */
 
 :root { /* see js/svijaLogo.js */
 
   --accentBright :hsl(80 100%  50%);
   --accentDim    :hsl(80  20%  25%);
 }
-
+/**/
 /*———————————————————————————————————————— permanent */
 
 *{
@@ -34,8 +34,11 @@ input:focus{ /* get rid of blue line when focused */
   outline: none!important;
   box-shadow: none!important;
 }
+/**/
 
-/*———————————————————————————————————————— panel */
+/*:::::::::::::::::::::::::::::::::::::::: specific parts */
+
+/*———————————————————————————————————————— overall panel */
 
 body{
   background-color: var(--panelBg);
@@ -45,8 +48,8 @@ body{
   background-position: center;
   color:#bbb;
 }
-
-/*:::::::::::::::::::::::::::::::::::::::: standby */
+/**/
+/*———————————————————————————————————————— standby */
 
 div#standbyDiv{
   position:absolute;
@@ -55,14 +58,30 @@ div#standbyDiv{
   display:none;
 
   background-color: var(--panelBg);
-  background-image: url(../svg/splash_logo.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  color:#bbb;
+
+  /* from chatGPT */
+  justify-content: center;  /* horizontal centering */
+  align-items: center;      /* vertical centering */
 }
 
-/*:::::::::::::::::::::::::::::::::::::::: news */
+div#standbyBanner{
+  width:100%;
+  margin:0 10px;
+  padding:3px 10px 4px 10px;
+
+  border-style:solid;
+  border-width:1px;
+  border-radius:3px;
+
+  background-color:var(--accentDim);
+  border-color:var(--accentBright);
+         color:var(--accentBright);
+
+  font-size:16px;
+}
+
+/**/
+/*———————————————————————————————————————— news */
 
     /* <div id="newsBanner">
     </div> */
@@ -70,6 +89,10 @@ div#standbyDiv{
 div#newsDiv{
   display:none;
 }
+/**/
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
+
+
+
 

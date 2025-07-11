@@ -5,14 +5,12 @@
 
 /*———————————————————————————————————————— initialization */
 
-var ISSVIJA  = false // boolean    if frontmost doc is a svija page (in a SYNC folder)
-var LASTPATH = ''    // string     last file path for a svija page
-var SITEURL  = ''    // string     url of most recent svija site
-var SYNCPATH = ''    // string     absolute path to SYNC folder
+ISSVIJA  = false // boolean    if frontmost doc is a svija page (in a SYNC folder)
+LASTPATH = ''    // string     last file path for a svija page
+SITEURL  = ''    // string     url of most recent svija site
+SYNCPATH = ''    // string     absolute path to SYNC folder
 ///
-/*———————————————————————————————————————— recover localStorage
-
-    get values from LS if possible*/
+/*———————————————————————————————————————— recover localStorage */
 
 if (typeof localStorage.LASTPATH != 'undefined')
   LASTPATH = localStorage.LASTPATH
@@ -54,7 +52,6 @@ if (typeof SITEURL != 'undefined')
     if (panelTitle.length > 22)
       panelTitle=SITEURL.slice(0, 20)+'...'
   
-//  elapse(52, `setting title to ${panelTitle}`)
     CEP.setWindowTitle(panelTitle)
   }
   else
@@ -109,7 +106,6 @@ if (typeof SITEURL != 'undefined')
   ///
   /*—————————————————————————————————————— is svija site */
 
-
   SYNCPATH = results.syncPath
   localStorage.syncPath = SYNCPATH
 //elapse(109, `SYNCPATH=${SYNCPATH}`)
@@ -118,16 +114,25 @@ if (typeof SITEURL != 'undefined')
   localStorage.siteUrl = SITEURL
 //elapse(113, `SITEURL=${SITEURL}`)
 
+  if (SITEURL == '') siteUrlAlert()
+
   LASTPATH = results.lastPath
   localStorage.lastPath = LASTPATH
 //elapse(117, `LASTPATH=${LASTPATH}`)
   ///
 
-  if (!ISSVIJA && SITEURL=='')
-    LERT(TRANSLATE.missingUrlTxt)
-
   ISSVIJA = true
 
+}
+///
+/*———————————————————————————————————————— siteUrlAlert() */
+
+let urlWasWarned = false
+
+function siteUrlAlert(){
+  if (urlWasWarned) return  
+
+  urlWasWarned = true
 }
 ///
 

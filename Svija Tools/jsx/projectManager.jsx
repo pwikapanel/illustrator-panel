@@ -76,8 +76,11 @@ function isSvija(){
 
   var currPath = String(app.activeDocument.path)
 
-  if (currPath.indexOf('SYNC') > 0) return true
-  else return false
+  if (currPath.indexOf('/') == -1) return false
+
+  if (!strContainsSYNC(currPath)) return false
+
+  return true
 }
 ///
 /*———————————————————————————————————————— getSyncPath()
@@ -88,11 +91,12 @@ function isSvija(){
 function getSyncPath(){
 
   var res = app.activeDocument.path.fsName
+
+  if (!strContainsSYNC(res)) return ''
+
   var i = res.indexOf('SYNC')
+  res = res.substr(0, i+4)
 
-  if (i < 0) return ''
-
-  res = res.substr(0, i) + 'SYNC'
   return res
 }
 ///
@@ -135,7 +139,7 @@ function getLastPath(){
 
   if (typeof ISMAC == 'undefined'){
     if (notYetNotified) {
-      alert("ISMAC not set\nprojectManager.jsx#109")
+      alert("⚠️ ISMAC not set\nprojectManager.jsx#109")
       notYetNotified = false
     }
     return ''
@@ -147,6 +151,21 @@ function getLastPath(){
     res = app.activeDocument.path.fsName + '\\'
 
   return res + app.activeDocument.name
+}
+///
+
+/*:::::::::::::::::::::::::::::::::::::::: utilities */
+
+/*———————————————————————————————————————— strContainsSYNC(arr, str) */
+
+function strContainsSYNC(arg){
+
+  var arr = arg.split('/')
+
+  for (var i = 0; i < arr.length; i++)
+    if (arr[i] == 'SYNC') return true
+
+  return false;
 }
 ///
 

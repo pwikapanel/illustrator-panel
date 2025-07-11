@@ -53,3 +53,16 @@ For information:
 The META-INF folder is created during the signing process and contains certificate information.
 
 *Valuable debugging information [here](https://github.com/Adobe-CEP/Getting-Started-guides/tree/master/Client-side%20Debugging#set-the-debug-mode).*
+
+---
+### Localization
+
+See the [Adobe page](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md).
+
+Installing Illustrator in another language from the Creative Cloud app:
+
+1. click avatar › "Preferences"
+2. click "Apps" (left sidebar)
+3. change default language in right pane
+4. click "Done"
+

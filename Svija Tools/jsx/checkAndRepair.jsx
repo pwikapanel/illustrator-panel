@@ -2,15 +2,16 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
+// TRANSLATE[LC].startupTime
+
 //:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js / checkAndRepair.jsx
 
 /*———————————————————————————————————————— notes
 
-    check.jsx
+    if errors or warnings provides an alert 
+    and returns ''
 
-    1.0.5
-
-    notes:
+    otherwise returns a success message
 
     fixEmbeddedImage can return either warning or error depending on if image can be fixed
     we'll deal with that later
@@ -32,58 +33,21 @@
     • gradient midpoints
     • cloud images
     • TT automatic uppercase see JavaScript Scripting Reference p24 */
-///
-/*———————————————————————————————————————— (c) & EULA
 
-    Copyright (c) Svija
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-    
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-    
-    The software is provided "as is", without warranty of any kind, express or
-    implied, including but not limited to the warranties of merchantability,
-    fitness for a particular purpose and noninfringement. In no event shall the
-    authors or copyright holders be liable for any claim, damages or other
-    liability, whether in an action of contract, tort or otherwise, arising from,
-    out of or in connection with the software or the use or other dealings in
-    the software.
-
-    svija.com · hello@svija.com*/
 ///
 
 //:::::::::::::::::::::::::::::::::::::::: program
 
-
 var env_start_ms, env_warnings, env_errors, env_repairs, env_imagesModified, env_imagesFixed, env_imageFailed
 
-/*———————————————————————————————————————— main function */
+/*———————————————————————————————————————— program function */
 
 function checkAndRepair(){
-
-  for (x=0; x<100000000; x++)
-    zoopy = 1/2
-
-  var syncErr = ' is not inside a \"SYNC\" folder'
 
   var d = new Date()
   env_start_ms = d.getTime()
 
-
-  //—————————————————————————————————————— no open docs
-  
-  if (app.documents.length < 1){
-    alert('No open documents.')
-    return true
-  }
-  
-  //—————————————————————————————————————— initialization
+  /*—————————————————————————————————————— initialization */
   
   var doc            = app.activeDocument
   
@@ -103,35 +67,16 @@ function checkAndRepair(){
   
   if (rasters + placed > 0) var hasImages = true
   else                      var hasImages = false
-
-  //—————————————————————————————————————— has not saved then quit
-  
-  var pathErr = HASPATH(doc)
-  
-  if (pathErr != ''){
-    alert(pathErr)
-    return true
-  }
-  
-  //—————————————————————————————————————— if not in SYNC folder then quit
-
-  
-  var syncPath = SYNCPATH
-  
-  if (syncPath == ''){
-    alert(doc.name + syncErr + '::'+syncPath)
-    return true
-  }
-
-  //—————————————————————————————————————— create Links folder if images
+  ///
+  /*—————————————————————————————————————— create Links folder if images */
 
   if (hasImages)
     if (!Folder(linksFolderObj).exists){
       Folder(linksFolderObj).create();
-      env_repairs.push('"Links" folder created for images.');
+      env_repairs.push(TRANSLATE[LC].linksCreated);
     }
-
-  /*—————————————————————————————————————— check for non-native items NOT IMPLEMENTED
+  ///
+  /*—————————————————————————————————————— COMMENTED check for non-native items
 
    alert(nonNatives);
 
@@ -144,7 +89,6 @@ function checkAndRepair(){
       changed to placed in the next step
   
       fixEmbeddedImage() returns image filename, succes/failure, message */
-  
   if (hasImages)
     for (var x=rasters; x>0; x--){
       var name_fixed_msg = fixEmbeddedImage(doc, doc.rasterItems[x-1]);
@@ -212,8 +156,10 @@ function checkAndRepair(){
   //———————————————————————————————————————— alert user
 
 
-  alertUser(doc)
-
+  if (alertUser(doc) == '')
+    // must be in locale/messages.properties
+    return 'allGood'
+  else return ''
 
 }
 ///
@@ -229,7 +175,7 @@ function checkAndRepair(){
 function artboardNames(doc){
 
   for(x=0; x<doc.artboards.length; x++)
-    if (!ut_isTwoLetters(doc.artboards[x].name))
+    if (!isTwoLetters(doc.artboards[x].name))
       return doc.name + " has artboard names that are not screen codes";
 
   return '';
@@ -263,11 +209,11 @@ function fixEmbeddedImage(doc, img){
   var activeLayerVisible  = img.layer.visible;
   var activeParentVisible = img.parent.visible;
 
-  if (img.name == '') var imgName = 'Missing image';
+  if (img.name == '') var imgName = TRANSLATE[LC].missingImage 
   else var imgName = img.name;
 
   var imgDepth    = img.absoluteZOrderPosition;
-  var parentLocks = ut_unlockHierarchy(img);
+  var parentLocks = unlockHierarchy(img);
 
   // is original findable?
 
@@ -275,7 +221,7 @@ function fixEmbeddedImage(doc, img){
 
   try{
     var newName = img.file;   // usually contains original file, even if image is embedded
-    var ut_newFile = new File(newName);
+    var newFile = new File(newName);
     fileMissing = false;
   }
   catch(e){ fileMissing = true; }
@@ -290,11 +236,18 @@ function fixEmbeddedImage(doc, img){
 
   // original is found so re-link it
 
+/* TRANSLATE.Error 8705: Target layer cannot be modified
+Line: 245
+->      newImg.file = newFile;
+ current layer was  locked
+*/
+
   else{
     var newImg  = activeParent.placedItems.add();
-    newImg.file = ut_newFile;
+    newImg.file = newFile;
   
     for (var key in img){
+
       try{ newImg[key] = img[key]; }
       catch(e){}
     }
@@ -311,18 +264,18 @@ function fixEmbeddedImage(doc, img){
 
   // clean up & prepare response
   if (fileMissing){
-    var msg = '(highlighted)';
+    var msg = TRANSLATE[LC].highlighted 
     var success = false;
-    newImg.name = '▼ embedded image';
+    newImg.name = TRANSLATE[LC].embeddedImage 
   }
   else{
-    var msg = 'file relinked';
+    var msg = TRANSLATE[LC].relinked
     var success = true;
     newImg.name = imgName;
     img.remove();
   }
 
-  ut_relockHierarchy(parentLocks)
+  relockHierarchy(parentLocks)
 
   return [imgName, success, msg];
 }
@@ -365,35 +318,35 @@ function fixPlacedImage(doc, img){
 
   var isCloud = String(img.file).indexOf('Creative%20Cloud%20Libraries');
   if (isCloud > 0){
-    var ext = ut_getExtension(img.file);
+    var ext = getExtension(img.file);
     neme = img.name + ' Cloud' + ext;
     destPath = CONCATENATEPATH(linksFolder, neme)
   }
   
   //———————————————————— continue PROBLEM IS HERE
 
-  var ut_newFile = new File(destPath); // hypothetical until we actually create it
+  var newFile = new File(destPath); // hypothetical until we actually create it
 
   // we copy file to /Links, then if it was with AI file, we delete original
   // changing the "copy" to a "move"
 
-  if(ut_newFile.exists) var msg = 'link updated'; /* seems to work — copies files in finder, but AI file is untouched */
+  if(newFile.exists) var msg = TRANSLATE[LC].linkUpdated /* seems to work — copies files in finder, but AI file is untouched */
   else{
-    img.file.copy(ut_newFile);
-    var msg = 'copied to "Links" folder';
+    img.file.copy(newFile);
+    var msg = TRANSLATE[LC].copiedToLinks
   }
 
   // if the file was in Ai folder we delete orig      SEEMS TO WORK — NOT USED IN THIS CASE
   if (thisFolder == currentFolder){
     img.file.remove();
-    var msg = 'moved to "Links" folder';
+    var msg = TRANSLATE[LC].movedToLinks
   }
 
-  var parentLocks = ut_unlockHierarchy(img);
+  var parentLocks = unlockHierarchy(img);
 
-  img.file = ut_newFile;
+  img.file = newFile;
 
-  ut_relockHierarchy(parentLocks)
+  relockHierarchy(parentLocks)
 
   return [neme, true, msg];
 }
@@ -413,7 +366,7 @@ function checkImageExt(img){
   }
   catch(e){
     drawYellowRectangle(img)
-    return ['Unknown image', false, 'has no file'];
+    return [TRANSLATE[LC].unknownImage, false, TRANSLATE[LC].hasNoFile]
   }
 
   var ext = parts[parts.length - 1];
@@ -422,13 +375,14 @@ function checkImageExt(img){
   const legalImages = /ai|pdf|jpg|jpeg|png|gif/gi;
 
   if (ext.match(legalImages) === null)
-    return [neme, false, 'is an unsupported format'];
+    return [neme, false, TRANSLATE[LC].unsupportedFormat];
 
   return []
 }
 ///
 /*———————————————————————————————————————— alertUser(doc)
 
+    if problems, shows alert else returns ''
     alert with:
     - elapsed time
     - errors (big problems)
@@ -442,7 +396,7 @@ function alertUser(doc){
 
   var ms = (d.getTime()-env_start_ms)
 
-  var fileSize = ut_getFileSize(doc)
+  var fileSize = getFileSize(doc)
 
   var title = doc.name;
   var bodyParts = [];
@@ -463,8 +417,8 @@ function alertUser(doc){
     bodyParts.push('— Unrepairable images —\n' + convertArray(env_imagesFailed));
 
   if (bodyParts.length == 0){
-    alert('All Good!\nline 449: THIS SCRIPT IS BROKEN');
-    return;
+ // alert('All Good!\nline 449: THIS SCRIPT IS BROKEN');
+    return '';
   }
 
   body = bodyParts.join('\n\n');
@@ -475,9 +429,7 @@ function alertUser(doc){
   else
     ms = ms + ' ms';
 
-
-  showResults = confirm(doc.name + ' verified\n' + fileSize + ' MB in ' + ms + ' — show report?\n\nline 461: THIS SCRIPT IS BROKEN');
-  if (showResults) alert(msg);
+  alert(msg);
 }
 ///
 
@@ -607,25 +559,25 @@ function getAlertDepth(img){
 }
 ///
 
-//:::::::::::::::::::::::::::::::::::::::: fin
+//:::::::::::::::::::::::::::::::::::::::: were in UTILITIES.jsx
 
-/*———————————————————————————————————————— ut_getExtension(path)
+/*———————————————————————————————————————— getExtension(path)
 
     */
 
-function ut_getExtension(path){
+function getExtension(path){
   var ending = String(path).substr(-5)
   var bits = ending.split('.')
   return '.' + bits[1]
 }
 ///
-/*———————————————————————————————————————— ut_getFileSize(page)
+/*———————————————————————————————————————— getFileSize(page)
 
 // page.path = parent folder
 // page.name = filename
 // together is full pagh */
 
-function ut_getFileSize(page){
+function getFileSize(page){
   try{
     var ref = File(CONCATENATEPATH(page.path, page.name))
     var fileSize = Math.round(ref.length / 1000 / 1000 * 100)/100
@@ -634,24 +586,24 @@ function ut_getFileSize(page){
   catch(e){ return -1 }
 }
 ///
-/*———————————————————————————————————————— ut_isTwoLetters(n)
+/*———————————————————————————————————————— isTwoLetters(n)
 
     returns true if n is two letters or numbers
     a-z, A-Z, 0-9 */
 
-function ut_isTwoLetters(n){
+function isTwoLetters(n){
   const regex = /^[a-zA-Z\d][a-zA-Z\d]$/g
   if(n.match(regex) === null) return false
   return true;
 }
 ///
-/*———————————————————————————————————————— ut_newFile(folder, name)
+/*———————————————————————————————————————— newFile(folder, name)
 
     returns file to save into
 
     https://extendscript.docsforadobe.dev */
 
-function ut_newFile(folder, name) {
+function newFile(folder, name) {
 
   var f = new File(folder + '/' + name)
 
@@ -661,25 +613,25 @@ function ut_newFile(folder, name) {
   return f
 }
 ///
-/*———————————————————————————————————————— ut_relockHierarchy(obj)
+/*———————————————————————————————————————— relockHierarchy(obj)
 
-    relocks elements unlocked by ut_unlockHierarchy() */
+    relocks elements unlocked by unlockHierarchy() */
 
-function ut_relockHierarchy(arr){
+function relockHierarchy(arr){
   for(var x=0; x<arr.length; x++){
     arr[x][0].visible = arr[x][2]
     arr[x][0].locked = arr[x][1]
   }
 }
 ///
-/*———————————————————————————————————————— ut_unlockHierarchy(obj)
+/*———————————————————————————————————————— unlockHierarchy(obj)
 
     unlocks the hierarchy above an element and returns an array
 
     each element of the array is a sub array containing
     [obj, obj.locked, obj.visible] */
 
-function ut_unlockHierarchy(obj){
+function unlockHierarchy(obj){
 
   var parentLocks = []
   var thisParent = obj.parent
@@ -698,84 +650,6 @@ function ut_unlockHierarchy(obj){
   }
 
   return parentLocks
-}
-///
-
-//:::::::::::::::::::::::::::::::::::::::: alert palette
-
-//:::::::::::::::::::::::::::::::::::::::: PROGRESSDIALOG .css .js .jsx
-
-// see also jsx/settings.jsx
-
-// alert('engine: ' + $.engineName);
-// #target illustrator  
-
-/*———————————————————————————————————————— notes
-
-    1906 Beginning ScriptUI.pdf
-    2210 Javascript Tools Guide CC (UI).pdf
-
-    each element is in a group because only
-    groups can have margins & spacing */
-
-//  page 106 default & cancel elements
-///
-
-/*:::::::::::::::::::::::::::::::::::::::: alert palette */
-
-// the goal is to show a minimal alert that will close itself after x seconds, or if the user clicks anywhere
-
-/*———————————————————————————————————————— PROGRESSDIALOG(arg) */
-
-function PROGRESSDIALOG(arg){
-
-  /*———————————————————— colors */
-
-  var paletteBackground=this['labelText' + INTERFACE]
-  var       paletteText=this['panelBg' + INTERFACE]
-  ///
-  //———————————————————— create palette
-
-//palette = new Window ('palette', " ", undefined, {resizeable: false, borderless: true, closeButton: false})
-
-  // to avoid title bar
-  palette = new Window ( 'palette', ' ', undefined, {resizeable: false, borderless: true, closeButton: false})
-
-  palette.margins = [0, 0, 0, 0]
-  palette.spacing = 0
-  palette.graphics.backgroundColor = palette.graphics.newBrush(palette.graphics.BrushType.SOLID_COLOR,paletteBackground, 1)
-  
-  //———————————————————— container // necessary for onclick
-
-  var div = palette.add('group')
-  div.preferredSize = [300, 20]
-  div.orientation   = 'column'
-  div.spacing   = 2
-  div.alignment = 'center'
-  div.margins = [0, 10, 0, 10]
-//               L      R
-
-  //———————————————————— message
-
-  var  message = div.add('statictext')
-  message.alignment = 'center'
-  message.graphics.foregroundColor = message.graphics.newPen (message.graphics.PenType.SOLID_COLOR, paletteText, 1);
-
-  message.text = arg
-
-  //———————————————————— close palette
-
-  palette.addEventListener ("keydown", function(k) {
-    if(k.keyName == 'Escape'){ palette.hide() }
-  })
-
-  div.addEventListener('click', function(e){ palette.hide() })
-
-  //———————————————————— show palette
-
-  palette.show()
-  return 'palette'
-
 }
 ///
 

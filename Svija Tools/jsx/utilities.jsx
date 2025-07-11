@@ -40,11 +40,11 @@ function HASPATH(doc){
   if (doc.path != '') return ''
 
   var syncPath = DERIVESYNCFOLDER()
-  if (syncPath == '') return 'Please save ' + doc.name + ' normally.'
+  if (syncPath == '') return TRANSLATE[LC].saveNormally.replace('*', doc.name)
 
   var f = new File(syncPath).saveDlg('','')
 
-  if (f == null) return 'Please save ' + doc.name + ' normally.'
+  if (f == null)  return TRANSLATE[LC].saveNormally.replace('*', doc.name)
 
   app.activeDocument.saveAs(f, undefined)
   return ''

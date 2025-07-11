@@ -38,15 +38,16 @@
 //———————————————————————————————————————— CEP required
 
 var CEP            = new CSInterface()
-var TRANSLATE      = CEP.initResourceBundle() // https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md
-var HOSTENV        = CEP.getHostEnvironment()
+CEP.setContextMenu('<Menu></Menu>', function(){})
+
+var TRANSLATE      = CEP.initResourceBundle() 
+var ISMAC          = CEP.getOSInformation().substring(0,3) == 'Mac' // boolean    macOS boolean · set in projectManager.js
 var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
+var MYDOCS         = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
+
+var HOSTENV        = CEP.getHostEnvironment()
 var LC             = HOSTENV.appUILocale.substr(0,2) // en_US
 var AIVERSION      = HOSTENV.appVersion // illustrator version
-var ISMAC          = CEP.getOSInformation().substring(0,3) == 'Mac' // boolean    macOS boolean · set in projectManager.js
-var menuXML        = '<Menu></Menu>'
-
-CEP.setContextMenu(menuXML, function(){})
 
 //———————————————————————————————————————— catch errors
 
@@ -101,6 +102,8 @@ elapse(88, `starting Svija Tools`)
 
 </head><body>
 
+  <div id="standbyDiv"><div id="standbyBanner"></div></div>
+
   <div id="reloader" onclick='location.reload()'></div>
   <script>
     document.getElementById('reloader').onclick = function(event) {
@@ -111,8 +114,6 @@ elapse(88, `starting Svija Tools`)
         location.reload()
     }
   </script>
-
-  <div id="standbyDiv"></div>
 
   <!--———————————————————— setup scripts -->
   <script type="text/javascript" src='js/UTILITIES.js'       ></script>

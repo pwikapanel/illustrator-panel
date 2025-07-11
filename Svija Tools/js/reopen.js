@@ -1,33 +1,45 @@
 
+/* vim: set foldmethod=marker fmr=/*\—,///: */
+
 //:::::::::::::::::::::::::::::::::::::::: reopen.js / reopen.jsx
 
-//———————————————————————————————————————— parameters
+{
 
-var objLabel = TRANSLATE.closedReopenButton
-var objWidth = TRANSLATE.closedReopenButtonWidth
-var objID    = 'buttC3'
+  /*—————————————————————————————————————— button config */
 
-/*———————————————————————————————————————— configure button */
+  let objLabel = TRANSLATE.closedReopenButton
+  let objWidth = TRANSLATE.closedReopenButtonWidth
+  let objID    = 'buttC3'
 
-var obj = document.getElementById(objID)
-if (obj === null) LERT(objID + ' is null')
+  let obj = document.getElementById(objID)
+  if (obj === null) LERT(objID + ' is null')
+  
+  obj.value = objLabel
+  obj.style.width = objWidth+'px'
+  obj.style.display = 'inline'
+  ///
+  /*—————————————————————————————————————— listener function
+  
+    opens file based on localStorage lastPath */
+  
+  obj.addEventListener('mouseup', (evn) => {
+  
+    let alt = evn.getModifierState('Alt')
+    let errmsg = TRANSLATE.noProject
 
-obj.value = objLabel
-obj.style.width = objWidth+'px'
-obj.style.display = 'inline'
+    if (LASTPATH == ''){
+      let cmd = 'app.executeMenuCommand("open")'
+      CEP.evalScript(cmd)
+      return
+    }
 
-/*———————————————————————————————————————— listener function
+    let cmd = `app.open(File(LASTPATH))`
+    CEP.evalScript(cmd)
+  
+  })
+///
 
-  opens file based on localStorage lastPath */
-
-obj.addEventListener('mouseup', (evn) => {
-
-  var alt = evn.getModifierState('Alt')
-  var errmsg = TRANSLATE.noProject
-  CEP.evalScript(`reopen("${errmsg}")`)
-
-})
-
+}
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

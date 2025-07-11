@@ -5,8 +5,6 @@
 
 /*———————————————————————————————————————— manage accent color */
 
-var STYLE = getComputedStyle(document.body)    // managed in svijaLogo.js
-
 elapse(6, `on load, localStorage.accentBright=${localStorage.accentBright}, localStorage.accentDim=${localStorage.accentDim}`)
 
 if (typeof localStorage.accentBright == 'undefined'){

@@ -3,13 +3,11 @@
 
 //:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js / checkAndRepair.jsx
 
-/*———————————————————————————————————————— parameters */
+/*———————————————————————————————————————— configure button */
 
 var objLabel = TRANSLATE.checkAndRepairButton
 var objWidth = TRANSLATE.checkAndRepairButtonWidth
 var objID    = 'butt41'
-///
-/*———————————————————————————————————————— configure button */
 
 var obj = document.getElementById(objID)
 if (obj === null) LERT(objID + ' is null')
@@ -25,21 +23,16 @@ obj.style.display = 'inline'
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.altKey
 
-  standbyDiv.innerHTML = 'Verifying.'
-  standbyDiv.style.display='block'
+  standbyBanner.innerHTML = TRANSLATE.verifying
+  standbyDiv.style.display='flex'
 
   setTimeout(() => {
-    CEP.evalScript("checkAndRepair()", checkAndRepairCallback);
+    elapse(25, `calling checkAndRepair()`)
+    CEP.evalScript("checkAndRepair()", STANDBYCALLBACK);
   }, 200);
 
 })
 ///
-
-/*:::::::::::::::::::::::::::::::::::::::: fin */
-
-function checkAndRepairCallback(){
-  standbyDiv.style.display='none'
-}
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

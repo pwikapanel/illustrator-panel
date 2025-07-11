@@ -1,32 +1,43 @@
 
+/* vim: set foldmethod=marker fmr=/*\—,///: */
+
 //:::::::::::::::::::::::::::::::::::::::: open.js / open.jsx
 
-//———————————————————————————————————————— parameters
+{
 
-var objLabel = TRANSLATE.closedOpenButton
-var objWidth = TRANSLATE.closedOpenButtonWidth
-var objID    = 'buttC2'
+  /*—————————————————————————————————————— button config */
 
-/*———————————————————————————————————————— configure button */
+  let objLabel = TRANSLATE.closedOpenButton
+  let objWidth = TRANSLATE.closedOpenButtonWidth
+  let objID    = 'buttC2'
+  
+  let obj = document.getElementById(objID)
+  if (obj === null) LERT(objID + ' is null')
+  
+  obj.value = objLabel
+  obj.style.width = objWidth+'px'
+  obj.style.display = 'inline'
+  ///
+  /*—————————————————————————————————————— listener function
+  
+    opens folder based on localStorage lastPath */
+  
+  obj.addEventListener('mouseup', (evn) => {
+  
+    let alt = evn.altKey
 
-var obj = document.getElementById(objID)
-if (obj === null) LERT(objID + ' is null')
+    if (LASTPATH == ''){
+      let cmd = 'app.executeMenuCommand("open")'
+      CEP.evalScript(cmd)
+      return
+    }
 
-obj.value = objLabel
-obj.style.width = objWidth+'px'
-obj.style.display = 'inline'
+    CEP.evalScript('openFile()')
+  
+  })
+  ///
 
-/*———————————————————————————————————————— listener function
-
-  opens folder based on localStorage lastPath */
-
-obj.addEventListener('mouseup', (evn) => {
-
-  var alt = evn.altKey
-  CEP.evalScript('openFile()')
-
-})
-
+}
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 

@@ -216,6 +216,20 @@ function ENABLEOBJECT(objId){
   window[objId].disabled = false
 }
 ///
+/*———————————————————————————————————————— STANDBYCALLBACK() */
+
+function STANDBYCALLBACK(arg){
+  if (arg==''){
+    standbyDiv.style.display='none'
+    return
+  }
+
+  standbyBanner.innerHTML = eval('TRANSLATE.' + arg)
+  setTimeout(function(){
+    standbyDiv.style.display='none'
+  }, STANDBYMS)
+}
+///
 
 //:::::::::::::::::::::::::::::::::::::::: color utilities
 
