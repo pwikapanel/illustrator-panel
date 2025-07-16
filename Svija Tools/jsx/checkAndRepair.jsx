@@ -156,7 +156,6 @@ function checkAndRepair(){
 
     returns image filename, succes/failure, message if modification
     returns [] if no change */
-///
 
 function fixEmbeddedImage(doc, originalImage){
  
@@ -165,6 +164,7 @@ function fixEmbeddedImage(doc, originalImage){
   var imageParent = originalImage.parent
   var imageDepth  = originalImage.absoluteZOrderPosition
   var imageName
+  var replacementImage
 
   if (originalImage.name != '') imageName = originalImage.name
   else
@@ -172,33 +172,31 @@ function fixEmbeddedImage(doc, originalImage){
   ///
   /*—————————————————————————————————————— is format supported? */
 
-  var supportedFormat = supportedFormat(originalImage)
+  var supportedFormat = checkSupportedFormat(originalImage) // boolean
   ///
   /*—————————————————————————————————————— is original findable? */
 
-  var missingOriginal = false
+  var missingOriginal = true
 
   try{
     var originalPath = originalImage.file   // usually contains original file, even if image is embedded
     var originalFile = new File(originalPath)
-  }
-  catch(e){ missingOriginal = true }
+     missingOriginal = false
+  } catch(e){  }
 
   if (originalImage.status != 'RasterLinkState.DATAFROMFILE') // this is a precaution
-    missingOriginal = true                                  // not encountered so far
+    missingOriginal = true                                    // not encountered so far
   ///
   /*—————————————————————————————————————— can't fix: create new yellow square  */
 
-  if(supportedFormat || missingOriginal){
-    var replacementImage // the image we'll be working with — either the original or the yellow square
+  if(!supportedFormat || missingOriginal)
     replacementImage = drawYellowRectangle(originalImage)
-  }
   ///
   /*—————————————————————————————————————— can fix: create new image for fix */
 
-  if(!supportedFormat && !missingOriginal){
+  if(supportedFormat && !missingOriginal){
 
-    var replacementImage  = imageParent.placedItems.add()
+    replacementImage      = imageParent.placedItems.add()
     replacementImage.file = originalFile
   
     for (var key in originalImage){
@@ -207,34 +205,28 @@ function fixEmbeddedImage(doc, originalImage){
     }
    
     var moveMatrix  = app.getScaleMatrix(100,-100)
+    var totalMatrix = concatenateRotationMatrix(moveMatrix, 10) // maybe has an effect — test when done
     replacementImage.transform(moveMatrix)
   }
   ///
-  //—————————————————————————————————————— correct the image depth */
+  /*—————————————————————————————————————— correct the image depth */
 
-    /*  SyntaxError: Unexpected number
-        received: Error 1302: No such element
-        Line: 205
-        ->    while (replacementImage.absoluteZOrderPosition > imageDepth+1) */
-
-  alert('imageDepth: '+imageDepth +'\nreplacmeent: '+replacementImage.absoluteZOrderPosition)
-
-//while (replacementImage.absoluteZOrderPosition > imageDepth+1)
-//  replacementImage.zOrder(ZOrderMethod.SENDBACKWARD)
+  while (replacementImage.absoluteZOrderPosition > imageDepth+1)
+    replacementImage.zOrder(ZOrderMethod.SENDBACKWARD)
   ///
   /*—————————————————————————————————————— prepare response */
 
-  if (!supportedFormat){                                     // unsupported format = yellow triangle
+  if (!supportedFormat){                                // unsupported format = yellow triangle
     replacementImage.name = TRANSLATE[LC].badFormat
     var success = false
     var msg = TRANSLATE[LC].unsupportedFormat
   }
-  else if (missingOriginal){                                 // missing original = yellow triangle
+  else if (missingOriginal){                            // missing original = yellow triangle
     replacementImage.name = TRANSLATE[LC].embeddedImage 
     var success = false
     var msg = TRANSLATE[LC].highlighted 
   }
-  else{                                                     // image successfully relinked
+  else{                                                 // image successfully relinked
     replacementImage.name = imageName
     var success = true
     var msg = TRANSLATE[LC].relinked
@@ -327,9 +319,7 @@ function fixPlacedImage(doc, img){
 
 function alertUser(doc){
 
-  var d = new Date()
 
-  var ms = (d.getTime()-STARTMS)
 
   var fileSize = getFileSize(doc)
 
@@ -337,19 +327,19 @@ function alertUser(doc){
   var bodyParts = []
 
   if (WARNINGS.length > 0)
-    bodyParts.push('— Warnings —\n' + WARNINGS.join('\n'))
+    bodyParts.push(TRANSLATE[LC].checkWarnings + '\n' + WARNINGS.join('\n'))
 
   if (ERRORS.length > 0)
-    bodyParts.push('— Errors —\n' + ERRORS.join('\n'))
+    bodyParts.push(TRANSLATE[LC].checkErrors + '\n' + ERRORS.join('\n'))
   
   if (REPAIRS.length > 0)
-    bodyParts.push('— Repairs —\n' + REPAIRS.join('\n'))
+    bodyParts.push(TRANSLATE[LC].checkRepairs + '\n' + REPAIRS.join('\n'))
 
   if (IMAGESFIXED.length > 0)
-    bodyParts.push('— Fixed images —\n' + convertArray(IMAGESFIXED))
+    bodyParts.push(TRANSLATE[LC].checkFixed + '\n' + convertArray(IMAGESFIXED))
 
   if (IMAGESFAILED.length > 0)
-    bodyParts.push('— Unrepairable images —\n' + convertArray(IMAGESFAILED))
+    bodyParts.push(TRANSLATE[LC].checkFailed + '\n' + convertArray(IMAGESFAILED))
 
   if (bodyParts.length == 0){
     return false
@@ -358,11 +348,13 @@ function alertUser(doc){
   body = bodyParts.join('\n\n')
   var msg = decodeURI(title + '\n' + body)
 
-  if (ms > 1000)
-    ms = ms/1000 +' sec'
-  else
-    ms = ms + ' ms'
+  var d = new Date()
+  var ms = (d.getTime()-STARTMS)
 
+  if (ms > 1000) ms = ms/1000 +' ' + TRANSLATE[LC].seconds
+  else ms += ' MS'
+
+  msg += '\n\n' + ms
   alert(msg)
   return true
 }
@@ -376,6 +368,7 @@ function alertUser(doc){
   that can't be found and need to be replaced */
 
 function drawYellowRectangle(obj){
+
   var alertColor = new RGBColor()
   alertColor.red = 192; alertColor.green = 255; alertColor.blue = 0
   
@@ -385,8 +378,6 @@ function drawYellowRectangle(obj){
   var rNegTop = r[1]
   var rWidth  = r[2]-r[0]
   var rHeight = r[1]-r[3]
-
-  // unlock activeLayer
 
   // isg81 -top, left, width, height
   var rec = obj.parent.pathItems.rectangle( rNegTop, rLeft, rWidth, rHeight )
@@ -529,7 +520,7 @@ function relockHierarchy(arr){
     ai|pdf|jpg|jpeg|png|gif   */
 
 
-function supportedFormat(img){
+function checkSupportedFormat(img){
 
   try{ var parts = String(img.file).split('.') }
   catch(e){ return false }

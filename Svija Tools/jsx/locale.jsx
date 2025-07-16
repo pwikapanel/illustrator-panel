@@ -9,12 +9,13 @@ var TRANSLATE = {
       startupTime: "Startup:",
        memoryUsed: "Memory:",
                mb: "MB",
+          seconds: "seconds",
      saveNormally: "Please save * normally.",
      linksCreated: '"Links" folder created.',
      missingImage: "<image>",
       highlighted: "(highlighted)",
          relinked: "relinked",
-unsupportedFormat: "has an unsupported format",
+unsupportedFormat: "is not a supported format",
         badFormat: "▼ unsupported format",
     embeddedImage: "▼ embedded image",
       linkUpdated: "link updated",
@@ -22,12 +23,20 @@ unsupportedFormat: "has an unsupported format",
      movedToLinks: 'moved to "Links" folder',
      unknownImage: "Unknown Image",
         hasNoFile: "has no file",
+
+    checkWarnings: "— Warnings —",
+      checkErrors: "— Errors —",
+     checkRepairs: "— Repairs —",
+       checkFixed: "— Fixed images —",
+      checkFailed: "— Unrepairable images —",
+
           noComma: "———"
   },
   fr: {
       startupTime: "Démarrage :",
        memoryUsed: "Mémoire :",
                mb: "MO",
+          seconds: "secondes",
      saveNormally: "Merci de sauvegarder * manuellement.",
      linksCreated: 'Dossier "Links" creé.',
      missingImage: "<image>",
@@ -41,9 +50,19 @@ unsupportedFormat: "est d'un format non pris en charge",
      movedToLinks: 'déplacée au dossier "Links"',
      unknownImage: "Image inconnue",
         hasNoFile: "n'a pas de fichier",
+
+    checkWarnings: "— Avertissements  —",
+      checkErrors: "— Erreurs —",
+     checkRepairs: "— Réparations —",
+       checkFixed: "— Images réparées —",
+      checkFailed: "— Images non réparables —",
+
           noComma: "———"
   }
 }
 
 //:::::::::::::::::::::::::::::::::::::::: fin
+
+
+
 
