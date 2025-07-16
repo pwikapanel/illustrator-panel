@@ -41,7 +41,7 @@ var projectManagerInterval = setInterval(function(){
     resArray.push('"lastPath":"' +LASTPATH+'"')  */
 
 function projectManagerCallback(arg){
-  elapse(46, `ISSVIJA=${ISSVIJA} SITEURL=${SITEURL}\nSYNCPATH=${SYNCPATH}\nLASTPATH=${LASTPATH}`)
+  //elapse(46, `ISSVIJA=${ISSVIJA} SITEURL=${SITEURL}\nSYNCPATH=${SYNCPATH}\nLASTPATH=${LASTPATH}`)
 
   /*—————————————————————————————————————— set panel title */
 

@@ -12,12 +12,9 @@
     otherwise returns a success message */
 ///
 
-//:::::::::::::::::::::::::::::::::::::::: program
+//:::::::::::::::::::::::::::::::::::::::: program function
 
-var  ERRORS   = []   // error messages for user
-var  WARNINGS = []   // warnings for user
-
-/*———————————————————————————————————————— program function */
+/*———————————————————————————————————————— program */
 
 function savePages(allPages){
 
@@ -31,17 +28,8 @@ function savePages(allPages){
   /*—————————————————————————————————————— initialization */
 
   var d = new Date()
-  var env_start_ms = d.getTime()
+  var STARTMS = d.getTime()
   var fileSizes = []
-  ///
-  /*—————————————————————————————————————— guard */
-  
-  if (app.documents.length < 1){
-    alert('No open documents.')
-    return ''
-  }
-  ///
-  /*—————————————————————————————————————— initialization */
 
   ERRORS        = []                            // error messages for user
   WARNINGS      = []                            // warnings for user
@@ -62,7 +50,7 @@ function savePages(allPages){
     if (isValid(doc)){
 
       var activeBoard    = doc.artboards.getActiveArtboardIndex()
-      var originalPath   = ut_getDocPath(doc)
+      var originalPath   = getDocPath(doc)
 
       var theseFileSizes = saveSvg(doc) //::::::::::::::::::::::::::::::::::::: MAIN SAVE-AS-SVG FUNCTION
 
@@ -114,18 +102,18 @@ function savePages(allPages){
 
 function saveSvg(doc){
 
-  var layerInfo = deleteNonPrintingLayers(doc) // info about locked & visible
+  var layerInfo = DELETENONPRINTINGLAYERS(doc) // info about locked & visible
   var replaceVB = false
 
   //———————————————————————————————— "SYNC/SVIJA/SVG Files"
 
-  var svgFilesPath = ut_getSvgFilesPath(doc) // string
+  var svgFilesPath = getSvgFilesPath(doc) // string
   var diskObject = Folder(svgFilesPath)
 
   //———————————————————————————————— avoid overwrite confirmations
 
   for (x=0; x<doc.artboards.length; x++){
-    var path = CONCATENATEPATH(svgFilesPath, ut_makeSvgName(doc, x))
+    var path = CONCATENATEPATH(svgFilesPath, makeSvgName(doc, x))
     if (File(path).exists){
       File(path).remove()
     }
@@ -134,7 +122,7 @@ function saveSvg(doc){
   //———————————————————————————————— create different obj if single artboard
 
   if (doc.artboards.length == 1){
-    var path = CONCATENATEPATH(svgFilesPath, ut_svgNameSingleArtboard(doc))
+    var path = CONCATENATEPATH(svgFilesPath, svgNameSingleArtboard(doc))
     diskObject = new File(path)
   }
 
@@ -225,21 +213,11 @@ function saveSvg(doc){
     diskObject.close()
   }
 
-  //———————————————————————————————— remove coords box
+  //———————————————————————————————— restore state
 
   if (replaceVB) app.undo()
 
-  //———————————————————————————————— restore to original state
-  
-  while (doc.layers.length<layerInfo.length)
-    app.undo()
-
-  //———————————————————————————————— restore non-printing layer states
-
-  for (var r=0; r<layerInfo.length; r++){
-    if (layerInfo[r] == 1 || layerInfo[r] == 3){doc.layers[r].locked  = true }
-    if (layerInfo[r] == 2 || layerInfo[r] == 3){doc.layers[r].visible = false}
-  }
+  RESTORENONPRINTINGLAYERS(layerInfo)
 
   //———————————————————————————————— get file sizes */
 
@@ -247,7 +225,7 @@ function saveSvg(doc){
 
   for (x=0; x<doc.artboards.length; x++){
 
-    var path = CONCATENATEPATH(svgFilesPath, ut_makeSvgName(doc, x))
+    var path = CONCATENATEPATH(svgFilesPath, makeSvgName(doc, x))
 
     path = encodeURI(path)
     var fileSize = File(path).length
@@ -299,7 +277,7 @@ function finalFeedback(fileSizes){
   count = fileSizes.length
 
   var d = new Date()
-  var ms = d.getTime() - env_start_ms
+  var ms = d.getTime() - STARTMS
 
   if (ms > 1000)
     ms =' (' + ms/1000 +' sec)'
@@ -373,12 +351,12 @@ function isValid(doc){
   err = HASPATH(doc)           // has file been saved at least once?
   if (err != '')
     return dontSave(err)
-  err = isAi(doc)              // is it an AI file?
 
+  err = isAi(doc)              // is it an AI file?
   if (err != '')
     return dontSave(err)
-  err = hasFolders(doc)        // is file in a /SYNC/ folder?
 
+  err = hasFolders(doc)        // is file in a /SYNC/ folder?
   if (err != '')
     return dontSave(err)
 
@@ -430,7 +408,7 @@ try{
     return doc.name + ' is not inside a \"SYNC\" folder'
 }catch(e){alert(e)}
 
-  if (ut_getSvgFilesPath(doc) == '')
+  if (getSvgFilesPath(doc) == '')
     return '"SYNC/SVIJA/SVG Files" not found'
 
   return ''
@@ -555,36 +533,6 @@ function rectAt00(){
   return rec.name
 }
 ///
-/*———————————————————————————————————————— deleteNonPrintingLayers(src)
-
-  delete any layers that are not printable
-  returns array with locked & visible status of deleted layers */
-
-function deleteNonPrintingLayers(src){
-  var layersLen = src.layers.length
-  var results = new Array(layersLen)
-
-  for (z=layersLen-1; z>=0; z--){
-    results[z] = 0
-    if (!src.layers[z].printable){
-
-      if (src.layers[z].locked){
-        results[z] += 1
-        src.layers[z].locked  = false
-      }
-
-      if (!src.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
-        results[z] += 2
-        src.layers[z].visible = true
-      }
-
-      src.layers[z].remove()
-    }
-  }
-
-  return results
-}
-///
 /*———————————————————————————————————————— dontSave(err)
 
     permits deleting braces in function isValid */
@@ -603,14 +551,14 @@ function fileSizeReport(fileSizes){
   var thisFile = fileSizes[0]
 
   var aiName = thisFile[0]
-  var aiSize = ut_makeMB(thisFile[1])
+  var aiSize = makeMB(thisFile[1])
   var report
 
   var svgSizes = []
 
   for (var y=2; y<thisFile.length; y+=2){
     var artbName = thisFile[y]
-    var svgSize = ut_makeMB(thisFile[y+1])
+    var svgSize = makeMB(thisFile[y+1])
     svgSizes.push(artbName+' page '+svgSize)
   }
 
@@ -634,20 +582,20 @@ function getLinksPath(doc){
 
 //:::::::::::::::::::::::::::::::::::::::: moved from utilities.jsx
 
-/*———————————————————————————————————————— ut_getDocPath(doc)
+/*———————————————————————————————————————— getDocPath(doc)
 
     returns full path of doc */
 
-function ut_getDocPath(doc){
+function getDocPath(doc){
   if (ISMAC) return doc.path.fsName + '/' + doc.name
   else return doc.path.fsName + '\\' + doc.name
 }
 ///
-/*———————————————————————————————————————— ut_getSvgFilesPath(doc)
+/*———————————————————————————————————————— getSvgFilesPath(doc)
 
     returns SVG folder path from SYNC folder */
 
-function ut_getSvgFilesPath(doc){
+function getSvgFilesPath(doc){
  
   var s = SYNCPATH
   if (s == '') return ''
@@ -656,23 +604,23 @@ function ut_getSvgFilesPath(doc){
   else return s + '\\SVIJA\\SVG Files'
 }
 ///
-/*———————————————————————————————————————— ut_svgNameSingleArtboard(doc)
+/*———————————————————————————————————————— svgNameSingleArtboard(doc)
 
     creates SVG name for single-artboard files */
 
-function ut_svgNameSingleArtboard(doc){
+function svgNameSingleArtboard(doc){
   var radical = doc.name.substr(0,doc.name.length-3)
   var artboard = doc.artboards[0].name
   var result = radical + '_' + artboard + '.svg'
   return result
 }
 ///
-/*———————————————————————————————————————— ut_makeMB(x)
+/*———————————————————————————————————————— makeMB(x)
 
     givent a number of bytes, returns a value
     in KB or MB for human consumption */
 
-function ut_makeMB(x){
+function makeMB(x){
 
   var ext = ' MB'
   var div = 1000
@@ -686,11 +634,11 @@ function ut_makeMB(x){
   return x + ext
 }
 ///
-/*———————————————————————————————————————— ut_makeSvgName(doc, ab)
+/*———————————————————————————————————————— makeSvgName(doc, ab)
 
     creates SVG filename from doc & artboard n° */
 
-function ut_makeSvgName(doc, ab){
+function makeSvgName(doc, ab){
   var name = doc.name.slice(0, -3)  // remove .ai
   return name + '_' + doc.artboards[ab].name + '.svg' 
 }

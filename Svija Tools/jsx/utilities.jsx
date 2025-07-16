@@ -70,6 +70,58 @@ function DERIVESYNCFOLDER(){
   return ''
 }
 ///
+/*———————————————————————————————————————— DELETENONPRINTINGLAYERS(doc)
+
+  delete any layers that are not printable
+  returns array with locked & visible status of deleted layers */
+
+function DELETENONPRINTINGLAYERS(doc){
+  var layersLen = doc.layers.length
+  var layerInfo = new Array(layersLen)
+
+  for (z=layersLen-1; z>=0; z--){
+    layerInfo[z] = 0
+    if (!doc.layers[z].printable){
+
+      if (doc.layers[z].locked){
+        layerInfo[z] += 1
+        doc.layers[z].locked  = false
+      }
+
+      if (!doc.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
+        layerInfo[z] += 2
+        doc.layers[z].visible = true
+      }
+
+      doc.layers[z].remove()
+    }
+  }
+
+  return layerInfo
+}
+///
+/*———————————————————————————————————————— RESTORENONPRINTINGLAYERS(src)
+
+    restores non-printing layers that were deleted
+    including locked/visible state */
+
+function RESTORENONPRINTINGLAYERS(layerInfo){
+
+  var doc = app.activeDocument            // active document
+
+  //———————————————————————————————— restore to original state
+  
+  while (doc.layers.length<layerInfo.length)
+    app.undo()
+
+  //———————————————————————————————— restore non-printing layer states
+
+  for (var r=0; r<layerInfo.length; r++){
+    if (layerInfo[r] == 1 || layerInfo[r] == 3){doc.layers[r].locked  = true }
+    if (layerInfo[r] == 2 || layerInfo[r] == 3){doc.layers[r].visible = false}
+  }
+}
+///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

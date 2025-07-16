@@ -224,7 +224,10 @@ function STANDBYCALLBACK(arg){
     return
   }
 
-  standbyBanner.innerHTML = eval('TRANSLATE.' + arg)
+  try{
+    standbyBanner.innerHTML = eval('TRANSLATE.' + arg)
+  } catch(e){alert(e+'\nreceived: '+arg)}
+
   setTimeout(function(){
     standbyDiv.style.display='none'
   }, STANDBYMS)

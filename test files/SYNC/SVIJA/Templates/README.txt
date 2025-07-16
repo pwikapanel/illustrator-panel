@@ -1,0 +1,1 @@
+This folder contains templates used to create new pages and new modules with Svija Tools.
