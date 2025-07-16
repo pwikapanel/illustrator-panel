@@ -2,7 +2,15 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
-// TRANSLATE[LC].startupTime
+/*
+
+SyntaxError: Unexpected number
+received: Error 24: checkAndRepair is not a function.
+Line: 1
+->  checkAndRepair()
+
+*/
+alert(5)
 
 //:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js / checkAndRepair.jsx
 
@@ -38,7 +46,7 @@
 
 //:::::::::::::::::::::::::::::::::::::::: program function
 
-/*———————————————————————————————————————— program */
+//———————————————————————————————————————— program
 
 function checkAndRepair(){
 
@@ -80,38 +88,23 @@ function checkAndRepair(){
   
       fixEmbeddedImage() returns image filename, succes/failure, message */
 
-  var embeddedImages = doc.rasterItems.length
-
-  for (var x=embeddedImages; x>0; x--){
-    var name_fixed_msg = fixEmbeddedImage(doc, doc.rasterItems[x-1])
-  
-    if (name_fixed_msg.length > 0)
-      IMAGESMODIFIED[IMAGESMODIFIED.length] = name_fixed_msg
-  }
+//for (var x=doc.rasterItems.length; x>0; x--){
+//  var msgArray = fixEmbeddedImage(doc, doc.rasterItems[x-1])
+//
+//  if (msgArray.length > 0)
+//    IMAGESMODIFIED.push(msgArray)
+//}
   /// 
   /*—————————————————————————————————————— placedImages      move to Links
   
-      rasterItem() returns image filename, succes/failure, message */
+      fixPlacedImage() returns image filename, succes/failure, message */
 
-  var placedImages = doc.placedItems.length
-
-  for (var x=placedImages; x>0; x--){
-    var name_fixed_msg = fixPlacedImage(doc, doc.placedItems[x-1])
-  
-    if (name_fixed_msg.length > 0)
-      IMAGESMODIFIED[IMAGESMODIFIED.length] = name_fixed_msg
-  }
-  ///
-  /*—————————————————————————————————————— image formats     flag unusable
-  
-      reject anything but .ai, .pdf, .jpg, .png & .gif */
-  
-  for (var x=0; x<placed; x++){
-    var name_fixed_msg = checkImageExt(doc.placedItems[x])
-  
-    if (name_fixed_msg.length > 0) // if something was modified
-      IMAGESMODIFIED[IMAGESMODIFIED.length] = name_fixed_msg
-  }
+//for (var x=doc.placedItems.length; x>0; x--){
+//  var msgArray = fixPlacedImage(doc, doc.placedItems[x-1])
+//
+//  if (msgArray.length > 0)
+//    IMAGESMODIFIED.push(msgArray)
+//}
   ///
 
   //:::::::::::::::::::::::::::::::::::::: clean up
@@ -148,13 +141,10 @@ function checkAndRepair(){
   ///
   //———————————————————————————————————————— alert user
 
-  if (!alertUser(doc))
-    return 'allGood' // must be in locale/messages.properties
-
+  if (!alertUser(doc)) return 'allGood' // must be in locale/messages.properties
   else return ''
 
 }
-///
 
 //:::::::::::::::::::::::::::::::::::::::: primary functions
 
@@ -334,35 +324,6 @@ function fixPlacedImage(doc, img){
   relockHierarchy(parentLocks)
 
   return [neme, true, msg]
-}
-///
-/*———————————————————————————————————————— checkImageExt(img)
-
-    exclude all but the most common image formats:
-
-    ai|pdf|jpg|jpeg|png|gif   */
-
-
-function checkImageExt(img){
-  if (!img.layer.printable) return []
-
-  try{
-    var parts = String(img.file).split('.')
-  }
-  catch(e){
-    drawYellowRectangle(img)
-    return [TRANSLATE[LC].unknownImage, false, TRANSLATE[LC].hasNoFile]
-  }
-
-  var ext = parts[parts.length - 1]
-  var neme = img.file.name
-
-  const legalImages = /ai|pdf|jpg|jpeg|png|gif/gi
-
-  if (ext.match(legalImages) === null)
-    return [neme, false, TRANSLATE[LC].unsupportedFormat]
-
-  return []
 }
 ///
 /*———————————————————————————————————————— alertUser(doc)
@@ -645,23 +606,23 @@ function unlockHierarchy(obj){
     ai|pdf|jpg|jpeg|png|gif   */
 
 
-function validExtension(img){
-
-  try{ var parts = String(img.file).split('.') }
-  catch(e){ return false }
-
-  var ext = parts[parts.length - 1]
-  var neme = img.file.name
-
-  const legalImages = /ai|pdf|jpg|jpeg|png|gif/gi
-
-  if (ext.match(legalImages) === null)
-    return false
-
-  return true 
-}
+//function validExtension(img){
+//
+//  try{ var parts = String(img.file).split('.') }
+//  catch(e){ return false }
+//
+//  var ext = parts[parts.length - 1]
+//  var neme = img.file.name
+//
+//  const legalImages = /ai|pdf|jpg|jpeg|png|gif/gi
+//
+//  if (ext.match(legalImages) === null)
+//    return false
+//
+//  return true 
+//}
 ///
- ///
+
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
