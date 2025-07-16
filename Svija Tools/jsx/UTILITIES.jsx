@@ -14,6 +14,55 @@ function CONCATENATEPATH(part1, part2){
   else return part1 + '\\' + part2
 }
 ///
+/*———————————————————————————————————————— DELETENONPRINTINGLAYERS(doc)
+
+  delete any layers that are not printable
+  returns array with locked & visible status of deleted layers */
+
+function DELETENONPRINTINGLAYERS(doc){
+  var layersLen = doc.layers.length
+  var layerStates = new Array(layersLen)
+
+  for (z=layersLen-1; z>=0; z--){
+    layerStates[z] = 0
+    if (!doc.layers[z].printable){
+
+      if (doc.layers[z].locked){
+        layerStates[z] += 1
+        doc.layers[z].locked  = false
+      }
+
+      if (!doc.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
+        layerStates[z] += 2
+        doc.layers[z].visible = true
+      }
+
+      doc.layers[z].remove()
+    }
+  }
+
+  return layerStates
+}
+///
+/*———————————————————————————————————————— DERIVESYNCFOLDER()
+
+    used when saving an unsaved document — tries to
+    find a sync folder from other open documents */
+
+function DERIVESYNCFOLDER(){
+  if (ISMAC)
+    var comparator = '/sync'
+  else
+    var comparator = '\\sync'
+
+  for(var x=1; x<app.documents.length; x++){
+    var docPath = String(app.documents[x].path.fsName);
+    if (docPath.indexOf(comparator) > 0) return concatenatePath(docPath, '/Page Name.ai')
+  }
+
+  return ''
+}
+///
 /*———————————————————————————————————————— DUMPKEYS(obj) */
 
 function DUMPKEYS(obj){
@@ -51,74 +100,33 @@ function HASPATH(doc){
     
 }
 ///
-/*———————————————————————————————————————— DERIVESYNCFOLDER()
-
-    used when saving an unsaved document — tries to
-    find a sync folder from other open documents */
-
-function DERIVESYNCFOLDER(){
-  if (ISMAC)
-    var comparator = '/sync'
-  else
-    var comparator = '\\sync'
-
-  for(var x=1; x<app.documents.length; x++){
-    var docPath = String(app.documents[x].path.fsName);
-    if (docPath.indexOf(comparator) > 0) return concatenatePath(docPath, '/Page Name.ai')
-  }
-
-  return ''
-}
-///
-/*———————————————————————————————————————— DELETENONPRINTINGLAYERS(doc)
-
-  delete any layers that are not printable
-  returns array with locked & visible status of deleted layers */
-
-function DELETENONPRINTINGLAYERS(doc){
-  var layersLen = doc.layers.length
-  var layerInfo = new Array(layersLen)
-
-  for (z=layersLen-1; z>=0; z--){
-    layerInfo[z] = 0
-    if (!doc.layers[z].printable){
-
-      if (doc.layers[z].locked){
-        layerInfo[z] += 1
-        doc.layers[z].locked  = false
-      }
-
-      if (!doc.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
-        layerInfo[z] += 2
-        doc.layers[z].visible = true
-      }
-
-      doc.layers[z].remove()
-    }
-  }
-
-  return layerInfo
-}
-///
 /*———————————————————————————————————————— RESTORENONPRINTINGLAYERS(src)
 
     restores non-printing layers that were deleted
     including locked/visible state */
 
-function RESTORENONPRINTINGLAYERS(layerInfo){
+function RESTORENONPRINTINGLAYERS(layerStates){
 
   var doc = app.activeDocument            // active document
 
   //———————————————————————————————— restore to original state
   
-  while (doc.layers.length<layerInfo.length)
+  var loopLimit = 200
+
+  while (doc.layers.length<layerStates.length){
     app.undo()
+    loopLimit -= 1
+    if (loopLimit == 0){
+      alert('layerStates.length=' + layerStates.length + '\nlimit hit')
+      break
+    }
+  }
 
   //———————————————————————————————— restore non-printing layer states
 
-  for (var r=0; r<layerInfo.length; r++){
-    if (layerInfo[r] == 1 || layerInfo[r] == 3){doc.layers[r].locked  = true }
-    if (layerInfo[r] == 2 || layerInfo[r] == 3){doc.layers[r].visible = false}
+  for (var r=0; r<layerStates.length; r++){
+    if (layerStates[r] == 1 || layerStates[r] == 3){doc.layers[r].locked  = true }
+    if (layerStates[r] == 2 || layerStates[r] == 3){doc.layers[r].visible = false}
   }
 }
 ///

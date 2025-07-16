@@ -2,15 +2,7 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
-/*
-
-SyntaxError: Unexpected number
-received: Error 24: checkAndRepair is not a function.
-Line: 1
-->  checkAndRepair()
-
-*/
-alert(5)
+//alert(0)
 
 //:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js / checkAndRepair.jsx
 
@@ -68,12 +60,12 @@ function checkAndRepair(){
   ///
   /*—————————————————————————————————————— remove non-printing layers */
 
-  var layerInfo = DELETENONPRINTINGLAYERS(doc)
+  var layerStates = DELETENONPRINTINGLAYERS(doc)
   ///
 
   //:::::::::::::::::::::::::::::::::::::: checking & repairing
 
-  /*—————————————————————————————————————— Links folder      create if necessary */
+  /*—————————————————————————————————————— "Links" folder    create if necessary */
 
   var linksFolderObj = Folder(CONCATENATEPATH(doc.path, 'Links'))
   if (!Folder(linksFolderObj).exists){
@@ -86,16 +78,20 @@ function checkAndRepair(){
       these are treated before placed images, because they will be
       changed to placed in the next step
   
-      fixEmbeddedImage() returns image filename, succes/failure, message */
+      fixEmbeddedImage() returns image filename, succes/failure, message
 
-//for (var x=doc.rasterItems.length; x>0; x--){
-//  var msgArray = fixEmbeddedImage(doc, doc.rasterItems[x-1])
-//
-//  if (msgArray.length > 0)
-//    IMAGESMODIFIED.push(msgArray)
-//}
+      negative loop because length gets shorter as we go */
+
+  var len = doc.rasterItems.length
+  for (var x=len-1; x>-1; x--){
+    var img = doc.rasterItems[x]
+    var msgArray = fixEmbeddedImage(doc, img)
+  
+    if (msgArray.length > 0)
+      IMAGESMODIFIED.push(msgArray)
+  }
   /// 
-  /*—————————————————————————————————————— placedImages      move to Links
+  /*—————————————————————————————————————— placed images      move to Links
   
       fixPlacedImage() returns image filename, succes/failure, message */
 
@@ -111,7 +107,7 @@ function checkAndRepair(){
 
   /*—————————————————————————————————————— restore non-printing layers */
 
-  RESTORENONPRINTINGLAYERS(layerInfo)
+  RESTORENONPRINTINGLAYERS(layerStates)
   ///
   /*—————————————————————————————————————— sort image messages into success/failed
   
@@ -148,23 +144,10 @@ function checkAndRepair(){
 
 //:::::::::::::::::::::::::::::::::::::::: primary functions
 
-/*———————————————————————————————————————— artboardNames(sourceDoc)
-
-    artboard names have to be two-letter codes
-
-    returns '' or warning message */
-
-function artboardNames(doc){
-
-  for(x=0; x<doc.artboards.length; x++)
-    if (!isTwoLetters(doc.artboards[x].name))
-      return doc.name + " has artboard names that are not screen codes"
-
-  return ''
-
-}
-///
 /*———————————————————————————————————————— fixEmbeddedImage(obj)
+
+    looks for the original file for an embedded image
+    adds new, placed image and deletes embedded image
 
     takes an embedded image and tries to change it to
     a link to an external file. Not sure what happens
@@ -173,86 +156,94 @@ function artboardNames(doc){
 
     returns image filename, succes/failure, message if modification
     returns [] if no change */
+///
 
-function fixEmbeddedImage(doc, img){
+function fixEmbeddedImage(doc, originalImage){
  
-  if (!img.layer.printable) return [] // we don't care about non-printing information layers
+  /*—————————————————————————————————————— setup */
 
-  // setup
+  var imageParent = originalImage.parent
+  var imageDepth  = originalImage.absoluteZOrderPosition
+  var imageName
 
-  var activeLayer  = img.layer
-  var activeParent = img.parent
+  if (originalImage.name != '') imageName = originalImage.name
+  else
+    imageName = TRANSLATE[LC].missingImage 
+  ///
+  /*—————————————————————————————————————— is format supported? */
 
-  // save state
+  var supportedFormat = supportedFormat(originalImage)
+  ///
+  /*—————————————————————————————————————— is original findable? */
 
-  var activeLayerLocked   = img.layer.locked
-  var activeParentLocked  = img.parent.locked
-
-  var activeLayerVisible  = img.layer.visible
-  var activeParentVisible = img.parent.visible
-
-  if (img.name == '') var imgName = TRANSLATE[LC].missingImage 
-  else var imgName = img.name
-
-  var imgDepth    = img.absoluteZOrderPosition
-  var parentLocks = unlockHierarchy(img)
-
-  // is original findable?
-
-  var fileMissing
+  var missingOriginal = false
 
   try{
-    var newName = img.file   // usually contains original file, even if image is embedded
-    var newFile = new File(newName)
-    fileMissing = false
+    var originalPath = originalImage.file   // usually contains original file, even if image is embedded
+    var originalFile = new File(originalPath)
   }
-  catch(e){ fileMissing = true }
+  catch(e){ missingOriginal = true }
 
-  if (img.status != 'RasterLinkState.DATAFROMFILE') // this is a precaution
-    fileMissing = true                             // not encountered so far
+  if (originalImage.status != 'RasterLinkState.DATAFROMFILE') // this is a precaution
+    missingOriginal = true                                  // not encountered so far
+  ///
+  /*—————————————————————————————————————— can't fix: create new yellow square  */
 
-  // original is missing so highlight it
+  if(supportedFormat || missingOriginal){
+    var replacementImage // the image we'll be working with — either the original or the yellow square
+    replacementImage = drawYellowRectangle(originalImage)
+  }
+  ///
+  /*—————————————————————————————————————— can fix: create new image for fix */
 
-  if(fileMissing)
-    var newImg = drawYellowRectangle(img)
+  if(!supportedFormat && !missingOriginal){
 
-  // original is found so re-link it
-
-  else{
-    var newImg  = activeParent.placedItems.add()
-    newImg.file = newFile
+    var replacementImage  = imageParent.placedItems.add()
+    replacementImage.file = originalFile
   
-    for (var key in img){
-      try{ newImg[key] = img[key] }
+    for (var key in originalImage){
+      try{ replacementImage[key] = originalImage[key] }
       catch(e){}
     }
    
     var moveMatrix  = app.getScaleMatrix(100,-100)
-    var totalMatrix = concatenateRotationMatrix(moveMatrix, 10)
-    newImg.transform(moveMatrix)
+    replacementImage.transform(moveMatrix)
   }
+  ///
+  //—————————————————————————————————————— correct the image depth */
 
-  // correct depth of image
+    /*  SyntaxError: Unexpected number
+        received: Error 1302: No such element
+        Line: 205
+        ->    while (replacementImage.absoluteZOrderPosition > imageDepth+1) */
 
-  while (newImg.absoluteZOrderPosition > imgDepth+1)
-    newImg.zOrder(ZOrderMethod.SENDBACKWARD)
+  alert('imageDepth: '+imageDepth +'\nreplacmeent: '+replacementImage.absoluteZOrderPosition)
 
-  // clean up & prepare response
-  if (fileMissing){
-    var msg = TRANSLATE[LC].highlighted 
+//while (replacementImage.absoluteZOrderPosition > imageDepth+1)
+//  replacementImage.zOrder(ZOrderMethod.SENDBACKWARD)
+  ///
+  /*—————————————————————————————————————— prepare response */
+
+  if (!supportedFormat){                                     // unsupported format = yellow triangle
+    replacementImage.name = TRANSLATE[LC].badFormat
     var success = false
-    newImg.name = TRANSLATE[LC].embeddedImage 
+    var msg = TRANSLATE[LC].unsupportedFormat
   }
-  else{
-    var msg = TRANSLATE[LC].relinked
+  else if (missingOriginal){                                 // missing original = yellow triangle
+    replacementImage.name = TRANSLATE[LC].embeddedImage 
+    var success = false
+    var msg = TRANSLATE[LC].highlighted 
+  }
+  else{                                                     // image successfully relinked
+    replacementImage.name = imageName
     var success = true
-    newImg.name = imgName
-    img.remove()
+    var msg = TRANSLATE[LC].relinked
+
+    originalImage.remove()
   }
+  ///
 
-  relockHierarchy(parentLocks)
-
-  return [imgName, success, msg]
+  return [imageName, success, msg]
 }
 ///
 /*———————————————————————————————————————— fixPlacedImage(doc, img)
@@ -317,11 +308,9 @@ function fixPlacedImage(doc, img){
     var msg = TRANSLATE[LC].movedToLinks
   }
 
-  var parentLocks = unlockHierarchy(img)
 
   img.file = newFile
 
-  relockHierarchy(parentLocks)
 
   return [neme, true, msg]
 }
@@ -406,42 +395,8 @@ function drawYellowRectangle(obj){
   rec.stroked = false
   rec.fillColor = alertColor
   rec.opacity = 50
-  rec.name = 'UNFIXABLE IMAGE'
 
   return rec
-}
-///
-/*———————————————————————————————————————— hasEmbeds(doc)
-
-    embedded images will be re-linked, converting
-    them to placed images (if possible) */
-
-function hasEmbeds(doc){
-
-  var l = doc.fixEmbeddedImages.length
-  var fixes = []  
-
-  for (var x = l; x > 0; x--){
-
-    var val = relink(doc.fixEmbeddedImages[x-1]) // val = array // returns false if non-printing layer
-    if (val != false) fixes.push(val)
-
-  }
-
-  // prepare messages
-  for (var x=0; x<fixes.length; x++){
-  
-    var skip = false
-
-    for (var y=0; y<names.length; y++)
-      if (fixes[x][0] == names[y]) skip = true
-
-    if(skip) continue 
-  
-    if (fixes[x][1]) fixed.push(fixes[x][0] + ' ' + fixes[x][2])
-    else failed.push(fixes[x][0] + ' ' + fixes[x][2])
-  }
- 
 }
 ///
 /*———————————————————————————————————————— nameExists(list)
@@ -504,9 +459,6 @@ function getAlertDepth(img){
   return obj.absoluteZOrderPosition
 }
 ///
-
-//:::::::::::::::::::::::::::::::::::::::: were in UTILITIES.jsx
-
 /*———————————————————————————————————————— getExtension(path)
 
     */
@@ -570,62 +522,31 @@ function relockHierarchy(arr){
   }
 }
 ///
-/*———————————————————————————————————————— unlockHierarchy(obj)
-
-    unlocks the hierarchy above an element and returns an array
-
-    each element of the array is a sub array containing
-    [obj, obj.locked, obj.visible] */
-
-function unlockHierarchy(obj){
-
-  var parentLocks = []
-  var thisParent = obj.parent
-
-  while (thisParent.typename != 'Document'){
-    parentLocks[parentLocks.length] = [thisParent, thisParent.locked, thisParent.visible]
-    thisParent = thisParent.parent
-  }
-
-  for(var x=parentLocks.length-1; x>-1; x--){
-    try{
-      parentLocks[x][0].visible= true
-      parentLocks[x][0].locked = false
-    }
-    catch(e){ alert('Page item couldn\'t be accessed: ' + e+'\n'+parentLocks[x][0].typename + ' inside ' + parentLocks[x][0].parent.name) }
-  }
-
-  return parentLocks
-}
-///
-
-/*———————————————————————————————————————— validExtensionNew(img)
+/*———————————————————————————————————————— supportedFormat(img)
 
     exclude all but the most common image formats:
 
     ai|pdf|jpg|jpeg|png|gif   */
 
 
-//function validExtension(img){
-//
-//  try{ var parts = String(img.file).split('.') }
-//  catch(e){ return false }
-//
-//  var ext = parts[parts.length - 1]
-//  var neme = img.file.name
-//
-//  const legalImages = /ai|pdf|jpg|jpeg|png|gif/gi
-//
-//  if (ext.match(legalImages) === null)
-//    return false
-//
-//  return true 
-//}
-///
+function supportedFormat(img){
 
+  try{ var parts = String(img.file).split('.') }
+  catch(e){ return false }
+
+  var ext = parts[parts.length - 1]
+  var neme = img.file.name
+
+  const legalImages = /ai|pdf|jpg|jpeg|png|gif/gi
+
+  if (ext.match(legalImages) === null)
+    return false
+
+  return true 
+}
+///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
-// remove function artboardNames(doc){
 // add >TRANSLATE to alertUser function
 // translate drawYellowRectangle
