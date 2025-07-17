@@ -137,7 +137,7 @@ function checkAndRepair(){
   ///
   //———————————————————————————————————————— alert user
 
-  if (!alertUserCheck(doc)) return 'noProblems' // must be in locale/messages.properties
+  if (!alertChecked(doc)) return 'noProblems' // must be in locale/messages.properties
   else return ''
 
 }
@@ -305,7 +305,7 @@ function fixPlacedImage(doc, image){
   return [imageName, true, msg]
 }
 ///
-/*———————————————————————————————————————— alertUserCheck(doc)
+/*———————————————————————————————————————— alertChecked(doc)
 
     if problems, shows alert else returns ''
     alert with:
@@ -315,7 +315,7 @@ function fixPlacedImage(doc, image){
     - image fixes
     - failed image repairs */
 
-function alertUserCheck(doc){
+function alertChecked(doc){
 
 
 
@@ -514,5 +514,5 @@ function checkSupportedFormat(img){
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
-// add >TRANSLATE to alertUserCheck function
+// add >TRANSLATE to alertChecked function
 // translate drawYellowRectangle

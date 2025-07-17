@@ -8,7 +8,7 @@
 
     returns:
 
-     isSvija   boolean is a Svija site
+     ISSVIJA   boolean is a Svija site
     syncPath   path to sync folder or ''
      siteURL   site url or ''
     lastPath   file path of most recent open page or ''
@@ -18,7 +18,7 @@
 ///
 /*———————————————————————————————————————— initialization */
 
-var ISSVIJA  = false // is current file part of a Svija project?
+var ISSVIJA = false // is current file part of a Svija project?
 ///
 /*———————————————————————————————————————— recover from localStorage */
 
@@ -46,7 +46,7 @@ function projectManager(){
 
   if (app.documents.length == 0) return 'app.documents.length=0'
 
-  ISSVIJA  =     isSvija()
+  ISSVIJA = ISSVIJAPAGE()
 
   if (ISSVIJA){
     SYNCPATH = getSyncPath()
@@ -68,21 +68,6 @@ function projectManager(){
 
 /*:::::::::::::::::::::::::::::::::::::::: functions */
 
-/*———————————————————————————————————————— isSvija()
-
-    returns true if in a SYNC folder */
-
-function isSvija(){
-
-  var currPath = String(app.activeDocument.path)
-
-  if (currPath.indexOf('/') == -1) return false
-
-  if (!strContainsSYNC(currPath)) return false
-
-  return true
-}
-///
 /*———————————————————————————————————————— getSyncPath()
 
     returns real path of current SYNC folder
@@ -92,7 +77,7 @@ function getSyncPath(){
 
   var res = app.activeDocument.path.fsName
 
-  if (!strContainsSYNC(res)) return ''
+  if (!STRCONTAINSSYNC(res)) return ''
 
   var i = res.indexOf('SYNC')
   res = res.substr(0, i+4)
@@ -151,21 +136,6 @@ function getLastPath(){
     res = app.activeDocument.path.fsName + '\\'
 
   return res + app.activeDocument.name
-}
-///
-
-/*:::::::::::::::::::::::::::::::::::::::: utilities */
-
-/*———————————————————————————————————————— strContainsSYNC(arr, str) */
-
-function strContainsSYNC(arg){
-
-  var arr = arg.split('/')
-
-  for (var i = 0; i < arr.length; i++)
-    if (arr[i] == 'SYNC') return true
-
-  return false;
 }
 ///
 

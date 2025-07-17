@@ -130,6 +130,33 @@ function RESTORENONPRINTINGLAYERS(layerStates){
   }
 }
 ///
+/*———————————————————————————————————————— ISSVIJAPAGE()
+
+    returns true if in a SYNC folder */
+
+function ISSVIJAPAGE(){
+
+  var currPath = String(app.activeDocument.path)
+
+  if (currPath.indexOf('/') == -1) return false
+
+  if (!STRCONTAINSSYNC(currPath)) return false
+
+  return true
+}
+///
+/*———————————————————————————————————————— STRCONTAINSSYNC(arr, str) */
+
+function STRCONTAINSSYNC(arg){
+
+  var arr = arg.split('/')
+
+  for (var i = 0; i < arr.length; i++)
+    if (arr[i] == 'SYNC') return true
+
+  return false;
+}
+///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
