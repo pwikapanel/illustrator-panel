@@ -9,71 +9,60 @@
     if errors or warnings provides an alert 
     and returns ''
 
-    otherwise returns a success message */
+    otherwise returns a success message (localized) */
 ///
 
-//:::::::::::::::::::::::::::::::::::::::: program function
+//:::::::::::::::::::::::::::::::::::::::: main
 
 /*———————————————————————————————————————— program */
 
-function savePages(allPages){
+function savePages(saveAll){
 
-  /*—————————————————————————————————————— guard for long setInterval times */
-
-  if (SYNCPATH == ''){
-    alert('Please Retry\nproject info not available')
-    return ''
-  }
-  ///
   /*—————————————————————————————————————— initialization */
 
-  var d = new Date()
-  var STARTMS = d.getTime()
-  var fileSizes = []
+            ERRORS = []                    // error messages for user
+          WARNINGS = []                    // warnings for user
 
-  ERRORS        = []                            // error messages for user
-  WARNINGS      = []                            // warnings for user
-  var   appDocs = app.documents                 // array of open documents
-  var  docsOpen = appDocs.length                // number of open documents
-  var activeDoc = app.activeDocument            // active document
-  var aiOptions = aiSaveOptions()
+  var            d = new Date()
+  var      STARTMS = d.getTime()
+  var    fileSizes = []
+  var      appDocs = app.documents         // array of open documents
+  var     docsOpen = appDocs.length        // number of open documents
+  var frontmostDoc = app.activeDocument    // active document, to restore state
   ///
-  /*———————————————————————————————————————— "for" loop through documents */
-
-  // var extraLayer = false
+  /*—————————————————————————————————————— "for" loop through documents */
 
   for (var index=0; index<docsOpen; index++){
 
     app.activeDocument = appDocs[index]
     var doc            = app.activeDocument
 
+    /*———————————————————————————————————— export SVG then save as */
+
     if (isValid(doc)){
 
-      var activeBoard    = doc.artboards.getActiveArtboardIndex()
-      var originalPath   = getDocPath(doc)
+      var  artboardState = doc.artboards.getActiveArtboardIndex()
+      var   originalPath = getDocPath(doc)
 
-      var theseFileSizes = saveSvg(doc) //::::::::::::::::::::::::::::::::::::: MAIN SAVE-AS-SVG FUNCTION
+      var theseFileSizes = exportSvgFile(doc)
+      var         aiFile = new File(originalPath)
+      doc.saveAs( aiFile, aiSaveOptions())
 
-      var aiFile = new File(originalPath)
-      doc.saveAs(aiFile, aiOptions)
-
-      //————————————————————————————————————————
-
-      doc.artboards.setActiveArtboardIndex(activeBoard)
+      doc.artboards.setActiveArtboardIndex(artboardState)
 
     }
+    ///
 
-    if (!allPages) break;
+    if (!saveAll) break
   }
-  ///
-  /*———————————————————————————————————————— restore frontmost doc */
 
-  if (allPages) app.activeDocument = activeDoc
+  app.activeDocument = frontmostDoc
+
   ///
-  /*———————————————————————————————————————— alert if problems */
+  /*—————————————————————————————————————— alert if problems */
 
   if (ERRORS.length > 0 || WARNINGS.length > 0){
-    finalFeedback(fileSizes)
+    alertUserSave(fileSizes)
     return ''
   }
   ///
@@ -86,63 +75,63 @@ function savePages(allPages){
 
 //:::::::::::::::::::::::::::::::::::::::: complex functions
 
-/*———————————————————————————————————————— saveSvg(doc)
+/*———————————————————————————————————————— exportSvgFile(doc)
 
-  saves file as SVG:
-
-  - saves in SYNC/Svija/SVG Files
   - removes any existing files that would provoke a confirmation dialog
   - deletes non-printing layers
-  - saves the SVG
+  - saves in SYNC/Svija/SVG Files
   - restores the non-printing layers
   - resets the locked/visible status of non-printing layers
 
   - if artboardName is given, use it as extension & save normally
   - else save using artboards */
 
-function saveSvg(doc){
+function exportSvgFile(doc){
 
   var layerInfo = DELETENONPRINTINGLAYERS(doc) // info about locked & visible
-  var replaceVB = false
+  var replaceViewbox = false
 
-  //———————————————————————————————— "SYNC/SVIJA/SVG Files"
+  /*—————————————————————————————————————— "SYNC/SVIJA/SVG Files" */
 
-  var svgFilesPath = getSvgFilesPath(doc) // string
-  var diskObject = Folder(svgFilesPath)
-
-  //———————————————————————————————— avoid overwrite confirmations
+  var svgFolderPath = getSvgFolderPath(doc) // string
+  var   diskObject = Folder(svgFolderPath)
+  ///
+  //———————————————————————————————— avoid overwrite confirmations */
 
   for (x=0; x<doc.artboards.length; x++){
-    var path = CONCATENATEPATH(svgFilesPath, makeSvgName(doc, x))
+    var path = CONCATENATEPATH(svgFolderPath, makeSvgName(doc, x))
     if (File(path).exists){
       File(path).remove()
     }
   }
- 
-  //———————————————————————————————— create different obj if single artboard
+  ///
+  //———————————————————————————————— create different obj if single artboard */
 
   if (doc.artboards.length == 1){
-    var path = CONCATENATEPATH(svgFilesPath, svgNameSingleArtboard(doc))
+    var path = CONCATENATEPATH(svgFolderPath, svgNameSingleArtboard(doc))
     diskObject = new File(path)
   }
+  ///
 
-  //———————————————————————————————— add marker rectangle to find artboard
+  //———————————————————————————————— add marker rectangle to find artboard */
 
   if (doc.artboards.length == 1){
     app.activeDocument.rulerOrigin = [0,doc.height]
     doc.layers.add()
     var rectDict = rectAt00()
-    var replaceVB = true
+    var replaceViewbox = true
   }
+  ///
 
-  //———————————————————————————————— export SVG files
+  //———————————————————————————————— export SVG files */
 
   var svgOpts = svgOptions(doc)
   doc.exportFile(diskObject, ExportType.WOSVG, svgOpts) 
+  ///
 
-  //———————————————————————————————— is single artboard: get viewBox size
+  //———————————————————————————————— is single artboard: get viewBox size */
 
-  if (replaceVB){
+  if (replaceViewbox){
     var ab = doc.artboards[0].artboardRect  // left, top, right, bottom
 
     var w = ab[2] - ab [0] // right - left
@@ -150,12 +139,13 @@ function saveSvg(doc){
 
     var viewBox =  w + ' ' + l
   }
+  ///
 
-  //———————————————————————————————— get SVG contents
+  //———————————————————————————————— get SVG contents */
 
   // we will need to update the viewBox coordinates after saving */
 
-  if (replaceVB){
+  if (replaceViewbox){
     var tries = 500
 
     while (tries > 0 && !diskObject.open("r"))
@@ -168,17 +158,18 @@ function saveSvg(doc){
     else{
       alert('Temporary Error\nPlease add a second artboard and re-save.')
       svgSource = ''
-      replaceVB = false
+      replaceViewbox = false
     }
   }
+  ///
 
-  //———————————————————————————————— get correct viewBox
+  //———————————————————————————————— get correct viewBox */
 
   //<rect id="COORDS00" class="cls-1" x="63" y="50.431" width="100" height="100"/>
 
   //if there is nothing above or to the left, there will be no x or y coords */
 
-  if (replaceVB){
+  if (replaceViewbox){
 
     var parts = svgSource.split('COORDS00" ')
     var piece = parts[1].split(' width=', 1)[0]
@@ -196,12 +187,13 @@ function saveSvg(doc){
     if (resy != null) y = resy[1]
 
     viewBox = 'viewBox="' + x + ' ' + y + ' ' + viewBox
+  ///
 
   }
 
   //———————————————————————————————— replace viewBox in SVG source */
 
-  if (replaceVB){
+  if (replaceViewbox){
     var parts = svgSource.split('viewBox="')
     var dims  = parts[1].split('"', 1)[0]
 
@@ -212,12 +204,14 @@ function saveSvg(doc){
     diskObject.write(svgSource)
     diskObject.close()
   }
+  ///
 
-  //———————————————————————————————— restore state
+  /*—————————————————————————————————————— restore state */
 
-  if (replaceVB) app.undo()
+  if (replaceViewbox) app.undo()
 
   RESTORENONPRINTINGLAYERS(layerInfo)
+  ///
 
   //———————————————————————————————— get file sizes */
 
@@ -225,7 +219,7 @@ function saveSvg(doc){
 
   for (x=0; x<doc.artboards.length; x++){
 
-    var path = CONCATENATEPATH(svgFilesPath, makeSvgName(doc, x))
+    var path = CONCATENATEPATH(svgFolderPath, makeSvgName(doc, x))
 
     path = encodeURI(path)
     var fileSize = File(path).length
@@ -233,100 +227,12 @@ function saveSvg(doc){
     sizes.push(doc.artboards[x].name)
     sizes.push(fileSize)
   }
+  ///
 
 
   return sizes
 }
 ///
-/*———————————————————————————————————————— svgOptions(includeCanvas)
-
-  sets options for SVG file */
-
-function svgOptions(doc){
-
-  var options= new ExportOptionsWebOptimizedSVG()
-
-  if (doc.artboards.length == 1)
-    options.saveMultipleArtboards = false                       // Preserves all artwork outside active artboard
-  else
-    options.saveMultipleArtboards = true                        // Deletes all artwork outside active artboard
-
-  options.artboardRange         = '' // or '1-3'
-  options.coordinatePrecision   = 3
-  options.cssProperties         = SVGCSSPropertyLocation.STYLEELEMENTS
-  options.fontSubsetting        = SVGFontSubsetting.None                         //::::::::::::::::::: probably not supported
-  options.fontType              = SVGFontType.SVGFONT
-//options.fontType              = SVGFontType.OUTLINEFONT
-  options.rasterImageLocation   = RasterImageLocation.PRESERVE
-  options.svgId                 = SVGIdType.SVGIDREGULAR
-  options.svgMinify             = false // should use in future
-  options.svgResponsive         = true
-
-  return options
-}
-///
-/*———————————————————————————————————————— finalFeedback(fileSizes)
-
-    alert with:
-    - elapsed time
-    - errors (files not saved)
-    - warnings (files saved) */
-
-function finalFeedback(fileSizes){
-
-  count = fileSizes.length
-
-  var d = new Date()
-  var ms = d.getTime() - STARTMS
-
-  if (ms > 1000)
-    ms =' (' + ms/1000 +' sec)'
-  else
-    ms = ' (' + ms + ' ms)'
-
-  switch(count){
-    case  0: var title = 'File(s) Not Saved';  break;
-    case  1: var title = 'File Saved' + ms;    break;
-    default: var title = count + ' Files Saved' + ms;
-  }
-
-  var body = ''
-
-  if (fileSizes.length == 1)
-    body += '\n' + fileSizeReport(fileSizes)
-
-  if (ERRORS.length > 0)
-    body += '\n' + ERRORS.join('\n')
-  
-  if (WARNINGS.length > 0)
-    body += '\n' + WARNINGS.join('\n')
-
-  alert(title + body)
-  return true
-}
-///
-/*———————————————————————————————————————— aiSaveOptions()
-
-  options for Illustrator File
-  ISG409 & JSRp84 */
-
-function aiSaveOptions(){
-
-  var aiVersion = 0                    // 0=default, 17=CC Legacy
-  var options = new IllustratorSaveOptions()
-
-  if (aiVersion > 0) // JSRp244
-    options.compatibility = Compatibility['ILLUSTRATOR' + aiVersion]
-
-  options.pdfCompatible = false // much faster
-  options.compressed    = false // a bit faster
-
-  return options
-}
-///
-
-//:::::::::::::::::::::::::::::::::::::::: validity functions
-
 /*———————————————————————————————————————— isValid(doc)
 
     three possible results:
@@ -381,6 +287,9 @@ function isValid(doc){
   return true
 }
 ///
+
+//:::::::::::::::::::::::::::::::::::::::: validity functions
+
 /*———————————————————————————————————————— isAi(doc)
 
     just checks if file is a .ai and not a PDF
@@ -408,7 +317,7 @@ try{
     return doc.name + ' is not inside a \"SYNC\" folder'
 }catch(e){alert(e)}
 
-  if (getSvgFilesPath(doc) == '')
+  if (getSvgFolderPath(doc) == '')
     return '"SYNC/SVIJA/SVG Files" not found'
 
   return ''
@@ -500,6 +409,88 @@ function hasPlaced(doc){
 
 //  rec.opacity = 100 returns name not dict
 
+/*———————————————————————————————————————— alertUserSave(fileSizes)
+
+    alert with:
+    - elapsed time
+    - errors (files not saved)
+    - warnings (files saved) */
+
+function alertUserSave(fileSizes){
+
+  count = fileSizes.length
+
+  var d = new Date()
+  var ms = d.getTime() - STARTMS
+
+  if (ms > 1000)
+    ms =' (' + ms/1000 +' sec)'
+  else
+    ms = ' (' + ms + ' ms)'
+
+  switch(count){
+    case  0: var title = 'File(s) Not Saved';  break;
+    case  1: var title = 'File Saved' + ms;    break;
+    default: var title = count + ' Files Saved' + ms;
+  }
+
+  var body = ''
+
+  if (fileSizes.length == 1)
+    body += '\n' + fileSizeReport(fileSizes)
+
+  if (ERRORS.length > 0)
+    body += '\n' + ERRORS.join('\n')
+  
+  if (WARNINGS.length > 0)
+    body += '\n' + WARNINGS.join('\n')
+
+  alert(title + body)
+  return true
+}
+///
+/*———————————————————————————————————————— svgOptions(doc)
+
+  sets options for SVG file */
+
+function svgOptions(doc){
+
+  var options = new ExportOptionsWebOptimizedSVG()
+
+  options.artboardRange         = '' // or '1-3'
+  options.coordinatePrecision   = 3
+  options.cssProperties         = SVGCSSPropertyLocation.STYLEELEMENTS
+  options.fontSubsetting        = SVGFontSubsetting.None   // probably not supported
+  options.fontType              = SVGFontType.SVGFONT
+  options.rasterImageLocation   = RasterImageLocation.PRESERVE
+  options.saveMultipleArtboards = true    // Deletes all artwork outside active artboard
+  options.svgId                 = SVGIdType.SVGIDREGULAR
+  options.svgMinify             = false // should use in future
+  options.svgResponsive         = true
+
+//options.fontType              = SVGFontType.OUTLINEFONT
+
+  if (doc.artboards.length == 1)
+    options.saveMultipleArtboards = false   // Preserves all artwork outside active artboard
+
+  return options
+}
+///
+/*———————————————————————————————————————— aiSaveOptions() */
+
+function aiSaveOptions(){
+
+//options.compatibility = Compatibility['ILLUSTRATOR0' ] // user's version
+//options.compatibility = Compatibility['ILLUSTRATOR17'] // CC Legacy
+
+  var         options   = new IllustratorSaveOptions()
+
+  options.pdfCompatible = false // much faster
+  options.compressed    = false // a bit faster
+
+  return options
+}
+///
 /*———————————————————————————————————————— rectAt00(obj)
 
     create rectangle at 0,0 coords to be able to
@@ -591,11 +582,11 @@ function getDocPath(doc){
   else return doc.path.fsName + '\\' + doc.name
 }
 ///
-/*———————————————————————————————————————— getSvgFilesPath(doc)
+/*———————————————————————————————————————— getSvgFolderPath(doc)
 
     returns SVG folder path from SYNC folder */
 
-function getSvgFilesPath(doc){
+function getSvgFolderPath(doc){
  
   var s = SYNCPATH
   if (s == '') return ''

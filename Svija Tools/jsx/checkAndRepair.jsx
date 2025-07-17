@@ -2,8 +2,6 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
-//alert(0)
-
 //:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js / checkAndRepair.jsx
 
 /*———————————————————————————————————————— notes
@@ -11,7 +9,7 @@
     if errors or warnings provides an alert 
     and returns ''
 
-    otherwise returns a success message
+    otherwise returns a success message (localized)
 
     fixEmbeddedImage can return either warning or error depending on if image can be fixed
     we'll deal with that later
@@ -139,7 +137,7 @@ function checkAndRepair(){
   ///
   //———————————————————————————————————————— alert user
 
-  if (!alertUser(doc)) return 'noProblems' // must be in locale/messages.properties
+  if (!alertUserCheck(doc)) return 'noProblems' // must be in locale/messages.properties
   else return ''
 
 }
@@ -307,7 +305,7 @@ function fixPlacedImage(doc, image){
   return [imageName, true, msg]
 }
 ///
-/*———————————————————————————————————————— alertUser(doc)
+/*———————————————————————————————————————— alertUserCheck(doc)
 
     if problems, shows alert else returns ''
     alert with:
@@ -317,7 +315,7 @@ function fixPlacedImage(doc, image){
     - image fixes
     - failed image repairs */
 
-function alertUser(doc){
+function alertUserCheck(doc){
 
 
 
@@ -516,5 +514,5 @@ function checkSupportedFormat(img){
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
-// add >TRANSLATE to alertUser function
+// add >TRANSLATE to alertUserCheck function
 // translate drawYellowRectangle
