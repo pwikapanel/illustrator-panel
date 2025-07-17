@@ -36,9 +36,9 @@
 
 ///
 
-//:::::::::::::::::::::::::::::::::::::::: program function
+//:::::::::::::::::::::::::::::::::::::::: main
 
-//———————————————————————————————————————— program
+/*———————————————————————————————————————— program */
 
 function checkAndRepair(){
 
@@ -78,7 +78,7 @@ function checkAndRepair(){
       these are treated before placed images, because they will be
       changed to placed in the next step
   
-      fixEmbeddedImage() returns image filename, succes/failure, message
+      fixEmbeddedImage() returns image filename, success/failure, message
 
       negative loop because length gets shorter as we go */
 
@@ -93,14 +93,16 @@ function checkAndRepair(){
   /// 
   /*—————————————————————————————————————— placed images      move to Links
   
-      fixPlacedImage() returns image filename, succes/failure, message */
+      fixPlacedImage() returns image filename, success/failure, message */
 
-//for (var x=doc.placedItems.length; x>0; x--){
-//  var msgArray = fixPlacedImage(doc, doc.placedItems[x-1])
-//
-//  if (msgArray.length > 0)
-//    IMAGESMODIFIED.push(msgArray)
-//}
+  var len = doc.placedItems.length
+  for (var x=len; x>0; x--){
+    var img = doc.placedItems[x-1]
+    var msgArray = fixPlacedImage(doc, img)
+  
+    if (msgArray.length > 0)
+      IMAGESMODIFIED.push(msgArray)
+  }
   ///
 
   //:::::::::::::::::::::::::::::::::::::: clean up
@@ -127,8 +129,8 @@ function checkAndRepair(){
       IMAGESFAILED.push(IMAGESMODIFIED[x]) // repair failed
     else{
   
-      var nme   = IMAGESMODIFIED[x][0]
-      var index = nameExists(nme, IMAGESFIXED)
+      var imageName = IMAGESMODIFIED[x][0]
+      var index     = nameExists(imageName, IMAGESFIXED)
   
       if (index < 0) IMAGESFIXED[IMAGESFIXED.length] = IMAGESMODIFIED[x]
       else           IMAGESFIXED[index] = IMAGESMODIFIED[x]
@@ -137,10 +139,11 @@ function checkAndRepair(){
   ///
   //———————————————————————————————————————— alert user
 
-  if (!alertUser(doc)) return 'allGood' // must be in locale/messages.properties
+  if (!alertUser(doc)) return 'noProblems' // must be in locale/messages.properties
   else return ''
 
 }
+///
 
 //:::::::::::::::::::::::::::::::::::::::: primary functions
 
@@ -240,71 +243,68 @@ function fixEmbeddedImage(doc, originalImage){
 ///
 /*———————————————————————————————————————— fixPlacedImage(doc, img)
 
+    three cases:
+
+    image is far away
+    image is in same folder as Ai doc
+    image is in links folder already
+
     image can't be missing unless it
     was moved after document was opened
 
-    returns image filename, succes/failure, message if modification
-    returns [] if no change
 
     copy if outside of current folder, otherwise move
 
-    three cases:
-    image is far away
-    image is in same folder as Ai doc
-    image is in links folder already  */
+    returns image filename, succes/failure, message if modification
+    returns [] if no change */
 
-function fixPlacedImage(doc, img){
+function fixPlacedImage(doc, image){
 
-  if (!img.layer.printable) return []
+  /*—————————————————————————————————————— setup */
 
-  try{ var thisFolder = img.file.path } // not sure what would cause this
-  catch(e){ return [] }                 // just in case
+  var imageName        = image.file.name
+  var imageFolder      = image.file.path
+  var currentImagePath = CONCATENATEPATH(imageFolder, imageName)
 
-  var currentFolder = Folder(app.activeDocument.path)
+  var pageFolder       = Folder(app.activeDocument.path)
+  var linksFolder      = CONCATENATEPATH(pageFolder, 'Links')
+  var correctImagePath = CONCATENATEPATH(linksFolder, imageName)
 
-  var linksFolder   = CONCATENATEPATH(doc.path, 'Links')
+  var msg // message for user
+  ///
+  /*—————————————————————————————————————— no need to repair */
 
-  if (thisFolder == linksFolder) // image is already in /Links
-    return []
+  if (currentImagePath == correctImagePath) return []
+  ///
+  /*—————————————————————————————————————— is it a Creative Cloud image? CHECK THIS */
 
-  //———————————————————— need to repair
-
-  var neme     = img.file.name
-  var destPath = CONCATENATEPATH(linksFolder, neme)
-
-  //———————————————————— is it a cloud image?
-
-  var isCloud = String(img.file).indexOf('Creative%20Cloud%20Libraries')
+  var isCloud = String(image.file).indexOf('Creative%20Cloud%20Libraries')
   if (isCloud > 0){
-    var ext = getExtension(img.file)
-    neme = img.name + ' Cloud' + ext
-    destPath = CONCATENATEPATH(linksFolder, neme)
+    var ext = getExtension(image.file)
+    imageName = image.name + '-CC' + ext
+    correctImagePath = CONCATENATEPATH(linksFolder, imageName)
   }
-  
-  //———————————————————— continue PROBLEM IS HERE
+  ///
+  /*—————————————————————————————————————— is image already in correct location ? */
 
-  var newFile = new File(destPath) // hypothetical until we actually create it
+  var replacementFile = new File(correctImagePath) // hypothetical until actually created
 
-  // we copy file to /Links, then if it was with AI file, we delete original
-  // changing the "copy" to a "move"
-
-  if(newFile.exists) var msg = TRANSLATE[LC].linkUpdated /* seems to work — copies files in finder, but AI file is untouched */
+  if(replacementFile.exists) msg = TRANSLATE[LC].linkUpdated
   else{
-    img.file.copy(newFile)
-    var msg = TRANSLATE[LC].copiedToLinks
+    image.file.copy(replacementFile)
+    msg = TRANSLATE[LC].copiedToLinks
   }
+  ///
+  /*—————————————————————————————————————— delete original if moved */
 
-  // if the file was in Ai folder we delete orig      SEEMS TO WORK — NOT USED IN THIS CASE
-  if (thisFolder == currentFolder){
-    img.file.remove()
-    var msg = TRANSLATE[LC].movedToLinks
+  if (imageFolder == pageFolder){
+    image.file.remove()
+    msg = TRANSLATE[LC].movedToLinks
   }
+  ///
 
-
-  img.file = newFile
-
-
-  return [neme, true, msg]
+  image.file = replacementFile
+  return [imageName, true, msg]
 }
 ///
 /*———————————————————————————————————————— alertUser(doc)
@@ -390,7 +390,7 @@ function drawYellowRectangle(obj){
   return rec
 }
 ///
-/*———————————————————————————————————————— nameExists(list)
+/*———————————————————————————————————————— nameExists(str, arrayList)
       
     var index = nameExists(name, IMAGESFIXED)
 
@@ -402,12 +402,11 @@ function drawYellowRectangle(obj){
 
     else return -1 */
 
-function nameExists(neme, arrayList){
+function nameExists(str, arrayList){
 
   for (var x=0; x<arrayList.length; x++)
-    if (neme == arrayList[x][0]) return x
+    if (str == arrayList[x][0]) return x
   
-
   return -1
 }
 ///
@@ -475,17 +474,6 @@ function getFileSize(page){
   catch(e){ return -1 }
 }
 ///
-/*———————————————————————————————————————— isTwoLetters(n)
-
-    returns true if n is two letters or numbers
-    a-z, A-Z, 0-9 */
-
-function isTwoLetters(n){
-  const regex = /^[a-zA-Z\d][a-zA-Z\d]$/g
-  if(n.match(regex) === null) return false
-  return true
-}
-///
 /*———————————————————————————————————————— newFile(folder, name)
 
     returns file to save into
@@ -500,17 +488,6 @@ function newFile(folder, name) {
   else alert('File ' + f + ' could not be written')
 
   return f
-}
-///
-/*———————————————————————————————————————— relockHierarchy(obj)
-
-    relocks elements unlocked by unlockHierarchy() */
-
-function relockHierarchy(arr){
-  for(var x=0; x<arr.length; x++){
-    arr[x][0].visible = arr[x][2]
-    arr[x][0].locked = arr[x][1]
-  }
 }
 ///
 /*———————————————————————————————————————— supportedFormat(img)
