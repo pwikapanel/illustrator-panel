@@ -2,10 +2,6 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
-// localize alert('Temporary Error\nPlease add a second artboard and re-save.')
-
-alert(4)
-
 //:::::::::::::::::::::::::::::::::::::::: save.js / save.jsx
 
 /*———————————————————————————————————————— notes
@@ -42,6 +38,8 @@ function savePages(saveAll){
 
     var            doc = app.activeDocument
     var   originalPath = getDocPath(doc)
+
+    // alert(originalPath) // /Users/Main/Desktop/graphicservices.net/SYNC/home.ai
 
     /*———————————————————————————————————— export SVG then save as */
 
@@ -91,39 +89,54 @@ function savePages(saveAll){
 
 function exportSvgFile(doc){
 
+
   /*—————————————————————————————————————— variables */
 
   var      svgFolder = getFolderPath(doc) // string
-  var  artboardIndex = doc.artboards.getActiveArtboardIndex()
   var    layerStates = DELETENONPRINTINGLAYERS(doc) // info about locked & visible
   var    svgFilePath = CONCATENATEPATH(svgFolder, makeSvgName(doc, 0))
-  var        svgFile = File(svgFile)
+  var        svgFile = File(svgFilePath)
   ///
   /*—————————————————————————————————————— delete existing SVG */
 
-  if (svgFile.exists) svgFile.remove()
+  // alert(svgFolder+'\n'+svgFilePath); return true
+  // /Users/Main/Desktop/graphicservices.net/SYNC/SVIJA/SVG Files
+  // /Users/Main/Desktop/graphicservices.net/SYNC/SVIJA/SVG Files/home_cp.svg
+
+  if (svgFile.exists) svgFile.remove() // tested OK
   ///
   /*—————————————————————————————————————— make reference rect to correct viewbox */
 
-  makeReferenceRect()
+  makeReferenceRect() // tested OK
   ///
   /*—————————————————————————————————————— export SVG file
 
     svgFile = new File(path) // may need to put back */
 
   var svgOpts = svgOptions(doc)
-  doc.exportFile(svgFile, ExportType.WOSVG, svgOpts) 
+  doc.exportFile(svgFile, ExportType.WOSVG, svgOpts) // tested OK
   ///
   /*—————————————————————————————————————— correct the viewbox */
 
   var viewBox = viewBoxFromArtboard(doc, 0)
+
+  // alert(viewBox); return true // 1200 1500 tested OK
+
+  // before viewBox="0 0 1923.5 1555"
   correctViewbox(viewBox, svgFile)
+
+/* threw error:
+
+SyntaxError: Unexpected number
+received: Error 2: viewBox is undefined.
+Line: 321
+->    svgSource = replaceViewBox(svgSource, viewBox) */
+
   app.undo() // get rid of reference rectangle
   ///
   /*—————————————————————————————————————— restore state */
 
   RESTORENONPRINTINGLAYERS(layerStates)
-  doc.artboards.setActiveArtboardIndex(artboardIndex)
   ///
 
   return true
@@ -161,7 +174,7 @@ function exportSvgFiles(doc){
   return true
 }
 ///
-/*———————————————————————————————————————— isValid(doc)
+/*———————————————————————————————————————— COMMENTED isValid(doc)
 
     three possible results:
     • everything's fine                 return true
@@ -175,6 +188,7 @@ function exportSvgFiles(doc){
     • file was not yet saved, user refuses to save */
 
 function isValid(doc){
+  return true
 //const isValid =(doc)=> { // DID NOT WORK
 
   var err, warn
@@ -300,7 +314,6 @@ function replaceViewBox(svgSource, viewBox){
 /*———————————————————————————————————————— COMMENTED correctViewbox() */
 
 function correctViewbox(viewbox, svgFile){
-  return true
 
   var tries = 10000
 
@@ -308,6 +321,8 @@ function correctViewbox(viewbox, svgFile){
     tries -= 1
 
   if (tries == 0) return false
+
+  // alert(tries) // 9186 test OK
 
   var svgSource = svgFile.read()
   svgSource = replaceViewBox(svgSource, viewBox)
@@ -629,3 +644,4 @@ function makeSvgName(doc, artboardNumber){
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ START AT LINE 130
