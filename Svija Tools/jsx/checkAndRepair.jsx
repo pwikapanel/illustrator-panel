@@ -350,7 +350,7 @@ function alertChecked(doc){
   var ms = (d.getTime()-STARTMS)
 
   if (ms > 1000) ms = ms/1000 +' ' + TRANSLATE[LC].seconds
-  else ms += ' MS'
+  else ms += ' ms'
 
   msg += '\n\n' + ms
   alert(msg)
@@ -514,5 +514,3 @@ function checkSupportedFormat(img){
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
-// add >TRANSLATE to alertChecked function
-// translate drawYellowRectangle

@@ -1,10 +1,9 @@
 #target illustrator  
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
-// translate line 205 alerts
 
 //:::::::::::::::::::::::::::::::::::::::: save.js / save.jsx
-alert(8)
+
 /*———————————————————————————————————————— notes
 
     if errors or warnings:
@@ -62,7 +61,7 @@ function savePages(saveAll){
   /*—————————————————————————————————————— alert if problems */
 
   if (ERRORS.length > 0 || WARNINGS.length > 0){
-    issueListAlert(startMs)
+    issueListAlert(filesSaved, startMs)
     return ''
   }
   ///
@@ -189,35 +188,32 @@ function isValid(doc){
     - errors (files not saved)
     - warnings (files saved) */
 
-function issueListAlert(startMs){
+function issueListAlert(count, startMs){
 
   var d = new Date()
   var ms = d.getTime() - startMs
 
   if (ms > 1000)
-    ms =' (' + ms/1000 +' sec)'
+    ms =' (' + ms/1000 +' ' + TRANSLATE[LC].seconds + ')'
   else
     ms = ' (' + ms + ' ms)'
 
-alert('issueListAlert\nnot finished: '+ms)
-return true
-
+  var title
   switch(count){
-    case  0: var title = 'File(s) Not Saved';  break;
-    case  1: var title = 'File Saved' + ms;    break;
-    default: var title = count + ' Files Saved' + ms;
+    case  0: title = TRANSLATE[LC].filesNotSaved         ; break;
+    case  1: title = TRANSLATE[LC].fileSaved + ms        ; break;
+    default: title = count + ' ' + TRANSLATE[LC].filesSaved + ms;
   }
 
   var body = ''
-
-  if (fileSizes.length == 1)
-    body += '\n' + fileSizeReport(fileSizes)
 
   if (ERRORS.length > 0)
     body += '\n' + ERRORS.join('\n')
   
   if (WARNINGS.length > 0)
     body += '\n' + WARNINGS.join('\n')
+
+  body += '\n' + TRANSLATE[LC].pleaseCheckRepair
 
   alert(title + body)
   return true
@@ -372,42 +368,29 @@ function externalImageLinks(doc){
 
   if (doc.placedItems.length == 0) return ''
 
-
   var linksPath = getLinksPath(doc)  // ~/Desktop/svija.dev/SYNC/Links/
-
 
   for (var x=0; x<doc.placedItems.length; x++){
 
     var img = doc.placedItems[0]
 
-    try{
-      var imgPath = String(img.file.fsName)
-    }
-    catch(e){
-      alert(e)
-      return doc.name + ' ' + TRANSLATE[LC].imageSansSource
-    }
+    // no file associated with image
+    try     { var imgPath = String(img.file.fsName)                   }
+    catch(e){ return doc.name + ' ' + TRANSLATE[LC].imageSansSource   }
 
-        // if image path is shorter, image can't be in Links folder
-        if (imgPath.length < linksPath.length+4) 
-          return doc.name + ' ' + TRANSLATE[LC].containsExternal
-    
+    imgPath += 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
+    const splitIndex = linksPath.length               // 50
+    const linksPart  = imgPath.slice(0, splitIndex-1) // /Users/Main/Captures
+    const imagePart  = imgPath.slice(splitIndex)      // capture.jpgxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-//       use split for below, then we have the two parts we need
+    // image path doesn't match doc path
+    if (linksPart != linksPath)
+      return doc.name + ' ' + TRANSLATE[LC].containsExternal
 
-
-
-        // if image path doesn't match doc path, it can't be in links folder
-        var str = imgPath.slice(0, linksPath.length)
-    
-        if (str != linksPath)
-          return doc.name + ' ' + TRANSLATE[LC].containsExternal
-    
-        // if what's longer than doc path contains a /, it's in some subfolder
-        var str = imgPath.slice(linksPath.length, imgPath.length)
-        if (str.indexOf('/') > 0 || str.indexOf('\\') > 0)
-          return doc.name + ' ' + TRANSLATE[LC].containsExternal
+    // image path contains too many /
+    if (imagePart.indexOf('/') > 0 || imagePart.indexOf('\\') > 0)
+      return doc.name + ' ' + TRANSLATE[LC].containsExternal
   }
 
   return ''
@@ -505,33 +488,6 @@ function dontSave(err){
   return false
 }
 ///
-/*———————————————————————————————————————— fileSizeReport(fileSizes)
-
-    returns a text snippet with file sizes */
-
-function fileSizeReport(fileSizes){
-
-  var thisFile = fileSizes[0]
-
-  var aiName = thisFile[0]
-  var aiSize = makeMB(thisFile[1])
-  var report
-
-  var svgSizes = []
-
-  for (var y=2; y<thisFile.length; y+=2){
-    var artbName = thisFile[y]
-    var svgSize = makeMB(thisFile[y+1])
-    svgSizes.push(artbName+' page '+svgSize)
-  }
-
-  report  = svgSizes.join('\n')
-  report += '\nIllustrator file '+aiSize
-
-  return report
-
-}
-///
 /*———————————————————————————————————————— getLinksPath(doc)
 
     returns path of links folder */
@@ -610,4 +566,3 @@ function makeSvgName(doc, artboardNumber){
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ START AT LINE 130
