@@ -274,7 +274,7 @@ function fixPlacedImage(doc, image){
 
   if (currentImagePath == correctImagePath) return []
   ///
-  /*—————————————————————————————————————— is it a Creative Cloud image? CHECK THIS */
+  /*—————————————————————————————————————— is it a Creative Cloud image? */
 
   var isCloud = String(image.file).indexOf('Creative%20Cloud%20Libraries')
   if (isCloud > 0){

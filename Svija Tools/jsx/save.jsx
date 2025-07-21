@@ -174,7 +174,7 @@ function isValid(doc){
   if (err != '')
     WARNINGS.push(err)
 
-  err = externalImageLinks(doc)  // are there placed images not in Links?
+  err = externalImages(doc)  // are there placed images not in Links?
   if (err != '')
     WARNINGS.push(err)
 
@@ -359,12 +359,12 @@ function embeddedImages(doc){
   return ''
 }
 ///
-/*———————————————————————————————————————— externalImageLinks(sourceDoc)
+/*———————————————————————————————————————— externalImages(sourceDoc)
 
     has file been saved at least once?
     returns '' or error message */
 
-function externalImageLinks(doc){
+function externalImages(doc){
 
   if (doc.placedItems.length == 0) return ''
 
@@ -381,8 +381,8 @@ function externalImageLinks(doc){
     imgPath += 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
     const splitIndex = linksPath.length               // 50
-    const linksPart  = imgPath.slice(0, splitIndex-1) // /Users/Main/Captures
-    const imagePart  = imgPath.slice(splitIndex)      // capture.jpgxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    const linksPart  = imgPath.slice(0, splitIndex)   // /Users/Main/Captures
+    const imagePart  = imgPath.slice(splitIndex+1)    // capture.jpgxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
     // image path doesn't match doc path
     if (linksPart != linksPath)
