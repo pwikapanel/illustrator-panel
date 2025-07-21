@@ -5,6 +5,8 @@
 
 //:::::::::::::::::::::::::::::::::::::::: VARIABLES.jsx
 
+app.preferences.setBooleanPreference("ShowExternalJSXWarning", true)
+
 // used by save.jsx & checkAndRepair.jsx
 
 var STARTMS        // integer            ms at start of task

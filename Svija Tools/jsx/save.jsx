@@ -1,9 +1,10 @@
 #target illustrator  
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
+// translate line 205 alerts
 
 //:::::::::::::::::::::::::::::::::::::::: save.js / save.jsx
-
+alert(8)
 /*———————————————————————————————————————— notes
 
     if errors or warnings:
@@ -12,7 +13,7 @@
     otherwise returns a localized success message */
 ///
 
-//:::::::::::::::::::::::::::::::::::::::: main
+//:::::::::::::::::::::::::::::::::::::::: main VALIDATED
 
 /*———————————————————————————————————————— savePages(saveAll) */
 
@@ -34,13 +35,12 @@ function savePages(saveAll){
   for (var index=0; index<docsOpen; index++){
 
     app.activeDocument = app.documents[index]
+
     if (!ISSVIJAPAGE()) continue;
 
-    var            doc = app.activeDocument
-    var   originalPath = getDocPath(doc)
-
-    // alert(originalPath) // /Users/Main/Desktop/graphicservices.net/SYNC/home.ai
-
+    var          doc = app.activeDocument
+    var originalPath = getDocPath(doc)
+   
     /*———————————————————————————————————— export SVG then save as */
 
     if (isValid(doc)){
@@ -62,7 +62,7 @@ function savePages(saveAll){
   /*—————————————————————————————————————— alert if problems */
 
   if (ERRORS.length > 0 || WARNINGS.length > 0){
-    saveIssuesAlert(startMs)
+    issueListAlert(startMs)
     return ''
   }
   ///
@@ -76,7 +76,7 @@ function savePages(saveAll){
 
 //:::::::::::::::::::::::::::::::::::::::: complex functions
 
-/*———————————————————————————————————————— exportSvgFile(doc)
+/*———————————————————————————————————————— exportSvgFile(doc) VALIDATED
 
   - removes any existing files that would provoke a confirmation dialog
   - deletes non-printing layers
@@ -89,92 +89,64 @@ function savePages(saveAll){
 
 function exportSvgFile(doc){
 
-
-  /*—————————————————————————————————————— variables */
+  //—————————————————————————————————————— variables */
 
   var      svgFolder = getFolderPath(doc) // string
-  var    layerStates = DELETENONPRINTINGLAYERS(doc) // info about locked & visible
   var    svgFilePath = CONCATENATEPATH(svgFolder, makeSvgName(doc, 0))
   var        svgFile = File(svgFilePath)
-  ///
-  /*—————————————————————————————————————— delete existing SVG */
+  var    layerStates = DELETENONPRINTINGLAYERS(doc) // info about locked & visible
+  var        svgOpts = svgOptions(doc)
 
-  // alert(svgFolder+'\n'+svgFilePath); return true
-  // /Users/Main/Desktop/graphicservices.net/SYNC/SVIJA/SVG Files
-  // /Users/Main/Desktop/graphicservices.net/SYNC/SVIJA/SVG Files/home_cp.svg
+  //—————————————————————————————————————— delete existing SVG */
 
   if (svgFile.exists) svgFile.remove() // tested OK
-  ///
-  /*—————————————————————————————————————— make reference rect to correct viewbox */
 
-  makeReferenceRect() // tested OK
-  ///
-  /*—————————————————————————————————————— export SVG file
+  //—————————————————————————————————————— save SVG */
 
-    svgFile = new File(path) // may need to put back */
+  addViewboxReference()
+  doc.exportFile(svgFile, ExportType.WOSVG, svgOpts)
+  repairViewbox(doc, svgFile)
 
-  var svgOpts = svgOptions(doc)
-  doc.exportFile(svgFile, ExportType.WOSVG, svgOpts) // tested OK
-  ///
-  /*—————————————————————————————————————— correct the viewbox */
-
-  var viewBox = viewBoxFromArtboard(doc, 0)
-
-  // alert(viewBox); return true // 1200 1500 tested OK
-
-  // before viewBox="0 0 1923.5 1555"
-  correctViewbox(viewBox, svgFile)
-
-/* threw error:
-
-SyntaxError: Unexpected number
-received: Error 2: viewBox is undefined.
-Line: 321
-->    svgSource = replaceViewBox(svgSource, viewBox) */
+  //—————————————————————————————————————— restore state */
 
   app.undo() // get rid of reference rectangle
-  ///
-  /*—————————————————————————————————————— restore state */
-
   RESTORENONPRINTINGLAYERS(layerStates)
-  ///
 
   return true
 }
 ///
-/*———————————————————————————————————————— exportSvgFiles(doc) */
+/*———————————————————————————————————————— exportSvgFiles(doc) VALIDATED */
 
 function exportSvgFiles(doc){
 
-  /*—————————————————————————————————————— variables */
+  //—————————————————————————————————————— variables */
 
   var      svgFolder = getFolderPath(doc) // string
   var  artboardIndex = doc.artboards.getActiveArtboardIndex()
   var    layerStates = DELETENONPRINTINGLAYERS(doc) // info about locked & visible
-  ///
-  /*—————————————————————————————————————— delete existing SVGs */
+  var        svgOpts = svgOptions(doc)
+
+  //—————————————————————————————————————— delete existing SVGs */
 
   for (x=0; x<doc.artboards.length; x++){
     var path = CONCATENATEPATH(svgFolder, makeSvgName(doc, x))
     var svgFile = File(path)
     if (svgFile.exists) svgFile.remove()
   }
-  ///
-  /*—————————————————————————————————————— export SVG files */
 
-  var svgOpts = svgOptions(doc)
+  //—————————————————————————————————————— export SVG files */
+
   doc.exportFile(Folder(svgFolder), ExportType.WOSVG, svgOpts) 
-  ///
-  /*—————————————————————————————————————— restore state */
+
+  //—————————————————————————————————————— restore state */
 
   RESTORENONPRINTINGLAYERS(layerStates)
   doc.artboards.setActiveArtboardIndex(artboardIndex)
-  ///
 
   return true
 }
 ///
-/*———————————————————————————————————————— COMMENTED isValid(doc)
+/*———————————————————————————————————————— isValid(doc) VALIDATED
 
     three possible results:
     • everything's fine                 return true
@@ -188,56 +160,36 @@ function exportSvgFiles(doc){
     • file was not yet saved, user refuses to save */
 
 function isValid(doc){
-  return true
-//const isValid =(doc)=> { // DID NOT WORK
 
-  var err, warn
+  var err
 
-//———————————————————— fatal errors
-
-
-  err = HASPATH(doc)           // has file been saved at least once?
-  if (err != '')
-    return dontSave(err)
-
-  err = isAi(doc)              // is it an AI file?
-  if (err != '')
-    return dontSave(err)
-
-  err = hasFolders(doc)        // is file in a /SYNC/ folder?
-  if (err != '')
-    return dontSave(err)
-
-//———————————————————— non fatal errors
-
-  err = hasLinks(doc)           // is there a Links folder?
+  err = linksFolderExists(doc)   // is there a Links folder?
   if (err != '')
     WARNINGS.push(err)
 
-  err = hasNonNative(doc)       // are there non-native items?
+  err = nonNativeItems(doc)   // are there non-native items?
   if (err != '')
     WARNINGS.push(err)
 
-  err = hasEmbedded(doc)        // are there embedded images?
+  err = embeddedImages(doc)   // are there embedded images?
   if (err != '')
     WARNINGS.push(err)
 
-  err = hasPlaced(doc)          // are there placed images not in Links?
+  err = externalImageLinks(doc)  // are there placed images not in Links?
   if (err != '')
     WARNINGS.push(err)
 
   return true
 }
 ///
-/*———————————————————————————————————————— saveIssuesAlert(fileSizes)
+/*———————————————————————————————————————— issueListAlert(fileSizes)
 
     alert with:
     - elapsed time
     - errors (files not saved)
     - warnings (files saved) */
 
-function saveIssuesAlert(startMs){
-
+function issueListAlert(startMs){
 
   var d = new Date()
   var ms = d.getTime() - startMs
@@ -247,8 +199,8 @@ function saveIssuesAlert(startMs){
   else
     ms = ' (' + ms + ' ms)'
 
-  alert('saveIssuesAlert\nnot implemented\n'+ms)
-  return
+alert('issueListAlert\nnot finished: '+ms)
+return true
 
   switch(count){
     case  0: var title = 'File(s) Not Saved';  break;
@@ -271,13 +223,13 @@ function saveIssuesAlert(startMs){
   return true
 }
 ///
-/*———————————————————————————————————————— replaceViewBox(svgSource, viewBox) */
+/*———————————————————————————————————————— replaceViewboxCoords(svgSource, viewBox) */
 
   //<rect id="COORDS00" class="cls-1" x="63" y="50.431" width="100" height="100"/>
 
   //if there is nothing above or to the left, there will be no x or y coords */
 
-function replaceViewBox(svgSource, viewBox){
+function replaceViewboxCoords(svgSource, viewBox){
 
   // get x & y offset
 
@@ -311,9 +263,11 @@ function replaceViewBox(svgSource, viewBox){
   return svgSource
 }
 ///
-/*———————————————————————————————————————— COMMENTED correctViewbox() */
+/*———————————————————————————————————————— repairViewbox() */
 
-function correctViewbox(viewbox, svgFile){
+function repairViewbox(doc, svgFile){
+
+  var viewBox = artboardDimensions(doc, 0)
 
   var tries = 10000
 
@@ -325,9 +279,9 @@ function correctViewbox(viewbox, svgFile){
   // alert(tries) // 9186 test OK
 
   var svgSource = svgFile.read()
-  svgSource = replaceViewBox(svgSource, viewBox)
-
+  svgSource = replaceViewboxCoords(svgSource, viewBox)
   svgFile.close()
+
   svgFile.open("w")
   svgFile.write(svgSource)
   svgFile.close()
@@ -370,79 +324,90 @@ function hasFolders(doc){
   return ''
 }
 ///
-/*———————————————————————————————————————— hasLinks(sourceDoc)
+/*———————————————————————————————————————— linksFolderExists(sourceDoc) VERIFIED
 
     tests for existence of /Links folder */
 
-function hasLinks(doc){
+function linksFolderExists(doc){
 
-  var linksFolder = getLinksPath(doc) 
+  var path = getLinksPath(doc) 
+  if (!Folder(path).exists)
+    return doc.name + TRANSLATE[LC].noLinksFolder
 
-  if (!Folder(path).exists) return doc.name + ' has no \"Links\" folder'
-  else                      return ''
+  return ''
 }
 ///
-/*———————————————————————————————————————— hasNonNative(sourceDoc)
+/*———————————————————————————————————————— nonNativeItems(sourceDoc)
 
     has file been saved at least once?
     returns '' or error message */
 
-function hasNonNative(doc){
+function nonNativeItems(doc){
+
   if (doc.nonNativeItems.length > 0)
-    return doc.name + ' contains non-native items (see "Appearance" panel)'
-  else
-    return ''
+    return doc.name + ' ' + TRANSLATE[LC].hasNonNative
+
+  return ''
 }
 ///
-/*———————————————————————————————————————— hasEmbedded(sourceDoc)
+/*———————————————————————————————————————— embeddedImages(sourceDoc)
 
     has file been saved at least once?
     returns '' or error message */
 
-function hasEmbedded(doc){
+function embeddedImages(doc){
+
   if (doc.rasterItems.length > 0)
-    return doc.name + ' contains embedded images. Please run "Check & Repair"'
-  else
-    return ''
+    return doc.name + ' ' + TRANSLATE[LC].containsEmbedded
+
+  return ''
 }
 ///
-/*———————————————————————————————————————— hasPlaced(sourceDoc)
+/*———————————————————————————————————————— externalImageLinks(sourceDoc)
 
     has file been saved at least once?
     returns '' or error message */
 
-function hasPlaced(doc){
+function externalImageLinks(doc){
+
   if (doc.placedItems.length == 0) return ''
 
+
   var linksPath = getLinksPath(doc)  // ~/Desktop/svija.dev/SYNC/Links/
+
 
   for (var x=0; x<doc.placedItems.length; x++){
 
     var img = doc.placedItems[0]
-    if (!img.layer.printable) continue;
 
     try{
-      var imgPath = String(img.file.fsName) // ~/Captures/capture%2029.jpg  // THIS LINE THROWS UNCATCHABLE ERROR
+      var imgPath = String(img.file.fsName)
     }
     catch(e){
       alert(e)
-      return doc.name + ' contains an image with no source. Please run "Check & Repair"'
+      return doc.name + ' ' + TRANSLATE[LC].imageSansSource
     }
 
         // if image path is shorter, image can't be in Links folder
         if (imgPath.length < linksPath.length+4) 
-          return doc.name + ' contains external images. Please run "Check & Repair"'
+          return doc.name + ' ' + TRANSLATE[LC].containsExternal
     
+
+
+//       use split for below, then we have the two parts we need
+
+
+
         // if image path doesn't match doc path, it can't be in links folder
         var str = imgPath.slice(0, linksPath.length)
     
         if (str != linksPath)
-          return doc.name + ' contains external images. Please run "Check & Repair"'
+          return doc.name + ' ' + TRANSLATE[LC].containsExternal
     
         // if what's longer than doc path contains a /, it's in some subfolder
         var str = imgPath.slice(linksPath.length, imgPath.length)
         if (str.indexOf('/') > 0 || str.indexOf('\\') > 0)
-          return doc.name + ' contains external images. Please run "Check & Repair"'
+          return doc.name + ' ' + TRANSLATE[LC].containsExternal
   }
 
   return ''
@@ -493,12 +458,12 @@ function aiSaveOptions(){
   return options
 }
 ///
-/*———————————————————————————————————————— makeReferenceRect(obj)
+/*———————————————————————————————————————— addViewboxReference(obj)
 
     create rectangle at 0,0 coords to be able to
     reset the artboard */ 
 
-function makeReferenceRect(){
+function addViewboxReference(){
   var doc = app.activeDocument
 
   doc.rulerOrigin = [0, doc.height]
@@ -577,8 +542,9 @@ function getLinksPath(doc){
   return CONCATENATEPATH(path, 'Links')
 }
 ///
-/*———————————————————————————————————————— viewBoxFromArtboard(doc, 0) */
-function viewBoxFromArtboard(doc, artboardNumber){
+/*———————————————————————————————————————— artboardDimensions(doc, 0) */
+
+function artboardDimensions(doc, artboardNumber){
   var ab = doc.artboards[artboardNumber].artboardRect  // left, top, right, bottom
 
   var w = ab[2] - ab [0] // right - left

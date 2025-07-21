@@ -30,6 +30,12 @@ unsupportedFormat: "is not a supported format",
        checkFixed: "— Fixed images —",
       checkFailed: "— Unrepairable images —",
 
+    noLinksFolder: 'has no "Links" folder',
+     hasNonNative: 'contains non-native items (see "Appearance" panel)',
+ containsEmbedded: 'contains embedded images. Please run "Check & Repair"',
+  imageSansSource: 'contains an image with no source. Please run "Check & Repair"',
+ containsExternal: 'contains external images. Please run "Check & Repair"',
+
           noComma: "———"
   },
   fr: {
@@ -57,12 +63,17 @@ unsupportedFormat: "est d'un format non pris en charge",
        checkFixed: "— Images réparées —",
       checkFailed: "— Images non réparables —",
 
+    noLinksFolder: 'n\'a pas de dossier "Links"',
+     hasNonNative: 'contient des éléments non-natifs (voir panneau "Apparence")',
+ containsEmbedded: 'contient des images intégrées. Cliquer sur "Vérifier"',
+  imageSansSource: 'contient une image sans fichier source. Cliquer sur "Vérifier"',
+ containsExternal: 'contient une image externe. Cliquer sur "Vérifier"',
+
           noComma: "———"
   }
 }
 
 //:::::::::::::::::::::::::::::::::::::::: fin
-
 
 
 
