@@ -77,7 +77,7 @@ function savePages(saveAll){
 
 //:::::::::::::::::::::::::::::::::::::::: complex functions
 
-/*———————————————————————————————————————— exportSvgFile(doc) VALIDATED
+/*———————————————————————————————————————— exportSvgFile(doc)
 
   - removes any existing files that would provoke a confirmation dialog
   - deletes non-printing layers
@@ -117,7 +117,7 @@ function exportSvgFile(doc){
   return true
 }
 ///
-/*———————————————————————————————————————— exportSvgFiles(doc) VALIDATED */
+/*———————————————————————————————————————— exportSvgFiles(doc) */
 
 function exportSvgFiles(doc){
 

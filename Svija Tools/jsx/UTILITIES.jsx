@@ -23,6 +23,12 @@ function CONCATENATEPATH(part1, part2){
 
 function PREPARELAYERS(obj){
 
+  // ensure that there will be at least one action to undo
+  if (obj.typename == 'Document'){
+    obj.layers[0].locked = !obj.layers[0].locked 
+    obj.layers[0].locked = !obj.layers[0].locked 
+  }
+
   var len = obj.layers.length
 
   for (var x=0; x<len; x++) {
