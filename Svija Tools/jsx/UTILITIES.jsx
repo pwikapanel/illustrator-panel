@@ -23,25 +23,31 @@ function CONCATENATEPATH(part1, part2){
 
 function PREPARELAYERS(obj){
 
-  // ensure that there will be at least one action to undo
+  //—————————————————————————————————————— ensure that there will be at least one action to undo
+
   if (obj.typename == 'Document'){
     obj.layers[0].locked = !obj.layers[0].locked 
     obj.layers[0].locked = !obj.layers[0].locked 
+
+    // delete erroneous artboards: Plan de travail 81 or Artboard 80
+    var len = obj.artboards.length
+    for (var x=len-1; x>-1; x--)
+      if (obj.artboards[x].name.indexOf(' ') > 0)
+        obj.artboards[x].remove()
   }
+
+  //—————————————————————————————————————— remove/unlock layers
 
   var len = obj.layers.length
 
-  for (var x=0; x<len; x++) {
-    if (x > obj.layers.length -1) continue; // otherwise deleted layers will cause an error
+  for (var x=len-1; x>-1; x--) {
 
     var layer = obj.layers[x]
     layer.locked = false
     layer.visible = true
 
-    if (!layer.printable){
+    if (!layer.printable)
       layer.remove()
-      x -= 1
-    }
     else if (layer.layers.length > 0)
       PREPARELAYERS(layer)
   }

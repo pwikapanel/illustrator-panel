@@ -125,7 +125,6 @@ function exportSvgFiles(doc){
 
   var      svgFolder = getFolderPath(doc) // string
   var  artboardIndex = doc.artboards.getActiveArtboardIndex()
-  var    stateArray = DELETENONPRINTINGLAYERS(doc) // info about locked & visible
   var        svgOpts = svgOptions(doc)
 
   //—————————————————————————————————————— delete existing SVGs */
@@ -376,7 +375,7 @@ function externalImages(doc){
 
   for (var x=0; x<doc.placedItems.length; x++){
 
-    var img = doc.placedItems[0]
+    var img = doc.placedItems[x]
 
     // no file associated with image
     try     { var imgPath = String(img.file.fsName)                   }
@@ -384,9 +383,9 @@ function externalImages(doc){
 
     imgPath += 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
-    const splitIndex = linksPath.length               // 50
-    const linksPart  = imgPath.slice(0, splitIndex)   // /Users/Main/Captures
-    const imagePart  = imgPath.slice(splitIndex+1)    // capture.jpgxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    var splitIndex = linksPath.length               // 50
+    var linksPart  = imgPath.slice(0, splitIndex)   // /Users/Main/Captures
+    var imagePart  = imgPath.slice(splitIndex+1)    // capture.jpgxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
     // image path doesn't match doc path
     if (linksPart != linksPath)
