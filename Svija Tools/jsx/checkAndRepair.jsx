@@ -2,6 +2,8 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
+ // what happens when I undo if nothing was necessary to do?
+
 //:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js / checkAndRepair.jsx
 
 /*———————————————————————————————————————— notes
@@ -58,7 +60,7 @@ function checkAndRepair(){
   ///
   /*—————————————————————————————————————— remove non-printing layers */
 
-  var layerStates = DELETENONPRINTINGLAYERS(doc)
+  PREPARELAYERS(doc) // unlock & make visible all layers, delete template layers
   ///
 
   //:::::::::::::::::::::::::::::::::::::: checking & repairing
@@ -89,7 +91,7 @@ function checkAndRepair(){
       IMAGESMODIFIED.push(msgArray)
   }
   /// 
-  /*—————————————————————————————————————— placed images      move to Links
+  /*—————————————————————————————————————— placed images     move to Links
   
       fixPlacedImage() returns image filename, success/failure, message */
 
@@ -107,7 +109,7 @@ function checkAndRepair(){
 
   /*—————————————————————————————————————— restore non-printing layers */
 
-  RESTORENONPRINTINGLAYERS(layerStates)
+  app.undo()
   ///
   /*—————————————————————————————————————— sort image messages into success/failed
   

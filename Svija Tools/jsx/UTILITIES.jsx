@@ -4,8 +4,6 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.jsx */
 
-alert(10)
-
 /*———————————————————————————————————————— CONCATENATEPATH(part1, part2)
 
     given a part1 and part2, returns a correct path */
@@ -16,101 +14,34 @@ function CONCATENATEPATH(part1, part2){
   else return part1 + '\\' + part2
 }
 ///
-/*———————————————————————————————————————— SAVELAYERSTATES(obj, stateArray)
+/*———————————————————————————————————————— PREPARELAYERS(obj, stateArray)
 
     recursive function to delete any nonprinting layers
     while storing their locked/visible state */
 
-function SAVELAYERSTATES(obj, stateArray){
+// need to make at least one change or app.undo() will undo user change after script runs
+
+function PREPARELAYERS(obj){
 
   var len = obj.layers.length
-  alert('treating '+obj.name +'\n'+ len +' layers to be treated')
 
   for (var x=0; x<len; x++) {
     if (x > obj.layers.length -1) continue; // otherwise deleted layers will cause an error
 
     var layer = obj.layers[x]
-    alert(x + ': adding layer '+layer.name)
-
-    stateArray.push([layer.locked, layer.visible, layer.printable])
     layer.locked = false
     layer.visible = true
 
     if (!layer.printable){
-      alert(layer.name + ' deleted')
       layer.remove()
       x -= 1
     }
-    else if (layer.layers.length > 0){
-      alert(layer.name +' has sublayers')
-      stateArray.concat(SAVELAYERSTATES(layer, stateArray))
-    }
+    else if (layer.layers.length > 0)
+      PREPARELAYERS(layer)
   }
-  return stateArray
+  return
 }
 /// */
-/*———————————————————————————————————————— RESTORELAYERSTATES(doc, stateArray) */
-
-function RESTORELAYERSTATES(doc, stateArray){
-  return
-
-  var len = stateArray.length
-
-  for (x=0; x<len; x++)
-    app.undo()
-  
-  return
-
-  var loopLimit = 200
-
-  while (doc.layers.length<layerStates.length){
-    app.undo()
-    loopLimit -= 1
-    if (loopLimit == 0){
-      alert('layerStates.length=' + layerStates.length + '\nlimit hit')
-      break
-    }
-  }
-
-  //———————————————————————————————— restore non-printing layer states
-
-  for (var r=0; r<layerStates.length; r++){
-    if (layerStates[r] == 1 || layerStates[r] == 3){doc.layers[r].locked  = true }
-    if (layerStates[r] == 2 || layerStates[r] == 3){doc.layers[r].visible = false}
-  }
-}
-///
-/*———————————————————————————————————————— DELETENONPRINTINGLAYERS(doc)
-
-  delete any layers that are not printable
-  returns array with locked & visible status of deleted layers */
-
-function DELETENONPRINTINGLAYERS(doc){
-
-  var layersLen = doc.layers.length
-  var layerStates = new Array(layersLen)
-
-  for (z=layersLen-1; z>=0; z--){
-    layerStates[z] = 0
-    if (!doc.layers[z].printable){
-
-      if (doc.layers[z].locked){
-        layerStates[z] += 1
-        doc.layers[z].locked  = false
-      }
-
-      if (!doc.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
-        layerStates[z] += 2
-        doc.layers[z].visible = true
-      }
-
-      doc.layers[z].remove()
-    }
-  }
-
-  return layerStates
-}
-///
 /*———————————————————————————————————————— DERIVESYNCFOLDER()
 
     used when saving an unsaved document — tries to
@@ -165,39 +96,6 @@ function HASPATH(doc){
   app.activeDocument.saveAs(f, undefined)
   return ''
     
-}
-///
-
-// all changes were undone with ONE undo
-
-/*———————————————————————————————————————— RESTORENONPRINTINGLAYERS(src)
-
-    restores non-printing layers that were deleted
-    including locked/visible state */
-
-function RESTORENONPRINTINGLAYERS(layerStates){
-
-  var doc = app.activeDocument            // active document
-
-  //———————————————————————————————— restore to original state
-  
-  var loopLimit = 200
-
-  while (doc.layers.length<layerStates.length){
-    app.undo()
-    loopLimit -= 1
-    if (loopLimit == 0){
-      alert('layerStates.length=' + layerStates.length + '\nlimit hit')
-      break
-    }
-  }
-
-  //———————————————————————————————— restore non-printing layer states
-
-  for (var r=0; r<layerStates.length; r++){
-    if (layerStates[r] == 1 || layerStates[r] == 3){doc.layers[r].locked  = true }
-    if (layerStates[r] == 2 || layerStates[r] == 3){doc.layers[r].visible = false}
-  }
 }
 ///
 /*———————————————————————————————————————— ISSVIJAPAGE()

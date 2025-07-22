@@ -2,6 +2,8 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
+ // what happens when I undo if nothing was necessary to do?
+
 //:::::::::::::::::::::::::::::::::::::::: save.js / save.jsx
 
 /*———————————————————————————————————————— notes
@@ -93,24 +95,24 @@ function exportSvgFile(doc){
   var      svgFolder = getFolderPath(doc) // string
   var    svgFilePath = CONCATENATEPATH(svgFolder, makeSvgName(doc, 0))
   var        svgFile = File(svgFilePath)
-  var     stateArray = SAVELAYERSTATES(doc, []) // array of arryas [locked, visible, printable]
   var        svgOpts = svgOptions(doc)
 
-  //—————————————————————————————————————— delete existing SVG */
+  //—————————————————————————————————————— preparation */
+
 
   if (svgFile.exists) svgFile.remove() // tested OK
 
   //—————————————————————————————————————— save SVG */
 
+  PREPARELAYERS(doc) // unlock & make visible all layers, delete template layers
   addViewboxReference()
+
   doc.exportFile(svgFile, ExportType.WOSVG, svgOpts)
   repairViewbox(doc, svgFile)
 
   //—————————————————————————————————————— restore state */
 
-  app.undo() // get rid of reference rectangle
-
-//RESTORELAYERSTATES(doc, stateArray) // not necessary
+  app.undo() // undoes all changes from this script in one step
 
   return true
 }
@@ -136,11 +138,12 @@ function exportSvgFiles(doc){
 
   //—————————————————————————————————————— export SVG files */
 
+  PREPARELAYERS(doc) // unlock & make visible all layers, delete template layers
   doc.exportFile(Folder(svgFolder), ExportType.WOSVG, svgOpts) 
 
   //—————————————————————————————————————— restore state */
 
-  RESTORENONPRINTINGLAYERS(stateArray)
+  app.undo()
   doc.artboards.setActiveArtboardIndex(artboardIndex)
 
   return true
