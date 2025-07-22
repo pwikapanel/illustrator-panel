@@ -93,7 +93,7 @@ function exportSvgFile(doc){
   var      svgFolder = getFolderPath(doc) // string
   var    svgFilePath = CONCATENATEPATH(svgFolder, makeSvgName(doc, 0))
   var        svgFile = File(svgFilePath)
-  var    layerStates = DELETENONPRINTINGLAYERS(doc) // info about locked & visible
+  var     stateArray = SAVELAYERSTATES(doc, []) // array of arryas [locked, visible, printable]
   var        svgOpts = svgOptions(doc)
 
   //—————————————————————————————————————— delete existing SVG */
@@ -109,43 +109,10 @@ function exportSvgFile(doc){
   //—————————————————————————————————————— restore state */
 
   app.undo() // get rid of reference rectangle
-  RESTORENONPRINTINGLAYERS(layerStates)
+
+//RESTORELAYERSTATES(doc, stateArray) // not necessary
 
   return true
-}
-///
-/*———————————————————————————————————————— DELETENONPRINTINGLAYERS(doc)
-
-  delete any layers that are not printable
-  returns array with locked & visible status of deleted layers */
-
-function DELETENONPRINTINGLAYERS(doc){
-
-  var layersLen = doc.layers.length
-  var layerStates = new Array(layersLen)
-
-  for (x=layersLen-1; x>=0; x--){
-
-    var layer = doc.layers[x]
-    layerStates.push([layer.locked, layer.visible, layer.printable])
-
-    if (!doc.layers[z].printable){
-
-      if (doc.layers[z].locked){
-        layerStates[z] += 1
-        doc.layers[z].locked  = false
-      }
-
-      if (!doc.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
-        layerStates[z] += 2
-        doc.layers[z].visible = true
-      }
-
-      doc.layers[z].remove()
-    }
-  }
-
-  return layerStates
 }
 ///
 /*———————————————————————————————————————— exportSvgFiles(doc) VALIDATED */
@@ -156,7 +123,7 @@ function exportSvgFiles(doc){
 
   var      svgFolder = getFolderPath(doc) // string
   var  artboardIndex = doc.artboards.getActiveArtboardIndex()
-  var    layerStates = DELETENONPRINTINGLAYERS(doc) // info about locked & visible
+  var    stateArray = DELETENONPRINTINGLAYERS(doc) // info about locked & visible
   var        svgOpts = svgOptions(doc)
 
   //—————————————————————————————————————— delete existing SVGs */
@@ -173,7 +140,7 @@ function exportSvgFiles(doc){
 
   //—————————————————————————————————————— restore state */
 
-  RESTORENONPRINTINGLAYERS(layerStates)
+  RESTORENONPRINTINGLAYERS(stateArray)
   doc.artboards.setActiveArtboardIndex(artboardIndex)
 
   return true

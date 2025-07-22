@@ -4,6 +4,8 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.jsx */
 
+alert(10)
+
 /*———————————————————————————————————————— CONCATENATEPATH(part1, part2)
 
     given a part1 and part2, returns a correct path */
@@ -14,45 +16,76 @@ function CONCATENATEPATH(part1, part2){
   else return part1 + '\\' + part2
 }
 ///
-/*———————————————————————————————————————— DELETETEMPLATELAYERS(obj, stateArray)
+/*———————————————————————————————————————— SAVELAYERSTATES(obj, stateArray)
 
     recursive function to delete any nonprinting layers
-    while storing their locked/visible state 
+    while storing their locked/visible state */
 
-function DELETETEMPLATELAYERS(obj, stateArray){
+function SAVELAYERSTATES(obj, stateArray){
 
   var len = obj.layers.length
+  alert('treating '+obj.name +'\n'+ len +' layers to be treated')
+
   for (var x=0; x<len; x++) {
+    if (x > obj.layers.length -1) continue; // otherwise deleted layers will cause an error
+
     var layer = obj.layers[x]
-    stateArray.push.getState(layer)
+    alert(x + ': adding layer '+layer.name)
+
+    stateArray.push([layer.locked, layer.visible, layer.printable])
+    layer.locked = false
+    layer.visible = true
 
     if (!layer.printable){
-      layer.delete()
-      continue;
+      alert(layer.name + ' deleted')
+      layer.remove()
+      x -= 1
     }
-    if (layer.layers.length > 0)
-       stateArray.push(DELETETEMPLATELAYERS(layer, infoPassthrough)
+    else if (layer.layers.length > 0){
+      alert(layer.name +' has sublayers')
+      stateArray.concat(SAVELAYERSTATES(layer, stateArray))
+    }
   }
-
   return stateArray
 }
 /// */
+/*———————————————————————————————————————— RESTORELAYERSTATES(doc, stateArray) */
+
+function RESTORELAYERSTATES(doc, stateArray){
+  return
+
+  var len = stateArray.length
+
+  for (x=0; x<len; x++)
+    app.undo()
+  
+  return
+
+  var loopLimit = 200
+
+  while (doc.layers.length<layerStates.length){
+    app.undo()
+    loopLimit -= 1
+    if (loopLimit == 0){
+      alert('layerStates.length=' + layerStates.length + '\nlimit hit')
+      break
+    }
+  }
+
+  //———————————————————————————————— restore non-printing layer states
+
+  for (var r=0; r<layerStates.length; r++){
+    if (layerStates[r] == 1 || layerStates[r] == 3){doc.layers[r].locked  = true }
+    if (layerStates[r] == 2 || layerStates[r] == 3){doc.layers[r].visible = false}
+  }
+}
+///
 /*———————————————————————————————————————— DELETENONPRINTINGLAYERS(doc)
 
   delete any layers that are not printable
   returns array with locked & visible status of deleted layers */
 
 function DELETENONPRINTINGLAYERS(doc){
-
-  var debug = ''
-
-  for (x=0; x<doc.pageItems.length; x++)
-    debug += doc.pageItems[x].typename+'\n'
-
-  alert(debug)
-  return []
-
-//————————————————————————————————————————————————————————————————————————————————
 
   var layersLen = doc.layers.length
   var layerStates = new Array(layersLen)
@@ -134,6 +167,9 @@ function HASPATH(doc){
     
 }
 ///
+
+// all changes were undone with ONE undo
+
 /*———————————————————————————————————————— RESTORENONPRINTINGLAYERS(src)
 
     restores non-printing layers that were deleted
