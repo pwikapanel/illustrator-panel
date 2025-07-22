@@ -4,7 +4,6 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: utilities.jsx */
 
-
 /*———————————————————————————————————————— CONCATENATEPATH(part1, part2)
 
     given a part1 and part2, returns a correct path */
@@ -15,12 +14,46 @@ function CONCATENATEPATH(part1, part2){
   else return part1 + '\\' + part2
 }
 ///
+/*———————————————————————————————————————— DELETETEMPLATELAYERS(obj, stateArray)
+
+    recursive function to delete any nonprinting layers
+    while storing their locked/visible state 
+
+function DELETETEMPLATELAYERS(obj, stateArray){
+
+  var len = obj.layers.length
+  for (var x=0; x<len; x++) {
+    var layer = obj.layers[x]
+    stateArray.push.getState(layer)
+
+    if (!layer.printable){
+      layer.delete()
+      continue;
+    }
+    if (layer.layers.length > 0)
+       stateArray.push(DELETETEMPLATELAYERS(layer, infoPassthrough)
+  }
+
+  return stateArray
+}
+/// */
 /*———————————————————————————————————————— DELETENONPRINTINGLAYERS(doc)
 
   delete any layers that are not printable
   returns array with locked & visible status of deleted layers */
 
 function DELETENONPRINTINGLAYERS(doc){
+
+  var debug = ''
+
+  for (x=0; x<doc.pageItems.length; x++)
+    debug += doc.pageItems[x].typename+'\n'
+
+  alert(debug)
+  return []
+
+//————————————————————————————————————————————————————————————————————————————————
+
   var layersLen = doc.layers.length
   var layerStates = new Array(layersLen)
 
@@ -160,4 +193,5 @@ function STRCONTAINSSYNC(arg){
 ///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
+
 

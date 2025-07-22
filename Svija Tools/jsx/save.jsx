@@ -114,6 +114,40 @@ function exportSvgFile(doc){
   return true
 }
 ///
+/*———————————————————————————————————————— DELETENONPRINTINGLAYERS(doc)
+
+  delete any layers that are not printable
+  returns array with locked & visible status of deleted layers */
+
+function DELETENONPRINTINGLAYERS(doc){
+
+  var layersLen = doc.layers.length
+  var layerStates = new Array(layersLen)
+
+  for (x=layersLen-1; x>=0; x--){
+
+    var layer = doc.layers[x]
+    layerStates.push([layer.locked, layer.visible, layer.printable])
+
+    if (!doc.layers[z].printable){
+
+      if (doc.layers[z].locked){
+        layerStates[z] += 1
+        doc.layers[z].locked  = false
+      }
+
+      if (!doc.layers[z].visible){ // Error 9021: Trying to delete hidden layer [layer name]
+        layerStates[z] += 2
+        doc.layers[z].visible = true
+      }
+
+      doc.layers[z].remove()
+    }
+  }
+
+  return layerStates
+}
+///
 /*———————————————————————————————————————— exportSvgFiles(doc) VALIDATED */
 
 function exportSvgFiles(doc){
