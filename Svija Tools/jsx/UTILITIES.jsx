@@ -83,7 +83,7 @@ function DUMPKEYS(obj){
       str += '\n'+i+': '+obj[i]
     }
     catch(e){
-      str += '\n'+i+': error'
+      str += '\n'+i+': [error]'
     }
   }
   alert(str)

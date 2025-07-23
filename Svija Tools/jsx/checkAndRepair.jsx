@@ -260,6 +260,17 @@ function fixEmbeddedImage(doc, originalImage){
 
 function fixPlacedImage(doc, image){
 
+  /*—————————————————————————————————————— no file */
+
+  try{ var x = image.file }
+  catch(e){
+     var n
+     if (image.name != '') n = image.name
+     else n = TRANSLATE[LC].missingImage
+     msg = TRANSLATE[LC].hasNoFile
+     return [n, false, msg]
+  }
+  ///
   /*—————————————————————————————————————— setup */
 
   var imageName        = image.file.name
