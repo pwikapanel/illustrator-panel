@@ -11,6 +11,8 @@ Working on Svija Tools requires:
 3. link the repository to the Illustrator extensions folder
 4. enabling the Chrome debugger
 
+We use `debug.svija.site` for testing purposes.
+
 ![](images/divider.jpg "————————————————————————————————————————")
 ### 1. Enable `debug mode`:
 

@@ -378,7 +378,8 @@ function externalImages(doc){
     var img = doc.placedItems[x]
 
     // no file associated with image
-    try     { var imgPath = String(img.file.fsName)                   }
+    try     { var imgPath = String(img.file.fsName)                   } // didn't work with typeof
+
     catch(e){ return doc.name + ' ' + TRANSLATE[LC].imageSansSource   }
 
     imgPath += 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'

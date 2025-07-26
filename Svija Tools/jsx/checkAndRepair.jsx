@@ -262,7 +262,7 @@ function fixPlacedImage(doc, image){
 
   /*—————————————————————————————————————— no file */
 
-  try{ var x = image.file }
+  try{ var x = image.file } // didn't work with typeof
   catch(e){
      var n
      if (image.name != '') n = image.name
