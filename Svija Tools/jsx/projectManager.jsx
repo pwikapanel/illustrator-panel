@@ -132,8 +132,10 @@ function getLastPath(){
 
   if (ISMAC)
     res = app.activeDocument.path.fsName + '/'
-  else
+  else{
     res = app.activeDocument.path.fsName + '\\'
+    res = res.replace(/\\/g, '\\\\')
+  }
 
   return res + app.activeDocument.name
 }

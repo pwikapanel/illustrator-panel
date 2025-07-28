@@ -137,4 +137,10 @@ function siteUrlAlert(){
 ///
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
+/*
+00596 #0074                 projectManagerCallback received unparsable JSON:
+{"isSvija":"true","syncPath":"","siteURL":"","lastPath":"C:\Users\list\Desktop\debug.svija.site\SYNC\Home.ai"}
 
+
+00596 #0075   ⚠️ projectManagerCallback received "{"isSvija":"true","syncPath":"","siteURL":"","lastPath":"C:\Users\list\Desktop\debug.svija.site\SYNC\Home.ai"}"
+*/

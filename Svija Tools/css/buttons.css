@@ -1,5 +1,9 @@
 
+/* vim: set foldmethod=marker fmr=/*\—,/**\/: */
+
 /*:::::::::::::::::::::::::::::::::::::::: buttons.css
+
+/*———————————————————————————————————————— geometry
 
               105px  50/50 buttons (default)
                95px  logo button
@@ -30,6 +34,7 @@ input[type=button]{
 input[type=button][disabled]{
   opacity:0.7;
 }
+/**/
 
 /*:::::::::::::::::::::::::::::::::::::::: colors */
 
@@ -52,13 +57,13 @@ input[type=button]:not([disabled]):active{
   color:var(--fieldContents);
   border-color:#fff;
 }
-
+/**/
 /*———————————————————————————————————————— save button */
 
 #butt43{
   background-color:var(--accentDim);
 }
-
+/**/
 /*———————————————————————————————————————— "more" buttons
 
  see css/interface1.css etc.  */
@@ -78,7 +83,7 @@ div#moreDiv input[type=button]:active{
   color:var(--fieldContents);
   border-color:#fff;
 }
-
+/**/
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
