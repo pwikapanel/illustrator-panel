@@ -41,7 +41,7 @@ var projectManagerInterval = setInterval(function(){
     resArray.push('"lastPath":"' +LASTPATH+'"')  */
 
 function projectManagerCallback(arg){
-  //elapse(46, `ISSVIJA=${ISSVIJA} SITEURL=${SITEURL}\nSYNCPATH=${SYNCPATH}\nLASTPATH=${LASTPATH}`)
+  //apse(46, `\n ISSVIJA = ${ISSVIJA}\n SITEURL = ${SITEURL}\nSYNCPATH = ${SYNCPATH}\nLASTPATH = ${LASTPATH}`)
 
   /*—————————————————————————————————————— set panel title */
 
@@ -55,7 +55,7 @@ if (typeof SITEURL != 'undefined')
     CEP.setWindowTitle(panelTitle)
   }
   else
-    CEP.setWindowTitle('Svija Tools')
+    CEP.setWindowTitle('Svija')
   ///
   /*—————————————————————————————————————— guard no file open */
 
@@ -137,10 +137,4 @@ function siteUrlAlert(){
 ///
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
-/*
-00596 #0074                 projectManagerCallback received unparsable JSON:
-{"isSvija":"true","syncPath":"","siteURL":"","lastPath":"C:\Users\list\Desktop\debug.svija.site\SYNC\Home.ai"}
 
-
-00596 #0075   ⚠️ projectManagerCallback received "{"isSvija":"true","syncPath":"","siteURL":"","lastPath":"C:\Users\list\Desktop\debug.svija.site\SYNC\Home.ai"}"
-*/

@@ -3,7 +3,7 @@
 
 /*———————————————————————————————————————— parameters */
 
-var helpURL  = 'tech.svija.com/fromtools'
+var helpURL  = 'tech.svija.com/frompanel'
 var objId    = 'linkHelp'
 var objLabel = TRANSLATE.help
 

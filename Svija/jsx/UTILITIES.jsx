@@ -54,25 +54,6 @@ function PREPARELAYERS(obj){
   return
 }
 /// */
-/*———————————————————————————————————————— DERIVESYNCFOLDER()
-
-    used when saving an unsaved document — tries to
-    find a sync folder from other open documents */
-
-function DERIVESYNCFOLDER(){
-  if (ISMAC)
-    var comparator = '/sync'
-  else
-    var comparator = '\\sync'
-
-  for(var x=1; x<app.documents.length; x++){
-    var docPath = String(app.documents[x].path.fsName);
-    if (docPath.indexOf(comparator) > 0) return concatenatePath(docPath, '/Page Name.ai')
-  }
-
-  return ''
-}
-///
 /*———————————————————————————————————————— DUMPKEYS(obj) */
 
 function DUMPKEYS(obj){
@@ -87,27 +68,6 @@ function DUMPKEYS(obj){
     }
   }
   alert(str)
-}
-///
-/*———————————————————————————————————————— HASPATH(doc)
-
-    has file been saved at least once?
-    returns '' or error message */
-
-function HASPATH(doc){
-
-  if (doc.path != '') return ''
-
-  var syncPath = DERIVESYNCFOLDER()
-  if (syncPath == '') return TRANSLATE[LC].saveNormally.replace('*', doc.name)
-
-  var f = new File(syncPath).saveDlg('','')
-
-  if (f == null)  return TRANSLATE[LC].saveNormally.replace('*', doc.name)
-
-  app.activeDocument.saveAs(f, undefined)
-  return ''
-    
 }
 ///
 /*———————————————————————————————————————— ISSVIJAPAGE()
@@ -125,16 +85,23 @@ function ISSVIJAPAGE(){
   return true
 }
 ///
-/*———————————————————————————————————————— STRCONTAINSSYNC(arr, str) */
+/*———————————————————————————————————————— STRCONTAINSSYNC(arr, str)
+
+    must work on both ~/Documents/myFiles and C:\Users\Main\myFiles */
 
 function STRCONTAINSSYNC(arg){
 
-  var arr = arg.split('/')
+  var arr
+
+  if (arg.indexOf('/') > 0)
+    arr = arg.split('/')
+  else
+    arr = arg.split('\\')
 
   for (var i = 0; i < arr.length; i++)
     if (arr[i] == 'SYNC') return true
 
-  return false;
+  return false
 }
 ///
 

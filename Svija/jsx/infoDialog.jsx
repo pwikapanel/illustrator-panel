@@ -98,7 +98,7 @@ function infoDialog(extensionPath){
 
  // currently 500x278, want 500x250
 
-  panel = new Window ('dialog', 'Svija Tools Settings', undefined, {resizeable: false, borderless: true, closeButton: false})
+  panel = new Window ('dialog', 'Svija Settings', undefined, {resizeable: false, borderless: true, closeButton: false})
 
   panel.preferredSize = [500, 222]      // window will be 250px
   panel.margins       = [53, 0, 0, 0]   // left top right bottom // enforced 28px bottom margin when no title bar
@@ -179,7 +179,7 @@ function infoDialog(extensionPath){
   var  paraLine1  = para.add ("statictext")
   var  paraLine2  = para.add ("statictext")
 
-  paraLine1.text  = "Svija Tools " + TOOLSVERSION + " · Illustrator " + AIVERSION
+  paraLine1.text  = "Svija " + PANELVERSION + " · Illustrator " + AIVERSION
   paraLine2.text  = "error"
 
   paraLine2.text  = TRANSLATE[LC].startupTime +' '+ STARTUPTIME + ' MS · '

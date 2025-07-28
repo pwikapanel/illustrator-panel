@@ -13,7 +13,7 @@
     more alternatives for making network requests. */
 
 
-var REMOTE = 'https://msg.svija.com/tools' 
+var REMOTE = 'https://msg.svija.com/panel' 
 var path   = REMOTE+'/1.0.7/en.txt'
 
 GETREMOTEFILE(1, path, updateNews)

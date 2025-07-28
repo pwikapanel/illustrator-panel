@@ -42,7 +42,7 @@ CEP.setContextMenu('<Menu></Menu>', function(){})
 
 var TRANSLATE      = CEP.initResourceBundle() 
 var ISMAC          = CEP.getOSInformation().substring(0,3) == 'Mac' // boolean    macOS boolean · set in projectManager.js
-var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
+var PANELPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
 var MYDOCS         = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 
 var HOSTENV        = CEP.getHostEnvironment()
@@ -95,7 +95,7 @@ function fiveDigits(i, n){
   return v.slice(0-n)
 }
 
-elapse(88, `starting Svija Tools`)
+elapse(88, `starting Svija`)
 
 
   </script></>
@@ -171,7 +171,6 @@ elapse(88, `starting Svija Tools`)
   <script type="text/javascript" src="js/changeCase.js"           ></script>
   <script type="text/javascript" src="js/svijaLogo.js"          ></script>
   <script type="text/javascript" src="js/checkAndRepair.js"       ></script>
-  <script type="text/javascript" src="js/saveAll.js"              ></script>
   <script type="text/javascript" src="js/save.js"                 ></script>
   <script type="text/javascript" src="js/moreLess.js"             ></script>
   <script type="text/javascript" src="js/help.js"                 ></script>

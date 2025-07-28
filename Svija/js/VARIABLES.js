@@ -10,7 +10,7 @@ CEP.setContextMenu('<Menu></Menu>', function(){})
 
 var TRANSLATE      = CEP.initResourceBundle() 
 var ISMAC          = CEP.getOSInformation().substring(0,3) == 'Mac' // boolean    macOS boolean · set in projectManager.js
-var TOOLSPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
+var PANELPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
 var MYDOCS         = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
 
 var HOSTENV        = CEP.getHostEnvironment()
@@ -20,7 +20,7 @@ var AIVERSION      = HOSTENV.appVersion // illustrator version */
 ///
 /*———————————————————————————————————————— set here */
 
-const TOOLSVERSION   = '1.0.7'   // string shown in info panel
+const PANELVERSION   = '1.0.7'   // string shown in info panel
 const INTMS          =  500      // interval for the updating panel
 const STANDBYMS      = 1500      // how long is standby message shown
 
@@ -33,7 +33,7 @@ if (LC != 'fr') LC = LCDEFAULT // dev use only — delete when done
 
 VARTOCEP('LC'          , LC          )
 VARTOCEP('ISMAC'       , ISMAC       )
-VARTOCEP('TOOLSVERSION', TOOLSVERSION)
+VARTOCEP('PANELVERSION', PANELVERSION)
 VARTOCEP('AIVERSION'   , AIVERSION   )
 ///
 /*———————————————————————————————————————— set in panelManager */

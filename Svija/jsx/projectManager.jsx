@@ -57,10 +57,10 @@ function projectManager(){
   var resArray = []
 
   // `${variable}` is not supported by CEP
-  resArray.push( '"isSvija":"' +ISSVIJA+'"' )
-  resArray.push('"syncPath":"' +SYNCPATH+'"')
-  resArray.push( '"siteURL":"' +SITEURL +'"')
-  resArray.push('"lastPath":"' +LASTPATH+'"')
+  resArray.push( '"isSvija":"' +               ISSVIJA   + '"')
+  resArray.push('"syncPath":"' + escapeSlashes(SYNCPATH) + '"')
+  resArray.push( '"siteURL":"' +               SITEURL   + '"')
+  resArray.push('"lastPath":"' + escapeSlashes(LASTPATH) + '"')
 
   return '{' + resArray.join(',') +'}'
 }
@@ -132,12 +132,18 @@ function getLastPath(){
 
   if (ISMAC)
     res = app.activeDocument.path.fsName + '/'
-  else{
+  else
     res = app.activeDocument.path.fsName + '\\'
-    res = res.replace(/\\/g, '\\\\')
-  }
 
   return res + app.activeDocument.name
+}
+///
+/*———————————————————————————————————————— escapeSlashes(arg){
+
+    adds extra \\ so JSON parser will understand */
+
+function escapeSlashes(arg){
+  return arg.replace(/\\/g, '\\\\')
 }
 ///
 

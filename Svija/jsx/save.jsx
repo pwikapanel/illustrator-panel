@@ -2,8 +2,6 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
- // what happens when I undo if nothing was necessary to do?
-
 //:::::::::::::::::::::::::::::::::::::::: save.js / save.jsx
 
 /*———————————————————————————————————————— notes
@@ -14,7 +12,7 @@
     otherwise returns a localized success message */
 ///
 
-//:::::::::::::::::::::::::::::::::::::::: main VALIDATED
+//:::::::::::::::::::::::::::::::::::::::: main
 
 /*———————————————————————————————————————— savePages(saveAll) */
 
@@ -131,6 +129,7 @@ function exportSvgFiles(doc){
 
   for (x=0; x<doc.artboards.length; x++){
     var path = CONCATENATEPATH(svgFolder, makeSvgName(doc, x))
+//alert(svgFolder+'\n'+makeSvgName(doc, x)+'\n'+path)
     var svgFile = File(path)
     if (svgFile.exists) svgFile.remove()
   }
@@ -530,12 +529,11 @@ function getDocPath(doc){
     returns SVG folder path from SYNC folder */
 
 function getFolderPath(doc){
- 
-  var s = SYNCPATH
-  if (s == '') return ''
 
-  if (ISMAC) return s + '/SVIJA/SVG Files'
-  else return s + '\\SVIJA\\SVG Files'
+  if (SYNCPATH == '') return ''
+
+  if (ISMAC) return SYNCPATH + '/SVIJA/SVG Files'
+  else return SYNCPATH + '\\SVIJA\\SVG Files'
 }
 ///
 /*———————————————————————————————————————— makeMB(x)

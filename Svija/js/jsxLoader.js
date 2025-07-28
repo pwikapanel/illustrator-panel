@@ -8,7 +8,7 @@
      returns a directory listing of the jsx subdirectory
      based on a function written by ChatGPT */
 
-var dirPath = `${TOOLSPATH}/jsx`
+var dirPath = `${PANELPATH}/jsx`
 
 var cmd = `(function(){
   var folder = new Folder("${dirPath}")
