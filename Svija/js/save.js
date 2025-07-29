@@ -22,6 +22,10 @@ obj.style.display = 'inline'
 
 obj.addEventListener('mouseup', (evn) => {
   var alt   = evn.altKey
+  if (alt){
+    openSvgFolder()
+    return
+  }
 
   standbyBanner.innerHTML = TRANSLATE.saving
   standbyDiv.style.display='flex'
@@ -65,6 +69,24 @@ obj.addEventListener('mouseup', (evn) => {
     CEP.evalScript('savePages(true)', STANDBYCALLBACK)
   }, 200);
 })
+///
+
+/*:::::::::::::::::::::::::::::::::::::::: functions */
+
+/*———————————————————————————————————————— openSvgFolder() */
+
+function openSvgFolder(alt){
+  if (SYNCPATH == '') return
+
+  let path
+  if (ISMAC) path = '/SVIJA/SVG Files'
+  else       path = '\\SVIJA\\SVG Files'
+
+  path = SYNCPATH + path
+  let res = window.cep.process.createProcess(OPENER, path)
+
+  elapse(89, `openSvgFolder returned: ${res}`)
+}
 ///
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */

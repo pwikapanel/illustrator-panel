@@ -74,7 +74,6 @@ function projectManager(){
     if possible or '' */
 
 function getSyncPath(){
-
   var res = app.activeDocument.path.fsName
 
   if (!STRCONTAINSSYNC(res)) return ''

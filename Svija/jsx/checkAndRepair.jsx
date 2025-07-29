@@ -2,11 +2,13 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
- // what happens when I undo if nothing was necessary to do?
-
 //:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js / checkAndRepair.jsx
 
 /*———————————————————————————————————————— notes
+
+    this checks images for being
+    - embedded
+    - placed from outside Links folder
 
     if errors or warnings provides an alert 
     and returns ''

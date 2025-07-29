@@ -93,7 +93,7 @@ function STRCONTAINSSYNC(arg){
 
   var arr
 
-  if (arg.indexOf('/') > 0)
+  if (arg.indexOf('/') > -1)
     arr = arg.split('/')
   else
     arr = arg.split('\\')
