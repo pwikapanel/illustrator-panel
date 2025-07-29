@@ -2,8 +2,6 @@
 
 /* vim: set foldmethod=marker fmr=/*\—,///: */
 
- // what happens when I undo if nothing was necessary to do?
-
 //:::::::::::::::::::::::::::::::::::::::: checkAndRepair.js / checkAndRepair.jsx
 
 /*———————————————————————————————————————— notes
