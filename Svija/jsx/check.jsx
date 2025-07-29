@@ -40,6 +40,21 @@
 
 //:::::::::::::::::::::::::::::::::::::::: main
 
+
+
+/* I will have to do what I do with layers with pageItems:
+
+var doc = app.activeDocument;
+var items = doc.pageItems;
+
+for (var i = 0; i < items.length; i++) {
+  $.writeln(items[i].typename + ": " + items[i].name);
+}
+
+otherwise I can't repair a locked image 
+
+I can't just unlock each image, because it could be in a locked group */
+
 /*———————————————————————————————————————— program */
 
 function checkAndRepair(){
@@ -60,9 +75,9 @@ function checkAndRepair(){
   IMAGESFAILED   = []   // array of arrays [name, boolean warning/error, message]
   
   ///
-  /*—————————————————————————————————————— remove non-printing layers */
+  /*—————————————————————————————————————— store layer states */
 
-  PREPARELAYERS(doc) // unlock & make visible all layers, delete template layers
+  var stateArray = saveLayerStates(doc, [])
   ///
 
   //:::::::::::::::::::::::::::::::::::::: checking & repairing
@@ -109,9 +124,9 @@ function checkAndRepair(){
 
   //:::::::::::::::::::::::::::::::::::::: clean up
 
-  /*—————————————————————————————————————— restore non-printing layers */
+  /*—————————————————————————————————————— restore layer states */
 
-  app.undo()
+  restoreLayerStates(doc, stateArray)
   ///
   /*—————————————————————————————————————— sort image messages into success/failed
   
@@ -526,6 +541,61 @@ function checkSupportedFormat(img){
   return true 
 }
 ///
+/*———————————————————————————————————————— saveLayerStates(obj, stateArray)
+
+    recursive function to delete any nonprinting layers
+    while storing their locked/visible state */
+
+function saveLayerStates(obj, stateArray){
+
+  var len = obj.layers.length
+//alert('treating "'+obj.name +'"\n'+ len +' layers to be treated')
+
+  for (var x=0; x<len; x++) {
+    var layer = obj.layers[x]
+//  alert(x + ': adding layer "'+layer.name +'"')
+
+    var thisData = [layer.visible, layer.locked, layer.name]
+    stateArray.push(thisData)
+    alert(layer.name+'\n'+layer.visible+'\n'+layer.locked)
+    layer.visible = true
+    layer.locked = false
+
+    if (layer.layers.length > 0){
+//    alert('"' + layer.name +'" has sublayers')
+      stateArray.concat(saveLayerStates(layer, stateArray))
+    }
+  }
+  return stateArray
+}
+/// */
+/*———————————————————————————————————————— restoreLayerStates(doc, stateArray) */
+
+function restoreLayerStates(obj, stateArray){
+
+  alert('treating "'+obj.name +'"')
+  var len = obj.layers.length
+//alert(len +' layers to be treated')
+
+  for (var x=0; x<len; x++) {
+    var layer     = obj.layers[x]
+//  alert(x + ': restoring layer "'+layer.name +'"')
+
+    var thisData  = stateArray.shift()
+    alert(thisData[2]+'\n'+thisData[0]+'\n'+thisData[1])
+    layer.visible = thisData[0]
+    layer.locked  = thisData[1]
+    var debugName = thisData[2]
+
+    if (layer.layers.length > 0){
+//    alert('"' + layer.name +'" has sublayers')
+      stateArray = restoreLayerStates(layer, stateArray)
+    }
+  }
+  return stateArray
+}
+///
+
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
