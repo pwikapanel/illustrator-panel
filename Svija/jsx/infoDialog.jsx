@@ -19,7 +19,7 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: load colors */
 
-// must be outside of function to be accessible with this['varname']
+/*—— must be outside of function to be accessible with this['varname'] */
 
 var colorWindow0
 var colorUrl0
@@ -36,6 +36,7 @@ var colorText2
 var colorWindow3
 var colorUrl3
 var colorText3
+///
 
 /*:::::::::::::::::::::::::::::::::::::::: program */
 
@@ -70,7 +71,7 @@ function infoDialog(extensionPath){
 
   }
 /// 
-
+  /*———————————————————— color defs */
 
   colorWindow0  = panelBg0
   colorUrl0     = checkedBox0
@@ -91,41 +92,45 @@ function infoDialog(extensionPath){
   var colorWindow = this['colorWindow' + INTERFACE]
   var colorUrl    = this[   'colorUrl' + INTERFACE]
   var colorText   = this[  'colorText' + INTERFACE]
+  ///
 
   //:::::::::::::::::::: create panel
 
   /*———————————————————— create panel */
 
- // currently 500x278, want 500x250
+  var dialogHeight
+
+  if (ISMAC) dialogHeight = 222 // +28px because no title bar
+  else       dialogHeight = 250 // windows doesn't do that
 
   panel = new Window ('dialog', 'Svija Settings', undefined, {resizeable: false, borderless: true, closeButton: false})
 
-  panel.preferredSize = [500, 222]      // window will be 250px
+  panel.preferredSize = [500, dialogHeight]
   panel.margins       = [53, 0, 0, 0]   // left top right bottom // enforced 28px bottom margin when no title bar
   panel.orientation   = 'row'
-  panel.alignChildren = ['fill', 'fill']
+  panel.alignChildren = ['left', 'top']
   panel.spacing       = 0
 
   var panelBGcolor = panel.graphics.newBrush(panel.graphics.BrushType.SOLID_COLOR, colorWindow, 1)
   panel.graphics.backgroundColor = panelBGcolor
   /// 
 
-  //:::::::::::::::::::: main content blocks
+  //:::::::::::::::::::: two content blocks
 
-  /*———————————————————— splash image */
+  /*———————————————————— left: splash image */
 
   var imgPath = extensionPath + '/png/vecteezy-374998.png'
   var splash  = panel.add ("image", undefined, File (imgPath))
   splash.size = [90,222]      // does not affect image size; affects panel size
                               // if I use a smaller size, things can be drawn on top of image
   ///
-  /*———————————————————— right content group */
+  /*———————————————————— right: content group */
   
   var content = panel.add ('group')
 
   content.spacing       = 0
   content.orientation   = 'column'
-  content.alignment     = 'center'
+  content.alignment     = 'top'
   content.preferredSize = [357,222]
   content.margins       = [0, 0, 0, 0] // left top right bottom
 
@@ -134,7 +139,7 @@ function infoDialog(extensionPath){
 
   ///
 
-  //:::::::::::::::::::: right-side content blocks
+  //:::::::::::::::::::: right-side sub blocks
 
   /*———————————————————— site url */
   
@@ -206,8 +211,8 @@ function infoDialog(extensionPath){
   applyButton  = buttons.add ("button", undefined, "OK")
   applyButton.preferredSize = [70, 20]
 
-  // buttons cannot be colored
-
+//var testBg5 = buttons.graphics.newBrush(buttons.graphics.BrushType.SOLID_COLOR, [0.5, 0.5, 0], 1)
+//buttons.graphics.backgroundColor = testBg5
 ///
 
   panel.defaultElement = applyButton
