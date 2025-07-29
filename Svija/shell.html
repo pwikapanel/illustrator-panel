@@ -43,7 +43,8 @@ CEP.setContextMenu('<Menu></Menu>', function(){})
 var TRANSLATE      = CEP.initResourceBundle() 
 var ISMAC          = CEP.getOSInformation().substring(0,3) == 'Mac' // boolean    macOS boolean · set in projectManager.js
 var PANELPATH      = CEP.getSystemPath(SystemPath.EXTENSION)
-var MYDOCS         = CEP.getSystemPath(SystemPath.MY_DOCUMENTS)
+var MYDOCS         = CEP.getSystemPath(SystemPath.MY_DOCUMENTS) // has wrong format (/ not \
+if (!ISMAC) MYDOCS = MYDOCS.replace(/\//g, '\\')
 
 var HOSTENV        = CEP.getHostEnvironment()
 var LC             = HOSTENV.appUILocale.substr(0,2) // en_US
@@ -178,10 +179,5 @@ elapse(88, `starting Svija`)
 
   <script type="text/javascript" src="js/panelManager.js"         ></script>
   <script type="text/javascript" src="js/usage.js"                ></script>
-
-<script>
-
-
-</script>
 
 </body></html>

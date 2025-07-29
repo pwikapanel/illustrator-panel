@@ -65,7 +65,7 @@ let STYLE = getComputedStyle(document.body) // object, managed in svijaLogo.js
 
 if (typeof localStorage.cssVarJson != 'undefined'){
   installColors(localStorage.cssVarJson)
-  elapse(60, `  CSS JSON installed from localStorage`)
+  elapse(60, `CSS JSON installed from localStorage`)
   }
 else{
   var filePath = 'json/illustratorColorDefs.json'

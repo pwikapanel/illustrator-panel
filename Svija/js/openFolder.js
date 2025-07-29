@@ -55,33 +55,27 @@ obj.addEventListener('mouseup', (evn) => {
 
 /*:::::::::::::::::::::::::::::::::::::::: main function */
 
-/*———————————————————————————————————————— openFolder(alt) */
+/*———————————————————————————————————————— openFolder()
+
+    for PC, path should be correct string — no extra
+    slashes except those necessary to define the string */
 
 function openFolder(){
 
   let path
 
-  if (LASTPATH == '')
-    path = MYDOCS
+  if (LASTPATH == '') path = MYDOCS
+  else if (ISMAC)     path = LASTPATH.substr(0, LASTPATH.lastIndexOf('/'))
+  else                path = LASTPATH.substr(0, LASTPATH.lastIndexOf('\\'))
 
-  else if (ISMAC)
-    path = LASTPATH.substr(0, LASTPATH.lastIndexOf('/'))
+  let res = window.cep.process.createProcess(OPENER, path)
 
-  else
-    path = LASTPATH.substr(0, LASTPATH.lastIndexOf('\\'))
-
-  path = path.replace(/\\\\/g, "\\")
-
-  window.cep.process.createProcess(OPENER, path)
-
+  elapse(75, `openFolder returned: ${res}`)
 }
 ///
-/*———————————————————————————————————————— openProjectFolder(alt) */
+/*———————————————————————————————————————— openProjectFolder() */
 
 function openProjectFolder(alt){
-
-  if (ISMAC) var OPENER = MACOPEN
-  else       var OPENER = PCOPEN
 
   if (SYNCPATH == ''){
     LERT(TRANSLATE.noProject)
@@ -89,10 +83,9 @@ function openProjectFolder(alt){
   }
 
   var path = SYNCPATH.slice(0,-5)
-  path     = path.replace(/\\\\/g, "\\")
+  let res = window.cep.process.createProcess(OPENER, path)
 
-  window.cep.process.createProcess(OPENER, path)
-
+  elapse(90, `openProjectFolder returned: ${res}`)
 }
 ///
 

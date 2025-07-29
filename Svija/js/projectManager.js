@@ -107,17 +107,17 @@ if (typeof SITEURL != 'undefined')
   /*—————————————————————————————————————— is svija site */
 
   SYNCPATH = results.syncPath
-  localStorage.syncPath = SYNCPATH
+  localStorage.SYNCPATH = SYNCPATH
 //elapse(109, `SYNCPATH=${SYNCPATH}`)
 
   SITEURL  = results.siteURL 
-  localStorage.siteUrl = SITEURL
+  localStorage.SITEURL = SITEURL
 //elapse(113, `SITEURL=${SITEURL}`)
 
   if (SITEURL == '') siteUrlAlert()
 
   LASTPATH = results.lastPath
-  localStorage.lastPath = LASTPATH
+  localStorage.LASTPATH = LASTPATH
 //elapse(117, `LASTPATH=${LASTPATH}`)
   ///
 
