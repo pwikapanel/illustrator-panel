@@ -70,7 +70,7 @@ function checkAndRepair(){
 
   //:::::::::::::::::::::::::::::::::::::: checking & repairing
 
-  /*—————————————————————————————————————— "Links" folder    create if necessary */
+  /*—————————————————————————————————————— Links folder      create if necessary */
 
   var linksFolderObj = Folder(CONCATENATEPATH(doc.path, 'Links'))
   if (!Folder(linksFolderObj).exists){
@@ -81,9 +81,7 @@ function checkAndRepair(){
   /*—————————————————————————————————————— artboards         delete erroneous */
 
   var msgArray = removeExtraArtboards(doc)
-
-    if (msgArray.length > 0)
-      REPAIRS.push(msgArray)
+  if (msgArray.length > 0) REPAIRS.push(msgArray)
   ///
   /*—————————————————————————————————————— embedded images   place if possible (rasterItems)
   
@@ -205,9 +203,11 @@ function fixEmbeddedImage(doc, originalImage){
   var imageName
   var replacementImage
 
-  if (originalImage.name != '') imageName = originalImage.name
-  else
-    imageName = TRANSLATE[LC].missingImage 
+  try{      imageName = filenameFromPath('' + originalImage.file) }
+  catch(e){
+    if(originalImage.name.length > 0) imageName = originalImage.name
+    else imageName = TRANSLATE[LC].missingImage
+  }
   ///
   /*—————————————————————————————————————— is format supported? */
 
@@ -222,6 +222,8 @@ function fixEmbeddedImage(doc, originalImage){
     var originalFile = new File(originalPath)
      missingOriginal = false
   } catch(e){  }
+
+// alert('status: '+originalImage.status) // RasterLinkState.DATAFROMFILE
 
   if (originalImage.status != 'RasterLinkState.DATAFROMFILE') // this is a precaution
     missingOriginal = true                                    // not encountered so far
@@ -248,10 +250,13 @@ function fixEmbeddedImage(doc, originalImage){
     replacementImage.transform(moveMatrix)
   }
   ///
-  /*—————————————————————————————————————— correct the image depth */
+  /*—————————————————————————————————————— fix the image depth */
 
-  while (replacementImage.absoluteZOrderPosition > imageDepth+1)
+  app.redraw() // or use while loop to wait for absoluteZOrderPosition to be defined
+
+  while (replacementImage.absoluteZOrderPosition > imageDepth+1) // NECESSARY BUT THROWS ERROR RIGHT NOW
     replacementImage.zOrder(ZOrderMethod.SENDBACKWARD)
+
   ///
   /*—————————————————————————————————————— prepare response */
 
@@ -494,7 +499,7 @@ function getAlertDepth(img){
   while (obj.parent.typename == 'GroupItem')
      obj = obj.parent
 
-  alert('Group depth: '+obj.absoluteZOrderPosition)
+//alert('Group depth: '+obj.absoluteZOrderPosition)
   return obj.absoluteZOrderPosition
 }
 ///
@@ -549,7 +554,7 @@ function newFile(folder, name) {
 function checkSupportedFormat(img){
 
   try{ var parts = String(img.file).split('.') }
-  catch(e){ return false }
+  catch(e){ return true }
 
   var ext = parts[parts.length - 1]
   var neme = img.file.name
@@ -590,9 +595,6 @@ function saveLayerStates(obj, stateArray){
   return stateArray
 }
 /// */
-
-// this should be in opposite order, probably — restore from sublayers up
-
 /*———————————————————————————————————————— restoreLayerStates(obj, stateArray) */
 
 function restoreLayerStates(obj, stateArray){
@@ -656,6 +658,9 @@ function restoreItemStates(obj, stateArray){
 
   for (var x=len-1; x>-1; x--) {
     var pageItem  = obj.pageItems[x]
+
+    if (pageItem.name.slice(0,1) == '▼') continue;
+
     var thisData  = stateArray.pop()
 
 //  alert(x + ' restoring item: '+thisData[2]+'\nhidden: '+thisData[0]+' • locked: '+thisData[1])
@@ -666,6 +671,18 @@ function restoreItemStates(obj, stateArray){
   return stateArray
 }
 ///
+/*———————————————————————————————————————— filenameFromPath(originalImage.file)
+
+    returns last part of path = image filename */
+
+function filenameFromPath(str){
+  if (str.indexOf('/') < 0) return '<image>'
+
+  var parts = str.split('/')
+  var res = parts[parts.length -1 ]
+  return decodeURI(res)
+}
+///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
-alert(0)
+
