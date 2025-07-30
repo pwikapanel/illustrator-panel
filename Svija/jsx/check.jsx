@@ -187,7 +187,7 @@ function removeExtraArtboards(doc){
     takes an embedded image and tries to change it to
     a link to an external file. Not sure what happens
     if the original cannot be found, a yellow rectangle
-    is placed over the image — function drawYellowRectangle()
+    is placed over the image — function yellowRectangle()
 
     returns image filename, succes/failure, message if modification
     returns [] if no change */
@@ -231,7 +231,7 @@ function fixEmbeddedImage(doc, originalImage){
   /*—————————————————————————————————————— can't fix: create new yellow square  */
 
   if(!supportedFormat || missingOriginal)
-    replacementImage = drawYellowRectangle(originalImage)
+    replacementImage = yellowRectangle(originalImage)
   ///
   /*—————————————————————————————————————— can fix: create new image for fix */
 
@@ -282,7 +282,7 @@ function fixEmbeddedImage(doc, originalImage){
   return [imageName, success, msg]
 }
 ///
-/*———————————————————————————————————————— fixPlacedImage(doc, img)
+/*———————————————————————————————————————— fixPlacedImage(doc, img) ADD YELLOW BOX
 
     three cases:
 
@@ -307,11 +307,20 @@ function fixPlacedImage(doc, image){
 
   try{ var x = image.file } // didn't work with typeof
   catch(e){
-     var n
-     if (image.name != '') n = image.name
-     else n = TRANSLATE[LC].missingImage
-     msg = TRANSLATE[LC].hasNoFile
-     return [n, false, msg]
+    var n
+    if (image.name != '') n = image.name
+    else n = TRANSLATE[LC].missingImage
+
+    var imageDepth  = image.absoluteZOrderPosition
+    var replacementImage = yellowRectangle(image)
+    app.redraw() // or use while loop to wait for absoluteZOrderPosition to be defined
+
+    while (replacementImage.absoluteZOrderPosition > imageDepth+1) // NECESSARY BUT THROWS ERROR RIGHT NOW
+      replacementImage.zOrder(ZOrderMethod.SENDBACKWARD)
+    replacementImage.name = TRANSLATE[LC].missingOriginal
+
+    msg = TRANSLATE[LC].hasNoFile
+    return [n, false, msg]
   }
   ///
   /*—————————————————————————————————————— setup */
@@ -416,12 +425,12 @@ function alertChecked(doc){
 
 //:::::::::::::::::::::::::::::::::::::::: utility functions
 
-/*———————————————————————————————————————— drawYellowRectangle(obj)
+/*———————————————————————————————————————— yellowRectangle(obj)
 
   create translucent rectangle to signal embedded images
   that can't be found and need to be replaced */
 
-function drawYellowRectangle(obj){
+function yellowRectangle(obj){
 
   var alertColor = new RGBColor()
   alertColor.red = 192; alertColor.green = 255; alertColor.blue = 0
