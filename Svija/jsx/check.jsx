@@ -41,20 +41,6 @@
 //:::::::::::::::::::::::::::::::::::::::: main
 
 
-
-/* I will have to do what I do with layers with pageItems:
-
-var doc = app.activeDocument;
-var items = doc.pageItems;
-
-for (var i = 0; i < items.length; i++) {
-  $.writeln(items[i].typename + ": " + items[i].name);
-}
-
-otherwise I can't repair a locked image 
-
-I can't just unlock each image, because it could be in a locked group */
-
 /*———————————————————————————————————————— program */
 
 function checkAndRepair(){
@@ -75,9 +61,11 @@ function checkAndRepair(){
   IMAGESFAILED   = []   // array of arrays [name, boolean warning/error, message]
   
   ///
-  /*—————————————————————————————————————— store layer states */
+  /*—————————————————————————————————————— store layer & pageItem states */
 
   var stateArray = saveLayerStates(doc, [])
+  var itemArray = saveItemStates(doc, [])
+//alert('itemArray\n'+itemArray.join('\n'))
   ///
 
   //:::::::::::::::::::::::::::::::::::::: checking & repairing
@@ -89,6 +77,13 @@ function checkAndRepair(){
     Folder(linksFolderObj).create()
     REPAIRS.push(TRANSLATE[LC].linksCreated)
   }
+  ///
+  /*—————————————————————————————————————— artboards         delete erroneous */
+
+  var msgArray = removeExtraArtboards(doc)
+
+    if (msgArray.length > 0)
+      REPAIRS.push(msgArray)
   ///
   /*—————————————————————————————————————— embedded images   place if possible (rasterItems)
   
@@ -124,9 +119,10 @@ function checkAndRepair(){
 
   //:::::::::::::::::::::::::::::::::::::: clean up
 
-  /*—————————————————————————————————————— restore layer states */
+  /*—————————————————————————————————————— restore layer & pageItem states */
 
-  restoreLayerStates(doc, stateArray)
+  var res1 = restoreItemStates(doc, itemArray)
+  var res2 = restoreLayerStates(doc, stateArray)
   ///
   /*—————————————————————————————————————— sort image messages into success/failed
   
@@ -164,6 +160,27 @@ function checkAndRepair(){
 
 //:::::::::::::::::::::::::::::::::::::::: primary functions
 
+/*———————————————————————————————————————— removeExtraArtboards(doc)
+
+    deletes artboards that have been created by error */
+
+function removeExtraArtboards(doc){
+  var len = doc.artboards.length
+  var res = []
+//alert(len)
+  for (var x=len-1; x>-1; x--){
+//  alert('x: '+x)
+//  alert('name: '+doc.artboards[x].name)
+    if (doc.artboards[x].name.indexOf(' ') > 0){
+      var tmp = TRANSLATE[LC].artboardRemoved1 + ' "' + doc.artboards[x].name + '" ' + TRANSLATE[LC].artboardRemoved2
+      res.push(tmp)
+      doc.artboards[x].remove()
+      
+    }
+  }
+  return res
+}
+///
 /*———————————————————————————————————————— fixEmbeddedImage(obj)
 
     looks for the original file for an embedded image
@@ -178,6 +195,8 @@ function checkAndRepair(){
     returns [] if no change */
 
 function fixEmbeddedImage(doc, originalImage){
+
+  if (!originalImage.layer.printable) return []
  
   /*—————————————————————————————————————— setup */
 
@@ -276,6 +295,8 @@ function fixEmbeddedImage(doc, originalImage){
     returns [] if no change */
 
 function fixPlacedImage(doc, image){
+
+  if (!image.layer.printable) return []
 
   /*—————————————————————————————————————— no file */
 
@@ -543,8 +564,8 @@ function checkSupportedFormat(img){
 ///
 /*———————————————————————————————————————— saveLayerStates(obj, stateArray)
 
-    recursive function to delete any nonprinting layers
-    while storing their locked/visible state */
+    recursive function to save layer state, including
+    locked, visible and name (for debugging) */
 
 function saveLayerStates(obj, stateArray){
 
@@ -557,45 +578,94 @@ function saveLayerStates(obj, stateArray){
 
     var thisData = [layer.visible, layer.locked, layer.name]
     stateArray.push(thisData)
-    alert(layer.name+'\n'+layer.visible+'\n'+layer.locked)
+//  alert('layer: '+layer.name+'\nvisible: '+layer.visible+' • locked: '+layer.locked)
     layer.visible = true
     layer.locked = false
 
     if (layer.layers.length > 0){
 //    alert('"' + layer.name +'" has sublayers')
-      stateArray.concat(saveLayerStates(layer, stateArray))
+      stateArray = stateArray.concat(saveLayerStates(layer, stateArray))
     }
   }
   return stateArray
 }
 /// */
-/*———————————————————————————————————————— restoreLayerStates(doc, stateArray) */
+
+// this should be in opposite order, probably — restore from sublayers up
+
+/*———————————————————————————————————————— restoreLayerStates(obj, stateArray) */
 
 function restoreLayerStates(obj, stateArray){
 
-  alert('treating "'+obj.name +'"')
+//alert('treating "'+obj.name +'"')
   var len = obj.layers.length
 //alert(len +' layers to be treated')
 
-  for (var x=0; x<len; x++) {
+  for (var x=len-1; x>-1; x--) {
     var layer     = obj.layers[x]
-//  alert(x + ': restoring layer "'+layer.name +'"')
-
-    var thisData  = stateArray.shift()
-    alert(thisData[2]+'\n'+thisData[0]+'\n'+thisData[1])
-    layer.visible = thisData[0]
-    layer.locked  = thisData[1]
-    var debugName = thisData[2]
 
     if (layer.layers.length > 0){
 //    alert('"' + layer.name +'" has sublayers')
       stateArray = restoreLayerStates(layer, stateArray)
     }
+
+//  alert(x + ': restoring layer "'+layer.name +'"')
+    var thisData  = stateArray.pop()
+//  alert('layer: '+thisData[2]+'\nvisible: '+thisData[0]+' • locked: '+thisData[1])
+    layer.visible = thisData[0]
+    layer.locked  = thisData[1]
+    var debugName = thisData[2]
+
+  }
+  return stateArray
+}
+///
+/*———————————————————————————————————————— saveItemStates(obj, itemArray)
+
+    saves locked & hidden status for every item
+    excluding layers, which are saved separately */
+
+function saveItemStates(obj, itemArray){
+
+  var len = obj.pageItems.length
+
+  for (var x=0; x<len; x++) {
+
+//  if (x==0) DUMPKEYS(obj.pageItems[x])
+
+    var pageItem = obj.pageItems[x]
+
+    var tempName = pageItem.typename + ' ('+pageItem.name+') ' + pageItem.uuid
+
+    var thisData = [pageItem.hidden, pageItem.locked, tempName]
+    itemArray.push(thisData)
+
+//  alert(x + ' saving item: '+tempName+'\nhidden: '+pageItem.hidden+' • locked: '+pageItem.locked)
+
+    pageItem.hidden = false
+    pageItem.locked = false
+  }
+  return itemArray
+}
+/// */
+/*———————————————————————————————————————— restoreItemStates(obj, stateArray) */
+
+function restoreItemStates(obj, stateArray){
+
+  var len = obj.pageItems.length
+
+  for (var x=len-1; x>-1; x--) {
+    var pageItem  = obj.pageItems[x]
+    var thisData  = stateArray.pop()
+
+//  alert(x + ' restoring item: '+thisData[2]+'\nhidden: '+thisData[0]+' • locked: '+thisData[1])
+
+    pageItem.hidden = thisData[0]
+    pageItem.locked  = thisData[1]
   }
   return stateArray
 }
 ///
 
-
 //:::::::::::::::::::::::::::::::::::::::: fin
-
+alert(0)

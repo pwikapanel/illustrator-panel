@@ -45,6 +45,25 @@ function ISSVIJAPAGE(){
   return true
 }
 ///
+/*———————————————————————————————————————— STRCONTAINSSYNC(arr, str)
+
+    must work on both ~/Documents/myFiles and C:\Users\Main\myFiles */
+
+function STRCONTAINSSYNC(arg){
+
+  var arr
+
+  if (arg.indexOf('/') > -1)
+    arr = arg.split('/')
+  else
+    arr = arg.split('\\')
+
+  for (var i = 0; i < arr.length; i++)
+    if (arr[i] == 'SYNC') return true
+
+  return false
+}
+///
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 

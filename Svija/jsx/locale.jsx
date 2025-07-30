@@ -40,6 +40,9 @@ unsupportedFormat: "is not a supported format",
        filesSaved: 'Files Saved',
 pleaseCheckRepair: 'Please run "Check & Repair"',
 
+ artboardRemoved1: 'artboard',
+ artboardRemoved2: 'deleted',
+
           noComma: "———"
   },
   fr: {
@@ -76,6 +79,9 @@ unsupportedFormat: "est d'un format non pris en charge",
         fileSaved: 'Fichier enregistré',
        filesSaved: 'Fichiers enregistrés',
 pleaseCheckRepair: 'Cliquer sur "Vérifier"',
+
+ artboardRemoved2: 'plan de travail',
+ artboardRemoved2: 'supprimé',
 
           noComma: "———"
   }
