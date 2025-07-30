@@ -98,10 +98,9 @@ function infoDialog(extensionPath){
 
   /*———————————————————— create panel */
 
-  var dialogHeight
+  var dialogHeight = 250
 
-  if (ISMAC) dialogHeight = 222 // +28px because no title bar
-  else       dialogHeight = 250 // windows doesn't do that
+  if (ISMAC) dialogHeight -= 28 // because no title bar
 
   panel = new Window ('dialog', 'Svija Settings', undefined, {resizeable: false, borderless: true, closeButton: false})
 

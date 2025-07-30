@@ -78,7 +78,9 @@ div#standbyBanner{
   border-color:var(--accentBright);
          color:var(--accentBright);
 
-  font-size:16px;
+  /* font-size:16px; */
+  font-size:12px;
+  font-weight:600;
 }
 
 /**/
