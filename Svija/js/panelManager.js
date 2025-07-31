@@ -23,7 +23,6 @@
 var panelContentInterval = setInterval(setPanelContent, INTMS)
 
 setPanelColor()
-
 CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setPanelColor)
 
 ///
@@ -148,11 +147,16 @@ function setPanelSize(referenceObj){
   // don't log because it happens every 1/2 second
   if (referenceObject === null) return true
 
-  var f = CEP.getScaleFactor()
-  var w = Math.round(240 / f) // max width in manifest.csxs
-  var h = Math.round(referenceObject.getBoundingClientRect().bottom/f)
+  var w = 240 // max width in manifest.csxs
+  var h = referenceObject.getBoundingClientRect().bottom
 
-  CEP.resizeContent(w, h-1)
+  if(ISMAC){
+    var f = CEP.getScaleFactor()
+    w = w / f
+    h = h / f
+  }
+
+  CEP.resizeContent(Math.round(w), Math.round(h)-1)
 }
 ///
 /*———————————————————————————————————————— getInterface()
