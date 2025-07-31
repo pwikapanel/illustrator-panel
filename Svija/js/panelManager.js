@@ -25,6 +25,10 @@ var panelContentInterval = setInterval(setPanelContent, INTMS)
 setPanelColor()
 CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setPanelColor)
 
+window.addEventListener('resize', function(){
+  fixSquash()
+})
+
 ///
 
 /*:::::::::::::::::::::::::::::::::::::::: interrupt functions */
@@ -184,3 +188,30 @@ function getInterface() { // did have (event) as arg
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
+/*———————————————————————————————————————— fixSquash()
+
+    fix problem where undocking panel from another panel
+    that's much wider cause squashed interface */
+
+function fixSquash(){
+  var obj = document.getElementById('closedDiv')
+  elapse(197, 'mdw: '+obj.offsetWidth)
+//location.reload()
+return
+  var w = window.innerWidth
+  var h = window.innerHeight
+
+  CEP.resizeContent(w+10, h+10)
+  CEP.resizeContent(w, h)
+}
+///
+/*
+
+I need to check if the width changes from something to 240
+so I need to keep a record of the current width
+
+fixSquash will check: if (oldWidth > 240 and newWidth==240) location.reload()
+
+
+
+*/
