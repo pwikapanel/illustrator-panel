@@ -24,11 +24,6 @@ var panelContentInterval = setInterval(setPanelContent, INTMS)
 
 setPanelColor()
 CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setPanelColor)
-
-window.addEventListener('resize', function(){
-  fixSquash()
-})
-
 ///
 
 /*:::::::::::::::::::::::::::::::::::::::: interrupt functions */
@@ -144,23 +139,34 @@ function showClosed(){
     sets bottom edge of panel to match bottom edge
     of supplied object */
 
+let DANGER = false // panel is docked to much larger panel
+
 function setPanelSize(referenceObj){
 
-  var referenceObject = document.getElementById(referenceObj)
+  let referenceObject = document.getElementById(referenceObj)
 
   // don't log because it happens every 1/2 second
   if (referenceObject === null) return true
 
-  var w = 240 // max width in manifest.csxs
-  var h = referenceObject.getBoundingClientRect().bottom
+  let w = 240 // max width in manifest.csxs
+  let h = referenceObject.getBoundingClientRect().bottom
 
   if(ISMAC){
-    var f = CEP.getScaleFactor()
+    let f = CEP.getScaleFactor()
     w = w / f
     h = h / f
   }
 
   CEP.resizeContent(Math.round(w), Math.round(h)-1)
+
+  // window went from extra wide to normal; on macOS this causes interface distortion
+  if (ISMAC && window.innerWidth==Math.round(w) && DANGER==true) 
+    location.reload()
+
+  if (window.innerWidth > Math.round(w)) DANGER = true
+  else                                   DANGER = false
+
+  
 }
 ///
 /*———————————————————————————————————————— getInterface()
@@ -188,23 +194,6 @@ function getInterface() { // did have (event) as arg
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
 
-/*———————————————————————————————————————— fixSquash()
-
-    fix problem where undocking panel from another panel
-    that's much wider cause squashed interface */
-
-function fixSquash(){
-  var obj = document.getElementById('closedDiv')
-  elapse(197, 'mdw: '+obj.offsetWidth)
-//location.reload()
-return
-  var w = window.innerWidth
-  var h = window.innerHeight
-
-  CEP.resizeContent(w+10, h+10)
-  CEP.resizeContent(w, h)
-}
-///
 /*
 
 I need to check if the width changes from something to 240

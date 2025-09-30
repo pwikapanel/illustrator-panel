@@ -42,6 +42,16 @@ function savePages(saveAll){
    
     /*———————————————————————————————————— export SVG then save as */
 
+
+
+
+
+
+  //—————————————————————————————————————— restore state */
+
+
+    prepareLayers(doc) // unlock & make visible all layers, delete template layers
+
     if (isValid(doc)){
       if (doc.artboards.length == 1)
            { if (exportSvgFile(doc))  filesSaved += 1 }
@@ -50,6 +60,8 @@ function savePages(saveAll){
       var aiFile = new File(originalPath)
       doc.saveAs(aiFile, aiSaveOptions())
     }
+
+    app.undo()
     ///
 
     if (!saveAll) break;
@@ -102,7 +114,7 @@ function exportSvgFile(doc){
 
   //—————————————————————————————————————— save SVG */
 
-  prepareLayers(doc) // unlock & make visible all layers, delete template layers
+  //prepareLayers(doc) // unlock & make visible all layers, delete template layers ———————————————————————————————————————————
   addViewboxReference()
 
   doc.exportFile(svgFile, ExportType.WOSVG, svgOpts)
@@ -110,7 +122,7 @@ function exportSvgFile(doc){
 
   //—————————————————————————————————————— restore state */
 
-  app.undo() // undoes all changes from this script in one step
+  //app.undo() // undoes all changes from this script in one step—————————————————————————————————————————————————————————————
 
   return true
 }
@@ -136,49 +148,13 @@ function exportSvgFiles(doc){
 
   //—————————————————————————————————————— export SVG files */
 
-  prepareLayers(doc) // unlock & make visible all layers, delete template layers
+  //prepareLayers(doc) // unlock & make visible all layers, delete template layers———————————————————————————————————————————
   doc.exportFile(Folder(svgFolder), ExportType.WOSVG, svgOpts) 
 
   //—————————————————————————————————————— restore state */
 
-  app.undo()
+  //app.undo() ——————————————————————————————————————————————————————————————————————————————————————————————————————————————
   doc.artboards.setActiveArtboardIndex(artboardIndex)
-
-  return true
-}
-///
-/*———————————————————————————————————————— isValid(doc) VALIDATED
-
-    three possible results:
-    • everything's fine                 return true
-    • warning message, proceed anyway   return true
-    • error message, skip this file     return false
-
-    ERRORS = []                   // error messages for user
-    WARNINGS = []                   // warnings for user
-
-    errors:
-    • file was not yet saved, user refuses to save */
-
-function isValid(doc){
-
-  var err
-
-  err = linksFolderExists(doc)   // is there a Links folder?
-  if (err != '')
-    WARNINGS.push(err)
-
-  err = nonNativeItems(doc)   // are there non-native items?
-  if (err != '')
-    WARNINGS.push(err)
-
-  err = embeddedImages(doc)   // are there embedded images?
-  if (err != '')
-    WARNINGS.push(err)
-
-  err = externalImages(doc)  // are there placed images not in Links?
-  if (err != '')
-    WARNINGS.push(err)
 
   return true
 }
@@ -291,6 +267,42 @@ function repairViewbox(doc, svgFile){
 
 //:::::::::::::::::::::::::::::::::::::::: validity functions
 
+/*———————————————————————————————————————— isValid(doc) VALIDATED
+
+    three possible results:
+    • everything's fine                 return true
+    • warning message, proceed anyway   return true
+    • error message, skip this file     return false
+
+    ERRORS = []                   // error messages for user
+    WARNINGS = []                   // warnings for user
+
+    errors:
+    • file was not yet saved, user refuses to save */
+
+function isValid(doc){
+
+  var err
+
+  err = linksFolderExists(doc)   // is there a Links folder?
+  if (err != '')
+    WARNINGS.push(err)
+
+  err = nonNativeItems(doc)   // are there non-native items?
+  if (err != '')
+    WARNINGS.push(err)
+
+  err = embeddedImages(doc)   // are there embedded images?
+  if (err != '')
+    WARNINGS.push(err)
+
+  err = externalImages(doc)  // are there placed images not in Links?
+  if (err != '')
+    WARNINGS.push(err)
+
+  return true
+}
+///
 /*———————————————————————————————————————— isAi(doc)
 
     just checks if file is a .ai and not a PDF

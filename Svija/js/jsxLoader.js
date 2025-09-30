@@ -77,7 +77,8 @@ else
      </CEFCommandLine>    */
 
 function directoryListFilter(result){
-  elapseGroup(10, `received jsx directory listing from CEP`)
+  //elapseGroup(10, `received jsx directory listing from CEP`)
+  elapse(10, `received jsx directory listing from CEP`)
 
   var jsxList = result.split('|')
 
@@ -90,14 +91,18 @@ function directoryListFilter(result){
   }
 
   if (jsxList.length == 0){
-    elapseGroup(80, `⚠️ jsxList.length is zero, aborting`)
+    //elapseGroup(80, `⚠️ jsxList.length is zero, aborting`)
+    elapse(80, `⚠️ jsxList.length is zero, aborting`)
     return
   }
 
   localStorage.jsxList = jsxList.join('|')
-  elapseGroup(85, `jsxList stored in localStorage.jsxList`)
+  //elapseGroup(85, `jsxList stored in localStorage.jsxList`)
+  elapse(85, `jsxList stored in localStorage.jsxList`)
     
+  elapseGroupEnd()
   elapseGroup(87, `requesting JSX content (${jsxList.length} files)...`)
+  //elapse(87, `requesting JSX content (${jsxList.length} files)...`)
   
   for (var x=0; x<jsxList.length; x++){
     var  path = `jsx/${jsxList[x]}`
@@ -119,6 +124,7 @@ function jsxToCep(fileName, contents, path){
 
   if (ELAPSEDEPTH == 0){
     elapseGroup(37, 'importing JSX into CEP')
+    //elapse(37, 'importing JSX into CEP')
   }
 
   if (contents == ''){
@@ -130,9 +136,16 @@ function jsxToCep(fileName, contents, path){
   CEP.evalScript(contents)
   elapse(111, `   ${fileName} imported`)
 
-  setTimeout(elapseGroupEnd, 1000)
+  setTimeout(elapseGroupCheck, 1000)
 }
 ///
+/*———————————————————————————————————————— elapseGroupMgmt() */
+
+function elapseGroupCheck(){
+  if (ELAPSEDEPTH == 0){
+    elapseGroupEnd()
+  }
+}
 
 //:::::::::::::::::::::::::::::::::::::::: fin
 
