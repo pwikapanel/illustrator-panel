@@ -1,21 +1,27 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: logo.css */
 
+div#logoContainer{ /* matches buttons.css */
+  display:none;
+  height:22px;
+  padding:0 !important;
+  margin: 0px 5px 4px 5px !important; 
+  background-color:#F005;
+
+  text-align:center;
+}
+
 svg#svijaLogo{
   cursor:pointer;
-  padding:0 !important;
-  width:115px;
-  height:22px;
-  margin: 0 5px 5px 5px !important;
-  vertical-align:top;
+  width:66px;
+  height:20px;
 }
 
 #logoArt{
   transition:0.5s;
 }
 
-#svijaLogo #logoBar{ fill: none; }
-#svijaLogo #logoArt{ fill: none; }
-
 /*:::::::::::::::::::::::::::::::::::::::: fin */
+
+/*———————————————————————————————————————— configure regular button */
 

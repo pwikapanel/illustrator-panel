@@ -43,7 +43,7 @@
           <Menu>Svija</Menu>
           <Geometry>
             <Size>
-                <Width>240</Width>
+                <Width>230</Width>
                 <Height>0</Height>
             </Size>
             <MinSize>
@@ -51,7 +51,7 @@
                 <Height>0</Height>
             </MinSize>
             <MaxSize>
-                <Width>240</Width>
+                <Width>230</Width>
                 <Height>671</Height>
             </MaxSize>
           </Geometry>

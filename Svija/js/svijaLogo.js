@@ -20,6 +20,21 @@ else{
 }
 ///
 
+//:::::::::::::::::::::::::::::::::::::::: logo & bar size
+
+/*———————————————————————————————————————— sumpn */
+
+var objID    = 'logoContainer'
+var objWidth = TRANSLATE.svijaLogoWidth
+
+var obj = document.getElementById(objID)
+if (obj === null) LERT(objID + ' is null')
+
+obj.style.display = 'inline-flex'
+obj.style.width = objWidth + 'px'
+
+///
+
 //:::::::::::::::::::::::::::::::::::::::: setInterval online status
 
 /*———————————————————————————————————————— online status color
@@ -33,12 +48,12 @@ function onlineStatus(){
 
   if (navigator.onLine){
     logoArt.style.fill = 'var(--accentBright)'
-    logoBar.style.fill = 'var(--panelBgDark)'
+//    logoBar.style.fill = 'var(--panelBgDark)'
   }
   
   else{
     logoArt.style.fill = 'none'
-    logoBar.style.fill = 'red'
+//    logoBar.style.fill = 'red'
   }
 
 }

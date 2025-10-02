@@ -3,6 +3,11 @@
 
 /*:::::::::::::::::::::::::::::::::::::::: buttons.css
 
+    widths are stored in:
+
+    locale/messages.properties
+    locale/fr_FR/messages.properties
+
 /*———————————————————————————————————————— geometry
 
               105px  50/50 buttons (default)

@@ -148,8 +148,16 @@ function setPanelSize(referenceObj){
   // don't log because it happens every 1/2 second
   if (referenceObject === null) return true
 
-  let w = 240 // max width in manifest.csxs
-  let h = referenceObject.getBoundingClientRect().bottom
+  // max width in manifest.csxs
+  const winDefaultWidth = 230 // width of transform, paragraph
+  const macDefaultWidth = 230 // and other fixed-width panels
+
+  let w, h
+
+  if (ISMAC) w = macDefaultWidth
+  else       w = winDefaultWidth
+
+  h = referenceObject.getBoundingClientRect().bottom
 
   if(ISMAC){
     let f = CEP.getScaleFactor()

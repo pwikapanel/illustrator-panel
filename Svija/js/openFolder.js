@@ -31,7 +31,7 @@ obj.addEventListener('mouseup', (evn) => {
   else openFolder()
 })
 ///
-/*———————————————————————————————————————— regular button */
+/*———————————————————————————————————————— configure regular button */
 
 var objLabel = TRANSLATE.openFolderButton
 var objWidth = TRANSLATE.openFolderButtonWidth
