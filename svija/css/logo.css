@@ -5,13 +5,29 @@ div#logoContainer{ /* matches buttons.css */
   display:none;
   height:22px;
   padding:0 !important;
-  margin: 0px 5px 4px 5px !important; 
-  background-color:#F005;
+  margin: 2.5px 5px 2.5px 5px !important; 
+  vertical-align: middle; /* relative to parent */
 
-  text-align:center;
+
+
+  display: flex;
+  align-items: center;  /* vertical centering */
+  justify-content: center; /* optional: horizontal centering */
+
+
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 33.33%,
+    var(--inputField) 33.33%,   /* color starts */
+    var(--inputField) 66.66%,   /* color ends */
+    transparent 66.66%,
+    transparent 100%
+  );
 }
 
 svg#svijaLogo{
+  display:inline;
   cursor:pointer;
   width:66px;
   height:20px;

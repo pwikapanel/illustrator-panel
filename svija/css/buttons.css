@@ -24,7 +24,8 @@ input[type=button]{
   border-width:1px;
   border-radius:3px;
   padding:0 !important;
-  margin: 0px 5px 4px 5px !important;
+  margin: 2.5px 5px 2.5px 5px !important;
+  vertical-align: middle;
   transition:0.2s;
   cursor:pointer;
 }

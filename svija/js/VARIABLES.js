@@ -49,7 +49,7 @@ let SYNCPATH         // string     absolute path to SYNC folder
 ///
 /*———————————————————————————————————————— set in svijaLogo */
 
-let STYLE = getComputedStyle(document.body) // object, managed in svijaLogo.js
+let STYLE = getComputedStyle(document.body) // object, managed in logo.js
 ///
 /*———————————————————————————————————————— load JSON colors
 

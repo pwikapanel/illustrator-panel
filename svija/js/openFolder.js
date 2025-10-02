@@ -5,7 +5,7 @@
 
     two buttons: closed and open states */
 
-/*———————————————————————————————————————— closed button */
+/*———————————————————————————————————————— configure "closed" button */
 
 
 //———————————————————————————————————————— parameters
