@@ -29,7 +29,7 @@ function savePages(saveAll){
   var     docsOpen   = app.documents.length  // number of open documents
   var activeDocState = app.activeDocument    // active document, to restore state
   ///
-  /*—————————————————————————————————————— loop through documents */
+  /*—————————————————————————————————————— ▼▲ treat each document */
 
   for (var index=0; index<docsOpen; index++){
 
@@ -40,15 +40,7 @@ function savePages(saveAll){
     var          doc = app.activeDocument
     var originalPath = getDocPath(doc)
    
-    /*———————————————————————————————————— export SVG then save as */
-
-
-
-
-
-
-  //—————————————————————————————————————— restore state */
-
+    //————————————————————————————————————  export SVG then save as */
 
     prepareLayers(doc) // unlock & make visible all layers, delete template layers
 
@@ -57,15 +49,16 @@ function savePages(saveAll){
            { if (exportSvgFile(doc))  filesSaved += 1 }
       else { if (exportSvgFiles(doc)) filesSaved += 1 }
 
+      app.undo()
       var aiFile = new File(originalPath)
       doc.saveAs(aiFile, aiSaveOptions())
     }
-
-    app.undo()
-    ///
+    else app.undo()
 
     if (!saveAll) break;
   }
+  ///
+  /*—————————————————————————————————————— restore state */
 
   app.activeDocument = activeDocState
 

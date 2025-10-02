@@ -27,7 +27,7 @@ obj.style.display = 'inline'
 
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt')
-  if (alt) openProjectFolder()
+  if (alt) openSVGfolder()
   else openFolder()
 })
 ///
@@ -48,7 +48,7 @@ obj.style.display = 'inline'
 
 obj.addEventListener('mouseup', (evn) => {
   var alt = evn.getModifierState('Alt')
-  if (alt) openProjectFolder()
+  if (alt) openSVGfolder()
   else openFolder()
 })
 ///
@@ -73,19 +73,19 @@ function openFolder(){
   elapse(75, `openFolder returned: ${res}`)
 }
 ///
-/*———————————————————————————————————————— openProjectFolder() */
+/*———————————————————————————————————————— openSVGfolder() */
 
-function openProjectFolder(alt){
+function openSVGfolder(alt){
 
   if (SYNCPATH == ''){
     LERT(TRANSLATE.noProject)
     return
   }
 
-  var path = SYNCPATH.slice(0,-5)
+  var path = SYNCPATH + '/SVIJA/SVG Files'
   let res = window.cep.process.createProcess(OPENER, path)
 
-  elapse(90, `openProjectFolder returned: ${res}`)
+  elapse(90, `openSVGfolder returned: ${res}`)
 }
 ///
 
