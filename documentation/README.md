@@ -44,7 +44,7 @@ defaults write com.adobe.CSXS.11 PlayerDebugMode 0
 ---
 ### Installing the extension
 
-Place the extension folder (**Svija Tools** or **Svija Tools Beta**) in:
+Place the extension folder (**svija**) in:
 
     /Library/Application Support/Adobe/CEP/extensions
 

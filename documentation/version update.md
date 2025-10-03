@@ -3,11 +3,11 @@
 
 ![Svija: SVG-based websites built in Adobe Illustrator][logo]
 
-[logo]: http://files.svija.love/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
+[logo]: http://files.svija.com/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
 ### Version Update
 
-Instructions for releasing a new version of Svija Tools.
+Instructions for releasing a new version of Svija.
 
 It is not possible to use the same signed version for Adobe Exchange and DMG distribution:
 - the PC & Adobe Exchange versions do not have a custom icon
@@ -35,14 +35,14 @@ Note: it is important that the beta version folder never have had a custom icon.
 
 Create a temporary **master version**:
 
-- duplicate the **beta version** folder, replacing the folder called **Svija Tools**
+- duplicate the **beta version** folder, replacing the folder called **svija**
 ```
-rm -rf 'Svija Tools'
-cp -r 'Beta' 'Svija Tools'
+rm -rf 'svija'
+cp -r 'Beta' 'svija'
 ```
 - remove " **Beta**" and "**Beta**" from **manifest.xml** and **initialize.js**:
 ```
-vi -O 'Svija Tools/CSXS/manifest.xml' 'Svija Tools/panel/js/initialize.js'
+vi -O 'svija/CSXS/manifest.xml' 'svija/panel/js/initialize.js'
 ```
 If necessary update the verson number:
 ```
@@ -69,7 +69,7 @@ git clean -f # for real
 ```
 ---
 
-Check out the **destination branch** and merge ([list of commits](https://github.com/svijalove/Svija-Tools/commits/beta)):
+Check out the **destination branch** and merge ([list of commits](https://github.com/svijasvg/svija/commits/beta)):
 ```
 git status
 ```
@@ -86,8 +86,8 @@ git push origin master
 
 Copy info from/to:
 
-- [github.com/svijalove/tools/commits/master](https://github.com/svijalove/tools/commits/master)
-- [tech.svija.love/programs/tools/changelog](https://tech.svija.love/programs/tools/changelog)
+- [github.com/svijasvg/tools/commits/master](https://github.com/svijasvg/tools/commits/master)
+- [tech.svija.com/programs/tools/changelog](https://tech.svija.com/programs/tools/changelog)
 
 ---
 ### 5. Create A New Github Release
@@ -98,8 +98,8 @@ On github, create a [new release](./releases) from the **master branch**.
 - use the month & year for the title
 - use the [commit list][cl] for the description (see also [presets-scripts][ps])
 
-[cl]: https://github.com/svijalove/tools/commits/beta
-[ps]: https://github.com/svijalove/scripts-presets/releases
+[cl]: https://github.com/svijasvg/tools/commits/beta
+[ps]: https://github.com/svijasvg/scripts-presets/releases
 
 ---
 ### 6. Check Out the Beta Branch
@@ -120,27 +120,27 @@ git push -u
 
 Places to update the version number:
 ```
-vi -O README.md Svija\ Tools\ Beta/js/initialize.js Svija\ Tools\ Beta/CSXS/manifest.xml
+vi -O README.md svija\ Beta/js/initialize.js svija\ beta/CSXS/manifest.xml
 ```
 The following file did not need to be updated last time.
 ```
 vi Adobe\ Exchange/README.md
 ```
-**Note:** this will break signing for the **Svija Tools Beta** folder, but that folder has no utility until it is updated for other reasons.
+**Note:** this will break signing for the **svija beta** folder, but that folder has no utility until it is updated for other reasons.
 
 ---
 ### 8. Update tutorial content at tech.svija.com
 
-Read through the [changelog](https://tech.svija.love/reference/changelogs/changelog-tools) and make a list of modfications for the new version.
+Read through the [changelog](https://tech.svija.com/reference/changelogs/changelog-tools) and make a list of modfications for the new version.
 
-Update the [documentation pages](https://tech.svija.love) if necessary.
+Update the [documentation pages](https://tech.svija.com) if necessary.
 
 ---
 ### 9. Post to Social Media
 
 Find a nice picture or make an ad to accompany the update, then
 
-- [facebook.com/svijalove](https://facebook.com/svijalove)
-- [twitter.com/svijalove](https://twitter.com/svijalove)
-- [instagram/svijalove](https://instagram/svijalove) (make it 3x wide · has to be posted from phone)
-- [linkedin.com/company/svijalove](https://linkedin.com/company/svijalove) (add text before adding image)
+- [facebook.com/svijasvg](https://facebook.com/svijasvg)
+- [twitter.com/svijasvg](https://twitter.com/svijasvg)
+- [instagram/svijasvg](https://instagram/svijasvg) (make it 3x wide · has to be posted from phone)
+- [linkedin.com/company/svijasvg](https://linkedin.com/company/svijasvg) (add text before adding image)

@@ -1,5 +1,5 @@
 
-Install Svija Tools without going through Adobe Exchange.
+Install Svija without going through Adobe Exchange.
 
 ### Anastasiy’s Extension Manager
 
