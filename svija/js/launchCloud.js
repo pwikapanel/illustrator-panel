@@ -36,8 +36,8 @@ obj.addEventListener('mouseup', (evn) => {
 
 //:::::::::::::::::::::::::::::::::::::::: cache clearing function
 
-var cacheSuccess = 'Cache Cleared\nVisitors will see recent changes.'
-var cacheFailure = 'Unable to Connect\nEmpty the cache from Svija Cloud.'
+var cacheSuccess = TRANSLATE.cacheSuccess
+var cacheFailure = TRANSLATE.cacheFailure
 
 //———————————————————————————————————————— fetchRemote(path, callback)
 
