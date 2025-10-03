@@ -62,6 +62,7 @@ if (typeof SITEURL != 'undefined')
 
   if (arg == '' || !arg.includes(':')){
     ISSVIJA = false
+    elapse(65, 'no file open (argument was empty or did not include a colon)')
     return true
   }
   ///
@@ -102,6 +103,7 @@ if (typeof SITEURL != 'undefined')
 
   if (results.isSvija == 'false'){
     ISSVIJA = false
+    elapse(106, 'ISSVIJA = false')
     return
   }
   ///
@@ -123,6 +125,8 @@ if (typeof SITEURL != 'undefined')
   ///
 
   ISSVIJA = true
+
+  elapse(129, `ISSVIJA = true\n        SYNCPATH = ${SYNCPATH}\n         SITEURL = ${SITEURL}\n        LASTPATH = ${LASTPATH}`)
 
 }
 ///

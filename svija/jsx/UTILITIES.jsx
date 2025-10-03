@@ -40,6 +40,8 @@ function ISSVIJAPAGE(){
 
   if (currPath.indexOf('/') == -1) return false
 
+  if (currPath.indexOf('Links') > 0) return false
+
   if (!STRCONTAINSSYNC(currPath)) return false
 
   return true
