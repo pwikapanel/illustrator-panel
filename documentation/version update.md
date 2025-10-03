@@ -16,6 +16,14 @@ It is not possible to use the same signed version for Adobe Exchange and DMG dis
 Otherwise, once the Exchange/PC version has been created, redo the process with a custom icon.
 
 ---
+### to integrate below
+
+- remove `.debug`
+- also remove color of reset square
+
+(and add it back to beta after publication)
+
+---
 ### 1. New Master Version
 
 Set the repo address:
