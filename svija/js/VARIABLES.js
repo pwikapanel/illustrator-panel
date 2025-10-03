@@ -28,8 +28,8 @@ let OPENER
 if (ISMAC) OPENER = '/usr/bin/open'
 else       OPENER = 'C:\\Windows\\explorer.exe'
 
-const LCDEFAULT      = 'en'      // string     two letter language code
-if (LC != 'fr') LC = LCDEFAULT // dev use only — delete when done
+const LCDEFAULT      = 'en'      // string - two letter language code
+if (LC != 'fr') LC = LCDEFAULT   // only affects JSX — regular JS is handled by Adobe's system
 
 VARTOCEP('LC'          , LC          )
 VARTOCEP('ISMAC'       , ISMAC       )
