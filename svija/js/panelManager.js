@@ -150,7 +150,7 @@ function setPanelSize(referenceObj){
 
   // max width in manifest.csxs
   const winDefaultWidth = 230 // width of transform, paragraph
-  const macDefaultWidth = 230 // and other fixed-width panels
+  const macDefaultWidth = 240 // and other fixed-width panels
 
   let w, h
 
@@ -166,6 +166,8 @@ function setPanelSize(referenceObj){
   }
 
   CEP.resizeContent(Math.round(w), Math.round(h)-1)
+
+  //elapse(170, w+': '+mainDiv.getBoundingClientRect().right)
 
   // window went from extra wide to normal; on macOS this causes interface distortion
   if (ISMAC && window.innerWidth==Math.round(w) && DANGER==true) 
