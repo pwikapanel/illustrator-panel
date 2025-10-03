@@ -82,7 +82,9 @@ function openSVGfolder(alt){
     return
   }
 
-  var path = SYNCPATH + '/SVIJA/SVG Files'
+  let path = SYNCPATH + '/SVIJA/SVG Files'
+  if (!ISMAC) path = SYNCPATH + '\\SVIJA\\SVG Files'
+
   let res = window.cep.process.createProcess(OPENER, path)
 
   elapse(90, `openSVGfolder returned: ${res}`)
