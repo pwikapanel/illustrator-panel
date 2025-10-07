@@ -46,14 +46,14 @@ var svijaLogoInterval = setInterval(onlineStatus, INTMS)
 
 function onlineStatus(){
 
-  if (navigator.onLine){
+  if (navigator.onLine === true){
     logoArt.style.fill = 'var(--accentBright)'
-//    logoBar.style.fill = 'var(--panelBgDark)'
+    wifiOff.style.fill = 'none'
   }
   
   else{
     logoArt.style.fill = 'none'
-//    logoBar.style.fill = 'red'
+    wifiOff.style.fill = '#f00f'
   }
 
 }
@@ -67,7 +67,8 @@ function onlineStatus(){
 
 svijaLogo.addEventListener('mouseup', (evn) => {
   elapse(67, 'logo clicked')
-  CEP.evalScript('svijaLogo()', svijaLogoCallback)
+  if (navigator.onLine === true)
+    CEP.evalScript('svijaLogo()', svijaLogoCallback)
 })
 ///
 /*———————————————————————————————————————— svijaLogoCallback(arg)

@@ -33,8 +33,13 @@ svg#svijaLogo{
   height:20px;
 }
 
+#wifiOff,
 #logoArt{
   transition:0.5s;
+}
+
+#wifiOff{
+  fill:#0000;
 }
 
 /*:::::::::::::::::::::::::::::::::::::::: fin */
