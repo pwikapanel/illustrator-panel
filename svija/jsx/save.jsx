@@ -600,7 +600,7 @@ function prepareLayers(obj){
 
     var layer = obj.layers[x]
     layer.locked = false
-    layer.visible = true
+//  layer.visible = true
 
     if (!layer.printable)
       layer.remove()
