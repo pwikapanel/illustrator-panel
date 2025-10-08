@@ -20,6 +20,7 @@ Otherwise, once the Exchange/PC version has been created, redo the process with 
 
 - remove `.debug`
 - also remove color of reset square
+- remove extra versions of manifest.xml from the CSXS folder
 
 (and add it back to beta after publication)
 

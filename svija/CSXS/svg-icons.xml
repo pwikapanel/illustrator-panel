@@ -1,0 +1,6 @@
+          <Icons>
+            <Icon Type="Normal">./svg/panelicon_light.svg</Icon>
+            <Icon Type="DarkNormal">./svg/panelicon_dark.svg</Icon>
+            <Icon Type="RollOver">./svg/panelicon_light.svg</Icon>
+            <Icon Type="DarkRollover">./svg/panelicon_dark.svg</Icon>
+          </Icons>

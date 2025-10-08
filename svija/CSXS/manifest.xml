@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="com.svija.SvijaBeta" ExtensionBundleVersion="1.0.7" Version="11.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="com.svija.Svija" ExtensionBundleVersion="1.0.7" Version="11.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <ExtensionList>
-    <Extension Id="com.svija.SvijaBeta.panel" Version="1.0.7" />
+    <Extension Id="com.svija.Svija.panel" Version="1.0.7" />
   </ExtensionList>
 
   <ExecutionEnvironment>
@@ -19,7 +19,7 @@
 
   <DispatchInfoList>
     
-    <Extension Id="com.svija.SvijaBeta.panel"><!-- ———————————————————— -->
+    <Extension Id="com.svija.Svija.panel"><!-- ———————————————————— -->
       <DispatchInfo>
         <Resources>
 
@@ -56,10 +56,10 @@
             </MaxSize>
           </Geometry>
           <Icons>
-            <Icon Type="Normal">./svg/panelicon_light.svg</Icon>
-            <Icon Type="DarkNormal">./svg/panelicon_dark.svg</Icon>
-            <Icon Type="RollOver">./svg/panelicon_light.svg</Icon>
-            <Icon Type="DarkRollover">./svg/panelicon_dark.svg</Icon>
+            <Icon Type="Normal"      >./png/panel_icon_light24.png</Icon>
+            <Icon Type="RollOver"    >./png/panel_icon_light24.png</Icon>
+            <Icon Type="DarkNormal"  >./png/panel_icon_dark24.png</Icon>
+            <Icon Type="DarkRollover">./png/panel_icon_dark24.png</Icon>
           </Icons>
         </UI>
       </DispatchInfo>
