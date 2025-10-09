@@ -12,7 +12,7 @@
     You can also take advantage of Node.js within CEP, passthrough gives you even
     more alternatives for making network requests. */
 
-var host = 'https://msg.svija.com/panel' 
+var host = 'https://msg.svija.com/svija' 
 var path = `${host}/${VERSION}/${LC}.html`
 
 GETREMOTEFILE(1, path, updateNews)

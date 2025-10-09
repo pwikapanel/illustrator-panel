@@ -56,10 +56,10 @@
             </MaxSize>
           </Geometry>
           <Icons>
-            <Icon Type="Normal"      >./png/panel_icon_light24.png</Icon>
-            <Icon Type="RollOver"    >./png/panel_icon_light24.png</Icon>
-            <Icon Type="DarkNormal"  >./png/panel_icon_dark24.png</Icon>
-            <Icon Type="DarkRollover">./png/panel_icon_dark24.png</Icon>
+            <Icon Type="Normal"      >./svg/panel_icon_light.svg</Icon>
+            <Icon Type="DarkNormal"  >./svg/panel_icon_dark.svg</Icon>
+            <Icon Type="RollOver"    >./svg/panel_icon_light.svg</Icon>
+            <Icon Type="DarkRollover">./svg/panel_icon_dark.svg</Icon>
           </Icons>
         </UI>
       </DispatchInfo>

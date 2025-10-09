@@ -1,7 +1,24 @@
 
 ### App Icons
 
-SVG/PNG icon
+- it's best to design in a 24px grid, and align any straight lines to pixel boundaries — the result will be much clearer.
+
+### SVG Icons
+
+SVG icons need to be 48x48px. I included a transparent background but this might not be necessary.
+
+Adobe specifically refused to accept the panel because I used SVG icons, but they are (awaiting confirmation) the only way to get a clear icon on Windows.
+
+### PNG Icons
+
+Everything displays correctly, except that the low-resolution icons are used in Windows and it's quite ugly.
+- the icons need to be 24 & 48 px square
+- the expected icons are used on macOS (@2X works)
+- 1 pixel at the top and bottom (2 pixels at retina resolution) are superimposed on the border and should be transparent
+- non-retina icons are _not_ resized
+- the retina icon should be 48x — it _is_ resized and is most clear at this size
+
+---
 
 according to [CEP_6.1_HTML_Extension_Cookbook.pdf](https://raw.githubusercontent.com/Adobe-CEP/CEP-Resources/master/CEP_6.x/CEP_6.1_HTML_Extension_Cookbook.pdf):
 
@@ -29,10 +46,3 @@ Host applications will be able to find and use
 ---
 From looking at the Apple page, this is apparently specific to macOS.
 
----
-
-everything displays correctly in 29. need to test earler version & on windows
-- the icons need to be 24 & 48 px
-- the expected icons are used on macOS (@2X works)
-- 1 pixel (2 pixels at retina resolution) are cut off above and below
-- non-retina icons are _not_ resized, so get the retina icon the right size then use 1/2 for the regular one
