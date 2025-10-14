@@ -3,7 +3,7 @@
 
 *Updated 03 October 2025 · Toulouse*
 
-![Svija: SVG-based websites built in Adobe Illustrator][logo]
+![Pwika: SVG-based websites built in Adobe Illustrator][logo]
 
 [logo]: http://files.svija.com/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
 
