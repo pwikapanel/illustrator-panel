@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <ExtensionList>
-    <Extension Id="com.svija.SvijaBeta.panel">
+    <Extension Id="com.pwika.Pwika.panel">
         <HostList>
             <Host Name="ILST" Port="8080"/> 
         </HostList>

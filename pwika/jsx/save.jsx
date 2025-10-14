@@ -602,9 +602,10 @@ function prepareLayers(obj){
     layer.locked = false
 //  layer.visible = true
 
-    if (!layer.printable)
+    if (!layer.printable){
       layer.visible = true // can't delete hidden layer
       layer.remove()
+    }
     else if (layer.layers.length > 0)
       prepareLayers(layer)
   }

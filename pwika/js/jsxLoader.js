@@ -48,16 +48,18 @@ var cmd = `(function(){
 if (typeof localStorage.jsxList != 'undefined'){
 
   var jsxList = localStorage.jsxList.split('|')
-  elapse(50, `loading JSX from localStorage (${jsxList.length} files)`)
+  elapse(51, `loading JSX from localStorage (${jsxList.length} files)`)
 
-  for (var x=0; x<jsxList.length-1; x++){
+  for (var x=0; x<jsxList.length; x++){
     CEP.evalScript(localStorage[jsxList[x]])
-    elapse(53, `${jsxList[x]} loaded from localStorage`)
+    elapse(53, `${x}: ${jsxList[x]} loaded from localStorage`)
   }
 
 }
-else
+else{
+  elapse(60, 'getting fresh JSX list') 
   CEP.evalScript(cmd, directoryListFilter)
+}
 
 ///
 /*———————————————————————————————————————— directoryListFilter(result)
