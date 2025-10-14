@@ -25,7 +25,7 @@ else{
 /*———————————————————————————————————————— sumpn */
 
 var objID    = 'logoContainer'
-var objWidth = TRANSLATE.svijaLogoWidth
+var objWidth = TRANSLATE.pwikaLogoWidth
 
 var obj = document.getElementById(objID)
 if (obj === null) LERT(objID + ' is null')
@@ -42,7 +42,7 @@ obj.style.width = objWidth + 'px'
     colored if online, red bar if offline */
 
 onlineStatus()
-var svijaLogoInterval = setInterval(onlineStatus, INTMS)
+var pwikaLogoInterval = setInterval(onlineStatus, INTMS)
 
 function onlineStatus(){
 
@@ -61,23 +61,23 @@ function onlineStatus(){
 
 //:::::::::::::::::::::::::::::::::::::::: user changes color
 
-/*———————————————————————————————————————— CEP.evalScript('svijaLogo()')
+/*———————————————————————————————————————— CEP.evalScript('pwikaLogo()')
 
     user clicks logo to change color */
 
-svijaLogo.addEventListener('mouseup', (evn) => {
+pwikaLogo.addEventListener('mouseup', (evn) => {
   elapse(67, 'logo clicked')
   if (navigator.onLine === true)
-    CEP.evalScript('svijaLogo()', svijaLogoCallback)
+    CEP.evalScript('pwikaLogo()', pwikaLogoCallback)
 })
 ///
-/*———————————————————————————————————————— svijaLogoCallback(arg)
+/*———————————————————————————————————————— pwikaLogoCallback(arg)
 
     */
 
-function svijaLogoCallback(arg){
+function pwikaLogoCallback(arg){
 
-  elapse(73, 'svijaLogoCallback returned '+arg)
+  elapse(73, 'pwikaLogoCallback returned '+arg)
   var parts = arg.split(':')
 
   var r = parts[0]

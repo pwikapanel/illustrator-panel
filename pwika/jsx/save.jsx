@@ -35,7 +35,7 @@ function savePages(saveAll){
 
     app.activeDocument = app.documents[index]
 
-    if (!ISSVIJAPAGE()) continue;
+    if (!ISPWIKAPAGE()) continue;
 
     var          doc = app.activeDocument
     var originalPath = getDocPath(doc)

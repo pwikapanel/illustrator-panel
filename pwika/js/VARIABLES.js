@@ -42,12 +42,12 @@ let INTERFACE        // number     0-3 dark to light
 ///
 /*———————————————————————————————————————— set in projectManager */
 
-let ISSVIJA          // boolean    if fromtmost doc is a svija page (in a SYNC folder)
-let LASTPATH         // string     last file path for a svija page
-let SITEURL          // string     url of most recent svija site
+let ISPWIKA          // boolean    if fromtmost doc is a pwika page (in a SYNC folder)
+let LASTPATH         // string     last file path for a pwika page
+let SITEURL          // string     url of most recent pwika site
 let SYNCPATH         // string     absolute path to SYNC folder
 ///
-/*———————————————————————————————————————— set in svijaLogo */
+/*———————————————————————————————————————— set in pwikaLogo */
 
 let STYLE = getComputedStyle(document.body) // object, managed in logo.js
 ///

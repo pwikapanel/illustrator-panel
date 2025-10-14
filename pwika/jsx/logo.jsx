@@ -4,11 +4,11 @@
 
 //:::::::::::::::::::::::::::::::::::::::: logo.jsx .js
 
-/*———————————————————————————————————————— svijaLogo()
+/*———————————————————————————————————————— pwikaLogo()
 
     returns hex color */
 
-function svijaLogo(){
+function pwikaLogo(){
   var color = $.colorPicker()
 
   var r = Math.floor(color/65536); color -= r*65536

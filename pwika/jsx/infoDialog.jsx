@@ -102,7 +102,7 @@ function infoDialog(extensionPath){
 
   if (ISMAC) dialogHeight -= 28 // because no title bar
 
-  panel = new Window ('dialog', 'Svija Settings', undefined, {resizeable: false, borderless: true, closeButton: false})
+  panel = new Window ('dialog', 'Pwika Settings', undefined, {resizeable: false, borderless: true, closeButton: false})
 
   panel.preferredSize = [500, dialogHeight]
   panel.margins       = [53, 0, 0, 0]   // left top right bottom // enforced 28px bottom margin when no title bar
@@ -162,7 +162,7 @@ function infoDialog(extensionPath){
   logo.margins = [52, 35, 0, 0] // left top right bottom
   logo.alignment = 'left'
   
-  var imgPath  = extensionPath + '/png/infoDialogSvija_' + INTERFACE + '.png'
+  var imgPath  = extensionPath + '/png/infoDialogPwika_' + INTERFACE + '.png'
   var logoImg  = logo.add ("image", undefined, File (imgPath))
   logoImg.size = [230,69]
 
@@ -183,7 +183,7 @@ function infoDialog(extensionPath){
   var  paraLine1  = para.add ("statictext")
   var  paraLine2  = para.add ("statictext")
 
-  paraLine1.text  = "Svija " + PANELVERSION + " · Illustrator " + AIVERSION
+  paraLine1.text  = "Pwika " + PANELVERSION + " · Illustrator " + AIVERSION
   paraLine2.text  = "error"
 
   paraLine2.text  = TRANSLATE[LC].startupTime +' '+ STARTUPTIME + ' MS · '

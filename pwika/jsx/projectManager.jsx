@@ -8,7 +8,7 @@
 
     returns:
 
-     ISSVIJA   boolean is a Svija site
+     ISPWIKA   boolean is a Pwika site
     syncPath   path to sync folder or ''
      siteURL   site url or ''
     lastPath   file path of most recent open page or ''
@@ -18,21 +18,21 @@
 ///
 /*———————————————————————————————————————— initialization */
 
-var ISSVIJA = false // is current file part of a Svija project?
+var ISPWIKA = false // is current file part of a Pwika project?
 ///
 /*———————————————————————————————————————— recover from localStorage */
 
 // path to most recent SYNC folder, if any
-if (typeof localStorage.ISSVIJA != 'undefined')
-     var SYNCHPATH = localStorage.ISSVIJA
+if (typeof localStorage.ISPWIKA != 'undefined')
+     var SYNCHPATH = localStorage.ISPWIKA
 else var SYNCHPATH = false
 
-// URL of most recent Svija site
+// URL of most recent Pwika site
 if (typeof localStorage.SITEURL != 'undefined')
      var SITEURL = localStorage.SITEURL
 else var SITEURL = false
 
-// path to most recent svija site page (for reopen button)
+// path to most recent pwika site page (for reopen button)
 if (typeof localStorage.LASTPATH != 'undefined')
      var LASTPATH = localStorage.LASTPATH
 else var LASTPATH = false
@@ -46,9 +46,9 @@ function projectManager(){
 
   if (app.documents.length == 0) return 'app.documents.length=0'
 
-  ISSVIJA = ISSVIJAPAGE()
+  ISPWIKA = ISPWIKAPAGE()
 
-  if (ISSVIJA){
+  if (ISPWIKA){
     SYNCPATH = getSyncPath()
     SITEURL  =  getSiteURL()
     LASTPATH = getLastPath()
@@ -57,7 +57,7 @@ function projectManager(){
   var resArray = []
 
   // `${variable}` is not supported by CEP
-  resArray.push( '"isSvija":"' +               ISSVIJA   + '"')
+  resArray.push( '"isPwika":"' +               ISPWIKA   + '"')
   resArray.push('"syncPath":"' + escapeSlashes(SYNCPATH) + '"')
   resArray.push( '"siteURL":"' +               SITEURL   + '"')
   resArray.push('"lastPath":"' + escapeSlashes(LASTPATH) + '"')

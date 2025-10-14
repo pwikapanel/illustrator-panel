@@ -5,9 +5,9 @@
 
 /*———————————————————————————————————————— initialization */
 
-ISSVIJA  = false // boolean    if frontmost doc is a svija page (in a SYNC folder)
-LASTPATH = ''    // string     last file path for a svija page
-SITEURL  = ''    // string     url of most recent svija site
+ISPWIKA  = false // boolean    if frontmost doc is a pwika page (in a SYNC folder)
+LASTPATH = ''    // string     last file path for a pwika page
+SITEURL  = ''    // string     url of most recent pwika site
 SYNCPATH = ''    // string     absolute path to SYNC folder
 ///
 /*———————————————————————————————————————— recover localStorage */
@@ -35,14 +35,14 @@ var projectManagerInterval = setInterval(function(){
 
     jsx/projectManager.jsx:
 
-    resArray.push( '"isSvija":"' +ISSVIJA+'"' )
+    resArray.push( '"isPwika":"' +ISPWIKA+'"' )
     resArray.push('"syncPath":"' +SYNCPATH+'"')
     resArray.push( '"siteURL":"' +SITEURL +'"')
     resArray.push('"lastPath":"' +LASTPATH+'"')  */
 
 function projectManagerCallback(arg){
 
-//elapse(46, `\n ISSVIJA = ${ISSVIJA}\n SITEURL = ${SITEURL}\nSYNCPATH = ${SYNCPATH}\nLASTPATH = ${LASTPATH}`)
+//elapse(46, `\n ISPWIKA = ${ISPWIKA}\n SITEURL = ${SITEURL}\nSYNCPATH = ${SYNCPATH}\nLASTPATH = ${LASTPATH}`)
 
   /*—————————————————————————————————————— set panel title */
 
@@ -56,12 +56,12 @@ if (typeof SITEURL != 'undefined')
     CEP.setWindowTitle(panelTitle)
   }
   else
-    CEP.setWindowTitle('Svija')
+    CEP.setWindowTitle('Pwika')
   ///
   /*—————————————————————————————————————— guard no file open */
 
   if (arg == '' || !arg.includes(':')){
-    ISSVIJA = false
+    ISPWIKA = false
     elapse(65, 'no file open (argument was empty or did not include a colon)')
     return true
   }
@@ -79,8 +79,8 @@ if (typeof SITEURL != 'undefined')
   ///
   /*—————————————————————————————————————— guards */
 
-  if (typeof results.isSvija == 'undefined'){
-    elapse(38, "⚠️ projectManagerCallback did not receive isSvija") 
+  if (typeof results.isPwika == 'undefined'){
+    elapse(38, "⚠️ projectManagerCallback did not receive isPwika") 
     return true
   }
 
@@ -99,15 +99,15 @@ if (typeof SITEURL != 'undefined')
     return true
   }
   ///
-  /*—————————————————————————————————————— not svija site */
+  /*—————————————————————————————————————— not pwika site */
 
-  if (results.isSvija == 'false'){
-    ISSVIJA = false
-    elapse(106, 'ISSVIJA = false')
+  if (results.isPwika == 'false'){
+    ISPWIKA = false
+    elapse(106, 'ISPWIKA = false')
     return
   }
   ///
-  /*—————————————————————————————————————— is svija site */
+  /*—————————————————————————————————————— is pwika site */
 
   SYNCPATH = results.syncPath
   localStorage.SYNCPATH = SYNCPATH
@@ -124,9 +124,9 @@ if (typeof SITEURL != 'undefined')
 //elapse(117, `LASTPATH=${LASTPATH}`)
   ///
 
-  ISSVIJA = true
+  ISPWIKA = true
 
-  elapse(129, `ISSVIJA = true\n        SYNCPATH = ${SYNCPATH}\n         SITEURL = ${SITEURL}\n        LASTPATH = ${LASTPATH}`)
+  elapse(129, `ISPWIKA = true\n        SYNCPATH = ${SYNCPATH}\n         SITEURL = ${SITEURL}\n        LASTPATH = ${LASTPATH}`)
 
 }
 ///

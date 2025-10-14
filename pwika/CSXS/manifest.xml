@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="com.svija.Svija" ExtensionBundleVersion="1.0.7" Version="11.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="com.pwika.Pwika" ExtensionBundleVersion="1.0.7" Version="11.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <ExtensionList>
-    <Extension Id="com.svija.Svija.panel" Version="1.0.7" />
+    <Extension Id="com.pwika.Pwika.panel" Version="1.0.7" />
   </ExtensionList>
 
   <ExecutionEnvironment>
@@ -19,7 +19,7 @@
 
   <DispatchInfoList>
     
-    <Extension Id="com.svija.Svija.panel"><!-- ———————————————————— -->
+    <Extension Id="com.pwika.Pwika.panel"><!-- ———————————————————— -->
       <DispatchInfo>
         <Resources>
 
@@ -40,7 +40,7 @@
 
         <UI>
           <Type>Panel</Type>
-          <Menu>Svija</Menu>
+          <Menu>Pwika</Menu>
           <Geometry>
             <Size>
                 <Width>230</Width>
