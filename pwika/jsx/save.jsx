@@ -35,7 +35,7 @@ function savePages(saveAll){
 
     app.activeDocument = app.documents[index]
 
-    if (!ISPWIKAPAGE()) continue;
+    if (!ISWEBPAGE()) continue;
 
     var          doc = app.activeDocument
     var originalPath = getDocPath(doc)
@@ -71,7 +71,7 @@ function savePages(saveAll){
   }
   ///
 
-  // must be in locale/messages.properties WRONG BECAUSE IF IT'S ONE SVIJA PAGE & SEVERAL NON & HE CLICKED SAVE ALL
+  // must be in locale/messages.properties WRONG BECAUSE IF IT'S ONE WEB PAGE & SEVERAL NON & HE CLICKED SAVE ALL
   if (filesSaved > 1) return "pagesSaved"
   else if (filesSaved == 1) return "pageSaved"
   else return 'noPagesSaved'
@@ -322,7 +322,7 @@ function hasFolders(doc){
     return doc.name + ' is not inside a \"SYNC\" folder'
 
   if (getFolderPath(doc) == '')
-    return '"SYNC/SVIJA/SVG Files" not found'
+    return '"SYNC/CONFIG/SVG Files" not found'
 
   return ''
 }
@@ -537,8 +537,8 @@ function getFolderPath(doc){
 
   if (SYNCPATH == '') return ''
 
-  if (ISMAC) return SYNCPATH + '/SVIJA/SVG Files'
-  else return SYNCPATH + '\\SVIJA\\SVG Files'
+  if (ISMAC) return SYNCPATH + '/CONFIG/SVG Files'
+  else return SYNCPATH + '\\CONFIG\\SVG Files'
 }
 ///
 /*———————————————————————————————————————— makeMB(x)

@@ -8,7 +8,7 @@
 
     returns:
 
-     ISPWIKA   boolean is a Pwika site
+     ISPAGE   boolean is a Pwika site
     syncPath   path to sync folder or ''
      siteURL   site url or ''
     lastPath   file path of most recent open page or ''
@@ -18,13 +18,13 @@
 ///
 /*———————————————————————————————————————— initialization */
 
-var ISPWIKA = false // is current file part of a Pwika project?
+var ISPAGE = false // is current file part of a Pwika project?
 ///
 /*———————————————————————————————————————— recover from localStorage */
 
 // path to most recent SYNC folder, if any
-if (typeof localStorage.ISPWIKA != 'undefined')
-     var SYNCHPATH = localStorage.ISPWIKA
+if (typeof localStorage.ISPAGE != 'undefined')
+     var SYNCHPATH = localStorage.ISPAGE
 else var SYNCHPATH = false
 
 // URL of most recent Pwika site
@@ -46,9 +46,9 @@ function projectManager(){
 
   if (app.documents.length == 0) return 'app.documents.length=0'
 
-  ISPWIKA = ISPWIKAPAGE()
+  ISPAGE = ISWEBPAGE()
 
-  if (ISPWIKA){
+  if (ISPAGE){
     SYNCPATH = getSyncPath()
     SITEURL  =  getSiteURL()
     LASTPATH = getLastPath()
@@ -57,7 +57,7 @@ function projectManager(){
   var resArray = []
 
   // `${variable}` is not supported by CEP
-  resArray.push( '"isPwika":"' +               ISPWIKA   + '"')
+  resArray.push( '"isPwika":"' +               ISPAGE   + '"')
   resArray.push('"syncPath":"' + escapeSlashes(SYNCPATH) + '"')
   resArray.push( '"siteURL":"' +               SITEURL   + '"')
   resArray.push('"lastPath":"' + escapeSlashes(LASTPATH) + '"')
@@ -89,12 +89,12 @@ function getSyncPath(){
     using the frontmost document's location, returns
     the URL of the website, stored in
 
-    sync/SVIJA/System/URL.txt */
+    sync/CONFIG/System/URL.txt */
 
 function getSiteURL(){
 
-  if (ISMAC) destPath = getSyncPath() + '/SVIJA/System/URL.txt'
-  else       destPath = getSyncPath() + '\\SVIJA\\System\\URL.txt'
+  if (ISMAC) destPath = getSyncPath() + '/CONFIG/System/URL.txt'
+  else       destPath = getSyncPath() + '\\CONFIG\\System\\URL.txt'
 
 // https://community.adobe.com/t5/indesign-discussions/file-read-returns-nothing-for-txt-file/td-p/9335635
 

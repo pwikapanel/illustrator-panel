@@ -30,11 +30,11 @@ function DUMPKEYS(obj){
   alert(str)
 }
 ///
-/*———————————————————————————————————————— ISPWIKAPAGE()
+/*———————————————————————————————————————— ISWEBPAGE()
 
     returns true if in a SYNC folder */
 
-function ISPWIKAPAGE(){
+function ISWEBPAGE(){
 
   var currPath = String(app.activeDocument.path)
 

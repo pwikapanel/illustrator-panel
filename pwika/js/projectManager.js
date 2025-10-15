@@ -5,7 +5,7 @@
 
 /*———————————————————————————————————————— initialization */
 
-ISPWIKA  = false // boolean    if frontmost doc is a pwika page (in a SYNC folder)
+ISPAGE  = false // boolean    if frontmost doc is a pwika page (in a SYNC folder)
 LASTPATH = ''    // string     last file path for a pwika page
 SITEURL  = ''    // string     url of most recent pwika site
 SYNCPATH = ''    // string     absolute path to SYNC folder
@@ -35,14 +35,14 @@ var projectManagerInterval = setInterval(function(){
 
     jsx/projectManager.jsx:
 
-    resArray.push( '"isPwika":"' +ISPWIKA+'"' )
+    resArray.push( '"isPwika":"' +ISPAGE+'"' )
     resArray.push('"syncPath":"' +SYNCPATH+'"')
     resArray.push( '"siteURL":"' +SITEURL +'"')
     resArray.push('"lastPath":"' +LASTPATH+'"')  */
 
 function projectManagerCallback(arg){
 
-//elapse(46, `\n ISPWIKA = ${ISPWIKA}\n SITEURL = ${SITEURL}\nSYNCPATH = ${SYNCPATH}\nLASTPATH = ${LASTPATH}`)
+//elapse(46, `\n ISPAGE = ${ISPAGE}\n SITEURL = ${SITEURL}\nSYNCPATH = ${SYNCPATH}\nLASTPATH = ${LASTPATH}`)
 
   /*—————————————————————————————————————— set panel title */
 
@@ -61,7 +61,7 @@ if (typeof SITEURL != 'undefined')
   /*—————————————————————————————————————— guard no file open */
 
   if (arg == '' || !arg.includes(':')){
-    ISPWIKA = false
+    ISPAGE = false
     elapse(65, 'no file open (argument was empty or did not include a colon)')
     return true
   }
@@ -102,8 +102,8 @@ if (typeof SITEURL != 'undefined')
   /*—————————————————————————————————————— not pwika site */
 
   if (results.isPwika == 'false'){
-    ISPWIKA = false
-    elapse(106, 'ISPWIKA = false')
+    ISPAGE = false
+    elapse(106, 'ISPAGE = false')
     return
   }
   ///
@@ -124,9 +124,9 @@ if (typeof SITEURL != 'undefined')
 //elapse(117, `LASTPATH=${LASTPATH}`)
   ///
 
-  ISPWIKA = true
+  ISPAGE = true
 
-  elapse(129, `ISPWIKA = true\n        SYNCPATH = ${SYNCPATH}\n         SITEURL = ${SITEURL}\n        LASTPATH = ${LASTPATH}`)
+  elapse(129, `ISPAGE = true\n        SYNCPATH = ${SYNCPATH}\n         SITEURL = ${SITEURL}\n        LASTPATH = ${LASTPATH}`)
 
 }
 ///

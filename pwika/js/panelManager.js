@@ -37,11 +37,11 @@ CEP.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setPanelColor)
 
 
 function setPanelContent(){
-//elapse(40, `ISPWIKA=${ISPWIKA}`)
+//elapse(40, `ISPAGE=${ISPAGE}`)
 
   document.body.style.backgroundImage = 'none';
 
-  if (!ISPWIKA){
+  if (!ISPAGE){
     showClosed()
     return
   }
