@@ -126,7 +126,7 @@ if (typeof SITEURL != 'undefined')
 
   ISPAGE = true
 
-  elapse(129, `ISPAGE = true\n        SYNCPATH = ${SYNCPATH}\n         SITEURL = ${SITEURL}\n        LASTPATH = ${LASTPATH}`)
+//elapse(129, `ISPAGE = true\n        SYNCPATH = ${SYNCPATH}\n         SITEURL = ${SITEURL}\n        LASTPATH = ${LASTPATH}`)
 
 }
 ///

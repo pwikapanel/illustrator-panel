@@ -12,12 +12,16 @@
     You can also take advantage of Node.js within CEP, passthrough gives you even
     more alternatives for making network requests. */
 
-var host = 'https://msg.svija.com/svija' 
+var host = 'https://msg.pwika.com/panel' 
 var path = `${host}/${VERSION}/${LC}.html`
 
 GETREMOTEFILE(1, path, updateNews)
 
-function updateNews(rien, arg, path){ newsDiv.innerHTML = arg }
+function updateNews(rien, arg, path){
+  elapse(21, `Got result from ${path}\n${arg}`)
+  newsDiv.innerHTML = arg
+
+}
 
 
 //:::::::::::::::::::::::::::::::::::::::: fin
