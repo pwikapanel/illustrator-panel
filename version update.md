@@ -18,7 +18,7 @@ There are two versions:
 After preparing the ZIP/Exchange version, repeat the process with a custom icon.
 
 ---
-### 1. Create a Copy
+### 1. Create a Clean Copy
 
 Copy the `Pwika` folder to `/Volumes/External/Pwika`.
 
@@ -48,31 +48,6 @@ ls /Volumes/External/Pwika/CSXS
 Edit `CSXS/manifest.xml` and verify:
 ```
 vi /Volumes/External/Pwika/CSXS/manifest.xml
-```
----
-### 1. New Master Version
-
-Set the repo address:
-```
-repo="Library/Mobile Documents/com~apple~CloudDocs/Repositories"
-cd ~/"$repo/tools"
-```
-Note: it is important that the beta version folder never have had a custom icon.
-
-Create a temporary **master version**:
-
-- duplicate the **beta version** folder, replacing the folder called **svija**
-```
-rm -rf 'svija'
-cp -r 'Beta' 'svija'
-```
-- remove " **Beta**" and "**Beta**" from **manifest.xml** and **initialize.js**:
-```
-vi -O 'svija/CSXS/manifest.xml' 'svija/panel/js/initialize.js'
-```
-If necessary update the verson number:
-```
-windo %s/1.0.5/1.0.6/g
 ```
 ---
 ### 2. Code Signing
@@ -170,3 +145,35 @@ Find a nice picture or make an ad to accompany the update, then
 - [twitter.com/svijasvg](https://twitter.com/svijasvg)
 - [instagram/svijasvg](https://instagram/svijasvg) (make it 3x wide · has to be posted from phone)
 - [linkedin.com/company/svijasvg](https://linkedin.com/company/svijasvg) (add text before adding image)
+
+---
+
+<details><summary>leftovers</summary>
+
+### 1. New Master Version
+
+Set the repo address:
+```
+repo="Library/Mobile Documents/com~apple~CloudDocs/Repositories"
+cd ~/"$repo/tools"
+```
+Note: it is important that the beta version folder never have had a custom icon.
+
+Create a temporary **master version**:
+
+- duplicate the **beta version** folder, replacing the folder called **svija**
+```
+rm -rf 'svija'
+cp -r 'Beta' 'svija'
+```
+- remove " **Beta**" and "**Beta**" from **manifest.xml** and **initialize.js**:
+```
+vi -O 'svija/CSXS/manifest.xml' 'svija/panel/js/initialize.js'
+```
+If necessary update the verson number:
+```
+windo %s/1.0.5/1.0.6/g
+```
+---
+
+</details>
