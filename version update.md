@@ -9,22 +9,40 @@
 
 ### Version Update
 
-Instructions for releasing a new version of Pwika.
+Releasing a new version of Pwika.
 
-It is not possible to use the same signed version for Adobe Exchange and DMG distribution:
-- the PC & Adobe Exchange versions do not have a custom icon
-- the DMG version does have a custom icon
+There are two versions:
+- ZIP & Adobe Exchange versions (no custom icon)
+- DMG version (custom icon)
 
-Otherwise, once the Exchange/PC version has been created, redo the process with a custom icon.
+After preparing the ZIP/Exchange version, repeat the process with a custom icon.
 
 ---
-### to integrate below
+### 1. Create a Copy
 
-- remove `.debug`
-- also remove color of reset square
-- remove extra versions of manifest.xml from the CSXS folder
+Copy the `Pwika` folder to `/Volumes/External/Pwika`.
 
-(and add it back to beta after publication)
+Make the following modifications:
+
+```
+cd /Volumes/External/Pwika
+```
+```
+rm mimetype       # remove signing information
+rm -rf META-INF
+
+rm -rf \.[!.]*    # remove invisible files
+rm -rf */\.[!.]*
+rm -rf */*/\.[!.]*
+```
+Remove color of reset square:
+```
+vi /Volumes/External/Pwika/shell.html
+```
+Remove extra versions of `manifest.xml` from the CSXS folder:
+```
+ls /Volumes/External/Pwika/CSXS
+```
 
 ---
 ### 1. New Master Version
