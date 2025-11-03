@@ -37,7 +37,7 @@ rm -rf */*/\.[!.]*
 ```
 Remove color of reset square:
 ```
-# 15     div#reloader{
+# change ____ to FFF0
 # 16       position:absolute; background-color:#FFF0;
 vi /Volumes/External/Pwika/shell.html
 ```
@@ -45,7 +45,10 @@ Remove extra versions of `manifest.xml` from the CSXS folder:
 ```
 ls /Volumes/External/Pwika/CSXS
 ```
-
+Edit `CSXS/manifest.xml` and verify:
+```
+vi /Volumes/External/CSXS/manifest.xml
+```
 ---
 ### 1. New Master Version
 
