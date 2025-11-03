@@ -1,13 +1,13 @@
 
 *Updated 18 July, 2024 · Toulouse*
 
-![Svija: SVG-based websites built in Adobe Illustrator][logo]
+![Pwika: SVG-based websites built in Adobe Illustrator][logo]
 
-[logo]: http://files.svija.com/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
+[logo]: http://files.pwika.com/github/github-logo.jpg "Pwika: SVG-based websites built in Adobe Illustrator"
 
 ### Version Update
 
-Instructions for releasing a new version of Svija.
+Instructions for releasing a new version of Pwika.
 
 It is not possible to use the same signed version for Adobe Exchange and DMG distribution:
 - the PC & Adobe Exchange versions do not have a custom icon
