@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="com.pwika.Pwika" ExtensionBundleVersion="1.0.7" Version="11.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleName="Pwika" ExtensionBundleId="com.pwika.Pwika" ExtensionBundleVersion="1.0.7" Version="11.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <ExtensionList>
     <Extension Id="com.pwika.Pwika.panel" Version="1.0.7" />
@@ -7,28 +7,25 @@
 
   <ExecutionEnvironment>
     <HostList>
-      <Host Name="ILST" Version="17" />
+      <Host Name="ILST" Version="[27.0,99.0]" />
     </HostList>
     <LocaleList>
       <Locale Code="All" />
     </LocaleList>
     <RequiredRuntimeList>
-      <RequiredRuntime Name="CSXS" Version="9.0" />
+      <RequiredRuntime Name="CSXS" Version="10.0" />
     </RequiredRuntimeList>
   </ExecutionEnvironment>
 
   <DispatchInfoList>
-    
     <Extension Id="com.pwika.Pwika.panel"><!-- ———————————————————— -->
+
       <DispatchInfo>
         <Resources>
-
-
           <MainPath>./shell.html</MainPath>
           <CEFCommandLine>
             <Parameter>--allow-file-access-from-files</Parameter>
           </CEFCommandLine>
-
         </Resources>
 
         <Lifecycle>
@@ -56,12 +53,13 @@
             </MaxSize>
           </Geometry>
           <Icons>
-            <Icon Type="Normal"      >./svg/panel_icon_light.svg</Icon>
-            <Icon Type="DarkNormal"  >./svg/panel_icon_dark.svg</Icon>
-            <Icon Type="RollOver"    >./svg/panel_icon_light.svg</Icon>
-            <Icon Type="DarkRollover">./svg/panel_icon_dark.svg</Icon>
+            <Icon Type="Normal"      >./png/panel_icon_light24.png</Icon>
+            <Icon Type="RollOver"    >./png/panel_icon_light24.png</Icon>
+            <Icon Type="DarkNormal"  >./png/panel_icon_dark24.png</Icon>
+            <Icon Type="DarkRollover">./png/panel_icon_dark24.png</Icon>
           </Icons>
         </UI>
+
       </DispatchInfo>
     </Extension>
 

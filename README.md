@@ -109,3 +109,24 @@ These are some gotchas that can make your life complicated:
 
 ---
 
+### Installation
+
+Apart from Adobe Exchange, there are two ways to install a CEP panel:
+
+1. copy the CEP panel folder directly to the appropriate location on disk
+2. use an extension manager to install the ZXP file
+
+**1. Copy to Folder**  
+- PC: `C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\`
+- macOS: `/Library/Application Support/Adobe/CEP/extensions/`
+
+**2. Extension Manager**
+
+There are three extension manager apps available:
+1. [ZXP/UXP Installer](https://aescripts.com/learn/post/zxp-installer)
+2. [Anastasiy's](https://install.anastasiy.com/)
+3. [Elements ZXP Installer](https://zxpinstaller.com/)
+
+All of them are available for both Windows and macOS.
+
+---
