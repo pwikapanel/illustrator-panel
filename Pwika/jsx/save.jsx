@@ -322,7 +322,7 @@ function hasFolders(doc){
     return doc.name + ' is not inside a \"SYNC\" folder'
 
   if (getFolderPath(doc) == '')
-    return '"SYNC/CONFIG/SVG Files" not found'
+    return '"SYNC/SYSTEM/SVG Files" not found'
 
   return ''
 }
@@ -537,8 +537,8 @@ function getFolderPath(doc){
 
   if (SYNCPATH == '') return ''
 
-  if (ISMAC) return SYNCPATH + '/CONFIG/SVG Files'
-  else return SYNCPATH + '\\CONFIG\\SVG Files'
+  if (ISMAC) return SYNCPATH + '/SYSTEM/SVG Files'
+  else return SYNCPATH + '\\SYSTEM\\SVG Files'
 }
 ///
 /*———————————————————————————————————————— makeMB(x)

@@ -82,8 +82,8 @@ function openSVGfolder(alt){
     return
   }
 
-  let path = SYNCPATH + '/CONFIG/SVG Files'
-  if (!ISMAC) path = SYNCPATH + '\\CONFIG\\SVG Files'
+  let path = SYNCPATH + '/SYSTEM/SVG Files'
+  if (!ISMAC) path = SYNCPATH + '\\SYSTEM\\SVG Files'
 
   let res = window.cep.process.createProcess(OPENER, path)
 

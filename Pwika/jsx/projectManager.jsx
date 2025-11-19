@@ -89,12 +89,12 @@ function getSyncPath(){
     using the frontmost document's location, returns
     the URL of the website, stored in
 
-    sync/CONFIG/System/URL.txt */
+    sync/SYSTEM/Synchronization/URL.txt */
 
 function getSiteURL(){
 
-  if (ISMAC) destPath = getSyncPath() + '/CONFIG/System/URL.txt'
-  else       destPath = getSyncPath() + '\\CONFIG\\System\\URL.txt'
+  if (ISMAC) destPath = getSyncPath() + '/SYSTEM/Synchronization/URL.txt'
+  else       destPath = getSyncPath() + '\\SYSTEM\\Synchronization\\URL.txt'
 
 // https://community.adobe.com/t5/indesign-discussions/file-read-returns-nothing-for-txt-file/td-p/9335635
 
