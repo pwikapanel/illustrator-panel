@@ -5,7 +5,7 @@
 
 ![Pwika: SVG-based websites built in Adobe Illustrator][logo]
 
-[logo]: http://files.svija.com/github/readme-logo.png?1 "Svija: SVG-based websites built in Adobe Illustrator"
+[logo]: http://files.svija.com/github/github_banner.png "Svija: SVG-based websites built in Adobe Illustrator"
 
 ### Svija
 Working on Svija requires:
