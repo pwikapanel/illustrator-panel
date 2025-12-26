@@ -66,7 +66,7 @@ repo=/Users/XXX/Repositories/illustrator-panel
 ```
 Create the symlink by pasting:
 ```
-sudo ln -s "$repo/illustrator-panel" "/Library/Application Support/Adobe/CEP/extensions/pwika beta"
+sudo ln -s "$repo/Pwika" "/Library/Application Support/Adobe/CEP/extensions/pwika beta"
 ```
 Restart Illustrator; Svija should be available under menu `Window` › `Extensions`
 
