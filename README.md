@@ -5,7 +5,7 @@
 
 ![Pwika: SVG-based websites built in Adobe Illustrator][logo]
 
-[logo]: http://files.svija.com/github/github_banner.png "Svija: SVG-based websites built in Adobe Illustrator"
+[logo]: http://files.pwika.com/github/github_banner.png "Svija: SVG-based websites built in Adobe Illustrator"
 
 ### Svija
 Working on Svija requires:
@@ -42,7 +42,7 @@ defaults read /Users/Main/Library/Preferences/com.adobe.CSXS.*.plist
 
 You can download this repository by clicking on `Code` › `Download ZIP` from the main page, or you can clone it:
 ```
-git clone htts://git@github.com/svijasvg/svija.git
+git clone htts://git@github.com/pwikapanel/illustrator-panel.git
 ```
 ---
 ### 3. Link the Repository to the Extensions Folder
@@ -62,11 +62,11 @@ Then drag the repository Finder window onto the Terminal window.
 
 It should look like this:
 ```
-repo=/Users/XXX/Repositories/svija
+repo=/Users/XXX/Repositories/illustrator-panel
 ```
 Create the symlink by pasting:
 ```
-sudo ln -s "$repo/svija" "/Library/Application Support/Adobe/CEP/extensions/svija beta"
+sudo ln -s "$repo/illustrator-panel" "/Library/Application Support/Adobe/CEP/extensions/pwika beta"
 ```
 Restart Illustrator; Svija should be available under menu `Window` › `Extensions`
 
@@ -77,11 +77,11 @@ Restart Illustrator; Svija should be available under menu `Window` › `Extensio
 
 This should work in any Chrome-based browser (we are using [unGoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)).
 
-Create or edit `svija/.debug`, containing:
+Create or edit `Pwika/.debug`, containing:
 ```
 <?xml version="1.0" encoding="UTF-8"?> 
 <ExtensionList>
-    <Extension Id="com.svija.SvijaBeta.panel">
+    <Extension Id="com.pwika.Pwika.panel">
         <HostList>
             <Host Name="ILST" Port="8080"/> 
         </HostList>
